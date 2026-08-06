@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+  <meta name="ext-resource-dependency" content="assets-lite/categories/aktivni-latky.jpg" data-resource-id="assets-lite/categories/aktivni-latky.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/categories/barviva.jpg" data-resource-id="assets-lite/categories/barviva.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/categories/emulgatory.jpg" data-resource-id="assets-lite/categories/emulgatory.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/categories/masla.jpg" data-resource-id="assets-lite/categories/masla.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/categories/obaly.jpg" data-resource-id="assets-lite/categories/obaly.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/categories/oleje.jpg" data-resource-id="assets-lite/categories/oleje.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/categories/vosky.jpg" data-resource-id="assets-lite/categories/vosky.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/categories/vune.jpg" data-resource-id="assets-lite/categories/vune.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/make/kosmetika.jpg" data-resource-id="assets-lite/make/kosmetika.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/make/mydla.jpg" data-resource-id="assets-lite/make/mydla.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/make/parfemy.jpg" data-resource-id="assets-lite/make/parfemy.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/make/sera.jpg" data-resource-id="assets-lite/make/sera.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/make/svicky.jpg" data-resource-id="assets-lite/make/svicky.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/make/vlasy.jpg" data-resource-id="assets-lite/make/vlasy.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/products/levandulove-maslo-100-g.jpg" data-resource-id="assets-lite/products/levandulove-maslo-100-g.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/products/mydlova-hmota-bambucke-maslo-1-kg.jpg" data-resource-id="assets-lite/products/mydlova-hmota-bambucke-maslo-1-kg.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/products/stabilizovany-vitamin-c-10-g.jpg" data-resource-id="assets-lite/products/stabilizovany-vitamin-c-10-g.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/products/tuhy-sampon-zloutkovy.jpg" data-resource-id="assets-lite/products/tuhy-sampon-zloutkovy.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/recipes/krem-na-paty.jpg" data-resource-id="assets-lite/recipes/krem-na-paty.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/recipes/pasta-na-holeni.jpg" data-resource-id="assets-lite/recipes/pasta-na-holeni.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/recipes/repelent.jpg" data-resource-id="assets-lite/recipes/repelent.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/recipes/tenzidy.jpg" data-resource-id="assets-lite/recipes/tenzidy.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/ugc/01.jpg" data-resource-id="assets-lite/ugc/01.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/ugc/02.jpg" data-resource-id="assets-lite/ugc/02.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/ugc/03.jpg" data-resource-id="assets-lite/ugc/03.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/ugc/04.jpg" data-resource-id="assets-lite/ugc/04.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/ugc/05.jpg" data-resource-id="assets-lite/ugc/05.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/ugc/06.jpg" data-resource-id="assets-lite/ugc/06.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/ugc/07.jpg" data-resource-id="assets-lite/ugc/07.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/ugc/08.jpg" data-resource-id="assets-lite/ugc/08.jpg" />
+  <meta name="ext-resource-dependency" content="assets-lite/usp/1-recepty.png" data-resource-id="assets-lite/usp/1-recepty.png" />
+  <meta name="ext-resource-dependency" content="assets-lite/usp/2-suroviny.png" data-resource-id="assets-lite/usp/2-suroviny.png" />
+  <meta name="ext-resource-dependency" content="assets-lite/usp/3-pece.png" data-resource-id="assets-lite/usp/3-pece.png" />
+  <meta name="ext-resource-dependency" content="assets-lite/usp/4-vernost.png" data-resource-id="assets-lite/usp/4-vernost.png" />
+  <meta name="ext-resource-dependency" content="assets-lite/usp/5-dokumentace.png" data-resource-id="assets-lite/usp/5-dokumentace.png" />
+  <meta name="ext-resource-dependency" content="assets-lite/usp/6-doprava.png" data-resource-id="assets-lite/usp/6-doprava.png" />
+</head>
+<body>
+<template id="__bundler_thumbnail" data-bg-color="#2D3A2E">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect width="1200" height="800" fill="#2D3A2E"/>
+  <image href="data:image/png;base64,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" x="360" y="330" width="480" height="140" preserveAspectRatio="xMidYMid meet"/>
+</svg>
+</template>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #C0613D; color: #fff; }
+  .ek-scroll { scrollbar-width: thin; scrollbar-color: #cdbfa3 transparent; }
+  .ek-scroll::-webkit-scrollbar { height: 8px; }
+  .ek-scroll::-webkit-scrollbar-thumb { background: #cdbfa3; border-radius: 8px; }
+  .ek-cat:hover .ek-cat-ov { opacity: 1; }
+  .ek-cat:hover .ek-ph { transform: scale(1.05); }
+  .ek-link-u { background-image: linear-gradient(#C0613D,#C0613D); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u:hover { background-size: 100% 1.5px; }
+  .ek-cta:hover { background: #A8502F !important; }
+  .ek-cta-sec:hover { background: #2D3A2E !important; color: #F6F1E7 !important; }
+  .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
+  .ek-nav a:hover { color: #C0613D; }
+  @keyframes ekSearchIn { from { opacity:0; transform:translateY(-50%) scale(.98); } to { opacity:1; transform:translateY(-50%) scale(1); } }
+  @media (max-width: 900px) {
+    .ek-hero { grid-template-columns: 1fr 1fr !important; height: auto !important; }
+    .ek-hero-main { grid-column: 1 / -1; min-height: 420px !important; }
+    .ek-grid6 { grid-template-columns: repeat(2,1fr) !important; }
+    .ek-grid8 { grid-template-columns: repeat(2,1fr) !important; }
+  }
+  @media (max-width: 600px) {
+    .ek-grid8 { grid-template-columns: 1fr !important; gap: 10px !important; }
+    .ek-grid8 > a { padding: 8px 14px !important; }
+    .ek-grid8 > a > span:first-child { width: 44px !important; height: 44px !important; }
+    .ek-grid8 > a > span:last-child { font-size: 15px !important; }
+  }
+  @media (max-width: 900px) {
+    .ek-thirds { grid-template-columns: repeat(3,1fr) !important; gap: 12px !important; }
+    .ek-two { grid-template-columns: 1fr !important; }
+    .ek-loyalty { grid-template-columns: 1fr !important; }
+    .ek-ugc { grid-template-columns: repeat(3,1fr) !important; }
+    .ek-foot { grid-template-columns: repeat(2,1fr) !important; }
+    .ek-nav, .ek-util-hide { display: none !important; }
+    .ek-hdr-icons { gap: 14px !important; margin-left: auto !important; }
+    .ek-hdr-row { gap: 14px !important; padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-mega { display: none !important; }
+    .ek-hamb { display: flex !important; width: auto !important; height: auto !important; background: #2D3A2E !important; color: #F6F1E7 !important; padding: 10px 16px !important; border-radius: 999px !important; gap: 8px !important; font-size: 14px !important; font-weight: 600 !important; }
+    .ek-hamb svg { width: 18px !important; height: 18px !important; }
+    .ek-search-overlay { position: fixed !important; inset: 0 !important; left: 0 !important; right: 0 !important; top: 0 !important; transform: none !important; z-index: 300 !important; background: #F6F1E7 !important; display: flex !important; align-items: flex-start !important; padding: 0 !important; }
+    .ek-search-form { width: 100% !important; border-radius: 0 !important; border: none !important; box-shadow: none !important; padding: 22px 20px !important; padding-top: max(22px, env(safe-area-inset-top)) !important; }
+    .ek-search-overlay { flex-direction: column !important; }
+    .ek-sugg { position: static !important; margin: 0 12px 12px !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 110px); overflow-y: auto; }
+    .ek-h1 { font-size: 44px !important; }
+    .ek-h2 { font-size: 30px !important; }
+    .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-scrollrow { overflow-x: auto !important; grid-auto-flow: column !important; grid-auto-columns: 78% !important; grid-template-columns: none !important; padding-bottom: 16px !important; }
+    #blok3 .ek-scrollrow { grid-auto-columns: 196px !important; }
+    #blok5 .ek-scrollrow { grid-auto-columns: 230px !important; }
+    #blok5 .ek-scrollrow h3 { font-size: 17px !important; }
+    #blok6 .ek-scrollrow { grid-auto-columns: 200px !important; }
+    #blok6 .ek-scrollrow h3 { font-size: 14px !important; }
+    .ek-rev3 { grid-template-columns: repeat(3,1fr) !important; gap: 12px !important; }
+    .ek-loyal-goat { width: 130px !important; }
+    /* Fix: hero recipe/loyalty cards collapse to 0 (only absolute children) */
+    .ek-hero > .ek-cat { min-height: 360px !important; }
+    .ek-mobtap { min-height: 44px; }
+  }
+  @media (min-width: 901px) and (max-width: 1180px) {
+    .ek-nav-onas { display: none !important; }
+  }
+  @media (max-width: 480px) {
+    .ek-ugc { grid-template-columns: repeat(2,1fr) !important; }
+  }
+  @media (max-width: 600px) {
+    .ek-rev3 { grid-template-columns: 1fr !important; }
+    .ek-thirds { grid-template-columns: 1fr !important; }
+    .ek-loyal-goat { display: none !important; }
+  }
+  .ek-mega-link:hover { background: #F6F1E7; color: #C0613D !important; }
+  /* ===== Mobile drawer (state-driven inline styles on elements) ===== */
+</style>
+</helmet>
+
+<div style="background:#F6F1E7 url('assets-lite/background.jpg') repeat; background-size:620px; font-family:'Hanken Grotesk',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:hidden;">
+
+  <!-- ============ TOP UTILITY BAR ============ -->
+  <div style="background:#2D3A2E; color:#EFE7D6;">
+    <div style="max-width:1280px; margin:0 auto; padding:9px 32px; display:flex; align-items:center; justify-content:space-between; font-size:12.5px; letter-spacing:.02em;" class="ek-pad">
+      <span>Doprava zdarma od 2000 Kč · Ověřené recepty od roku 2009</span>
+      <span class="ek-util-hide" style="display:flex; gap:22px;">
+        <a href="#" class="ek-link-u" style="color:#EFE7D6; text-decoration:none;">Sledování objednávky</a>
+        <a href="#" class="ek-link-u" style="color:#EFE7D6; text-decoration:none;">Kontakt</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header onMouseLeave="{{ megaClose }}" style="background:#F6F1E7; border-bottom:1px solid #E4DAC6; position:sticky; top:0; z-index:50;">
+    <div class="ek-hdr-row ek-pad" style="position:relative; max-width:1280px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; gap:36px;">
+      <a href="#" style="display:flex; align-items:center; flex-shrink:0;">
+        <img src="assets-lite/ekokoza-logo-green.png" alt="ekokoza" style="height:38px; width:auto; display:block;">
+      </a>
+      <nav class="ek-nav" style="display:flex; align-items:center; gap:28px; font-size:15px; font-weight:500; flex:1; justify-content:space-between;">
+        <div style="display:flex; gap:28px;">
+          <a href="#blok3" onMouseEnter="{{ openMega0 }}" style="display: flex; align-items: flex-start; gap: 10px; color: #2A2A24; text-decoration: none; transition: color .2s">Co vyrábět<span style="width:13px; height:13px; color:#9b9888; transform:rotate(90deg);">{{ iconChevron }}</span></a>
+          <a href="#blok4" onMouseEnter="{{ openMega1 }}" style="display: flex; align-items: flex-start; gap: 10px; color: #2A2A24; text-decoration: none; transition: color .2s">Suroviny<span style="width:13px; height:13px; color:#9b9888; transform:rotate(90deg);">{{ iconChevron }}</span></a>
+          <a href="#blok5" onMouseEnter="{{ openMega2 }}" style="display: flex; align-items: flex-start; gap: 10px; color: #2A2A24; text-decoration: none; transition: color .2s; flex-grow: 0">Receptář<span style="width:13px; height:13px; color:#9b9888; transform:rotate(90deg);">{{ iconChevron }}</span></a>
+          <a href="#blok6" onMouseEnter="{{ megaClose }}" style="color:#2A2A24; text-decoration:none; transition:color .2s;">Bestsellery</a>
+        </div>
+        <div style="display:flex; align-items:center; gap:18px;" onMouseEnter="{{ megaClose }}">
+          <a href="#blok11" class="ek-nav-onas" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; transition:color .2s;">O nás</a>
+          <a href="#blok8" style="display:flex; align-items:center; gap:7px; color:#2D3A2E; text-decoration:none; background:#EFE7D6; padding:8px 15px; border-radius:999px; font-weight:600;"><span style="width:17px; height:17px; color:#C0613D;">{{ iconLoyal }}</span>Věrnostní program</a>
+        </div>
+      </nav>
+      <div class="ek-hdr-icons" style="display:flex; align-items:center; gap:18px; flex-shrink:0;">
+        <span onClick="{{ openSearch }}" title="Hledat" style="width:22px; height:22px; color:#2D3A2E; cursor:pointer;">{{ iconSearch }}</span>
+        <span style="width:22px; height:22px; color:#2D3A2E; cursor:pointer;">{{ iconUser }}</span>
+        <span style="position:relative; width:22px; height:22px; color:#2D3A2E; cursor:pointer;" class="ek-hdr-cart">{{ iconCart }}<span style="position:absolute; top:-6px; right:-7px; background:#C0613D; color:#fff; font-size:10px; font-weight:700; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center;">2</span></span>
+      </div>
+      <span class="ek-hamb ek-mobtap" onClick="{{ openDrawer }}" title="Menu" style="display:none; width:24px; height:24px; align-items:center; justify-content:center; color:#2D3A2E; cursor:pointer; flex-shrink:0;">{{ iconMenu }} Menu</span>
+
+      <!-- SEARCH OVERLAY -->
+      <sc-if value="{{ searchOpen }}" hint-placeholder-val="{{ false }}">
+      <div class="ek-search-overlay" style="position:absolute; left:32px; right:32px; top:50%; transform:translateY(-50%); display:flex; align-items:center; z-index:60;">
+        <form class="ek-search-form" onSubmit="{{ submitSearch }}" style="display:flex; align-items:center; gap:12px; width:100%; opacity:1; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:12px 16px 12px 22px; box-shadow:0 14px 36px -20px rgba(45,58,46,.5);">
+          <span style="width:22px; height:22px; color:#7c7a6a; flex:0 0 auto;">{{ iconSearch }}</span>
+          <input ref="{{ searchInputRef }}" value="{{ query }}" onInput="{{ onQueryInput }}" placeholder="Hledejte suroviny, recepty, kategorie…" style="flex:1; border:none; outline:none; background:transparent; font-family:'Hanken Grotesk',sans-serif; font-size:17px; color:#2A2A24;">
+          <button type="submit" class="ek-cta" style="background:#C0613D; color:#fff; border:none; cursor:pointer; padding:9px 20px; border-radius:999px; font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:14px; transition:background .2s;">Hledat</button>
+          <span onClick="{{ closeSearch }}" title="Zavřít" style="width:34px; height:34px; flex:0 0 auto; border-radius:50%; background:#F6F1E7; color:#2D3A2E; display:flex; align-items:center; justify-content:center; cursor:pointer;">{{ iconClose }}</span>
+        </form>
+
+        <!-- NAŠEPTÁVAČ -->
+        <sc-if value="{{ searchActive }}" hint-placeholder-val="{{ false }}">
+        <div class="ek-sugg" style="position:absolute; top:calc(100% + 10px); left:0; right:0; background:#fff; border:1px solid #E4DAC6; border-radius:14px; box-shadow:0 34px 64px -30px rgba(45,58,46,.5); overflow:hidden; display:grid; grid-template-columns:1.35fr 1fr;">
+          <div style="padding:18px 20px;">
+            <p style="margin:0 0 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#9b9888; font-weight:600;">Produkty</p>
+            <div style="display:flex; flex-direction:column;">
+              <sc-for list="{{ suggProducts }}" as="sp" hint-placeholder-count="4">
+                <a href="#" class="ek-mega-link" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
+                  <span style="{{ sp.thumbStyle }}"></span>
+                  <span style="flex:1; min-width:0;">
+                    <span style="display:block; font-weight:600; font-size:14.5px; line-height:1.25;">{{ sp.name }}</span>
+                    <span style="display:inline-flex; align-items:center; gap:5px; margin-top:3px; font-size:12.5px; font-weight:600; color:{{ sp.avColor }};"><span style="width:7px; height:7px; border-radius:50%; background:{{ sp.avColor }}; display:inline-block;"></span>{{ sp.av }}</span>
+                  </span>
+                  <span style="font-family:'Spectral',serif; font-size:17px; color:#2D3A2E; font-weight:500; white-space:nowrap;">{{ sp.price }}</span>
+                </a>
+              </sc-for>
+            </div>
+            <a href="#" class="ek-cta" style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; background:#C0613D; color:#fff; text-decoration:none; padding:12px; border-radius:999px; font-weight:600; font-size:14.5px; transition:background .2s;">Zobrazit všech 24 produktů {{ iconArrow }}</a>
+          </div>
+          <div style="padding:18px 20px; background:#FBF8F1; border-left:1px solid #EFE7D6;">
+            <p style="margin:0 0 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#9b9888; font-weight:600;">Recepty</p>
+            <a href="#" style="display:block; border-radius:12px; overflow:hidden; text-decoration:none; background:#fff; border:1px solid #EFE7D6;">
+              <span style="display:block; height:96px; background:linear-gradient(150deg,#d6cba8,#b9a981); position:relative;"><span style="position:absolute; top:10px; left:10px; background:#F6F1E7; color:#2D3A2E; font-size:10.5px; font-weight:600; padding:4px 9px; border-radius:999px;">Topovaný recept</span></span>
+              <span style="display:block; padding:12px 14px;">
+                <span style="display:block; font-family:'Spectral',serif; font-weight:500; font-size:16.5px; color:#2D3A2E; line-height:1.2;">Mýdlo z bambuckého másla</span>
+                <span style="display:block; margin-top:4px; font-size:12.5px; color:#6B6B5E;">Začátečník · 60 min</span>
+              </span>
+            </a>
+            <div style="display:flex; flex-direction:column; margin-top:8px;">
+              <sc-for list="{{ suggRecipes }}" as="sr" hint-placeholder-count="3">
+                <a href="#" class="ek-mega-link" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; font-size:14px; font-weight:500; transition:background .15s;">{{ sr }}<span style="width:14px; height:14px; color:#c9c2ae; flex-shrink:0;">{{ iconChevron }}</span></a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
+    </div>
+
+    <!-- ============ MEGAMENU ============ -->
+    <sc-if value="{{ megaOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="ek-mega" style="position:absolute; left:0; right:0; top:100%; background:#FFFFFF; border-bottom:1px solid #E4DAC6; box-shadow:0 34px 54px -34px rgba(45,58,46,.4); z-index:70;">
+      <div style="max-width:1280px; margin:0 auto; padding:34px 32px; display:grid; grid-template-columns:1fr 340px; gap:44px;">
+        <div>
+          <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px;">
+            <h3 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:22px; color:#2D3A2E;">{{ megaTitle }}</h3>
+            <a href="{{ megaAllHref }}" onClick="{{ megaClose }}" class="ek-link-u" style="color:#C0613D; text-decoration:none; font-weight:600; font-size:14px;">Zobrazit vše →</a>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:4px 24px;">
+            <sc-for list="{{ megaLinks }}" as="m" hint-placeholder-count="8">
+              <a href="{{ m.href }}" onClick="{{ megaClose }}" class="ek-mega-link" style="display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-radius:10px; text-decoration:none; color:#2A2A24; font-size:15px; font-weight:500; transition:background .15s, color .15s;">{{ m.name }}<span style="width:15px; height:15px; color:#c9c2ae;">{{ iconChevron }}</span></a>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#F6F1E7; border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:12px;">
+          <span style="align-self:flex-start; background:#2D3A2E; color:#F6F1E7; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:5px 11px; border-radius:999px;">Topovaný produkt</span>
+          <div style="{{ megaProdBgStyle }}"></div>
+          <h4 style="margin:0; font-weight:600; font-size:15.5px; line-height:1.3; color:#2A2A24;">{{ megaProdName }}</h4>
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <span style="font-family:'Spectral',serif; font-size:19px; color:#2D3A2E; font-weight:500;">{{ megaProdPrice }}</span>
+            <a href="#blok6" onClick="{{ megaClose }}" class="ek-cta" style="background:#C0613D; color:#fff; text-decoration:none; padding:9px 18px; border-radius:999px; font-weight:600; font-size:13.5px; transition:background .2s;">Koupit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+  </header>
+
+  <!-- ============ MOBILE DRAWER ============ -->
+  <div style="{{ drawerWrapStyle }}" onClick="{{ closeDrawer }}">
+    <div style="{{ drawerBdStyle }}"></div>
+    <aside style="{{ drawerPanelStyle }}" onClick="{{ stopProp }}">
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 20px; border-bottom:1px solid #E4DAC6;">
+        <img src="assets-lite/ekokoza-logo-green.png" alt="ekokoza" style="height:32px; width:auto; display:block;">
+        <span onClick="{{ closeDrawer }}" title="Zavřít" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#EFE7D6; color:#2D3A2E; cursor:pointer;">{{ iconClose }}</span>
+      </div>
+      <nav style="display:flex; flex-direction:column; padding:8px 0; overflow-y:auto; flex:1;">
+        <sc-for list="{{ drawerMenu }}" as="l" hint-placeholder-count="3">
+          <div style="border-bottom:1px solid #ECE3D2;">
+            <div onClick="{{ l.toggle }}" style="display:flex; align-items:center; justify-content:space-between; padding:15px 20px; min-height:44px; color:#2A2A24; font-size:17px; font-weight:500; cursor:pointer; background:{{ l.bg }};">{{ l.label }}<span style="{{ l.chevStyle }}">{{ iconChevron }}</span></div>
+            <div style="{{ l.subStyle }}">
+              <sc-for list="{{ l.sub }}" as="s" hint-placeholder-count="4">
+                <a href="{{ s.href }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:40px; padding:8px 20px 8px 34px; text-decoration:none; color:#52524a; font-size:15px;">{{ s.name }}</a>
+              </sc-for>
+              <a href="{{ l.allHref }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:40px; padding:8px 20px 14px 34px; text-decoration:none; color:#C0613D; font-weight:600; font-size:15px;">Zobrazit vše →</a>
+            </div>
+          </div>
+        </sc-for>
+        <a href="#blok6" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; justify-content:space-between; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:17px; font-weight:500; border-bottom:1px solid #ECE3D2;">Bestsellery<span style="width:18px; height:18px; color:#9b9888;">{{ iconChevron }}</span></a>
+        <p style="margin:14px 20px 6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#9b9888; font-weight:600;">Více o ekokoze</p>
+        <sc-for list="{{ drawerLinksOther }}" as="l" hint-placeholder-count="2">
+          <a href="{{ l.href }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:17px; font-weight:500; border-bottom:1px solid #ECE3D2; background:{{ l.bg }};"><span style="width:19px; height:19px; color:#C0613D;">{{ l.icon }}</span>{{ l.label }}<span style="width:18px; height:18px; color:#9b9888; margin-left:auto;">{{ iconChevron }}</span></a>
+        </sc-for>
+        <a href="#" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:15px; margin-top:6px;"><span style="width:20px; height:20px; color:#2D3A2E;">{{ iconUser }}</span>Můj účet</a>
+        <a href="#" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; padding:6px 20px 15px; text-decoration:none; color:#2A2A24; font-size:15px;">Sledování objednávky</a>
+        <a href="#" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; padding:6px 20px 15px; text-decoration:none; color:#2A2A24; font-size:15px;">Kontakt</a>
+      </nav>
+      <div style="padding:18px 20px; border-top:1px solid #E4DAC6;">
+        <a href="#blok3" onClick="{{ closeDrawer }}" class="ek-cta" style="display:flex; align-items:center; justify-content:center; gap:9px; background:#C0613D; color:#fff; text-decoration:none; padding:14px; border-radius:999px; font-weight:600; font-size:16px;">Začněte tady {{ iconArrow }}</a>
+      </div>
+    </aside>
+  </div>
+
+  <div style="max-width:1440px; margin:0 auto;">
+
+  <!-- ============ BLOK 1 — VIDEO BANNER (HERO) ============ -->
+  <section style="padding:24px 32px 0;" class="ek-pad">
+    <div class="ek-hero" style="display:grid; grid-template-columns:50% 25% 25%; gap:16px; height:520px;">
+
+      <div class="ek-hero-main" style="position:relative; border-radius:14px; overflow:hidden; background:#E9DFCC;">
+        <img src="assets-lite/hero/hero-main.jpg" alt="Přírodní suroviny na dřevěném stole" class="ek-ph" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right center; transition:transform .6s ease;">
+        <div style="position:absolute; inset:0; background:linear-gradient(90deg,rgba(20,28,21,.72) 0%,rgba(20,28,21,.45) 40%,rgba(20,28,21,.12) 70%,rgba(20,28,21,0) 90%);"></div>
+        <div style="position:absolute; top:20px; left:20px; display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.16); backdrop-filter:blur(4px); padding:7px 13px; border-radius:999px; color:#F6F1E7; font-size:13px; font-weight:500;">{{ iconPlay }} Přehrát video</div>
+        <div style="position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:48px;">
+          <p style="margin:0 0 14px; color:#D9C9A8; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">Ekokoza</p>
+          <h1 class="ek-h1" style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:60px; line-height:1.02; color:#F6F1E7; max-width:11ch; text-wrap:balance;">Důvod, proč tvořit.</h1>
+          <p style="margin:18px 0 26px; color:#E7DFCD; font-size:17px; line-height:1.5; max-width:34ch;">Suroviny, recepty a klid na práci — vše, co potřebujete k vlastní přírodní kosmetice.</p>
+          <a href="#blok3" class="ek-cta" style="align-self:flex-start; background:#C0613D; color:#fff; text-decoration:none; padding:15px 30px; border-radius:999px; font-weight:600; font-size:16px; display:inline-flex; align-items:center; gap:9px; transition:background .2s;">Začněte tady {{ iconArrow }}</a>
+        </div>
+      </div>
+
+      <a href="#blok5" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#E7D6C2; display:block;">
+        <img src="assets-lite/hero/telove-maslo-levandule.jpg" alt="Letní tělové máslo s levandulí" class="ek-ph" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 38%; transition:transform .6s ease;">
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(35,25,15,.28) 0%,rgba(35,25,15,0) 32%,rgba(30,22,14,.35) 62%,rgba(26,18,11,.82) 100%);"></div>
+        <span style="position:absolute; top:16px; left:16px; background:#F6F1E7; color:#2D3A2E; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px; letter-spacing:.04em;">Sezónní recept</span>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:22px;">
+          <h3 style="margin:0 0 4px; font-family:'Spectral',serif; font-weight:500; font-size:21px; color:#fff; line-height:1.15; text-shadow:0 1px 8px rgba(0,0,0,.45);">Letní tělové máslo s levandulí</h3>
+          <span style="color:#F6EFDD; font-size:14px; display:inline-flex; align-items:center; gap:6px; text-shadow:0 1px 6px rgba(0,0,0,.4);">Zobrazit recept {{ iconArrow }}</span>
+        </div>
+      </a>
+
+      <a href="#blok8" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#E7D6C2; display:block;">
+        <img src="assets-lite/hero/vernostni-program.jpg" alt="Až −15 % za věrnost" class="ek-ph" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42%; transition:transform .6s ease;">
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(35,25,15,.30) 0%,rgba(35,25,15,0) 30%,rgba(30,22,14,.30) 66%,rgba(26,18,11,.80) 100%);"></div>
+        <span style="position:absolute; top:16px; left:16px; background:#F6F1E7; color:#2D3A2E; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px; letter-spacing:.04em;">Věrnostní program</span>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:22px;">
+          <h3 style="margin:0 0 4px; font-family:'Spectral',serif; font-weight:500; font-size:21px; color:#fff; line-height:1.15; text-shadow:0 1px 8px rgba(0,0,0,.45);">Až −15 % za věrnost</h3>
+          <span style="color:#F6EFDD; font-size:14px; display:inline-flex; align-items:center; gap:6px; text-shadow:0 1px 6px rgba(0,0,0,.4);">Jak to funguje {{ iconArrow }}</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 2 — BENEFITY ============ -->
+  <section style="margin-top:48px; padding:0 32px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto; padding:40px 32px; background:#FFFFFF; border:1px solid #EFE7D6; border-radius:14px;" class="ek-pad">
+      <div class="ek-grid6" style="display:grid; grid-template-columns:repeat(6,1fr); gap:14px;">
+        <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="6">
+          <a href="#" style="display:flex; flex-direction:column; align-items:flex-start; gap:10px; text-decoration:none; color:#2A2A24; padding:10px 8px; border-radius:14px;">
+            <span style="{{ b.tileStyle }}">{{ b.icon }}</span>
+            <span style="font-family:'Spectral',serif; font-weight:500; font-size:17px; line-height:1.2; color:#2D3A2E;">{{ b.title }}</span>
+            <span style="font-size:13.5px; color:#6B6B5E; line-height:1.45;">{{ b.desc }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 3 — CO CHCI VYRÁBĚT ============ -->
+  <section id="blok3" style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:26px;">
+        <div>
+          <p style="margin:0 0 8px; color:#C0613D; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Rozcestník</p>
+          <h2 class="ek-h2" style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:40px; color:#2D3A2E; line-height:1.05;">Co chcete vyrábět?</h2>
+        </div>
+        <a href="#" class="ek-link-u" style="color:#2D3A2E; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;">Vše ke tvorbě →</a>
+      </div>
+      <div class="ek-scrollrow ek-scroll" style="display:grid; grid-template-columns:repeat(6,1fr); gap:16px;">
+        <sc-for list="{{ makeCats }}" as="c" hint-placeholder-count="6">
+          <a href="#" class="ek-cat" style="position:relative; aspect-ratio:3/4; border-radius:14px; overflow:hidden; text-decoration:none; display:block;">
+            <div class="ek-ph" style="position:absolute; inset:0; background:{{ c.tone }}; transition:transform .6s ease;"></div>
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(30,24,18,0) 45%,rgba(30,24,18,.62) 100%);"></div>
+            <div class="ek-cat-ov" style="position:absolute; inset:0; background:rgba(30,38,30,.5); opacity:0; transition:opacity .3s; display:flex; align-items:center; justify-content:center;"><span style="color:#fff; font-weight:600; font-size:14px;">Zobrazit suroviny →</span></div>
+            <div style="position:absolute; bottom:14px; left:16px; right:16px;">
+              <h3 style="margin:0 0 3px; font-family:'Spectral',serif; font-weight:500; font-size:20px; color:#fff;">{{ c.name }}</h3>
+              <p style="margin:0; font-size:12.5px; line-height:1.35; color:#EDE6D5;">{{ c.desc }}</p>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 4 — SUROVINY DLE KATEGORIE ============ -->
+  <section id="blok4" style="padding:56px 32px 8px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <h2 class="ek-h2" style="margin:0 0 26px; font-family:'Spectral',serif; font-weight:400; font-size:34px; color:#2D3A2E;">Suroviny dle kategorie</h2>
+      <div class="ek-grid8" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
+        <sc-for list="{{ ingCats }}" as="c" hint-placeholder-count="8">
+          <a href="#" class="ek-card" style="display:flex; align-items:center; gap:14px; padding:12px 16px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; text-decoration:none; color:#2A2A24; transition:transform .25s, box-shadow .25s;">
+            <span style="{{ c.thumbStyle }}"></span>
+            <span style="font-weight:600; font-size:16px;">{{ c.name }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 5 — RECEPTÁŘ HIGHLIGHT ============ -->
+  <section id="blok5" style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:34px;">
+        <p style="margin:0 0 8px; color:#C0613D; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Receptář</p>
+        <h2 class="ek-h2" style="margin:0 0 8px; font-family:'Spectral',serif; font-weight:400; font-size:40px; color:#2D3A2E;">Recepty, které fungují</h2>
+        <p style="margin:0; color:#6B6B5E; font-size:17px;">Suroviny, recepty a důvod proč.</p>
+      </div>
+      <div class="ek-scrollrow ek-scroll" style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+        <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="4">
+          <a href="#" class="ek-card" style="display:flex; flex-direction:column; background:#fff; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; text-decoration:none; color:#2A2A24; transition:transform .25s, box-shadow .25s;">
+            <div style="position:relative; aspect-ratio:4/3;">
+              <div style="{{ r.imgStyle }}"></div>
+              <span style="position:absolute; top:12px; left:12px; background:#F6F1E7; color:#2D3A2E; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px;">{{ r.cat }}</span>
+            </div>
+            <div style="padding:18px;">
+              <h3 style="margin:0 0 12px; font-family:'Spectral',serif; font-weight:500; font-size:20px; line-height:1.2;">{{ r.name }}</h3>
+              <div style="display:flex; gap:16px; color:#6B6B5E; font-size:13.5px;">
+                <span style="display:inline-flex; align-items:center; gap:6px;">{{ iconLevel }} {{ r.level }}</span>
+                <span style="display:inline-flex; align-items:center; gap:6px;">{{ iconClock }} {{ r.time }}</span>
+              </div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+      <div style="text-align:center; margin-top:32px;">
+        <a href="#" class="ek-cta-sec" style="display:inline-flex; align-items:center; gap:9px; border:1.5px solid #2D3A2E; color:#2D3A2E; text-decoration:none; padding:13px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:all .2s;">Zobrazit všechny recepty {{ iconArrow }}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 6 — BESTSELLERY ============ -->
+  <section id="blok6" style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:26px;">
+        <h2 class="ek-h2" style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:34px; color:#2D3A2E;">Zákazníci nejraději kupují</h2>
+        <a href="#" class="ek-link-u" style="color:#2D3A2E; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;">Všechny bestsellery →</a>
+      </div>
+      <div class="ek-scrollrow ek-scroll" style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
+          <div class="ek-card" style="display:flex; flex-direction:column; background:#fff; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; transition:transform .25s, box-shadow .25s;">
+            <div style="position:relative; aspect-ratio:1/1; background:#fff;">
+              <div style="{{ p.imgStyle }}"></div>
+              <span style="position:absolute; top:12px; left:12px; background:#F6F1E7; color:#2D3A2E; font-size:11px; font-weight:600; padding:4px 10px; border-radius:999px; border:1px solid #E4D9C2; box-shadow:0 2px 6px rgba(45,58,46,.08);">{{ p.tag }}</span>
+            </div>
+            <div style="padding:16px; display:flex; flex-direction:column; gap:10px; flex:1;">
+              <h3 style="margin:0; font-weight:600; font-size:15.5px; line-height:1.3;">{{ p.name }}</h3>
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-top:auto;">
+                <span style="font-family:'Spectral',serif; font-size:19px; color:#2D3A2E; font-weight:500;">{{ p.price }}</span>
+                <a href="#" class="ek-cta" style="background:#C0613D; color:#fff; text-decoration:none; padding:9px 16px; border-radius:999px; font-weight:600; font-size:13.5px; transition:background .2s;">{{ p.cta }}</a>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 7 — ZAČNĚTE TADY ============ -->
+  <section style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div class="ek-thirds" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+        <sc-for list="{{ starts }}" as="s" hint-placeholder-count="3">
+          <div class="ek-card" style="background:{{ s.bg }}; border-radius:14px; padding:34px; display:flex; flex-direction:column; gap:14px; min-height:230px; transition:transform .25s, box-shadow .25s;">
+            <div style="width:52px; height:52px; border-radius:14px; background:rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center; color:#2D3A2E;">{{ s.icon }}</div>
+            <div style="flex:1;">
+              <p style="margin:0 0 4px; color:#2D3A2E; opacity:.7; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;">{{ s.kicker }}</p>
+              <h3 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:24px; color:#2D3A2E; line-height:1.15;">{{ s.title }}</h3>
+            </div>
+            <a href="#" class="ek-link-u" style="color:#2D3A2E; text-decoration:none; font-weight:600; font-size:15px; align-self:flex-start;">{{ s.link }} →</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 8 — VĚRNOSTNÍ PROGRAM ============ -->
+  <section id="blok8" style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto; background:#2D3A2E; border-radius:18px; overflow:hidden; position:relative;">
+      <div style="padding:52px;" class="ek-pad">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:40px; margin-bottom:36px;">
+          <div style="max-width:620px;">
+          <p style="margin:0 0 10px; color:#9FB39E; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Věrnostní program</p>
+          <h2 class="ek-h2" style="margin:0 0 14px; font-family:'Spectral',serif; font-weight:400; font-size:38px; color:#F6F1E7; line-height:1.08;">Odměňujeme opakovanou tvorbu.</h2>
+          <p style="margin:0; color:#CBD6C7; font-size:17px; line-height:1.55;">Žádné slevové hony, žádné odpočty. Čím déle s námi tvoříte, tím lepší podmínky máte — jednoduše a férově.</p>
+        </div>
+          <img src="assets-lite/vernostni-emblem.png" alt="" class="ek-loyal-goat" style="width:210px; flex-shrink:0; transform:rotate(5deg); filter:drop-shadow(0 16px 28px rgba(0,0,0,.35));">
+        </div>
+        <div class="ek-loyalty" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:36px;">
+          <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+            <div style="background:rgba(246,241,231,.06); border:1px solid rgba(246,241,231,.14); border-radius:14px; padding:26px;">
+              <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:12px;">
+                <span style="font-family:'Spectral',serif; font-size:21px; color:#F6F1E7; font-weight:500;">{{ t.name }}</span>
+                <span style="font-family:'Spectral',serif; font-size:28px; color:#D9A86A; font-weight:500;">{{ t.off }}</span>
+              </div>
+              <p style="margin:0; color:#A9B8A6; font-size:14px; line-height:1.5;">{{ t.cond }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <a href="#" class="ek-cta" style="display:inline-flex; align-items:center; gap:9px; background:#C0613D; color:#fff; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:background .2s;">Zjistit více o věrnostním programu {{ iconArrow }}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 9 — KOMUNITA / UGC ============ -->
+  <section style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="margin-bottom:24px;">
+        <h2 class="ek-h2" style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:34px; color:#2D3A2E;">Ukažte nám, co vyrábíte</h2>
+        <a href="#" class="ek-link-u" style="color:#C0613D; text-decoration:none; font-weight:600; font-size:15px;">@ekokoza na Instagramu →</a>
+      </div>
+      <div class="ek-ugc" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
+        <sc-for list="{{ ugc }}" as="u" hint-placeholder-count="8">
+          <a href="#" class="ek-cat" style="position:relative; aspect-ratio:4/5; border-radius:14px; overflow:hidden; display:block;">
+            <div class="ek-ph" style="position:absolute; inset:0; background:{{ u.tone }}; transition:transform .6s ease;"></div>
+            <div class="ek-cat-ov" style="position:absolute; inset:0; background:rgba(30,38,30,.45); opacity:0; transition:opacity .3s; display:flex; align-items:center; justify-content:center; color:#fff;">{{ iconInsta }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 10 — RECENZE ============ -->
+  <section style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="display:flex; align-items:center; gap:20px; justify-content:center; margin-bottom:32px; flex-wrap:wrap;">
+        <span style="font-family:'Spectral',serif; font-size:46px; color:#2D3A2E; font-weight:500; line-height:1;">4,9</span>
+        <div>
+          <div style="display:flex; gap:3px; color:#B8860B; margin-bottom:3px;">{{ stars5 }}</div>
+          <p style="margin:0; color:#6B6B5E; font-size:14px;">na základě <strong style="color:#2A2A24;">2 418</strong> ověřených hodnocení</p>
+        </div>
+      </div>
+      <div class="ek-rev3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+        <sc-for list="{{ reviews }}" as="rv" hint-placeholder-count="3">
+          <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:26px;">
+            <div style="display:flex; gap:3px; color:#B8860B; margin-bottom:14px;">{{ stars5 }}</div>
+            <p style="margin:0 0 18px; font-size:15.5px; line-height:1.6; color:#3a3a32;">„{{ rv.text }}"</p>
+            <div style="display:flex; align-items:center; gap:11px;">
+              <div style="width:38px; height:38px; border-radius:50%; background:{{ rv.tone }}; display:flex; align-items:center; justify-content:center; color:#2D3A2E; font-weight:700; font-size:14px;">{{ rv.initials }}</div>
+              <span style="font-weight:600; font-size:14.5px;">{{ rv.name }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 11 — O NÁS ============ -->
+  <section id="blok11" style="padding:64px 32px 16px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div class="ek-two" style="display:grid; grid-template-columns:1fr 1fr; gap:0; align-items:stretch; background:#fff; border:1px solid #ECE3D2; border-radius:18px; overflow:hidden;">
+        <div style="padding:52px;">
+          <p style="margin:0 0 10px; color:#C0613D; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Náš příběh</p>
+          <h2 class="ek-h2" style="margin:0 0 18px; font-family:'Spectral',serif; font-weight:400; font-size:34px; color:#2D3A2E; line-height:1.1;">Začalo to vlastní kuchyní a hrstkou surovin.</h2>
+          <p style="margin:0 0 14px; color:#52524a; font-size:16px; line-height:1.65;">Ekokoza vznikla z jednoduché potřeby — vědět, co si nanášíme na kůži. Místo katalogu plného slev jsme postavili průvodce, kterému se dá věřit.</p>
+          <p style="margin:0 0 26px; color:#52524a; font-size:16px; line-height:1.65;">Dnes pomáháme tisícům tvůrců — od prvního tělového másla po vlastní značku. Pořád stejně: ověřené recepty, čisté suroviny, klid na práci.</p>
+          <a href="#" class="ek-cta-sec" style="display:inline-flex; align-items:center; gap:9px; border:1.5px solid #2D3A2E; color:#2D3A2E; text-decoration:none; padding:13px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:all .2s;">Přečtěte si náš příběh {{ iconArrow }}</a>
+        </div>
+        <div style="position:relative; min-height:420px;">
+          <img src="assets-lite/o-nas-koza.jpg" alt="Kozy — maskoti ekokozy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER ============ -->
+  <section style="padding:16px 32px 0;" class="ek-pad">
+    <div class="ek-two" style="max-width:1280px; margin:0 auto; background:#FFFFFF; border:1px solid #ECE3D2; border-radius:18px; display:grid; grid-template-columns:1.1fr 1fr; gap:40px; padding:48px 52px; align-items:center;">
+      <div>
+        <p style="margin:0 0 10px; color:#C0613D; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Novinky e-mailem</p>
+        <h2 class="ek-h2" style="margin:0 0 14px; font-family:'Spectral',serif; font-weight:400; font-size:34px; color:#2D3A2E; line-height:1.1;">Jednou měsíčně. Vědět proč, vědět jak.</h2>
+        <form onSubmit="{{ submitNewsletter }}" style="display:flex; gap:10px; margin:22px 0 10px; max-width:460px; flex-wrap:wrap;">
+          <input type="email" placeholder="váš e-mail" style="flex:1; min-width:220px; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:14px 22px; font-family:'Hanken Grotesk',sans-serif; font-size:15.5px; color:#2A2A24; outline:none;">
+          <button type="submit" class="ek-cta" style="background:#C0613D; color:#fff; border:none; cursor:pointer; padding:14px 26px; border-radius:999px; font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:15px; transition:background .2s;">Odebírat</button>
+        </form>
+        <p style="margin:0; font-size:13px; color:#8a8a78;">Odhlásíte se kdykoli jedním klikem.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <sc-for list="{{ nlReasons }}" as="n" hint-placeholder-count="3">
+          <div style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="width:38px; height:38px; flex-shrink:0; border-radius:50%; background:#EFE7D6; display:flex; align-items:center; justify-content:center; color:#2D3A2E;">{{ n.icon }}</span>
+            <div>
+              <p style="margin:0 0 2px; font-family:'Spectral',serif; font-weight:500; font-size:17px; color:#2D3A2E;">{{ n.title }}</p>
+              <p style="margin:0; font-size:14px; color:#6B6B5E; line-height:1.45;">{{ n.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  </div><!-- /1440 wrap -->
+
+  <!-- ============ INSTAGRAM PANEL ============ -->
+  <section style="background:#C7D6B8; margin-top:48px;">
+    <div style="max-width:1280px; margin:0 auto; padding:26px 32px; display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;" class="ek-pad">
+      <span style="width:24px; height:24px; color:#2D3A2E;">{{ iconInsta }}</span>
+      <span style="font-family:'Spectral',serif; font-size:20px; color:#2D3A2E;">Sledujte nás</span>
+      <a href="#" class="ek-link-u" style="color:#C0613D; text-decoration:none; font-weight:600; font-size:17px;">@ekokoza</a>
+      <span style="width:1px; height:26px; background:#A9BF9A; margin:0 10px;"></span>
+      <span style="display:flex; gap:3px; color:#B8860B; align-items:center;">{{ stars5 }}</span>
+      <span style="font-family:'Spectral',serif; font-size:20px; color:#2D3A2E; font-weight:500;">4,9 / 5</span>
+      <span style="font-size:14px; color:#6B6B5E;">2 418 hodnocení obchodu</span>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#2D3A2E; color:#CBD6C7;">
+    <div style="max-width:1280px; margin:0 auto; padding:56px 32px 0;" class="ek-pad">
+      <div class="ek-foot" style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:32px; padding-bottom:44px; border-bottom:1px solid rgba(246,241,231,.14);">
+        <div>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-size:14px; letter-spacing:.04em; font-weight:600;">Kontakty</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <span>Ekokoza s.r.o.</span>
+            <span>Tvořivá 12, 110 00 Praha</span>
+            <a href="#" style="color:#CBD6C7; text-decoration:none;" class="ek-link-u">info@ekokoza.cz</a>
+            <a href="#" style="color:#CBD6C7; text-decoration:none;" class="ek-link-u">+420 222 333 444</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-size:14px; letter-spacing:.04em; font-weight:600;">Můj účet</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <sc-for list="{{ footAccount }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#CBD6C7; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-size:14px; letter-spacing:.04em; font-weight:600;">Informace o nákupu</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <sc-for list="{{ footInfo }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#CBD6C7; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-size:14px; letter-spacing:.04em; font-weight:600;">Spolupracujeme</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <sc-for list="{{ footCoop }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#CBD6C7; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:24px; padding:26px 0; flex-wrap:wrap; border-bottom:1px solid rgba(246,241,231,.14);">
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+          <span style="font-size:13px; color:#9FB39E;">Doručujeme přes:</span>
+          <sc-for list="{{ carriers }}" as="c" hint-placeholder-count="4">
+            <span style="background:rgba(246,241,231,.1); color:#E7DFCD; font-size:12.5px; font-weight:600; padding:7px 14px; border-radius:8px;">{{ c }}</span>
+          </sc-for>
+        </div>
+        <a href="#" style="display:flex; align-items:center;">
+          <img src="assets-lite/ekokoza-logo-cream.png" alt="ekokoza" style="height:34px; width:auto; display:block;">
+        </a>
+      </div>
+      <div style="padding:22px 0; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:#9FB39E;">
+        <span>© 2026 Ekokoza s.r.o. — Důvod, proč tvořit.</span>
+        <span style="display:flex; gap:18px;"><a href="#" style="color:#9FB39E; text-decoration:none;" class="ek-link-u">Obchodní podmínky</a><a href="#" style="color:#9FB39E; text-decoration:none;" class="ek-link-u">Ochrana soukromí</a></span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  svg(kids, sw, size) {
+    const s = size || 20;
+    return React.createElement('svg', { width:s, height:s, viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth: sw||1.6, strokeLinecap:'round', strokeLinejoin:'round', style:{ flex:'0 0 auto', display:'block' } }, kids);
+  }
+  P(d){ return React.createElement('path',{ key:d, d:d }); }
+  C(cx,cy,r){ return React.createElement('circle',{ key:'c'+cx+cy, cx:cx, cy:cy, r:r }); }
+
+  state = { searchOpen: false, query: '', drawerOpen: false, megaIdx: null, drawerExp: -1 };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.searchOpen && !prevState.searchOpen && this._searchInput) {
+      this._searchInput.focus();
+    }
+  }
+
+  renderVals() {
+    const ic = (kids, sw, size) => this.svg(kids, sw, size);
+    const P = (d) => this.P(d);
+
+    const openSearch = () => this.setState({ searchOpen: true });
+    const closeSearch = () => this.setState({ searchOpen: false, query: '' });
+    const onQueryInput = (e) => this.setState({ query: e.target.value });
+    const submitSearch = (e) => { e.preventDefault(); };
+    const searchInputRef = (el) => { this._searchInput = el; };
+    const iconClose = ic([P('M6 6l12 12'), P('M18 6L6 18')], 1.8);
+    const iconChevron = ic([P('M9 6l6 6-6 6')], 2);
+
+    const openDrawer = () => this.setState({ drawerOpen: true });
+    const closeDrawer = () => this.setState({ drawerOpen: false });
+    const stopProp = (e) => { e.stopPropagation(); };
+    const dOpen = this.state.drawerOpen;
+    const drawerWrapStyle = 'position:fixed; inset:0; z-index:200; visibility:' + (dOpen ? 'visible' : 'hidden') + '; pointer-events:' + (dOpen ? 'auto' : 'none') + ';';
+    const drawerBdStyle = 'position:absolute; inset:0; background:rgba(20,26,20,.5); opacity:' + (dOpen ? '1' : '0') + '; transition:opacity .3s ease;';
+    const drawerPanelStyle = 'position:absolute; top:0; right:0; height:100%; width:84%; max-width:360px; background:#F6F1E7; transform:translateX(' + (dOpen ? '0' : '100%') + '); transition:transform .3s cubic-bezier(.32,.72,0,1); display:flex; flex-direction:column; box-shadow:-20px 0 50px -20px rgba(20,26,20,.5);';
+    // ===== Unified menu tree (desktop megamenu + mobile accordion) =====
+    const menuTree = [
+      { label: 'Co vyrábět', allHref: '#blok3',
+        sub: ['Kosmetika','Mýdla','Svíčky','Parfémy','Vlasová péče','Séra','Šampony','Prací prostředky'].map(n => ({ name: n, href: '#blok3' })),
+        prod: { img: ((window.__resources||{})['assets-lite/products/levandulove-maslo-100-g.jpg']||'assets-lite/products/levandulove-maslo-100-g.jpg'), name: 'Levandulové máslo, 100 g', price: '189 Kč' } },
+      { label: 'Suroviny', allHref: '#blok4',
+        sub: ['Oleje','Másla','Aktivní látky','Vůně','Vosky','Barviva','Emulgátory','Obaly'].map(n => ({ name: n, href: '#blok4' })),
+        prod: { img: ((window.__resources||{})['assets-lite/products/mydlova-hmota-bambucke-maslo-1-kg.jpg']||'assets-lite/products/mydlova-hmota-bambucke-maslo-1-kg.jpg'), name: 'Mýdlová hmota s bambuckým máslem, 1 kg', price: '329 Kč' } },
+      { label: 'Receptář', allHref: '#blok5',
+        sub: ['Pro začátečníky','Pokročilé techniky','Kosmetika','Mýdla','Svíčky','Vlasová péče'].map(n => ({ name: n, href: '#blok5' })),
+        prod: { img: ((window.__resources||{})['assets-lite/products/tuhy-sampon-zloutkovy.jpg']||'assets-lite/products/tuhy-sampon-zloutkovy.jpg'), name: 'Tuhý šampon žloutkový', price: '169 Kč' } },
+    ];
+
+    // Megamenu (desktop hover)
+    const mi = this.state.megaIdx;
+    const mega = mi === null ? null : menuTree[mi];
+    const megaOpen = !!mega;
+    const openMega0 = () => this.setState({ megaIdx: 0 });
+    const openMega1 = () => this.setState({ megaIdx: 1 });
+    const openMega2 = () => this.setState({ megaIdx: 2 });
+    const megaClose = () => this.setState({ megaIdx: null });
+    const megaTitle = mega ? mega.label : '';
+    const megaAllHref = mega ? mega.allHref : '#';
+    const megaLinks = mega ? mega.sub : [];
+    const megaProdBgStyle = 'border-radius:10px; background:#fff center/contain no-repeat; width:100%; aspect-ratio:4/3;' + (mega ? ' background-image:url("' + mega.prod.img + '"); background-size:80%;' : '');
+    const megaProdName = mega ? mega.prod.name : '';
+    const megaProdPrice = mega ? mega.prod.price : '';
+
+    // Mobile drawer accordion
+    const drawerMenu = menuTree.map((t, i) => {
+      const open = this.state.drawerExp === i;
+      return {
+        label: t.label,
+        sub: t.sub,
+        allHref: t.allHref,
+        bg: open ? '#EFE7D6' : 'transparent',
+        toggle: () => this.setState({ drawerExp: open ? -1 : i }),
+        chevStyle: 'width:18px; height:18px; color:#9b9888; transform:rotate(' + (open ? '90deg' : '0deg') + '); transition:transform .2s;',
+        subStyle: 'display:' + (open ? 'flex' : 'none') + '; flex-direction:column; padding-bottom:4px;',
+      };
+    });
+    const iconAbout = ic([P('M12 21c-4-3-8-6.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 4.5-4 8-8 11z')]);
+    const drawerLinksOther = [
+      { label: 'Věrnostní program', href: '#blok8', icon: ic([P('M12 4l2.2 4.6 5 .6-3.7 3.5 1 5L12 15.8 7.5 17.7l1-5L4.8 9.2l5-.6z')]), bg: '#F6F1E7' },
+      { label: 'O nás', href: '#blok11', icon: iconAbout, bg: 'transparent' },
+    ];
+
+    const searchActive = this.state.searchOpen && this.state.query.trim().length > 0;
+    const suggProducts = [
+      { name: 'Mýdlová hmota s bambuckým máslem (shea), 1 kg', price: '329 Kč', av: 'Skladem', avColor: '#2E7D4F', img: ((window.__resources||{})['assets-lite/products/mydlova-hmota-bambucke-maslo-1-kg.jpg']||'assets-lite/products/mydlova-hmota-bambucke-maslo-1-kg.jpg') },
+      { name: 'Levandulové máslo, 100 g', price: '189 Kč', av: 'Skladem', avColor: '#2E7D4F', img: ((window.__resources||{})['assets-lite/products/levandulove-maslo-100-g.jpg']||'assets-lite/products/levandulove-maslo-100-g.jpg') },
+      { name: 'Tuhý šampon žloutkový', price: '169 Kč', av: 'Poslední 3 ks', avColor: '#B8860B', img: ((window.__resources||{})['assets-lite/products/tuhy-sampon-zloutkovy.jpg']||'assets-lite/products/tuhy-sampon-zloutkovy.jpg') },
+      { name: 'Stabilizovaný vitamin C, 10 g', price: '249 Kč', av: 'Skladem', avColor: '#2E7D4F', img: ((window.__resources||{})['assets-lite/products/stabilizovany-vitamin-c-10-g.jpg']||'assets-lite/products/stabilizovany-vitamin-c-10-g.jpg') },
+    ].map(p => Object.assign(p, { thumbStyle: 'width:52px; height:52px; flex-shrink:0; border-radius:10px; background:#F6F1E7 center/contain no-repeat; background-image:url("' + p.img + '"); background-size:82%;' }));
+    const suggRecipes = ['Levandulové mýdlo za studena', 'Mramorované mýdlo s uhlím', 'Bylinkové mýdlo pro citlivou pokožku'];
+
+    const submitNewsletter = (e) => { e.preventDefault(); };
+    const nlReasons = [
+      { title: 'Recepty dřív než na webu', desc: 'Nové ověřené recepty dostanete do schránky jako první.', icon: ic([P('M5 4h11l3 3v13H5z'), P('M9 9h6'), P('M9 13h6'), P('M9 17h3')], 1.6, 18) },
+      { title: 'Vědět proč', desc: 'Krátká vysvětlení surovin a postupů — žádné reklamní letáky.', icon: ic([P('M12 3c3 3 5 6 5 10a5 5 0 0 1-10 0c0-4 2-7 5-10z'), P('M12 13v6')], 1.6, 18) },
+      { title: 'Žádný tlak', desc: 'Jednou měsíčně a bez slevové urgence. Odhlášení kdykoli.', icon: ic([this.C(12,12,8), P('M9 12.5l2 2 4-4.5')], 1.6, 18) },
+    ];
+
+    const iconSearch = ic([this.C(11,11,7), P('M21 21l-4-4')]);
+    const iconUser = ic([this.C(12,8,4), P('M5 20c1.5-4 12-4 14 0')]);
+    const iconCart = ic([P('M3 4h2l2 12h11l2-8H7'), this.C(9,20,1.3), this.C(17,20,1.3)]);
+    const iconMenu = ic([P('M4 7h16'), P('M4 12h16'), P('M4 17h16')]);
+    const iconArrow = ic([P('M5 12h13'), P('M13 6l6 6-6 6')], 2);
+    const iconPlay = ic([P('M8 6l10 6-10 6z')], 1.4);
+    const iconLoyal = ic([P('M12 4l2.2 4.6 5 .6-3.7 3.5 1 5L12 15.8 7.5 17.7l1-5L4.8 9.2l5-.6z')]);
+    const iconLevel = ic([P('M4 19V9'), P('M10 19V5'), P('M16 19v-7')], 1.8, 16);
+    const iconClock = ic([this.C(12,12,8), P('M12 8v4l3 2')], 1.6, 16);
+    const iconInsta = ic([React.createElement('rect',{key:'r',x:4,y:4,width:16,height:16,rx:5}), this.C(12,12,3.4), P('M17 7h0')], 1.7);
+
+    const benefits = [
+      { title:'Recepty, co prošly kuchyní', desc:'Každý postup jsme sami uvařili, zkazili a opravili.', icon: React.createElement('img', { src:((window.__resources||{})['assets-lite/usp/1-recepty.png']||'assets-lite/usp/1-recepty.png'), alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
+      { title:'Suroviny beze lží', desc:'Původ a složení najdete u každého produktu.', icon: React.createElement('img', { src:((window.__resources||{})['assets-lite/usp/2-suroviny.png']||'assets-lite/usp/2-suroviny.png'), alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
+      { title:'Poradíme, nekoučujeme', desc:'Zeptejte se, odpovídá člověk z praxe.', icon: React.createElement('img', { src:((window.__resources||{})['assets-lite/usp/3-pece.png']||'assets-lite/usp/3-pece.png'), alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
+      { title:'Věrnost se počítá', desc:'Až −15 % za to, že tvoříte dál.', icon: React.createElement('img', { src:((window.__resources||{})['assets-lite/usp/4-vernost.png']||'assets-lite/usp/4-vernost.png'), alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
+      { title:'Papíry ke všemu', desc:'Bezpečnostní listy a dokumentace ke stažení.', icon: React.createElement('img', { src:((window.__resources||{})['assets-lite/usp/5-dokumentace.png']||'assets-lite/usp/5-dokumentace.png'), alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
+      { title:'Od 2000 Kč vezeme zdarma', desc:'Po celé ČR, šetrně zabalené.', icon: React.createElement('img', { src:((window.__resources||{})['assets-lite/usp/6-doprava.png']||'assets-lite/usp/6-doprava.png'), alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
+    ].map(b => Object.assign(b, { tileStyle: b.icon.type === 'img'
+      ? 'width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden;'
+      : 'width:48px; height:48px; border-radius:12px; background:#F6F1E7; display:flex; align-items:center; justify-content:center; color:#2D3A2E; margin:8px;' }));
+
+    const makeCats = [
+      { name:'Kosmetika', desc:'Krémy, másla a balzámy pro každodenní péči.', tone:'#EFE7D6 url("' + ((window.__resources||{})['assets-lite/make/kosmetika.jpg']||'assets-lite/make/kosmetika.jpg') + '") 42% center / cover no-repeat' },
+      { name:'Mýdla', desc:'Mýdlové hmoty, formy a vše pro první várku.', tone:'#EFE7D6 url("' + ((window.__resources||{})['assets-lite/make/mydla.jpg']||'assets-lite/make/mydla.jpg') + '") 55% center / cover no-repeat' },
+      { name:'Svíčky', desc:'Vosky, knoty a vůně pro svíčky, které hoří čistě.', tone:'#EFE7D6 url("' + ((window.__resources||{})['assets-lite/make/svicky.jpg']||'assets-lite/make/svicky.jpg') + '") center 55% / cover no-repeat' },
+      { name:'Parfémy', desc:'Silice a základy pro vlastní vůni.', tone:'#EFE7D6 url("' + ((window.__resources||{})['assets-lite/make/parfemy.jpg']||'assets-lite/make/parfemy.jpg') + '") center 60% / cover no-repeat' },
+      { name:'Vlasová péče', desc:'Šampony a kondicionéry podle vašich vlasů.', tone:'#EFE7D6 url("' + ((window.__resources||{})['assets-lite/make/vlasy.jpg']||'assets-lite/make/vlasy.jpg') + '") center 40% / cover no-repeat' },
+      { name:'Séra', desc:'Aktivní látky a oleje pro cílenou péči o pleť.', tone:'#EFE7D6 url("' + ((window.__resources||{})['assets-lite/make/sera.jpg']||'assets-lite/make/sera.jpg') + '") center 42% / cover no-repeat' },
+    ];
+
+    const ingCats = [
+      { name:'Oleje', img:((window.__resources||{})['assets-lite/categories/oleje.jpg']||'assets-lite/categories/oleje.jpg') },
+      { name:'Másla', img:((window.__resources||{})['assets-lite/categories/masla.jpg']||'assets-lite/categories/masla.jpg') },
+      { name:'Aktivní látky', img:((window.__resources||{})['assets-lite/categories/aktivni-latky.jpg']||'assets-lite/categories/aktivni-latky.jpg') },
+      { name:'Vůně', img:((window.__resources||{})['assets-lite/categories/vune.jpg']||'assets-lite/categories/vune.jpg') },
+      { name:'Vosky', img:((window.__resources||{})['assets-lite/categories/vosky.jpg']||'assets-lite/categories/vosky.jpg') },
+      { name:'Barviva', img:((window.__resources||{})['assets-lite/categories/barviva.jpg']||'assets-lite/categories/barviva.jpg') },
+      { name:'Emulgátory', img:((window.__resources||{})['assets-lite/categories/emulgatory.jpg']||'assets-lite/categories/emulgatory.jpg') },
+      { name:'Obaly', img:((window.__resources||{})['assets-lite/categories/obaly.jpg']||'assets-lite/categories/obaly.jpg') },
+    ].map(c => Object.assign(c, { thumbStyle: 'width:56px; height:56px; flex-shrink:0; border-radius:12px; background:center/cover no-repeat; background-image:url("' + c.img + '");' }));
+
+    const recipes = [
+      { cat:'Kosmetika', name:'Krém na paty a ztvrdlá místa', level:'Začátečník', time:'30 min', img:((window.__resources||{})['assets-lite/recipes/krem-na-paty.jpg']||'assets-lite/recipes/krem-na-paty.jpg') },
+      { cat:'Kosmetika', name:'Krémová pasta na holení', level:'Pokročilý', time:'45 min', img:((window.__resources||{})['assets-lite/recipes/pasta-na-holeni.jpg']||'assets-lite/recipes/pasta-na-holeni.jpg') },
+      { cat:'Domácnost', name:'Repelent pro děti, dospělé i zvířata', level:'Začátečník', time:'20 min', img:((window.__resources||{})['assets-lite/recipes/repelent.jpg']||'assets-lite/recipes/repelent.jpg') },
+      { cat:'Průvodce', name:'Tenzidy v domácí kosmetice — jak vybrat ten správný', level:'Pokročilý', time:'10 min čtení', img:((window.__resources||{})['assets-lite/recipes/tenzidy.jpg']||'assets-lite/recipes/tenzidy.jpg') },
+    ].map(r => Object.assign(r, { imgStyle: 'position:absolute; inset:0; background:#EFE7D6 center/cover no-repeat; background-image:url("' + r.img + '");' }));
+
+    const products = [
+      { name:'Levandulové máslo, 100 g', price:'189 Kč', tag:'Bestseller', cta:'Koupit', img:((window.__resources||{})['assets-lite/products/levandulove-maslo-100-g.jpg']||'assets-lite/products/levandulove-maslo-100-g.jpg') },
+      { name:'Mýdlová hmota s bambuckým máslem (shea), 1 kg', price:'329 Kč', tag:'Oblíbené', cta:'Koupit', img:((window.__resources||{})['assets-lite/products/mydlova-hmota-bambucke-maslo-1-kg.jpg']||'assets-lite/products/mydlova-hmota-bambucke-maslo-1-kg.jpg') },
+      { name:'Stabilizovaný vitamin C, 10 g', price:'149 Kč', tag:'Doporučujeme', cta:'Koupit', img:((window.__resources||{})['assets-lite/products/stabilizovany-vitamin-c-10-g.jpg']||'assets-lite/products/stabilizovany-vitamin-c-10-g.jpg') },
+      { name:'Tuhý šampon žloutkový', price:'159 Kč', tag:'Novinka', cta:'Koupit', img:((window.__resources||{})['assets-lite/products/tuhy-sampon-zloutkovy.jpg']||'assets-lite/products/tuhy-sampon-zloutkovy.jpg') },
+    ].map(p => Object.assign(p, { imgStyle: 'position:absolute; inset:14px; background:#fff center/contain no-repeat; background-image:url("' + p.img + '");' }));
+
+    const starts = [
+      { kicker:'Začátečník', title:'Tvoříte poprvé?', link:'Otevřít průvodce', icon: ic([P('M12 3l2.5 5 5.5.8-4 3.9 1 5.5L12 15.6 7 18.2l1-5.5-4-3.9 5.5-.8z')]), bg:'#DDE7D2' },
+      { kicker:'Pokročilý', title:'Hledáte nové výrobní postupy?', link:'Receptář pro pokročilé', icon: ic([P('M4 19V9'), P('M10 19V5'), P('M16 19v-7')],1.8), bg:'#C7D6B8' },
+      { kicker:'Profesionál / B2B', title:'Vyrábíte ve větším?', link:'Dokumentace a B2B', icon: ic([P('M3 21V9l6-4 6 4v12'), P('M15 21V11l6 4v6'), P('M3 21h18')]), bg:'#AFC49D' },
+    ];
+
+    const tiers = [
+      { name:'Pěstitel', off:'−5 %', cond:'Po prvním nákupu nad 1 000 Kč za rok.' },
+      { name:'Tvůrce', off:'−10 %', cond:'Při nákupech nad 5 000 Kč za rok.' },
+      { name:'Mistr', off:'−15 %', cond:'Při nákupech nad 12 000 Kč za rok.' },
+    ];
+
+    const ugc = [1,2,3,4,5,6,7,8].map(i => ({ tone: '#EFE7D6 center/cover no-repeat url("' + ((window.__resources||{})['assets-lite/ugc/0'+i+'.jpg']||('assets-lite/ugc/0'+i+'.jpg')) + '")' }));
+
+    const reviews = [
+      { text:'Konečně e-shop, kde mi poradí, ne jen prodají. Recepty fungují na první pokus.', name:'Markéta H.', initials:'MH', tone:'#E7D6C2' },
+      { text:'Suroviny v perfektní kvalitě a dokumentace ke všemu. Jako profesionál to oceňuju.', name:'Tomáš R.', initials:'TR', tone:'#DEE7D6' },
+      { text:'Věrnostní program bez tlaku a odpočtů. Klid a férovost, přesně jak to má být.', name:'Jana K.', initials:'JK', tone:'#F2DDD8' },
+    ];
+
+    const stars5 = [0,1,2,3,4].map(i=>React.createElement('svg',{key:i,width:16,height:16,viewBox:'0 0 24 24',fill:'currentColor'},React.createElement('path',{d:'M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.6 1-5.8-4.3-4.1 5.9-.9z'})));
+
+    const footAccount = ['Můj účet','Objednávky','Věrnostní body','Oblíbené'];
+    const footInfo = ['Doprava a platba','Reklamace a vrácení','Obchodní podmínky','Časté dotazy'];
+    const footCoop = ['B2B a velkoobchod','Affiliate program','Pro výrobce','Staňte se partnerem'];
+    const carriers = ['Zásilkovna','PPL','Česká pošta','DPD','Balíkovna'];
+
+    return {
+      openSearch, closeSearch, onQueryInput, submitSearch, searchInputRef, iconClose,
+      searchOpen: this.state.searchOpen, query: this.state.query,
+      openDrawer, closeDrawer, stopProp, drawerWrapStyle, drawerBdStyle, drawerPanelStyle, drawerMenu, drawerLinksOther, iconChevron, iconAbout,
+      megaOpen, openMega0, openMega1, openMega2, megaClose, megaTitle, megaAllHref, megaLinks, megaProdBgStyle, megaProdName, megaProdPrice,
+      iconSearch, iconUser, iconCart, iconMenu, iconArrow, iconPlay, iconLoyal, iconLevel, iconClock, iconInsta,
+      benefits, makeCats, ingCats, recipes, products, starts, tiers, ugc, reviews, stars5,
+      footAccount, footInfo, footCoop, carriers, submitNewsletter, nlReasons,
+      searchActive, suggProducts, suggRecipes,
+    };
+  }
+}
+</script>
+</body>
+</html>

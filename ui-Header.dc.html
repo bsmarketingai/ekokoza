@@ -55,6 +55,10 @@
   .ek-flag-on { opacity:1; background:transparent; box-shadow:none; filter:saturate(1); }
   .ek-flag-off { opacity:.45; background:transparent; box-shadow:none; filter:saturate(.35); }
   .ek-flag-off:hover { opacity:1; filter:saturate(1); }
+  .ek-flag-m { appearance:none; border:0; cursor:pointer; padding:0; width:46px; height:44px; display:flex; align-items:center; justify-content:center; line-height:0; border-radius:10px; background:transparent; transition:opacity .15s, background-color .15s, filter .15s; }
+  .ek-flag-m.ek-flag-on { opacity:1; background:#E7EBDC; filter:saturate(1); }
+  .ek-flag-m.ek-flag-off { opacity:.45; filter:saturate(.35); }
+  .ek-flag-m.ek-flag-off:hover { opacity:1; filter:saturate(1); }
   @media (max-width: 900px) {
     .ek-nav { display: none !important; }
     .ek-logo-tag { display: none !important; }
@@ -202,7 +206,7 @@
           </div>
         </sc-for>
         <a href="#" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; justify-content:space-between; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:17px; font-weight:500; border-bottom:1px solid #ECE3D2;">Dárkové poukazy</a>
-        <p style="margin:14px 20px 6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#9b9888; font-weight:600;">Více o ekokoze</p>
+        <p style="margin:14px 20px 6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#6B6B5E; font-weight:600;">Více o ekokoze</p>
         <sc-for list="{{ drawerLinksOther }}" as="l" hint-placeholder-count="2">
           <a href="{{ l.href }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:17px; font-weight:500;"><span style="{{ l.icon }}"></span>{{ l.label }}</a>
         </sc-for>
@@ -210,6 +214,13 @@
         <a href="#" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; padding:6px 20px 15px; text-decoration:none; color:#2A2A24; font-size:15px;">Sledování objednávky</a>
         <a href="#" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; padding:6px 20px 15px; text-decoration:none; color:#2A2A24; font-size:15px;">Kontakt</a>
       </nav>
+      <div style="display:flex; align-items:center; gap:12px; padding:14px 20px; border-top:1px solid #E4DAC6;">
+        <span style="font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#6B6B5E; font-weight:600;">Jazyk</span>
+        <span style="display:flex; align-items:center; gap:8px;">
+          <button type="button" title="Čeština" aria-pressed="{{ czActive }}" onClick="{{ setCz }}" class="ek-flag-m {{ czFlagCls }}"><img src="assets/flags/cz.svg" alt="Čeština" width="30" height="24" style="display:block; width:30px; height:24px; border-radius:3px;"></button>
+          <button type="button" title="Slovenčina" aria-pressed="{{ skActive }}" onClick="{{ setSk }}" class="ek-flag-m {{ skFlagCls }}"><img src="assets/flags/sk.svg" alt="Slovenčina" width="30" height="24" style="display:block; width:30px; height:24px; border-radius:3px;"></button>
+        </span>
+      </div>
       <div style="padding:18px 20px; border-top:1px solid #E4DAC6;">
         <a href="#blok3" onClick="{{ closeDrawer }}" class="ek-btn-main" style="display:flex; align-items:center; justify-content:center; gap:9px; background:#D14405; color:#fff; text-decoration:none; padding:14px; border-radius:999px; font-weight:600; font-size:16px;">Začněte tady<span style="{{ iconArrow }}"></span></a>
       </div>

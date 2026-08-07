@@ -14,23 +14,23 @@
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; }
-  ::selection { background: #D8763B; color: #fff; }
+  ::selection { background: #D14405; color: #fff; }
   a { color: #D8763B; text-decoration: none; }
-  a:hover { color: #BC5F28; }
+  a:hover { color: #B23803; }
   /* shared component hover states — components rely on these class names */
-  .ek-btn-main:hover { background: #BC5F28 !important; border-color: #BC5F28 !important; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
   .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
   .ek-btn-secondary:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
   .ek-fav:hover { background: #F6F1E7 !important; color: #D8763B !important; border-color: #E4D9C2 !important; transform: scale(1.06); }
-  .ek-fav.is-on:hover { background: #BC5F28 !important; border-color: #BC5F28 !important; color: #fff !important; }
+  .ek-fav.is-on:hover { background: #B23803 !important; border-color: #B23803 !important; color: #fff !important; }
   .ek-btn-onDark:hover { background: #EDE4D0 !important; }
   .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
   .ek-cat:hover .ek-cat-ov { opacity: 1; }
   .ek-cat:hover .ek-ph { transform: scale(1.05); }
   .ds-side a:hover { background: rgba(246,241,231,.12); color: #fff; }
   .ds-icon-cell:hover { background: #EFE7D6; }
-  .ds-nav-demo::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; background: #D8763B; transform: scaleX(0); transform-origin: left; transition: transform .28s cubic-bezier(.4,0,.2,1); }
+  .ds-nav-demo::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; background: #D14405; transform: scaleX(0); transform-origin: left; transition: transform .28s cubic-bezier(.4,0,.2,1); }
   .ds-nav-demo:hover { transform: translateY(-1px); }
   .ds-nav-demo:hover::after { transform: scaleX(1); }
   .ds-loyal-demo:hover { background: #4C643C !important; color: #F6F1E7 !important; }
@@ -103,6 +103,77 @@
           </div>
         </sc-for>
       </div>
+    </section>
+
+    <!-- ===== JARNÍ PALETA ===== -->
+    <section id="jaro" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Jarní paleta</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Finální paleta webu. Světlejší báze a svěží akcenty místo podzimních tónů; tmavá zeleň #3B5531 a slonovinová #F6F1E7 zůstávají nosné. Konverzní pálená oranžová jen pro nákupní akce — jedna na obrazovku.</p>
+
+      <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden; margin-bottom:22px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:12px; padding:26px;">
+          <sc-for list="{{ bColors }}" as="c" hint-placeholder-count="5">
+            <div>
+              <div style="{{ c.chipStyle }}"></div>
+              <p style="margin:9px 0 2px; font-weight:600; font-size:13.5px;">{{ c.name }}</p>
+              <p style="margin:0 0 3px; font-family:ui-monospace,monospace; font-size:12.5px; color:#3B5531;">{{ c.hex }}</p>
+              <p style="margin:0; font-size:12px; color:#8a8776; line-height:1.4;">{{ c.use }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:18px 26px; border-top:1px solid #EFE7D6; background:#FBF8F1;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">CTA</span>
+          <span style="{{ bCtaMain }}">Do košíku</span>
+          <span style="{{ bCtaSec }}">Zjistit více</span>
+        </div>
+      </div>
+
+      <h3 style="margin:0 0 14px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Světlé přechody na podklady sekcí</h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; margin-bottom:22px;">
+        <sc-for list="{{ bGrads }}" as="g" hint-placeholder-count="3">
+          <div style="border:1px solid #ECE3D2; border-radius:12px; overflow:hidden; background:#fff;">
+            <div style="{{ g.style }}"></div>
+            <div style="padding:10px 13px;">
+              <p style="margin:0 0 2px; font-weight:600; font-size:13px;">{{ g.name }}</p>
+              <p style="margin:0; font-size:11.5px; color:#8a8776; line-height:1.4;">{{ g.use }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden;">
+        <div style="padding:22px 26px 0;">
+          <h3 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:500; font-size:24px; color:#2D3A2E;">Tmavé přechody</h3>
+          <p style="margin:0 0 18px; font-size:14.5px; color:#6B6B5E; line-height:1.55; max-width:74ch;">Pro tmavé pásy — patička, věrnostní program, výzva k akci, hero přes fotku. Fungují se všemi třemi směry. Text vždy slonovinový #F6F1E7.</p>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; padding:0 26px 24px;">
+          <sc-for list="{{ darkGrads }}" as="g" hint-placeholder-count="6">
+            <div style="border:1px solid #ECE3D2; border-radius:12px; overflow:hidden;">
+              <div style="{{ g.style }}"><span style="font-family:'Spectral',serif; font-size:18px; color:#F6F1E7;">Důvod, proč tvořit.</span></div>
+              <div style="padding:10px 13px; background:#fff;">
+                <p style="margin:0 0 2px; font-weight:600; font-size:13px;">{{ g.name }}</p>
+                <p style="margin:0; font-size:11.5px; color:#8a8776; line-height:1.4;">{{ g.use }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRHANÝ PÁS ===== -->
+    <section id="trhany-pas" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Trhaný pás</h2>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Způsob, jak opticky oddělit sekci od okolí. Podklad jde přes celou šířku okna (full bleed), nahoře i dole má nepravidelný okraj jako ručně utržený papír. Používá se na sekce, které mají působit jako vložený list — receptář, příběh, návody. Nejvýš dva až tři na stránku, jinak efekt ztrácí smysl.</p>
+      <div style="position:relative; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; background:#FFFDF6;">
+        <div style="position:relative; padding:52px 32px; overflow:hidden;">
+          <div aria-hidden="true" style="position:absolute; inset:0; background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
+          <div style="position:relative; text-align:center;">
+            <p style="margin:0 0 6px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Receptář</p>
+            <h3 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:30px; color:#3B5531;">Obsah sekce v trhaném pásu</h3>
+          </div>
+        </div>
+      </div>
+      <p style="margin:16px 0 0; font-size:13.5px; color:#8a8776; line-height:1.55; max-width:78ch;">Podklad: čistá bílá s náznakem zeleně u dolní hrany (#FFFFFF → #FAFDF4) — proti krémové bázi stránky #FFFDF6 s texturou se pás jasně odděluje. Sekce potřebuje větší vnitřní odsazení nahoře a dole (cca 86 / 66 px), aby text nenarážel do trhaného okraje. Nasazeno na sekci Receptář na homepage.</p>
     </section>
 
     <!-- ===== TYPOGRAFIE ===== -->
@@ -402,7 +473,7 @@
           </ul>
         </div>
         <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
-          <h3 style="margin:0 0 16px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#BC5F28; font-weight:700;">Ne</h3>
+          <h3 style="margin:0 0 16px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#B23803; font-weight:700;">Ne</h3>
           <ul style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; font-size:15px; line-height:1.5; color:#52524a;">
             <sc-for list="{{ tovDont }}" as="t" hint-placeholder-count="5"><li>{{ t }}</li></sc-for>
           </ul>
@@ -427,8 +498,17 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   renderVals() {
+    const chip = (hex) => 'height:74px; border-radius:10px; background:' + hex + ';';
+    const grad = (css) => 'height:86px; background:' + css + ';';
+    const cta = (bg, fg, border) => 'display:inline-flex; align-items:center; padding:11px 22px; border-radius:999px; font-weight:600; font-size:14.5px; background:' + bg + '; color:' + fg + '; border:1.5px solid ' + (border || bg) + ';';
+    const pal = (list) => list.map(c => ({ name: c[0], hex: c[1], use: c[2], chipStyle: chip(c[1]) }));
+    const grads = (list) => list.map(g => ({ name: g[0], use: g[2], style: grad(g[1]) }));
+    const dgrad = (css) => 'height:104px; display:flex; align-items:flex-end; padding:14px 16px; background:' + css + ';';
+    const dgrads = (list) => list.map(g => ({ name: g[0], use: g[2], style: dgrad(g[1]) }));
     const toc = [
       { label: 'Barvy', href: '#barvy' },
+      { label: 'Jarní paleta', href: '#jaro' },
+      { label: 'Trhaný pás', href: '#trhany-pas' },
       { label: 'Typografie', href: '#typografie' },
       { label: 'Rozestupy a tvary', href: '#spacing' },
       { label: 'Logo', href: '#logo' },
@@ -449,7 +529,7 @@ class Component extends DCLogic {
       mk('Zelená z loga', '#4C643C', 'Topbar, footer, věrnostní box, visačka'),
       mk('Tmavá zelená', '#3B5531', 'Nadpisy, ikony, text na světlém'),
       mk('Terrakota', '#D8763B', 'Hlavní CTA, kickery, odkazy'),
-      mk('Terrakota hover', '#BC5F28', 'Hover stav primárních tlačítek'),
+      mk('Terrakota hover', '#B23803', 'Hover stav primárních tlačítek'),
       mk('Slonovinová', '#FFFDF6', 'Pozadí stránky (s texturou)'),
       mk('Krémová', '#F6F1E7', 'Plochy, chipy, dlaždice ikon'),
       mk('Krémová tmavší', '#EFE7D6', 'Sekundární plochy, hover ghost'),
@@ -548,7 +628,30 @@ class Component extends DCLogic {
       { text: '„Vědět proč. Vědět jak."', use: 'Návody a edukace' },
     ];
 
-    return { toc, colors, colorsBrand, typeScale, spacing, radii, shadows, iconGroups, iconTotal, botanika, tovDo, tovDont, claims };
+    return {
+      bColors: pal([
+        ['Pálená oranžová', '#D14405', 'Main CTA — nákupní akce, bílý text 4,6:1'],
+        ['Mladá zeleň', '#7BA23F', 'Suroviny, kategorie, ikony'],
+        ['Slunečnice', '#F5C63C', 'Věrnost, zvýraznění'],
+        ['Chrpa', '#5E93B5', 'Návody, doprava'],
+        ['Světlá báze', '#FCFAF3', 'Podklad stránky místo #F6F1E7'],
+      ]),
+      bGrads: grads([
+        ['Rozkvetlá louka', 'linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%)', 'Podklad sekce — výchozí'],
+        ['Květ', 'linear-gradient(160deg,#FDF1F4 0%,#F7DDE4 100%)', 'Recepty, komunita'],
+        ['Poledne', 'linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%)', 'Věrnostní program'],
+      ]),
+      bCtaMain: cta('#D14405', '#fff'),
+      bCtaSec: cta('transparent', '#4F6E2A', '#7BA23F'),
+      darkGrads: dgrads([
+        ['Hluboký les', 'linear-gradient(155deg,#3B5531 0%,#2D3A2E 100%)', 'Patička, tmavé pásy — základ'],
+        ['Zeleň do noci', 'linear-gradient(155deg,#4C643C 0%,#22301F 100%)', 'Věrnostní program, o nás'],
+        ['Terrakota', 'linear-gradient(155deg,#D14405 0%,#A03202 100%)', 'Konverzní pás, sezónní banner'],
+        ['Západ', 'linear-gradient(155deg,#E85A18 0%,#8E3A34 100%)', 'Hero přes fotku, výzva k akci'],
+        ['Les a hlína', 'linear-gradient(150deg,#3B5531 0%,#5B4A34 60%,#8E5A32 100%)', 'Přechod mezi zelenou a terrakotou'],
+        ['Soumrak', 'linear-gradient(155deg,#2D3A2E 0%,#3E4A57 100%)', 'Návody, technické sekce'],
+      ]),
+      toc, colors, colorsBrand, typeScale, spacing, radii, shadows, iconGroups, iconTotal, botanika, tovDo, tovDont, claims };
   }
 }
 </script>

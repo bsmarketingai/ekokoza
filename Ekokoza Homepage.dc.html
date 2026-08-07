@@ -14,22 +14,23 @@
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; }
-  ::selection { background: #D8763B; color: #fff; }
+  ::selection { background: #D14405; color: #fff; }
   .ek-scroll { scrollbar-width: thin; scrollbar-color: #cdbfa3 transparent; }
   .ek-scroll::-webkit-scrollbar { height: 8px; }
   .ek-scroll::-webkit-scrollbar-thumb { background: #cdbfa3; border-radius: 8px; }
   .ek-cat:hover .ek-cat-ov { opacity: 1; }
   .ek-cat:hover .ek-ph { transform: scale(1.05); }
   .ek-cat:hover .ek-hero-goat { transform: translate(-50%,-62%) scale(1.05) !important; }
-  .ek-link-u { background-image: linear-gradient(#D8763B,#D8763B); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
   .ek-link-u:hover { background-size: 100% 1.5px; }
-  .ek-cta:hover { background: #BC5F28 !important; }
-  .ek-btn-main:hover { background: #BC5F28 !important; border-color: #BC5F28 !important; }
+  .ek-cta:hover { background: #B23803 !important; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
   .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
   .ek-btn-secondary:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
   .ek-fav:hover { background: #F6F1E7 !important; color: #D8763B !important; border-color: #E4D9C2 !important; transform: scale(1.06); }
-  .ek-fav.is-on:hover { background: #BC5F28 !important; border-color: #BC5F28 !important; color: #fff !important; }
+  .ek-fav.is-on:hover { background: #B23803 !important; border-color: #B23803 !important; color: #fff !important; }
   /* imported card components must fill their grid cell so rows stay equal height */
   .sc-host[data-sc-name^="ui-"]:not([data-sc-name="ui-Header"]) { display: flex; }
   .sc-host[data-sc-name^="ui-"]:not([data-sc-name="ui-Header"]) > * { flex: 1; min-width: 0; }
@@ -39,7 +40,7 @@
   .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
   .ek-nav a:hover { color: #D8763B; }
   .ek-nav > div > a:not(.ek-nav-loyal) { position: relative; transition: color .22s ease, transform .22s ease; }
-  .ek-nav > div > a:not(.ek-nav-loyal)::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #D8763B; transform: scaleX(0); transform-origin: left center; transition: transform .28s cubic-bezier(.33,1,.5,1); }
+  .ek-nav > div > a:not(.ek-nav-loyal)::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #D14405; transform: scaleX(0); transform-origin: left center; transition: transform .28s cubic-bezier(.33,1,.5,1); }
   .ek-nav > div > a:not(.ek-nav-loyal):hover { transform: translateY(-1px); }
   .ek-nav > div > a:not(.ek-nav-loyal):hover::after { transform: scaleX(1); }
   .ek-nav-loyal:hover { background: #4C643C !important; color: #F6F1E7 !important; }
@@ -259,7 +260,7 @@
           <p style="margin:0 0 8px; color:#E3ECC5; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">Ekokoza</p>
           <h1 class="ek-h1" style="margin:0 0 8px; font-family:'Spectral',serif; font-weight:400; font-size:31px; line-height:1.05; color:#F6F1E7; text-wrap:balance;">Důvod, proč tvořit.</h1>
           <p style="margin:0 0 16px; color:#EDE8D6; font-size:14px; line-height:1.45;">Suroviny, recepty a klid na práci.</p>
-          <span class="ek-cta" style="align-self:flex-start; background:#D8763B; color:#fff; padding:11px 22px; border-radius:999px; font-weight:600; font-size:14px; display:inline-flex; align-items:center; gap:8px; transition:background .2s;">Začněte tady {{ iconArrow }}</span>
+          <span class="ek-cta" style="align-self:flex-start; background:#D14405; color:#fff; padding:11px 22px; border-radius:999px; font-weight:600; font-size:14px; display:inline-flex; align-items:center; gap:8px; transition:background .2s;">Začněte tady {{ iconArrow }}</span>
         </div>
       </a>
 
@@ -318,7 +319,7 @@
     <div style="position:relative; z-index:1; max-width:1280px; margin:0 auto;">
       <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:26px;">
         <div>
-          <p style="margin:0 0 8px; color:#D8763B; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Rozcestník</p>
+          <p style="margin:0 0 8px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Rozcestník</p>
           <h2 class="ek-h2" style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:40px; color:#3B5531; line-height:1.05;">Co chcete vyrábět?</h2>
         </div>
         <a href="#" class="ek-link-u" style="color:#3B5531; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Vše ke tvorbě {{ iconArrow }}</span></a>
@@ -344,11 +345,12 @@
   </section>
 
   <!-- ============ BLOK 5 — RECEPTÁŘ HIGHLIGHT ============ -->
-  <section id="blok5" style="padding:64px 32px 8px; position:relative;" class="ek-pad">
+  <section id="blok5" style="padding:86px 32px 66px; margin:26px 0; position:relative;" class="ek-pad">
+    <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
     <img src="assets/botanika/pampeliska-kvet-1.png" alt="" class="ek-bot" style="position:absolute; left:-30px; top:44px; width:160px; transform:rotate(-10deg); z-index:0; pointer-events:none;">
     <div style="position:relative; z-index:1; max-width:1280px; margin:0 auto;">
       <div style="text-align:center; margin-bottom:34px;">
-        <p style="margin:0 0 8px; color:#D8763B; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Receptář</p>
+        <p style="margin:0 0 8px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Receptář</p>
         <h2 class="ek-h2" style="margin:0 0 8px; font-family:'Spectral',serif; font-weight:400; font-size:40px; color:#3B5531;">Recepty, které fungují</h2>
         <p style="margin:0; color:#6B6B5E; font-size:17px;">Suroviny, recepty a důvod proč.</p>
       </div>
@@ -383,7 +385,7 @@
     <div style="max-width:1280px; margin:0 auto;">
       <div class="ek-thirds" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px;">
         <sc-for list="{{ starts }}" as="s" hint-placeholder-count="3">
-          <div class="ek-card" style="background:{{ s.bg }}; border-radius:14px; padding:34px; display:flex; flex-direction:column; gap:14px; min-height:230px; transition:transform .25s, box-shadow .25s;">
+          <div class="ek-card" style="background:{{ s.bg }}; border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:34px; display:flex; flex-direction:column; gap:14px; min-height:230px; transition:transform .25s, box-shadow .25s;">
             <div style="width:52px; height:52px; border-radius:14px; background:rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center; color:#3B5531;">{{ s.icon }}</div>
             <div style="flex:1;">
               <p style="margin:0 0 4px; color:#3B5531; opacity:.7; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;">{{ s.kicker }}</p>
@@ -399,7 +401,7 @@
   <!-- ============ BLOK 8 — VĚRNOSTNÍ PROGRAM ============ -->
   <section id="blok8" style="padding:64px 32px 8px; position:relative;" class="ek-pad">
     <img src="assets/botanika/rebricek.png" alt="" class="ek-bot ek-bot-m" style="position:absolute; right:44px; top:6px; width:170px; transform:rotate(9deg); z-index:0; pointer-events:none;">
-    <div style="max-width:1280px; margin:0 auto; background:#4C643C; border-radius:18px; overflow:hidden; position:relative; z-index:1; box-shadow:0 16px 38px -26px rgba(59,85,49,.35);">
+    <div style="max-width:1280px; margin:0 auto; background:linear-gradient(155deg,#4C643C 0%,#22301F 100%); border-radius:18px; overflow:hidden; position:relative; z-index:1; box-shadow:0 16px 38px -26px rgba(59,85,49,.35);">
       <div style="padding:52px;" class="ek-pad">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:40px; margin-bottom:36px;">
           <div style="max-width:620px;">
@@ -420,7 +422,7 @@
             </div>
           </sc-for>
         </div>
-        <a href="#" class="ek-cta" style="display:inline-flex; align-items:center; gap:9px; background:#D8763B; color:#fff; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:background .2s;">Zjistit více o věrnostním programu {{ iconArrow }}</a>
+        <a href="#" class="ek-cta" style="display:inline-flex; align-items:center; gap:9px; background:#D14405; color:#fff; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:background .2s;">Zjistit více o věrnostním programu {{ iconArrow }}</a>
       </div>
     </div>
   </section>
@@ -430,7 +432,7 @@
     <div style="max-width:1280px; margin:0 auto;">
       <div style="margin-bottom:24px;">
         <h2 class="ek-h2" style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:34px; color:#3B5531;">Ukažte nám, co vyrábíte</h2>
-        <a href="#" class="ek-link-u" style="color:#D8763B; text-decoration:none; font-weight:600; font-size:15px;"><span style="display:inline-flex; align-items:center; gap:6px;">@ekokoza na Instagramu {{ iconArrow }}</span></a>
+        <a href="#" class="ek-btn-ghost" style="display:inline-flex; align-items:center; gap:9px; margin-top:10px; color:#3B5531; text-decoration:none; font-weight:600; font-size:15px; padding:11px 20px; border-radius:999px; background:transparent; transition:background .2s;"><span style="{{ iconInstagram }}"></span>@ekokoza na Instagramu</a>
       </div>
       <div class="ek-ugc" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px;">
         <sc-for list="{{ ugc }}" as="u" hint-placeholder-count="8">
@@ -475,7 +477,7 @@
     <div style="position:relative; z-index:1; max-width:1280px; margin:0 auto;">
       <div class="ek-two" style="display:grid; grid-template-columns:1fr 1fr; gap:0; align-items:stretch; background:#fff; border:1px solid #ECE3D2; border-radius:18px; overflow:hidden; box-shadow:0 16px 38px -26px rgba(59,85,49,.35);">
         <div style="padding:52px;">
-          <p style="margin:0 0 10px; color:#D8763B; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Náš příběh</p>
+          <p style="margin:0 0 10px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Náš příběh</p>
           <h2 class="ek-h2" style="margin:0 0 18px; font-family:'Spectral',serif; font-weight:400; font-size:34px; color:#3B5531; line-height:1.1;">Začalo to vlastní kuchyní a hrstkou surovin.</h2>
           <p style="margin:0 0 14px; color:#52524a; font-size:16px; line-height:1.65;">Ekokoza vznikla z jednoduché potřeby — vědět, co si nanášíme na kůži. Místo katalogu plného slev jsme postavili průvodce, kterému se dá věřit.</p>
           <p style="margin:0 0 26px; color:#52524a; font-size:16px; line-height:1.65;">Dnes pomáháme tisícům tvůrců — od prvního tělového másla po vlastní značku. Pořád stejně: ověřené recepty, čisté suroviny, klid na práci.</p>
@@ -493,11 +495,11 @@
     
     <div class="ek-two" style="position:relative; z-index:1; max-width:1280px; margin:0 auto; background:#FFFFFF; border:1px solid #ECE3D2; border-radius:18px; display:grid; grid-template-columns:1.1fr 1fr;box-shadow:0 16px 38px -26px rgba(59,85,49,.35); gap:40px; padding:48px 52px; align-items:center;">
       <div>
-        <p style="margin:0 0 10px; color:#D8763B; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Novinky e-mailem</p>
+        <p style="margin:0 0 10px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Novinky e-mailem</p>
         <h2 class="ek-h2" style="margin:0 0 14px; font-family:'Spectral',serif; font-weight:400; font-size:34px; color:#3B5531; line-height:1.1;">Jednou měsíčně. Vědět proč, vědět jak.</h2>
         <form onSubmit="{{ submitNewsletter }}" style="display:flex; gap:10px; margin:22px 0 10px; max-width:460px; flex-wrap:wrap;">
           <input type="email" placeholder="váš e-mail" style="flex:1; min-width:220px; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:14px 22px; font-family:'Hanken Grotesk',sans-serif; font-size:15.5px; color:#2A2A24; outline:none;">
-          <button type="submit" class="ek-cta" style="background:#D8763B; color:#fff; border:none; cursor:pointer; padding:14px 26px; border-radius:999px; font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:15px; transition:background .2s;">Odebírat</button>
+          <button type="submit" class="ek-cta" style="background:#D14405; color:#fff; border:none; cursor:pointer; padding:14px 26px; border-radius:999px; font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:15px; transition:background .2s;">Odebírat</button>
         </form>
         <p style="margin:0; font-size:13px; color:#8a8a78;">Odhlásíte se kdykoli jedním klikem.</p>
       </div>
@@ -517,29 +519,20 @@
 
   </div><!-- /1440 wrap -->
 
-  <!-- ============ INSTAGRAM PANEL ============ -->
-  <section style="background: #CFE0B4; margin-top: 48px; position: relative">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 26px 32px; position: relative" class="ek-pad">
-      <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;">
-        <span style="display:inline-flex; align-items:center; gap:6px;">
-          <span style="width:24px; height:24px; display:flex; align-items:center; justify-content:center; color:#3B5531;">{{ iconInsta24 }}</span>
-          <span style="font-family:'Spectral',serif; font-size:20px; color:#3B5531;">Sledujte nás</span>
-        </span>
-        <a href="#" class="ek-link-u" style="color:#D8763B; text-decoration:none; font-weight:600; font-size:17px;">@ekokoza</a>
-        <span style="width:1px; height:26px; background:#AFC791; margin:0 10px;"></span>
-        <span style="display:flex; gap:3px; color:#B8860B; align-items:center;">{{ stars5 }}</span>
-        <span style="font-family:'Spectral',serif; font-size:20px; color:#3B5531; font-weight:500;">4,9 / 5</span>
-        <span style="font-size:14px; color:#6B6B5E;">2 418 hodnocení obchodu</span>
-      </div>
-    </div>
-  </section>
-
-  <dc-import name="ui-Footer" hint-size="100%,520px"></dc-import>
+  <div style="max-width:1440px; margin:56px auto 0; position:relative;">
+    <img src="assets/botanika/malinik2.png" alt="" class="ek-bot ek-bot-m" style="position:absolute; left:-24px; top:-96px; width:240px; transform:rotate(-16deg); z-index:0; pointer-events:none;">
+    <img src="assets/botanika/rebricek.png" alt="" class="ek-bot ek-bot-m" style="position:absolute; right:-16px; top:-104px; width:220px; transform:rotate(14deg); z-index:0; pointer-events:none;">
+    <div style="position:relative; z-index:1;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
+  </div>
 
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  maskStyle(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return 'display:inline-block; width:' + size + 'px; height:' + size + 'px; flex:0 0 auto; background-color:' + color + '; -webkit-mask:url("' + url + '") center / contain no-repeat; mask:url("' + url + '") center / contain no-repeat;';
+  }
   hi(name, size, sw) {
     const s = size || 20;
     const url = 'assets/icons/' + name + '.svg';
@@ -705,9 +698,9 @@ class Component extends DCLogic {
     ];
 
     const starts = [
-      { kicker:'Začátečník', title:'Tvoříte poprvé?', link:'Otevřít průvodce', icon: this.hi('bulb', 26), bg:'#E3EDD2' },
-      { kicker:'Pokročilý', title:'Hledáte nové výrobní postupy?', link:'Receptář pro pokročilé', icon: this.hi('sorting-01', 26), bg:'#CFE0B4' },
-      { kicker:'Profesionál / B2B', title:'Vyrábíte ve větším?', link:'Dokumentace a B2B', icon: this.hi('certificate-01', 26), bg:'#B9D096' },
+      { kicker:'Začátečník', title:'Tvoříte poprvé?', link:'Otevřít průvodce', icon: this.hi('bulb', 26), bg:'linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%)' },
+      { kicker:'Pokročilý', title:'Hledáte nové výrobní postupy?', link:'Receptář pro pokročilé', icon: this.hi('sorting-01', 26), bg:'linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%)' },
+      { kicker:'Profesionál / B2B', title:'Vyrábíte ve větším?', link:'Dokumentace a B2B', icon: this.hi('certificate-01', 26), bg:'linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%)' },
     ];
 
     const tiers = [
@@ -738,6 +731,7 @@ class Component extends DCLogic {
 
     return {
       openSearch, closeSearch, onQueryInput, submitSearch, searchInputRef, iconClose,
+      iconInstagram: this.maskStyle('instagram', 20, '#3B5531'),
       searchOpen: this.state.searchOpen, query: this.state.query,
       openDrawer, closeDrawer, stopProp, drawerWrapStyle, drawerBdStyle, drawerPanelStyle, drawerMenu, drawerLinksOther, iconChevron, iconAbout,
       megaOpen, openMega0, openMega1, openMega2, megaClose, megaTitle, megaAllHref, megaLinks, megaProdBgStyle, megaProdName, megaProdPrice,

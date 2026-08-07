@@ -15,15 +15,15 @@
   * { box-sizing: border-box; }
   body { margin: 0; }
   a { color: #D8763B; text-decoration: none; }
-  a:hover { color: #BC5F28; }
-  .ek-btn-main:hover { background: #BC5F28 !important; border-color: #BC5F28 !important; }
+  a:hover { color: #B23803; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
   .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
-  .ek-link-u { background-image: linear-gradient(#D8763B,#D8763B); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
   .ek-link-u:hover { background-size: 100% 1.5px; }
   .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
   .ek-nav a:hover { color: #D8763B; }
   .ek-nav > div > a:not(.ek-nav-loyal) { position: relative; transition: color .22s ease, transform .22s ease; }
-  .ek-nav > div > a:not(.ek-nav-loyal)::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #D8763B; transform: scaleX(0); transform-origin: left; transition: transform .28s cubic-bezier(.4,0,.2,1); }
+  .ek-nav > div > a:not(.ek-nav-loyal)::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #D14405; transform: scaleX(0); transform-origin: left; transition: transform .28s cubic-bezier(.4,0,.2,1); }
   .ek-nav > div > a:not(.ek-nav-loyal):hover { transform: translateY(-1px); }
   .ek-nav > div > a:not(.ek-nav-loyal):hover::after { transform: scaleX(1); }
   .ek-nav-loyal:hover { background: #4C643C !important; color: #F6F1E7 !important; }
@@ -160,9 +160,9 @@
             <dc-import name="ui-LoginOverlay" on-close="{{ closeLogin }}" hint-size="400px,470px"></dc-import>
           </sc-if>
         </span>
-        <span class="ek-hdr-fav" title="Oblíbené" style="position:relative; width:22px; height:22px; color:#3B5531; cursor:pointer;"><span style="{{ iconFav }}"></span><sc-if value="{{ hasFavs }}" hint-placeholder-val="{{ false }}"><span class="ek-badge" style="position:absolute; top:-6px; right:-7px; background:#D8763B; color:#fff; font-size:10px; font-weight:700; min-width:16px; height:16px; padding:0 3px; border-radius:999px; display:flex; align-items:center; justify-content:center; line-height:1;">{{ favCount }}</span></sc-if></span>
+        <span class="ek-hdr-fav" title="Oblíbené" style="position:relative; width:22px; height:22px; color:#3B5531; cursor:pointer;"><span style="{{ iconFav }}"></span><sc-if value="{{ hasFavs }}" hint-placeholder-val="{{ false }}"><span class="ek-badge" style="position:absolute; top:-6px; right:-7px; background:#D14405; color:#fff; font-size:10px; font-weight:700; min-width:16px; height:16px; padding:0 3px; border-radius:999px; display:flex; align-items:center; justify-content:center; line-height:1;">{{ favCount }}</span></sc-if></span>
         <span class="ek-hdr-cartwrap" onMouseEnter="{{ cartHover }}" onMouseLeave="{{ cartLeave }}" style="position:relative; display:flex; align-items:center;">
-          <span class="ek-hdr-cart" onClick="{{ cartToggle }}" title="Košík" style="position:relative; width:22px; height:22px; color:#3B5531; cursor:pointer;"><span style="{{ iconCart }}"></span><sc-if value="{{ hasCart }}" hint-placeholder-val="{{ true }}"><span class="ek-badge" style="position:absolute; top:-6px; right:-7px; background:#D8763B; color:#fff; font-size:10px; font-weight:700; min-width:16px; height:16px; padding:0 3px; border-radius:999px; display:flex; align-items:center; justify-content:center; line-height:1;">{{ cartCount }}</span></sc-if></span>
+          <span class="ek-hdr-cart" onClick="{{ cartToggle }}" title="Košík" style="position:relative; width:22px; height:22px; color:#3B5531; cursor:pointer;"><span style="{{ iconCart }}"></span><sc-if value="{{ hasCart }}" hint-placeholder-val="{{ true }}"><span class="ek-badge" style="position:absolute; top:-6px; right:-7px; background:#D14405; color:#fff; font-size:10px; font-weight:700; min-width:16px; height:16px; padding:0 3px; border-radius:999px; display:flex; align-items:center; justify-content:center; line-height:1;">{{ cartCount }}</span></sc-if></span>
           <sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
             <dc-import name="ui-CartOverlay" items="{{ cartItems }}" on-close="{{ closeCart }}" on-remove="{{ removeCartItem }}" checkout-href="#" hint-size="400px,480px"></dc-import>
           </sc-if>
@@ -211,7 +211,7 @@
         <a href="#" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; padding:6px 20px 15px; text-decoration:none; color:#2A2A24; font-size:15px;">Kontakt</a>
       </nav>
       <div style="padding:18px 20px; border-top:1px solid #E4DAC6;">
-        <a href="#blok3" onClick="{{ closeDrawer }}" class="ek-btn-main" style="display:flex; align-items:center; justify-content:center; gap:9px; background:#D8763B; color:#fff; text-decoration:none; padding:14px; border-radius:999px; font-weight:600; font-size:16px;">Začněte tady<span style="{{ iconArrow }}"></span></a>
+        <a href="#blok3" onClick="{{ closeDrawer }}" class="ek-btn-main" style="display:flex; align-items:center; justify-content:center; gap:9px; background:#D14405; color:#fff; text-decoration:none; padding:14px; border-radius:999px; font-weight:600; font-size:16px;">Začněte tady<span style="{{ iconArrow }}"></span></a>
       </div>
     </aside>
   </div>

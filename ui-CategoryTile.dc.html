@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<a href="{{ href }}" class="ek-cat" style="position:relative; aspect-ratio:3/4; border-radius:14px; overflow:hidden; text-decoration:none; display:block; font-family:'Hanken Grotesk',sans-serif;">
+  <div class="ek-ph" style="{{ imgStyle }}"></div>
+  <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(30,24,18,0) 45%,rgba(30,24,18,.66) 100%);"></div>
+  <div class="ek-cat-ov" style="position:absolute; inset:0; background:rgba(30,38,30,.5); opacity:0; transition:opacity .3s; display:flex; align-items:center; justify-content:center;">
+    <span style="color:#fff; font-weight:600; font-size:14px; display:inline-flex; align-items:center; gap:7px;">{{ hoverLabel }}<span style="{{ iconArrow }}"></span></span>
+  </div>
+  <div style="position:absolute; bottom:14px; left:16px; right:16px;">
+    <h3 style="margin:0 0 3px; font-family:'Spectral',serif; font-weight:500; font-size:20px; color:#fff;">{{ title }}</h3>
+    <sc-if value="{{ desc }}" hint-placeholder-val="{{ true }}">
+      <p style="margin:0; font-size:12.5px; line-height:1.35; color:#EDE6D5;">{{ desc }}</p>
+    </sc-if>
+  </div>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:230,&quot;height&quot;:310},&quot;name&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kosmetika&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;desc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Krémy, másla a balzámy pro každodenní péči.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;hoverLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Zobrazit suroviny&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;img&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/make/kosmetika.png&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;imgPosition&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;center&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const img = this.props.img ?? 'assets/make/kosmetika.png';
+    const pos = this.props.imgPosition ?? 'center';
+    const tone = this.props.tone;
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const arrowUrl = base + 'assets/icons/arrow-right-02.svg';
+    const iconArrow = `display:inline-block; width:16px; height:16px; flex:0 0 auto; background-color:currentColor; -webkit-mask:url("${arrowUrl}") center / contain no-repeat; mask:url("${arrowUrl}") center / contain no-repeat;`;
+    return {
+      title: this.props.title ?? 'Kosmetika',
+      desc: this.props.desc ?? 'Krémy, másla a balzámy pro každodenní péči.',
+      hoverLabel: this.props.hoverLabel ?? 'Zobrazit suroviny',
+      iconArrow,
+      href: this.props.href ?? '#',
+      imgStyle: `position:absolute; inset:0; background:${tone || `#EFE7D6 url("${img}") ${pos} / cover no-repeat`}; transition:transform .6s ease;`,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .ek-link-u { background-image: linear-gradient(#EBD284,#EBD284); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u:hover { background-size: 100% 1.5px; }
+  /* Vnejsi odsazeni musi kopirovat .ek-pad zbytku stranky, jinak je paticka uskocena */
+  @media (max-width: 900px) {
+    .ek-foot { grid-template-columns: repeat(2,1fr) !important; }
+    .ek-foot-outer { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-foot-pad { padding-left: 24px !important; padding-right: 24px !important; }
+  }
+  @media (max-width: 560px) {
+    .ek-foot { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .ek-foot-pad { padding-left: 20px !important; padding-right: 20px !important; }
+  }
+  @media (max-width: 400px) {
+    .ek-foot-pad { padding-left: 18px !important; padding-right: 18px !important; }
+  }
+</style>
+</helmet>
+
+<div style="max-width:1344px; margin:0 auto; padding:0 32px;" class="ek-foot-outer">
+  <footer style="background:#4C643C; color:#DCE6D2; border-radius:18px 18px 0 0; font-family:'Hanken Grotesk',sans-serif;">
+    <div class="ek-foot-pad" style="padding:56px 44px 0;">
+
+      <div class="ek-foot" style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:32px; padding-bottom:44px; border-bottom:1px solid rgba(246,241,231,.14);">
+        <div>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-size:14px; letter-spacing:.04em; font-weight:600;">Kontakty</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <span>{{ company }}</span>
+            <span>{{ address }}</span>
+            <a href="{{ emailHref }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ email }}</a>
+            <a href="{{ phoneHref }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ phone }}</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-size:14px; letter-spacing:.04em; font-weight:600;">Můj účet</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <sc-for list="{{ colAccount }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-size:14px; letter-spacing:.04em; font-weight:600;">Informace o nákupu</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <sc-for list="{{ colInfo }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-size:14px; letter-spacing:.04em; font-weight:600;">Spolupracujeme</h4>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <sc-for list="{{ colCoop }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:24px; padding:26px 0; flex-wrap:wrap; border-bottom:1px solid rgba(246,241,231,.14);">
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+          <span style="font-size:13px; color:#AAC29D;">Doručujeme přes:</span>
+          <sc-for list="{{ carriers }}" as="c" hint-placeholder-count="5">
+            <span style="background:rgba(246,241,231,.1); color:#EDE8D6; font-size:12.5px; font-weight:600; padding:7px 14px; border-radius:8px;">{{ c }}</span>
+          </sc-for>
+        </div>
+        <a href="{{ homeHref }}" style="display:flex; align-items:center;">
+          <img src="assets/ekokoza-logo-cream.png" alt="ekokoza" style="height:34px; width:auto; display:block;">
+        </a>
+      </div>
+
+      <div style="padding:22px 0; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:#AAC29D;">
+        <span>{{ copyright }}</span>
+        <span style="display:flex; gap:18px;">
+          <a href="#" style="color:#AAC29D; text-decoration:none;" class="ek-link-u">Obchodní podmínky</a>
+          <a href="#" style="color:#AAC29D; text-decoration:none;" class="ek-link-u">Ochrana soukromí</a>
+        </span>
+      </div>
+
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:520},&quot;company&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Ekokoza s.r.o.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Kontakty&quot;},&quot;address&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tvořivá 12, 110 00 Praha&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Kontakty&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;info@ekokoza.cz&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Kontakty&quot;},&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;+420 601 365 245&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Kontakty&quot;},&quot;homeHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;copyright&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;© 2026 Ekokoza s.r.o. — Důvod, proč tvořit.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;colAccount&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;},&quot;colInfo&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;},&quot;colCoop&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;},&quot;carriers&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const email = this.props.email ?? 'info@ekokoza.cz';
+    const phone = this.props.phone ?? '+420 601 365 245';
+    return {
+      company: this.props.company ?? 'Ekokoza s.r.o.',
+      address: this.props.address ?? 'Tvořivá 12, 110 00 Praha',
+      email, phone,
+      emailHref: 'mailto:' + email,
+      phoneHref: 'tel:' + phone.replace(/\s/g, ''),
+      homeHref: this.props.homeHref ?? '#',
+      copyright: this.props.copyright ?? '© 2026 Ekokoza s.r.o. — Důvod, proč tvořit.',
+      colAccount: this.props.colAccount ?? ['Moje objednávky', 'Faktury', 'Osobní a doručovací údaje', 'Věrnostní program a B2B ceny'],
+      colInfo: this.props.colInfo ?? ['Doprava a platba', 'Reklamace a vrácení', 'Obchodní podmínky', 'Časté dotazy'],
+      colCoop: this.props.colCoop ?? ['B2B a velkoobchod', 'Affiliate program', 'Pro výrobce', 'Staňte se partnerem'],
+      carriers: this.props.carriers ?? ['Zásilkovna', 'PPL', 'Česká pošta', 'DPD', 'Balíkovna'],
+    };
+  }
+}
+</script>
+</body>
+</html>

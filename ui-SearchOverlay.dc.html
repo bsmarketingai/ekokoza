@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .ek-mega-link:hover { background: #F6F1E7; color: #D8763B !important; }
+  .ek-btn-main:hover { background: #BC5F28 !important; border-color: #BC5F28 !important; }
+  .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
+  .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
+  @media (max-width: 900px) {
+    .ek-search-overlay { position: fixed !important; inset: 0 !important; transform: none !important; z-index: 300 !important; background: #F6F1E7 !important; flex-direction: column !important; align-items: stretch !important; }
+    .ek-search-form { width: 100% !important; border-radius: 0 !important; border: none !important; border-bottom: 1px solid #E4DAC6 !important; box-shadow: none !important; padding: 22px 20px !important; padding-top: max(22px, env(safe-area-inset-top)) !important; }
+    .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
+    .ek-sugg > div { border-left: none !important; }
+    .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
+  }
+</style>
+</helmet>
+
+<div class="ek-search-overlay" style="position:absolute; left:32px; right:32px; top:50%; transform:translateY(-50%); display:flex; align-items:center; z-index:60; font-family:'Hanken Grotesk',sans-serif;">
+
+  <form class="ek-search-form" onSubmit="{{ submit }}" style="display:flex; align-items:center; gap:12px; width:100%; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:12px 16px 12px 22px; box-shadow:0 14px 36px -20px rgba(45,58,46,.5);">
+    <span style="{{ iconSearch }}"></span>
+    <input ref="{{ inputRef }}" value="{{ query }}" onInput="{{ onInput }}" placeholder="Hledejte suroviny, recepty, kategorie…" style="flex:1; min-width:0; border:none; outline:none; background:transparent; font-family:'Hanken Grotesk',sans-serif; font-size:17px; color:#2A2A24;">
+    <button type="submit" class="ek-btn-main" style="background:#D8763B; color:#fff; border:none; cursor:pointer; padding:9px 20px; border-radius:999px; font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:14px; transition:background .2s; white-space:nowrap;">Hledat</button>
+    <span onClick="{{ onClose }}" title="Zavřít" style="width:34px; height:34px; flex:0 0 auto; border-radius:50%; background:#F6F1E7; color:#3B5531; display:flex; align-items:center; justify-content:center; cursor:pointer;"><span style="{{ iconClose }}"></span></span>
+  </form>
+
+  <sc-if value="{{ active }}" hint-placeholder-val="{{ false }}">
+  <div class="ek-sugg" style="position:absolute; top:calc(100% + 10px); left:0; right:0; background:#fff; border:1px solid #E4DAC6; border-radius:14px; box-shadow:0 34px 64px -30px rgba(45,58,46,.5); overflow-x:hidden; overflow-y:auto; max-height:calc(100vh - 130px); display:grid; grid-template-columns:1.35fr 1fr;">
+
+    <div style="padding:18px 20px;">
+      <p style="margin:0 0 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#9b9888; font-weight:600;">Produkty</p>
+      <div style="display:flex; flex-direction:column;">
+        <sc-for list="{{ products }}" as="sp" hint-placeholder-count="4">
+          <a href="#" class="ek-mega-link" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
+            <span style="{{ sp.thumbStyle }}"></span>
+            <span style="flex:1; min-width:0;">
+              <span style="display:block; font-family:'Spectral',serif; font-weight:500; font-size:15.5px; line-height:1.25;">{{ sp.name }}</span>
+              <dc-import name="ui-Stock" state="{{ sp.stockState }}" date="{{ sp.stockDate }}" size="{{ 12.5 }}" hint-size="130px,17px"></dc-import>
+            </span>
+            <span style="font-family:'Spectral',serif; font-size:17px; color:#3B5531; font-weight:500; white-space:nowrap;">{{ sp.price }}</span>
+          </a>
+        </sc-for>
+      </div>
+      <a href="#" class="ek-btn-main" style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; background:#D8763B; color:#fff; text-decoration:none; padding:12px; border-radius:999px; font-weight:600; font-size:14.5px; transition:background .2s;">{{ allLabel }}<span style="{{ iconArrow }}"></span></a>
+    </div>
+
+    <div style="padding:18px 20px; background:#FBF8F1; border-left:1px solid #EFE7D6; display:flex; flex-direction:column; gap:10px;">
+      <p style="margin:0; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#9b9888; font-weight:600;">Recepty</p>
+      <dc-import name="ui-RecipeCard" title="{{ topRecipeName }}" desc="" category="{{ topRecipeCat }}" level="{{ topRecipeLevel }}" time="{{ topRecipeTime }}" img="{{ topRecipeImg }}" cta="Zobrazit recept" hint-size="100%,300px"></dc-import>
+      <div style="display:flex; flex-direction:column;">
+        <sc-for list="{{ recipes }}" as="sr" hint-placeholder-count="3">
+          <a href="#" class="ek-mega-link" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; font-size:14px; font-weight:500; transition:background .15s;">{{ sr }}<span style="{{ iconChevron }}"></span></a>
+        </sc-for>
+      </div>
+    </div>
+
+  </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:520},&quot;active&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;query&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;mýdla&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;allLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Zobrazit všech 24 produktů&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;topRecipeName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Mýdlo z bambuckého másla&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Topovaný recept&quot;},&quot;topRecipeCat&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Topovaný recept&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Topovaný recept&quot;},&quot;topRecipeLevel&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Začátečník&quot;,&quot;Pokročilý&quot;,&quot;Zkušený&quot;],&quot;default&quot;:&quot;Začátečník&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Topovaný recept&quot;},&quot;topRecipeTime&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;60 min&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Topovaný recept&quot;},&quot;topRecipeImg&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/recipes/pasta-na-holeni.jpg&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Topovaný recept&quot;},&quot;products&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{name:string,price:string,av:string,img:string}[]&quot;},&quot;recipes&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;},&quot;onInput&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(e)=&gt;void&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;()=&gt;void&quot;},&quot;submit&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(e)=&gt;void&quot;},&quot;inputRef&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;ref&quot;}}">
+class Component extends DCLogic {
+  mask(name, size, color) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const url = base + 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color || 'currentColor'}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+  renderVals() {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const abs = (p) => /^(https?:|\/|\.\.)/.test(p) ? p : base + p;
+
+    const raw = this.props.products ?? [
+      { name: 'Mýdlová hmota s bambuckým máslem, 1 kg', price: '329 Kč', av: 'Skladem', img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg' },
+      { name: 'Mýdlová hmota transparentní, 1 kg', price: '299 Kč', av: 'Skladem', img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg' },
+      { name: 'Kyselina salicylová, 25 kg', price: '189 Kč', av: 'Musíme to nabalit', img: 'assets/products/levandulove-maslo-100-g.jpg' },
+      { name: 'Tuhý šampon žloutkový', price: '159 Kč', av: 'Skladem', img: 'assets/products/tuhy-sampon-zloutkovy.jpg' },
+    ];
+    const products = raw.map(p => {
+      return Object.assign({}, p, {
+        stockState: p.stockState ?? (/nabalit|nava/i.test(p.av || '') ? 'packing' : /oceka|naskladn/i.test(p.av || '') ? 'expected' : 'ready'),
+        stockDate: p.stockDate ?? '28. 8. 2026',
+        thumbStyle: 'width:44px; height:44px; flex:0 0 auto; border-radius:9px; background:#F6F1E7 center/contain no-repeat; background-image:url("' + abs(p.img) + '");',
+      });
+    });
+
+    return {
+      products,
+      recipes: this.props.recipes ?? ['Mýdlo s kozím mlékem', 'Tekuté mýdlo na ruce', 'Mýdlo bez louhu — melt & pour'],
+      allLabel: this.props.allLabel ?? 'Zobrazit všech 24 produktů',
+      topRecipeName: this.props.topRecipeName ?? 'Mýdlo z bambuckého másla',
+      topRecipeCat: this.props.topRecipeCat ?? 'Topovaný recept',
+      topRecipeLevel: this.props.topRecipeLevel ?? 'Začátečník',
+      topRecipeTime: this.props.topRecipeTime ?? '60 min',
+      topRecipeImg: this.props.topRecipeImg ?? 'assets/recipes/pasta-na-holeni.jpg',
+      active: this.props.active ?? true,
+      query: this.props.query ?? '',
+      onInput: this.props.onInput ?? (() => {}),
+      onClose: this.props.onClose ?? (() => {}),
+      submit: this.props.submit ?? ((e) => e.preventDefault()),
+      inputRef: this.props.inputRef ?? null,
+      iconSearch: this.mask('search-01', 24, '#7c7a6a'),
+      iconClose: this.mask('cancel-01', 18),
+      iconArrow: this.mask('arrow-right-02', 20),
+      iconChevron: this.mask('arrow-right-01', 14, '#c9c2ae'),
+    };
+  }
+}
+</script>
+</body>
+</html>

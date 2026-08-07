@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<a href="{{ href }}" class="{{ hoverClass }}" style="{{ btnStyle }}">{{ label }}<sc-if value="{{ showArrow }}" hint-placeholder-val="{{ true }}"><span style="{{ arrow }}"></span></sc-if></a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:80},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;main&quot;,&quot;primary&quot;,&quot;secondary&quot;,&quot;ghost&quot;,&quot;onDark&quot;],&quot;default&quot;:&quot;main&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;sm&quot;,&quot;md&quot;,&quot;lg&quot;],&quot;default&quot;:&quot;md&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Začněte tady&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;showArrow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Obsah&quot;}}">
+class Component extends DCLogic {
+  hi(name, size) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const url = base + 'assets/icons/' + name + '.svg';
+    const s = size || 16;
+    return `display:inline-block; width:${s}px; height:${s}px; flex:0 0 auto; background-color:currentColor; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+  renderVals() {
+    const variant = this.props.variant ?? 'main';
+    const size = this.props.size ?? 'md';
+    const label = this.props.label ?? 'Začněte tady';
+    const href = this.props.href ?? '#';
+    const showArrow = this.props.showArrow ?? true;
+
+    const pads = { sm: '9px 16px', md: '13px 28px', lg: '15px 30px' };
+    const fonts = { sm: '13.5px', md: '15px', lg: '16px' };
+
+    const base = `display:inline-flex; align-items:center; justify-content:center; gap:9px; border-radius:999px; font-family:'Hanken Grotesk',sans-serif; font-weight:600; text-decoration:none; cursor:pointer; padding:${pads[size]}; font-size:${fonts[size]}; transition:background .2s, color .2s, border-color .2s;`;
+
+    const variants = {
+      main: 'background:#D8763B; color:#fff; border:1.5px solid #D8763B;',
+      primary: 'background:#4C643C; color:#F6F1E7; border:1.5px solid #4C643C;',
+      secondary: 'background:transparent; color:#3B5531; border:1.5px solid #3B5531;',
+      ghost: 'background:transparent; color:#3B5531; border:1.5px solid transparent;',
+      onDark: 'background:#F6F1E7; color:#3B5531; border:1.5px solid #F6F1E7;',
+    };
+
+    const hoverClass = 'ek-btn-' + variant;
+
+    return {
+      href, label, showArrow, hoverClass,
+      btnStyle: base + (variants[variant] || variants.main),
+      arrow: this.hi('arrow-right-02', size === 'sm' ? 15 : 17),
+    };
+  }
+}
+</script>
+</body>
+</html>

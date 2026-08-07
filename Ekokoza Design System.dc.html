@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D8763B; color: #fff; }
+  a { color: #D8763B; text-decoration: none; }
+  a:hover { color: #BC5F28; }
+  /* shared component hover states — components rely on these class names */
+  .ek-btn-main:hover { background: #BC5F28 !important; border-color: #BC5F28 !important; }
+  .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
+  .ek-btn-secondary:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-fav:hover { background: #F6F1E7 !important; color: #D8763B !important; border-color: #E4D9C2 !important; transform: scale(1.06); }
+  .ek-fav.is-on:hover { background: #BC5F28 !important; border-color: #BC5F28 !important; color: #fff !important; }
+  .ek-btn-onDark:hover { background: #EDE4D0 !important; }
+  .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
+  .ek-cat:hover .ek-cat-ov { opacity: 1; }
+  .ek-cat:hover .ek-ph { transform: scale(1.05); }
+  .ds-side a:hover { background: rgba(246,241,231,.12); color: #fff; }
+  .ds-icon-cell:hover { background: #EFE7D6; }
+  .ds-nav-demo::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; background: #D8763B; transform: scaleX(0); transform-origin: left; transition: transform .28s cubic-bezier(.4,0,.2,1); }
+  .ds-nav-demo:hover { transform: translateY(-1px); }
+  .ds-nav-demo:hover::after { transform: scaleX(1); }
+  .ds-loyal-demo:hover { background: #4C643C !important; color: #F6F1E7 !important; }
+  @media (max-width: 900px) {
+    .ds-wrap { flex-direction: column !important; }
+    .ds-side { position: static !important; width: auto !important; height: auto !important; }
+    .ds-main { padding: 32px 20px !important; }
+    .ds-h1 { font-size: 38px !important; }
+    .ds-grid-2, .ds-grid-3, .ds-grid-4 { grid-template-columns: 1fr !important; }
+    .ds-swatches { grid-template-columns: repeat(2,1fr) !important; }
+    .ds-icons { grid-template-columns: repeat(4,1fr) !important; }
+  }
+</style>
+</helmet>
+
+<div class="ds-wrap" style="display:flex; align-items:flex-start; background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Hanken Grotesk',sans-serif; color:#2A2A24; min-height:100vh;">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="ds-side" style="position:sticky; top:0; width:250px; height:100vh; flex-shrink:0; background:#4C643C; padding:28px 22px; overflow-y:auto;">
+    <img src="assets/ekokoza-logo-cream.png" alt="ekokoza" style="width:130px; display:block; margin-bottom:6px;">
+    <p style="margin:0 0 26px; color:#AEC49E; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600;">Design systém</p>
+    <nav style="display:flex; flex-direction:column; gap:2px;">
+      <sc-for list="{{ toc }}" as="t" hint-placeholder-count="8">
+        <a href="{{ t.href }}" style="display:block; padding:9px 12px; border-radius:9px; color:#DCE6D2; font-size:14.5px; font-weight:500; transition:background .2s, color .2s;">{{ t.label }}</a>
+      </sc-for>
+    </nav>
+    <div style="margin-top:26px; padding:14px 16px; background:rgba(246,241,231,.09); border-radius:12px; font-size:12.5px; line-height:1.5; color:#C4D6B8;">
+      Zdroj pravdy pro celý web. Komponenty jsou soubory <strong style="color:#EFE7D6;">ui-*.dc.html</strong> v kořeni projektu a importují se do stránek.
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="ds-main" style="flex:1; min-width:0; padding:56px 48px 96px;">
+
+    <header style="margin-bottom:60px;">
+      <p style="margin:0 0 10px; color:#D8763B; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Ekokoza</p>
+      <h1 class="ds-h1" style="margin:0 0 14px; font-family:'Spectral',serif; font-weight:400; font-size:52px; line-height:1.04; color:#3B5531;">Design systém</h1>
+      <p style="margin:0; font-size:17.5px; line-height:1.6; color:#52524a; max-width:62ch;">Barvy, typografie, komponenty a pravidla pro web ekokoza.cz. Postaveno na brand positioningu „Důvod, proč tvořit." — klidně, věcně, bez slevové urgence.</p>
+    </header>
+
+    <!-- ===== BARVY ===== -->
+    <section id="barvy" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Barvy</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Jarní, tlumená paleta. Terrakota výhradně pro hlavní konverzní akce.</p>
+
+      <h3 style="margin:0 0 14px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Paleta z grafického manuálu</h3>
+      <div class="ds-swatches" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin-bottom:34px;">
+        <sc-for list="{{ colorsBrand }}" as="c" hint-placeholder-count="6">
+          <div style="border-radius:14px; overflow:hidden; border:1px solid #ECE3D2; background:#fff;">
+            <div style="{{ c.chipStyle }}"></div>
+            <div style="padding:13px 15px;">
+              <p style="margin:0 0 3px; font-weight:600; font-size:14.5px;">{{ c.name }}</p>
+              <p style="margin:0 0 4px; font-family:ui-monospace,monospace; font-size:13px; color:#3B5531;">{{ c.hex }}</p>
+              <p style="margin:0; font-size:12.5px; color:#8a8776; line-height:1.4;">{{ c.use }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h3 style="margin:0 0 14px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Odvozená paleta webu</h3>
+      <div class="ds-swatches" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
+        <sc-for list="{{ colors }}" as="c" hint-placeholder-count="10">
+          <div style="border-radius:14px; overflow:hidden; border:1px solid #ECE3D2; background:#fff;">
+            <div style="{{ c.chipStyle }}"></div>
+            <div style="padding:13px 15px;">
+              <p style="margin:0 0 3px; font-weight:600; font-size:14.5px;">{{ c.name }}</p>
+              <p style="margin:0 0 4px; font-family:ui-monospace,monospace; font-size:13px; color:#3B5531;">{{ c.hex }}</p>
+              <p style="margin:0; font-size:12.5px; color:#8a8776; line-height:1.4;">{{ c.use }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ===== TYPOGRAFIE ===== -->
+    <section id="typografie" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Typografie</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Spectral (serif) pro nadpisy, Hanken Grotesk pro text a UI.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 38px; display:flex; flex-direction:column; gap:22px;">
+        <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="7">
+          <div style="display:flex; align-items:baseline; gap:26px; flex-wrap:wrap; padding-bottom:20px; border-bottom:1px solid #F3EDE0;">
+            <span style="width:110px; flex-shrink:0; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">{{ t.label }}</span>
+            <span style="{{ t.style }}">{{ t.sample }}</span>
+            <span style="margin-left:auto; font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; white-space:nowrap;">{{ t.spec }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ===== ROZESTUPY A TVARY ===== -->
+    <section id="spacing" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Rozestupy a tvary</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Container 1280 px, maximální šířka 1440 px. Kulaté rohy 14 px na kartách a obrázcích.</p>
+      <div class="ds-grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
+          <h3 style="margin:0 0 18px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Rozestupy</h3>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <sc-for list="{{ spacing }}" as="s" hint-placeholder-count="6">
+              <div style="display:flex; align-items:center; gap:16px;">
+                <span style="width:46px; font-family:ui-monospace,monospace; font-size:13px; color:#3B5531; font-weight:600;">{{ s.px }}</span>
+                <span style="{{ s.barStyle }}"></span>
+                <span style="font-size:13px; color:#8a8776;">{{ s.use }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
+          <h3 style="margin:0 0 18px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Rádiusy a stíny</h3>
+          <div style="display:flex; gap:18px; flex-wrap:wrap; margin-bottom:26px;">
+            <sc-for list="{{ radii }}" as="r" hint-placeholder-count="4">
+              <div style="text-align:center;">
+                <div style="{{ r.boxStyle }}"></div>
+                <p style="margin:8px 0 0; font-family:ui-monospace,monospace; font-size:12.5px; color:#3B5531;">{{ r.px }}</p>
+                <p style="margin:2px 0 0; font-size:11.5px; color:#8a8776;">{{ r.use }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <sc-for list="{{ shadows }}" as="s" hint-placeholder-count="2">
+              <div style="text-align:center;">
+                <div style="{{ s.boxStyle }}"></div>
+                <p style="margin:10px 0 0; font-size:12.5px; color:#3B5531; font-weight:600;">{{ s.name }}</p>
+                <p style="margin:2px 0 0; font-size:11.5px; color:#8a8776;">{{ s.use }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LOGO ===== -->
+    <section id="logo" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Logo</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Zelená verze na světlé podklady, krémová na tmavé. Visačka jen na desktopu.</p>
+      <div class="ds-grid-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:190px;">
+          <img src="assets/ekokoza-logo-green.png" alt="ekokoza" style="width:170px; display:block;">
+          <p style="margin:0; font-size:13px; color:#8a8776;">Horizontální — světlý podklad</p>
+        </div>
+        <div style="background:#4C643C; border-radius:14px; padding:34px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:190px;">
+          <img src="assets/ekokoza-logo-cream.png" alt="ekokoza" style="width:170px; display:block;">
+          <p style="margin:0; font-size:13px; color:#AEC49E;">Horizontální — tmavý podklad</p>
+        </div>
+        <div style="background:#F6F1E7; border:1px solid #ECE3D2; border-radius:14px; min-height:190px; overflow:hidden; display:flex; flex-direction:column;">
+          <div style="width:100%; background:#4C643C; height:35px; flex-shrink:0;"></div>
+          <div style="position:relative; flex:1; display:flex; align-items:flex-end; justify-content:center; padding-bottom:14px;">
+            <span style="position:absolute; top:-35px; left:50%; margin-left:-60px; width:120px; height:92px; padding:14px 12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:#4C643C; border-radius:0 0 16px 16px; box-shadow:0 10px 20px -8px rgba(45,58,46,.45);">
+              <img src="assets/ekokoza-znak-cream.png" alt="" style="width:38px; display:block;">
+              <img src="assets/ekokoza-napis-cream.png" alt="ekokoza" style="width:76px; display:block;">
+            </span>
+            <p style="margin:0; font-size:13px; color:#8a8776;">Visačka v hlavičce</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KOMPONENTY: TLAČÍTKA ===== -->
+    <section id="tlacitka" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Tlačítka</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Button</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Terrakota (Main) jen pro hlavní konverzi — Koupit, Do košíku, Odeslat. Primární v zelené pro důležité, ale nekonverzní akce. Sekundární pro doplňkové akce.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 36px; display:flex; flex-wrap:wrap; gap:34px; align-items:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Main</span>
+          <dc-import name="ui-Button" variant="main" size="lg" label="Koupit" hint-size="220px,52px"></dc-import>
+          <span style="font-size:12.5px; color:#8a8776;">Hlavní konverze — jedna na obrazovku</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Primární</span>
+          <dc-import name="ui-Button" variant="primary" size="lg" label="Začněte tady" hint-size="220px,52px"></dc-import>
+          <span style="font-size:12.5px; color:#8a8776;">Přihlásit se, Uložit, Odeslat formulář</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Sekundární</span>
+          <dc-import name="ui-Button" variant="secondary" size="md" label="Zobrazit všechny recepty" hint-size="280px,48px"></dc-import>
+          <span style="font-size:12.5px; color:#8a8776;">Zobrazit více, Přečíst příběh</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Malé</span>
+          <dc-import name="ui-Button" variant="primary" size="sm" label="Koupit" show-arrow="{{ false }}" hint-size="100px,40px"></dc-import>
+          <span style="font-size:12.5px; color:#8a8776;">V produktové kartě</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Navigace</span>
+          <div style="display:flex; gap:20px; align-items:center;">
+            <span class="ds-nav-demo" style="position:relative; display:inline-block; color:#2A2A24; font-size:15px; font-weight:500; cursor:pointer; transition:transform .25s;">Co vyrábět</span>
+            <span class="ds-loyal-demo" style="display:inline-flex; align-items:center; gap:8px; border:1.5px solid #4C643C; color:#3B5531; padding:9px 18px; border-radius:999px; font-weight:600; font-size:15px; transition:all .25s; cursor:pointer;">Věrnostní program</span>
+          </div>
+          <span style="font-size:12.5px; color:#8a8776;">Podtržení zleva · pill s výplní</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KOMPONENTY: CHIPY ===== -->
+    <section id="chipy" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Chipy</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Chip</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Vždy věcné označení. Žádné „poslední kus", žádné odpočty.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+        <dc-import name="ui-Chip" variant="default" label="Sezónní recept" hint-size="120px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="onPhoto" label="Bestseller" hint-size="100px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="green" label="Topovaný produkt" hint-size="140px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="sage" label="Novinka" hint-size="90px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="accent" label="Doporučujeme" hint-size="120px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="outline" label="Pro začátečníky" hint-size="130px,26px"></dc-import>
+      </div>
+    </section>
+
+    <!-- ===== BADGE ===== -->
+    <section id="badge" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Badge</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Badge</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Označení v rohu produktové fotky. Věcné, bez urgence — žádné odpočty ani „poslední kus".</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+        <dc-import name="ui-Badge" variant="bestseller" hint-size="90px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="novinka" hint-size="80px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="doporucujeme" hint-size="110px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="akce" hint-size="60px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="sleva" hint-size="70px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="prirodni" hint-size="85px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="bio" hint-size="55px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="sada" hint-size="60px,24px"></dc-import>
+      </div>
+    </section>
+
+    <!-- ===== SKLADOVOST ===== -->
+    <section id="skladovost" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Skladovost</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Stock</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Tři stavy dostupnosti u varianty produktu. Vysvětlují, co se bude dít — ne kolik kusů zbývá. Používá se na kartě produktu, v našeptávači i v košíku.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-direction:column; gap:20px;">
+        <div style="display:flex; align-items:flex-start; gap:24px;">
+          <span style="width:190px; flex:0 0 auto;"><dc-import name="ui-Stock" state="ready" hint-size="150px,18px"></dc-import></span>
+          <span style="font-size:14px; color:#6B6B5E; line-height:1.5;">Varianta je nabalená a připravená. Objednávka odchází většinou následující pracovní den.</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:24px;">
+          <span style="width:190px; flex:0 0 auto;"><dc-import name="ui-Stock" state="packing" hint-size="150px,18px"></dc-import></span>
+          <span style="font-size:14px; color:#6B6B5E; line-height:1.5;">Surovinu máme, ale ve velkém balení — teprve ji přesypeme a navážíme. Typicky 25kg varianty. Odeslání se prodlouží zhruba o den.</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:24px;">
+          <span style="width:190px; flex:0 0 auto;"><dc-import name="ui-Stock" state="expected" date="28. 8. 2026" hint-size="180px,18px"></dc-import></span>
+          <span style="font-size:14px; color:#6B6B5E; line-height:1.5;">Není skladem, uvedené datum je očekávané naskladnění. Karta místo tlačítka Koupit zobrazí „Tento produkt nelze zakoupit" a nabídne Hlídací pes — upozornění e-mailem, až bude znovu skladem.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RATING ===== -->
+    <section id="rating" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Hodnocení</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Rating</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Pět hvězdiček a počet hodnocení v závorce. Bez hodnocení drží stejnou výšku (ztlumené hvězdy), aby karty nelítaly.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; align-items:center; gap:20px;"><span style="width:150px; font-size:12.5px; color:#8a8776;">Plné hodnocení</span><dc-import name="ui-Rating" value="5" count="214" hint-size="130px,20px"></dc-import></div>
+        <div style="display:flex; align-items:center; gap:20px;"><span style="width:150px; font-size:12.5px; color:#8a8776;">S půlhvězdou</span><dc-import name="ui-Rating" value="4.5" count="96" hint-size="130px,20px"></dc-import></div>
+        <div style="display:flex; align-items:center; gap:20px;"><span style="width:150px; font-size:12.5px; color:#8a8776;">Nižší</span><dc-import name="ui-Rating" value="3.2" count="12" hint-size="130px,20px"></dc-import></div>
+        <div style="display:flex; align-items:center; gap:20px;"><span style="width:150px; font-size:12.5px; color:#8a8776;">Bez hodnocení</span><dc-import name="ui-Rating" value="0" count="0" hint-size="130px,20px"></dc-import></div>
+      </div>
+    </section>
+
+    <!-- ===== KOMPONENTY: KARTY ===== -->
+    <section id="karty" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Karty a dlaždice</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-ProductCard · ui-RecipeCard · ui-CategoryTile · ui-IngredientTile</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Bílý podklad, rám #ECE3D2, rádius 14 px. Hover: posun 4 px nahoru a měkký stín.</p>
+      <div class="ds-grid-4" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:18px; align-items:start;">
+        <div>
+          <p style="margin:0 0 10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">ProductCard</p>
+          <dc-import name="ui-ProductCard" hint-size="100%,380px"></dc-import>
+        </div>
+        <div>
+          <p style="margin:0 0 10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">RecipeCard</p>
+          <dc-import name="ui-RecipeCard" hint-size="100%,320px"></dc-import>
+        </div>
+        <div>
+          <p style="margin:0 0 10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">CategoryTile</p>
+          <dc-import name="ui-CategoryTile" hint-size="100%,310px"></dc-import>
+        </div>
+        <div>
+          <p style="margin:0 0 10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">IngredientTile</p>
+          <dc-import name="ui-IngredientTile" hint-size="100%,84px"></dc-import>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NADPISY SEKCÍ ===== -->
+    <section id="nadpisy" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Nadpisy sekcí</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-SectionHeading</code>
+      </div>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 38px; display:flex; flex-direction:column; gap:34px;">
+        <dc-import name="ui-SectionHeading" kicker="Rozcestník" title="Co chcete vyrábět?" link-label="Vše ke tvorbě" hint-size="100%,110px"></dc-import>
+        <div style="border-top:1px solid #F3EDE0; padding-top:30px;">
+          <dc-import name="ui-SectionHeading" align="center" kicker="Receptář" title="Recepty, které fungují" subtitle="Suroviny, recepty a důvod proč." hint-size="100%,130px"></dc-import>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== IKONY ===== -->
+    <section id="ikony" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Ikony</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Icon</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Hugeicons — outline, tloušťka 1,5 px, barva dědí z textu. Bez stínů, čistá linka. Celkem {{ iconTotal }} ikon.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:22px 24px; margin-bottom:18px; display:flex; align-items:center; gap:26px; flex-wrap:wrap;">
+        <span style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Živá komponenta</span>
+        <dc-import name="ui-Icon" icon="dropper" size="20" hint-size="20px,20px"></dc-import>
+        <dc-import name="ui-Icon" icon="mortar" size="24" hint-size="24px,24px"></dc-import>
+        <dc-import name="ui-Icon" icon="leaf-01" size="32" color="#4C643C" hint-size="32px,32px"></dc-import>
+        <dc-import name="ui-Icon" icon="award-01" size="40" color="#D8763B" hint-size="40px,40px"></dc-import>
+        <span style="font-size:12.5px; color:#8a8776;">Velikost 12–96 px, barva dědí z palety. Přehled níže je statický kvůli rychlosti.</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <sc-for list="{{ iconGroups }}" as="g" hint-placeholder-count="8">
+          <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:22px 24px;">
+            <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:14px;">
+              <h3 style="margin:0; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#3B5531; font-weight:700;">{{ g.group }}</h3>
+              <span style="font-size:12px; color:#a8a495;">{{ g.count }}</span>
+            </div>
+            <div class="ds-icons" style="display:grid; grid-template-columns:repeat(9,1fr); gap:4px;">
+              <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="12">
+                <div class="ds-icon-cell" style="display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px 4px; border-radius:10px; transition:background .2s; color:#3B5531;">
+                  <span style="{{ i.imgStyle }}"></span>
+                  <span style="font-size:10px; color:#8a8776; text-align:center; line-height:1.25; word-break:break-word;">{{ i.name }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ===== BOTANIKA ===== -->
+    <section id="botanika" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Botanické prvky</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Vykukují zpod sekcí a dodávají hloubku. Jemný drop-shadow, na mobilu se menší z nich skrývají.</p>
+      <div class="ds-grid-3" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:14px;">
+        <sc-for list="{{ botanika }}" as="b" hint-placeholder-count="6">
+          <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:18px; display:flex; flex-direction:column; align-items:center; gap:10px;">
+            <span style="{{ b.imgStyle }}"></span>
+            <span style="font-size:12px; color:#8a8776; text-align:center;">{{ b.name }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ===== TONE OF VOICE ===== -->
+    <section id="tov" style="margin-bottom:24px;">
+      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Tón komunikace</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Klidný, věcný, vysvětlující — ekologie z praxe, ne z počítače.</p>
+      <div class="ds-grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
+          <h3 style="margin:0 0 16px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#4C643C; font-weight:700;">Ano</h3>
+          <ul style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; font-size:15px; line-height:1.5; color:#52524a;">
+            <sc-for list="{{ tovDo }}" as="t" hint-placeholder-count="5"><li>{{ t }}</li></sc-for>
+          </ul>
+        </div>
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
+          <h3 style="margin:0 0 16px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#BC5F28; font-weight:700;">Ne</h3>
+          <ul style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; font-size:15px; line-height:1.5; color:#52524a;">
+            <sc-for list="{{ tovDont }}" as="t" hint-placeholder-count="5"><li>{{ t }}</li></sc-for>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:18px; background:#4C643C; border-radius:14px; padding:30px 34px;">
+        <p style="margin:0 0 12px; color:#AEC49E; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;">Claim architektura</p>
+        <div class="ds-grid-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <sc-for list="{{ claims }}" as="c" hint-placeholder-count="3">
+            <div>
+              <p style="margin:0 0 5px; font-family:'Spectral',serif; font-size:21px; color:#F6F1E7; line-height:1.2;">{{ c.text }}</p>
+              <p style="margin:0; font-size:13px; color:#C4D6B8; line-height:1.45;">{{ c.use }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const toc = [
+      { label: 'Barvy', href: '#barvy' },
+      { label: 'Typografie', href: '#typografie' },
+      { label: 'Rozestupy a tvary', href: '#spacing' },
+      { label: 'Logo', href: '#logo' },
+      { label: 'Tlačítka', href: '#tlacitka' },
+      { label: 'Chipy', href: '#chipy' },
+      { label: 'Badge', href: '#badge' },
+      { label: 'Skladovost', href: '#skladovost' },
+      { label: 'Hodnocení', href: '#rating' },
+      { label: 'Karty a dlaždice', href: '#karty' },
+      { label: 'Nadpisy sekcí', href: '#nadpisy' },
+      { label: 'Ikony', href: '#ikony' },
+      { label: 'Botanické prvky', href: '#botanika' },
+      { label: 'Tón komunikace', href: '#tov' },
+    ];
+
+    const mk = (name, hex, use) => ({ name, hex, use, chipStyle: `height:74px; background:${hex};` });
+    const colors = [
+      mk('Zelená z loga', '#4C643C', 'Topbar, footer, věrnostní box, visačka'),
+      mk('Tmavá zelená', '#3B5531', 'Nadpisy, ikony, text na světlém'),
+      mk('Terrakota', '#D8763B', 'Hlavní CTA, kickery, odkazy'),
+      mk('Terrakota hover', '#BC5F28', 'Hover stav primárních tlačítek'),
+      mk('Slonovinová', '#FFFDF6', 'Pozadí stránky (s texturou)'),
+      mk('Krémová', '#F6F1E7', 'Plochy, chipy, dlaždice ikon'),
+      mk('Krémová tmavší', '#EFE7D6', 'Sekundární plochy, hover ghost'),
+      mk('Rám karet', '#ECE3D2', 'Ohraničení karet a boxů'),
+      mk('Šalvěj světlá', '#DDE7D2', 'Banner Začátečník'),
+      mk('Šalvěj střední', '#CFE0B4', 'Instagram pás, banner Pokročilý'),
+      mk('Šalvěj sytá', '#B9D096', 'Banner Profesionál / B2B'),
+      mk('Zlatá', '#B8860B', 'Hvězdičky hodnocení'),
+    ];
+
+    // Doplňková paleta přesně dle grafického manuálu (str. 12)
+    const colorsBrand = [
+      mk('Zelená (manuál)', '#4C653D', 'Základní brandová zelená'),
+      mk('Světle zelená', '#C1D69F', 'Plochy, bannery, zvýraznění'),
+      mk('Růžová', '#FDCDBF', 'Jemné plochy, kategorie pro pleť'),
+      mk('Světle modrá', '#D4F1EC', 'Chladivé produkty, koupel, hydratace'),
+      mk('Žlutá', '#FBD870', 'Vosky, med, upozornění, akcent'),
+      mk('Krémová (manuál)', '#FBF2E1', 'Podklad tiskovin a ploch'),
+    ];
+
+    const typeScale = [
+      { label: 'H1', sample: 'Důvod, proč tvořit.', spec: "Spectral 400 · 60/1.02", style: "font-family:'Spectral',serif; font-weight:400; font-size:40px; line-height:1.05; color:#3B5531;" },
+      { label: 'H2', sample: 'Co chcete vyrábět?', spec: 'Spectral 400 · 40/1.05', style: "font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;" },
+      { label: 'H3 karta', sample: 'Krém na paty a ztvrdlá místa', spec: 'Spectral 500 · 18/1.25', style: "font-family:'Spectral',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;" },
+      { label: 'Kicker', sample: 'RECEPTÁŘ', spec: 'Hanken 600 · 13 · +.16em', style: "font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:#D8763B;" },
+      { label: 'Body', sample: 'Suroviny, recepty a klid na práci.', spec: 'Hanken 400 · 16-17/1.6', style: "font-family:'Hanken Grotesk',sans-serif; font-size:16.5px; line-height:1.6; color:#52524a;" },
+      { label: 'UI / odkaz', sample: 'Zobrazit všechny recepty', spec: 'Hanken 600 · 15', style: "font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:15px; color:#3B5531;" },
+      { label: 'Malý text', sample: 'Doprava zdarma od 2000 Kč', spec: 'Hanken 400 · 12.5-13.5', style: "font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:#6B6B5E;" },
+    ];
+
+    const spacing = [
+      { px: '8', use: 'Ikona a text' },
+      { px: '14', use: 'Mezera mezi kartami' },
+      { px: '18', use: 'Mezera v mřížkách' },
+      { px: '32', use: 'Vnitřní okraj sekce' },
+      { px: '52', use: 'Padding velkých boxů' },
+      { px: '64', use: 'Mezi sekcemi' },
+    ].map(s => Object.assign(s, { barStyle: `display:block; height:12px; width:${s.px}px; background:#CFE0B4; border-radius:3px; flex-shrink:0;` }));
+
+    const radii = [
+      { px: '10', use: 'Malé prvky' },
+      { px: '14', use: 'Karty, obrázky' },
+      { px: '18', use: 'Velké boxy' },
+      { px: '999', use: 'Tlačítka, chipy' },
+    ].map(r => Object.assign(r, { boxStyle: `width:62px; height:48px; background:#EFE7D6; border:1px solid #E4D9C2; border-radius:${r.px}px;` }));
+
+    const shadows = [
+      { name: 'Karta hover', use: 'Zvednutí o 4 px', boxStyle: 'width:96px; height:52px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; box-shadow:0 18px 40px -22px rgba(45,58,46,.45);' },
+      { name: 'Sekce', use: 'Jemná hloubka', boxStyle: 'width:96px; height:52px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; box-shadow:0 16px 38px -26px rgba(59,85,49,.35);' },
+    ];
+
+    const iconGroupsRaw = [
+      { group: 'Navigace a ovládání', names: ['search-01','menu-02','cancel-01','arrow-right-01','arrow-left-01','arrow-down-01','arrow-up-01','arrow-right-02','plus-sign','minus-sign','tick-01','checkmark-circle-01','information-circle','alert-circle','filter','filter-horizontal','sorting-01','grid-view','view','link-01','share-01','download-01','printer','home-01','question','help-square','message-question','plus-sign-circle','minus-sign-circle','sort-by-up-01','sort-by-down-01','arrange-by-numbers-1-9','sorting-a-z-01','arrange'] },
+      { group: 'Nákup a košík', names: ['shopping-cart-01','shopping-cart-02','shopping-cart-add-01','shopping-cart-check-in-01','shopping-basket-01','shopping-bag-03','favourite','star','star-half','star-filled','favourite-filled','tag-01','tags','discount-tag-01','coupon-01','gift','gift-card','credit-card','wallet-01','invoice-01','percent-circle','balance-scale','justice-scale-01','versus','exchange-01','thumbs-up','thumbs-down','ticket-star'] },
+      { group: 'Doprava a objednávka', names: ['package','package-open','delivery-box-01','delivery-tracking-01','delivery-return-01','truck-delivery','truck-return','delivery-secure-01','store-01','location-01','clock-01','calendar-01','delivery-delay-01','maps','map-pin','maps-location-01','google-maps'] },
+      { group: 'Účet, důvěra a servis', names: ['user','user-account','user-circle','logout-01','login-01','login-circle-01','customer-service-01','customer-support','bubble-chat','mail-01','call','telephone','smart-phone-01','whatsapp','checkmark-badge-01','certificate-01','award-01','shield-01','security-check','note-01','book-open-01','book-02','help-circle','notification-01','notification-02','notification-bubble','eye','radar-01','binoculars','alarm-clock','task-01','clipboard','idea-01','bulb'] },
+      { group: 'Suroviny a příroda', names: ['leaf-01','leaf-02','leaf-03','plant-01','plant-02','flower','flower-pot','organic-food','natural-food','droplet','honey-01','honey-02','coffee-beans','sun-01','fire','recycle-01','recycle-02','sustainable-energy','eco-lab-01','sparkles'] },
+      { group: 'Výroba, pomůcky a měření', names: ['test-tube','test-tube-01','chemistry-01','chemistry-02','dropper','thermometer','thermometer-warm','weight-scale','weight-scale-01','mortar','whisk','mixer','blender','spatula','spoon','knife-01','ruler','tape-measure','glove'] },
+      { group: 'Kosmetika a hotové produkty', names: ['body-soap','shampoo','perfume','jar','medicine-bottle-01','medicine-bottle-02','medicine-syrup','bathtub-01','bathtub-02','milk-bottle','hand-sanitizer'] },
+      { group: 'Obsah a sociální sítě', names: ['instagram','facebook-01','youtube','play','video-01','image-01','camera-01','news','mail-open-01'] },
+    ];
+    const iconGroups = iconGroupsRaw.map(g => ({
+      group: g.group,
+      count: g.names.length + ' ikon',
+      items: g.names.map(n => ({ name: n, imgStyle: 'display:block; width:24px; height:24px; background:center/contain no-repeat url("assets/icons/' + n + '.svg");' })),
+    }));
+    const iconTotal = iconGroupsRaw.reduce((s, g) => s + g.names.length, 0);
+
+    const botanika = [
+      { name: 'malinik1', file: 'malinik1.png' },
+      { name: 'malinik2', file: 'malinik2.png' },
+      { name: 'mlicak1', file: 'mlicak1.png' },
+      { name: 'pampeliška 1', file: 'pampeliska-kvet-1.png' },
+      { name: 'pampeliška 2', file: 'pampeliska-kvet-2.png' },
+      { name: 'řebříček', file: 'rebricek.png' },
+    ].map(b => Object.assign(b, { imgStyle: 'display:block; width:70px; height:70px; background:center/contain no-repeat url("assets/botanika/' + b.file + '"); filter:drop-shadow(0 10px 14px rgba(59,85,49,.28));' }));
+
+    const tovDo = [
+      'Vysvětlujeme, netlačíme.',
+      'Vykáme, „váš" s malým v.',
+      'Recept jako most mezi surovinou a výsledkem.',
+      'Věrnost = férová odměna za dlouhodobý vztah.',
+      'Fakticky podložená tvrzení.',
+    ];
+    const tovDont = [
+      'Slevová urgence, odpočty, „poslední kus".',
+      'CAPS, vykřičníky, agresivní badge.',
+      'Superlativy bez opory („nejlepší", „prémiové").',
+      'Emoji jako běžný prostředek.',
+      '„Pohádkové bio scény" ve fotkách.',
+    ];
+
+    const claims = [
+      { text: '„Důvod, proč tvořit."', use: 'Postojová — homepage, brandové materiály' },
+      { text: '„Suroviny, recepty a důvod proč."', use: 'Co přináší — e-shop, rozcestníky' },
+      { text: '„Vědět proč. Vědět jak."', use: 'Návody a edukace' },
+    ];
+
+    return { toc, colors, colorsBrand, typeScale, spacing, radii, shadows, iconGroups, iconTotal, botanika, tovDo, tovDont, claims };
+  }
+}
+</script>
+</body>
+</html>

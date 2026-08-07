@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="background:#F6F1E7; border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:11px; font-family:'Hanken Grotesk',sans-serif;">
+  <span style="align-self:flex-start;">
+    <dc-import name="ui-Badge" variant="doporucujeme" label="{{ kicker }}" hint-size="130px,24px"></dc-import>
+  </span>
+  <div style="position:relative; aspect-ratio:16/10; border-radius:10px; overflow:hidden; background:#fff;">
+    <div style="{{ imgStyle }}"></div>
+  </div>
+  <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" hint-size="120px,18px"></dc-import>
+  <h4 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;">{{ title }}</h4>
+  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <span style="font-family:'Spectral',serif; font-size:19px; color:#3B5531; font-weight:500; white-space:nowrap;">{{ price }}</span>
+    <a href="{{ href }}" onClick="{{ onNavigate }}" class="ek-btn-main" style="background:#D8763B; color:#fff; text-decoration:none; padding:9px 18px; border-radius:999px; font-weight:600; font-size:13.5px; transition:background .2s; white-space:nowrap;">{{ ctaLabel }}</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:400},&quot;kicker&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Topovaný produkt&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Levandulové máslo, 100 g&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;price&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;189 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;rating&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.8,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;ratingCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:214,&quot;min&quot;:0,&quot;max&quot;:9999,&quot;tsType&quot;:&quot;number&quot;},&quot;ctaVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;koupit&quot;,&quot;varianta&quot;],&quot;default&quot;:&quot;koupit&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;img&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/products/levandulove-maslo-100-g.jpg&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onNavigate&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const img = this.props.img ?? 'assets/products/levandulove-maslo-100-g.jpg';
+    const imgUrl = /^(https?:|\/|\.\.)/.test(img) ? img : base + img;
+    const ctaVariant = this.props.ctaVariant ?? 'koupit';
+    return {
+      kicker: this.props.kicker ?? 'Topovaný produkt',
+      title: this.props.title ?? 'Levandulové máslo, 100 g',
+      price: this.props.price ?? '189 Kč',
+      rating: this.props.rating ?? 4.8,
+      ratingCount: this.props.ratingCount ?? 214,
+      href: this.props.href ?? '#',
+      ctaLabel: ctaVariant === 'varianta' ? 'Vybrat variantu' : 'Koupit',
+      onNavigate: this.props.onNavigate ?? (() => {}),
+      imgStyle: 'position:absolute; inset:12px; background:#fff center/contain no-repeat; background-image:url("' + imgUrl + '");',
+    };
+  }
+}
+</script>
+</body>
+</html>

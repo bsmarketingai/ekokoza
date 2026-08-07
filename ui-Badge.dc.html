@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<span style="{{ badgeStyle }}">{{ label }}</span>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:220,&quot;height&quot;:80},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;bestseller&quot;,&quot;novinka&quot;,&quot;doporucujeme&quot;,&quot;akce&quot;,&quot;sleva&quot;,&quot;prirodni&quot;,&quot;bio&quot;,&quot;sada&quot;],&quot;default&quot;:&quot;bestseller&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const variant = this.props.variant ?? 'bestseller';
+
+    // label comes from the variant unless explicitly overridden
+    const presets = {
+      bestseller:   { label: 'Bestseller',   bg: '#F6F1E7', fg: '#3B5531', bd: '#E4D9C2' },
+      novinka:      { label: 'Novinka',      bg: '#CFE0B4', fg: '#31461F', bd: '#BCD29B' },
+      doporucujeme: { label: 'Doporučujeme', bg: '#4C643C', fg: '#F6F1E7', bd: '#4C643C' },
+      akce:         { label: 'Akce',         bg: '#D8763B', fg: '#FFFFFF', bd: '#D8763B' },
+      sleva:        { label: '−20 %',        bg: '#D8763B', fg: '#FFFFFF', bd: '#D8763B' },
+      prirodni:     { label: 'Přírodní',     bg: '#E3EDD2', fg: '#3B5531', bd: '#CFE0B4' },
+      bio:          { label: 'BIO',          bg: '#F6F1E7', fg: '#4C643C', bd: '#C7D6B8' },
+      sada:         { label: 'Sada',         bg: '#F6F1E7', fg: '#3B5531', bd: '#E4D9C2' },
+    };
+    const p = presets[variant] || presets.bestseller;
+    const label = (this.props.label || '').trim() || p.label;
+
+    return {
+      label,
+      badgeStyle: [
+        "display:inline-flex", 'align-items:center', "font-family:'Hanken Grotesk',sans-serif",
+        'font-weight:600', 'font-size:11px', 'letter-spacing:.03em', 'line-height:1',
+        'padding:5px 10px', 'border-radius:999px', 'white-space:nowrap',
+        'background:' + p.bg, 'color:' + p.fg, 'border:1px solid ' + p.bd,
+        'box-shadow:0 2px 6px rgba(45,58,46,.10)',
+      ].join('; ') + ';',
+    };
+  }
+}
+</script>
+</body>
+</html>

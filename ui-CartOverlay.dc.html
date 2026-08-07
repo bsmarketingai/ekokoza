@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .ek-btn-main:hover { background: #BC5F28 !important; border-color: #BC5F28 !important; }
+  .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-cart-row:hover { background: #FBF8F1; }
+  .ek-cart-del:hover { background: #F2DDD8 !important; color: #A8442B !important; }
+  .ek-cart-mobonly { display: none; }
+  /* Standalone nahled: bez ukotveni v hlavicce se karta pozicuje v beznem toku */
+  .ek-cart-pop { position: static; }
+  .ek-hdr-cartwrap .ek-cart-pop { position: absolute; }
+  @media (max-width: 900px) {
+    .ek-cart-pop { position: fixed !important; inset: 0 !important; padding-top: 0 !important; width: auto !important; max-width: none !important; z-index: 300 !important; }
+    .ek-cart-card { height: 100% !important; border-radius: 0 !important; border: none !important; box-shadow: none !important; }
+    .ek-cart-mobonly { display: flex !important; }
+    .ek-cart-list { max-height: none !important; flex: 1 !important; }
+    .ek-cart-head { padding-top: max(18px, env(safe-area-inset-top)) !important; }
+    .ek-cart-foot { padding-bottom: max(18px, env(safe-area-inset-bottom)) !important; }
+    .ek-cart-actions { flex-direction: row !important; }
+    .ek-cart-back { display: flex !important; }
+  }
+</style>
+</helmet>
+
+<div class="ek-cart-pop" onMouseLeave="{{ onMouseLeave }}" style="top:100%; right:0; padding-top:14px; width:400px; max-width:calc(100vw - 24px); z-index:200; font-family:'Hanken Grotesk',sans-serif;">
+<div class="ek-cart-card" style="background:#fff; border:1px solid #E4DAC6; border-radius:14px; box-shadow:0 34px 64px -30px rgba(45,58,46,.55); display:flex; flex-direction:column; overflow:hidden;">
+
+  <div class="ek-cart-head" style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 18px; border-bottom:1px solid #EFE7D6; background:#FBF8F1;">
+    <span style="display:flex; align-items:center; gap:9px; font-family:'Spectral',serif; font-size:18px; color:#2D3A2E;"><span style="{{ iconCart }}"></span>Košík<span style="font-family:'Hanken Grotesk',sans-serif; font-size:13px; font-weight:600; color:#7c7a6a;">{{ countLabel }}</span></span>
+    <button type="button" onClick="{{ onClose }}" title="Zavřít" class="ek-btn-ghost" style="appearance:none; border:none; cursor:pointer; width:34px; height:34px; flex:0 0 auto; border-radius:50%; background:#F6F1E7; color:#3B5531; display:flex; align-items:center; justify-content:center; transition:background .2s;"><span style="{{ iconClose }}"></span></button>
+  </div>
+
+  <div class="ek-cart-list" style="display:flex; flex-direction:column; overflow-y:auto; max-height:44vh; padding:6px;">
+    <sc-for list="{{ items }}" as="it" hint-placeholder-count="3">
+      <div class="ek-cart-row" style="display:flex; align-items:flex-start; gap:12px; padding:11px 12px; border-radius:11px; transition:background .15s;">
+        <span style="{{ it.thumbStyle }}"></span>
+        <span style="flex:1; min-width:0; display:flex; flex-direction:column; gap:3px;">
+          <a href="#" style="font-family:'Spectral',serif; font-weight:500; font-size:15.5px; line-height:1.25; color:#2A2A24; text-decoration:none;">{{ it.name }}</a>
+          <dc-import name="ui-Stock" state="{{ it.stockState }}" date="{{ it.stockDate }}" size="{{ 12.5 }}" hint-size="130px,17px"></dc-import>
+          <span style="font-size:13.5px; color:#7c7a6a;">{{ it.qtyLine }}</span>
+        </span>
+        <span style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+          <span style="font-family:'Spectral',serif; font-size:17px; color:#3B5531; font-weight:500; white-space:nowrap;">{{ it.lineTotal }}</span>
+          <button type="button" onClick="{{ it.remove }}" title="Odebrat z košíku" class="ek-cart-del" style="appearance:none; border:none; cursor:pointer; width:28px; height:28px; border-radius:50%; background:#F6F1E7; color:#8a8776; display:flex; align-items:center; justify-content:center; transition:background .18s, color .18s;"><span style="{{ iconDel }}"></span></button>
+        </span>
+      </div>
+    </sc-for>
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:34px 20px; text-align:center; color:#7c7a6a; font-size:14.5px;">Košík je zatím prázdný.</div>
+    </sc-if>
+  </div>
+
+  <div class="ek-cart-foot" style="padding:16px 18px; border-top:1px solid #EFE7D6; background:#FBF8F1; display:flex; flex-direction:column; gap:12px;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+      <span style="font-size:14.5px; color:#5c5a4e;">Celkem</span>
+      <span style="font-family:'Spectral',serif; font-size:23px; color:#2D3A2E;">{{ total }}</span>
+    </div>
+    <p style="margin:0; font-size:13px; color:#7c7a6a; line-height:1.4;">{{ shippingNote }}</p>
+    <div class="ek-cart-actions" style="display:flex; gap:10px;">
+      <button type="button" onClick="{{ onClose }}" class="ek-cart-back ek-btn-ghost" style="display:none; flex:1; appearance:none; cursor:pointer; align-items:center; justify-content:center; gap:8px; background:transparent; border:1.5px solid #4C643C; color:#3B5531; padding:14px 16px; border-radius:999px; font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:15px; transition:background .2s;">Zpět do obchodu</button>
+      <a href="{{ checkoutHref }}" class="ek-btn-main" style="flex:1.4; display:flex; align-items:center; justify-content:center; gap:9px; background:#D8763B; color:#fff; text-decoration:none; padding:14px 18px; border-radius:999px; font-weight:600; font-size:15px; transition:background .2s; white-space:nowrap;">Přejít do košíku<span style="{{ iconArrow }}"></span></a>
+    </div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:440,&quot;height&quot;:560},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{name:string,price:number,qty:number,av:string,img:string}[]&quot;},&quot;checkoutHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;freeShippingFrom&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2000,&quot;min&quot;:0,&quot;max&quot;:5000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;()=&gt;void&quot;},&quot;onRemove&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(i:number,item)=&gt;void&quot;},&quot;onMouseLeave&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;()=&gt;void&quot;}}">
+class Component extends DCLogic {
+  mask(name, size, color) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const url = base + 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color || 'currentColor'}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+  renderVals() {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const abs = (p) => /^(https?:|\/|\.\.)/.test(p) ? p : base + p;
+    const kc = (n) => n.toLocaleString('cs-CZ') + ' Kč';
+
+    const raw = this.props.items ?? [
+      { name: 'Mýdlová hmota s bambuckým máslem, 1 kg', price: 329, qty: 2, stockState: 'ready', img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg' },
+      { name: 'Kyselina salicylová, 25 kg', price: 189, qty: 1, stockState: 'packing', img: 'assets/products/levandulove-maslo-100-g.jpg' },
+      { name: 'Stabilizovaný vitamin C, 10 g', price: 149, qty: 3, stockState: 'ready', img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg' },
+    ];
+    const onRemove = this.props.onRemove ?? (() => {});
+    const items = raw.map((p, i) => {
+      return Object.assign({}, p, {
+        stockState: p.stockState ?? 'ready',
+        stockDate: p.stockDate ?? '28. 8. 2026',
+        thumbStyle: 'width:56px; height:56px; flex:0 0 auto; border-radius:10px; background:#F6F1E7 center/contain no-repeat; background-image:url("' + abs(p.img) + '");',
+        qtyLine: p.qty + ' ks × ' + kc(p.price),
+        lineTotal: kc(p.price * p.qty),
+        remove: () => onRemove(i, p),
+      });
+    });
+
+    const sum = raw.reduce((a, p) => a + p.price * p.qty, 0);
+    const freeFrom = this.props.freeShippingFrom ?? 2000;
+    const count = raw.reduce((a, p) => a + p.qty, 0);
+
+    return {
+      items,
+      isEmpty: items.length === 0,
+      countLabel: count > 0 ? '(' + count + ' ks)' : '',
+      total: kc(sum),
+      shippingNote: sum >= freeFrom
+        ? 'Doprava zdarma. Ceny včetně DPH.'
+        : 'Do dopravy zdarma zbývá ' + kc(freeFrom - sum) + '. Ceny včetně DPH.',
+      checkoutHref: this.props.checkoutHref ?? '#',
+      onClose: this.props.onClose ?? (() => {}),
+      onMouseLeave: this.props.onMouseLeave ?? (() => {}),
+      iconCart: this.mask('shopping-cart-01', 20, '#3B5531'),
+      iconClose: this.mask('cancel-01', 18),
+      iconDel: this.mask('cancel-01', 16),
+      iconArrow: this.mask('arrow-right-02', 20),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<span style="{{ chipStyle }}">{{ label }}</span>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:200,&quot;height&quot;:60},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;onPhoto&quot;,&quot;green&quot;,&quot;sage&quot;,&quot;accent&quot;,&quot;outline&quot;],&quot;default&quot;:&quot;default&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Sezónní recept&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const variant = this.props.variant ?? 'default';
+    const label = this.props.label ?? 'Sezónní recept';
+    const base = "display:inline-flex; align-items:center; font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:11.5px; letter-spacing:.04em; padding:5px 11px; border-radius:999px; white-space:nowrap;";
+    const variants = {
+      default:  'background:#F6F1E7; color:#3B5531;',
+      onPhoto:  'background:#F6F1E7; color:#3B5531; border:1px solid #E4D9C2; box-shadow:0 2px 6px rgba(45,58,46,.08);',
+      green:    'background:#4C643C; color:#F6F1E7; text-transform:uppercase; letter-spacing:.06em; font-size:11px;',
+      sage:     'background:#CFE0B4; color:#3B5531;',
+      accent:   'background:#D8763B; color:#fff;',
+      outline:  'background:transparent; color:#3B5531; border:1px solid #C9BFA6;',
+    };
+    return { label, chipStyle: base + (variants[variant] || variants.default) };
+  }
+}
+</script>
+</body>
+</html>

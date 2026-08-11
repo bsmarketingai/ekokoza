@@ -42,7 +42,7 @@
       <p style="margin:0 0 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#9b9888; font-weight:600;">Produkty</p>
       <div style="display:flex; flex-direction:column;">
         <sc-for list="{{ products }}" as="sp" hint-placeholder-count="4">
-          <a href="#" class="ek-mega-link" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
+          <a href="{{ sp.href }}" class="ek-mega-link" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
             <span style="{{ sp.thumbStyle }}"></span>
             <span style="flex:1; min-width:0;">
               <span style="display:block; font-family:'Spectral',serif; font-weight:500; font-size:15.5px; line-height:1.25;">{{ sp.name }}</span>
@@ -88,6 +88,7 @@ class Component extends DCLogic {
     ];
     const products = raw.map(p => {
       return Object.assign({}, p, {
+        href: p.href ?? 'Ekokoza Produkt.dc.html',
         stockState: p.stockState ?? (/nabalit|nava/i.test(p.av || '') ? 'packing' : /oceka|naskladn/i.test(p.av || '') ? 'expected' : 'ready'),
         stockDate: p.stockDate ?? '28. 8. 2026',
         thumbStyle: 'width:44px; height:44px; flex:0 0 auto; border-radius:9px; background:#F6F1E7 center/contain no-repeat; background-image:url("' + abs(p.img) + '");',

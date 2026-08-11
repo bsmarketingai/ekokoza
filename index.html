@@ -374,7 +374,7 @@
       </div>
       <div class="ek-scrollrow ek-scroll" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
         <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
-          <dc-import name="ui-ProductCard" title="{{ p.name }}" price="{{ p.price }}" badge="{{ p.badge }}" cta-variant="{{ p.ctaVariant }}" rating="{{ p.rating }}" rating-count="{{ p.ratingCount }}" img="{{ p.img }}" stock-state="{{ p.stockState }}" stock-date="{{ p.stockDate }}" hint-size="100%,400px"></dc-import>
+          <dc-import name="ui-ProductCard" title="{{ p.name }}" price="{{ p.price }}" badge="{{ p.badge }}" cta-variant="{{ p.ctaVariant }}" rating="{{ p.rating }}" rating-count="{{ p.ratingCount }}" img="{{ p.img }}" stock-state="{{ p.stockState }}" stock-date="{{ p.stockDate }}" href="{{ p.href }}" hint-size="100%,400px"></dc-import>
         </sc-for>
       </div>
     </div>
@@ -700,10 +700,10 @@ class Component extends DCLogic {
     ].map(r => Object.assign(r, { imgStyle: 'position:absolute; inset:0; background:#EFE7D6 center/cover no-repeat; background-image:url("' + r.img + '");' }));
 
     const products = [
-      { name:'Levandulové máslo, 100 g', price:'189 Kč', badge:'bestseller', ctaVariant:'koupit', rating:4.8, ratingCount:214, img:'assets/products/levandulove-maslo-100-g.jpg', stockState:'ready' },
-      { name:'Mýdlová hmota s bambuckým máslem (shea), 1 kg', price:'329 Kč', badge:'', ctaVariant:'varianta', rating:4.6, ratingCount:96, img:'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', stockState:'packing' },
-      { name:'Stabilizovaný vitamin C, 10 g', price:'149 Kč', badge:'doporucujeme', ctaVariant:'koupit', rating:4.7, ratingCount:58, img:'assets/products/stabilizovany-vitamin-c-10-g.jpg', stockState:'ready' },
-      { name:'Tuhý šampon žloutkový', price:'159 Kč', badge:'novinka', ctaVariant:'varianta', rating:0, ratingCount:0, img:'assets/products/tuhy-sampon-zloutkovy.jpg', stockState:'expected', stockDate:'28. 8. 2026' },
+      { name:'Levandulové máslo, 100 g', price:'189 Kč', badge:'bestseller', ctaVariant:'koupit', rating:4.8, ratingCount:214, img:'assets/products/levandulove-maslo-100-g.jpg', stockState:'ready', href:'Ekokoza Produkt.dc.html' },
+      { name:'Mýdlová hmota s bambuckým máslem (shea), 1 kg', price:'329 Kč', badge:'', ctaVariant:'varianta', rating:4.6, ratingCount:96, img:'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', stockState:'packing', href:'Ekokoza Produkt.dc.html' },
+      { name:'Stabilizovaný vitamin C, 10 g', price:'149 Kč', badge:'doporucujeme', ctaVariant:'koupit', rating:4.7, ratingCount:58, img:'assets/products/stabilizovany-vitamin-c-10-g.jpg', stockState:'ready', href:'Ekokoza Produkt.dc.html' },
+      { name:'Tuhý šampon žloutkový', price:'159 Kč', badge:'novinka', ctaVariant:'varianta', rating:0, ratingCount:0, img:'assets/products/tuhy-sampon-zloutkovy.jpg', stockState:'expected', stockDate:'28. 8. 2026', href:'Ekokoza Produkt.dc.html' },
     ];
 
     const starts = [

@@ -10,11 +10,13 @@
 <helmet>
 <style>
   .ek-btn-ghost:hover { background: #EFE7D6; }
+  .ek-card-t:hover { color: #B23803 !important; }
 </style>
 </helmet>
 <div class="ek-card" style="display:flex; flex-direction:column; background:#fff; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; transition:transform .25s, box-shadow .25s; font-family:'Hanken Grotesk',sans-serif;">
 
   <div style="position:relative; aspect-ratio:1/1; background:#fff;">
+    <a href="{{ href }}" title="{{ title }}" style="position:absolute; inset:0; z-index:1; display:block; text-decoration:none;"></a>
     <div style="{{ imgStyle }}"></div>
 
     <sc-if value="{{ badge }}" hint-placeholder-val="{{ true }}">
@@ -30,7 +32,7 @@
 
   <div style="padding:16px; display:flex; flex-direction:column; gap:9px; flex:1;">
     <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" hint-size="120px,18px"></dc-import>
-    <h3 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;">{{ title }}</h3>
+    <h3 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:18px; line-height:1.25;"><a href="{{ href }}" class="ek-card-t" style="color:#2A2A24; text-decoration:none;">{{ title }}</a></h3>
     <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" size="{{ 13 }}" hint-size="140px,18px"></dc-import>
     <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-top:auto;">
       <span style="font-family:'Spectral',serif; font-size:19px; color:#3B5531; font-weight:500; white-space:nowrap;">{{ price }}</span>

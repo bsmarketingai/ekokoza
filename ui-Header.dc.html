@@ -55,6 +55,12 @@
   .ek-flag-on { opacity:1; background:transparent; box-shadow:none; filter:saturate(1); }
   .ek-flag-off { opacity:.45; background:transparent; box-shadow:none; filter:saturate(.35); }
   .ek-flag-off:hover { opacity:1; filter:saturate(1); }
+  /* Aktivni polozka menu — zvyraznena barvou a trvalym podtrzenim */
+  .ek-nav .ek-nav-active { color: #3B5531 !important; font-weight: 700; }
+  .ek-nav .ek-nav-active::after { transform: scaleX(1) !important; }
+  .ek-nav-onas.ek-nav-active { position: relative; }
+  .ek-nav-onas.ek-nav-active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #D14405; }
+  .ek-drawer-active { background: #EFE7D6 !important; color: #3B5531 !important; font-weight: 700; }
   .ek-flag-m { appearance:none; border:0; cursor:pointer; padding:0; width:46px; height:44px; display:flex; align-items:center; justify-content:center; line-height:0; border-radius:10px; background:transparent; transition:opacity .15s, background-color .15s, filter .15s; }
   .ek-flag-m.ek-flag-on { opacity:1; background:#E7EBDC; filter:saturate(1); }
   .ek-flag-m.ek-flag-off { opacity:.45; filter:saturate(.35); }
@@ -144,14 +150,14 @@
 
       <nav class="ek-nav" style="display:flex; align-items:center; gap:28px; font-size:16px; font-weight:500; flex:1; justify-content:space-between;">
         <div style="display:flex; gap:24px;">
-          <a href="#blok3" onMouseEnter="{{ openMega0 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Výroba<span style="{{ iconCaret }}"></span></a>
-          <a href="#blok4" onMouseEnter="{{ openMega1 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Suroviny<span style="{{ iconCaret }}"></span></a>
-          <a href="#blok6" onMouseEnter="{{ openMega2 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Produkty<span style="{{ iconCaret }}"></span></a>
-          <a href="#blok4" class="ek-nav-obaly" onMouseEnter="{{ openMega3 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Obaly<span style="{{ iconCaret }}"></span></a>
-          <a href="#blok5" onMouseEnter="{{ openMega4 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Receptář<span style="{{ iconCaret }}"></span></a>
+          <a href="#blok3" class="{{ navvyroba }}" onMouseEnter="{{ openMega0 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Výroba<span style="{{ iconCaret }}"></span></a>
+          <a href="#blok4" class="{{ navsuroviny }}" onMouseEnter="{{ openMega1 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Suroviny<span style="{{ iconCaret }}"></span></a>
+          <a href="#blok6" class="{{ navprodukty }}" onMouseEnter="{{ openMega2 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Produkty<span style="{{ iconCaret }}"></span></a>
+          <a href="#blok4" class="ek-nav-obaly {{ navobaly }}" onMouseEnter="{{ openMega3 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Obaly<span style="{{ iconCaret }}"></span></a>
+          <a href="#blok5" class="{{ navreceptar }}" onMouseEnter="{{ openMega4 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Receptář<span style="{{ iconCaret }}"></span></a>
         </div>
         <div style="display:flex; align-items:center; gap:18px;" onMouseEnter="{{ megaClose }}">
-          <a href="#blok11" class="ek-nav-onas" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; transition:color .2s;">O nás</a>
+          <a href="{{ aboutHref }}" class="ek-nav-onas {{ navonas }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; transition:color .2s;">O nás</a>
           <a href="#blok8" class="ek-nav-loyal" style="display:flex; align-items:center; gap:7px; color:#3B5531; text-decoration:none; background:#EFE7D6; padding:8px 15px; border-radius:999px; font-weight:600; transition:background .22s ease, color .22s ease;"><span style="{{ iconLoyal }}"></span><span class="ek-loyal-txt">Věrnostní program</span></a>
         </div>
       </nav>
@@ -265,6 +271,12 @@ class Component extends DCLogic {
   }
 
   renderVals() {
+    // Aktivni polozku poznáme z nazvu otevrene stranky, prop 'active' ma prednost
+    const file = decodeURIComponent(location.pathname.split('/').pop() || '');
+    const auto = /o nas/i.test(file) ? 'onas' : '';
+    const active = this.props.active ?? auto;
+    const navCls = (key) => (active === key ? 'ek-nav-active' : '');
+    const about = this.props.aboutHref ?? 'Ekokoza O nas.dc.html';
     const S = this.state;
 
     // Struktura odpovída realnemu menu na ekokoza.cz (Vyroba / Produkty / Obaly / Receptar)
@@ -307,7 +319,7 @@ class Component extends DCLogic {
       setCz: () => this.setState({ lang: 'cz' }),
       setSk: () => this.setState({ lang: 'sk' }),
       topbarText: this.props.topbarText ?? 'Doprava zdarma od 2000 Kč · Ověřené recepty od roku 2009',
-      homeHref: this.props.homeHref ?? '#',
+      homeHref: this.props.homeHref ?? 'index.html',
       cartCount: S.cart.reduce((a, p) => a + p.qty, 0),
       hasCart: S.cart.length > 0,
       cartItems: S.cart,
@@ -316,6 +328,13 @@ class Component extends DCLogic {
       cartLeave: () => { if (window.innerWidth > 900) this.setState({ cartOpen: false }); },
       cartToggle: (e) => { if (window.innerWidth <= 900) { e.preventDefault(); this.setState(st => ({ cartOpen: !st.cartOpen })); } },
       closeCart: () => this.setState({ cartOpen: false }),
+      aboutHref: about,
+      navvyroba: navCls('vyroba'),
+      navsuroviny: navCls('suroviny'),
+      navprodukty: navCls('produkty'),
+      navobaly: navCls('obaly'),
+      navreceptar: navCls('receptar'),
+      navonas: navCls('onas'),
       loginOpen: S.loginOpen,
       loginToggle: () => this.setState(st => ({ loginOpen: !st.loginOpen, cartOpen: false, mega: -1 })),
       closeLogin: () => this.setState({ loginOpen: false }),
@@ -362,7 +381,7 @@ class Component extends DCLogic {
       drawerMenu,
       drawerLinksOther: [
         { label: 'Věrnostní program', href: '#blok8', icon: this.mask('percent-circle', 20, '#3B5531') },
-        { label: 'O nás', href: '#blok11', icon: this.mask('leaf-01', 20, '#3B5531') },
+        { label: 'O nás', href: about, icon: this.mask('leaf-01', 20, '#3B5531') },
       ],
       openDrawer: () => this.setState({ drawerOpen: true }),
       closeDrawer: () => this.setState({ drawerOpen: false }),

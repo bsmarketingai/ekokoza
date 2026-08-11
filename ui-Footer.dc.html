@@ -16,6 +16,19 @@
   body { margin: 0; }
   .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
   .ek-btn-secondary:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
+  .ek-badge-t:hover { background: rgba(246,241,231,.11) !important; border-color: rgba(246,241,231,.28) !important; }
+  @media (max-width: 1080px) { .ek-badges { grid-template-columns: repeat(2,1fr) !important; } }
+  @media (max-width: 560px) { .ek-badges { grid-template-columns: 1fr !important; } }
+  .ek-link-map:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .ek-social:hover { filter: brightness(1.06); transform: translateY(-2px); }
+  .ek-foot-outer a[class^="ek-btn-"] { max-width: 100%; min-width: 0; box-sizing: border-box; }
+  @media (max-width: 560px) {
+    .ek-foot-outer a[class^="ek-btn-"] { white-space: normal !important; text-align: left; }
+  }
+  @media (max-width: 1180px) {
+    .ek-contact-row { flex-wrap: wrap !important; }
+    .ek-contact-row > a { flex: 1 1 100% !important; justify-content: flex-start !important; }
+  }
   @media (max-width: 860px) {
     .ek-help { grid-template-columns: 1fr !important; }
     .ek-help-l { border-right: none !important; border-bottom: 1px solid rgba(59,85,49,.14) !important; padding: 26px 22px !important; }
@@ -27,20 +40,26 @@
   @media (max-width: 900px) {
     .ek-foot { grid-template-columns: repeat(2,1fr) !important; }
     .ek-foot-outer { padding-left: 20px !important; padding-right: 20px !important; }
-    .ek-foot-pad { padding-left: 24px !important; padding-right: 24px !important; }
+    .ek-foot-pad { padding: 24px 24px 0 !important; }
+    .ek-foot-outer > footer { border-radius: 24px 24px 0 0 !important; }
+    .ek-help { border-radius: 14px !important; }
   }
   @media (max-width: 560px) {
     .ek-foot { grid-template-columns: 1fr !important; gap: 28px !important; }
-    .ek-foot-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-foot-pad { padding: 20px 20px 0 !important; }
+    .ek-foot-outer > footer { border-radius: 22px 22px 0 0 !important; }
+    .ek-help { border-radius: 12px !important; }
   }
   @media (max-width: 400px) {
-    .ek-foot-pad { padding-left: 18px !important; padding-right: 18px !important; }
+    .ek-foot-pad { padding: 18px 18px 0 !important; }
+    .ek-foot-outer > footer { border-radius: 20px 20px 0 0 !important; }
+    .ek-help { border-radius: 11px !important; }
   }
 </style>
 </helmet>
 
 <div style="max-width:1344px; margin:0 auto; padding:0 32px;" class="ek-foot-outer">
-  <footer style="background:linear-gradient(155deg,#4C643C 0%,#22301F 100%); color:#DCE6D2; border-radius:18px 18px 0 0; box-shadow:0 -18px 44px -26px rgba(34,48,31,.55); font-family:'Hanken Grotesk',sans-serif;">
+  <footer style="background:linear-gradient(155deg,#4C643C 0%,#22301F 100%); color:#DCE6D2; border-radius:28px 28px 0 0; box-shadow:0 -18px 44px -26px rgba(34,48,31,.55); font-family:'Hanken Grotesk',sans-serif;">
     <div class="ek-foot-pad" style="padding:56px 44px 0;">
 
       <div class="ek-help" style="display:grid; grid-template-columns:1.35fr 1fr; gap:0; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border-radius:16px; overflow:hidden; margin-bottom:44px;">
@@ -58,39 +77,74 @@
           <p style="margin:0; color:#4F6E2A; font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;">Jsme tu pro vás</p>
           <h3 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:26px; color:#2D3A2E; line-height:1.15;">Napište nebo zavolejte.</h3>
           <p style="margin:0; color:#52524a; font-size:15.5px; line-height:1.6;">V pracovní dny odpovídáme zpravidla do 24 hodin, často mnohem dříve.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:4px;">
+          <div class="ek-contact-row" style="display:flex; flex-wrap:nowrap; gap:10px; margin-top:4px;">
             <a href="{{ emailHref }}" class="ek-btn-secondary" style="{{ btnContact }}"><span style="{{ iconMail }}"></span>{{ email }}</a>
             <a href="{{ phoneHref }}" class="ek-btn-secondary" style="{{ btnContact }}"><span style="{{ iconPhone }}"></span>{{ phone }}</a>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:11px; margin-top:8px; padding-top:16px; border-top:1px solid rgba(59,85,49,.14);">
+            <span style="{{ iconPin }}"></span>
+            <span style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-weight:700; font-size:15px; color:#2D3A2E;">{{ company }}</span>
+              <span style="font-size:15px; color:#52524a; line-height:1.5;">{{ address }}</span>
+              <a href="{{ mapHref }}" class="ek-link-map" style="margin-top:2px; font-size:14.5px; font-weight:600; color:#3B5531; text-decoration:none;">Zobrazit na mapě</a>
+            </span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding-top:16px; border-top:1px solid rgba(59,85,49,.14);">
+            <span style="font-size:14.5px; color:#52524a;">Sledujte nás:</span>
+            <span style="display:flex; gap:8px;">
+              <sc-for list="{{ socials }}" as="s" hint-placeholder-count="3">
+                <a href="{{ s.href }}" target="_blank" rel="noopener" title="{{ s.name }}" aria-label="{{ s.name }}" class="ek-social" style="{{ s.style }}"><span style="{{ s.icon }}"></span></a>
+              </sc-for>
+            </span>
           </div>
         </div>
       </div>
 
-      <div class="ek-foot" style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:32px; padding-bottom:44px; border-bottom:1px solid rgba(246,241,231,.14);">
+      <div class="ek-badges" style="display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:1fr; gap:12px; padding-bottom:38px; margin-bottom:38px; border-bottom:1px solid rgba(246,241,231,.14);">
+        <sc-for list="{{ trustBadges }}" as="b" hint-placeholder-count="4">
+          <a href="{{ b.href }}" target="_blank" rel="noopener" class="ek-badge-t" style="display:flex; align-items:center; gap:14px; min-height:84px; height:100%; padding:14px; border-radius:16px; background:rgba(246,241,231,.06); border:1px solid rgba(246,241,231,.14); text-decoration:none; transition:background .2s, border-color .2s;">
+            <span style="{{ b.tile }}">
+              <span role="img" aria-label="{{ b.alt }}" style="{{ b.logoStyle }}"></span>
+              <sc-if value="{{ b.hasMark }}" hint-placeholder-val="{{ false }}"><span style="{{ b.markStyle }}">{{ b.mark }}</span></sc-if>
+            </span>
+            <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
+              <span style="display:flex; align-items:center; gap:8px;">
+                <span style="font-family:'Spectral',serif; font-size:20px; font-weight:500; color:#F6F1E7; line-height:1;">{{ b.value }}</span>
+                <sc-if value="{{ b.hasStars }}" hint-placeholder-val="{{ true }}">
+                  <span style="display:flex; gap:2px;">
+                    <sc-for list="{{ b.stars }}" as="s" hint-placeholder-count="5"><span style="{{ s }}"></span></sc-for>
+                  </span>
+                </sc-if>
+              </span>
+              <span style="font-size:13px; color:#AAC29D; line-height:1.35;">{{ b.label }}</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+
+      <div class="ek-foot" style="display:grid; grid-template-columns:repeat(4,1fr); gap:32px; padding-bottom:44px; border-bottom:1px solid rgba(246,241,231,.14);">
         <div>
-          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Kontakty</h4>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Pomoc s nákupem</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-            <span>{{ company }}</span>
-            <span>{{ address }}</span>
-            <a href="{{ emailHref }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ email }}</a>
-            <a href="{{ phoneHref }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ phone }}</a>
+            <sc-for list="{{ colHelp }}" as="f" hint-placeholder-count="6"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
           </div>
         </div>
         <div>
-          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Můj účet</h4>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Můj účet a výhody</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
             <sc-for list="{{ colAccount }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
           </div>
         </div>
         <div>
-          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Informace o nákupu</h4>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Objevujte Ekokozu</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-            <sc-for list="{{ colInfo }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+            <sc-for list="{{ colDiscover }}" as="f" hint-placeholder-count="5"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
           </div>
         </div>
         <div>
-          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Spolupracujeme</h4>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Právní a důležité informace</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-            <sc-for list="{{ colCoop }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+            <sc-for list="{{ colLegal }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
           </div>
         </div>
       </div>
@@ -99,7 +153,7 @@
         <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
           <span style="font-size:13px; color:#AAC29D;">Doručujeme přes:</span>
           <sc-for list="{{ carriers }}" as="c" hint-placeholder-count="5">
-            <img src="{{ c.src }}" alt="{{ c.alt }}" width="65" height="40" style="display:block; width:65px; height:40px; border-radius:8px; background:#fff;">
+            <span role="img" aria-label="{{ c.alt }}" style="{{ c.style }}"></span>
           </sc-for>
         </div>
         <a href="{{ homeHref }}" style="display:flex; align-items:center;">
@@ -143,12 +197,29 @@ class Component extends DCLogic {
       phoneHref: 'tel:' + phone.replace(/\s/g, ''),
       homeHref: this.props.homeHref ?? '#',
       copyright: this.props.copyright ?? '© 2026 Ekokoza s.r.o. — Důvod, proč tvořit.',
+      colHelp: this.props.colHelp ?? ['Sledování zásilky', 'Vrácení zboží a reklamace', 'Platba a doprava', 'Časté otázky (FAQ)', 'Kontakty', 'Vychytávky pro váš nákup'],
       colAccount: this.props.colAccount ?? ['Moje objednávky', 'Faktury', 'Osobní a doručovací údaje', 'Věrnostní program a B2B ceny'],
+      colDiscover: this.props.colDiscover ?? ['O Ekokoze', 'Recepty a návody', 'Slovníček pojmů', 'Organic Lab – kurzy výroby', 'Mirčina mýdla'],
+      colLegal: this.props.colLegal ?? ['Obchodní podmínky', 'Soukromí a cookies', 'Podmínky vrácení a reklamací', 'Identifikační a kontaktní údaje'],
       colInfo: this.props.colInfo ?? ['Doprava a platba', 'Reklamace a vrácení', 'Obchodní podmínky', 'Časté dotazy'],
       colCoop: this.props.colCoop ?? ['B2B a velkoobchod', 'Affiliate program', 'Pro výrobce', 'Staňte se partnerem'],
       iconMail: this.mask('mail-01', 20, 'currentColor'),
-      iconPhone: this.mask('telephone', 20, 'currentColor'),
-      btnContact: btn('secondary'),
+      iconPhone: this.mask('call', 20, 'currentColor'),
+      iconPin: this.mask('location-01', 20, '#4F6E2A') + ' margin-top:2px;',
+      mapHref: this.props.mapHref ?? '#',
+      socials: [
+        { name: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/ekokoza/',
+          bg: 'linear-gradient(135deg,#F5C63C 0%,#E9758C 52%,#B060A8 100%)' },
+        { name: 'Facebook', icon: 'facebook-01', href: 'https://www.facebook.com/ekokoza',
+          bg: 'linear-gradient(135deg,#5E93B5 0%,#3F6FA8 100%)' },
+        { name: 'YouTube', icon: 'youtube', href: 'https://www.youtube.com/@ekokoza',
+          bg: 'linear-gradient(135deg,#E2603F 0%,#C8232C 100%)' },
+      ].map(s => ({
+        name: s.name, href: s.href,
+        icon: this.mask(s.icon, 22, '#FFFFFF'),
+        style: 'display:flex; align-items:center; justify-content:center; width:46px; height:46px; flex:0 0 auto; border-radius:50%; background:' + s.bg + '; color:#fff; box-shadow:0 6px 14px -8px rgba(45,58,46,.6); transition:filter .2s, transform .2s;',
+      })),
+      btnContact: btn('secondary') + ' padding:13px 18px; white-space:nowrap; flex:0 1 auto; min-width:0; max-width:100%; overflow:hidden; text-overflow:ellipsis;',
       helpLinks: [
         { label: 'Kde je moje objednávka?', href: '#', icon: 'delivery-tracking-01', variant: 'primary' },
         { label: 'Vrácení a reklamace', href: '#', icon: 'delivery-return-01', variant: 'secondary' },
@@ -160,7 +231,25 @@ class Component extends DCLogic {
         icon: this.mask(l.icon, 20, 'currentColor'),
         style: btn(l.variant),
       })),
-      carriers: this.props.carriers ?? ['PPL','DPD','Balíkovna','Česká pošta','Zásilkovna'].map((alt, i) => ({ src: 'assets/carriers/carrier-' + (i + 1) + '.svg', alt })),
+      trustBadges: this.props.trustBadges ?? [
+        { logo: 'assets/badges/heureka.jpg', alt: 'Ověřeno zákazníky — Heureka.cz', value: '100 %', stars: 5,
+          label: 'Spokojenost s obchodem na Heurece', href: 'https://obchody.heureka.cz/eshop-ekokoza-cz-cs/recenze/' },
+        { logo: 'assets/badges/google.svg', alt: 'Google', value: '5,0', stars: 5,
+          label: 'Hodnocení obchodu na Google', href: 'https://www.google.com/storepages?q=ekokoza.cz&c=CZ' },
+        { logo: 'assets/badges/shoproku-znak.png', alt: 'Shop Roku 2025', value: 'Shop Roku',
+          label: 'Finalista Ceny Heureky 2025', href: 'https://www.shoproku.cz/vysledky' },
+        { logo: 'assets/badges/czechcrunch.jpg', alt: 'CzechCrunch', value: 'Psali o nás',
+          label: 'Od jedné kozy k mezinárodnímu e-shopu', href: 'https://cc.cz/chteli-sobestacnost-tak-koupili-kozu-nakonec-vyrostli-v-mezinarodni-e-shop-s-obratem-50-milionu/' },
+      ].map(b => ({
+        logo: b.logo, alt: b.alt, value: b.value, label: b.label, href: b.href,
+        hasMark: !b.logo && !!b.mark, mark: b.mark,
+        logoStyle: b.logo ? 'display:block; width:100%; height:100%; background:center/contain no-repeat; background-image:url("' + b.logo + '");' : 'display:none;',
+        markStyle: "font-family:'Hanken Grotesk',sans-serif; font-weight:700; font-size:13.5px; letter-spacing:-.01em; text-align:center; line-height:1.2; color:" + (b.markColor || '#2D3A2E') + ';',
+        hasStars: !!b.stars,
+        tile: 'display:flex; align-items:center; justify-content:center; width:56px; height:56px; flex:0 0 auto; border-radius:10px; background:#FFFFFF; padding:7px;',
+        stars: b.stars ? Array.from({ length: b.stars }, () => this.mask('star-filled', 14, '#F5C63C')) : [],
+      })),
+      carriers: this.props.carriers ?? ['PPL','DPD','Balíkovna','Česká pošta','Zásilkovna'].map((alt, i) => ({ alt, style: 'display:block; width:65px; height:40px; flex:0 0 auto; border-radius:8px; background:#fff center/contain no-repeat; background-image:url("assets/carriers/carrier-' + (i + 1) + '.svg");' })),
     };
   }
 }

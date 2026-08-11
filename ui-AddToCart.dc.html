@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .ek-atc-b { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; padding: 0 30px; font-family: 'Hanken Grotesk',sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+  .ek-atc-b:hover { background: #B23803 !important; border-color: #B23803 !important; }
+</style>
+</helmet>
+<div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; font-family:'Hanken Grotesk',sans-serif;">
+  <dc-import name="ui-QtyStepper" value="{{ qty }}" min="{{ 1 }}" max="{{ max }}" height="{{ height }}" onChange="{{ onQty }}" hint-size="150px,54px"></dc-import>
+  <button onClick="{{ add }}" class="ek-atc-b" style="{{ btnStyle }}"><span style="{{ icon }}"></span>{{ label }}</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:110},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;qty&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1,&quot;min&quot;:1,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;max&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:99,&quot;min&quot;:1,&quot;max&quot;:999,&quot;tsType&quot;:&quot;number&quot;},&quot;height&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:54,&quot;min&quot;:44,&quot;max&quot;:72,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;shopping-cart-check-in-01&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onAdd&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(qty:number)=&gt;void&quot;},&quot;onQtyChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(qty:number)=&gt;void&quot;}}">
+class Component extends DCLogic {
+  state = { qty: null };
+
+  mask(name, size, color) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const url = base + 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  renderVals() {
+    const height = Number(this.props.height ?? 54);
+    const qty = this.state.qty ?? Number(this.props.qty ?? 1);
+    return {
+      height, max: Number(this.props.max ?? 99), qty,
+      label: this.props.label ?? 'Do košíku',
+      icon: this.mask(this.props.icon ?? 'shopping-cart-check-in-01', 24, 'currentColor'),
+      btnStyle: 'height:' + height + 'px; background:#D14405; color:#fff; border:1.5px solid #D14405;',
+      onQty: (q) => {
+        this.setState({ qty: q });
+        if (this.props.onQtyChange) this.props.onQtyChange(q);
+      },
+      add: () => { if (this.props.onAdd) this.props.onAdd(qty); },
+    };
+  }
+}
+</script>
+</body>
+</html>

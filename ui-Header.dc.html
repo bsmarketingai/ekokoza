@@ -60,6 +60,8 @@
   .ek-nav .ek-nav-active::after { transform: scaleX(1) !important; }
   .ek-nav-onas.ek-nav-active { position: relative; }
   .ek-nav-onas.ek-nav-active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #D14405; }
+  .ek-nav .ek-nav-loyal.ek-nav-active { background: #4C643C !important; color: #F6F1E7 !important; font-weight: 700; }
+  .ek-nav .ek-nav-loyal.ek-nav-active > span:first-child { background-color: #F6F1E7 !important; }
   .ek-drawer-active { background: #EFE7D6 !important; color: #3B5531 !important; font-weight: 700; }
   .ek-flag-m { appearance:none; border:0; cursor:pointer; padding:0; width:46px; height:44px; display:flex; align-items:center; justify-content:center; line-height:0; border-radius:10px; background:transparent; transition:opacity .15s, background-color .15s, filter .15s; }
   .ek-flag-m.ek-flag-on { opacity:1; background:#E7EBDC; filter:saturate(1); }
@@ -152,13 +154,13 @@
         <div style="display:flex; gap:24px;">
           <a href="#blok3" class="{{ navvyroba }}" onMouseEnter="{{ openMega0 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Výroba<span style="{{ iconCaret }}"></span></a>
           <a href="#blok4" class="{{ navsuroviny }}" onMouseEnter="{{ openMega1 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Suroviny<span style="{{ iconCaret }}"></span></a>
-          <a href="#blok6" class="{{ navprodukty }}" onMouseEnter="{{ openMega2 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Produkty<span style="{{ iconCaret }}"></span></a>
+          <a href="kategorie.html" class="{{ navprodukty }}" onMouseEnter="{{ openMega2 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Produkty<span style="{{ iconCaret }}"></span></a>
           <a href="#blok4" class="ek-nav-obaly {{ navobaly }}" onMouseEnter="{{ openMega3 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Obaly<span style="{{ iconCaret }}"></span></a>
           <a href="#blok5" class="{{ navreceptar }}" onMouseEnter="{{ openMega4 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Receptář<span style="{{ iconCaret }}"></span></a>
         </div>
         <div style="display:flex; align-items:center; gap:18px;" onMouseEnter="{{ megaClose }}">
           <a href="{{ aboutHref }}" class="ek-nav-onas {{ navonas }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; transition:color .2s;">O nás</a>
-          <a href="#blok8" class="ek-nav-loyal" style="display:flex; align-items:center; gap:7px; color:#3B5531; text-decoration:none; background:#EFE7D6; padding:8px 15px; border-radius:999px; font-weight:600; transition:background .22s ease, color .22s ease;"><span style="{{ iconLoyal }}"></span><span class="ek-loyal-txt">Věrnostní program</span></a>
+          <a href="{{ loyaltyHref }}" class="ek-nav-loyal {{ navvernost }}" style="display:flex; align-items:center; gap:7px; color:#3B5531; text-decoration:none; background:#EFE7D6; padding:8px 15px; border-radius:999px; font-weight:600; transition:background .22s ease, color .22s ease;"><span style="{{ iconLoyal }}"></span><span class="ek-loyal-txt">Věrnostní program</span></a>
         </div>
       </nav>
 
@@ -273,10 +275,11 @@ class Component extends DCLogic {
   renderVals() {
     // Aktivni polozku poznáme z nazvu otevrene stranky, prop 'active' ma prednost
     const file = decodeURIComponent(location.pathname.split('/').pop() || '');
-    const auto = /o nas/i.test(file) ? 'onas' : '';
+    const auto = /vernostni-program/i.test(file) ? 'vernost' : (/o-nas|o nas/i.test(file) ? 'onas' : (/kategorie|produkt/i.test(file) ? 'produkty' : ''));
     const active = this.props.active ?? auto;
     const navCls = (key) => (active === key ? 'ek-nav-active' : '');
-    const about = this.props.aboutHref ?? 'Ekokoza O nas.dc.html';
+    const about = this.props.aboutHref ?? 'o-nas.html';
+    const loyalty = this.props.loyaltyHref ?? 'vernostni-program.html';
     const S = this.state;
 
     // Struktura odpovída realnemu menu na ekokoza.cz (Vyroba / Produkty / Obaly / Receptar)
@@ -287,9 +290,9 @@ class Component extends DCLogic {
       { label: 'Suroviny', allHref: '#blok4', title: 'Suroviny dle kategorie',
         prod: { name: 'Levandulové máslo, 100 g', price: '189 Kč', img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, count: 214 },
         sub: [ {name:'Oleje',href:'#blok4'}, {name:'Másla',href:'#blok4'}, {name:'Aktivní látky',href:'#blok4'}, {name:'Vůně',href:'#blok4'}, {name:'Vosky',href:'#blok4'}, {name:'Barviva',href:'#blok4'}, {name:'Emulgátory',href:'#blok4'}, {name:'Jíly a tenzidy',href:'#blok4'} ] },
-      { label: 'Produkty', allHref: '#blok6', title: 'Hotové přírodní produkty',
+      { label: 'Produkty', allHref: 'kategorie.html', title: 'Hotové přírodní produkty',
         prod: { name: 'Stabilizovaný vitamin C, 10 g', price: '149 Kč', img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.7, count: 58 },
-        sub: [ {name:'Péče o pleť a kůži',href:'#blok6'}, {name:'Péče o rty',href:'#blok6'}, {name:'Péče o vlasy',href:'#blok6'}, {name:'Zubní hygiena',href:'#blok6'}, {name:'Voňavky a parfémy',href:'#blok6'}, {name:'Mytí a praní',href:'#blok6'}, {name:'Svíčky',href:'#blok6'}, {name:'Zdraví',href:'#blok6'}, {name:'Potraviny',href:'#blok6'}, {name:'Pro psy',href:'#blok6'} ] },
+        sub: [ {name:'Péče o pleť a kůži',href:'kategorie.html'}, {name:'Péče o rty',href:'kategorie.html'}, {name:'Péče o vlasy',href:'kategorie.html'}, {name:'Zubní hygiena',href:'kategorie.html'}, {name:'Voňavky a parfémy',href:'kategorie.html'}, {name:'Mytí a praní',href:'kategorie.html'}, {name:'Svíčky',href:'kategorie.html'}, {name:'Zdraví',href:'kategorie.html'}, {name:'Potraviny',href:'kategorie.html'}, {name:'Pro psy',href:'kategorie.html'} ] },
       { label: 'Obaly', allHref: '#blok4', title: 'Obaly pro vaše výrobky',
         prod: { name: 'Tuhý šampon žloutkový', price: '159 Kč', img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, count: 0 },
         sub: [ {name:'Skleněné lahvičky',href:'#blok4'}, {name:'Skleněné dózy',href:'#blok4'}, {name:'Hliníkové a kovové',href:'#blok4'}, {name:'Plastové kelímky',href:'#blok4'}, {name:'Papírové',href:'#blok4'}, {name:'Na svíčky',href:'#blok4'}, {name:'Roll-on',href:'#blok4'}, {name:'Airless',href:'#blok4'}, {name:'Pro péči o rty',href:'#blok4'}, {name:'Uzávěry samostatně',href:'#blok4'} ] },
@@ -312,6 +315,8 @@ class Component extends DCLogic {
     });
 
     return {
+      loyaltyHref: loyalty,
+      navvernost: navCls('vernost'),
       czActive: this.state.lang === 'cz',
       skActive: this.state.lang === 'sk',
       czFlagCls: this.state.lang === 'cz' ? 'ek-flag-on' : 'ek-flag-off',
@@ -380,7 +385,7 @@ class Component extends DCLogic {
 
       drawerMenu,
       drawerLinksOther: [
-        { label: 'Věrnostní program', href: '#blok8', icon: this.mask('percent-circle', 20, '#3B5531') },
+        { label: 'Věrnostní program', href: loyalty, icon: this.mask('percent-circle', 20, '#3B5531') },
         { label: 'O nás', href: about, icon: this.mask('leaf-01', 20, '#3B5531') },
       ],
       openDrawer: () => this.setState({ drawerOpen: true }),

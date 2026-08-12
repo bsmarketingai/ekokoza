@@ -126,25 +126,25 @@
         <div>
           <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Pomoc s nákupem</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-            <sc-for list="{{ colHelp }}" as="f" hint-placeholder-count="6"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+            <sc-for list="{{ colHelp }}" as="f" hint-placeholder-count="6"><a href="{{ f.href }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f.label }}</a></sc-for>
           </div>
         </div>
         <div>
           <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Můj účet a výhody</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-            <sc-for list="{{ colAccount }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+            <sc-for list="{{ colAccount }}" as="f" hint-placeholder-count="4"><a href="{{ f.href }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f.label }}</a></sc-for>
           </div>
         </div>
         <div>
           <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Objevujte Ekokozu</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-            <sc-for list="{{ colDiscover }}" as="f" hint-placeholder-count="5"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+            <sc-for list="{{ colDiscover }}" as="f" hint-placeholder-count="5"><a href="{{ f.href }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f.label }}</a></sc-for>
           </div>
         </div>
         <div>
           <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Právní a důležité informace</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-            <sc-for list="{{ colLegal }}" as="f" hint-placeholder-count="4"><a href="#" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f }}</a></sc-for>
+            <sc-for list="{{ colLegal }}" as="f" hint-placeholder-count="4"><a href="{{ f.href }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f.label }}</a></sc-for>
           </div>
         </div>
       </div>
@@ -187,6 +187,8 @@ class Component extends DCLogic {
       secondary: 'background:transparent; color:#3B5531; border:1.5px solid #3B5531;',
     };
     const btn = (v) => btnBase + btnVariants[v];
+    // Sloupce prijimaji retezce i objekty { label, href }
+    const norm = (list) => list.map(x => (typeof x === 'string' ? { label: x, href: '#' } : x));
     const email = this.props.email ?? 'eshop@ekokoza.cz';
     const phone = this.props.phone ?? '+420 601 365 245';
     return {
@@ -197,10 +199,10 @@ class Component extends DCLogic {
       phoneHref: 'tel:' + phone.replace(/\s/g, ''),
       homeHref: this.props.homeHref ?? '#',
       copyright: this.props.copyright ?? '© 2026 Ekokoza s.r.o. — Důvod, proč tvořit.',
-      colHelp: this.props.colHelp ?? ['Sledování zásilky', 'Vrácení zboží a reklamace', 'Platba a doprava', 'Časté otázky (FAQ)', 'Kontakty', 'Vychytávky pro váš nákup'],
-      colAccount: this.props.colAccount ?? ['Moje objednávky', 'Faktury', 'Osobní a doručovací údaje', 'Věrnostní program a B2B ceny'],
-      colDiscover: this.props.colDiscover ?? ['O Ekokoze', 'Recepty a návody', 'Slovníček pojmů', 'Organic Lab – kurzy výroby', 'Mirčina mýdla'],
-      colLegal: this.props.colLegal ?? ['Obchodní podmínky', 'Soukromí a cookies', 'Podmínky vrácení a reklamací', 'Identifikační a kontaktní údaje'],
+      colHelp: norm(this.props.colHelp ?? ['Sledování zásilky', 'Vrácení zboží a reklamace', 'Platba a doprava', 'Časté otázky (FAQ)', 'Kontakty', 'Vychytávky pro váš nákup']),
+      colAccount: norm(this.props.colAccount ?? ['Moje objednávky', 'Faktury', 'Osobní a doručovací údaje', { label: 'Věrnostní program a B2B ceny', href: 'vernostni-program.html' }]),
+      colDiscover: norm(this.props.colDiscover ?? [{ label: 'O Ekokoze', href: 'o-nas.html' }, 'Recepty a návody', 'Slovníček pojmů', 'Organic Lab – kurzy výroby', 'Mirčina mýdla']),
+      colLegal: norm(this.props.colLegal ?? ['Obchodní podmínky', 'Soukromí a cookies', 'Podmínky vrácení a reklamací', 'Identifikační a kontaktní údaje']),
       colInfo: this.props.colInfo ?? ['Doprava a platba', 'Reklamace a vrácení', 'Obchodní podmínky', 'Časté dotazy'],
       colCoop: this.props.colCoop ?? ['B2B a velkoobchod', 'Affiliate program', 'Pro výrobce', 'Staňte se partnerem'],
       iconMail: this.mask('mail-01', 20, 'currentColor'),

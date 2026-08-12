@@ -1,0 +1,180 @@
+Navigace a ovládání
+  search-01  —  hledat
+  menu-02  —  menu
+  cancel-01  —  zavřít
+  arrow-right-01  —  šipka vpravo
+  arrow-left-01  —  šipka vlevo
+  arrow-down-01  —  šipka dolů
+  arrow-up-01  —  šipka nahoru
+  arrow-right-02  —  šipka v odkazu
+  plus-sign  —  přidat
+  minus-sign  —  ubrat
+  tick-01  —  potvrzeno
+  checkmark-circle-01  —  hotovo
+  information-circle  —  informace
+  alert-circle  —  upozornění
+  filter  —  filtr
+  filter-horizontal  —  filtr vodorovně
+  sorting-01  —  řazení
+  grid-view  —  dlaždice
+  view  —  zobrazit
+  link-01  —  odkaz
+  share-01  —  sdílet
+  download-01  —  stáhnout
+  printer  —  tisk
+  home-01  —  domů
+  question  —  otazník
+  help-square  —  nápověda ve čtverci
+  message-question  —  dotaz k produktu
+  plus-sign-circle  —  plus v kolečku
+  minus-sign-circle  —  mínus v kolečku
+  sort-by-up-01  —  řazení vzestupně
+  sort-by-down-01  —  řazení sestupně
+  arrange-by-numbers-1-9  —  řadit od nejlevnějšího
+  sorting-a-z-01  —  řadit A–Z
+  arrange  —  vlastní řazení
+Nákup a košík
+  shopping-cart-01  —  košík
+  shopping-cart-02  —  košík alt.
+  shopping-cart-add-01  —  přidat do košíku
+  shopping-cart-check-in-01  —  dokončit nákup
+  shopping-basket-01  —  nákupní koš
+  shopping-bag-03  —  taška
+  favourite  —  oblíbené
+  star  —  hodnocení
+  star-half  —  půl hvězdy
+  tag-01  —  štítek
+  tags  —  štítky
+  discount-tag-01  —  sleva
+  coupon-01  —  kupon
+  gift  —  dárek
+  gift-card  —  dárkový poukaz
+  credit-card  —  platba kartou
+  wallet-01  —  peněženka
+  invoice-01  —  faktura
+  percent-circle  —  procenta
+  balance-scale  —  porovnat produkty
+  justice-scale-01  —  porovnání alt.
+  versus  —  srovnání dvou
+  exchange-01  —  výměna / záměna
+  thumbs-up  —  líbí se mi
+  thumbs-down  —  nelíbí se mi
+  ticket-star  —  top hodnocení
+  star-filled  —  hvězda plná — hodnocení
+  favourite-filled  —  srdce plné — v oblíbených
+Doprava a objednávka
+  package  —  balík
+  package-open  —  rozbalený balík
+  delivery-box-01  —  přepravní krabice
+  delivery-tracking-01  —  sledování zásilky
+  delivery-return-01  —  vrácení zboží
+  truck-delivery  —  doručení
+  truck-return  —  svoz zpět
+  delivery-secure-01  —  bezpečné doručení
+  store-01  —  výdejní místo
+  location-01  —  adresa
+  clock-01  —  dodací lhůta
+  calendar-01  —  termín
+  delivery-delay-01  —  zpoždění
+  maps  —  mapa
+  map-pin  —  špendlík na mapě
+  maps-location-01  —  výdejní místa
+  google-maps  —  google mapy
+Účet, důvěra a servis
+  user  —  účet
+  user-account  —  můj účet
+  user-circle  —  profil
+  logout-01  —  odhlásit
+  customer-service-01  —  poradenství
+  customer-support  —  podpora
+  bubble-chat  —  dotaz
+  mail-01  —  e-mail
+  call  —  telefon
+  whatsapp  —  whatsapp
+  checkmark-badge-01  —  ověřeno
+  certificate-01  —  certifikát
+  award-01  —  věrnostní program
+  shield-01  —  bezpečnost
+  security-check  —  zabezpečení
+  note-01  —  poznámka
+  book-open-01  —  receptář
+  book-02  —  návod
+  help-circle  —  nápověda
+  login-01  —  přihlásit
+  login-circle-01  —  přihlásit v kolečku
+  telephone  —  pevná linka
+  smart-phone-01  —  mobil
+  notification-01  —  zvoneček
+  notification-02  —  zvoneček alt.
+  notification-bubble  —  nové upozornění
+  eye  —  hlídací pes
+  radar-01  —  hlídání dostupnosti
+  binoculars  —  sledovat produkt
+  alarm-clock  —  upozornit mě
+  task-01  —  návod krok za krokem
+  clipboard  —  postup
+  idea-01  —  tip
+  bulb  —  rada z praxe
+Suroviny a příroda
+  leaf-01  —  list
+  leaf-02  —  list alt.
+  leaf-03  —  list alt. 2
+  plant-01  —  rostlina
+  plant-02  —  rostlina alt.
+  flower  —  květ
+  flower-pot  —  květináč
+  organic-food  —  přírodní původ
+  natural-food  —  přírodní surovina
+  droplet  —  kapka / olej
+  honey-01  —  med / vosk
+  honey-02  —  plástev
+  coffee-beans  —  sypká surovina
+  sun-01  —  sušení / slunce
+  fire  —  zahřívání
+  recycle-01  —  recyklace
+  recycle-02  —  vratný obal
+  sustainable-energy  —  udržitelnost
+  eco-lab-01  —  přírodní laboratoř
+  sparkles  —  novinka
+Výroba, pomůcky a měření
+  test-tube  —  zkumavka
+  test-tube-01  —  zkumavka alt.
+  chemistry-01  —  kádinka
+  chemistry-02  —  chemie / rozbor
+  dropper  —  pipeta / kapátko
+  thermometer  —  teploměr
+  thermometer-warm  —  teplota při výrobě
+  weight-scale  —  váha
+  weight-scale-01  —  váha alt.
+  mortar  —  hmoždíř
+  whisk  —  metlička
+  mixer  —  mixér
+  blender  —  tyčový mixér
+  spatula  —  špachtle
+  spoon  —  lžíce / dávkování
+  knife-01  —  nůž / krájení
+  ruler  —  měřítko
+  tape-measure  —  odměřování
+  glove  —  rukavice
+Kosmetika a hotové produkty
+  body-soap  —  mýdlo
+  shampoo  —  šampon
+  perfume  —  parfém / vůně
+  jar  —  kelímek / sklenice
+  medicine-bottle-01  —  lahvička
+  medicine-bottle-02  —  lahvička alt.
+  medicine-syrup  —  tekutý přípravek
+  bathtub-01  —  koupel
+  bathtub-02  —  koupel alt.
+  milk-bottle  —  mléčná surovina
+  hand-sanitizer  —  dezinfekce / gel
+Obsah a sociální sítě
+  instagram  —  instagram
+  facebook-01  —  facebook
+  youtube  —  youtube
+  play  —  přehrát video
+  video-01  —  video
+  image-01  —  obrázek
+  camera-01  —  fotka
+  news  —  novinky
+  mail-open-01  —  newsletter

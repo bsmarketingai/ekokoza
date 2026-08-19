@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D14405; color: #fff; }
+  a { color: #4C653D; }
+  a:hover { color: #B23803; }
+  .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u:hover { background-size: 100% 1.5px; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover span { background-color: #F6F1E7 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-tool { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px; border: 1.5px solid #E2D9C4; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 14px; font-weight: 600; color: #2A2A24; cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s; }
+  .ek-tool:hover { border-color: #4C653D; background: #FDFBF5; }
+  .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  .ek-card { background: #fff; border: 1px solid #ECE3D2; border-radius: 14px; }
+  .ek-card:hover { transform: none !important; box-shadow: none !important; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
+  .ek-p { margin: 0; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
+  .ek-tear { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: 0; pointer-events: none; box-shadow: inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); clip-path: polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 9.9px, 15.22% 13.6px, 17.39% 7.4px, 19.57% 11.2px, 21.74% 6.1px, 23.91% 10.4px, 26.09% 14.2px, 28.26% 8.1px, 30.43% 4.7px, 32.61% 9.3px, 34.78% 12.8px, 36.96% 6.8px, 39.13% 10.9px, 41.3% 5.2px, 43.48% 13.1px, 45.65% 8.6px, 47.83% 11.7px, 50% 6.4px, 52.17% 9.8px, 54.35% 14.4px, 56.52% 7.9px, 58.7% 11.4px, 60.87% 5.7px, 63.04% 10.2px, 65.22% 13.3px, 67.39% 8.4px, 69.57% 4.9px, 71.74% 12.1px, 73.91% 7.2px, 76.09% 10.7px, 78.26% 14.1px, 80.43% 6.6px, 82.61% 11.9px, 84.78% 8.8px, 86.96% 5.1px, 89.13% 12.6px, 91.3% 9.1px, 93.48% 13.8px, 95.65% 7.7px, 97.83% 10.3px, 100% 5.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 11.1px), 95.65% calc(100% - 7.6px), 93.48% calc(100% - 13.4px), 91.3% calc(100% - 9.2px), 89.13% calc(100% - 5.3px), 86.96% calc(100% - 12.2px), 84.78% calc(100% - 8.7px), 82.61% calc(100% - 11.6px), 80.43% calc(100% - 6.1px), 78.26% calc(100% - 14.3px), 76.09% calc(100% - 9.6px), 73.91% calc(100% - 12.9px), 71.74% calc(100% - 7.1px), 69.57% calc(100% - 10.8px), 67.39% calc(100% - 4.8px), 65.22% calc(100% - 13.7px), 63.04% calc(100% - 8.2px), 60.87% calc(100% - 11.3px), 58.7% calc(100% - 6.7px), 56.52% calc(100% - 10.1px), 54.35% calc(100% - 14.6px), 52.17% calc(100% - 9.4px), 50% calc(100% - 5.6px), 47.83% calc(100% - 12.4px), 45.65% calc(100% - 8.9px), 43.48% calc(100% - 11.8px), 41.3% calc(100% - 6.9px), 39.13% calc(100% - 13.2px), 36.96% calc(100% - 9.7px), 34.78% calc(100% - 5.2px), 32.61% calc(100% - 12.7px), 30.43% calc(100% - 8.3px), 28.26% calc(100% - 11.5px), 26.09% calc(100% - 7.3px), 23.91% calc(100% - 14.5px), 21.74% calc(100% - 9.9px), 19.57% calc(100% - 6.2px), 17.39% calc(100% - 12.8px), 15.22% calc(100% - 8.5px), 13.04% calc(100% - 11.9px), 10.87% calc(100% - 6.4px), 8.7% calc(100% - 13.6px), 6.52% calc(100% - 9.3px), 4.35% calc(100% - 5.7px), 2.17% calc(100% - 12.3px), 0% calc(100% - 8.6px)); }
+  .ek-ordrow { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr) minmax(0,.85fr) auto; gap: 20px; align-items: center; padding: 18px 22px; border-bottom: 1px solid #F3EDE0; }
+  .ek-ordrow:last-child { border-bottom: none; }
+  .ek-ordhead { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr) minmax(0,.85fr) auto; gap: 20px; padding: 12px 22px; background: #FBF8F1; border-bottom: 1px solid #EFE7D6; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
+  .ek-invrow { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.7fr) auto; gap: 20px; align-items: center; padding: 16px 22px; border-bottom: 1px solid #F3EDE0; }
+  .ek-invrow:last-child { border-bottom: none; }
+  .ek-invhead { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.7fr) auto; gap: 20px; padding: 12px 22px; background: #FBF8F1; border-bottom: 1px solid #EFE7D6; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
+  .ek-lbl { display: none; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
+  @media (max-width: 980px) {
+    .ek-h1 { font-size: 32px !important; }
+    .ek-pad { padding-left: 18px !important; padding-right: 18px !important; }
+    .ek-ordhead, .ek-invhead { display: none !important; }
+    .ek-ordrow, .ek-invrow { grid-template-columns: 1fr !important; gap: 12px !important; padding: 18px !important; }
+    .ek-lbl { display: block; }
+    .ek-ordrow > div:last-child, .ek-invrow > div:last-child { align-items: flex-start !important; }
+    .ek-ordrow > div:last-child > div, .ek-invrow > div:last-child > div { justify-content: flex-start !important; }
+    .ek-two { grid-template-columns: 1fr !important; }
+  }
+
+  .ek-fin { width: 100%; height: 46px; padding: 0 14px; border: 1.5px solid #CFC4AA; border-radius: 12px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 15px; color: #2A2A24; outline: none; transition: border-color .18s, box-shadow .18s; }
+  .ek-fin:focus { border-color: #4C653D; box-shadow: 0 0 0 3px rgba(76,101,61,.14); }
+  .ek-fin::placeholder { color: #b3ae9c; }
+  .ek-datewrap { position: relative; display: flex; }
+  .ek-datewrap input { padding-right: 42px; }
+  .ek-datewrap input::-webkit-calendar-picker-indicator { opacity: 0; position: absolute; right: 0; width: 42px; height: 100%; cursor: pointer; }
+  .ek-datewrap input::-webkit-inner-spin-button, .ek-datewrap input::-webkit-clear-button { display: none; }
+  .ek-dateico { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+  .ek-flabel { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .ek-flabel > span { font-size: 13px; font-weight: 600; color: #4A4A42; }
+  .ek-filters { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)) auto; gap: 14px; align-items: end; }
+  .ek-orow { display: grid; grid-template-columns: 118px 100px 108px 118px minmax(0,1fr) 92px 132px 64px; gap: 14px; align-items: center; padding: 14px 22px; border-bottom: 1px solid #F3EDE0; }
+  .ek-orow:last-child { border-bottom: none; }
+  .ek-ohead { display: grid; grid-template-columns: 118px 100px 108px 118px minmax(0,1fr) 92px 132px 64px; gap: 14px; padding: 12px 22px; background: #FBF8F1; border-bottom: 1px solid #EFE7D6; }
+  .ek-sort { display: inline-flex; align-items: center; gap: 5px; background: transparent; border: none; padding: 0; cursor: pointer; font-family: 'Work Sans',sans-serif; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: #8a8776; text-align: left; }
+  .ek-sort:hover { color: #4C653D; }
+  .ek-icobtn { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; flex: 0 0 auto; border: 1.5px solid #E2D9C4; border-radius: 10px; background: #fff; cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s; }
+  .ek-icobtn:hover { border-color: #4C653D; background: #F4F7EA; }
+  .ek-lbl { display: none; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
+  @media (max-width: 1180px) {
+    .ek-orow, .ek-ohead { grid-template-columns: 110px 96px 104px 112px minmax(0,1fr) 120px 60px !important; }
+    .ek-hide-l { display: none !important; }
+  }
+  @media (max-width: 980px) {
+    .ek-filters { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+    .ek-ohead { display: none !important; }
+    .ek-orow { grid-template-columns: 1fr !important; gap: 10px !important; padding: 16px 18px !important; }
+    .ek-lbl { display: block; }
+    .ek-cell { display: grid; grid-template-columns: 130px minmax(0,1fr); gap: 10px; align-items: baseline; }
+  }
+  @media (max-width: 560px) {
+    .ek-filters { grid-template-columns: 1fr !important; }
+    .ek-cell { grid-template-columns: 1fr !important; gap: 2px !important; }
+  }
+
+  .ek-chk-box { width: 22px; height: 22px; flex: 0 0 auto; border: 1.5px solid #CFC4AA; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; transition: border-color .2s, background .2s; }
+  .ek-chk-box > span { opacity: 0; transition: opacity .15s; }
+  .ek-check:hover .ek-chk-box { border-color: #4C653D; }
+  .ek-check input:checked + .ek-chk-box { background: #4C653D; border-color: #4C653D; }
+  .ek-check input:checked + .ek-chk-box > span { opacity: 1; }
+  .ek-check input:focus-visible + .ek-chk-box { outline: 2px solid #4C653D; outline-offset: 2px; }
+  @media (max-width: 900px) { .ek-help { grid-template-columns: repeat(2,minmax(0,1fr)) !important; } }
+  @media (max-width: 520px) { .ek-help { grid-template-columns: 1fr !important; } }
+</style>
+</helmet>
+
+<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+
+  <dc-import name="ui-Header" loggedIn="{{ true }}" hint-size="100%,140px"></dc-import>
+
+  <div style="max-width:1440px; margin:0 auto; position:relative;">
+
+    <section style="padding:22px 32px 0;" class="ek-pad">
+      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
+        <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="330px,20px"></dc-import>
+        <dc-import name="ui-AccountNav" active="objednavky" hint-size="100%,170px"></dc-import>
+        <h1 class="ek-h1">Objednávky</h1>
+      </div>
+    </section>
+
+    <div style="position:relative;">
+      <section style="padding:8px 32px;" class="ek-pad">
+        <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+          <form onSubmit="{{ applyFilter }}" class="ek-filters">
+            <label class="ek-flabel"><span>Objednáno (od)</span><span class="ek-datewrap"><input type="date" class="ek-fin" value="{{ fFrom }}" onInput="{{ setFrom }}"><span class="ek-dateico" style="{{ iconCal }}"></span></span></label>
+            <label class="ek-flabel"><span>Objednávka č.</span><input class="ek-fin" value="{{ fNum }}" onInput="{{ setNum }}" placeholder="8820011821"></label>
+            <label class="ek-flabel"><span>Objednáno (do)</span><span class="ek-datewrap"><input type="date" class="ek-fin" value="{{ fTo }}" onInput="{{ setTo }}"><span class="ek-dateico" style="{{ iconCal }}"></span></span></label>
+            <label class="ek-flabel"><span>Kód produktu</span><input class="ek-fin" value="{{ fCode }}" onInput="{{ setCode }}" placeholder="např. KYSCIT1"></label>
+            <span style="display:flex; gap:10px; align-items:center;">
+              <button type="button" onClick="{{ clearFilter }}" class="ek-tool" style="height:46px;">Smazat filtr</button>
+              <button type="submit" class="ek-btn-main" style="display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 22px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;"><span style="{{ iconFilter }}"></span>Filtrovat</button>
+            </span>
+          </form>
+
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+            <label class="ek-check" style="position:relative; display:flex; align-items:center; gap:11px; cursor:pointer;">
+              <input type="checkbox" checked="{{ onlyOpen }}" onChange="{{ toggleOnlyOpen }}" style="position:absolute; left:0; width:22px; height:22px; margin:0; opacity:0; cursor:pointer;">
+              <span class="ek-chk-box" aria-hidden="true"><span style="{{ iconTick }}"></span></span>
+              <span style="font-size:15px; color:#2A2A24;">Jen nevyřízené</span>
+            </label>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section style="padding:0 32px;" class="ek-pad">
+      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:16px;">
+        <div class="ek-card" style="overflow:hidden;">
+          <div class="ek-ohead">
+            <sc-for list="{{ heads }}" as="h" hint-placeholder-count="8">
+              <span style="{{ h.wrap }}">
+                <sc-if value="{{ h.sortable }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ h.sort }}" class="ek-sort">{{ h.label }}<span style="{{ h.arrow }}"></span></button>
+                </sc-if>
+                <sc-if value="{{ h.plain }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; color:#8a8776;">{{ h.label }}</span>
+                </sc-if>
+              </span>
+            </sc-for>
+          </div>
+
+          <sc-for list="{{ orders }}" as="o" hint-placeholder-count="8">
+            <div class="ek-orow">
+              <span class="ek-cell"><span class="ek-lbl">Číslo</span>
+                <a href="objednavka.html" class="ek-link-u" style="font-size:15px; font-weight:600; color:#4C653D; text-decoration:none; white-space:nowrap;">{{ o.num }}</a>
+              </span>
+              <span class="ek-cell"><span class="ek-lbl">Objednáno</span>
+                <span style="font-size:14.5px; color:#4A4A42; white-space:nowrap;">{{ o.date }}</span>
+              </span>
+              <span class="ek-cell"><span class="ek-lbl">Cena s DPH</span>
+                <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; color:#2D3A2E; white-space:nowrap;">{{ o.price }}</span>
+              </span>
+              <span class="ek-cell"><span class="ek-lbl">Stav</span>
+                <dc-import name="ui-OrderStatus" state="{{ o.state }}" size="{{ 12.5 }}" hint-size="120px,28px"></dc-import>
+              </span>
+              <span class="ek-cell"><span class="ek-lbl">Úhrada / Typ dopravy</span>
+                <span style="font-size:14px; line-height:1.5; color:#4A4A42;">{{ o.payShip }}</span>
+              </span>
+              <span class="ek-cell"><span class="ek-lbl">Sledovat</span>
+                <sc-if value="{{ o.hasTrack }}" hint-placeholder-val="{{ false }}">
+                  <a href="#" title="Sledovat zásilku" class="ek-icobtn"><span style="{{ iconTrack }}"></span></a>
+                </sc-if>
+                <sc-if value="{{ o.noTrack }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-size:14px; color:#b3ae9c;">—</span>
+                </sc-if>
+              </span>
+              <span class="ek-cell ek-hide-l"><span class="ek-lbl">Akce</span>
+                <sc-if value="{{ o.hasMsds }}" hint-placeholder-val="{{ true }}">
+                  <span style="display:flex; align-items:center; gap:7px;">
+                    <a href="#" download="msds-objednavka.zip" title="Stáhnout všechny bezpečnostní listy v ZIP" class="ek-link-u" style="display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:600; color:#4C653D; text-decoration:none;"><span style="{{ iconZip }}"></span>MSDS k surovinám</a>
+                    <button onClick="{{ openMsds }}" aria-label="Co jsou MSDS k surovinám" title="Co jsou MSDS k surovinám" style="{{ iconHelpBtn }}"><span style="{{ iconHelp }}"></span></button>
+                  </span>
+                </sc-if>
+                <sc-if value="{{ o.noMsds }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:14px; color:#b3ae9c;">—</span>
+                </sc-if>
+              </span>
+              <span class="ek-cell"><span class="ek-lbl">Náhled</span>
+                <a href="objednavka.html" title="Náhled objednávky" class="ek-icobtn"><span style="{{ iconZoom }}"></span></a>
+              </span>
+            </div>
+          </sc-for>
+
+          <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:40px 24px; text-align:center; display:flex; flex-direction:column; gap:14px; align-items:center;">
+              <p class="ek-p">Zadanému filtru neodpovídá žádná objednávka.</p>
+              <button onClick="{{ clearFilter }}" class="ek-tool">Smazat filtr</button>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-bottom:8px;">
+          <span style="font-size:14px; color:#6B6B5E;">{{ countLabel }}</span>
+          <div style="display:flex; gap:7px; align-items:center;">
+            <button onClick="{{ prevPage }}" class="ek-icobtn" aria-label="Předchozí strana"><span style="{{ iconPrev }}"></span></button>
+            <sc-for list="{{ pages }}" as="p" hint-placeholder-count="5">
+              <button onClick="{{ p.pick }}" style="{{ p.style }}">{{ p.label }}</button>
+            </sc-for>
+            <button onClick="{{ nextPage }}" class="ek-icobtn" aria-label="Další strana"><span style="{{ iconNext }}"></span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="position:relative;">
+      <section style="padding:26px 32px;" class="ek-pad">
+        <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <p class="ek-eyebrow">Potřebujete pomoc</p>
+            <h2 class="ek-h2">Začněte tím, co právě řešíte.</h2>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px;" class="ek-help">
+            <sc-for list="{{ helpLinks }}" as="h" hint-placeholder-count="4">
+              <a href="{{ h.href }}" class="ek-card" style="display:flex; flex-direction:column; gap:10px; padding:18px; text-decoration:none; color:#2A2A24;">
+                <span style="{{ h.icon }}"></span>
+                <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:19px; color:#4C653D; line-height:1.2;">{{ h.title }}</span>
+                <span style="font-size:13.5px; line-height:1.5; color:#6B6B5E;">{{ h.desc }}</span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div style="max-width:1440px; margin:0 auto;">
+    <dc-import name="ui-Footer" hint-size="100%,520px"></dc-import>
+  </div>
+</div>
+  <sc-if value="{{ msdsOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeMsds }}" role="dialog" aria-label="Bezpečnostní listy — doplňující informace" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(34,48,31,.55); backdrop-filter:blur(5px); font-family:'Work Sans',sans-serif; color:#2A2A24;">
+      <div onClick="{{ stopProp }}" style="position:relative; width:min(560px,100%); max-height:100%; overflow:auto; border-radius:16px; background:#FFFDF6; border:1px solid #E4DAC6; box-shadow:0 30px 70px -28px rgba(45,58,46,.65);">
+        <button onClick="{{ closeMsds }}" aria-label="Zavřít" style="position:absolute; top:14px; right:14px; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#F6F1E7; border:1px solid #E4DAC6; cursor:pointer;"><span style="{{ iconCloseModal }}"></span></button>
+
+        <div style="padding:28px 30px 26px; display:flex; flex-direction:column; gap:20px;">
+          <div style="display:flex; align-items:flex-start; gap:16px; padding-right:44px;">
+            <span style="{{ iconInfoBig }}"></span>
+            <div style="display:flex; flex-direction:column; gap:12px; min-width:0;">
+              <p style="margin:0; font-size:15.5px; line-height:1.7; color:#4A4A42;">Pokud by vám nějaký dokument chyběl, napište nám na <a href="mailto:info@ekokoza.cz" class="ek-link-u" style="text-decoration:none; font-weight:600;">info@ekokoza.cz</a> a rádi vám jej zašleme.</p>
+              <p style="margin:0; font-size:15.5px; line-height:1.7; color:#4A4A42;">Pro zaslání analytických certifikátů nám prosím pošlete fotografii šarže a data spotřeby produktů, ke kterým analýzu potřebujete, a my vám ji zašleme.</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="mailto:info@ekokoza.cz?subject=Bezpe%C4%8Dnostn%C3%AD%20listy%20k%20objedn%C3%A1vce" class="ek-btn-main" style="display:inline-flex; align-items:center; gap:9px; height:46px; padding:0 22px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; text-decoration:none; font-size:15px; font-weight:600; transition:background .2s, border-color .2s;"><span style="{{ iconMailW }}"></span>Napsat na info@ekokoza.cz</a>
+            <button onClick="{{ closeMsds }}" class="ek-tool" style="height:46px; padding:0 20px; font-size:15px;">Zavřít</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { from: '', to: '', num: '', code: '', onlyOpen: false, sort: 'date', dir: 'desc', page: 1, msds: false };
+
+  mask(name, size, color, extra) {
+    const url = 'assets/icons/' + name + '.svg';
+    return 'display:inline-block; width:' + size + 'px; height:' + size + 'px; flex:0 0 auto; background-color:' + color
+      + '; -webkit-mask:url("' + url + '") center / contain no-repeat; mask:url("' + url + '") center / contain no-repeat;' + (extra || '');
+  }
+
+  // Stavy i skladba údajů podle stávajícího e-shopu (přijatá / stornovaná / vyřízená…)
+  static ORDERS = [
+    { num: '8870005229', date: '19.08.2026', amount: 0.12, cur: 'EUR', state: 'new', pay: 'Bankovním převodem', ship: 'Osobní odběr (Fryčovice 297)', msds: false, track: false },
+    { num: '8860002261', date: '19.08.2026', amount: 5.11, cur: 'EUR', state: 'new', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: false },
+    { num: '8810143892', date: '19.08.2026', amount: 1.21, cur: 'Kč', state: 'new', pay: 'Bankovním převodem', ship: 'Osobní odběr (Fryčovice 297)', msds: false, track: false },
+    { num: '8820011821', date: '19.08.2026', amount: 9.67, cur: 'EUR', state: 'new', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
+    { num: '8840018576', date: '19.08.2026', amount: 6.82, cur: 'EUR', state: 'new', pay: 'Kartou online', ship: 'France – zones éloignées / Corse', msds: false, track: false },
+    { num: '8830005737', date: '19.08.2026', amount: 43.39, cur: 'EUR', state: 'sent', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: true },
+    { num: '8850008203', date: '19.08.2026', amount: 8.65, cur: 'EUR', state: 'new', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: false },
+    { num: '8820011803', date: '17.08.2026', amount: 7.69, cur: 'EUR', state: 'cancelled', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
+    { num: '8820011798', date: '17.08.2026', amount: 13.92, cur: 'EUR', state: 'cancelled', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
+    { num: '8870005140', date: '17.08.2026', amount: 2.70, cur: 'EUR', state: 'cancelled', pay: 'Kartou on-line', ship: 'Osobní odběr (Fryčovice 297)', msds: true, track: false },
+    { num: '8840018532', date: '17.08.2026', amount: 7.69, cur: 'EUR', state: 'cancelled', pay: 'PayPal', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
+    { num: '8810143594', date: '17.08.2026', amount: 147.93, cur: 'Kč', state: 'delivered', pay: 'Kartou on-line', ship: 'PPL na adresu', msds: true, track: true },
+    { num: '8860002254', date: '17.08.2026', amount: 6.32, cur: 'EUR', state: 'cancelled', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: false },
+    { num: '8850008188', date: '17.08.2026', amount: 12.98, cur: 'EUR', state: 'delivered', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: true },
+    { num: '8830005729', date: '17.08.2026', amount: 137.09, cur: 'EUR', state: 'delivered', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: true },
+    { num: '8810143117', date: '13.08.2026', amount: 147.93, cur: 'Kč', state: 'cancelled', pay: 'Kartou on-line', ship: 'PPL na adresu', msds: true, track: false },
+    { num: '8870005029', date: '13.08.2026', amount: 2.69, cur: 'EUR', state: 'delivered', pay: 'Bankovním převodem', ship: 'Osobní odběr (Fryčovice 297)', msds: true, track: false },
+    { num: '8860002241', date: '13.08.2026', amount: 8.74, cur: 'EUR', state: 'delivered', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: true },
+  ];
+
+  money(v, cur) {
+    return v.toLocaleString('cs-CZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ' + cur;
+  }
+  toISO(d) { const p = d.split('.'); return p[2] + '-' + p[1] + '-' + p[0]; }
+
+  setSort(key) {
+    this.setState(s => ({ sort: key, dir: s.sort === key && s.dir === 'desc' ? 'asc' : 'desc', page: 1 }));
+  }
+
+  renderVals() {
+    const S = this.state;
+    const OPEN = ['new', 'waiting', 'packing'];
+
+    let list = Component.ORDERS.filter(o => {
+      if (S.num && !o.num.includes(S.num.trim())) return false;
+      if (S.onlyOpen && !OPEN.includes(o.state)) return false;
+      if (S.from && this.toISO(o.date) < S.from) return false;
+      if (S.to && this.toISO(o.date) > S.to) return false;
+      return true;
+    });
+
+    const dir = S.dir === 'asc' ? 1 : -1;
+    const ORDER_RANK = { new: 0, waiting: 1, packing: 2, sent: 3, delivered: 4, returned: 5, cancelled: 6 };
+    list = list.slice().sort((a, b) => {
+      if (S.sort === 'num') return a.num.localeCompare(b.num) * dir;
+      if (S.sort === 'price') return (a.amount - b.amount) * dir;
+      if (S.sort === 'state') return (ORDER_RANK[a.state] - ORDER_RANK[b.state]) * dir;
+      return (this.toISO(a.date) < this.toISO(b.date) ? -1 : this.toISO(a.date) > this.toISO(b.date) ? 1 : 0) * dir;
+    });
+
+    const perPage = 10;
+    const pageCount = Math.max(1, Math.ceil(list.length / perPage));
+    const page = Math.min(S.page, pageCount);
+    const shown = list.slice((page - 1) * perPage, page * perPage);
+
+    const arrow = (key) => {
+      if (S.sort !== key) return this.mask('arrow-down-01', 14, '#c9c3af');
+      return this.mask(S.dir === 'asc' ? 'arrow-up-01' : 'arrow-down-01', 14, '#4C653D');
+    };
+    const HEADS = [
+      ['Číslo', 'num'], ['Objednáno', 'date'], ['Cena s DPH', 'price'], ['Stav', 'state'],
+      ['Úhrada / Typ dopravy', null], ['Sledovat', null], ['Akce', null], ['Náhled', null],
+    ];
+
+    return {
+      crumbs: [
+        { label: 'Úvod', href: 'index.html' },
+        { label: 'Můj účet', href: 'ucet.html' },
+        { label: 'Objednávky' },
+      ],
+      heads: HEADS.map(([label, key], i) => ({
+        label,
+        sortable: !!key,
+        plain: !key,
+        sort: key ? () => this.setSort(key) : null,
+        arrow: key ? arrow(key) : '',
+        wrap: 'display:flex; align-items:center;' + (i >= 5 ? ' justify-content:flex-start;' : '') + (i === 6 ? ' ' : ''),
+      })),
+      fFrom: S.from, fTo: S.to, fNum: S.num, fCode: S.code,
+      setFrom: (e) => this.setState({ from: e.target.value, page: 1 }),
+      setTo: (e) => this.setState({ to: e.target.value, page: 1 }),
+      setNum: (e) => this.setState({ num: e.target.value, page: 1 }),
+      setCode: (e) => this.setState({ code: e.target.value, page: 1 }),
+      applyFilter: (e) => { e.preventDefault(); this.setState({ page: 1 }); },
+      clearFilter: () => this.setState({ from: '', to: '', num: '', code: '', onlyOpen: false, page: 1 }),
+      onlyOpen: S.onlyOpen,
+      toggleOnlyOpen: () => this.setState(s => ({ onlyOpen: !s.onlyOpen, page: 1 })),
+
+      orders: shown.map(o => ({
+        num: o.num,
+        date: o.date,
+        price: this.money(o.amount, o.cur),
+        state: o.state,
+        payShip: o.pay + ' / ' + o.ship,
+        hasTrack: o.track,
+        noTrack: !o.track,
+        hasMsds: o.msds,
+        noMsds: !o.msds,
+      })),
+      isEmpty: list.length === 0,
+      countLabel: list.length === 0 ? 'Žádné objednávky' : 'Zobrazeno ' + shown.length + ' z ' + list.length + ' objednávek',
+
+      pages: Array.from({ length: pageCount }, (_, i) => i + 1).map(n => ({
+        label: String(n),
+        pick: () => this.setState({ page: n }),
+        style: "min-width:38px; height:38px; padding:0 11px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; cursor:pointer; transition:all .2s;"
+          + (n === page ? ' background:#4C653D; border:1.5px solid #4C653D; color:#F6F1E7;' : ' background:#fff; border:1.5px solid #E2D9C4; color:#2A2A24;'),
+      })),
+      prevPage: () => this.setState({ page: Math.max(1, page - 1) }),
+      nextPage: () => this.setState({ page: Math.min(pageCount, page + 1) }),
+
+      helpLinks: [
+        { title: 'Kde je moje objednávka?', desc: 'Sledování zásilky podle čísla.', href: '#', icon: 'delivery-tracking-01' },
+        { title: 'Vrácení a reklamace', desc: 'Jak postupovat a do kdy.', href: '#', icon: 'delivery-return-01' },
+        { title: 'Platba a doprava', desc: 'Ceny, dopravci, termíny.', href: '#', icon: 'truck-delivery' },
+        { title: 'Časté otázky', desc: 'Odpovědi na to nejčastější.', href: '#', icon: 'help-circle' },
+      ].map(h => Object.assign({}, h, { icon: this.mask(h.icon, 24, '#4C653D') })),
+
+      msdsOpen: this.state.msds,
+      openMsds: (e) => { if (e) e.preventDefault(); this.setState({ msds: true }); },
+      closeMsds: () => this.setState({ msds: false }),
+      stopProp: (e) => e.stopPropagation(),
+      iconInfoBig: this.mask('information-circle', 30, '#7BA23F'),
+      iconZip: this.mask('file-01', 15, '#4C653D'),
+      iconMailW: this.mask('mail-01', 17, '#fff'),
+      iconCloseModal: this.mask('cancel-01', 20, '#4C653D'),
+      iconHelpBtn: 'display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; flex:0 0 auto; padding:0; border:none; border-radius:50%; background:transparent; cursor:pointer;',
+      iconTick: this.mask('tick-01', 14, '#F6F1E7'),
+      iconFilter: this.mask('filter-horizontal', 16, '#fff'),
+      iconCal: this.mask('calendar-01', 18, '#8a8776'),
+      iconZoom: this.mask('search-01', 18, '#4C653D'),
+      iconTrack: this.mask('delivery-tracking-01', 18, '#4C653D'),
+      iconHelp: this.mask('help-circle', 16, '#8a8776'),
+      iconPrev: this.mask('arrow-left-01', 17, '#4C653D'),
+      iconNext: this.mask('arrow-right-01', 17, '#4C653D'),
+    };
+  }
+}
+</script>
+</body>
+</html>

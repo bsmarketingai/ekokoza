@@ -38,6 +38,17 @@ class Component extends DCLogic {
     if (this.props.onChange) this.props.onChange(q);
   }
 
+  step(delta) {
+    const min = Number(this.props.min ?? 1);
+    const max = Number(this.props.max ?? 99);
+    this.setState(st => {
+      const cur = st.qty ?? Number(this.props.value ?? min);
+      const q = Math.min(max, Math.max(min, cur + delta));
+      if (this.props.onChange) this.props.onChange(q);
+      return { qty: q };
+    });
+  }
+
   renderVals() {
     const min = Number(this.props.min ?? 1);
     const max = Number(this.props.max ?? 99);
@@ -47,10 +58,10 @@ class Component extends DCLogic {
       qty,
       atMin: qty <= min,
       atMax: qty >= max,
-      dec: () => this.set(qty - 1),
-      inc: () => this.set(qty + 1),
-      iconMinus: this.mask('minus-sign', 24, '#4C653D'),
-      iconPlus: this.mask('plus-sign', 24, '#4C653D'),
+      dec: () => this.step(-1),
+      inc: () => this.step(1),
+      iconMinus: this.mask('minus-sign', 18, '#4C653D'),
+      iconPlus: this.mask('plus-sign', 18, '#4C653D'),
     };
   }
 }

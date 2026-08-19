@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .ek-ca-close { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; flex: 0 0 auto; border-radius: 50%; background: #F6F1E7; border: 1px solid #E4DAC6; cursor: pointer; transition: background .18s, border-color .18s; }
+  .ek-ca-close:hover { background: #EFE7D6; border-color: #CFC4AA; }
+  .ek-ca-cta { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 52px; padding: 0 28px; border: 1.5px solid #D14405; border-radius: 999px; background: #D14405; color: #fff; text-decoration: none; font-family: 'Work Sans',sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s; }
+  .ek-ca-cta:hover { background: #B23803; border-color: #B23803; }
+  .ek-ca-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 22px; border: 1.5px solid #CFC4AA; border-radius: 999px; background: #fff; color: #4C653D; text-decoration: none; font-family: 'Work Sans',sans-serif; font-size: 15.5px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s; }
+  .ek-ca-ghost:hover { background: #F6F1E7; border-color: #4C653D; }
+  .ek-ca-toggle { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 13px 16px; border: 1px solid #ECE3D2; border-radius: 12px; background: #fff; cursor: pointer; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; color: #4C653D; text-align: left; transition: background .18s, border-color .18s; }
+  .ek-ca-toggle:hover { background: #FDFBF5; border-color: #CFC4AA; }
+  .ek-ca-link { color: #4C653D; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .ek-ca-link:hover { color: #B23803; }
+  @keyframes ekCaIn { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: none; } }
+  @media (max-width: 640px) {
+    .ek-ca-wrap { padding: 0 !important; align-items: stretch !important; }
+    .ek-ca-panel { width: 100% !important; max-width: none !important; max-height: none !important; height: 100% !important; border-radius: 0 !important; border: none !important; animation: none !important; }
+    .ek-ca-head { padding: 16px 18px !important; }
+    .ek-ca-body { padding: 16px 18px !important; }
+    .ek-ca-foot { padding: 14px 18px 18px !important; }
+    .ek-ca-sum { flex-direction: column !important; align-items: stretch !important; }
+    .ek-ca-sum > a, .ek-ca-sum > button { width: 100%; }
+    .ek-ca-mobile-only { display: flex !important; }
+    .ek-ca-item { grid-template-columns: 64px minmax(0,1fr) !important; }
+    .ek-ca-item > span:last-child { grid-column: 2; justify-self: start !important; text-align: left !important; }
+  }
+</style>
+</helmet>
+<sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}">
+  <div onClick="{{ close }}" class="ek-ca-wrap" role="dialog" aria-modal="true" aria-label="Přidáno do košíku" style="position:fixed; inset:0; z-index:500; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(34,48,31,.55); backdrop-filter:blur(5px); font-family:'Work Sans',sans-serif;">
+    <div onClick="{{ stop }}" class="ek-ca-panel" style="display:flex; flex-direction:column; width:min(680px,100%); max-height:100%; border-radius:16px; background:#FFFDF6; border:1px solid #E4DAC6; box-shadow:0 34px 80px -30px rgba(45,58,46,.65); overflow:hidden; animation:ekCaIn .2s ease-out;">
+
+      <div class="ek-ca-head" style="display:flex; align-items:flex-start; gap:16px; padding:22px 26px 18px; border-bottom:1px solid #EFE7D6; background:#fff;">
+        <span style="{{ iconOk }}"></span>
+        <span style="display:flex; flex-direction:column; gap:3px; min-width:0; flex:1;">
+          <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:25px; line-height:1.2; color:#2D3A2E;">{{ headline }}</span>
+          <span style="font-size:14px; color:#6B6B5E;">{{ subline }}</span>
+        </span>
+        <button onClick="{{ close }}" class="ek-ca-close" aria-label="Zavřít"><span style="{{ iconClose }}"></span></button>
+      </div>
+
+      <div class="ek-ca-body" style="flex:1; min-height:0; overflow:auto; padding:20px 26px; display:flex; flex-direction:column; gap:16px;">
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ items }}" as="it" hint-placeholder-count="2">
+            <div class="ek-ca-item" style="display:grid; grid-template-columns:64px minmax(0,1fr) auto; gap:14px; align-items:center; padding:12px 14px; border:1px solid #ECE3D2; border-radius:12px; background:#fff;">
+              <img src="{{ it.img }}" alt="" style="width:64px; height:64px; object-fit:cover; border-radius:9px; background:#F6F1E7;">
+              <span style="display:flex; flex-direction:column; gap:5px; min-width:0;">
+                <span style="font-size:15.5px; font-weight:600; line-height:1.35; color:#2A2A24;">{{ it.title }}</span>
+                <span style="font-size:13.5px; color:#6B6B5E;">{{ it.meta }}</span>
+                <dc-import name="ui-Stock" state="{{ it.state }}" date="{{ it.date }}" withNote="{{ true }}" noteFocusable="{{ false }}" size="{{ 12.5 }}" hint-size="160px,18px"></dc-import>
+              </span>
+              <span style="display:flex; flex-direction:column; gap:2px; align-items:flex-end; text-align:right; flex:0 0 auto;">
+                <span style="font-family:'EB Garamond',serif; font-size:20px; font-weight:500; color:#4C653D; white-space:nowrap;">{{ it.total }}</span>
+                <span style="font-size:12.5px; color:#8a8776; white-space:nowrap;">{{ it.noVat }}</span>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px; padding:16px 18px; border:1px solid rgba(76,101,61,.2); border-radius:14px; background:#F4F7EA;">
+          <span style="display:flex; align-items:center; gap:10px; font-size:14.5px; font-weight:600; color:#3F5731;">
+            <span style="{{ iconTruck }}"></span>{{ shippingLabel }}
+          </span>
+          <dc-import name="ui-LoyaltyStatus" variant="compact" turnover="{{ turnover }}" showScale="{{ false }}" hint-size="100%,72px"></dc-import>
+          <a href="vernostni-program.html" class="ek-ca-link" style="align-self:flex-start; font-size:14px;">Jak funguje věrnostní program</a>
+        </div>
+
+        <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; flex-direction:column; gap:9px;">
+            <button onClick="{{ toggleCart }}" class="ek-ca-toggle" aria-expanded="{{ cartOpen }}">
+              <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
+                <span>{{ cartToggleLabel }}</span>
+                <span style="font-size:13px; font-weight:400; color:#6B6B5E;">{{ cartTotalLabel }}</span>
+              </span>
+              <span style="{{ iconChevron }}"></span>
+            </button>
+            <sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:2px; padding:6px 4px; border:1px solid #ECE3D2; border-radius:12px; background:#fff;">
+                <sc-for list="{{ cartItems }}" as="c" hint-placeholder-count="3">
+                  <span style="display:grid; grid-template-columns:44px minmax(0,1fr) auto; gap:12px; align-items:center; padding:9px 12px;">
+                    <img src="{{ c.img }}" alt="" style="width:44px; height:44px; object-fit:cover; border-radius:7px; background:#F6F1E7;">
+                    <span style="display:flex; flex-direction:column; gap:1px; min-width:0;">
+                      <span style="font-size:14.5px; font-weight:500; color:#2A2A24;">{{ c.title }}</span>
+                      <span style="font-size:12.5px; color:#8a8776;">{{ c.qty }}</span>
+                    </span>
+                    <span style="font-size:14.5px; font-weight:600; color:#2A2A24; white-space:nowrap;">{{ c.price }}</span>
+                  </span>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+
+      <div class="ek-ca-foot" style="padding:16px 26px 20px; border-top:1px solid #EFE7D6; background:#fff; display:flex; flex-direction:column; gap:12px;">
+        <div class="ek-ca-sum" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+          <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
+            <span style="font-size:13px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Přidané zboží</span>
+            <span style="font-family:'EB Garamond',serif; font-size:28px; font-weight:500; line-height:1.1; color:#2D3A2E;">{{ addedTotal }}</span>
+          </span>
+          <a href="kosik.html" class="ek-ca-cta">{{ ctaLabel }}<span style="{{ iconArrow }}"></span></a>
+        </div>
+        <button onClick="{{ close }}" class="ek-ca-ghost ek-ca-mobile-only" style="display:none;"><span style="{{ iconBack }}"></span>Zpět do obchodu</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:720},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string,variant?:string,qty:number,price:number,noVat?:number,img?:string,state?:string,date?:string}[]&quot;},&quot;cartItems&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string,qty?:number,price:number,img?:string}[]&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;turnover&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:7400,&quot;min&quot;:0,&quot;max&quot;:60000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Přejít do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;()=&gt;void&quot;}}">
+class Component extends DCLogic {
+  state = { cartOpen: false, closed: false };
+
+  mask(name, size, color) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    return 'display:inline-block; width:' + size + 'px; height:' + size + 'px; flex:0 0 auto; background-color:' + color
+      + '; -webkit-mask:url("' + base + 'assets/icons/' + name + '.svg") center / contain no-repeat; mask:url("' + base + 'assets/icons/' + name + '.svg") center / contain no-repeat;';
+  }
+
+  componentDidMount() {
+    this._esc = (e) => { if (e.key === 'Escape') this.close(); };
+    window.addEventListener('keydown', this._esc);
+  }
+
+  componentWillUnmount() { window.removeEventListener('keydown', this._esc); }
+
+  close = () => {
+    this.setState({ closed: true, cartOpen: false });
+    if (this.props.onClose) this.props.onClose();
+  };
+
+  money(n) {
+    return new Intl.NumberFormat('cs-CZ').format(Math.round(n)) + ' Kč';
+  }
+
+  renderVals() {
+    const open = (this.props.open ?? true) && !this.state.closed;
+    const items = (this.props.items ?? [
+      { title: 'Přírodní jíl – bílý', variant: '100 g', qty: 2, price: 49, noVat: 40, img: 'assets/products/kyselina-citronova-1-kg.webp', state: 'ready' },
+    ]).filter(i => Number(i.qty) > 0);
+    const pieces = items.reduce((s, i) => s + Number(i.qty), 0);
+    const added = items.reduce((s, i) => s + Number(i.qty) * Number(i.price), 0);
+    const addedNoVat = items.reduce((s, i) => s + Number(i.qty) * Number(i.noVat ?? i.price * 0.826), 0);
+    const cartItems = this.props.cartItems ?? [];
+    const cartTotal = Number(this.props.cartTotal ?? 0) + added;
+    const cartCount = Number(this.props.cartCount ?? cartItems.length) + items.length;
+    const plural = (n, a, b, c) => n === 1 ? a : (n < 5 ? b : c);
+
+    return {
+      isOpen: open,
+      close: this.close,
+      stop: (e) => e.stopPropagation(),
+      headline: items.length > 1
+        ? 'Přidáno ' + items.length + ' ' + plural(items.length, 'varianta', 'varianty', 'variant')
+        : pieces + ' ' + plural(pieces, 'kus přidán', 'kusy přidány', 'kusů přidáno') + ' do košíku',
+      subline: items.length > 1
+        ? pieces + ' ' + plural(pieces, 'kus', 'kusy', 'kusů') + ' dohromady · zboží zůstává v košíku, dokud objednávku nedokončíte'
+        : 'Zboží zůstává v košíku, dokud objednávku nedokončíte.',
+      items: items.map(i => ({
+        title: i.title,
+        meta: i.variant ? i.variant + ' · ' + i.qty + ' × ' + this.money(i.price) : i.qty + ' × ' + this.money(i.price),
+        total: this.money(Number(i.qty) * Number(i.price)),
+        noVat: this.money(Number(i.qty) * Number(i.noVat ?? i.price * 0.826)) + ' bez DPH',
+        img: i.img ?? 'assets/products/kyselina-citronova-1-kg.webp',
+        state: i.state ?? 'ready',
+        date: i.date ?? '',
+      })),
+      addedTotal: this.money(added),
+      addedNoVat: this.money(addedNoVat) + ' bez DPH',
+      ctaLabel: this.props.ctaLabel ?? 'Přejít do košíku',
+      shippingLabel: added + Number(this.props.cartTotal ?? 0) >= 2000
+        ? 'Dopravu máte zdarma.'
+        : 'Do dopravy zdarma chybí ' + this.money(2000 - added - Number(this.props.cartTotal ?? 0)) + '.',
+      turnover: Number(this.props.turnover ?? 7400),
+      hasCart: cartItems.length > 0,
+      cartOpen: this.state.cartOpen,
+      toggleCart: () => this.setState({ cartOpen: !this.state.cartOpen }),
+      cartToggleLabel: (this.state.cartOpen ? 'Skrýt obsah košíku' : 'Zobrazit obsah košíku')
+        + ' (' + cartCount + ' ' + plural(cartCount, 'produkt', 'produkty', 'produktů') + ')',
+      cartTotalLabel: 'V košíku celkem ' + this.money(cartTotal),
+      cartItems: cartItems.map(c => ({
+        title: c.title,
+        qty: (c.qty ?? 1) + ' × ' + this.money(c.price),
+        price: this.money(Number(c.qty ?? 1) * Number(c.price)),
+        img: c.img ?? 'assets/products/kyselina-citronova-1-kg.webp',
+      })),
+      iconOk: this.mask('checkmark-circle-01', 30, '#6E9134'),
+      iconClose: this.mask('cancel-01', 20, '#4C653D'),
+      iconTruck: this.mask('truck-delivery-01', 20, '#4C653D'),
+      iconChevron: this.mask(this.state.cartOpen ? 'arrow-up-01' : 'arrow-down-01', 22, '#4C653D'),
+      iconArrow: this.mask('arrow-right-01', 20, '#fff'),
+      iconBack: this.mask('arrow-left-01', 20, '#4C653D'),
+    };
+  }
+}
+</script>
+</body>
+</html>

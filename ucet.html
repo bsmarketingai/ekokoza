@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D14405; color: #fff; }
+  a { color: #4C653D; }
+  a:hover { color: #B23803; }
+  .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u:hover { background-size: 100% 1.5px; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover span { background-color: #F6F1E7 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-tool { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px; border: 1.5px solid #E2D9C4; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 14px; font-weight: 600; color: #2A2A24; cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s; }
+  .ek-tool:hover { border-color: #4C653D; background: #FDFBF5; }
+  .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  .ek-card { background: #fff; border: 1px solid #ECE3D2; border-radius: 14px; }
+  .ek-card:hover { transform: none !important; box-shadow: none !important; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
+  .ek-p { margin: 0; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
+  .ek-tear { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: 0; pointer-events: none; box-shadow: inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); clip-path: polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 9.9px, 15.22% 13.6px, 17.39% 7.4px, 19.57% 11.2px, 21.74% 6.1px, 23.91% 10.4px, 26.09% 14.2px, 28.26% 8.1px, 30.43% 4.7px, 32.61% 9.3px, 34.78% 12.8px, 36.96% 6.8px, 39.13% 10.9px, 41.3% 5.2px, 43.48% 13.1px, 45.65% 8.6px, 47.83% 11.7px, 50% 6.4px, 52.17% 9.8px, 54.35% 14.4px, 56.52% 7.9px, 58.7% 11.4px, 60.87% 5.7px, 63.04% 10.2px, 65.22% 13.3px, 67.39% 8.4px, 69.57% 4.9px, 71.74% 12.1px, 73.91% 7.2px, 76.09% 10.7px, 78.26% 14.1px, 80.43% 6.6px, 82.61% 11.9px, 84.78% 8.8px, 86.96% 5.1px, 89.13% 12.6px, 91.3% 9.1px, 93.48% 13.8px, 95.65% 7.7px, 97.83% 10.3px, 100% 5.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 11.1px), 95.65% calc(100% - 7.6px), 93.48% calc(100% - 13.4px), 91.3% calc(100% - 9.2px), 89.13% calc(100% - 5.3px), 86.96% calc(100% - 12.2px), 84.78% calc(100% - 8.7px), 82.61% calc(100% - 11.6px), 80.43% calc(100% - 6.1px), 78.26% calc(100% - 14.3px), 76.09% calc(100% - 9.6px), 73.91% calc(100% - 12.9px), 71.74% calc(100% - 7.1px), 69.57% calc(100% - 10.8px), 67.39% calc(100% - 4.8px), 65.22% calc(100% - 13.7px), 63.04% calc(100% - 8.2px), 60.87% calc(100% - 11.3px), 58.7% calc(100% - 6.7px), 56.52% calc(100% - 10.1px), 54.35% calc(100% - 14.6px), 52.17% calc(100% - 9.4px), 50% calc(100% - 5.6px), 47.83% calc(100% - 12.4px), 45.65% calc(100% - 8.9px), 43.48% calc(100% - 11.8px), 41.3% calc(100% - 6.9px), 39.13% calc(100% - 13.2px), 36.96% calc(100% - 9.7px), 34.78% calc(100% - 5.2px), 32.61% calc(100% - 12.7px), 30.43% calc(100% - 8.3px), 28.26% calc(100% - 11.5px), 26.09% calc(100% - 7.3px), 23.91% calc(100% - 14.5px), 21.74% calc(100% - 9.9px), 19.57% calc(100% - 6.2px), 17.39% calc(100% - 12.8px), 15.22% calc(100% - 8.5px), 13.04% calc(100% - 11.9px), 10.87% calc(100% - 6.4px), 8.7% calc(100% - 13.6px), 6.52% calc(100% - 9.3px), 4.35% calc(100% - 5.7px), 2.17% calc(100% - 12.3px), 0% calc(100% - 8.6px)); }
+  .ek-ordrow { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr) minmax(0,.85fr) auto; gap: 20px; align-items: center; padding: 18px 22px; border-bottom: 1px solid #F3EDE0; }
+  .ek-ordrow:last-child { border-bottom: none; }
+  .ek-ordhead { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr) minmax(0,.85fr) auto; gap: 20px; padding: 12px 22px; background: #FBF8F1; border-bottom: 1px solid #EFE7D6; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
+  .ek-invrow { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.7fr) auto; gap: 20px; align-items: center; padding: 16px 22px; border-bottom: 1px solid #F3EDE0; }
+  .ek-invrow:last-child { border-bottom: none; }
+  .ek-invhead { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.7fr) auto; gap: 20px; padding: 12px 22px; background: #FBF8F1; border-bottom: 1px solid #EFE7D6; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
+  .ek-lbl { display: none; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
+  @media (max-width: 980px) {
+    .ek-h1 { font-size: 32px !important; }
+    .ek-pad { padding-left: 18px !important; padding-right: 18px !important; }
+    .ek-ordhead, .ek-invhead { display: none !important; }
+    .ek-ordrow, .ek-invrow { grid-template-columns: 1fr !important; gap: 12px !important; padding: 18px !important; }
+    .ek-lbl { display: block; }
+    .ek-ordrow > div:last-child, .ek-invrow > div:last-child { align-items: flex-start !important; }
+    .ek-ordrow > div:last-child > div, .ek-invrow > div:last-child > div { justify-content: flex-start !important; }
+    .ek-two { grid-template-columns: 1fr !important; }
+  }
+
+  .ek-in { width: 100%; height: 48px; padding: 0 15px; border: 1.5px solid #CFC4AA; border-radius: 12px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 15.5px; color: #2A2A24; outline: none; transition: border-color .18s, box-shadow .18s; }
+  .ek-in:focus { border-color: #4C653D; box-shadow: 0 0 0 3px rgba(76,101,61,.14); }
+  .ek-in::placeholder { color: #b3ae9c; }
+  textarea.ek-in { height: auto; min-height: 96px; padding: 12px 15px; line-height: 1.55; resize: vertical; }
+  select.ek-in { appearance: none; cursor: pointer; }
+  .ek-fld { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .ek-fld > span:first-child { font-size: 13px; font-weight: 600; color: #4A4A42; }
+  .ek-grid2 { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+  .ek-grid3 { display: grid; grid-template-columns: minmax(0,1fr) 130px minmax(0,1.2fr); gap: 16px; }
+  .ek-check { position: relative; display: flex; align-items: flex-start; gap: 12px; cursor: pointer; padding: 4px 0; }
+  .ek-check input { position: absolute; left: 0; top: 6px; width: 22px; height: 22px; margin: 0; opacity: 0; cursor: pointer; }
+  .ek-chk-box { width: 22px; height: 22px; flex: 0 0 auto; border: 1.5px solid #CFC4AA; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: border-color .2s, background .2s; }
+  .ek-chk-box > span { opacity: 0; transition: opacity .15s; }
+  .ek-check:hover .ek-chk-box { border-color: #4C653D; }
+  .ek-check input:checked + .ek-chk-box { background: #4C653D; border-color: #4C653D; }
+  .ek-check input:checked + .ek-chk-box > span { opacity: 1; }
+  .ek-check input:focus-visible + .ek-chk-box { outline: 2px solid #4C653D; outline-offset: 2px; }
+  @media (max-width: 760px) {
+    .ek-grid2, .ek-grid3 { grid-template-columns: 1fr !important; }
+    .ek-loy-scale { grid-template-columns: 1fr !important; }
+  }
+</style>
+</helmet>
+
+<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+
+  <dc-import name="ui-Header" loggedIn="{{ true }}" hint-size="100%,140px"></dc-import>
+
+  <div style="max-width:1440px; margin:0 auto; position:relative;">
+
+    <section style="padding:22px 32px 0;" class="ek-pad">
+      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
+        <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="330px,20px"></dc-import>
+        <dc-import name="ui-AccountNav" active="ucet" hint-size="100%,170px"></dc-import>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <h1 class="ek-h1">Správa účtu</h1>
+          <p class="ek-p" style="max-width:70ch;">Osobní, fakturační a doručovací údaje. Změny se použijí u další objednávky — už vytvořené objednávky a faktury zůstanou beze změny.</p>
+        </div>
+
+        <form onSubmit="{{ save }}" style="display:flex; flex-direction:column; gap:18px;">
+
+          <div class="ek-card" style="padding:22px 24px; display:flex; flex-direction:column; gap:16px;">
+            <label class="ek-check">
+              <input type="checkbox" checked="{{ company }}" onChange="{{ toggleCompany }}">
+              <span class="ek-chk-box" aria-hidden="true"><span style="{{ iconTick }}"></span></span>
+              <span style="display:flex; flex-direction:column; gap:3px;">
+                <span style="font-size:15.5px; font-weight:600; color:#2A2A24;">Nakupuji na firmu</span>
+                <span style="font-size:13.5px; line-height:1.5; color:#6B6B5E;">Doplníme na fakturu IČ a DIČ. U plátců DPH uvidíte ceny bez daně.</span>
+              </span>
+            </label>
+            <sc-if value="{{ company }}" hint-placeholder-val="{{ false }}">
+              <div class="ek-grid3">
+                <label class="ek-fld"><span>Název firmy</span><input class="ek-in" value="{{ f.companyName }}" onInput="{{ set.companyName }}" placeholder="bsshop s.r.o."></label>
+                <label class="ek-fld"><span>IČ</span><input class="ek-in" value="{{ f.ic }}" onInput="{{ set.ic }}" inputMode="numeric" placeholder="12345678"></label>
+                <label class="ek-fld"><span>DIČ</span><input class="ek-in" value="{{ f.dic }}" onInput="{{ set.dic }}" placeholder="CZ12345678"></label>
+              </div>
+            </sc-if>
+          </div>
+
+          <div class="ek-card" style="padding:22px 24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:11px;">
+              <span style="{{ iconUser }}"></span>
+              <h2 class="ek-h2" style="font-size:22px;">Osobní údaje</h2>
+            </div>
+            <div class="ek-grid2">
+              <label class="ek-fld"><span>Jméno</span><input class="ek-in" value="{{ f.firstName }}" onInput="{{ set.firstName }}" autoComplete="given-name"></label>
+              <label class="ek-fld"><span>Příjmení</span><input class="ek-in" value="{{ f.lastName }}" onInput="{{ set.lastName }}" autoComplete="family-name"></label>
+              <label class="ek-fld"><span>E-mail</span><input class="ek-in" type="email" value="{{ f.email }}" onInput="{{ set.email }}" autoComplete="email"></label>
+              <label class="ek-fld"><span>Telefon</span><input class="ek-in" type="tel" value="{{ f.phone }}" onInput="{{ set.phone }}" autoComplete="tel" placeholder="+420 601 365 245"></label>
+            </div>
+            <p style="margin:0; font-size:13px; line-height:1.55; color:#8a8776;">E-mail slouží zároveň jako přihlašovací jméno. Po jeho změně vám pošleme potvrzovací odkaz.</p>
+          </div>
+
+          <div class="ek-card" style="padding:22px 24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:11px;">
+              <span style="{{ iconInvoice }}"></span>
+              <h2 class="ek-h2" style="font-size:22px;">Fakturační adresa</h2>
+            </div>
+            <div class="ek-grid3">
+              <label class="ek-fld"><span>Ulice a číslo popisné</span><input class="ek-in" value="{{ f.street }}" onInput="{{ set.street }}" autoComplete="street-address"></label>
+              <label class="ek-fld"><span>PSČ</span><input class="ek-in" value="{{ f.zip }}" onInput="{{ set.zip }}" inputMode="numeric" autoComplete="postal-code"></label>
+              <label class="ek-fld"><span>Město</span><input class="ek-in" value="{{ f.city }}" onInput="{{ set.city }}" autoComplete="address-level2"></label>
+            </div>
+            <label class="ek-fld" style="max-width:320px;"><span>Země</span>
+              <span style="position:relative; display:flex;">
+                <select class="ek-in" value="{{ f.country }}" onChange="{{ set.country }}" style="padding-right:40px;">
+                  <sc-for list="{{ countries }}" as="c" hint-placeholder-count="2">
+                    <option value="{{ c }}">{{ c }}</option>
+                  </sc-for>
+                </select>
+                <span style="{{ iconCaret }}"></span>
+              </span>
+            </label>
+          </div>
+
+          <div class="ek-card" style="padding:22px 24px; display:flex; flex-direction:column; gap:16px;">
+            <label class="ek-check">
+              <input type="checkbox" checked="{{ otherDelivery }}" onChange="{{ toggleDelivery }}">
+              <span class="ek-chk-box" aria-hidden="true"><span style="{{ iconTick }}"></span></span>
+              <span style="display:flex; flex-direction:column; gap:3px;">
+                <span style="font-size:15.5px; font-weight:600; color:#2A2A24;">Adresa dodání je jiná než fakturační</span>
+                <span style="font-size:13.5px; line-height:1.5; color:#6B6B5E;">Hodí se, když posíláte zboží do práce nebo na jinou adresu.</span>
+              </span>
+            </label>
+            <sc-if value="{{ otherDelivery }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:16px;">
+                <div class="ek-grid2">
+                  <label class="ek-fld"><span>Jméno a příjmení</span><input class="ek-in" value="{{ f.dName }}" onInput="{{ set.dName }}"></label>
+                  <label class="ek-fld"><span>Telefon pro dopravce</span><input class="ek-in" type="tel" value="{{ f.dPhone }}" onInput="{{ set.dPhone }}"></label>
+                </div>
+                <div class="ek-grid3">
+                  <label class="ek-fld"><span>Ulice a číslo popisné</span><input class="ek-in" value="{{ f.dStreet }}" onInput="{{ set.dStreet }}"></label>
+                  <label class="ek-fld"><span>PSČ</span><input class="ek-in" value="{{ f.dZip }}" onInput="{{ set.dZip }}" inputMode="numeric"></label>
+                  <label class="ek-fld"><span>Město</span><input class="ek-in" value="{{ f.dCity }}" onInput="{{ set.dCity }}"></label>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div class="ek-card" style="padding:22px 24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:11px;">
+                <span style="{{ iconLock }}"></span>
+                <h2 class="ek-h2" style="font-size:22px;">Heslo</h2>
+              </div>
+              <button type="button" onClick="{{ togglePwd }}" class="ek-tool">{{ pwdLabel }}</button>
+            </div>
+            <sc-if value="{{ pwdOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:16px;">
+                <div class="ek-grid2">
+                  <label class="ek-fld"><span>Nové heslo</span><input class="ek-in" type="password" value="{{ f.pwd1 }}" onInput="{{ set.pwd1 }}" autoComplete="new-password"></label>
+                  <label class="ek-fld"><span>Potvrzení hesla</span><input class="ek-in" type="password" value="{{ f.pwd2 }}" onInput="{{ set.pwd2 }}" autoComplete="new-password"></label>
+                </div>
+                <sc-if value="{{ pwdMismatch }}" hint-placeholder-val="{{ false }}">
+                  <span style="display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600; color:#A33203;"><span style="{{ iconAlert }}"></span>Hesla se neshodují.</span>
+                </sc-if>
+                <p style="margin:0; font-size:13px; line-height:1.55; color:#8a8776;">Použijte alespoň 8 znaků. Pole nechte prázdná, pokud heslo měnit nechcete.</p>
+              </div>
+            </sc-if>
+          </div>
+
+          <div class="ek-card" style="padding:22px 24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:11px;">
+              <span style="{{ iconMail }}"></span>
+              <h2 class="ek-h2" style="font-size:22px;">Poznámka a souhlasy</h2>
+            </div>
+            <label class="ek-fld"><span>Poznámka k účtu</span>
+              <textarea class="ek-in" value="{{ f.note }}" onInput="{{ set.note }}" placeholder="Například preferovaný dopravce nebo pokyny pro doručení."></textarea>
+            </label>
+            <label class="ek-check">
+              <input type="checkbox" checked="{{ f.news }}" onChange="{{ set.news }}">
+              <span class="ek-chk-box" aria-hidden="true"><span style="{{ iconTick }}"></span></span>
+              <span style="display:flex; flex-direction:column; gap:3px;">
+                <span style="font-size:15.5px; font-weight:600; color:#2A2A24;">Mám zájem o zasílání novinek a akcí</span>
+                <span style="font-size:13.5px; line-height:1.5; color:#6B6B5E;">Recepty, návody a novinky ze skladu. Odhlásíte se kdykoli jedním klikem.</span>
+              </span>
+            </label>
+            <label class="ek-check">
+              <input type="checkbox" checked="{{ f.heureka }}" onChange="{{ set.heureka }}">
+              <span class="ek-chk-box" aria-hidden="true"><span style="{{ iconTick }}"></span></span>
+              <span style="display:flex; flex-direction:column; gap:3px;">
+                <span style="font-size:15.5px; font-weight:600; color:#2A2A24;">Chci dostat dotazník spokojenosti Heureka Ověřeno zákazníky</span>
+                <span style="font-size:13.5px; line-height:1.5; color:#6B6B5E;">Jedna otázka po doručení objednávky. Pomáhá nám vidět, co nefunguje.</span>
+              </span>
+            </label>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding:4px 0 8px;">
+            <button type="submit" class="ek-btn-main" style="display:inline-flex; align-items:center; gap:9px; height:50px; padding:0 28px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:16px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;">Uložit změny</button>
+            <button type="button" onClick="{{ reset }}" class="ek-tool" style="height:50px; padding:0 22px;">Vrátit původní údaje</button>
+            <sc-if value="{{ saved }}" hint-placeholder-val="{{ false }}">
+              <span style="display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:600; color:#3F7F2C;"><span style="{{ iconOk }}"></span>Údaje jsou uložené</span>
+            </sc-if>
+            <span style="font-size:13px; color:#8a8776;">Vaše údaje zpracováváme podle <a href="#" class="ek-link-u" style="text-decoration:none;">podmínek o zpracování osobních údajů</a>.</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <div style="position:relative; margin:34px 0 0; padding:34px 0 44px;">
+      <div aria-hidden="true" class="ek-tear" style="background:linear-gradient(168deg,#FBF6EA 0%,#F7F1E3 60%,#F3EBDA 100%);"></div>
+      <section style="position:relative; z-index:1; padding:26px 32px;" class="ek-pad">
+        <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <p class="ek-eyebrow">Váš účet</p>
+            <h2 class="ek-h2">Co ještě můžete spravovat.</h2>
+          </div>
+          <div class="ek-grid3" style="grid-template-columns:repeat(3,minmax(0,1fr));">
+            <sc-for list="{{ links }}" as="l" hint-placeholder-count="3">
+              <a href="{{ l.href }}" class="ek-card" style="display:flex; flex-direction:column; gap:10px; padding:18px; text-decoration:none; color:#2A2A24;">
+                <span style="{{ l.icon }}"></span>
+                <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:19px; color:#4C653D; line-height:1.2;">{{ l.title }}</span>
+                <span style="font-size:13.5px; line-height:1.5; color:#6B6B5E;">{{ l.desc }}</span>
+              </a>
+            </sc-for>
+          </div>
+          <div class="ek-card" style="padding:20px 22px; display:flex; align-items:flex-start; gap:12px; border-color:rgba(163,50,3,.2); background:rgba(163,50,3,.04);">
+            <span style="{{ iconAlert2 }}"></span>
+            <span style="display:flex; flex-direction:column; gap:4px;">
+              <span style="font-size:15px; font-weight:600; color:#A33203;">Zrušení účtu</span>
+              <span style="font-size:14px; line-height:1.6; color:#52524a;">Napište nám na <a href="mailto:eshop@ekokoza.cz" class="ek-link-u" style="text-decoration:none;">eshop@ekokoza.cz</a> a účet smažeme. Doklady k objednávkám musíme ze zákona archivovat i po zrušení účtu.</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div style="max-width:1440px; margin:0 auto;">
+    <dc-import name="ui-Footer" hint-size="100%,520px"></dc-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DEFAULTS = {
+  companyName: 'Anežka Drtinová', ic: '12345678', dic: 'CZ12345678',
+  firstName: 'Anežka', lastName: 'Drtinová', email: 'anezka.drtinova@email.cz', phone: '+420 601 365 245',
+  street: 'Dlouhá 128', zip: '760 01', city: 'Zlín', country: 'Česko',
+  dName: 'Anežka Drtinová', dPhone: '+420 601 365 245', dStreet: 'Náměstí Míru 12', dZip: '760 01', dCity: 'Zlín',
+  note: '', news: true, heureka: true, pwd1: '', pwd2: '',
+};
+
+class Component extends DCLogic {
+  state = { f: Object.assign({}, DEFAULTS), company: true, otherDelivery: false, pwdOpen: false, saved: false };
+
+  mask(name, size, color, extra) {
+    const url = 'assets/icons/' + name + '.svg';
+    return 'display:inline-block; width:' + size + 'px; height:' + size + 'px; flex:0 0 auto; background-color:' + color
+      + '; -webkit-mask:url("' + url + '") center / contain no-repeat; mask:url("' + url + '") center / contain no-repeat;' + (extra || '');
+  }
+
+  field(key) {
+    return (e) => {
+      const t = e.target;
+      const val = t.type === 'checkbox' ? t.checked : t.value;
+      this.setState(s => ({ f: Object.assign({}, s.f, { [key]: val }), saved: false }));
+    };
+  }
+
+  renderVals() {
+    const S = this.state;
+    const set = {};
+    Object.keys(DEFAULTS).forEach(k => { set[k] = this.field(k); });
+
+    return {
+      crumbs: [
+        { label: 'Úvod', href: 'index.html' },
+        { label: 'Můj účet', href: '#' },
+        { label: 'Správa účtu' },
+      ],
+      f: S.f,
+      set,
+      countries: ['Česko', 'Slovensko'],
+      company: S.company,
+      toggleCompany: () => this.setState(s => ({ company: !s.company, saved: false })),
+      otherDelivery: S.otherDelivery,
+      toggleDelivery: () => this.setState(s => ({ otherDelivery: !s.otherDelivery, saved: false })),
+      pwdOpen: S.pwdOpen,
+      pwdLabel: S.pwdOpen ? 'Zavřít změnu hesla' : 'Změnit heslo',
+      togglePwd: () => this.setState(s => ({ pwdOpen: !s.pwdOpen })),
+      pwdMismatch: !!S.f.pwd1 && !!S.f.pwd2 && S.f.pwd1 !== S.f.pwd2,
+      saved: S.saved,
+      save: (e) => { e.preventDefault(); this.setState({ saved: true }); },
+      reset: () => this.setState({ f: Object.assign({}, DEFAULTS), saved: false }),
+
+      links: [
+        { title: 'Přehled objednávek', desc: 'Stavy, doprava a opakování nákupu.', href: 'objednavky.html', icon: 'delivery-box-01' },
+        { title: 'Přehled faktur', desc: 'Doklady v PDF a platby.', href: 'faktury.html', icon: 'invoice-01' },
+        { title: 'Věrnostní program', desc: 'Jak se počítá vaše cenová skupina.', href: 'vernostni-program.html', icon: 'percent-circle' },
+      ].map(l => Object.assign({}, l, { icon: this.mask(l.icon, 24, '#4C653D') })),
+
+      iconTick: this.mask('tick-01', 14, '#F6F1E7'),
+      iconUser: this.mask('user-circle', 22, '#4C653D'),
+      iconInvoice: this.mask('invoice-01', 22, '#4C653D'),
+      iconLock: this.mask('square-lock-01', 22, '#4C653D'),
+      iconMail: this.mask('note-01', 22, '#4C653D'),
+      iconOk: this.mask('checkmark-circle-01', 19, '#3F7F2C'),
+      iconAlert: this.mask('alert-circle', 16, '#A33203'),
+      iconAlert2: this.mask('alert-circle', 22, '#A33203'),
+      iconCaret: this.mask('arrow-down-01', 18, '#6B6B5E', ' position:absolute; right:14px; top:50%; transform:translateY(-50%); pointer-events:none;'),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  .ek-loy-link:hover { color: #B23803 !important; }
+</style>
+</helmet>
+
+<div style="{{ wrapStyle }}">
+
+  <div style="{{ headStyle }}">
+    <span style="{{ avatarStyle }}">{{ discountLabel }}</span>
+    <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
+      <span style="{{ kickerStyle }}">{{ kicker }}</span>
+      <span style="{{ nameStyle }}">{{ tierName }}</span>
+      <span style="{{ perkStyle }}">{{ perk }}</span>
+    </span>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:8px;">
+    <div style="{{ barTrack }}">
+      <span style="{{ barFill }}"></span>
+    </div>
+    <div style="{{ legendStyle }}">
+      <span style="{{ nextStyle }}">{{ nextText }}</span>
+    </div>
+  </div>
+
+  <sc-if value="{{ showScale }}" hint-placeholder-val="{{ false }}">
+    <div class="ek-loy-scale" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;">
+      <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+        <div style="{{ t.card }}">
+          <span style="{{ t.no }}">{{ t.index }}</span>
+          <span style="{{ t.title }}">{{ t.name }}</span>
+          <span style="{{ t.rangeStyle }}">{{ t.range }}</span>
+          <span style="{{ t.pct }}">{{ t.discount }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showLink }}" hint-placeholder-val="{{ false }}">
+    <a href="{{ href }}" class="ek-loy-link" style="{{ linkStyle }}">{{ linkLabel }}<span style="{{ iconArrow }}"></span></a>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:330},&quot;turnover&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:7400,&quot;min&quot;:0,&quot;max&quot;:60000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;full&quot;,&quot;compact&quot;],&quot;default&quot;:&quot;full&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onDark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showScale&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showLink&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;vernostni-program.html&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const TIERS = [
+  { name: 'Registrovaný zákazník', from: 0, to: 5000, discount: 0, perk: 'Ceny pro přihlášené a přehled objednávek.' },
+  { name: 'Ekokozí fanoušek', from: 5000, to: 10000, discount: 5, perk: 'Sleva na všechny objednávky po přihlášení k vašemu účtu.' },
+  { name: 'Nadšený výrobce', from: 10000, to: 30000, discount: 10, perk: 'Sleva na všechny objednávky po přihlášení k vašemu účtu.' },
+  { name: 'Profesionál', from: 30000, to: null, discount: 15, perk: 'Sleva na všechny objednávky a přednostní odeslání bez poplatku.' },
+];
+
+class Component extends DCLogic {
+  mask(name, size, color) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const url = base + 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  money(n) { return n.toLocaleString('cs-CZ') + ' Kč'; }
+
+  renderVals() {
+    const turnover = Number(this.props.turnover ?? 7400);
+    const variant = this.props.variant ?? 'full';
+    const compact = variant === 'compact';
+    const onDark = this.props.onDark === true;
+
+    let idx = 0;
+    TIERS.forEach((t, i) => { if (turnover >= t.from) idx = i; });
+    const tier = TIERS[idx];
+    const next = TIERS[idx + 1] || null;
+    const pct = next
+      ? Math.max(3, Math.min(100, Math.round(((turnover - tier.from) / (next.from - tier.from)) * 100)))
+      : 100;
+    const missing = next ? next.from - turnover : 0;
+
+    // Barvy: světlá varianta na krémové ploše, on-dark na tmavě zelené
+    const ink = onDark ? '#F6F1E7' : '#2D3A2E';
+    const soft = onDark ? '#D6E0C8' : '#6B6B5E';
+    const line = onDark ? 'rgba(246,241,231,.22)' : 'rgba(76,101,61,.16)';
+    const track = onDark ? 'rgba(246,241,231,.18)' : 'rgba(76,101,61,.14)';
+    const accent = onDark ? '#B9D096' : '#4C653D';
+
+    const discountLabel = tier.discount > 0 ? '−' + tier.discount + ' %' : '0 %';
+    const avatarSize = compact ? 46 : 62;
+
+    return {
+      discountLabel,
+      tierName: tier.name,
+      perk: tier.perk,
+      kicker: 'Věrnostní program',
+      nextText: next
+        ? 'Do úrovně „' + next.name + '“ (−' + next.discount + ' %) chybí ' + this.money(missing)
+        : 'Máte nejvyšší úroveň a nejlepší podmínky, které nabízíme.',
+
+      avatarStyle: 'display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; border-radius:50%;'
+        + ' width:' + avatarSize + 'px; height:' + avatarSize + 'px;'
+        + " font-family:'EB Garamond',serif; font-weight:500; letter-spacing:-.01em; white-space:nowrap;"
+        + ' font-size:' + (compact ? 15 : 20) + 'px;'
+        + (onDark
+            ? ' background:#F6F1E7; color:#4C653D;'
+            : ' background:#4C653D; color:#F6F1E7;'),
+      kickerStyle: 'font-size:' + (compact ? 11 : 12) + 'px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:' + (onDark ? '#B9D096' : '#7BA23F') + ';',
+      nameStyle: "font-family:'EB Garamond',serif; font-weight:500; line-height:1.15; color:" + ink + '; font-size:' + (compact ? 19 : 26) + 'px;',
+      perkStyle: 'font-size:' + (compact ? 12.5 : 14.5) + 'px; line-height:1.5; color:' + soft + ';'
+        + (compact ? ' display:none;' : ''),
+      headStyle: 'display:flex; align-items:center; gap:' + (compact ? 12 : 16) + 'px; min-width:0;',
+
+      barTrack: 'position:relative; display:block; height:' + (compact ? 8 : 10) + 'px; border-radius:999px; background:' + track + '; overflow:hidden;',
+      barFill: 'position:absolute; left:0; top:0; bottom:0; width:' + pct + '%; border-radius:999px;'
+        + ' background:' + (onDark ? 'linear-gradient(90deg,#B9D096 0%,#F6F1E7 100%)' : 'linear-gradient(90deg,#7BA23F 0%,#4C653D 100%)') + ';',
+      // Postup se počítá vždy v rámci aktuální úrovně — po dosažení další začíná od nuly
+      legendStyle: 'display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;',
+      nextStyle: 'font-size:' + (compact ? 12.5 : 14) + 'px; font-weight:500; line-height:1.5; color:' + soft + ';',
+
+      showScale: !compact && this.props.showScale !== false,
+      tiers: TIERS.slice(1).map((t, i) => {
+        const on = t.name === tier.name;
+        return {
+          index: String(i + 1).padStart(2, '0'),
+          name: t.name,
+          range: t.to ? 'Čtvrtletní obrat ' + this.money(t.from) + ' – ' + this.money(t.to - 1) : 'Čtvrtletní obrat ' + this.money(t.from) + ' a více',
+          discount: '−' + t.discount + ' %',
+          card: 'display:flex; flex-direction:column; gap:5px; padding:14px 16px; border-radius:12px;'
+            + (on ? ' background:#4C653D; border:1.5px solid #4C653D;' : ' background:' + (onDark ? 'rgba(246,241,231,.08)' : '#fff') + '; border:1px solid ' + line + ';'),
+          no: 'font-size:11.5px; font-weight:700; letter-spacing:.1em; color:' + (on ? '#B9D096' : (onDark ? '#B9D096' : '#7BA23F')) + ';',
+          title: "font-family:'EB Garamond',serif; font-weight:500; font-size:17px; line-height:1.2; color:" + (on ? '#F6F1E7' : ink) + ';',
+          rangeStyle: 'font-size:12px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; line-height:1.45; color:'
+            + (on ? '#D6E0C8' : soft) + ';',
+          pct: "font-family:'EB Garamond',serif; font-weight:500; font-size:20px; color:" + (on ? '#F6F1E7' : accent) + ';',
+        };
+      }),
+
+      showLink: !compact && this.props.showLink !== false,
+      href: this.props.href ?? 'vernostni-program.html',
+      linkLabel: compact ? 'Jak program funguje' : 'Podmínky věrnostního programu',
+      linkStyle: 'display:inline-flex; align-items:center; gap:8px; align-self:flex-start; text-decoration:none; font-weight:600;'
+        + ' font-size:' + (compact ? 13 : 14.5) + 'px; color:' + (onDark ? '#F6F1E7' : '#4C653D') + '; transition:color .2s;',
+      iconArrow: this.mask('arrow-right-02', compact ? 14 : 16, onDark ? '#F6F1E7' : '#4C653D'),
+
+      wrapStyle: "display:flex; flex-direction:column; font-family:'Work Sans',sans-serif;"
+        + ' gap:' + (compact ? 12 : 18) + 'px;'
+        + (compact
+            ? ''
+            : ' padding:24px 26px; border-radius:14px;'
+              + (onDark
+                  ? ' background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); border:1px solid rgba(246,241,231,.14);'
+                  : ' background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%); border:1px solid rgba(76,101,61,.18);')),
+    };
+  }
+}
+</script>
+</body>
+</html>

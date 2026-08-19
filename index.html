@@ -86,6 +86,12 @@
     .ek-hdr-icons { margin-right: 8px !important; }
     .ek-topbar-txt { font-size: 11px !important; }
   }
+  @media (max-width: 1100px) { .ek-dilna { grid-template-columns: repeat(2,minmax(0,1fr)) !important; } }
+  @media (max-width: 760px) {
+    .ek-dilna-cta { grid-template-columns: 1fr !important; }
+    .ek-dilna-cta > a { justify-self: start !important; }
+  }
+  @media (max-width: 560px) { .ek-dilna { grid-template-columns: 1fr !important; } }
   .ek-hero-play:hover { background: rgba(255,255,255,.3) !important; }
   .ek-hero2-play:hover { background: rgba(246,241,231,.22) !important; border-color: rgba(246,241,231,.7) !important; }
   .ek-hero2-card:hover { background: rgba(246,241,231,.2) !important; transform: translateY(-2px); }
@@ -255,6 +261,7 @@
   .ek-mega-link:hover { background: #F6F1E7; color: #D8763B !important; }
   /* ===== Mobile drawer (state-driven inline styles on elements) ===== */
 </style>
+<script src="./image-slot.js"></script>
 </helmet>
 
 <div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
@@ -506,6 +513,48 @@
     </div>
   </section>
 
+  <!-- ============ BLOK 9b — Z KOMUNITNÍ DÍLNY ============ -->
+  <section id="dilna" style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:26px;">
+        <div style="max-width:62ch;">
+          <p style="margin:0 0 8px; color:#D8763B; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Z komunitní dílny</p>
+          <h2 class="ek-h2" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D; line-height:1.1;">Co vyrobili lidé z našich surovin</h2>
+          <p style="margin:0; font-size:16.5px; line-height:1.6; color:#52524a;">Skutečné výrobky, skutečné recepty. Fotky posílají sami zákazníci — nic z toho jsme nefotili my.</p>
+        </div>
+      </div>
+
+      <div class="ek-dilna" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
+        <sc-for list="{{ workshop }}" as="w" hint-placeholder-count="4">
+          <div class="ek-card" style="display:flex; flex-direction:column; background:#fff; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; transition:transform .25s, box-shadow .25s;">
+            <div style="position:relative; aspect-ratio:4/5; background:#EFE7D6;">
+              <image-slot id="{{ w.slotId }}" src="{{ w.img }}" shape="rect" placeholder="Fotka výrobku od zákazníka" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+              <span style="position:absolute; top:12px; left:12px; z-index:2; pointer-events:none; background:rgba(255,253,246,.94); color:#4C653D; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px;">{{ w.category }}</span>
+            </div>
+            <div style="padding:16px 18px 18px; display:flex; flex-direction:column; gap:12px; flex:1;">
+              <p style="margin:0; font-size:14.5px; line-height:1.5; color:#4A4A42;">{{ w.desc }}</p>
+              <div style="display:flex; align-items:center; gap:10px; margin-top:auto;">
+                <span style="{{ w.avatar }}">{{ w.initials }}</span>
+                <span style="display:flex; flex-direction:column; gap:1px; min-width:0;">
+                  <span style="font-size:14px; font-weight:600; color:#2A2A24;">{{ w.name }}</span>
+                  <span style="font-size:12.5px; color:#8a8776;">{{ w.meta }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div class="ek-dilna-cta" style="margin-top:22px; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:24px; align-items:center; padding:28px 32px; border:1px solid rgba(76,101,61,.16); border-radius:14px; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%);">
+        <div style="min-width:0;">
+          <h3 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:26px; color:#4C653D; line-height:1.15;">Chcete tu být taky?</h3>
+          <p style="margin:0; font-size:15.5px; line-height:1.6; color:#52524a; max-width:64ch;">Pošlete nám fotku svého výrobku a krátce napište, co jste vyráběli a z čeho. Vybrané výrobky sem zařadíme — vždy se vás nejdřív zeptáme.</p>
+        </div>
+        <a href="mailto:eshop@ekokoza.cz?subject=M%C5%AFj%20v%C3%BDrobek%20do%20komunitn%C3%AD%20d%C3%ADlny" class="ek-cta" style="justify-self:end; display:inline-flex; align-items:center; gap:9px; background:#D14405; color:#fff; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15.5px; white-space:nowrap; transition:background .2s;">Pošlete nám svůj výrobek {{ iconArrow }}</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ BLOK 10 — RECENZE (TRHANÝ PÁS) ============ -->
   <div style="position:relative; margin:26px 0; padding:30px 0 40px;">
     <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
@@ -514,14 +563,14 @@
       <div style="display:flex; align-items:center; gap:20px; justify-content:center; margin-bottom:32px; flex-wrap:wrap;">
         <span style="font-family:'EB Garamond',serif; font-size:46px; color:#4C653D; font-weight:500; line-height:1;">4,9</span>
         <div style="display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
-          <dc-import name="ui-Rating" value="{{ 4.9 }}" count="{{ 2418 }}" size="{{ 18 }}" hint-size="220px,24px"></dc-import>
+          <dc-import name="ui-Rating" value="{{ 4.9 }}" count="{{ 2418 }}" showValue="{{ false }}" size="{{ 18 }}" hint-size="220px,24px"></dc-import>
           <p style="margin:0; color:#6B6B5E; font-size:14px;">ověřených hodnocení od zákazníků</p>
         </div>
       </div>
       <div class="ek-rev3" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px;">
         <sc-for list="{{ reviews }}" as="rv" hint-placeholder-count="3">
           <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:26px;">
-            <span style="display:block; margin-bottom:14px;"><dc-import name="ui-Rating" value="{{ rv.value }}" showCount="{{ false }}" size="{{ 16 }}" hint-size="110px,22px"></dc-import></span>
+            <span style="display:block; margin-bottom:14px;"><dc-import name="ui-Rating" value="{{ rv.value }}" showCount="{{ false }}" showValue="{{ false }}" size="{{ 16 }}" hint-size="110px,22px"></dc-import></span>
             <p style="margin:0 0 18px; font-size:15.5px; line-height:1.6; color:#3a3a32;">„{{ rv.text }}"</p>
             <div style="display:flex; align-items:center; gap:11px;">
               <div style="width:38px; height:38px; border-radius:50%; background:{{ rv.tone }}; display:flex; align-items:center; justify-content:center; color:#4C653D; font-weight:700; font-size:14px;">{{ rv.initials }}</div>
@@ -590,7 +639,7 @@
 
 </div>
   <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
-    <div onClick="{{ closeHeroVideo }}" role="dialog" aria-label="Přehrávač videa" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,56px); background:rgba(20,28,21,.86); backdrop-filter:blur(6px);">
+    <div onClick="{{ closeHeroVideo }}" role="dialog" aria-label="Přehrávač videa" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,56px); background:rgba(20,28,21,.86); backdrop-filter:blur(6px); font-family:'Work Sans',sans-serif;">
       <div onClick="{{ stopLightboxProp }}" style="position:relative; width:min(1120px,100%); display:flex; flex-direction:column; gap:14px;">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
           <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:22px; color:#F6F1E7;">Jak to u nás vzniká</span>
@@ -821,6 +870,22 @@ class Component extends DCLogic {
 
     const ugc = [1,2,3,4,5,6,7,8].map(i => ({ tone: '#EFE7D6 center/contain no-repeat url("assets/ugc/0' + i + '.png")' }));
 
+    const workshop = [
+      { name: 'Klára M.', meta: 'Praha · tvoří 2 roky', category: 'Péče o pleť', tone: '#E7D6C2', img: 'assets/community/maska-astaxanthin.webp',
+        desc: 'Pleťová maska s astaxanthinem. Přírodní barvivo z řasy dodá masce sytou barvu a pleť po ní vypadá odpočatě.' },
+      { name: 'Petra S.', meta: 'Olomouc · prodává na trzích', category: 'Séra', tone: '#DEE7D6', img: 'assets/community/serum-malachit.webp',
+        desc: 'Pleťové sérum s malachitem a eukalyptem. Drahokam mletý na prach, gelový základ a pár kapek esenciálního oleje.' },
+      { name: 'Jakub V.', meta: 'Brno · tvoří pro koně', category: 'Pro zvířata', tone: '#EFE7D6', img: 'assets/community/repelent-pro-zvirata.webp',
+        desc: 'Repelent pro koně z esenciálních olejů. Vydrží celý výjezd a nedráždí kůži jako kupované přípravky.' },
+      { name: 'Hana K.', meta: 'Zlín · tvoří s dětmi', category: 'Svíčky', tone: '#D9E4E2', img: 'assets/community/svicka-proti-komarum.webp',
+        desc: 'Svíčka proti komárům se sójovým voskem a levandulí. Do plechovky, aby vydržela i na zahradě ve větru.' },
+    ].map((w, i) => Object.assign({}, w, {
+      slotId: 'dilna-' + (i + 1),
+      initials: w.name.split(' ').map(s => s[0]).join(''),
+      avatar: 'display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; flex:0 0 auto; border-radius:50%; background:' + w.tone
+        + '; border:1px solid #E4D9C2; font-family:\'Work Sans\',sans-serif; font-weight:700; font-size:13.5px; color:#4C653D;',
+    }));
+
     const reviews = [
       { text:'Konečně e-shop, kde mi poradí, ne jen prodají. Recepty fungují na první pokus.', name:'Markéta H.', initials:'MH', tone:'#E7D6C2', value: 5 },
       { text:'Suroviny v perfektní kvalitě a dokumentace ke všemu. Jako profesionál to oceňuju.', name:'Tomáš R.', initials:'TR', tone:'#DEE7D6', value: 4.75 },
@@ -888,6 +953,7 @@ class Component extends DCLogic {
         { title: 'Věrnostní program', desc: 'Až −15 % za opakovanou tvorbu', href: 'vernostni-program.html', icon: 'award-01' },
       ].map(h => Object.assign({}, h, { icon: this.maskStyle(h.icon, 24, '#F6F1E7') + ' flex:0 0 auto;' })),
 
+      workshop,
       benefits, makeCats, ingCats, recipes, products, starts, tiers, ugc, reviews, stars5,
       footAccount, footInfo, footCoop, carriers, submitNewsletter, nlReasons,
       searchActive, suggProducts, suggRecipes,

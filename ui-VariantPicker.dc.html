@@ -11,6 +11,13 @@
 <style>
   .ek-var { border: 1.5px solid #E2D9C4; background: #fff; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; cursor: pointer; text-align: left; transition: border-color .2s, background .2s, box-shadow .2s; }
   .ek-var:hover { border-color: #4C653D; background: #FDFBF5; }
+  .ek-var-row { cursor: default; }
+  .ek-var-row:hover { border-color: #E2D9C4; background: #fff; }
+  .ek-var-row.ek-var-on:hover { border-color: #4C653D; background: #F4F7EA; }
+  @media (max-width: 560px) {
+    .ek-var-row { flex-wrap: wrap; }
+    .ek-var-row .ek-var-right { width: 100%; justify-content: space-between; }
+  }
   .ek-var-on { border-color: #4C653D !important; background: #F4F7EA !important; box-shadow: 0 0 0 2px rgba(76,101,61,.16); }
   .ek-var-more { border: none; background: transparent; color: #4C653D; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; padding: 4px 0; align-self: flex-start; }
   .ek-var-more:hover { color: #B23803; }
@@ -20,7 +27,31 @@
   <sc-if value="{{ hasHeading }}" hint-placeholder-val="{{ true }}">
     <span style="font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">{{ heading }}</span>
   </sc-if>
-  <div style="display:flex; flex-direction:column; gap:8px;">
+  <sc-if value="{{ qtyMode }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <sc-for list="{{ qtyRows }}" as="v" hint-placeholder-count="3">
+        <div class="{{ v.cls }}">
+          <span style="display:flex; flex-direction:column; gap:5px; align-items:flex-start; min-width:0;">
+            <span style="{{ v.labelStyle }}">{{ v.label }}</span>
+            <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" withNote="{{ true }}" noteFocusable="{{ false }}" size="{{ 12.5 }}" hint-size="160px,18px"></dc-import>
+          </span>
+          <span class="ek-var-right" style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
+            <span style="display:flex; flex-direction:column; gap:1px; align-items:flex-end;">
+              <span style="{{ v.priceStyle }}">{{ v.price }}</span>
+              <span style="font-size:12.5px; color:#8a8776; white-space:nowrap;">{{ v.unit }}</span>
+            </span>
+            <sc-if value="{{ v.buyable }}" hint-placeholder-val="{{ true }}">
+              <dc-import name="ui-QtyStepper" value="{{ v.qty }}" min="{{ 0 }}" max="{{ 99 }}" height="{{ 42 }}" onChange="{{ v.setQty }}" hint-size="150px,42px"></dc-import>
+            </sc-if>
+            <sc-if value="{{ v.notBuyable }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:13.5px; font-weight:600; color:#8a8776; white-space:nowrap;">Nelze koupit</span>
+            </sc-if>
+          </span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <div style="display:{{ selectDisplay }}; flex-direction:column; gap:8px;">
     <sc-for list="{{ rows }}" as="v" hint-placeholder-count="3">
       <button onClick="{{ v.select }}" class="{{ v.cls }}">
         <span style="display:flex; flex-direction:column; gap:5px; align-items:flex-start; min-width:0;">
@@ -39,14 +70,18 @@
   </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:460,&quot;height&quot;:300},&quot;variants&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label:string, price:string, state?:string, date?:string}[]&quot;},&quot;selected&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:20,&quot;tsType&quot;:&quot;number&quot;},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Vyberte variantu&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;maxVisible&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:12,&quot;tsType&quot;:&quot;number&quot;},&quot;onSelect&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(i:number, v:object)=&gt;void&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:460,&quot;height&quot;:300},&quot;variants&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label:string, price:string, state?:string, date?:string}[]&quot;},&quot;selected&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:20,&quot;tsType&quot;:&quot;number&quot;},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Vyberte variantu&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;maxVisible&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:12,&quot;tsType&quot;:&quot;number&quot;},&quot;onSelect&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(i:number, v:object)=&gt;void&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;select&quot;,&quot;qty&quot;],&quot;default&quot;:&quot;select&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onQtyChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(all:object, i:number, qty:number, v:object)=&gt;void&quot;}}">
 class Component extends DCLogic {
-  state = { open: false, sel: null };
+  state = { open: false, sel: null, qtys: null };
 
   mask(name, size, color) {
     const base = /\/components\//.test(location.pathname) ? '../' : '';
     const url = base + 'assets/icons/' + name + '.svg';
     return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  componentDidUpdate(prev) {
+    if (prev.resetKey !== this.props.resetKey && this.props.resetKey) this.setState({ qtys: null });
   }
 
   renderVals() {
@@ -61,7 +96,37 @@ class Component extends DCLogic {
     const open = this.state.open;
     const shown = hasMore && !open ? variants.slice(0, maxVisible) : variants;
 
+    const qtyMode = (this.props.mode ?? 'select') === 'qty';
+    const qtys = this.state.qtys ?? {};
+
     return {
+      qtyMode,
+      selectDisplay: qtyMode ? 'none' : 'flex',
+      qtyRows: shown.map((v, i) => {
+        const st = v.state ?? 'ready';
+        const buyable = st !== 'unavail' && st !== 'discontinued';
+        const q = Number(qtys[i] ?? 0);
+        return {
+          label: v.label,
+          price: v.price,
+          unit: v.unit ?? '',
+          state: st,
+          date: v.date ?? '',
+          buyable,
+          notBuyable: !buyable,
+          qty: q,
+          cls: q > 0 ? 'ek-var ek-var-row ek-var-on' : 'ek-var ek-var-row',
+          labelStyle: 'font-size:16px; font-weight:' + (q > 0 ? '700' : '600') + '; color:#2A2A24;',
+          priceStyle: "font-family:'EB Garamond',serif; font-size:18px; font-weight:500; color:#4C653D; white-space:nowrap;",
+          setQty: (n) => {
+            this.setState(st => {
+              const next = Object.assign({}, st.qtys ?? {}, { [i]: n });
+              if (this.props.onQtyChange) this.props.onQtyChange(next, i, n, v);
+              return { qtys: next };
+            });
+          },
+        };
+      }),
       heading: this.props.heading ?? 'Vyberte variantu',
       hasHeading: (this.props.heading ?? 'Vyberte variantu') !== '',
       hasMore,

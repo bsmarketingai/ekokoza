@@ -27,7 +27,7 @@
   <header style="display:flex;flex-direction:column;gap:13px">
     <div style="font:600 12px/1 'Work Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7BA23F">ekokoza.cz — redesign e-shopu</div>
     <h1 style="margin:0;font:500 clamp(30px,4.4vw,46px)/1.1 'EB Garamond',Georgia,serif;color:#4C653D;text-wrap:pretty">Úkolovník ze zpětné vazby</h1>
-    <p style="margin:0;max-width:70ch;font:400 16.5px/1.6 'Work Sans',sans-serif;color:#5D6E55;text-wrap:pretty">Rozpad komentáře na konkrétní úkoly, otázky k zodpovězení a podklady, které od vás potřebujeme. Prioritu nastavíte kliknutím na P1 / P2 / P3. Úkoly označené <strong style="font-weight:600;color:#3C5B86">Ke schválení</strong> jsou zpracované a čekají na vaše potvrzení — až je společně probereme, odškrtnutím je posunete na Schváleno. Stav se ukládá ve vašem prohlížeči.</p>
+    <p style="margin:0;max-width:70ch;font:400 16.5px/1.6 'Work Sans',sans-serif;color:#5D6E55;text-wrap:pretty">Rozpad komentáře na konkrétní úkoly, otázky k zodpovězení a podklady, které od vás potřebujeme. Prioritu nastavíte kliknutím na P1 / P2 / P3. Úkoly označené <strong style="font-weight:600;color:#3C5B86">Ke schválení</strong> jsou zpracované a čekají na vaše potvrzení — až je společně probereme, odškrtnutím je posunete na Schváleno. Oranžově zvýrazněné bloky jsou to, co potřebujeme od vás — rozhodnutí nebo podklad. Stav se ukládá ve vašem prohlížeči.</p>
     <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:3px">
       <div style="display:flex;align-items:baseline;gap:7px;background:#fff;border:1px solid rgba(76,101,61,.14);border-radius:14px;padding:11px 15px"><span style="font:500 20px/1 'EB Garamond',serif;color:#4C653D">{{ totalCount }}</span><span style="font:500 13px/1 'Work Sans',sans-serif;color:#7B8A73">úkolů</span></div>
       <div style="display:flex;align-items:baseline;gap:7px;background:#fff;border:1px solid rgba(209,68,5,.28);border-radius:14px;padding:11px 15px"><span style="font:500 20px/1 'EB Garamond',serif;color:#D14405">{{ p1Count }}</span><span style="font:500 13px/1 'Work Sans',sans-serif;color:#7B8A73">P1</span></div>
@@ -38,6 +38,29 @@
       <button onClick="{{ reset }}" style="font:600 13px/1 'Work Sans',sans-serif;color:#7B8A73;background:transparent;border:1px solid rgba(76,101,61,.2);border-radius:14px;padding:11px 15px;cursor:pointer" style-hover="color:#D14405;border-color:rgba(209,68,5,.4)">Vymazat stav</button>
     </div>
   </header>
+
+  <div style="display:flex;flex-direction:column;gap:12px;padding:16px 18px;background:#fff;border:1px solid rgba(76,101,61,.14);border-radius:14px">
+    <sc-for list="{{ filterGroups }}" as="g" hint-placeholder-count="3">
+      <div class="uk-row" style="display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:start">
+        <span style="font:700 10.5px/1.5 'Work Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8A9682;padding-top:8px">{{ g.label }}</span>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <sc-for list="{{ g.options }}" as="o" hint-placeholder-count="4">
+            <button onClick="{{ o.toggle }}" style="{{ o.style }}">{{ o.label }} <span style="{{ o.countStyle }}">{{ o.count }}</span></button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-top:10px;border-top:1px solid rgba(76,101,61,.12)">
+      <span style="font:500 13.5px/1.4 'Work Sans',sans-serif;color:#5D6E55">{{ filterSummary }}</span>
+      <sc-if value="{{ anyFilter }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ clearFilters }}" style="font:600 12.5px/1 'Work Sans',sans-serif;color:#3C5B86;background:transparent;border:1px solid rgba(94,131,190,.4);border-radius:999px;padding:8px 13px;cursor:pointer">Zrušit filtry</button>
+      </sc-if>
+    </div>
+  </div>
+
+  <sc-if value="{{ noMatches }}" hint-placeholder-val="{{ false }}">
+    <p style="margin:0;padding:26px 18px;background:rgba(76,101,61,.06);border:1px solid rgba(76,101,61,.14);border-radius:14px;font:400 15px/1.6 'Work Sans',sans-serif;color:#5D6E55">Zvoleným příznakům neodpovídá žádný úkol.</p>
+  </sc-if>
 
   <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="3">
     <section style="display:flex;flex-direction:column;gap:12px;margin-bottom:6px">
@@ -63,7 +86,17 @@
               <sc-if value="{{ t.hasSolution }}" hint-placeholder-val="{{ false }}">
                 <div class="uk-row" style="display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:start;padding-top:8px;border-top:1px solid rgba(76,101,61,.12)">
                   <span style="font:700 10.5px/1.5 'Work Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#6E9134;padding-top:1px">Řešení</span>
-                  <p style="margin:0;font:400 14.2px/1.58 'Work Sans',sans-serif;color:#3F5238;text-wrap:pretty">{{ t.solution }}</p>
+                  <div style="display:flex;flex-direction:column;gap:9px">
+                    <sc-for list="{{ t.solutionParts }}" as="sp" hint-placeholder-count="1">
+                      <p style="margin:0;font:400 14.2px/1.58 'Work Sans',sans-serif;color:#3F5238;text-wrap:pretty">{{ sp.text }}</p>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ t.hasAsk }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;margin-top:2px;padding:12px 14px;background:rgba(209,68,5,.06);border:1px solid rgba(209,68,5,.3);border-radius:12px">
+                  <span style="font:700 10.5px/1.5 'Work Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#B23803;white-space:nowrap;padding-top:2px">{{ t.askLabel }}</span>
+                  <p style="margin:0;font:500 14.2px/1.58 'Work Sans',sans-serif;color:#8A3A0C;text-wrap:pretty">{{ t.ask }}</p>
                 </div>
               </sc-if>
             </div>
@@ -104,7 +137,8 @@ const TAGS = {
 const SECTIONS = [
   { id: 'A', title: 'A. Typografie, barvy a claimy', note: 'koncepční rozhodnutí, ovlivňuje všechno ostatní', tasks: [
     ['A1', 'Změna typografie — zdůvodnit, nebo vrátit', 'Klient se ptá, proč se změnilo písmo. Vysvětlit volbu, nebo se vrátit k písmu z grafického manuálu. Rozhodnutí musí být jednoznačné, žádný mezistav.', ['ds','uprava'],
-      'Vráceno k písmům z grafického manuálu. Nadpisy a perexy: EB Garamond — Medium pro nadpisy, Regular pro delší serifové texty. Základní písmo: Work Sans (SemiBold nadpisy, Medium perexy, Regular a Bold text; nahrazuje Helvetiku). Propsáno do design systému a do všech stránek a komponent — Spectral ani Hanken Grotesk nikde nezůstaly. Zbývá vizuální kontrola nadpisů na mobilu; EB Garamond má menší optickou velikost, u nejmenších velikostí případně přidáme 1 px.'],
+      'Vráceno k písmům z grafického manuálu. Nadpisy a perexy: EB Garamond — Medium pro nadpisy, Regular pro delší serifové texty. Základní písmo: Work Sans (SemiBold nadpisy, Medium perexy, Regular a Bold text; nahrazuje Helvetiku). Propsáno do design systému a do všech stránek a komponent — Spectral ani Hanken Grotesk nikde nezůstaly.',
+      ['K odsouhlasení', 'Projděte prosím nadpisy na mobilu — EB Garamond má menší optickou velikost a u nejmenších velikostí můžeme přidat 1 px.']],
     ['A2', 'Pročistit paletu: jedna tmavá zeleň, role barev', 'Dvě tmavě zelené jsou zbytečné — necháme jen jednu, a to #4C653D z grafického manuálu. K tomu v design systému detailně popsat, na co jednotlivé barvy slouží; nějaké popisky tam jsou, ale je třeba jít víc do detailu.', ['ds','uprava'],
       'Druhý odstín zrušen: napříč 30 soubory platí jediná tmavá zeleň #4C653D. V sekci Barvy je nová tabulka „Role barev“ — pět skupin (nosná barva, konverze, podklady a rámy, akcenty, text) a u každé barvy je uvedeno, k čemu slouží, na jakém podkladu smí být a jaký má kontrast, včetně označení AA / AAA a omezení slabších odstínů na ikony a velký text. Doplněno pravidlo: nejvýše dva podkladové tóny a jedno terrakotové CTA na obrazovku.'],
     ['A3', 'Ztlumit terrakotu na tmavém podkladu', 'Terrakota zůstává barvou hlavní konverze. Na tmavě zeleném bloku (věrnostní program na homepage) ale působí křiklavě — připravit „on dark“ variantu CTA (tlumenější odstín, nebo světlé tlačítko s tmavým textem), porovnat v reálném bloku a zafixovat pravidlo: terrakota na světlém, varianta B na tmavém.', ['uprava','komponenta'],
@@ -119,7 +153,8 @@ const SECTIONS = [
   ]},
   { id: 'C', title: 'C. Skladovost', note: 'kompletní sada stavů + sjednocená barevnost', tasks: [
     ['C1', 'Získat a zapsat úplný seznam skladových stavů', 'Potřebujeme od vás všechny reálné stavy, které systém vypisuje, včetně přesných textů a toho, zda v daném stavu lze produkt koupit. Zapíšeme je do systému jako jeden zdroj pravdy.', ['podklad'],
-      'Čekáme na seznam. Škála z bodu C2 je na napojení připravená — každý reálný stav namapujeme na jednu z pěti úrovní a komponenta si barvu, ikonu i text vezme sama.'],
+      'Škála z bodu C2 je na napojení připravená — každý reálný stav namapujeme na jednu z pěti úrovní a komponenta si barvu, ikonu i text vezme sama.',
+      ['Čekáme na vás', 'Pošlete prosím seznam všech skladových stavů, které systém vypisuje, včetně přesných textů a informace, zda v daném stavu lze produkt koupit.']],
     ['C2', 'Definovat semantickou škálu dostupnosti', 'Jedna plynulá stupnice od „ihned k odeslání“ (zelená) přes dostupné s prodlevou (olivová / jantarová) až po skutečně nedostupné (červené tóny). Každý stav dostane přiřazenou barvu, ikonu a text — a to samé pak platí na kartě, detailu, v buy baru i v košíku.', ['uprava','komponenta'],
       'Škála má pět úrovní a je zapsaná na jednom místě v komponentě ui-Stock: 1 Ihned k odeslání #3F7F2C (nejsytější zeleň), 2 Musíme to nabalit #57712D (tmavší oliva), 3 Očekáváme (s datem) #57712D — stejná oliva jako úroveň 2, liší se ikonou a textem, 4 Nyní nedostupné #A33203, 5 Už nenabízíme #8A2412 (temně cihlová). Každá úroveň nese barvu, ikonu, text, vysvětlující mikrocopy a příznak „lze koupit“ — hranice je mezi 3 a 4. Komponenta funguje ve dvou podobách (vložený text v kartě, našeptávači a košíku, pilulka v detailu produktu a ve sticky buy baru — ten teď stav dostupnosti také ukazuje) a stejná data řídí i tlačítko: úrovně 4–5 nabídnou místo Do košíku hlídacího psa. Doplněno do design systému včetně tabulky celé škály. Vysvětlující mikrocopy má dvě podoby podle toho, kolik je pro ni místa: u produktu bez variant je vypsaná jako text vedle pilulky stavu v detailu, u variantních produktů (kde je stav u každé varianty v řádku) se ke stavu přidá ikona „i“ a text se ukáže v popupu — na přejetí myší, na tabulátor i na kliknutí. Stejný popup má i pilulka ve sticky buy baru. Kliknutí na stav uvnitř řádku variantu nepřepne a stav v řádku není samostatně fokusovatelný, aby zůstal ovladatelný jen řádek. Texty mikrocopy jsou uložené v komponentě u příslušné úrovně, takže všude znějí stejně.'],
     ['C3', '„Musíme to nabalit“ posunout do dostupného tónu', 'Produkt může odejít následující den — cokoli do červena působí jako problém. Přebarvit na zelený / olivový tón a doplnit vysvětlující mikrocopy o expedici.', ['uprava'],
@@ -137,17 +172,28 @@ const SECTIONS = [
   ]},
   { id: 'E', title: 'E. Homepage', note: 'bannery, video, komunitní dílna', tasks: [
     ['E1', 'Varianta jednoho banneru přes celou šířku', 'Doplnit k současnému rozložení variantu s jedním bannerem na plnou šířku (desktop i mobil), včetně pravidel pro text a CTA v ploše. Obě varianty ukázat v design systému jako přepínatelné.', ['uprava','ds'],
-      'Na homepage je dole plovoucí lišta „Hero: V1 / V2“, kterou se varianty přepínají přímo na živé stránce; volba se pamatuje mezi návštěvami. V1 je stávající mozaika čtyř karet. V2 je jeden banner na plnou šířku obsahu (1400 px, výška 520 px): fotka s tmavým přechodem zleva, kicker, claim „Důvod, proč tvořit.“ v EB Garamond 60 px, perex, terrakotové CTA vedle tlačítka Přehrát video, pod tím hodnocení 4,9 · 2 418 hodnocení a doprava zdarma; vpravo tři prosklené rozcestníky (Co vyrábět, Receptář, Věrnostní program). Na tabletu se sloupce skládají pod sebe, na mobilu se zmenšuje claim i perex a lišta přepínače se roztáhne přes celou šířku. Text v ploše drží pravidlo maximálně 44–52 znaků na řádek a leží vždy v nejtmavší části přechodu, aby zůstal čitelný. V obou variantách běží na pozadí videosmyčka a tlačítko otevírá lightbox — podrobnosti v bodu E2. Zbývá obě varianty přenést do design systému jako přepínatelnou ukázku.'],
+      'Na homepage je dole plovoucí lišta „Hero: V1 / V2“, kterou se varianty přepínají přímo na živé stránce; volba se pamatuje mezi návštěvami. V1 je stávající mozaika čtyř karet. V2 je jeden banner na plnou šířku obsahu (1400 px, výška 520 px): fotka s tmavým přechodem zleva, kicker, claim „Důvod, proč tvořit.“ v EB Garamond 60 px, perex, terrakotové CTA vedle tlačítka Přehrát video, pod tím hodnocení 4,9 · 2 418 hodnocení a doprava zdarma; vpravo tři prosklené rozcestníky (Co vyrábět, Receptář, Věrnostní program). Na tabletu se sloupce skládají pod sebe, na mobilu se zmenšuje claim i perex a lišta přepínače se roztáhne přes celou šířku. Text v ploše drží pravidlo maximálně 44–52 znaků na řádek a leží vždy v nejtmavší části přechodu, aby zůstal čitelný. V obou variantách běží na pozadí videosmyčka a tlačítko otevírá lightbox — podrobnosti v bodu E2.',
+      ['K odsouhlasení', 'Vyberte prosím variantu, se kterou půjdeme dál (V1 mozaika, nebo V2 jeden banner). Podle rozhodnutí ji přeneseme do design systému jako závaznou ukázku.']],
     ['E2', 'Automatické spuštění videa po načtení', 'Ano, jde to — s podmínkami: video musí být bez zvuku (muted), smyčka, playsinline, s posterem pro pomalé připojení a s respektem k „prefers-reduced-motion“. Doplnit tlačítko zvuku a pauzy.', ['odpoved','tech'],
-      'Nasazeno v obou variantách hero sekce. Krátká smyčka (assets/hero/hero-loop.mp4) běží automaticky na pozadí — v V2 přes celý banner, v V1 v prvním velkém banneru mozaiky. Vždy bez zvuku, ve smyčce, playsinline a s fotkou jako posterem, takže na pomalém připojení i před načtením je vidět obrázek. Zvuk je vypnutý nejen atributem, ale i přímo na elementu (muted, defaultMuted, volume 0), aby ho prohlížeč nemohl zapnout. Při „prefers-reduced-motion“ se video nepouští vůbec a zůstává fotka; na displejích do 600 px se v V2 kvůli datům také nespouští. Zvuk uslyšíte až po vlastním kliknutí: tlačítko „Přehrát celé video“ v V2 a pilulka „Přehrát video“ na prvním banneru V1 otevřou lightbox s celým videem z YouTube (se zvukem a ovládáním, zavření křížkem, kliknutím na pozadí nebo klávesou Esc). Po otevření lightboxu se smyčka na pozadí zastaví, aby neběžela dvě videa současně. Odkaz na video je v kódu na jednom místě, takže jeho výměna je otázka jednoho řádku, a v lightboxu je pro jistotu i odkaz „Otevřít na YouTube“. Do produkce doporučujeme smyčku ještě zkomprimovat (ideálně do 2–3 MB) a doplnit WebM variantu.'],
-    ['E3', 'Nový blok „Z komunitní dílny“', 'Galerie výrobků zákazníků (mřížka fotek s krátkým popisem a jménem) plus výzva „Chcete tu být taky? Pošlete nám svůj výrobek.“ s odkazem na formulář nebo e-mail. Řešit i stav s malým počtem fotek.', ['nova','komponenta']],
-    ['E4', 'Podklady pro komunitní dílnu a karusely', 'Potřebujeme reálné fotky zákaznických výrobků (ideálně 8–12), UGC příspěvky z Instagramu a finální produktové fotky do karuselů.', ['podklad']],
+      'Nasazeno v obou variantách hero sekce. Krátká smyčka (assets/hero/hero-loop.mp4) běží automaticky na pozadí — v V2 přes celý banner, v V1 v prvním velkém banneru mozaiky. Vždy bez zvuku, ve smyčce, playsinline a s fotkou jako posterem, takže na pomalém připojení i před načtením je vidět obrázek. Zvuk je vypnutý nejen atributem, ale i přímo na elementu (muted, defaultMuted, volume 0), aby ho prohlížeč nemohl zapnout. Při „prefers-reduced-motion“ se video nepouští vůbec a zůstává fotka; na displejích do 600 px se v V2 kvůli datům také nespouští. Zvuk uslyšíte až po vlastním kliknutí: tlačítko „Přehrát celé video“ v V2 a pilulka „Přehrát video“ na prvním banneru V1 otevřou lightbox s celým videem z YouTube (se zvukem a ovládáním, zavření křížkem, kliknutím na pozadí nebo klávesou Esc). Po otevření lightboxu se smyčka na pozadí zastaví, aby neběžela dvě videa současně. Odkaz na video je v kódu na jednom místě, takže jeho výměna je otázka jednoho řádku, a v lightboxu je pro jistotu i odkaz „Otevřít na YouTube“.',
+      ['K odsouhlasení', 'Pro produkci doporučujeme smyčku zkomprimovat (ideálně do 2–3 MB) a doplnit WebM variantu. Potvrďte prosím také, které video se má otevírat v lightboxu — nyní je tam vámi zaslané YouTube video.']],
+    ['E3', 'Nový blok „Z komunitní dílny“', 'Galerie výrobků zákazníků (mřížka fotek s krátkým popisem a jménem) plus výzva „Chcete tu být taky? Pošlete nám svůj výrobek.“ s odkazem na formulář nebo e-mail. Řešit i stav s malým počtem fotek. Náhledy jako instagramové příspěvky na výšku, pod fotkou krátký popis, co vyrobili, a k tomu avatar a jméno.', ['nova','komponenta'],
+      'Na homepage je nový blok „Z komunitní dílny“ s nadpisem „Co vyrobili lidé z našich surovin“. Náhledy jsou na výšku ve formátu 4:5 jako instagramový příspěvek, se štítkem kategorie v ploše fotky. Pod fotkou je krátký popis výrobku (co vyrobili a z čeho), pod ním kolečkový avatar, jméno a doplňující řádek (město a jak dlouho tvoří). Mřížka je čtyři karty na řádek, na tabletu dvě, na mobilu jedna — s méně fotkami tedy blok nezůstane rozbitý. Pod mřížkou je světle zelený panel s výzvou „Chcete tu být taky?“, vysvětlením co poslat a terrakotovým tlačítkem „Pošlete nám svůj výrobek“, které nyní otevírá předplněný e-mail na eshop@ekokoza.cz. Fotky, které jste dodali, jsou nasazené (maska s astaxanthinem, sérum s malachitem, repelent pro koně, svíčka proti komárům); každá plocha zůstává přetahovatelná, takže fotku vyměníte přímo v náhledu.',
+      ['K odsouhlasení', 'Potřebujeme od vás upřesnit, co má blok reálně dělat: kolik fotek zobrazovat a jestli má být načítání dalších; jestli má tlačítko otevřít formulář na webu (a jaká pole má mít, včetně souhlasu se zveřejněním fotky), nebo stačí e-mail; jak řešit více fotek od jednoho zákazníka k jednomu výrobku (galerie v jednom příspěvku, nebo jedna hlavní fotka); jestli se má u výrobku odkazovat na použité suroviny a na recept; a kdo obsah schvaluje před zveřejněním.']],
+    ['E4', 'Podklady pro komunitní dílnu a karusely', 'Potřebujeme reálné fotky zákaznických výrobků (ideálně 8–12), UGC příspěvky z Instagramu a finální produktové fotky do karuselů.', ['podklad'],
+      'Čtyři fotky do komunitní dílny jsou nasazené. Pátou (NOVOretin) jsme uložili do assets/community/ jako zásobu — má na etiketě cizí značku, tak ji v komunitní dílně nepoužíváme.',
+      ['Čekáme na vás', 'Zbývá dodat další fotky zákaznických výrobků (do plného počtu 8–12), UGC příspěvky z Instagramu a finální produktové fotky do karuselů.']],
   ]},
   { id: 'F', title: 'F. Detail produktu', note: '', tasks: [
     ['F1', 'Pravý sloupec s přepínáním obsahu', 'Vedle produktového popisu jeden sloupec s přepínáním mezi Parametry / Dokumentace / Recepty s touto surovinou. Na mobilu jako sbalitelné sekce pod popisem, s pořadím podle důležitosti.', ['uprava','komponenta']],
-    ['F2', 'Hlídací pes — upozornit na naskladnění', 'U nedostupných stavů blok s e-mailem (u přihlášených předvyplněný), potvrzením „budeme hlídat“ a přehledem hlídaných produktů v zákaznické zóně. Doplnit i do buy baru.', ['nova','komponenta']],
+    ['F2', 'Hlídací pes — upozornit na naskladnění', 'U nedostupných stavů blok s e-mailem (u přihlášených předvyplněný), potvrzením „budeme hlídat“ a přehledem hlídaných produktů v zákaznické zóně. Doplnit i do buy baru. Formulář jako samostatná komponenta, plus návrh v podobě vyskakovacího okna.', ['nova','komponenta'],
+      'Hlídací pes je samostatná komponenta ui-WatchDog, kterou lze použít vloženě i jako obsah modalu. U nedostupného produktu se v pravém sloupci objeví červeně orámované vysvětlení „Tento produkt nelze zakoupit“ a pod ním formulář: přihlášenému zákazníkovi je e-mail předvyplněný z účtu s poznámkou „z vašeho účtu“, nepřihlášený ho zadává sám. E-mail se validuje a chyba se hlásí přímo v poli. Po odeslání se blok přepne na potvrzení „Hlídáme za vás“ s uvedenou adresou a produktem či variantou, u přihlášeného i s odkazem na přehled hlídaných produktů v zákaznické zóně a s možností hlídání zrušit. Pod formulářem je vysvětlení, že e-mail použijeme jen k tomuto jednomu oznámení a hlídání lze kdykoli zrušit odkazem v e-mailu. Stejná komponenta je i jako vyskakovací okno (tmavý overlay, zavření křížkem, kliknutím na pozadí i tlačítkem Zavřít) — na produktu ji vyvolá tlačítko „Ukázat jako vyskakovací okno“. Buy bar u nedostupného produktu nabízí místo tlačítka Do košíku hlídacího psa a odscrolluje k němu. Přepínače ukázky (variantní/jednoduchý produkt, dostupný/nedostupný, přihlášený/nepřihlášený) jsou v plovoucí liště dole nad buy barem; lištu lze skrýt a znovu vyvolat pilulkou „Ukázka“. ŘEŠENÍ #2 — hlídání ceny u produktu, který je skladem: pod tlačítkem Do košíku je odkaz „Hlídat cenu“, který otevře vyskakovací okno se samostatnou komponentou ui-PriceWatch. V okně je vypsaná nynější cena, pole pro cenu, na kterou chce zákazník čekat (s nabídkou hranic −10, −15 a −20 % jako rychlé volby a s naznačenou hodnotou v poli), a e-mail — přihlášenému předvyplněný z účtu s poznámkou „z vašeho účtu“, nepřihlášený ho zadá. Formulář kontroluje, že hranice je nižší než nynější cena, a chybu hlásí přímo v okně. Po odeslání se okno přepne na potvrzení „Cenu hlídáme“ s uvedenou adresou i hranicí, u přihlášeného s odkazem na přehled hlídaných produktů a s možností hranici změnit. Pod formulářem je ujištění, že napíšeme jen jednou a hlídání lze kdykoli zrušit odkazem v e-mailu. Okno se otevírá a zavírá stejně jako ostatní vyskakovací okna na webu — křížkem, kliknutím na pozadí i tlačítkem Zavřít.',
+      ['K odsouhlasení', 'Potvrďte prosím, jestli má hlídací pes hlídat konkrétní variantu, nebo produkt jako celek, a jestli si má nepřihlášený zákazník e-mail potvrzovat odkazem (double opt-in). Také jestli má být hlídání dostupné i u stavu „Už nenabízíme“, kde se produkt nemusí vrátit. U hlídání ceny potřebujeme vědět, jestli se hranice porovnává s cenou po věrnostní slevě nebo před ní, jak dlouho hlídání platí (nebo do odvolání), jestli povolíme jen jednu hranici na produkt, a jak se má chovat u variantních produktů — hlídat vybranou variantu, nebo nejnižší cenu z variant.']],
     ['F3', 'Vzorový produktový obsah a definice bloků', 'Podle vzorového obsahu definujeme všechny bloky, které se mohou v popisu objevit (perex, tabulka, upozornění, návod krok za krokem, citace, video, galerie, odkaz na recept) a nastylujeme je v design systému.', ['podklad','ds']],
     ['F4', 'Dořešit grafické prvky a listy v produktovém obsahu', 'Čekáme na vaši zpětnou vazbu k použitým grafickým prvkům; podle ní upravíme jejich sadu a pravidla použití.', ['podklad']],
+    ['F5', 'Přidání do oblíbených na detailu produktu', 'Na detailu produktu chybí možnost uložit produkt mezi oblíbené. Nejlépe v pravém horním rohu galerie.', ['uprava','komponenta'],
+      'Doplněno do galerie produktu — v pravém horním rohu hlavní fotografie je kruhové srdíčko 42 px. Nepřidaný produkt má bílé kolečko s jemným rámem a šedou ikonou, po uložení se přebarví na terrakotu s plným srdcem a titulek se změní na „Odebrat z oblíbených“. Stav se ukládá do stejného sdíleného seznamu, jaký používají karty produktů, takže se počet okamžitě propíše do srdíčka v hlavičce (a spustí jeho jemné pulznutí podle bodu J1) a produkt se objeví na stránce Oblíbené produkty. Kliknutí neotevírá zvětšení fotografie.',
+      ['K odsouhlasení', 'Potřebujeme vědět, jestli se má u variantních produktů ukládat konkrétní varianta, nebo produkt jako celek, a jestli chcete srdíčko i v buy baru, který se objeví po odscrollování.']],
   ]},
   { id: 'G', title: 'G. Receptář a propojení surovin', note: 'grafiku dodat co nejdřív — kvůli úlohám 157151 a 154436', tasks: [
     ['G1', 'Receptář — přehled', 'Rozcestník receptů: filtry (kategorie, obtížnost, čas, surovina), řazení, karta receptu s hodnocením a klíčovými surovinami, prázdný stav.', ['nova']],
@@ -157,21 +203,41 @@ const SECTIONS = [
     ['G5', 'Předat grafiku receptů vývoji jako první balík', 'Uzavřít G1–G4 dřív než zbytek, aby mohla naběhnout implementace úloh 157151 (předělání funkčnosti receptů) a 154436 (svázání surovin z receptu s produktem).', ['tech']],
   ]},
   { id: 'H', title: 'H. Zákaznická zóna', note: 'mini dashboard + podstránky', tasks: [
-    ['H1', 'Mini dashboard po přihlášení', 'Věrnostní úroveň a postup do další, poslední objednávky a faktury, oblíbené produkty a recepty, uložené košíky, dříve nakoupené produkty, čekající hodnocení. Modulární rozvržení, aby šlo bloky přidávat.', ['nova']],
+    ['H1', 'Mini dashboard po přihlášení', 'Věrnostní úroveň a postup do další, poslední objednávky a faktury, oblíbené produkty a recepty, uložené košíky, dříve nakoupené produkty, čekající hodnocení. Modulární rozvržení, aby šlo bloky přidávat.', ['nova'],
+      'Hotová stránka muj-ucet.html (Můj účet — přehled). Nahoře oslovení jménem a krátký perex, pod ním nová komponenta ui-LoyaltyStatus přes celý řádek: v kolečku aktuální sleva místo ikony (−5 %), název úrovně podle vašeho podkladu (Registrovaný zákazník, Ekokozí fanoušek 5 %, Nadšený výrobce 10 %, Profesionál 15 %), popis výhody, progressbar postupu v rámci aktuální úrovně s textem, kolik do další chybí, a celá škála tří úrovní s aktuální zvýrazněnou. Po dosažení další úrovně se plnění počítá znovu od nuly, obrat se komponentě předává jako údaj, takže úroveň i postup se počítají samy. Komponenta má i kompaktní variantu, která běží v rozbalovacím menu pod ikonou uživatele a v záhlaví zákaznické zóny místo dřívějšího řádku „Cenová skupina“, a variantu pro tmavé plochy. Pod věrnostním stavem jsou dvě karty — poslední objednávka se stavem, číslem, datem, cenou a akcemi Detail a Sledovat zásilku, a doklady a platby s částkou k uhrazení, částkou po splatnosti a počtem faktur v roce. Následuje modulární mřížka dlaždic na všechny části zóny: hotové odkazují (Přehled objednávek s počtem 18, Přehled faktur 13, Oblíbené produkty 8, Správa účtu, Věrnostní program), zbývající jsou vypsané s odznakem „Připravujeme“ (Oblíbené recepty, Uložené košíky, Dříve nakoupené produkty, Moje hodnocení, Hlídané produkty, Sledování zásilky, Vrácení a reklamace). Dlaždice jsou tři na řádek, na tabletu dvě, na mobilu jedna, takže bloky lze doplňovat bez přestavby. Položka „Můj účet — přehled“ je i v menu pod ikonou uživatele, v navigaci zóny a v mobilní zásuvce; odhlášení je v tlumené červené a popupy menu i košíku mají bílý podklad kvůli kontrastu.',
+      ['K odsouhlasení', 'Potřebujeme potvrdit hranice a názvy věrnostních úrovní a hlavně jak se počítá čtvrtletní obrat (kalendářní čtvrtletí, nebo posledních 90 dní) a co se do něj započítává — stornované a vrácené objednávky, doprava, dárkové poukazy. Dále které bloky mají na přehledu být hned po přihlášení a v jakém pořadí, a jestli chcete zobrazovat i počty (objednávky, faktury, oblíbené), jak to máme nyní.']],
     ['H2', 'Horní lišta pro přihlášeného zákazníka', 'Jméno, věrnostní úroveň (a kolik chybí do další) a stav poslední objednávky přímo v liště, s rozbalovacím menu zóny. Mobilní varianta zkrácená.', ['uprava','komponenta']],
-    ['H3', 'Podstránky: objednávky, detail objednávky, faktury', 'Seznam objednávek se stavy, detail s položkami, dopravou a možností reklamace či opakování nákupu, stahování faktur.', ['nova']],
-    ['H4', 'Podstránky: oblíbené, uložené košíky, dříve nakoupené, hodnocení', 'Oblíbené produkty i recepty odděleně, uložené košíky s přejmenováním a obnovením, historie nakoupených produktů s rychlým doplněním, moje hodnocení a výzvy k hodnocení.', ['nova']],
+    ['H3', 'Podstránky: objednávky, detail objednávky, faktury', 'Seznam objednávek se stavy, detail s položkami, dopravou a možností reklamace či opakování nákupu, stahování faktur. K oddělení sekcí použít trhaný pás a vybrat vhodné ikony do tlačítek a odkazů. Plus rozbalovací menu pod ikonou uživatele v hlavičce podle dodaného screenshotu.', ['nova'],
+      'Hotové jsou tři stránky a tři nové komponenty, obsahově podle stávajícího e-shopu z vašich screenshotů. Přehled objednávek (objednavky.html): filtr Objednáno od, Objednávka č., Objednáno do a Kód produktu s tlačítky Smazat filtr a Filtrovat, přepínač „Jen nevyřízené“ a tabulka se sloupci Číslo, Objednáno, Cena s DPH, Stav, Úhrada / Typ dopravy, Sledovat, Akce a Náhled; sloupce Číslo, Objednáno, Cena a Stav se dají řadit. Odkaz „MSDS k surovinám“ stahuje všechny bezpečnostní listy v ZIP, ikona „i“ vedle něj otevře okno s vysvětlením, že chybějící dokument dodáme na vyžádání na info@ekokoza.cz a že k analytickým certifikátům potřebujeme fotografii šarže a data spotřeby. Ceny respektují měnu objednávky (Kč i EUR). Detail objednávky (objednavka.html): čtyři bloky údajů — Hlavní, Kontaktní, Fakturační a Dodací, pod nimi Poznámka, tlačítka Opakovat objednávku, Zpět na seznam objednávek, Vytisknout a Faktura PDF, a tabulka položek se sloupci Kód, Název, Cena za m. j. bez DPH, Cena za m. j. s DPH, Množství, Celkem a Poznámka; dole zeleně podbarvený souhrn Celkem bez DPH a Celkem s DPH. Přehled faktur (faktury.html): stejný filtr jako u objednávek, souhrn „Celkem uhradit“ a „Z toho po splatnosti“ (po splatnosti červeně) a tabulka Faktura č., Objednávka č., Vystaveno, Splatnost, Cena s DPH, Uhradit, Úhrada / Typ dopravy, Sledovat a Stáhnout fakturu / Náhled s PDF ikonou. Nové komponenty: ui-OrderStatus (stavy objednávky navázané na semantickou škálu skladovosti — přijatá, čeká na platbu, připravujeme, odesláno, doručeno, vráceno, stornováno), ui-AccountNav (záhlaví zákazníka s cenovou skupinou a přepínač sekcí zóny) a ui-AccountMenu (rozbalovací menu pod ikonou uživatele v hlavičce podle vašeho screenshotu: jméno, cenová skupina, Přehled objednávek, Přehled faktur, Oblíbené produkty, Správa účtu, oddělovač a Odhlásit z e-shopu). Nepřihlášenému se pod ikonou stále otevře přihlášení, na mobilu jsou stejné položky v zásuvce a navigace zóny se na malých displejích zalomí do mřížky, aby byly všechny sekce vidět. Do ikonové sady jsme podle vašeho podkladu přidali souborové ikony (PDF, DOC, TXT, PPT) a PDF používáme u stahování dokladů. Tabulky nemají hover posun ani stín a na mobilu se řádky skládají pod sebe s popisky sloupců; sloupec Akce s MSDS se na úzkých displejích skrývá, aby zbytek zůstal čitelný.',
+      ['K odsouhlasení', 'Potřebujeme potvrdit úplný seznam stavů objednávky, které e-shop vypisuje, a jaké akce u kterého stavu nabídnout (nyní pracujeme se sedmi stavy). Dále jak přesně má fungovat MSDS — jestli se skutečně stahuje ZIP se všemi listy, nebo jednotlivé PDF. A jestli má být u nezaplacené faktury možnost doplatit ji přes platební bránu a jak se má chovat Opakovat objednávku, když už některá položka není v nabídce.']],
+    ['H3b', 'Správa účtu', 'Podle struktury stránky zmena-udaju na webu udělat i stránku správy účtu.', ['nova'],
+      'Hotová stránka ucet.html se stejnou strukturou jako formulář na webu: přepínač „Nakupuji na firmu“ (rozbalí název firmy, IČ a DIČ), osobní údaje (jméno, příjmení, e-mail, telefon), fakturační adresa (ulice, PSČ, město, země), přepínač „Adresa dodání je jiná než fakturační“ (rozbalí jméno, telefon pro dopravce a doručovací adresu), sbalitelná změna hesla s kontrolou shody, poznámka k účtu a oba souhlasy — novinky a dotazník Heureka Ověřeno zákazníky. Dole je uložení se stavem „Údaje jsou uložené“, vrácení původních údajů a odkaz na podmínky zpracování osobních údajů. Za trhaným pásem jsou rozcestníky na objednávky, faktury a věrnostní program a blok o zrušení účtu. Formulář je na mobilu jednosloupcový, pole mají 48 px na výšku a checkboxy 22 px.',
+      ['K odsouhlasení', 'Potřebujeme vědět, která pole jsou povinná, jestli má e-mail po změně vyžadovat potvrzení odkazem, jestli se má IČ dotahovat z rejstříku (ARES) a jak se má chovat souhlas s dotazníkem Heureka — na webu je formulovaný obráceně jako „Nesouhlasím“, my ho máme kladně jako „Chci dostat dotazník“.']],
+    ['H4a', 'Oblíbené produkty', 'Stránka s výpisem produktů, které si zákazník uložil.', ['nova'],
+      'Hotová stránka oblibene.html — čistý výpis uložených produktů v mřížce po čtyřech (na tabletu tři, na mobilu dvě, na malém displeji jedna). Karty jsou stejná komponenta jako v katalogu, takže nesou hodnocení, stav skladu i tlačítko do košíku; srdíčko je aktivní a slouží k odebrání z oblíbených. V záhlaví je počet uložených produktů, pro prázdný seznam je stav s vysvětlením, jak se produkty ukládají, a odkazem na suroviny. Dole je plovoucí lišta ukázky, kterou přepnete mezi přihlášeným a nepřihlášeným zákazníkem a mezi plným a prázdným seznamem; lištu lze skrýt. Nepřihlášenému se místo bloku zákazníka a navigace zóny zobrazí výzva, že uložené produkty má jen v tomto prohlížeči a po přihlášení se přenesou do účtu, s tlačítky Přihlásit se a Registrovat se.',
+      ['K odsouhlasení', 'Potřebujeme vědět, jestli se má u oblíbených nabízet řazení nebo filtrování (nyní je to jednoduchý výpis) a jak dlouho držet oblíbené nepřihlášenému zákazníkovi v prohlížeči.']],
+    ['H4', 'Podstránky: uložené košíky, dříve nakoupené, hodnocení', 'Uložené košíky s přejmenováním a obnovením, historie nakoupených produktů s rychlým doplněním, moje hodnocení a výzvy k hodnocení.', ['nova'],
+      'Vstupní body jsou vyřešené na přehledu účtu (H1) — v mřížce dlaždic jsou Uložené košíky, Dříve nakoupené produkty, Moje hodnocení a Hlídané produkty vypsané s odznakem „Připravujeme“, takže je vidět celý rozsah zóny a mřížka je modulární, tedy dlaždice jen přepneme na odkaz, až obrazovky vzniknou. Oblíbené produkty jsou hotové jako samostatná stránka (bod H4a). Samotné obrazovky uložených košíků, dříve nakoupených produktů a hodnocení zatím navržené nejsou.',
+      ['K odsouhlasení', 'Řekněte prosím, jestli tyto tři obrazovky chcete navrhnout hned, nebo je odložit na další etapu. Zároveň potřebujeme vědět, jak dlouho se má uložený košík držet a jestli má zákazník košíků víc, jak daleko zpět má jít historie nakoupených produktů, a jestli se hodnocení píše přímo v zóně, nebo přes odkaz z e-mailu.']],
     ['H5', 'Přihlášení, registrace, obnova hesla', 'Sjednotit s existujícím přihlašovacím panelem: registrace s vysvětlením výhod (věrnostní program, oblíbené), obnova hesla, chybové a potvrzovací stavy.', ['nova','komponenta']],
   ]},
   { id: 'I', title: 'I. Košík a vložení do košíku', note: '', tasks: [
-    ['I1', 'Potvrzovací panel po vložení do košíku', 'Jasné potvrzení přidané položky (fotka, varianta, množství, cena), volby „Pokračovat v nákupu“ a „Přejít do košíku“, k tomu související produkty a doplňky. Řešit i chování při přidání z karuselu a z receptu.', ['nova','komponenta']],
+    ['I1', 'Potvrzovací panel po vložení do košíku', 'Jasné potvrzení přidané položky (fotka, varianta, množství, cena), volby „Pokračovat v nákupu“ a „Přejít do košíku“, k tomu související produkty a doplňky. Řešit i chování při přidání z karuselu a z receptu.', ['nova','komponenta'],
+      'Hotová samostatná komponenta ui-CartAdded. Okno má tři jasně oddělené části, aby se v něm neztrácelo to podstatné. Nahoře potvrzení s ikonou a počtem přidaných kusů, případně počtem variant, a ujištění, že zboží v košíku zůstane. Pod tím výpis všeho, co zákazník právě přidal — každá položka s fotografií, názvem, variantou, počtem kusů, cenou za kus, cenou celkem, cenou bez DPH a stavem skladu; okno je tedy připravené na více variant naráz, ne jen na jednu položku. Následuje zelený blok s dopravou a věrností: buď „Dopravu máte zdarma“, nebo kolik do ní chybí, a pod tím kompaktní věrnostní stav z komponenty ui-LoyaltyStatus (aktuální sleva, postup a kolik chybí do další úrovně) s odkazem na věrnostní program — místo dvou dlouhých odstavců, které jsou na webu nyní. Obsah košíku není nacpaný do malé rolovací plochy, ale schovaný pod rozbalovacím řádkem „Zobrazit obsah košíku (4 produkty)“ s celkovou cenou, takže potvrzení zůstává přehledné a kdo chce, rozbalí si zbytek. Dole je cena přidaného zboží a hlavní tlačítko Přejít do košíku. Na desktopu se okno zavírá křížkem, klávesou Esc i kliknutím mimo okno; na obrazovkách do 640 px zabírá celý displej, hlavička i patička zůstávají na místě a přidané tlačítko Zpět do obchodu dává jasnou cestu zpět (na desktopu se nezobrazuje). ŘEŠENÍ #2 — nákup variant: rozhodli jsme se pro kvantifikátory přímo v řádku varianty. Každá varianta má u sebe cenu, cenu za jednotku, stav skladu a počítadlo kusů, pod výpisem je jedno tlačítko Do košíku s počtem vybraných kusů a řádkem, kolik variant a za kolik zákazník přidává; nedostupná varianta počítadlo nemá. Důvod změny: dosavadní podoba nutila zákazníka vybrat jednu variantu, přidat ji, vrátit se, vybrat druhou a přidat znovu — u surovin, kde se běžně kupuje kilové i pětikilové balení naráz, to znamená několik zbytečných kol. Kvantifikátory v řádku ukazují celou nabídku balení i s cenou za jednotku, takže je vidět, že větší balení vychází lépe, a celý nákup se odešle jedním kliknutím. Zároveň tím zmizel dvojí ovladač (výběr varianty plus samostatné počítadlo u tlačítka), který byl matoucí.',
+      ['K odsouhlasení', 'Potřebujeme potvrdit, kterou cestu nákupu chcete: A) nynější podobu, kdy si zákazník zvolí množství u více variant a jedním tlačítkem Do košíku vloží vše najednou (tak je to navržené), nebo B) výběr jedné varianty, vložení do košíku, a pro druhou variantu celý postup znovu. Dále u okna potvrzení: jestli má hlavní tlačítko vést do košíku, nebo přímo do objednávky („Objednat“ jako nyní), jestli chcete v okně i doporučené doplňky k nákupu, a jestli se okno má otevírat i při přidání z karuselu a z receptu, nebo tam stačí tichá zpětná vazba u košíku v hlavičce.']],
     ['I2', 'Stránka košíku', 'Rekapitulace položek s úpravou množství a variant, doprava a platba v souhrnu, věrnostní bonus či dárek, uložení košíku, prázdný stav s návaznostmi na recepty.', ['nova']],
     ['I3', 'Ověřit rozsah pokladny', 'Domluvit, zda do předání patří i samotná pokladna (kroky, doprava, platba, souhrn, potvrzení) — pokud ano, doplníme jako samostatný balík.', ['odpoved']],
   ]},
   { id: 'J', title: 'J. Oblíbené — objevitelnost', note: 'jemně, nerušivě', tasks: [
-    ['J1', 'Jemná animace srdíčka', 'Občasné, nenápadné pulznutí srdíčka (jednou za návštěvu, ne u každé karty), s respektem k „prefers-reduced-motion“ a bez pohybu při skrolování.', ['uprava','komponenta']],
-    ['J2', 'Vysvětlující tooltip při delším podržení kurzoru', 'Po ~600 ms krátký text: k čemu oblíbené slouží a že přihlášenému zůstanou i příště. Na mobilu ekvivalent jako jednorázový tip.', ['uprava','komponenta']],
-    ['J3', 'Chování oblíbených pro nepřihlášené', 'Ukládat lokálně a po přihlášení přenést do účtu; návazně na to formulovat pobídku k přihlášení bez tlaku.', ['uprava','tech']],
+    ['J1', 'Jemná animace srdíčka', 'Občasné, nenápadné pulznutí srdíčka (jednou za návštěvu, ne u každé karty), s respektem k „prefers-reduced-motion“ a bez pohybu při skrolování. Konkrétně: po načtení stránky se zpožděním asi 5 sekund, a jen když má zákazník něco v oblíbených.', ['uprava','komponenta'],
+      'Srdíčko v hlavičce pulzne pět sekund po načtení stránky a jen tehdy, když je v oblíbených alespoň jeden produkt. Animace je jemná (dvě pulznutí do 1,18 násobku velikosti, dohromady necelé tři sekundy) a běží jen na samotné ikoně, takže nehýbe okolím ani lištou. Při zapnutém „prefers-reduced-motion“ se nespustí vůbec. Prázdné oblíbené zůstanou v klidu.',
+      ['K odsouhlasení', 'Potvrďte prosím, jestli pětisekundové zpoždění a jedno pulznutí po načtení stránky odpovídá tomu, co jste chtěli, nebo to má být vzácnější — například jen jednou za návštěvu, ne po každém načtení stránky.']],
+    ['J2', 'Vysvětlující tooltip při delším podržení kurzoru', 'Po ~600 ms krátký text: k čemu oblíbené slouží a že přihlášenému zůstanou i příště. Na mobilu ekvivalent jako jednorázový tip.', ['uprava','komponenta'],
+      'Po podržení kurzoru nad srdíčkem v hlavičce se po 600 ms objeví bublina s vysvětlením. Text se přizpůsobí stavu: s uloženými produkty vypíše jejich počet a připomene, že přihlášenému zůstanou i příště, prázdným vysvětlí, že se srdíčkem ukládají suroviny, ke kterým se chcete vrátit. Bublina je bílá s jemným stínem a šipkou k ikoně, nereaguje na kurzor, aby nepřekážela, a mizí okamžitě po odjezdu myši. Na dotykových displejích do 900 px se nezobrazuje — tam by překrývala obsah.',
+      ['K odsouhlasení', 'Na mobilu tooltip zatím není. Potřebujeme vědět, jestli tam chcete jednorázový tip po prvním uložení produktu (krátká zpráva u srdíčka, kterou lze zavřít), nebo to necháme jen pro desktop.']],
+    ['J3', 'Chování oblíbených pro nepřihlášené', 'Ukládat lokálně a po přihlášení přenést do účtu; návazně na to formulovat pobídku k přihlášení bez tlaku.', ['uprava','tech'],
+      'Vyřešeno a ukázané v návrhu. Na stránce Oblíbené produkty se nepřihlášenému místo bloku zákazníka zobrazí vysvětlení, že uložené produkty má jen v tomto prohlížeči a po přihlášení se přenesou do účtu, zůstanou i na mobilu a uvidí u nich svou cenovou skupinu — s tlačítky Přihlásit se a Registrovat se a s ujištěním, že nic dalšího posílat nebudeme. Stav si vyzkoušíte přepínačem v plovoucí liště dole na té stránce. Stejný tón drží i tooltip u srdíčka v hlavičce (bod J2): říká, že přihlášenému zůstanou oblíbené i příště, bez tlaku a bez upozorňování na ztrátu.',
+      ['K odsouhlasení', 'Z naší strany je návrh hotový. Potřebujeme jen potvrdit chování na straně systému: jak dlouho se mají oblíbené držet v prohlížeči nepřihlášenému a co se stane při přihlášení, když už má zákazník v účtu jiný seznam — sloučit oba, nebo nechat ten z účtu.']],
   ]},
   { id: 'K', title: 'K. Kategorie a podkategorie', note: 'nejprve rozcestník, pak revize dlaždic', tasks: [
     ['K1', 'Kategorie jako rozcestník', 'Doplnit obsahové bloky: úvodní vysvětlení, doporučené produkty, recepty s těmito surovinami, návody, časté dotazy. Aby stránka nebyla jen výpis produktů.', ['uprava','nova']],
@@ -189,7 +255,16 @@ const PRIO_COLORS = { 1: ['#D14405', 'rgba(209,68,5,.10)'], 2: ['#B8862B', 'rgba
 const KEY = 'ekokoza-ukolovnik-v1';
 
 class Component extends DCLogic {
-  state = { prio: {}, done: {} };
+  state = { prio: {}, done: {}, filters: { status: [], prio: [], tag: [] } };
+
+  toggleFilter(kind, value) {
+    this.setState(s => {
+      const filters = { status: s.filters.status.slice(), prio: s.filters.prio.slice(), tag: s.filters.tag.slice() };
+      const i = filters[kind].indexOf(value);
+      if (i >= 0) filters[kind].splice(i, 1); else filters[kind].push(value);
+      return { filters };
+    });
+  }
 
   componentDidMount() {
     try {
@@ -238,19 +313,34 @@ class Component extends DCLogic {
     let total = 0, p1 = 0, p2 = 0, p3 = 0, d = 0, review = 0;
     const badge = (label, color, bg) => 'font:700 10.5px/1 \'Work Sans\',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:' + color + ';background:' + bg + ';border:1px solid ' + color + ';border-radius:999px;padding:5px 9px;white-space:nowrap';
 
+    const F = this.state.filters;
+    const matches = (id, tags, solution) => {
+      const isDone = !!done[id];
+      const status = isDone ? 'done' : (solution ? 'review' : 'open');
+      if (F.status.length && !F.status.includes(status)) return false;
+      const p = prio[id] ? 'p' + prio[id] : 'none';
+      if (F.prio.length && !F.prio.includes(p)) return false;
+      if (F.tag.length && !tags.some(t => F.tag.includes(t))) return false;
+      return true;
+    };
+
     const sections = SECTIONS.map(sec => ({
       title: sec.title,
       note: sec.note,
-      tasks: sec.tasks.map(([id, title, detail, tags, solution]) => {
+      tasks: sec.tasks.filter(([id, title, detail, tags, solution]) => {
         total++;
         const p = prio[id];
         if (p === 1) p1++; if (p === 2) p2++; if (p === 3) p3++;
+        if (done[id]) d++; else if (solution) review++;
+        return matches(id, tags, solution);
+      }).map(([id, title, detail, tags, solution, ask]) => {
+        const p = prio[id];
         const isDone = !!done[id];
-        if (isDone) d++;
-        if (solution && !isDone) review++;
         return {
           id, title, detail,
           solution: solution || '', hasSolution: !!solution,
+          solutionParts: (solution || '').split(' ŘEŠENÍ #').map((t, i) => ({ text: i === 0 ? t : 'ŘEŠENÍ #' + t })),
+          ask: ask ? ask[1] : '', askLabel: ask ? ask[0] : '', hasAsk: !!ask,
           hasStatus: !!solution,
           statusLabel: isDone ? 'Schváleno' : 'Ke schválení',
           statusStyle: isDone
@@ -274,8 +364,52 @@ class Component extends DCLogic {
       }),
     }));
 
+    // --- filtry ---
+    const countBy = (kind, val) => {
+      let n = 0;
+      SECTIONS.forEach(sec => sec.tasks.forEach(([id, t, dt, tags, solution]) => {
+        if (kind === 'status') {
+          const st = done[id] ? 'done' : (solution ? 'review' : 'open');
+          if (st === val) n++;
+        } else if (kind === 'prio') {
+          if ((prio[id] ? 'p' + prio[id] : 'none') === val) n++;
+        } else if (tags.includes(val)) n++;
+      }));
+      return n;
+    };
+    const chip = (on, color) => 'display:inline-flex;align-items:center;gap:6px;font:600 12.5px/1 \'Work Sans\',sans-serif;border-radius:999px;padding:9px 13px;min-height:34px;cursor:pointer;transition:all .12s ease;'
+      + (on ? 'color:#fff;background:' + color + ';border:1px solid ' + color + ';' : 'color:#5D6E55;background:#FBF8F1;border:1px solid rgba(76,101,61,.2);');
+    const chipCount = (on) => 'font:700 11px/1 \'Work Sans\',sans-serif;opacity:' + (on ? '.85' : '.55');
+    const opt = (kind, value, label, color) => {
+      const on = F[kind].includes(value);
+      return { label, count: countBy(kind, value), style: chip(on, color), countStyle: chipCount(on), toggle: () => this.toggleFilter(kind, value) };
+    };
+
+    const filterGroups = [
+      { label: 'Stav', options: [
+        opt('status', 'review', 'Ke schválení', '#3C5B86'),
+        opt('status', 'done', 'Schváleno', '#4C653D'),
+        opt('status', 'open', 'Nezpracované', '#8A5A22'),
+      ] },
+      { label: 'Priorita', options: [
+        opt('prio', 'p1', 'P1', '#D14405'),
+        opt('prio', 'p2', 'P2', '#B8862B'),
+        opt('prio', 'p3', 'P3', '#6E9134'),
+        opt('prio', 'none', 'Bez priority', '#8A9682'),
+      ] },
+      { label: 'Typ', options: Object.keys(TAGS).map(k => opt('tag', k, TAGS[k][0], TAGS[k][1])) },
+    ];
+
+    const shown = sections.reduce((n, s) => n + s.tasks.length, 0);
+    const anyFilter = F.status.length + F.prio.length + F.tag.length > 0;
+
     return {
-      sections,
+      sections: sections.filter(s => s.tasks.length > 0),
+      noMatches: shown === 0,
+      filterGroups,
+      anyFilter,
+      filterSummary: anyFilter ? 'Zobrazeno ' + shown + ' z ' + total + ' úkolů' : 'Zobrazeny všechny úkoly (' + total + ')',
+      clearFilters: () => this.setState({ filters: { status: [], prio: [], tag: [] } }),
       totalCount: total, p1Count: p1, p2Count: p2, p3Count: p3, doneCount: d, reviewCount: review,
       reset: () => { try { localStorage.removeItem(KEY); } catch (e) {} this.setState({ prio: {}, done: {} }); },
     };

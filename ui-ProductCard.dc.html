@@ -25,7 +25,7 @@
       </span>
     </sc-if>
 
-    <button onClick="{{ toggleFav }}" class="{{ favClass }}" title="Přidat do oblíbených" style="{{ favStyle }}">
+    <button onClick="{{ toggleFav }}" class="{{ favClass }}" title="{{ favTitle }}" style="{{ favStyle }}">
       <span style="{{ favIcon }}"></span>
     </button>
   </div>
@@ -49,9 +49,9 @@
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:430},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Levandulové máslo, 100 g&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;price&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;189 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;stockState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ready&quot;,&quot;packing&quot;,&quot;expected&quot;],&quot;default&quot;:&quot;ready&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;stockDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;28. 8. 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;img&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/products/levandulove-maslo-100-g.jpg&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;ctaVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;koupit&quot;,&quot;varianta&quot;],&quot;default&quot;:&quot;koupit&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Akce&quot;},&quot;badge&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;bestseller&quot;,&quot;novinka&quot;,&quot;doporucujeme&quot;,&quot;akce&quot;,&quot;sleva&quot;,&quot;prirodni&quot;,&quot;bio&quot;,&quot;sada&quot;],&quot;default&quot;:&quot;bestseller&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Badge&quot;},&quot;badgeLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Badge&quot;},&quot;rating&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.6,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hodnocení&quot;},&quot;ratingCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:84,&quot;min&quot;:0,&quot;max&quot;:9999,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hodnocení&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:430},&quot;fav&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Levandulové máslo, 100 g&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;price&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;189 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;stockState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ready&quot;,&quot;packing&quot;,&quot;expected&quot;],&quot;default&quot;:&quot;ready&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;stockDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;28. 8. 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;img&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/products/levandulove-maslo-100-g.jpg&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;ctaVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;koupit&quot;,&quot;varianta&quot;],&quot;default&quot;:&quot;koupit&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Akce&quot;},&quot;badge&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;bestseller&quot;,&quot;novinka&quot;,&quot;doporucujeme&quot;,&quot;akce&quot;,&quot;sleva&quot;,&quot;prirodni&quot;,&quot;bio&quot;,&quot;sada&quot;],&quot;default&quot;:&quot;bestseller&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Badge&quot;},&quot;badgeLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Badge&quot;},&quot;rating&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.6,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hodnocení&quot;},&quot;ratingCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:84,&quot;min&quot;:0,&quot;max&quot;:9999,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hodnocení&quot;}}">
 class Component extends DCLogic {
-  state = { fav: false };
+  state = { fav: null };
 
   // Sdileny seznam oblibenych — cte ho hlavicka pres udalost 'ek-fav-change'
   favStore() {
@@ -61,7 +61,11 @@ class Component extends DCLogic {
 
   componentDidMount() {
     const id = this.props.title ?? 'Levandulové máslo, 100 g';
-    if (this.favStore().has(id)) this.setState({ fav: true });
+    if (this.props.fav) this.favStore().add(id);
+    if (this.favStore().has(id)) {
+      this.setState({ fav: true });
+      window.dispatchEvent(new CustomEvent('ek-fav-change', { detail: { count: this.favStore().size } }));
+    }
   }
 
   mask(name, size) {
@@ -91,7 +95,7 @@ class Component extends DCLogic {
     const ctaVariant = this.props.ctaVariant ?? 'koupit';
     const ctaLabel = ctaVariant === 'varianta' ? 'Vybrat variantu' : 'Koupit';
 
-    const fav = this.state.fav;
+    const fav = this.state.fav !== null ? this.state.fav : !!this.props.fav;
 
     return {
       title: this.props.title ?? 'Levandulové máslo, 100 g',
@@ -120,12 +124,13 @@ class Component extends DCLogic {
         'transition:background .2s, color .2s, border-color .2s, transform .2s',
       ].join('; ') + ';',
       favClass: 'ek-fav' + (fav ? ' is-on' : ''),
+      favTitle: fav ? 'Odebrat z oblíbených' : 'Přidat do oblíbených',
       favIcon: this.mask(fav ? 'favourite-filled' : 'favourite', 20),
       toggleFav: (e) => {
         e.preventDefault(); e.stopPropagation();
         const id = this.props.title ?? 'Levandulové máslo, 100 g';
         const store = this.favStore();
-        const next = !this.state.fav;
+        const next = !fav;
         if (next) store.add(id); else store.delete(id);
         this.setState({ fav: next });
         window.dispatchEvent(new CustomEvent('ek-fav-change', { detail: { count: store.size } }));

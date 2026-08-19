@@ -12,11 +12,18 @@
   .ek-g-main { border: none; padding: 0; cursor: zoom-in; display: block; width: 100%; }
   .ek-g-th { border: 1.5px solid #ECE3D2; padding: 0; cursor: pointer; border-radius: 10px; transition: border-color .2s, transform .2s; }
   .ek-g-th:hover { border-color: #4C653D; transform: translateY(-2px); }
+  .ek-g-fav { position: absolute; top: 14px; right: 14px; z-index: 3; display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; padding: 0; border-radius: 50%; cursor: pointer; box-shadow: 0 3px 10px rgba(45,58,46,.14); transition: background .2s, border-color .2s, color .2s, transform .2s; }
+  .ek-g-fav:hover { transform: scale(1.06); }
+  .ek-g-fav-off { background: rgba(255,255,255,.94); border: 1px solid #ECE3D2; }
+  .ek-g-fav-off:hover { border-color: #E4D9C2; background: #F6F1E7; }
+  .ek-g-fav-on { background: #D8763B; border: 1px solid #D8763B; }
+  .ek-g-fav-on:hover { background: #B23803; border-color: #B23803; }
 </style>
 </helmet>
 <div style="display:flex; flex-direction:column; gap:14px; font-family:'Work Sans',sans-serif;">
   <div style="position:relative; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; background:#fff;">
     <button onClick="{{ openZoom }}" class="ek-g-main" title="Zvětšit fotografii" style="{{ mainStyle }}"></button>
+    <button onClick="{{ toggleFav }}" class="{{ favClass }}" title="{{ favTitle }}" aria-pressed="{{ fav }}"><span style="{{ favIcon }}"></span></button>
     <span style="position:absolute; top:16px; left:16px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; z-index:2; pointer-events:none;">
       <sc-for list="{{ badges }}" as="b" hint-placeholder-count="2">
         <dc-import name="ui-Badge" variant="{{ b.variant }}" label="{{ b.label }}" hint-size="100px,26px"></dc-import>
@@ -41,9 +48,14 @@
   </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:680},&quot;images&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{src:string, alt?:string}[]&quot;},&quot;note&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Obrázek je pouze ilustrační.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;badges&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(string|{variant:string,label?:string})[]&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:680},&quot;productName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kyselina citronová&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;images&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{src:string, alt?:string}[]&quot;},&quot;note&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Obrázek je pouze ilustrační.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;badges&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(string|{variant:string,label?:string})[]&quot;}}">
 class Component extends DCLogic {
-  state = { i: 0, zoom: false };
+  state = { i: 0, zoom: false, fav: null };
+
+  favStore() {
+    if (!window.__ekFav) window.__ekFav = new Set();
+    return window.__ekFav;
+  }
 
   mask(name, size, color) {
     const base = /\/components\//.test(location.pathname) ? '../' : '';
@@ -68,6 +80,9 @@ class Component extends DCLogic {
     const i = Math.min(this.state.i, images.length - 1);
     const active = images[i] || images[0];
 
+    const favId = this.props.productName ?? 'produkt';
+    const favOn = this.state.fav !== null ? this.state.fav : this.favStore().has(favId);
+
     return {
       note: this.props.note ?? 'Obrázek je pouze ilustrační.',
       badges: (this.props.badges ?? []).map(b => (typeof b === 'string' ? { variant: b, label: '' } : { variant: b.variant, label: b.label ?? '' })),
@@ -82,6 +97,18 @@ class Component extends DCLogic {
         style: 'width:78px; height:78px; background:#fff center/contain no-repeat; background-image:url("' + url(im.src) + '");'
           + (idx === i ? ' border-color:#4C653D; box-shadow:0 0 0 2px rgba(76,101,61,.22);' : ''),
       })),
+      fav: favOn,
+      favClass: 'ek-g-fav ' + (favOn ? 'ek-g-fav-on' : 'ek-g-fav-off'),
+      favTitle: favOn ? 'Odebrat z oblíbených' : 'Přidat do oblíbených',
+      favIcon: this.mask(favOn ? 'favourite-filled' : 'favourite', 21, favOn ? '#FFFFFF' : '#8a8776'),
+      toggleFav: (e) => {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        const store = this.favStore();
+        const next = !favOn;
+        if (next) store.add(favId); else store.delete(favId);
+        this.setState({ fav: next });
+        window.dispatchEvent(new CustomEvent('ek-fav-change', { detail: { count: store.size } }));
+      },
       iconZoom: this.mask('search-01', 24, '#4C653D'),
       iconClose: this.mask('cancel-01', 24, '#F6F1E7'),
     };

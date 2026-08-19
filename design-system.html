@@ -34,6 +34,46 @@
   .ds-nav-demo:hover { transform: translateY(-1px); }
   .ds-nav-demo:hover::after { transform: scaleX(1); }
   .ds-loyal-demo:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+
+
+  .ds-tipwrap { position: relative; display: inline-flex; }
+  /* Ukázka v design systému: bubliny jsou stále vidět, ale chovají se jako v provozu */
+  .ds-tipgrid { grid-template-columns: repeat(2, minmax(300px, 1fr)) !important; }
+  .ds-tipgrid .ds-tipwrap { width: 100%; justify-content: center; }
+  .ds-tipcell-right .ds-tipwrap { justify-content: flex-end; }
+  .ds-tipgrid .ds-tip { width: 268px; max-width: 268px; }
+  .ds-tipcell { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; min-width: 0; min-height: 250px; }
+  .ds-tipcell-top { justify-content: flex-start; padding-top: 140px; }
+  .ds-tipcell-right { align-items: flex-end; text-align: right; }
+  .ds-tipcell-right .ds-tip { text-align: left; }
+  .ds-tip { position: absolute; z-index: 30; width: max-content; max-width: 268px; padding: 12px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E4DAC6; box-shadow: 0 18px 38px -18px rgba(45,58,46,.5); font-family: 'Work Sans',sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.55; color: #4A4A42; text-align: left; pointer-events: none; }
+  .ds-tip::before { content: ''; position: absolute; width: 10px; height: 10px; background: #FFFFFF; border-left: 1px solid #E4DAC6; border-top: 1px solid #E4DAC6; }
+  .ds-tip-b { top: calc(100% + 14px); left: 50%; transform: translateX(-50%); }
+  .ds-tip-b::before { top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); }
+  .ds-tip-br { top: calc(100% + 14px); right: -6px; }
+  .ds-tip-br::before { top: -6px; right: 12px; transform: rotate(45deg); }
+  .ds-tip-t { bottom: calc(100% + 14px); left: 50%; transform: translateX(-50%); }
+  .ds-tip-t::before { bottom: -6px; left: 50%; transform: translateX(-50%) rotate(225deg); }
+  .ds-tip-dark { background: #4C653D; border-color: #4C653D; color: #F6F1E7; }
+  .ds-tip-dark::before { background: #4C653D; border-color: #4C653D; }
+  .ds-in { width: 100%; height: 48px; padding: 0 15px; border: 1.5px solid #CFC4AA; border-radius: 12px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 15.5px; color: #2A2A24; outline: none; transition: border-color .18s, box-shadow .18s; }
+  .ds-in:focus { border-color: #4C653D; box-shadow: 0 0 0 3px rgba(76,101,61,.14); }
+  .ds-in::placeholder { color: #b3ae9c; }
+  .ds-fld { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .ds-fld > span:first-child { font-size: 13px; font-weight: 600; color: #4A4A42; }
+  .ds-check { position: relative; display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+  .ds-check input { position: absolute; left: 0; top: 2px; width: 22px; height: 22px; margin: 0; opacity: 0; cursor: pointer; }
+  .ds-box { width: 22px; height: 22px; flex: 0 0 auto; border: 1.5px solid #CFC4AA; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: border-color .2s, background .2s; }
+  .ds-box-r { border-radius: 50%; }
+  .ds-box > span { opacity: 0; transition: opacity .15s; }
+  .ds-dot { width: 9px; height: 9px; border-radius: 50%; background: #F6F1E7; }
+  .ds-check:hover .ds-box { border-color: #4C653D; }
+  .ds-check input:checked + .ds-box { background: #4C653D; border-color: #4C653D; }
+  .ds-check input:checked + .ds-box > span { opacity: 1; }
+  .ds-check input:focus-visible + .ds-box { outline: 2px solid #4C653D; outline-offset: 2px; }
+  @media (max-width: 1080px) { .ds-tipgrid { grid-template-columns: 1fr !important; } }
+  @media (max-width: 900px) { .ds-form-grid { grid-template-columns: 1fr !important; } }
+  @media (max-width: 420px) { .ds-tipgrid .ds-tip { width: 100%; } }
   @media (max-width: 900px) {
     .ds-wrap { flex-direction: column !important; }
     .ds-side { position: static !important; width: auto !important; height: auto !important; }
@@ -354,6 +394,91 @@
       </div>
     </section>
 
+    <!-- ===== TOOLTIP ===== -->
+    <section id="tooltip" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Tooltip a popup se zobáčkem</h2>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Krátké vysvětlení u ikony nebo ovládacího prvku. Bílá plocha, rám #E4DAC6, rádius 12 px, zobáček 10 px ze stejné plochy a rámu, měkký stín. Text Work Sans Regular 13,5 px, nejvýše 268 px na šířku a dvě až tři řádky.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Otevírá se po přejetí a podržení kurzoru asi 600 ms, u dotykových zařízení na kliknutí. Bublina nereaguje na kurzor (<code style="font-family:ui-monospace,monospace; font-size:12.5px;">pointer-events: none</code>), aby nepřekážela, a nikdy nenese jedinou důležitou informaci — vždy jen doplňuje to, co je vidět. U prvků blízko pravého okraje se ukotví vpravo, jinak vyjede z okna.</p>
+
+      <div class="ds-tipgrid" style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:34px 26px;">
+        <sc-for list="{{ tipDemos }}" as="t" hint-placeholder-count="4">
+          <div class="{{ t.cell }}">
+            <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">{{ t.label }}</span>
+            <span class="ds-tipwrap">
+              <span style="{{ t.anchor }}"><span style="{{ t.icon }}"></span></span>
+              <span class="{{ t.cls }}">{{ t.text }}</span>
+            </span>
+            <span style="font-size:12.5px; color:#8a8776; line-height:1.45; max-width:24ch;">{{ t.note }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:14px 0 0; font-size:13.5px; line-height:1.55; color:#8a8776; max-width:78ch;">Delší vysvětlení, které si zákazník má přečíst v klidu (například bezpečnostní listy nebo mikrocopy skladovosti u variant), patří do vyskakovacího okna se zavíracím tlačítkem, ne do tooltipu.</p>
+    </section>
+
+    <!-- ===== FORMULÁŘOVÉ PRVKY ===== -->
+    <section id="formulare" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Formulářové prvky</h2>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jedna sada pro celý web — filtry, zákaznická zóna, hlídací pes, newsletter i pokladna. Výška pole 48 px (kompaktní varianta 46 px ve filtrech), rám #CFC4AA, rádius 12 px, popisek vždy nad polem v Work Sans SemiBold 13 px.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Focus stav nese tmavá zeleň a světlý prstenec — nikdy jen barva rámu. Chyba se hlásí pod polem textem s ikonou, ne pouze červeným rámem. Hit target zaškrtávacích prvků je 22 px plus celý řádek popisku.</p>
+
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 32px; display:flex; flex-direction:column; gap:26px;">
+        <div class="ds-form-grid" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;">
+          <label class="ds-fld"><span>Textové pole</span><input class="ds-in" value="Jana Nováková"></label>
+          <label class="ds-fld"><span>Pole s nápovědou</span><input class="ds-in" placeholder="jmeno@example.cz"></label>
+          <label class="ds-fld"><span>Rozbalovací výběr</span>
+            <span style="position:relative; display:flex;">
+              <select class="ds-in" style="appearance:none; padding-right:40px; cursor:pointer;"><option>Česko</option><option>Slovensko</option></select>
+              <span style="{{ iconFormCaret }}"></span>
+            </span>
+          </label>
+          <label class="ds-fld"><span>Neaktivní pole</span><input class="ds-in" value="Registrovaný zákazník" disabled="{{ true }}" style="background:#F6F1E7; color:#8a8776; cursor:not-allowed;"></label>
+          <label class="ds-fld" style="grid-column:1 / -1;"><span>Víceřádkový text</span><textarea class="ds-in" style="height:auto; min-height:92px; padding:12px 15px; line-height:1.55; resize:vertical;">Prosím zabalit levandulové máslo zvlášť, jde jako dárek.</textarea></label>
+          <label class="ds-fld"><span>Chybový stav</span>
+            <input class="ds-in" value="jmeno@example" style="border-color:#A33203; box-shadow:0 0 0 3px rgba(163,50,3,.12);">
+            <span style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#A33203;"><span style="{{ iconFormAlert }}"></span>Zadejte e-mail ve tvaru jmeno@example.cz.</span>
+          </label>
+          <label class="ds-fld"><span>Úspěšný stav</span>
+            <input class="ds-in" value="jana.novakova@email.cz" style="border-color:#3F7F2C; box-shadow:0 0 0 3px rgba(63,127,44,.12);">
+            <span style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#3F7F2C;"><span style="{{ iconFormOk }}"></span>Údaj je uložený.</span>
+          </label>
+        </div>
+
+        <div style="height:1px; background:#F3EDE0;"></div>
+
+        <div class="ds-form-grid" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px;">
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Zaškrtávací pole</span>
+            <sc-for list="{{ formChecks }}" as="c" hint-placeholder-count="3">
+              <label class="ds-check">
+                <input type="checkbox" defaultChecked="{{ c.on }}">
+                <span class="ds-box" aria-hidden="true"><span style="{{ iconFormTick }}"></span></span>
+                <span style="display:flex; flex-direction:column; gap:2px;">
+                  <span style="font-size:15px; font-weight:600; color:#2A2A24;">{{ c.label }}</span>
+                  <span style="font-size:13px; line-height:1.5; color:#6B6B5E;">{{ c.desc }}</span>
+                </span>
+              </label>
+            </sc-for>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Přepínač (jedna volba)</span>
+            <sc-for list="{{ formRadios }}" as="r" hint-placeholder-count="3">
+              <label class="ds-check">
+                <input type="radio" name="ds-radio" defaultChecked="{{ r.on }}">
+                <span class="ds-box ds-box-r" aria-hidden="true"><span class="ds-dot"></span></span>
+                <span style="font-size:15px; font-weight:500; color:#2A2A24;">{{ r.label }}</span>
+              </label>
+            </sc-for>
+            <span style="margin-top:6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Filtrační pilulka</span>
+            <span style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span style="display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; border-radius:999px; padding:10px 15px; color:#F6F1E7; background:#4C653D; border:1.5px solid #4C653D;">Vše <span style="font-weight:700; font-size:12px; opacity:.85;">18</span></span>
+              <span style="display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; border-radius:999px; padding:10px 15px; color:#4A4A42; background:#fff; border:1.5px solid #E2D9C4;">Doručené <span style="font-weight:700; font-size:12px; opacity:.55;">5</span></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 0 0; font-size:13.5px; line-height:1.55; color:#8a8776; max-width:78ch;">Zaškrtávací pole i přepínač mají vlastní vykreslení (nativní ovladač je skrytý, ale zůstává v DOM kvůli klávesnici a odečítačům). Zaškrtnuté má zelenou plochu #4C653D s krémovou fajfkou, hover ztmaví rám, focus přidá obrys 2 px.</p>
+    </section>
+
     <!-- ===== KOMPONENTY: CHIPY ===== -->
     <section id="chipy" style="margin-bottom:64px;">
       <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
@@ -629,6 +754,8 @@ class Component extends DCLogic {
       { label: 'Rozestupy a tvary', href: '#spacing' },
       { label: 'Logo', href: '#logo' },
       { label: 'Tlačítka', href: '#tlacitka' },
+      { label: 'Tooltip', href: '#tooltip' },
+      { label: 'Formulářové prvky', href: '#formulare' },
       { label: 'Chipy', href: '#chipy' },
       { label: 'Badge', href: '#badge' },
       { label: 'Skladovost', href: '#skladovost' },
@@ -679,6 +806,18 @@ class Component extends DCLogic {
       ['3,2', 3.2, 12],
       ['Bez hodnocení', 0, 0],
     ].map(([label, value, count]) => ({ label, value, count }));
+
+
+    const formChecks = [
+      { label: 'Mám zájem o zasílání novinek a akcí', desc: 'Recepty a novinky ze skladu.', on: true },
+      { label: 'Chci dotazník Heureka Ověřeno zákazníky', desc: 'Jedna otázka po doručení objednávky.', on: true },
+      { label: 'Adresa dodání je jiná než fakturační', desc: 'Rozbalí doručovací adresu.', on: false },
+    ];
+    const formRadios = [
+      { label: 'Fyzická osoba', on: true },
+      { label: 'Firma (IČ a DIČ)', on: false },
+      { label: 'Nakupuji ze Slovenska', on: false },
+    ];
 
     const role = (name, hex, use, on, contrast) => ({
       name, hex, use, on, contrast,
@@ -770,6 +909,22 @@ class Component extends DCLogic {
       { name: 'Sekce', use: 'Jemná hloubka', boxStyle: 'width:96px; height:52px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);' },
     ];
 
+    const dsMask = (n, s, c) => 'display:inline-block; width:' + s + 'px; height:' + s + 'px; flex:0 0 auto; background-color:' + c
+      + '; -webkit-mask:url("assets/icons/' + n + '.svg") center / contain no-repeat; mask:url("assets/icons/' + n + '.svg") center / contain no-repeat;';
+
+
+    const tipDemos = [
+      ['Dole na střed', 'ds-tip ds-tip-b', 'favourite', 'Srdíčkem u produktu si uložíte suroviny, ke kterým se chcete vrátit.', 'Výchozí pozice u ikon uprostřed rozvržení.'],
+      ['Dole vpravo', 'ds-tip ds-tip-br', 'favourite', 'V oblíbených máte 8 produktů. Přihlášenému zůstanou uložené i příště.', 'Pro prvky u pravého okraje — hlavička, buy bar.'],
+      ['Nahoře na střed', 'ds-tip ds-tip-t', 'information-circle', 'Navažujeme z velkého balení — odeslání o jeden pracovní den později.', 'Když je pod prvkem málo místa.'],
+      ['Na tmavé ploše', 'ds-tip ds-tip-b ds-tip-dark', 'information-circle', 'Sleva se počítá z čtvrtletního obratu po přihlášení.', 'Na tmavě zelených blocích a v patičce.'],
+    ].map(([label, cls, icon, text, note]) => ({
+      label, cls, text, note,
+      icon: dsMask(icon, 22, '#4C653D'),
+      cell: 'ds-tipcell' + (cls.indexOf('ds-tip-t') > -1 ? ' ds-tipcell-top' : '') + (cls.indexOf('ds-tip-br') > -1 ? ' ds-tipcell-right' : ''),
+      anchor: 'display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:50%; background:#F6F1E7; border:1px solid rgba(76,101,61,.18); cursor:help;',
+    }));
+
     const iconGroupsRaw = [
       { group: 'Navigace a ovládání', names: ['search-01','menu-02','cancel-01','arrow-right-01','arrow-left-01','arrow-down-01','arrow-up-01','arrow-right-02','plus-sign','minus-sign','tick-01','checkmark-circle-01','information-circle','alert-circle','filter','filter-horizontal','sorting-01','grid-view','view','link-01','share-01','download-01','printer','home-01','question','help-square','message-question','plus-sign-circle','minus-sign-circle','sort-by-up-01','sort-by-down-01','arrange-by-numbers-1-9','sorting-a-z-01','arrange'] },
       { group: 'Nákup a košík', names: ['shopping-cart-01','shopping-cart-02','shopping-cart-add-01','shopping-cart-check-in-01','shopping-basket-01','shopping-bag-03','favourite','star','star-half','star-filled','favourite-filled','tag-01','tags','discount-tag-01','coupon-01','gift','gift-card','credit-card','wallet-01','invoice-01','percent-circle','balance-scale','justice-scale-01','versus','exchange-01','thumbs-up','thumbs-down','ticket-star'] },
@@ -780,6 +935,7 @@ class Component extends DCLogic {
       { group: 'Kosmetika a hotové produkty', names: ['body-soap','shampoo','perfume','jar','medicine-bottle-01','medicine-bottle-02','medicine-syrup','bathtub-01','bathtub-02','milk-bottle','hand-sanitizer'] },
       { group: 'Obsah a sociální sítě', names: ['instagram','facebook-01','youtube','play','video-01','image-01','camera-01','news','mail-open-01'] },
       { group: 'Kosmetika a doplňky', names: ['candle','candle-jar','candle-tabler','lips','lip-balm','blush-brush-01','blush-brush-02','dental-tooth','dental-care','dental-braces','paw','dog-lucide','dog-tabler','wellness','massage'] },
+      { group: 'Soubory a dokumenty', names: ['pdf-01','pdf-02','doc-01','doc-02','txt-01','txt-02','ppt-01','ppt-02','file-01','file-02','file-empty-01','file-empty-02','invoice-01','download-01'] },
       { group: 'Příběh a milníky', names: ['milk-bottle-02','milk-carton','cheese','body-soap-02','clean','cook-book','barns','warehouse','archive-02','building-03','layers-01','user-group','computer','laptop','globe-02','earth','maps-global-01','mountain-02'] },
     ];
     const iconGroups = iconGroupsRaw.map(g => ({
@@ -842,7 +998,12 @@ class Component extends DCLogic {
         ['Les a hlína', 'linear-gradient(150deg,#4C653D 0%,#5B4A34 60%,#8E5A32 100%)', 'Přechod mezi zelenou a terrakotou'],
         ['Soumrak', 'linear-gradient(155deg,#2D3A2E 0%,#3E4A57 100%)', 'Návody, technické sekce'],
       ]),
-      toc, colors, colorsBrand, roleGroups, tearPads, stockScale, ratingRows, typeScale, spacing, radii, shadows, iconGroups, iconTotal, botanika, tovDo, tovDont, claims };
+      iconFormCaret: dsMask('arrow-down-01', 18, '#6B6B5E') + ' position:absolute; right:14px; top:50%; transform:translateY(-50%); pointer-events:none;',
+      iconFormTick: dsMask('tick-01', 14, '#F6F1E7'),
+      iconFormAlert: dsMask('alert-circle', 16, '#A33203'),
+      iconFormOk: dsMask('checkmark-circle-01', 16, '#3F7F2C'),
+      tipDemos,
+      toc, colors, colorsBrand, roleGroups, tearPads, stockScale, ratingRows, formChecks, formRadios, typeScale, spacing, radii, shadows, iconGroups, iconTotal, botanika, tovDo, tovDont, claims };
   }
 }
 </script>

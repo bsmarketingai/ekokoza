@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  .ek-pw-in { width: 100%; height: 48px; padding: 0 15px; border: 1.5px solid #CFC4AA; border-radius: 12px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 15.5px; color: #2A2A24; outline: none; transition: border-color .18s, box-shadow .18s; }
+  .ek-pw-in:focus { border-color: #4C653D; box-shadow: 0 0 0 3px rgba(76,101,61,.14); }
+  .ek-pw-in::placeholder { color: #b3ae9c; }
+  .ek-pw-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-pw-ghost:hover { background: #EFE7D6 !important; }
+  .ek-pw-chip-off:hover { border-color: #4C653D; background: #FDFBF5; }
+  .ek-pw-chip-on:hover { background: #3F5731; border-color: #3F5731; }
+</style>
+</helmet>
+
+<div style="{{ wrapStyle }}">
+  <div style="display:flex; align-items:flex-start; gap:13px;">
+    <span style="{{ iconWrap }}"><span style="{{ iconTag }}"></span></span>
+    <div style="display:flex; flex-direction:column; gap:5px; min-width:0;">
+      <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:22px; line-height:1.2; color:#2D3A2E;">{{ heading }}</span>
+      <p style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ intro }}</p>
+    </div>
+  </div>
+
+  <sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+    <form onSubmit="{{ submit }}" style="display:flex; flex-direction:column; gap:14px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 15px; border-radius:12px; background:#F6F1E7; border:1px solid rgba(76,101,61,.14);">
+        <span style="font-size:14px; color:#52524a;">Nynější cena</span>
+        <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; color:#2D3A2E; white-space:nowrap;">{{ priceLabel }}</span>
+      </div>
+
+      <label style="display:flex; flex-direction:column; gap:6px;">
+        <span style="font-size:13px; font-weight:600; color:#4A4A42;">Napište mi, až cena klesne na</span>
+        <span style="position:relative; display:flex;">
+          <input type="number" value="{{ target }}" onInput="{{ onTarget }}" min="1" step="1" inputMode="numeric" placeholder="{{ suggestion }}" class="ek-pw-in" style="padding-right:56px;">
+          <span style="position:absolute; right:15px; top:50%; transform:translateY(-50%); pointer-events:none; font-size:14.5px; font-weight:600; color:#8a8776;">{{ currency }}</span>
+        </span>
+      </label>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <sc-for list="{{ presets }}" as="p" hint-placeholder-count="3">
+          <button type="button" onClick="{{ p.pick }}" class="{{ p.cls }}" style="{{ p.style }}">{{ p.label }}</button>
+        </sc-for>
+      </div>
+
+      <label style="display:flex; flex-direction:column; gap:6px;">
+        <span style="display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:13px; font-weight:600; color:#4A4A42;">
+          <span>Váš e-mail</span>
+          <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:12.5px; font-weight:500; color:#4C653D;">z vašeho účtu</span>
+          </sc-if>
+        </span>
+        <input type="email" value="{{ email }}" onInput="{{ onEmail }}" placeholder="jmeno@example.cz" autoComplete="email" class="ek-pw-in">
+      </label>
+
+      <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+        <span style="display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600; color:#A33203;"><span style="{{ iconAlert }}"></span>{{ error }}</span>
+      </sc-if>
+
+      <div style="display:flex; align-items:center; gap:11px; flex-wrap:wrap;">
+        <button type="submit" class="ek-pw-main" style="display:inline-flex; align-items:center; gap:9px; background:#D14405; color:#fff; border:1.5px solid #D14405; border-radius:999px; padding:13px 24px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;">Hlídat cenu</button>
+        <sc-if value="{{ hasCancel }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ cancel }}" class="ek-pw-ghost" style="background:transparent; border:1.5px solid transparent; border-radius:999px; padding:13px 18px; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">Zavřít</button>
+        </sc-if>
+      </div>
+      <p style="margin:0; font-size:12.5px; line-height:1.55; color:#8a8776;">Napíšeme jen jednou, až cena na uvedenou hranici klesne. Hlídání můžete kdykoli zrušit odkazem v e-mailu.</p>
+    </form>
+  </sc-if>
+
+  <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <span style="display:flex; align-items:center; gap:9px; font-size:15.5px; font-weight:600; color:#3F7F2C;"><span style="{{ iconOk }}"></span>Cenu hlídáme</span>
+      <p style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ doneNote }}</p>
+      <div style="display:flex; align-items:center; gap:11px; flex-wrap:wrap;">
+        <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+          <a href="muj-ucet.html" style="display:inline-flex; align-items:center; gap:8px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:2px;">Přehled hlídaných produktů</a>
+        </sc-if>
+        <button type="button" onClick="{{ undo }}" class="ek-pw-ghost" style="background:transparent; border:1.5px solid transparent; border-radius:999px; padding:11px 16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#6B6B5E; cursor:pointer; transition:background .2s;">Změnit hranici</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:520},&quot;productName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kyselina citronová&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variantLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;1 kg&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;price&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:110,&quot;min&quot;:1,&quot;max&quot;:100000,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;currency&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Kč&quot;,&quot;EUR&quot;],&quot;default&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;loggedIn&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;accountEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;anezka.drtinova@email.cz&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;boxed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onSubmit&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;(v: {email: string, target: number}) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { email: null, target: null, sent: false, error: '' };
+
+  mask(name, size, color) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const url = base + 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  money(n, cur) { return n.toLocaleString('cs-CZ') + ' ' + cur; }
+
+  renderVals() {
+    const price = Number(this.props.price ?? 110);
+    const currency = this.props.currency ?? 'Kč';
+    const loggedIn = this.props.loggedIn ?? false;
+    const accountEmail = this.props.accountEmail ?? 'anezka.drtinova@email.cz';
+    const productName = this.props.productName ?? 'tento produkt';
+    const variantLabel = this.props.variantLabel ?? '';
+    const boxed = this.props.boxed !== false;
+    const onClose = this.props.onClose;
+
+    const email = this.state.email !== null ? this.state.email : (loggedIn ? accountEmail : '');
+    const what = variantLabel ? productName + ' — ' + variantLabel : productName;
+    const suggested = Math.max(1, Math.round((price * 0.9) / 5) * 5);
+    const target = this.state.target !== null ? this.state.target : '';
+
+    const presets = [10, 15, 20].map(p => {
+      const val = Math.max(1, Math.round((price * (1 - p / 100)) / 5) * 5);
+      const on = Number(target) === val;
+      return {
+        label: '−' + p + ' % · ' + this.money(val, currency),
+        pick: () => this.setState({ target: String(val), error: '' }),
+        cls: on ? 'ek-pw-chip ek-pw-chip-on' : 'ek-pw-chip ek-pw-chip-off',
+        style: "display:inline-flex; align-items:center; font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; border-radius:999px; padding:10px 15px; min-height:42px; cursor:pointer; transition:background .15s ease, border-color .15s ease, color .15s ease;"
+          + (on ? ' color:#F6F1E7; background:#4C653D; border:1.5px solid #4C653D;' : ' color:#4A4A42; background:#fff; border:1.5px solid #E2D9C4;'),
+      };
+    });
+
+    return {
+      loggedIn,
+      currency,
+      priceLabel: this.money(price, currency),
+      suggestion: String(suggested),
+      target,
+      email,
+      presets,
+      heading: this.state.sent ? 'Pokles ceny vám oznámíme' : 'Hlídat cenu',
+      intro: this.state.sent
+        ? 'Jedno oznámení, žádný další newsletter.'
+        : (loggedIn
+            ? 'Produkt je skladem. Napíšeme vám, jakmile cena klesne na vaši hranici — adresu máte z účtu, stačí potvrdit.'
+            : 'Produkt je skladem. Napíšeme vám, jakmile cena klesne na vaši hranici. Nic jiného vám posílat nebudeme.'),
+      isForm: !this.state.sent,
+      isDone: this.state.sent,
+      doneNote: 'Hlídáme cenu ' + what + '. Napíšeme na ' + email + ', až klesne na ' + this.money(Number(target || suggested), currency) + ' nebo níž.',
+      hasError: !!this.state.error,
+      error: this.state.error,
+      hasCancel: !!onClose,
+      cancel: () => { if (onClose) onClose(); },
+      undo: () => this.setState({ sent: false }),
+      onEmail: (e) => this.setState({ email: e.target.value, error: '' }),
+      onTarget: (e) => this.setState({ target: e.target.value, error: '' }),
+      submit: (e) => {
+        e.preventDefault();
+        const t = Number(String(target).replace(/\s/g, ''));
+        if (!t || t <= 0) {
+          this.setState({ error: 'Zadejte prosím cenu, na kterou chcete čekat.' });
+          return;
+        }
+        if (t >= price) {
+          this.setState({ error: 'Hranice musí být nižší než nynější cena ' + this.money(price, currency) + '.' });
+          return;
+        }
+        const val = (email || '').trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)) {
+          this.setState({ error: 'Zadejte prosím e-mail ve tvaru jmeno@example.cz.' });
+          return;
+        }
+        this.setState({ sent: true, error: '' });
+        if (this.props.onSubmit) this.props.onSubmit({ email: val, target: t });
+      },
+      iconTag: this.mask('notification-01', 22, '#4C653D'),
+      iconAlert: this.mask('alert-circle', 17, '#A33203'),
+      iconOk: this.mask('checkmark-circle-01', 20, '#3F7F2C'),
+      iconWrap: 'display:flex; align-items:center; justify-content:center; width:44px; height:44px; flex:0 0 auto; border-radius:12px; background:#F4F7EA; border:1px solid rgba(76,101,61,.18);',
+      wrapStyle: "display:flex; flex-direction:column; gap:18px; font-family:'Work Sans',sans-serif;"
+        + (boxed ? ' padding:22px; background:#fff; border:1px solid #E4DAC6; border-radius:14px;' : ''),
+    };
+  }
+}
+</script>
+</body>
+</html>

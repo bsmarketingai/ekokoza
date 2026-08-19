@@ -19,6 +19,11 @@
   .ek-pw-ghost:hover { background: #EFE7D6 !important; }
   .ek-pw-chip-off:hover { border-color: #4C653D; background: #FDFBF5; }
   .ek-pw-chip-on:hover { background: #3F5731; border-color: #3F5731; }
+/* mobil: typografie modalů */
+  @media (max-width: 900px) {
+    .ek-mh { font-size: 25px !important; line-height: 1.2 !important; }
+    .ek-mp { font-size: 15.5px !important; line-height: 1.5 !important; }
+  }
 </style>
 </helmet>
 
@@ -26,15 +31,15 @@
   <div style="display:flex; align-items:flex-start; gap:13px;">
     <span style="{{ iconWrap }}"><span style="{{ iconTag }}"></span></span>
     <div style="display:flex; flex-direction:column; gap:5px; min-width:0;">
-      <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:22px; line-height:1.2; color:#2D3A2E;">{{ heading }}</span>
-      <p style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ intro }}</p>
+      <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:22px; line-height:1.2; color:#2D3A2E;" class="ek-mh">{{ heading }}</span>
+      <p class="ek-mp" style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ intro }}</p>
     </div>
   </div>
 
   <sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
     <form onSubmit="{{ submit }}" style="display:flex; flex-direction:column; gap:14px;">
       <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 15px; border-radius:12px; background:#F6F1E7; border:1px solid rgba(76,101,61,.14);">
-        <span style="font-size:14px; color:#52524a;">Nynější cena</span>
+        <span class="ek-mp" style="font-size:14px; color:#52524a;">Nynější cena</span>
         <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; color:#2D3A2E; white-space:nowrap;">{{ priceLabel }}</span>
       </div>
 

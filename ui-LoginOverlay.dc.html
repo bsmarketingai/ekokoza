@@ -31,10 +31,15 @@
   .ek-hdr-userwrap .ek-login-pop { position: absolute; }
   .ek-cart-pop { position: static; }
   .ek-hdr-cartwrap .ek-cart-pop { position: absolute; }
+  @media (max-width: 400px) {
+    .ek-login-actions { flex-direction: column !important; align-items: stretch !important; }
+    .ek-login-actions > * { width: 100%; flex: 1 1 auto !important; }
+  }
   @media (max-width: 900px) {
     .ek-login-pop { position: fixed !important; inset: 0 !important; padding-top: 0 !important; width: auto !important; max-width: none !important; z-index: 300 !important; }
     .ek-login-card { height: 100% !important; border-radius: 0 !important; border: none !important; box-shadow: none !important; overflow-y: auto !important; }
     .ek-login-head { padding-top: max(20px, env(safe-area-inset-top)) !important; }
+    .ek-login-actions { flex-wrap: wrap; }
     .ek-login-body { padding-bottom: max(24px, env(safe-area-inset-bottom)) !important; }
   }
 </style>
@@ -62,9 +67,9 @@
 
     <a href="{{ forgotHref }}" class="ek-login-link" style="align-self:flex-start; margin-top:-6px; font-size:14.5px;">Nevíte heslo?</a>
 
-    <div style="display:flex; align-items:center; gap:10px;">
-      <a href="{{ registerHref }}" class="ek-btn-ghost" style="flex:1; display:flex; align-items:center; justify-content:center; background:transparent; border:1.5px solid transparent; color:#4C653D; gap:9px; text-decoration:none; padding:12.5px 20px; border-radius:999px; font-weight:600; font-size:15.5px; transition:background .2s; white-space:nowrap;">Registrace<span style="{{ iconRegister }}"></span></a>
-      <button type="submit" class="ek-btn-primary" style="flex:1; appearance:none; border:1.5px solid #4C653D; cursor:pointer; background:#4C653D; color:#F6F1E7; padding:12.5px 20px; border-radius:999px; font-family:'Work Sans',sans-serif; display:flex; align-items:center; justify-content:center; gap:9px; font-weight:600; font-size:15.5px; transition:background .2s; white-space:nowrap;">Přihlásit se<span style="{{ iconLogin }}"></span></button>
+    <div class="ek-login-actions" style="display:flex; align-items:center; gap:10px;">
+      <a href="{{ registerHref }}" class="ek-btn-ghost" style="flex:1; display:flex; align-items:center; justify-content:center; background:transparent; border:1.5px solid transparent; color:#4C653D; gap:9px; text-decoration:none; padding:12.5px 16px; border-radius:999px; min-width:0; font-weight:600; font-size:15.5px; transition:background .2s; white-space:nowrap;">Registrace<span style="{{ iconRegister }}"></span></a>
+      <button type="submit" class="ek-btn-primary" style="flex:1; appearance:none; border:1.5px solid #4C653D; cursor:pointer; background:#4C653D; color:#F6F1E7; padding:12.5px 16px; border-radius:999px; min-width:0; font-family:'Work Sans',sans-serif; display:flex; align-items:center; justify-content:center; gap:9px; font-weight:600; font-size:15.5px; transition:background .2s; white-space:nowrap;">Přihlásit se<span style="{{ iconLogin }}"></span></button>
     </div>
 
     <label class="ek-check" style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:15px; color:#2A2A24; min-height:44px;">
@@ -92,7 +97,7 @@ class Component extends DCLogic {
   renderVals() {
     return {
       onClose: this.props.onClose ?? (() => {}),
-      onSubmit: this.props.onSubmit ?? ((e) => e.preventDefault()),
+      onSubmit: this.props.onSubmit ?? ((e) => { e.preventDefault(); window.location.href = 'muj-ucet.html'; }),
       forgotHref: this.props.forgotHref ?? '#',
       registerHref: this.props.registerHref ?? '#',
       facebookHref: this.props.facebookHref ?? '#',

@@ -35,6 +35,10 @@
     .ek-ca-item { grid-template-columns: 64px minmax(0,1fr) !important; }
     .ek-ca-item > span:last-child { grid-column: 2; justify-self: start !important; text-align: left !important; }
   }
+/* mobil: typografie modalů */
+  @media (max-width: 900px) {
+    .ek-mp { font-size: 15.5px !important; }
+  }
 </style>
 </helmet>
 <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}">
@@ -45,7 +49,7 @@
         <span style="{{ iconOk }}"></span>
         <span style="display:flex; flex-direction:column; gap:3px; min-width:0; flex:1;">
           <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:25px; line-height:1.2; color:#2D3A2E;">{{ headline }}</span>
-          <span style="font-size:14px; color:#6B6B5E;">{{ subline }}</span>
+          <span class="ek-mp" style="font-size:14px; color:#6B6B5E;">{{ subline }}</span>
         </span>
         <button onClick="{{ close }}" class="ek-ca-close" aria-label="Zavřít"><span style="{{ iconClose }}"></span></button>
       </div>

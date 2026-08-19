@@ -30,7 +30,7 @@
   .ek-card:hover { transform: none !important; box-shadow: none !important; }
   .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
   .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
+  .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
   .ek-p { margin: 0; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-tear { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: 0; pointer-events: none; box-shadow: inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); clip-path: polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 9.9px, 15.22% 13.6px, 17.39% 7.4px, 19.57% 11.2px, 21.74% 6.1px, 23.91% 10.4px, 26.09% 14.2px, 28.26% 8.1px, 30.43% 4.7px, 32.61% 9.3px, 34.78% 12.8px, 36.96% 6.8px, 39.13% 10.9px, 41.3% 5.2px, 43.48% 13.1px, 45.65% 8.6px, 47.83% 11.7px, 50% 6.4px, 52.17% 9.8px, 54.35% 14.4px, 56.52% 7.9px, 58.7% 11.4px, 60.87% 5.7px, 63.04% 10.2px, 65.22% 13.3px, 67.39% 8.4px, 69.57% 4.9px, 71.74% 12.1px, 73.91% 7.2px, 76.09% 10.7px, 78.26% 14.1px, 80.43% 6.6px, 82.61% 11.9px, 84.78% 8.8px, 86.96% 5.1px, 89.13% 12.6px, 91.3% 9.1px, 93.48% 13.8px, 95.65% 7.7px, 97.83% 10.3px, 100% 5.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 11.1px), 95.65% calc(100% - 7.6px), 93.48% calc(100% - 13.4px), 91.3% calc(100% - 9.2px), 89.13% calc(100% - 5.3px), 86.96% calc(100% - 12.2px), 84.78% calc(100% - 8.7px), 82.61% calc(100% - 11.6px), 80.43% calc(100% - 6.1px), 78.26% calc(100% - 14.3px), 76.09% calc(100% - 9.6px), 73.91% calc(100% - 12.9px), 71.74% calc(100% - 7.1px), 69.57% calc(100% - 10.8px), 67.39% calc(100% - 4.8px), 65.22% calc(100% - 13.7px), 63.04% calc(100% - 8.2px), 60.87% calc(100% - 11.3px), 58.7% calc(100% - 6.7px), 56.52% calc(100% - 10.1px), 54.35% calc(100% - 14.6px), 52.17% calc(100% - 9.4px), 50% calc(100% - 5.6px), 47.83% calc(100% - 12.4px), 45.65% calc(100% - 8.9px), 43.48% calc(100% - 11.8px), 41.3% calc(100% - 6.9px), 39.13% calc(100% - 13.2px), 36.96% calc(100% - 9.7px), 34.78% calc(100% - 5.2px), 32.61% calc(100% - 12.7px), 30.43% calc(100% - 8.3px), 28.26% calc(100% - 11.5px), 26.09% calc(100% - 7.3px), 23.91% calc(100% - 14.5px), 21.74% calc(100% - 9.9px), 19.57% calc(100% - 6.2px), 17.39% calc(100% - 12.8px), 15.22% calc(100% - 8.5px), 13.04% calc(100% - 11.9px), 10.87% calc(100% - 6.4px), 8.7% calc(100% - 13.6px), 6.52% calc(100% - 9.3px), 4.35% calc(100% - 5.7px), 2.17% calc(100% - 12.3px), 0% calc(100% - 8.6px)); }
   .ek-ordrow { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr) minmax(0,.85fr) auto; gap: 20px; align-items: center; padding: 18px 22px; border-bottom: 1px solid #F3EDE0; }
@@ -94,6 +94,11 @@
   .ek-check input:focus-visible + .ek-chk-box { outline: 2px solid #4C653D; outline-offset: 2px; }
   @media (max-width: 900px) { .ek-help { grid-template-columns: repeat(2,minmax(0,1fr)) !important; } }
   @media (max-width: 520px) { .ek-help { grid-template-columns: 1fr !important; } }
+  /* mobil: typografie modalů */
+  @media (max-width: 900px) {
+    .ek-mh { font-size: 25px !important; line-height: 1.2 !important; }
+    .ek-mp { font-size: 15.5px !important; line-height: 1.5 !important; }
+  }
 </style>
 </helmet>
 
@@ -249,8 +254,8 @@
           <div style="display:flex; align-items:flex-start; gap:16px; padding-right:44px;">
             <span style="{{ iconInfoBig }}"></span>
             <div style="display:flex; flex-direction:column; gap:12px; min-width:0;">
-              <p style="margin:0; font-size:15.5px; line-height:1.7; color:#4A4A42;">Pokud by vám nějaký dokument chyběl, napište nám na <a href="mailto:info@ekokoza.cz" class="ek-link-u" style="text-decoration:none; font-weight:600;">info@ekokoza.cz</a> a rádi vám jej zašleme.</p>
-              <p style="margin:0; font-size:15.5px; line-height:1.7; color:#4A4A42;">Pro zaslání analytických certifikátů nám prosím pošlete fotografii šarže a data spotřeby produktů, ke kterým analýzu potřebujete, a my vám ji zašleme.</p>
+              <p class="ek-mp" style="margin:0; font-size:15.5px; line-height:1.7; color:#4A4A42;">Pokud by vám nějaký dokument chyběl, napište nám na <a href="mailto:info@ekokoza.cz" class="ek-link-u" style="text-decoration:none; font-weight:600;">info@ekokoza.cz</a> a rádi vám jej zašleme.</p>
+              <p class="ek-mp" style="margin:0; font-size:15.5px; line-height:1.7; color:#4A4A42;">Pro zaslání analytických certifikátů nám prosím pošlete fotografii šarže a data spotřeby produktů, ke kterým analýzu potřebujete, a my vám ji zašleme.</p>
             </div>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">

@@ -123,8 +123,8 @@
     .ek-logo-flat img { height: 21px !important; }
     .ek-hdr-row { gap: 7px !important; padding-left: 10px !important; padding-right: 10px !important; }
     .ek-hdr-icons { gap: 9px !important; }
-    .ek-hdr-icons > span { width: 20px !important; height: 20px !important; }
-    .ek-hdr-icons > span > span:not(.ek-badge) { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons > span, .ek-hdr-icons > a { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons > span > span:not(.ek-badge), .ek-hdr-icons > a > span:not(.ek-badge) { width: 20px !important; height: 20px !important; }
     .ek-hdr-icons { margin-right: 8px !important; }
     .ek-topbar-txt { font-size: 12px !important; }
   }
@@ -451,7 +451,8 @@ class Component extends DCLogic {
               + (i === arr.length - 1 ? ' color:#A33203; font-weight:600; border-top:1px solid #EFE7D6; margin-top:6px;' : ' color:#2A2A24;'),
           }))
         : [
-            { label: 'Přihlásit se', href: '#', icon: this.mask('user', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:15px; margin-top:6px;' },
+            { label: 'Přihlásit se', href: 'muj-ucet.html', icon: this.mask('user', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:15px; margin-top:6px;' },
+            { label: 'Oblíbené produkty', href: 'oblibene.html', icon: this.mask('favourite', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 13px; text-decoration:none; color:#2A2A24; font-size:15px;' },
             { label: 'Sledování objednávky', href: '#', icon: this.mask('delivery-tracking-01', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 13px; text-decoration:none; color:#2A2A24; font-size:15px;' },
             { label: 'Kontakt', href: '#', icon: this.mask('mail-01', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 15px; text-decoration:none; color:#2A2A24; font-size:15px;' },
           ],

@@ -17,6 +17,11 @@
   .ek-wd-in::placeholder { color: #9b9888; }
   .ek-wd-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
   .ek-wd-ghost:hover { background: #EFE7D6 !important; }
+/* mobil: typografie modalů */
+  @media (max-width: 900px) {
+    .ek-mh { font-size: 25px !important; line-height: 1.2 !important; }
+    .ek-mp { font-size: 15.5px !important; line-height: 1.5 !important; }
+  }
 </style>
 </helmet>
 
@@ -24,8 +29,8 @@
   <div style="display:flex; align-items:flex-start; gap:13px;">
     <span style="{{ iconWrap }}"><span style="{{ iconBell }}"></span></span>
     <div style="display:flex; flex-direction:column; gap:5px; min-width:0;">
-      <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:22px; line-height:1.2; color:#2D3A2E;">{{ heading }}</span>
-      <p style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ intro }}</p>
+      <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:22px; line-height:1.2; color:#2D3A2E;" class="ek-mh">{{ heading }}</span>
+      <p class="ek-mp" style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ intro }}</p>
     </div>
   </div>
 

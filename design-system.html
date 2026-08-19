@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; }
@@ -19,8 +19,8 @@
   a:hover { color: #B23803; }
   /* shared component hover states — components rely on these class names */
   .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
-  .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
-  .ek-btn-secondary:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
+  .ek-btn-primary:hover { background: #4C653D !important; border-color: #4C653D !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
   .ek-fav:hover { background: #F6F1E7 !important; color: #D8763B !important; border-color: #E4D9C2 !important; transform: scale(1.06); }
   .ek-fav.is-on:hover { background: #B23803 !important; border-color: #B23803 !important; color: #fff !important; }
@@ -33,7 +33,7 @@
   .ds-nav-demo::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; background: #D14405; transform: scaleX(0); transform-origin: left; transition: transform .28s cubic-bezier(.4,0,.2,1); }
   .ds-nav-demo:hover { transform: translateY(-1px); }
   .ds-nav-demo:hover::after { transform: scaleX(1); }
-  .ds-loyal-demo:hover { background: #4C643C !important; color: #F6F1E7 !important; }
+  .ds-loyal-demo:hover { background: #4C653D !important; color: #F6F1E7 !important; }
   @media (max-width: 900px) {
     .ds-wrap { flex-direction: column !important; }
     .ds-side { position: static !important; width: auto !important; height: auto !important; }
@@ -43,13 +43,19 @@
     .ds-swatches { grid-template-columns: repeat(2,1fr) !important; }
     .ds-icons { grid-template-columns: repeat(4,1fr) !important; }
   }
+  @media (max-width: 1200px) {
+    .ds-role-row { grid-template-columns: 1fr !important; gap: 7px !important; }
+    .ds-stock-row { grid-template-columns: 1fr !important; gap: 7px !important; }
+    .ds-stock-head { display: none !important; }
+    .ds-rating-row { grid-template-columns: 1fr !important; gap: 7px !important; }
+  }
 </style>
 </helmet>
 
-<div class="ds-wrap" style="display:flex; align-items:flex-start; background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Hanken Grotesk',sans-serif; color:#2A2A24; min-height:100vh;">
+<div class="ds-wrap" style="display:flex; align-items:flex-start; background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh;">
 
   <!-- ============ SIDEBAR ============ -->
-  <aside class="ds-side" style="position:sticky; top:0; width:250px; height:100vh; flex-shrink:0; background:#4C643C; padding:28px 22px; overflow-y:auto;">
+  <aside class="ds-side" style="position:sticky; top:0; width:250px; height:100vh; flex-shrink:0; background:#4C653D; padding:28px 22px; overflow-y:auto;">
     <img src="assets/ekokoza-logo-cream.png" alt="ekokoza" style="width:130px; display:block; margin-bottom:6px;">
     <p style="margin:0 0 26px; color:#AEC49E; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600;">Design systém</p>
     <nav style="display:flex; flex-direction:column; gap:2px;">
@@ -67,14 +73,14 @@
 
     <header style="margin-bottom:60px;">
       <p style="margin:0 0 10px; color:#D8763B; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Ekokoza</p>
-      <h1 class="ds-h1" style="margin:0 0 14px; font-family:'Spectral',serif; font-weight:400; font-size:52px; line-height:1.04; color:#3B5531;">Design systém</h1>
+      <h1 class="ds-h1" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:52px; line-height:1.04; color:#4C653D;">Design systém</h1>
       <p style="margin:0; font-size:17.5px; line-height:1.6; color:#52524a; max-width:62ch;">Barvy, typografie, komponenty a pravidla pro web ekokoza.cz. Postaveno na brand positioningu „Důvod, proč tvořit." — klidně, věcně, bez slevové urgence.</p>
     </header>
 
     <!-- ===== BARVY ===== -->
     <section id="barvy" style="margin-bottom:64px;">
-      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Barvy</h2>
-      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Jarní, tlumená paleta. Terrakota výhradně pro hlavní konverzní akce.</p>
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Barvy</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jarní, tlumená paleta. Tmavá zeleň je jediná — <strong style="font-weight:600; color:#4C653D;">#4C653D</strong> z grafického manuálu; dřívější druhý odstín byl zrušen. Terrakota výhradně pro hlavní konverzní akce, jedna na obrazovku.</p>
 
       <h3 style="margin:0 0 14px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Paleta z grafického manuálu</h3>
       <div class="ds-swatches" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin-bottom:34px;">
@@ -83,7 +89,7 @@
             <div style="{{ c.chipStyle }}"></div>
             <div style="padding:13px 15px;">
               <p style="margin:0 0 3px; font-weight:600; font-size:14.5px;">{{ c.name }}</p>
-              <p style="margin:0 0 4px; font-family:ui-monospace,monospace; font-size:13px; color:#3B5531;">{{ c.hex }}</p>
+              <p style="margin:0 0 4px; font-family:ui-monospace,monospace; font-size:13px; color:#4C653D;">{{ c.hex }}</p>
               <p style="margin:0; font-size:12.5px; color:#8a8776; line-height:1.4;">{{ c.use }}</p>
             </div>
           </div>
@@ -97,18 +103,43 @@
             <div style="{{ c.chipStyle }}"></div>
             <div style="padding:13px 15px;">
               <p style="margin:0 0 3px; font-weight:600; font-size:14.5px;">{{ c.name }}</p>
-              <p style="margin:0 0 4px; font-family:ui-monospace,monospace; font-size:13px; color:#3B5531;">{{ c.hex }}</p>
+              <p style="margin:0 0 4px; font-family:ui-monospace,monospace; font-size:13px; color:#4C653D;">{{ c.hex }}</p>
               <p style="margin:0; font-size:12.5px; color:#8a8776; line-height:1.4;">{{ c.use }}</p>
             </div>
           </div>
         </sc-for>
       </div>
+
+      <h3 style="margin:34px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Role barev — k čemu slouží a na jakém podkladu</h3>
+      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Závazné použití. Když barva není v tabulce, na webu se nepoužívá. Uvedený kontrast je vůči prvnímu jmenovanému podkladu.</p>
+      <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden;">
+        <sc-for list="{{ roleGroups }}" as="g" hint-placeholder-count="5">
+          <div>
+            <div style="padding:12px 20px; background:#FBF8F1; border-bottom:1px solid #EFE7D6; font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#8a8776;">{{ g.label }}</div>
+            <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="3">
+              <div class="ds-role-row" style="display:grid; grid-template-columns:186px minmax(0,1fr) minmax(0,1fr) 132px; gap:18px; padding:16px 20px; border-bottom:1px solid #F4EEE1; align-items:start;">
+                <div style="display:flex; align-items:center; gap:11px; min-width:0;">
+                  <span style="{{ r.chip }}"></span>
+                  <span style="min-width:0;">
+                    <span style="display:block; font-weight:600; font-size:14px; color:#2A2A24;">{{ r.name }}</span>
+                    <span style="display:block; font-family:ui-monospace,monospace; font-size:12.5px; color:#4C653D;">{{ r.hex }}</span>
+                  </span>
+                </div>
+                <p style="margin:0; font-size:14px; line-height:1.5; color:#4A4A42;">{{ r.use }}</p>
+                <p style="margin:0; font-size:14px; line-height:1.5; color:#6B6B5E;">{{ r.on }}</p>
+                <p style="margin:0; font-size:12.5px; line-height:1.45; color:#8a8776;">{{ r.contrast }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:14px 0 0; font-size:14px; line-height:1.55; color:#6B6B5E; max-width:78ch;">Barvy skladových stavů mají vlastní semantickou škálu — viz sekce <a href="#skladovost">Skladovost</a>. Na obrazovce držíme <strong style="font-weight:600; color:#4C653D;">nejvýše dva podkladové tóny</strong> a <strong style="font-weight:600; color:#4C653D;">jedno terrakotové CTA</strong>.</p>
     </section>
 
     <!-- ===== JARNÍ PALETA ===== -->
     <section id="jaro" style="margin-bottom:64px;">
-      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Jarní paleta</h2>
-      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Finální paleta webu. Světlejší báze a svěží akcenty místo podzimních tónů; tmavá zeleň #3B5531 a slonovinová #F6F1E7 zůstávají nosné. Konverzní pálená oranžová jen pro nákupní akce — jedna na obrazovku.</p>
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Jarní paleta</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Finální paleta webu. Světlejší báze a svěží akcenty místo podzimních tónů; tmavá zeleň #4C653D (jediná, dle manuálu) a slonovinová #F6F1E7 zůstávají nosné. Konverzní pálená oranžová jen pro nákupní akce — jedna na obrazovku.</p>
 
       <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden; margin-bottom:22px;">
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:12px; padding:26px;">
@@ -116,7 +147,7 @@
             <div>
               <div style="{{ c.chipStyle }}"></div>
               <p style="margin:9px 0 2px; font-weight:600; font-size:13.5px;">{{ c.name }}</p>
-              <p style="margin:0 0 3px; font-family:ui-monospace,monospace; font-size:12.5px; color:#3B5531;">{{ c.hex }}</p>
+              <p style="margin:0 0 3px; font-family:ui-monospace,monospace; font-size:12.5px; color:#4C653D;">{{ c.hex }}</p>
               <p style="margin:0; font-size:12px; color:#8a8776; line-height:1.4;">{{ c.use }}</p>
             </div>
           </sc-for>
@@ -143,13 +174,13 @@
 
       <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden;">
         <div style="padding:22px 26px 0;">
-          <h3 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:500; font-size:24px; color:#2D3A2E;">Tmavé přechody</h3>
+          <h3 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#2D3A2E;">Tmavé přechody</h3>
           <p style="margin:0 0 18px; font-size:14.5px; color:#6B6B5E; line-height:1.55; max-width:74ch;">Pro tmavé pásy — patička, věrnostní program, výzva k akci, hero přes fotku. Fungují se všemi třemi směry. Text vždy slonovinový #F6F1E7.</p>
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; padding:0 26px 24px;">
           <sc-for list="{{ darkGrads }}" as="g" hint-placeholder-count="6">
             <div style="border:1px solid #ECE3D2; border-radius:12px; overflow:hidden;">
-              <div style="{{ g.style }}"><span style="font-family:'Spectral',serif; font-size:18px; color:#F6F1E7;">Důvod, proč tvořit.</span></div>
+              <div style="{{ g.style }}"><span style="font-family:'EB Garamond',serif; font-size:18px; color:#F6F1E7;">Důvod, proč tvořit.</span></div>
               <div style="padding:10px 13px; background:#fff;">
                 <p style="margin:0 0 2px; font-weight:600; font-size:13px;">{{ g.name }}</p>
                 <p style="margin:0; font-size:11.5px; color:#8a8776; line-height:1.4;">{{ g.use }}</p>
@@ -162,24 +193,28 @@
 
     <!-- ===== TRHANÝ PÁS ===== -->
     <section id="trhany-pas" style="margin-bottom:64px;">
-      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Trhaný pás</h2>
-      <p style="margin:0 0 20px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Způsob, jak opticky oddělit sekci od okolí. Podklad jde přes celou šířku okna (full bleed), nahoře i dole má nepravidelný okraj jako ručně utržený papír. Používá se na sekce, které mají působit jako vložený list — receptář, příběh, návody. Nejvýš dva až tři na stránku, jinak efekt ztrácí smysl.</p>
-      <div style="position:relative; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; background:#FFFDF6;">
-        <div style="position:relative; padding:52px 32px; overflow:hidden;">
-          <div aria-hidden="true" style="position:absolute; inset:0; background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
-          <div style="position:relative; text-align:center;">
-            <p style="margin:0 0 6px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Receptář</p>
-            <h3 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:30px; color:#3B5531;">Obsah sekce v trhaném pásu</h3>
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Trhaný pás</h2>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Způsob, jak opticky oddělit sekci od okolí. Podklad jde přes celou šířku okna (full bleed), nahoře i dole má nepravidelný okraj jako ručně utržený papír a po obou hranách jemný vnitřní stín, který list opticky zvedne od stránky. Používá se na sekce, které mají působit jako vložený list — receptář, příběh, návody. Nejvýš dva až tři na stránku, jinak efekt ztrácí smysl.</p>
+      <div style="border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; padding:30px 0;">
+        <sc-for list="{{ tearPads }}" as="p" hint-placeholder-count="3">
+          <div style="position:relative; padding:56px 32px; margin:14px 0;">
+            <div aria-hidden="true" style="{{ p.padStyle }}"></div>
+            <div style="position:relative; text-align:center; display:flex; flex-direction:column; gap:5px;">
+              <span style="font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:#4F6E2A;">{{ p.kicker }}</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:27px; color:#4C653D; line-height:1.15;">{{ p.name }}</span>
+              <span style="font-size:13.5px; line-height:1.5; color:#6B6B5E; max-width:56ch; margin:2px auto 0;">{{ p.use }}</span>
+              <span style="font-family:ui-monospace,monospace; font-size:12px; color:#8a8776; margin-top:4px;">{{ p.hex }}</span>
+            </div>
           </div>
-        </div>
+        </sc-for>
       </div>
-      <p style="margin:16px 0 0; font-size:13.5px; color:#8a8776; line-height:1.55; max-width:78ch;">Podklad: čistá bílá s náznakem zeleně u dolní hrany (#FFFFFF → #FAFDF4) — proti krémové bázi stránky #FFFDF6 s texturou se pás jasně odděluje. Sekce potřebuje větší vnitřní odsazení nahoře a dole (cca 86 / 66 px), aby text nenarážel do trhaného okraje. Nasazeno na sekci Receptář na homepage.</p>
+      <p style="margin:16px 0 0; font-size:13.5px; color:#8a8776; line-height:1.55; max-width:78ch;">Vnitřní stín je závazná součást pásu: <code style="font-family:ui-monospace,monospace; font-size:12.5px;">inset 0 14px 26px -14px rgba(45,58,46,.28)</code> nahoře a <code style="font-family:ui-monospace,monospace; font-size:12.5px;">inset 0 -14px 26px -14px rgba(45,58,46,.24)</code> dole. Sekce potřebuje větší vnitřní odsazení nahoře a dole (cca 86 / 66 px), aby text nenarážel do trhaného okraje. Na jedné stránce se drží jedna varianta podkladu — střídání dvou a více rozbíjí rytmus.</p>
     </section>
 
     <!-- ===== TYPOGRAFIE ===== -->
     <section id="typografie" style="margin-bottom:64px;">
-      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Typografie</h2>
-      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Spectral (serif) pro nadpisy, Hanken Grotesk pro text a UI.</p>
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Typografie</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Podle grafického manuálu: EB Garamond (Medium a Regular) pro nadpisy a serifové akcenty, Work Sans jako základní písmo — SemiBold pro nadpisy v bezserifu, Medium pro podnadpisy a perexy, Regular a Bold pro odstavce a UI. Náhradní písmo tam, kde Work Sans nelze použít, je Helvetica. Obě písma jsou na Google Fonts pod licencí OFL.</p>
       <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 38px; display:flex; flex-direction:column; gap:22px;">
         <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="7">
           <div style="display:flex; align-items:baseline; gap:26px; flex-wrap:wrap; padding-bottom:20px; border-bottom:1px solid #F3EDE0;">
@@ -193,7 +228,7 @@
 
     <!-- ===== ROZESTUPY A TVARY ===== -->
     <section id="spacing" style="margin-bottom:64px;">
-      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Rozestupy a tvary</h2>
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Rozestupy a tvary</h2>
       <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Container 1280 px, maximální šířka 1440 px. Kulaté rohy 14 px na kartách a obrázcích.</p>
       <div class="ds-grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
         <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
@@ -201,7 +236,7 @@
           <div style="display:flex; flex-direction:column; gap:12px;">
             <sc-for list="{{ spacing }}" as="s" hint-placeholder-count="6">
               <div style="display:flex; align-items:center; gap:16px;">
-                <span style="width:46px; font-family:ui-monospace,monospace; font-size:13px; color:#3B5531; font-weight:600;">{{ s.px }}</span>
+                <span style="width:46px; font-family:ui-monospace,monospace; font-size:13px; color:#4C653D; font-weight:600;">{{ s.px }}</span>
                 <span style="{{ s.barStyle }}"></span>
                 <span style="font-size:13px; color:#8a8776;">{{ s.use }}</span>
               </div>
@@ -214,7 +249,7 @@
             <sc-for list="{{ radii }}" as="r" hint-placeholder-count="4">
               <div style="text-align:center;">
                 <div style="{{ r.boxStyle }}"></div>
-                <p style="margin:8px 0 0; font-family:ui-monospace,monospace; font-size:12.5px; color:#3B5531;">{{ r.px }}</p>
+                <p style="margin:8px 0 0; font-family:ui-monospace,monospace; font-size:12.5px; color:#4C653D;">{{ r.px }}</p>
                 <p style="margin:2px 0 0; font-size:11.5px; color:#8a8776;">{{ r.use }}</p>
               </div>
             </sc-for>
@@ -223,7 +258,7 @@
             <sc-for list="{{ shadows }}" as="s" hint-placeholder-count="2">
               <div style="text-align:center;">
                 <div style="{{ s.boxStyle }}"></div>
-                <p style="margin:10px 0 0; font-size:12.5px; color:#3B5531; font-weight:600;">{{ s.name }}</p>
+                <p style="margin:10px 0 0; font-size:12.5px; color:#4C653D; font-weight:600;">{{ s.name }}</p>
                 <p style="margin:2px 0 0; font-size:11.5px; color:#8a8776;">{{ s.use }}</p>
               </div>
             </sc-for>
@@ -234,21 +269,21 @@
 
     <!-- ===== LOGO ===== -->
     <section id="logo" style="margin-bottom:64px;">
-      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Logo</h2>
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Logo</h2>
       <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Zelená verze na světlé podklady, krémová na tmavé. Visačka jen na desktopu.</p>
       <div class="ds-grid-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
         <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:190px;">
           <img src="assets/ekokoza-logo-green.png" alt="ekokoza" style="width:170px; display:block;">
           <p style="margin:0; font-size:13px; color:#8a8776;">Horizontální — světlý podklad</p>
         </div>
-        <div style="background:#4C643C; border-radius:14px; padding:34px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:190px;">
+        <div style="background:#4C653D; border-radius:14px; padding:34px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:190px;">
           <img src="assets/ekokoza-logo-cream.png" alt="ekokoza" style="width:170px; display:block;">
           <p style="margin:0; font-size:13px; color:#AEC49E;">Horizontální — tmavý podklad</p>
         </div>
         <div style="background:#F6F1E7; border:1px solid #ECE3D2; border-radius:14px; min-height:190px; overflow:hidden; display:flex; flex-direction:column;">
-          <div style="width:100%; background:#4C643C; height:35px; flex-shrink:0;"></div>
+          <div style="width:100%; background:#4C653D; height:35px; flex-shrink:0;"></div>
           <div style="position:relative; flex:1; display:flex; align-items:flex-end; justify-content:center; padding-bottom:14px;">
-            <span style="position:absolute; top:-35px; left:50%; margin-left:-60px; width:120px; height:92px; padding:14px 12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:#4C643C; border-radius:0 0 16px 16px; box-shadow:0 10px 20px -8px rgba(45,58,46,.45);">
+            <span style="position:absolute; top:-35px; left:50%; margin-left:-60px; width:120px; height:92px; padding:14px 12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:#4C653D; border-radius:0 0 16px 16px; box-shadow:0 10px 20px -8px rgba(45,58,46,.45);">
               <img src="assets/ekokoza-znak-cream.png" alt="" style="width:38px; display:block;">
               <img src="assets/ekokoza-napis-cream.png" alt="ekokoza" style="width:76px; display:block;">
             </span>
@@ -261,10 +296,10 @@
     <!-- ===== KOMPONENTY: TLAČÍTKA ===== -->
     <section id="tlacitka" style="margin-bottom:64px;">
       <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
-        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Tlačítka</h2>
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Tlačítka</h2>
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Button</code>
       </div>
-      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Terrakota (Main) jen pro hlavní konverzi — Koupit, Do košíku, Odeslat. Primární v zelené pro důležité, ale nekonverzní akce. Sekundární pro doplňkové akce.</p>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Terrakota (Main) jen pro hlavní konverzi — Koupit, Do košíku, Odeslat. Primární v zelené pro důležité, ale nekonverzní akce. Sekundární pro doplňkové akce. <strong style="font-weight:600; color:#4C653D;">Na tmavě zelené ploše se terrakota nepoužívá</strong> — platí varianta On dark.</p>
       <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 36px; display:flex; flex-wrap:wrap; gap:34px; align-items:flex-start;">
         <div style="display:flex; flex-direction:column; gap:12px;">
           <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Main</span>
@@ -290,9 +325,31 @@
           <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Navigace</span>
           <div style="display:flex; gap:20px; align-items:center;">
             <span class="ds-nav-demo" style="position:relative; display:inline-block; color:#2A2A24; font-size:15px; font-weight:500; cursor:pointer; transition:transform .25s;">Co vyrábět</span>
-            <span class="ds-loyal-demo" style="display:inline-flex; align-items:center; gap:8px; border:1.5px solid #4C643C; color:#3B5531; padding:9px 18px; border-radius:999px; font-weight:600; font-size:15px; transition:all .25s; cursor:pointer;">Věrnostní program</span>
+            <span class="ds-loyal-demo" style="display:inline-flex; align-items:center; gap:8px; border:1.5px solid #4C653D; color:#4C653D; padding:9px 18px; border-radius:999px; font-weight:600; font-size:15px; transition:all .25s; cursor:pointer;">Věrnostní program</span>
           </div>
           <span style="font-size:12.5px; color:#8a8776;">Podtržení zleva · pill s výplní</span>
+        </div>
+      </div>
+
+      <h3 style="margin:34px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">CTA na tmavé ploše</h3>
+      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Na tmavě zeleném podkladu terrakota vibruje a čte se jako varování. Hlavní akci tam nese světlé tlačítko: krémová plocha #F6F1E7 s textem #4C653D (kontrast 5,6:1). Doprovodná akce zůstává obrysová v krémové. Na fotografii s tmavým přechodem terrakota zůstává — leží na snímku, ne na brandové zeleni.</p>
+      <div class="ds-grid-2" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px;">
+        <div style="border-radius:14px; overflow:hidden; border:1px solid #ECE3D2;">
+          <div style="background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); padding:30px 28px; display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
+            <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:23px; color:#F6F1E7;">Odměňujeme opakovanou tvorbu.</span>
+            <div style="display:flex; gap:11px; flex-wrap:wrap;">
+              <dc-import name="ui-Button" variant="onDark" size="md" label="Zjistit více" hint-size="170px,48px"></dc-import>
+              <span style="display:inline-flex; align-items:center; padding:13px 26px; border-radius:999px; border:1.5px solid rgba(246,241,231,.5); color:#F6F1E7; font-weight:600; font-size:15px;">Do košíku</span>
+            </div>
+          </div>
+          <div style="padding:13px 16px; background:#F4F7EA; border-top:1px solid #ECE3D2; font-size:13px; color:#4C653D; font-weight:600;">Správně — krémová plocha, obrysová doprovodná akce</div>
+        </div>
+        <div style="border-radius:14px; overflow:hidden; border:1px solid #ECE3D2;">
+          <div style="background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); padding:30px 28px; display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
+            <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:23px; color:#F6F1E7;">Odměňujeme opakovanou tvorbu.</span>
+            <span style="display:inline-flex; align-items:center; padding:13px 26px; border-radius:999px; background:#D14405; color:#fff; font-weight:600; font-size:15px;">Zjistit více</span>
+          </div>
+          <div style="padding:13px 16px; background:#FBF0EA; border-top:1px solid #ECE3D2; font-size:13px; color:#B23803; font-weight:600;">Nepoužívat — terrakota na zelené ploše</div>
         </div>
       </div>
     </section>
@@ -300,7 +357,7 @@
     <!-- ===== KOMPONENTY: CHIPY ===== -->
     <section id="chipy" style="margin-bottom:64px;">
       <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
-        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Chipy</h2>
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Chipy</h2>
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Chip</code>
       </div>
       <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Vždy věcné označení. Žádné „poslední kus", žádné odpočty.</p>
@@ -317,7 +374,7 @@
     <!-- ===== BADGE ===== -->
     <section id="badge" style="margin-bottom:64px;">
       <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
-        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Badge</h2>
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Badge</h2>
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Badge</code>
       </div>
       <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Označení v rohu produktové fotky. Věcné, bez urgence — žádné odpočty ani „poslední kus".</p>
@@ -336,45 +393,104 @@
     <!-- ===== SKLADOVOST ===== -->
     <section id="skladovost" style="margin-bottom:64px;">
       <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
-        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Skladovost</h2>
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Skladovost</h2>
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Stock</code>
       </div>
-      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Tři stavy dostupnosti u varianty produktu. Vysvětlují, co se bude dít — ne kolik kusů zbývá. Používá se na kartě produktu, v našeptávači i v košíku.</p>
-      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-direction:column; gap:20px;">
-        <div style="display:flex; align-items:flex-start; gap:24px;">
-          <span style="width:190px; flex:0 0 auto;"><dc-import name="ui-Stock" state="ready" hint-size="150px,18px"></dc-import></span>
-          <span style="font-size:14px; color:#6B6B5E; line-height:1.5;">Varianta je nabalená a připravená. Objednávka odchází většinou následující pracovní den.</span>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jedna semantická škála dostupnosti. Stavy vysvětlují, co se bude dít — ne kolik kusů zbývá. Barva rozděluje škálu na dostupné a nedostupné: nejsytější zeleň pro okamžité odeslání, tlumená oliva pro dostupné s prodlevou (nabalení, očekávané naskladnění), dva odstíny červené pro to, co koupit nelze (světlejší u dočasné nedostupnosti, temně cihlová u vyřazeného produktu). Stavy 2 a 3 mají shodnou barvu — liší se ikonou a textem. Stejná komponenta a stejné texty platí na kartě produktu, v detailu, v našeptávači, v buy baru i v košíku.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Hranice je mezi úrovní 3 a 4: <strong style="font-weight:600; color:#4C653D;">úrovně 1–3 lze koupit</strong> a mají tlačítko Do košíku, úrovně 4–5 nabízejí místo něj hlídacího psa. Stav nikdy nenese jen barva — vždy je s ním ikona a text (barvoslepost, tisk, černobílý katalog).</p>
+
+      <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden;">
+        <div class="ds-stock-head" style="display:grid; grid-template-columns:44px 210px 1fr 118px 104px; gap:16px; padding:12px 20px; background:#FBF8F1; border-bottom:1px solid #EFE7D6; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">
+          <span>Úr.</span><span>Stav</span><span>Co k tomu říkáme</span><span>Lze koupit</span><span>Kontrast</span>
         </div>
-        <div style="display:flex; align-items:flex-start; gap:24px;">
-          <span style="width:190px; flex:0 0 auto;"><dc-import name="ui-Stock" state="packing" hint-size="150px,18px"></dc-import></span>
-          <span style="font-size:14px; color:#6B6B5E; line-height:1.5;">Surovinu máme, ale ve velkém balení — teprve ji přesypeme a navážíme. Typicky 25kg varianty. Odeslání se prodlouží zhruba o den.</span>
+        <sc-for list="{{ stockScale }}" as="st" hint-placeholder-count="5">
+          <div class="ds-stock-row" style="display:grid; grid-template-columns:44px 210px 1fr 118px 104px; gap:16px; padding:16px 20px; border-bottom:1px solid #F4EEE1; align-items:start;">
+            <span style="{{ st.levelStyle }}">{{ st.level }}</span>
+            <span style="display:flex; flex-direction:column; gap:7px; align-items:flex-start;">
+              <dc-import name="ui-Stock" state="{{ st.key }}" date="28. 8. 2026" variant="pill" size="{{ 13 }}" hint-size="180px,30px"></dc-import>
+              <code style="font-family:ui-monospace,monospace; font-size:11.5px; color:#8a8776;">{{ st.spec }}</code>
+            </span>
+            <p style="margin:0; font-size:14px; line-height:1.5; color:#4A4A42;">{{ st.note }}</p>
+            <span style="{{ st.buyStyle }}">{{ st.buyLabel }}</span>
+            <span style="font-size:12.5px; line-height:1.45; color:#8a8776;">{{ st.contrast }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <h3 style="margin:30px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Dvě podoby stavu</h3>
+      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Vložený text v kartě produktu, v našeptávači a v košíku (bez plochy, 12,5–13 px). Pilulka v detailu produktu a ve sticky buy baru, kde stav nese víc pozornosti (13–14,5 px). Vysvětlující mikrocopy je u produktů bez variant vypsané vedle stavu; u variantních produktů — kde není místo — se stav doplní ikonou „i“ a text se ukáže po přejetí, tabulátoru nebo kliknutí (<code style="font-family:ui-monospace,monospace; font-size:12.5px;">withNote</code>).</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:26px 30px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px;" class="ds-grid-2">
+        <div style="display:flex; flex-direction:column; gap:13px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Vložený text</span>
+          <dc-import name="ui-Stock" state="ready" hint-size="160px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="packing" hint-size="160px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" hint-size="200px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="unavail" hint-size="170px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="ended" hint-size="160px,20px"></dc-import>
         </div>
-        <div style="display:flex; align-items:flex-start; gap:24px;">
-          <span style="width:190px; flex:0 0 auto;"><dc-import name="ui-Stock" state="expected" date="28. 8. 2026" hint-size="180px,18px"></dc-import></span>
-          <span style="font-size:14px; color:#6B6B5E; line-height:1.5;">Není skladem, uvedené datum je očekávané naskladnění. Karta místo tlačítka Koupit zobrazí „Tento produkt nelze zakoupit" a nabídne Hlídací pes — upozornění e-mailem, až bude znovu skladem.</span>
+        <div style="display:flex; flex-direction:column; gap:13px; align-items:flex-start; padding:22px; border-radius:12px; background:#F6F1E7;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Pilulka — detail a buy bar</span>
+          <dc-import name="ui-Stock" state="ready" variant="pill" size="{{ 14 }}" hint-size="190px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="packing" variant="pill" size="{{ 14 }}" hint-size="190px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" variant="pill" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="unavail" variant="pill" size="{{ 14 }}" hint-size="200px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="ended" variant="pill" size="{{ 14 }}" hint-size="190px,34px"></dc-import>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:13px; align-items:flex-start; grid-column:1 / -1; padding-top:22px; border-top:1px solid #F4EEE1;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">S mikrocopy v popupu — varianty a buy bar</span>
+          <span style="font-size:13.5px; color:#6B6B5E; line-height:1.5; max-width:70ch;">Přejeďte myší nebo klikněte. Popup drží stejnou barvu obrysu jako stav a nikdy nepřekrývá tlačítko Do košíku.</span>
+          <div style="display:flex; gap:26px; flex-wrap:wrap; margin-top:26px;">
+            <dc-import name="ui-Stock" state="packing" withNote="{{ true }}" size="{{ 13.5 }}" hint-size="190px,22px"></dc-import>
+            <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" withNote="{{ true }}" variant="pill" size="{{ 13.5 }}" hint-size="230px,34px"></dc-import>
+            <dc-import name="ui-Stock" state="unavail" withNote="{{ true }}" variant="pill" size="{{ 13.5 }}" hint-size="210px,34px"></dc-import>
+          </div>
         </div>
       </div>
+      <p style="margin:16px 0 0; font-size:13.5px; color:#8a8776; line-height:1.55; max-width:78ch;">Škála je připravená na napojení reálných stavů z e-shopu: každý stav ze systému se namapuje na jednu z pěti úrovní, komponenta pak drží barvu, ikonu i text sama. Starší názvy stavů (<code style="font-family:ui-monospace,monospace; font-size:12.5px;">available, soon, out, discontinued</code>) komponenta přijímá a překládá.</p>
     </section>
 
     <!-- ===== RATING ===== -->
     <section id="rating" style="margin-bottom:64px;">
       <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
-        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Hodnocení</h2>
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Hodnocení</h2>
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Rating</code>
       </div>
-      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Pět hvězdiček a počet hodnocení v závorce. Bez hodnocení drží stejnou výšku (ztlumené hvězdy), aby karty nelítaly.</p>
-      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-direction:column; gap:16px;">
-        <div style="display:flex; align-items:center; gap:20px;"><span style="width:150px; font-size:12.5px; color:#8a8776;">Plné hodnocení</span><dc-import name="ui-Rating" value="5" count="214" hint-size="130px,20px"></dc-import></div>
-        <div style="display:flex; align-items:center; gap:20px;"><span style="width:150px; font-size:12.5px; color:#8a8776;">S půlhvězdou</span><dc-import name="ui-Rating" value="4.5" count="96" hint-size="130px,20px"></dc-import></div>
-        <div style="display:flex; align-items:center; gap:20px;"><span style="width:150px; font-size:12.5px; color:#8a8776;">Nižší</span><dc-import name="ui-Rating" value="3.2" count="12" hint-size="130px,20px"></dc-import></div>
-        <div style="display:flex; align-items:center; gap:20px;"><span style="width:150px; font-size:12.5px; color:#8a8776;">Bez hodnocení</span><dc-import name="ui-Rating" value="0" count="0" hint-size="130px,20px"></dc-import></div>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Pět hvězd s výplní na procenta: 4,75 znamená čtyři plné hvězdy a pátou vyplněnou ze tří čtvrtin — plocha je opravdu vyplněná, ne naznačená dělící čárkou. Spodní vrstva hvězdy zůstává v tlumené zlaté, aby byl vidět celý rozsah.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Jeden zápis pro celý web: <strong style="font-weight:600; color:#4C653D;">hvězdy · hodnota · počet hodnocení</strong> (4,75 · 128 hodnocení). Stejná komponenta je na kartě produktu, v detailu, v recenzích, u receptů i v odznacích Heureka a Google v patičce. Bez hodnocení drží řádek stejnou výšku, aby karty neposkakovaly.</p>
+
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-direction:column; gap:18px;">
+        <sc-for list="{{ ratingRows }}" as="r" hint-placeholder-count="6">
+          <div class="ds-rating-row" style="display:grid; grid-template-columns:150px 1fr; gap:20px; align-items:center;">
+            <span style="font-size:12.5px; color:#8a8776;">{{ r.label }}</span>
+            <dc-import name="ui-Rating" value="{{ r.value }}" count="{{ r.count }}" size="{{ 18 }}" hint-size="230px,24px"></dc-import>
+          </div>
+        </sc-for>
+      </div>
+
+      <h3 style="margin:30px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Zkrácené podoby</h3>
+      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Části zápisu lze vypnout tam, kde je hodnota vypsaná už vedle (souhrn recenzí) nebo kde jde jen o vizuální signál (jednotlivá recenze, odznaky v patičce). Pořadí a barvy zůstávají vždy stejné.</p>
+      <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px;" class="ds-grid-2">
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:24px 26px; display:flex; flex-direction:column; gap:16px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Bez hodnoty · souhrn recenzí</span>
+          <dc-import name="ui-Rating" value="{{ 4.75 }}" count="{{ 128 }}" showValue="{{ false }}" size="{{ 16 }}" hint-size="190px,22px"></dc-import>
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Jen hvězdy · jednotlivá recenze</span>
+          <dc-import name="ui-Rating" value="{{ 5 }}" showCount="{{ false }}" showValue="{{ false }}" size="{{ 16 }}" hint-size="110px,22px"></dc-import>
+        </div>
+        <div style="border:1px solid #ECE3D2; border-radius:14px; padding:24px 26px; display:flex; flex-direction:column; gap:14px; background:linear-gradient(155deg,#4C653D 0%,#22301F 100%);">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#C7D3B8; font-weight:700;">Na tmavé ploše · odznaky v patičce</span>
+          <span style="display:flex; align-items:center; gap:10px;">
+            <span style="font-family:'EB Garamond',serif; font-size:20px; font-weight:500; color:#F6F1E7; line-height:1;">100 %</span>
+            <dc-import name="ui-Rating" value="{{ 5 }}" showValue="{{ false }}" showCount="{{ false }}" size="{{ 14 }}" color="#F5C63C" trackColor="rgba(245,198,60,.28)" hint-size="80px,18px"></dc-import>
+          </span>
+          <span style="font-size:13px; color:#D3E0CB; line-height:1.5;">Na tmavém podkladu se hvězdy přebarví na světlejší zlatou #F5C63C.</span>
+        </div>
       </div>
     </section>
 
     <!-- ===== KOMPONENTY: KARTY ===== -->
     <section id="karty" style="margin-bottom:64px;">
       <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
-        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Karty a dlaždice</h2>
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Karty a dlaždice</h2>
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-ProductCard · ui-RecipeCard · ui-CategoryTile · ui-IngredientTile</code>
       </div>
       <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Bílý podklad, rám #ECE3D2, rádius 14 px. Hover: posun 4 px nahoru a měkký stín.</p>
@@ -401,7 +517,7 @@
     <!-- ===== NADPISY SEKCÍ ===== -->
     <section id="nadpisy" style="margin-bottom:64px;">
       <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
-        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Nadpisy sekcí</h2>
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Nadpisy sekcí</h2>
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-SectionHeading</code>
       </div>
       <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 38px; display:flex; flex-direction:column; gap:34px;">
@@ -415,7 +531,7 @@
     <!-- ===== IKONY ===== -->
     <section id="ikony" style="margin-bottom:64px;">
       <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
-        <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Ikony</h2>
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Ikony</h2>
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Icon</code>
       </div>
       <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Hugeicons — outline, tloušťka 1,5 px, barva dědí z textu. Bez stínů, čistá linka. Celkem {{ iconTotal }} ikon.</p>
@@ -423,7 +539,7 @@
         <span style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Živá komponenta</span>
         <dc-import name="ui-Icon" icon="dropper" size="20" hint-size="20px,20px"></dc-import>
         <dc-import name="ui-Icon" icon="mortar" size="24" hint-size="24px,24px"></dc-import>
-        <dc-import name="ui-Icon" icon="leaf-01" size="32" color="#4C643C" hint-size="32px,32px"></dc-import>
+        <dc-import name="ui-Icon" icon="leaf-01" size="32" color="#4C653D" hint-size="32px,32px"></dc-import>
         <dc-import name="ui-Icon" icon="award-01" size="40" color="#D8763B" hint-size="40px,40px"></dc-import>
         <span style="font-size:12.5px; color:#8a8776;">Velikost 12–96 px, barva dědí z palety. Přehled níže je statický kvůli rychlosti.</span>
       </div>
@@ -431,12 +547,12 @@
         <sc-for list="{{ iconGroups }}" as="g" hint-placeholder-count="8">
           <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:22px 24px;">
             <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:14px;">
-              <h3 style="margin:0; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#3B5531; font-weight:700;">{{ g.group }}</h3>
+              <h3 style="margin:0; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#4C653D; font-weight:700;">{{ g.group }}</h3>
               <span style="font-size:12px; color:#a8a495;">{{ g.count }}</span>
             </div>
             <div class="ds-icons" style="display:grid; grid-template-columns:repeat(9,1fr); gap:4px;">
               <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="12">
-                <div class="ds-icon-cell" style="display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px 4px; border-radius:10px; transition:background .2s; color:#3B5531;">
+                <div class="ds-icon-cell" style="display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px 4px; border-radius:10px; transition:background .2s; color:#4C653D;">
                   <span style="{{ i.imgStyle }}"></span>
                   <span style="font-size:10px; color:#8a8776; text-align:center; line-height:1.25; word-break:break-word;">{{ i.name }}</span>
                 </div>
@@ -449,7 +565,7 @@
 
     <!-- ===== BOTANIKA ===== -->
     <section id="botanika" style="margin-bottom:64px;">
-      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Botanické prvky</h2>
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Botanické prvky</h2>
       <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Vykukují zpod sekcí a dodávají hloubku. Jemný drop-shadow, na mobilu se menší z nich skrývají.</p>
       <div class="ds-grid-3" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:14px;">
         <sc-for list="{{ botanika }}" as="b" hint-placeholder-count="6">
@@ -463,11 +579,11 @@
 
     <!-- ===== TONE OF VOICE ===== -->
     <section id="tov" style="margin-bottom:24px;">
-      <h2 style="margin:0 0 6px; font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;">Tón komunikace</h2>
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Tón komunikace</h2>
       <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Klidný, věcný, vysvětlující — ekologie z praxe, ne z počítače.</p>
       <div class="ds-grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
         <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
-          <h3 style="margin:0 0 16px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#4C643C; font-weight:700;">Ano</h3>
+          <h3 style="margin:0 0 16px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#4C653D; font-weight:700;">Ano</h3>
           <ul style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; font-size:15px; line-height:1.5; color:#52524a;">
             <sc-for list="{{ tovDo }}" as="t" hint-placeholder-count="5"><li>{{ t }}</li></sc-for>
           </ul>
@@ -479,12 +595,12 @@
           </ul>
         </div>
       </div>
-      <div style="margin-top:18px; background:#4C643C; border-radius:14px; padding:30px 34px;">
+      <div style="margin-top:18px; background:#4C653D; border-radius:14px; padding:30px 34px;">
         <p style="margin:0 0 12px; color:#AEC49E; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;">Claim architektura</p>
         <div class="ds-grid-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
           <sc-for list="{{ claims }}" as="c" hint-placeholder-count="3">
             <div>
-              <p style="margin:0 0 5px; font-family:'Spectral',serif; font-size:21px; color:#F6F1E7; line-height:1.2;">{{ c.text }}</p>
+              <p style="margin:0 0 5px; font-family:'EB Garamond',serif; font-size:21px; color:#F6F1E7; line-height:1.2;">{{ c.text }}</p>
               <p style="margin:0; font-size:13px; color:#C4D6B8; line-height:1.45;">{{ c.use }}</p>
             </div>
           </sc-for>
@@ -524,10 +640,83 @@ class Component extends DCLogic {
       { label: 'Tón komunikace', href: '#tov' },
     ];
 
+
+    const TEAR_POLY = 'polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px))';
+    const TEAR_SHADOW = 'inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24)';
+    const tearPads = [
+      ['Bílý list', 'Receptář', 'Základní varianta. Recepty, návody, bestsellery — všude, kde má obsah působit jako vložený čistý list.', '#FFFFFF → #FAFDF4', 'linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%)'],
+      ['Krémový list', 'Náš příběh', 'Teplejší varianta pro obsahové a brandové sekce — o nás, hodnoty, dopis zákazníkům.', '#FBF6EA → #F3EBDA', 'linear-gradient(168deg,#FBF6EA 0%,#F7F1E3 60%,#F3EBDA 100%)'],
+      ['Šalvějový list', 'Vědět proč. Vědět jak.', 'Zelený akcent pro edukaci a návody. Nejvýraznější oddělení — na stránce nejvýš jednou.', '#F4F7EA → #E4EED2', 'linear-gradient(168deg,#F4F7EA 0%,#EDF3DE 60%,#E4EED2 100%)'],
+    ].map(([name, kicker, use, hex, bg]) => ({
+      name, kicker, use, hex,
+      padStyle: 'position:absolute; inset:0; pointer-events:none; background:' + bg + '; box-shadow:' + TEAR_SHADOW + '; clip-path:' + TEAR_POLY + ';',
+    }));
+
     const mk = (name, hex, use) => ({ name, hex, use, chipStyle: `height:74px; background:${hex};` });
+
+
+    const STOCK_META = [
+      ['ready', 1, 'Nabaleno a připraveno. Nejčastější stav u běžných balení.', 'Ano', '#3F7F2C · 5,4:1 ✓ AA'],
+      ['packing', 2, 'Surovinu máme ve velkém balení a teprve ji navážíme — typicky 25 kg. Koupit lze teď, odeslání o den později.', 'Ano', '#57712D · 5,5:1 ✓ AA'],
+      ['expected', 3, 'Zboží je na cestě k nám. Objednat lze i teď, odešleme hned po naskladnění k uvedenému datu.', 'Ano', '#57712D · 5,5:1 ✓ AA'],
+      ['unavail', 4, 'Není skladem a datum naskladnění neznáme. Místo tlačítka Do košíku nabídneme hlídacího psa.', 'Ne', '#A33203 · 6,9:1 ✓ AA'],
+      ['ended', 5, 'Produkt jsme vyřadili z nabídky. Nabídneme náhradu z podobných surovin.', 'Ne', '#8A2412 · 9,0:1 ✓ AAA'],
+    ];
+    const stockScale = STOCK_META.map(([key, level, note, buy, contrast]) => ({
+      key, level, note, contrast,
+      spec: 'state="' + key + '"',
+      buyLabel: buy,
+      levelStyle: 'display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:#F6F1E7; color:#4C653D; font-size:13px; font-weight:700;',
+      buyStyle: 'font-size:13.5px; font-weight:600; color:' + (buy === 'Ano' ? '#4C653D' : '#A33203') + ';',
+    }));
+
+
+    const ratingRows = [
+      ['Plné hodnocení', 5, 214],
+      ['4,75 — tři čtvrtiny', 4.75, 128],
+      ['4,5 — půl hvězdy', 4.5, 96],
+      ['4,2 — pětina', 4.2, 61],
+      ['3,2', 3.2, 12],
+      ['Bez hodnocení', 0, 0],
+    ].map(([label, value, count]) => ({ label, value, count }));
+
+    const role = (name, hex, use, on, contrast) => ({
+      name, hex, use, on, contrast,
+      chip: `width:30px; height:30px; flex:0 0 auto; border-radius:8px; background:${hex}; border:1px solid rgba(45,58,46,.16);`,
+    });
+    const roleGroups = [
+      { label: 'Nosná barva', rows: [
+        role('Tmavá zeleň', '#4C653D', 'Všechny nadpisy, silnejší text, ikony, ceny; plocha topbaru, patičky a věrnostního boxu; obrys i výplň sekundárního tlačítka; aktivní stav filtrů, stránkování a variant.', 'Slonovinová #FFFDF6, krémová #F6F1E7, bílá. Jako plocha nese text v krémové #F6F1E7.', '6,4:1 ✓ AA'),
+      ]},
+      { label: 'Konverze', rows: [
+        role('Terrakota CTA', '#D14405', 'Hlavní nákupní akce — Do košíku, Koupit, Dokončit objednávku. Nejvýše jedno na obrazovku.', 'Světlé podklady a fotografie s tmavým přechodem. Na tmavě zelené ploše nepoužívat — tam nese hlavní akci krémové tlačítko (varianta On dark).', 'bílý text 4,8:1 ✓ AA'),
+        role('Terrakota hover', '#B23803', 'Pouze hover a active primárního tlačítka a odkazu. Nikdy jako výchozí plocha nebo text.', 'Střídá #D14405 ve stejném prvku.', 'bílý text 6,0:1 ✓ AA'),
+        role('Terrakota kicker', '#D8763B', 'Kickery nad nadpisem a drobné zvýraznění — uppercase 13 px SemiBold.', 'Krémová a slonovinová. Nepoužívat na tlačítka ani na běžný text.', '3,1:1 — jen velký text'),
+      ]},
+      { label: 'Podklady a rámy', rows: [
+        role('Slonovinová', '#FFFDF6', 'Pozadí stránky, vždy s jemnou texturou. Základní plocha karet a panelů.', 'Nejnižší vrstva — pod vším ostatním.', 'nosná pro text #4C653D'),
+        role('Krémová', '#F6F1E7', 'Plochy sekcí, trhaný pás, chipy, dlaždice ikon; zároveň barva textu na tmavě zelené ploše.', 'Na slonovinové jako odlišení sekce; na tmavé zeleni jako barva textu.', '5,6:1 ✓ AA'),
+        role('Krémová tmavší', '#EFE7D6', 'Sekundární plochy, hover ghost tlačítek, oddělovače v plochách.', 'Na krémové i bílé.', 'jen plocha'),
+        role('Rám karet', '#ECE3D2', 'Ohraničení karet, boxů, inputů a tabulek — 1 px.', 'Kolem bílých a krémových ploch.', 'jen linka'),
+      ]},
+      { label: 'Akcenty', rows: [
+        role('Mladá zeleň', '#7BA23F', 'Svěží akcent: dostupnost skladu, kladné stavy, aktivní značka, drobné zvýraznění.', 'Bílá a krémová. Ne pro text pod 18 px.', '3,3:1 — ikony a plochy'),
+        role('Šalvěj (3 tóny)', '#DDE7D2 / #CFE0B4 / #B9D096', 'Plochy bannerů věrnostních úrovní (Začátečník / Pokročilý / Profesionál) a Instagram pás. Tmavší tón = vyšší úroveň.', 'Text na nich vždy #4C653D.', 'text #4C653D ✓ AA'),
+        role('Světle zelená', '#C1D69F', 'Plochy a bannery dle manuálu, ilustrační pozadí.', 'Samostatně nebo na krémové.', 'text #4C653D ✓ AA'),
+        role('Růžová', '#FDCDBF', 'Jemné plochy — kategorie péče o pleť, dekorativní pruhy.', 'Na krémové a bílé.', 'text #4C653D ✓ AA'),
+        role('Světle modrá', '#D4F1EC', 'Chladivé produkty, koupel, hydratace — plochy a dlaždice.', 'Na krémové a bílé.', 'text #4C653D ✓ AA'),
+        role('Žlutá', '#FBD870', 'Vosky a med, informativní upozornění, akcentní plocha. Ne pro chybové stavy.', 'Na krémové a bílé.', 'text #4C653D ✓ AA'),
+        role('Zlatá', '#B8860B', 'Výhradně hvězdy hodnocení — výplň i částečná výseč.', 'Bílá a krémová.', 'jen ikona'),
+      ]},
+      { label: 'Text (neutrály)', rows: [
+        role('Text silný', '#2A2A24', 'Názvy karet a produktů, důležité hodnoty v tabulkách.', 'Bílá a krémová.', '14,5:1 ✓ AAA'),
+        role('Text běžný', '#4A4A42', 'Odstavce, popisy, obsah produktového textu.', 'Bílá a krémová.', '8,9:1 ✓ AAA'),
+        role('Text doplňkový', '#6B6B5E', 'Meta informace, drobné popisky, breadcrumb.', 'Bílá a krémová. Ne pod 12,5 px.', '5,2:1 ✓ AA'),
+        role('Labely', '#8a8776', 'Uppercase labely sekcí a nápověda v design systému.', 'Bílá. Ne pro čitelnostně důležitý text.', '3,6:1 — jen labely'),
+      ]},
+    ];
     const colors = [
-      mk('Zelená z loga', '#4C643C', 'Topbar, footer, věrnostní box, visačka'),
-      mk('Tmavá zelená', '#3B5531', 'Nadpisy, ikony, text na světlém'),
+      mk('Zelená (manuál)', '#4C653D', 'Jediná tmavá zeleň: nadpisy, text, topbar, footer, plochy'),
       mk('Terrakota', '#D8763B', 'Hlavní CTA, kickery, odkazy'),
       mk('Terrakota hover', '#B23803', 'Hover stav primárních tlačítek'),
       mk('Slonovinová', '#FFFDF6', 'Pozadí stránky (s texturou)'),
@@ -551,13 +740,13 @@ class Component extends DCLogic {
     ];
 
     const typeScale = [
-      { label: 'H1', sample: 'Důvod, proč tvořit.', spec: "Spectral 400 · 60/1.02", style: "font-family:'Spectral',serif; font-weight:400; font-size:40px; line-height:1.05; color:#3B5531;" },
-      { label: 'H2', sample: 'Co chcete vyrábět?', spec: 'Spectral 400 · 40/1.05', style: "font-family:'Spectral',serif; font-weight:400; font-size:32px; color:#3B5531;" },
-      { label: 'H3 karta', sample: 'Krém na paty a ztvrdlá místa', spec: 'Spectral 500 · 18/1.25', style: "font-family:'Spectral',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;" },
-      { label: 'Kicker', sample: 'RECEPTÁŘ', spec: 'Hanken 600 · 13 · +.16em', style: "font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:#D8763B;" },
-      { label: 'Body', sample: 'Suroviny, recepty a klid na práci.', spec: 'Hanken 400 · 16-17/1.6', style: "font-family:'Hanken Grotesk',sans-serif; font-size:16.5px; line-height:1.6; color:#52524a;" },
-      { label: 'UI / odkaz', sample: 'Zobrazit všechny recepty', spec: 'Hanken 600 · 15', style: "font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:15px; color:#3B5531;" },
-      { label: 'Malý text', sample: 'Doprava zdarma od 2000 Kč', spec: 'Hanken 400 · 12.5-13.5', style: "font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:#6B6B5E;" },
+      { label: 'H1', sample: 'Důvod, proč tvořit.', spec: "EB Garamond Medium · 60/1.02", style: "font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.05; color:#4C653D;" },
+      { label: 'H2', sample: 'Co chcete vyrábět?', spec: 'EB Garamond Medium · 40/1.05', style: "font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;" },
+      { label: 'H3 karta', sample: 'Krém na paty a ztvrdlá místa', spec: 'EB Garamond Medium · 18/1.25', style: "font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;" },
+      { label: 'Kicker', sample: 'RECEPTÁŘ', spec: 'Work Sans SemiBold · 13 · +.16em', style: "font-family:'Work Sans',sans-serif; font-weight:600; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:#D8763B;" },
+      { label: 'Body', sample: 'Suroviny, recepty a klid na práci.', spec: 'Work Sans Regular · 16-17/1.6', style: "font-family:'Work Sans',sans-serif; font-size:16.5px; line-height:1.6; color:#52524a;" },
+      { label: 'UI / odkaz', sample: 'Zobrazit všechny recepty', spec: 'Work Sans SemiBold · 15', style: "font-family:'Work Sans',sans-serif; font-weight:600; font-size:15px; color:#4C653D;" },
+      { label: 'Malý text', sample: 'Doprava zdarma od 2000 Kč', spec: 'Work Sans Regular · 12.5-13.5', style: "font-family:'Work Sans',sans-serif; font-size:13px; color:#6B6B5E;" },
     ];
 
     const spacing = [
@@ -578,7 +767,7 @@ class Component extends DCLogic {
 
     const shadows = [
       { name: 'Karta hover', use: 'Zvednutí o 4 px', boxStyle: 'width:96px; height:52px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; box-shadow:0 18px 40px -22px rgba(45,58,46,.45);' },
-      { name: 'Sekce', use: 'Jemná hloubka', boxStyle: 'width:96px; height:52px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; box-shadow:0 16px 38px -26px rgba(59,85,49,.35);' },
+      { name: 'Sekce', use: 'Jemná hloubka', boxStyle: 'width:96px; height:52px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);' },
     ];
 
     const iconGroupsRaw = [
@@ -607,7 +796,7 @@ class Component extends DCLogic {
       { name: 'pampeliška 1', file: 'pampeliska-kvet-1.png' },
       { name: 'pampeliška 2', file: 'pampeliska-kvet-2.png' },
       { name: 'řebříček', file: 'rebricek.png' },
-    ].map(b => Object.assign(b, { imgStyle: 'display:block; width:70px; height:70px; background:center/contain no-repeat url("assets/botanika/' + b.file + '"); filter:drop-shadow(0 10px 14px rgba(59,85,49,.28));' }));
+    ].map(b => Object.assign(b, { imgStyle: 'display:block; width:70px; height:70px; background:center/contain no-repeat url("assets/botanika/' + b.file + '"); filter:drop-shadow(0 10px 14px rgba(76,101,61,.28));' }));
 
     const tovDo = [
       'Vysvětlujeme, netlačíme.',
@@ -646,14 +835,14 @@ class Component extends DCLogic {
       bCtaMain: cta('#D14405', '#fff'),
       bCtaSec: cta('transparent', '#4F6E2A', '#7BA23F'),
       darkGrads: dgrads([
-        ['Hluboký les', 'linear-gradient(155deg,#3B5531 0%,#2D3A2E 100%)', 'Patička, tmavé pásy — základ'],
-        ['Zeleň do noci', 'linear-gradient(155deg,#4C643C 0%,#22301F 100%)', 'Věrnostní program, o nás'],
+        ['Hluboký les', 'linear-gradient(155deg,#4C653D 0%,#2D3A2E 100%)', 'Patička, tmavé pásy — základ'],
+        ['Zeleň do noci', 'linear-gradient(155deg,#4C653D 0%,#22301F 100%)', 'Věrnostní program, o nás'],
         ['Terrakota', 'linear-gradient(155deg,#D14405 0%,#A03202 100%)', 'Konverzní pás, sezónní banner'],
         ['Západ', 'linear-gradient(155deg,#E85A18 0%,#8E3A34 100%)', 'Hero přes fotku, výzva k akci'],
-        ['Les a hlína', 'linear-gradient(150deg,#3B5531 0%,#5B4A34 60%,#8E5A32 100%)', 'Přechod mezi zelenou a terrakotou'],
+        ['Les a hlína', 'linear-gradient(150deg,#4C653D 0%,#5B4A34 60%,#8E5A32 100%)', 'Přechod mezi zelenou a terrakotou'],
         ['Soumrak', 'linear-gradient(155deg,#2D3A2E 0%,#3E4A57 100%)', 'Návody, technické sekce'],
       ]),
-      toc, colors, colorsBrand, typeScale, spacing, radii, shadows, iconGroups, iconTotal, botanika, tovDo, tovDont, claims };
+      toc, colors, colorsBrand, roleGroups, tearPads, stockScale, ratingRows, typeScale, spacing, radii, shadows, iconGroups, iconTotal, botanika, tovDo, tovDont, claims };
   }
 }
 </script>

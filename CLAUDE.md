@@ -18,7 +18,7 @@ Plné brand positioning je v `brand/brand-positioning.md` — **používej ho pr
 - Věrnost/objem = férová odměna za dlouhodobý vztah, NE slevová hra.
 
 ### Vizuál
-- Přírodní, tlumená paleta (slonovinová #F6F1E7, tmavě zelená #2D3A2E, terrakota #C0613D jen pro hlavní konverze).
-- Spectral (serif, nadpisy) + Hanken Grotesk (text). Kulaté rohy 14px. Container 1280 / max 1440px.
+- Přírodní, tlumená paleta (slonovinová #F6F1E7, jediná tmavě zelená #4C653D dle manuálu, terrakota #D14405 jen pro hlavní konverze). Role každé barvy jsou popsané v `design-system.html` → Barvy → Role barev; nové odstíny nevymýšlet.
+- EB Garamond (serif, nadpisy — Medium a Regular) + Work Sans jako základní písmo (SemiBold nadpisy, Medium perexy, Regular/Bold text; náhrada Helvetica). Kulaté rohy 14px. Container 1280 / max 1440px.
 - Loga v `assets/` (zelené pro světlé pozadí, krémové pro tmavé).
 - Realistické fotky produktů a procesu/lidí; žádné „pohádkové bio scény".

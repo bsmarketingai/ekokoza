@@ -11,14 +11,14 @@
 <style>
   .ek-bb { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: rgba(255,253,246,.97); backdrop-filter: blur(8px); border-top: 1px solid #E4DAC6; box-shadow: 0 -14px 30px -22px rgba(45,58,46,.55); transition: transform .28s ease, opacity .28s ease; }
   .ek-bb-in { max-width: 1280px; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-  .ek-bb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; padding: 0 28px; font-family: 'Hanken Grotesk',sans-serif; font-size: 15.5px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background .2s, border-color .2s, color .2s; }
+  .ek-bb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; padding: 0 28px; font-family: 'Work Sans',sans-serif; font-size: 15.5px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background .2s, border-color .2s, color .2s; }
   .ek-bb-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
-  .ek-bb-sec:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
+  .ek-bb-sec:hover { background: #4C653D !important; color: #F6F1E7 !important; }
   .ek-bb-sec:hover span { background-color: #F6F1E7 !important; }
-  .ek-bb-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px 4px 11px; border: 1px solid #CFE0B4; border-radius: 999px; background: #F4F7EA; font-family: 'Hanken Grotesk',sans-serif; font-size: 12.5px; font-weight: 600; color: #3B5531; white-space: nowrap; cursor: pointer; transition: background .2s, border-color .2s; }
-  .ek-bb-chip:hover { background: #E7F0D6; border-color: #4C643C; }
+  .ek-bb-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px 4px 11px; border: 1px solid #CFE0B4; border-radius: 999px; background: #F4F7EA; font-family: 'Work Sans',sans-serif; font-size: 12.5px; font-weight: 600; color: #4C653D; white-space: nowrap; cursor: pointer; transition: background .2s, border-color .2s; }
+  .ek-bb-chip:hover { background: #E7F0D6; border-color: #4C653D; }
   .ek-bb-pop { position: absolute; bottom: calc(100% + 12px); left: 32px; width: min(420px, calc(100vw - 32px)); background: #fff; border: 1px solid #E4DAC6; border-radius: 16px; box-shadow: 0 22px 48px -24px rgba(45,58,46,.5); padding: 18px 20px 20px; }
-  @media (max-width: 980px) { .ek-bb-pop { left: 16px; right: 16px; width: auto; } }
+  @media (max-width: 980px) { .ek-bb-pop { left: 16px; right: 16px; width: auto; } .ek-bb-note { display: none; } }
   @media (max-width: 980px) {
     .ek-bb-in { padding: 10px 16px; gap: 12px; }
     .ek-bb-thumb { display: none !important; }
@@ -34,7 +34,7 @@
   <sc-if value="{{ popOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ek-bb-pop">
       <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:12px;">
-        <span style="font-family:'Spectral',serif; font-size:19px; color:#2D3A2E;">Vyberte variantu</span>
+        <span style="font-family:'EB Garamond',serif; font-size:19px; color:#2D3A2E;">Vyberte variantu</span>
         <button onClick="{{ closePop }}" title="Zavřít" aria-label="Zavřít" style="border:none; background:transparent; cursor:pointer; display:flex; padding:4px;"><span style="{{ iconClose }}"></span></button>
       </div>
       <dc-import name="ui-VariantPicker" variants="{{ variants }}" selected="{{ selected }}" heading="" onSelect="{{ pick }}" hint-size="100%,240px"></dc-import>
@@ -44,13 +44,14 @@
     <div style="display:flex; align-items:center; gap:14px; min-width:0;">
       <span class="ek-bb-thumb" style="{{ thumbStyle }}"></span>
       <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
-        <span class="ek-bb-title" style="font-family:'Spectral',serif; font-size:17px; line-height:1.2; color:#2D3A2E; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ title }}</span>
+        <span class="ek-bb-title" style="font-family:'EB Garamond',serif; font-size:17px; line-height:1.2; color:#2D3A2E; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ title }}</span>
         <span style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
           <sc-if value="{{ hasVariant }}" hint-placeholder-val="{{ true }}">
             <button onClick="{{ togglePop }}" class="ek-bb-chip" title="Změnit variantu">{{ variantLabel }}<span style="{{ iconCaret }}"></span></button>
           </sc-if>
-          <span style="font-family:'Spectral',serif; font-size:21px; line-height:1; color:#2D3A2E; white-space:nowrap;">{{ price }}</span>
-          <span style="font-size:12.5px; color:#6B6B5E; white-space:nowrap;">{{ note }}</span>
+          <span style="font-family:'EB Garamond',serif; font-size:21px; line-height:1; color:#2D3A2E; white-space:nowrap;">{{ price }}</span>
+          <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" variant="pill" withNote="{{ true }}" size="{{ 13 }}" hint-size="170px,30px"></dc-import>
+          <span class="ek-bb-note" style="font-size:12.5px; color:#6B6B5E; white-space:nowrap;">{{ note }}</span>
         </span>
       </span>
     </div>
@@ -68,7 +69,7 @@
         <button onClick="{{ goPick }}" class="ek-bb-btn ek-bb-main" style="height:48px; background:#D14405; color:#fff; border:1.5px solid #D14405;">Vyberte variantu<span style="{{ iconArrowUp }}"></span></button>
       </sc-if>
       <sc-if value="{{ modeWatch }}" hint-placeholder-val="{{ false }}">
-        <button onClick="{{ goPick }}" class="ek-bb-btn ek-bb-sec" style="height:48px; background:transparent; color:#3B5531; border:1.5px solid #3B5531;"><span style="{{ iconBell }}"></span>Hlídací pes</button>
+        <button onClick="{{ goPick }}" class="ek-bb-btn ek-bb-sec" style="height:48px; background:transparent; color:#4C653D; border:1.5px solid #4C653D;"><span style="{{ iconBell }}"></span>Hlídací pes</button>
       </sc-if>
     </div>
   </div>
@@ -129,13 +130,15 @@ class Component extends DCLogic {
         this.setState({ pop: false });
         if (this.props.onSelect) this.props.onSelect(i, v);
       },
-      iconCaret: this.mask('arrow-up-01', 16, '#3B5531'),
+      iconCaret: this.mask('arrow-up-01', 16, '#4C653D'),
       iconClose: this.mask('cancel-01', 20, '#6B6B5E'),
       title: this.props.title ?? 'Kyselina citronová',
       hasVariant: !!variantLabel && !needsVariant,
       variantLabel,
       price: this.props.price ?? '',
       note: this.props.note ?? '',
+      stockState: this.props.stockState ?? 'ready',
+      stockDate: this.props.stockDate ?? '',
       thumbStyle: 'width:52px; height:52px; flex:0 0 auto; border:1px solid #ECE3D2; border-radius:10px; background:#fff center/contain no-repeat; background-image:url("' + imgUrl + '");',
       modeBuy: buyable && !needsVariant,
       modePick: needsVariant,

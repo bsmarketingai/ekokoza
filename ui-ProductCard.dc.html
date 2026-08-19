@@ -13,7 +13,7 @@
   .ek-card-t:hover { color: #B23803 !important; }
 </style>
 </helmet>
-<div class="ek-card" style="display:flex; flex-direction:column; background:#fff; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; transition:transform .25s, box-shadow .25s; font-family:'Hanken Grotesk',sans-serif;">
+<div class="ek-card" style="display:flex; flex-direction:column; background:#fff; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; transition:transform .25s, box-shadow .25s; font-family:'Work Sans',sans-serif;">
 
   <div style="position:relative; aspect-ratio:1/1; background:#fff;">
     <a href="{{ href }}" title="{{ title }}" style="position:absolute; inset:0; z-index:1; display:block; text-decoration:none;"></a>
@@ -32,10 +32,10 @@
 
   <div style="padding:16px; display:flex; flex-direction:column; gap:9px; flex:1;">
     <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" hint-size="120px,18px"></dc-import>
-    <h3 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:18px; line-height:1.25;"><a href="{{ href }}" class="ek-card-t" style="color:#2A2A24; text-decoration:none;">{{ title }}</a></h3>
+    <h3 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25;"><a href="{{ href }}" class="ek-card-t" style="color:#2A2A24; text-decoration:none;">{{ title }}</a></h3>
     <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" size="{{ 13 }}" hint-size="140px,18px"></dc-import>
     <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-top:auto;">
-      <span style="font-family:'Spectral',serif; font-size:19px; color:#3B5531; font-weight:500; white-space:nowrap;">{{ price }}</span>
+      <span style="font-family:'EB Garamond',serif; font-size:19px; color:#4C653D; font-weight:500; white-space:nowrap;">{{ price }}</span>
       <sc-if value="{{ buyable }}" hint-placeholder-val="{{ true }}">
         <a href="{{ href }}" class="ek-btn-main" style="background:#D14405; color:#fff; text-decoration:none; padding:9px 16px; border-radius:999px; font-weight:600; font-size:13.5px; transition:background .2s; white-space:nowrap;">{{ ctaLabel }}</a>
       </sc-if>
@@ -43,7 +43,7 @@
     <sc-if value="{{ notBuyable }}" hint-placeholder-val="{{ false }}">
       <div style="display:flex; flex-direction:column; gap:8px;">
         <span style="font-size:13px; color:#6B6B5E;">Tento produkt nelze zakoupit</span>
-        <a href="{{ watchHref }}" class="ek-btn-ghost" style="display:flex; align-items:center; justify-content:center; gap:8px; border:1.5px solid #4C643C; color:#3B5531; text-decoration:none; padding:9px 16px; border-radius:999px; font-weight:600; font-size:13.5px; transition:background .2s;"><span style="{{ iconWatch }}"></span>Hlídací pes</a>
+        <a href="{{ watchHref }}" class="ek-btn-ghost" style="display:flex; align-items:center; justify-content:center; gap:8px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; padding:9px 16px; border-radius:999px; font-weight:600; font-size:13.5px; transition:background .2s;"><span style="{{ iconWatch }}"></span>Hlídací pes</a>
       </div>
     </sc-if>
   </div>
@@ -80,9 +80,12 @@ class Component extends DCLogic {
     const inferred = legacy == null ? 'ready'
       : /nabalit|nava/i.test(legacy) ? 'packing'
       : /oceka|naskladn/i.test(legacy) ? 'expected'
+      : /nedostup|vyprod|nelze/i.test(legacy) ? 'unavail'
+      : /nenab|vyraz/i.test(legacy) ? 'ended'
       : 'ready';
     const stockState = this.props.stockState ?? inferred;
-    const buyable = stockState !== 'expected';
+    // Nakoupitelné je vše až po úroveň 3 (Očekáváme) — viz semantická škála v ui-Stock
+    const buyable = !['unavail', 'unavailable', 'ended', 'discontinued', 'out'].includes(stockState);
 
     // CTA: single-variant products buy directly, multi-variant pick a variant
     const ctaVariant = this.props.ctaVariant ?? 'koupit';

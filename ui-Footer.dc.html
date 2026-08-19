@@ -10,12 +10,12 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; }
-  .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
-  .ek-btn-secondary:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
+  .ek-btn-primary:hover { background: #4C653D !important; border-color: #4C653D !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
   .ek-badge-t:hover { background: rgba(246,241,231,.11) !important; border-color: rgba(246,241,231,.28) !important; }
   @media (max-width: 1080px) { .ek-badges { grid-template-columns: repeat(2,1fr) !important; } }
   @media (max-width: 560px) { .ek-badges { grid-template-columns: 1fr !important; } }
@@ -31,7 +31,7 @@
   }
   @media (max-width: 860px) {
     .ek-help { grid-template-columns: 1fr !important; }
-    .ek-help-l { border-right: none !important; border-bottom: 1px solid rgba(59,85,49,.14) !important; padding: 26px 22px !important; }
+    .ek-help-l { border-right: none !important; border-bottom: 1px solid rgba(76,101,61,.14) !important; padding: 26px 22px !important; }
     .ek-help-r { padding: 26px 22px !important; }
   }
   .ek-foot-outer .ek-link-u { background-image: none; transition: color .18s ease; }
@@ -59,13 +59,13 @@
 </helmet>
 
 <div style="max-width:1344px; margin:0 auto; padding:0 32px;" class="ek-foot-outer">
-  <footer style="background:linear-gradient(155deg,#4C643C 0%,#22301F 100%); color:#DCE6D2; border-radius:28px 28px 0 0; box-shadow:0 -18px 44px -26px rgba(34,48,31,.55); font-family:'Hanken Grotesk',sans-serif;">
+  <footer style="background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); color:#DCE6D2; border-radius:28px 28px 0 0; box-shadow:0 -18px 44px -26px rgba(34,48,31,.55); font-family:'Work Sans',sans-serif;">
     <div class="ek-foot-pad" style="padding:56px 44px 0;">
 
       <div class="ek-help" style="display:grid; grid-template-columns:1.35fr 1fr; gap:0; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border-radius:16px; overflow:hidden; margin-bottom:44px;">
-        <div class="ek-help-l" style="padding:34px 36px; display:flex; flex-direction:column; gap:14px; border-right:1px solid rgba(59,85,49,.14);">
+        <div class="ek-help-l" style="padding:34px 36px; display:flex; flex-direction:column; gap:14px; border-right:1px solid rgba(76,101,61,.14);">
           <p style="margin:0; color:#4F6E2A; font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;">Potřebujete rychle poradit?</p>
-          <h3 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:26px; color:#2D3A2E; line-height:1.15;">Začněte tím, co právě řešíte.</h3>
+          <h3 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:26px; color:#2D3A2E; line-height:1.15;">Začněte tím, co právě řešíte.</h3>
           <p style="margin:0; color:#52524a; font-size:15.5px; line-height:1.6; max-width:52ch;">Nejčastější situace jsme dali na jedno místo, abyste nemuseli hledat mezi provozními a právními informacemi.</p>
           <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:4px;">
             <sc-for list="{{ helpLinks }}" as="l" hint-placeholder-count="4">
@@ -75,21 +75,21 @@
         </div>
         <div class="ek-help-r" style="padding:34px 36px; display:flex; flex-direction:column; gap:14px;">
           <p style="margin:0; color:#4F6E2A; font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;">Jsme tu pro vás</p>
-          <h3 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:26px; color:#2D3A2E; line-height:1.15;">Napište nebo zavolejte.</h3>
+          <h3 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:26px; color:#2D3A2E; line-height:1.15;">Napište nebo zavolejte.</h3>
           <p style="margin:0; color:#52524a; font-size:15.5px; line-height:1.6;">V pracovní dny odpovídáme zpravidla do 24 hodin, často mnohem dříve.</p>
           <div class="ek-contact-row" style="display:flex; flex-wrap:nowrap; gap:10px; margin-top:4px;">
             <a href="{{ emailHref }}" class="ek-btn-secondary" style="{{ btnContact }}"><span style="{{ iconMail }}"></span>{{ email }}</a>
             <a href="{{ phoneHref }}" class="ek-btn-secondary" style="{{ btnContact }}"><span style="{{ iconPhone }}"></span>{{ phone }}</a>
           </div>
-          <div style="display:flex; align-items:flex-start; gap:11px; margin-top:8px; padding-top:16px; border-top:1px solid rgba(59,85,49,.14);">
+          <div style="display:flex; align-items:flex-start; gap:11px; margin-top:8px; padding-top:16px; border-top:1px solid rgba(76,101,61,.14);">
             <span style="{{ iconPin }}"></span>
             <span style="display:flex; flex-direction:column; gap:2px;">
               <span style="font-weight:700; font-size:15px; color:#2D3A2E;">{{ company }}</span>
               <span style="font-size:15px; color:#52524a; line-height:1.5;">{{ address }}</span>
-              <a href="{{ mapHref }}" class="ek-link-map" style="margin-top:2px; font-size:14.5px; font-weight:600; color:#3B5531; text-decoration:none;">Zobrazit na mapě</a>
+              <a href="{{ mapHref }}" class="ek-link-map" style="margin-top:2px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none;">Zobrazit na mapě</a>
             </span>
           </div>
-          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding-top:16px; border-top:1px solid rgba(59,85,49,.14);">
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding-top:16px; border-top:1px solid rgba(76,101,61,.14);">
             <span style="font-size:14.5px; color:#52524a;">Sledujte nás:</span>
             <span style="display:flex; gap:8px;">
               <sc-for list="{{ socials }}" as="s" hint-placeholder-count="3">
@@ -109,11 +109,9 @@
             </span>
             <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
               <span style="display:flex; align-items:center; gap:8px;">
-                <span style="font-family:'Spectral',serif; font-size:20px; font-weight:500; color:#F6F1E7; line-height:1;">{{ b.value }}</span>
+                <span style="font-family:'EB Garamond',serif; font-size:20px; font-weight:500; color:#F6F1E7; line-height:1;">{{ b.value }}</span>
                 <sc-if value="{{ b.hasStars }}" hint-placeholder-val="{{ true }}">
-                  <span style="display:flex; gap:2px;">
-                    <sc-for list="{{ b.stars }}" as="s" hint-placeholder-count="5"><span style="{{ s }}"></span></sc-for>
-                  </span>
+                  <dc-import name="ui-Rating" value="{{ b.ratingValue }}" showValue="{{ false }}" showCount="{{ false }}" size="{{ 14 }}" color="#F5C63C" trackColor="rgba(245,198,60,.28)" hint-size="80px,18px"></dc-import>
                 </sc-if>
               </span>
               <span style="font-size:13px; color:#AAC29D; line-height:1.35;">{{ b.label }}</span>
@@ -124,25 +122,25 @@
 
       <div class="ek-foot" style="display:grid; grid-template-columns:repeat(4,1fr); gap:32px; padding-bottom:44px; border-bottom:1px solid rgba(246,241,231,.14);">
         <div>
-          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Pomoc s nákupem</h4>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'EB Garamond',serif; font-size:20px; letter-spacing:0; font-weight:500;">Pomoc s nákupem</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
             <sc-for list="{{ colHelp }}" as="f" hint-placeholder-count="6"><a href="{{ f.href }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f.label }}</a></sc-for>
           </div>
         </div>
         <div>
-          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Můj účet a výhody</h4>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'EB Garamond',serif; font-size:20px; letter-spacing:0; font-weight:500;">Můj účet a výhody</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
             <sc-for list="{{ colAccount }}" as="f" hint-placeholder-count="4"><a href="{{ f.href }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f.label }}</a></sc-for>
           </div>
         </div>
         <div>
-          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Objevujte Ekokozu</h4>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'EB Garamond',serif; font-size:20px; letter-spacing:0; font-weight:500;">Objevujte Ekokozu</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
             <sc-for list="{{ colDiscover }}" as="f" hint-placeholder-count="5"><a href="{{ f.href }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f.label }}</a></sc-for>
           </div>
         </div>
         <div>
-          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'Spectral',serif; font-size:20px; letter-spacing:0; font-weight:500;">Právní a důležité informace</h4>
+          <h4 style="margin:0 0 18px; color:#F6F1E7; font-family:'EB Garamond',serif; font-size:20px; letter-spacing:0; font-weight:500;">Právní a důležité informace</h4>
           <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
             <sc-for list="{{ colLegal }}" as="f" hint-placeholder-count="4"><a href="{{ f.href }}" style="color:#D3E0CB; text-decoration:none;" class="ek-link-u">{{ f.label }}</a></sc-for>
           </div>
@@ -181,10 +179,10 @@ class Component extends DCLogic {
   }
   renderVals() {
     // stejna geometrie i varianty jako ui-Button (velikost md)
-    const btnBase = "display:inline-flex; align-items:center; justify-content:center; gap:9px; border-radius:999px; font-family:'Hanken Grotesk',sans-serif; font-weight:600; text-decoration:none; cursor:pointer; padding:13px 28px; font-size:15px; transition:background .2s, color .2s, border-color .2s;";
+    const btnBase = "display:inline-flex; align-items:center; justify-content:center; gap:9px; border-radius:999px; font-family:'Work Sans',sans-serif; font-weight:600; text-decoration:none; cursor:pointer; padding:13px 28px; font-size:15px; transition:background .2s, color .2s, border-color .2s;";
     const btnVariants = {
-      primary: 'background:#4C643C; color:#F6F1E7; border:1.5px solid #4C643C;',
-      secondary: 'background:transparent; color:#3B5531; border:1.5px solid #3B5531;',
+      primary: 'background:#4C653D; color:#F6F1E7; border:1.5px solid #4C653D;',
+      secondary: 'background:transparent; color:#4C653D; border:1.5px solid #4C653D;',
     };
     const btn = (v) => btnBase + btnVariants[v];
     // Sloupce prijimaji retezce i objekty { label, href }
@@ -246,10 +244,10 @@ class Component extends DCLogic {
         logo: b.logo, alt: b.alt, value: b.value, label: b.label, href: b.href,
         hasMark: !b.logo && !!b.mark, mark: b.mark,
         logoStyle: b.logo ? 'display:block; width:100%; height:100%; background:center/contain no-repeat; background-image:url("' + b.logo + '");' : 'display:none;',
-        markStyle: "font-family:'Hanken Grotesk',sans-serif; font-weight:700; font-size:13.5px; letter-spacing:-.01em; text-align:center; line-height:1.2; color:" + (b.markColor || '#2D3A2E') + ';',
+        markStyle: "font-family:'Work Sans',sans-serif; font-weight:700; font-size:13.5px; letter-spacing:-.01em; text-align:center; line-height:1.2; color:" + (b.markColor || '#2D3A2E') + ';',
         hasStars: !!b.stars,
         tile: 'display:flex; align-items:center; justify-content:center; width:56px; height:56px; flex:0 0 auto; border-radius:10px; background:#FFFFFF; padding:7px;',
-        stars: b.stars ? Array.from({ length: b.stars }, () => this.mask('star-filled', 14, '#F5C63C')) : [],
+        ratingValue: b.stars || 0,
       })),
       carriers: this.props.carriers ?? ['PPL','DPD','Balíkovna','Česká pošta','Zásilkovna'].map((alt, i) => ({ alt, style: 'display:block; width:65px; height:40px; flex:0 0 auto; border-radius:8px; background:#fff center/contain no-repeat; background-image:url("assets/carriers/carrier-' + (i + 1) + '.svg");' })),
     };

@@ -7,7 +7,7 @@
 </head>
 <body>
 <x-dc>
-<div style="background:#F6F1E7; border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:11px; font-family:'Hanken Grotesk',sans-serif;">
+<div style="background:#F6F1E7; border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:11px; font-family:'Work Sans',sans-serif;">
   <span style="align-self:flex-start;">
     <dc-import name="ui-Badge" variant="doporucujeme" label="{{ kicker }}" hint-size="130px,24px"></dc-import>
   </span>
@@ -15,9 +15,9 @@
     <div style="{{ imgStyle }}"></div>
   </div>
   <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" hint-size="120px,18px"></dc-import>
-  <h4 style="margin:0; font-family:'Spectral',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;">{{ title }}</h4>
+  <h4 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;">{{ title }}</h4>
   <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-    <span style="font-family:'Spectral',serif; font-size:19px; color:#3B5531; font-weight:500; white-space:nowrap;">{{ price }}</span>
+    <span style="font-family:'EB Garamond',serif; font-size:19px; color:#4C653D; font-weight:500; white-space:nowrap;">{{ price }}</span>
     <a href="{{ href }}" onClick="{{ onNavigate }}" class="ek-btn-main" style="background:#D14405; color:#fff; text-decoration:none; padding:9px 18px; border-radius:999px; font-weight:600; font-size:13.5px; transition:background .2s; white-space:nowrap;">{{ ctaLabel }}</a>
   </div>
 </div>

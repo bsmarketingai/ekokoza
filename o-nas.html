@@ -10,24 +10,24 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; }
   ::selection { background: #D14405; color: #fff; }
-  a { color: #3B5531; }
+  a { color: #4C653D; }
   a:hover { color: #B23803; }
   .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
   .ek-link-u:hover { background-size: 100% 1.5px; }
   .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
-  .ek-btn-secondary:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
-  .ek-bot { opacity: .95; filter: drop-shadow(0 10px 14px rgba(59,85,49,.28)); }
+  .ek-bot { opacity: .95; filter: drop-shadow(0 10px 14px rgba(76,101,61,.28)); }
   /* Trhany pas — nepravidelny okraj nelze zapsat inline rozumne, drzime ho v jednom pravidle */
   .ek-tear { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: 0; pointer-events: none; box-shadow: inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); clip-path: polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 9.9px, 15.22% 13.6px, 17.39% 7.4px, 19.57% 11.2px, 21.74% 6.1px, 23.91% 10.4px, 26.09% 14.2px, 28.26% 8.1px, 30.43% 4.7px, 32.61% 9.3px, 34.78% 12.8px, 36.96% 6.8px, 39.13% 10.9px, 41.3% 5.2px, 43.48% 13.1px, 45.65% 8.6px, 47.83% 11.7px, 50% 6.4px, 52.17% 9.8px, 54.35% 14.4px, 56.52% 7.9px, 58.7% 11.4px, 60.87% 5.7px, 63.04% 10.2px, 65.22% 13.3px, 67.39% 8.4px, 69.57% 4.9px, 71.74% 12.1px, 73.91% 7.2px, 76.09% 10.7px, 78.26% 14.1px, 80.43% 6.6px, 82.61% 11.9px, 84.78% 8.8px, 86.96% 5.1px, 89.13% 12.6px, 91.3% 9.1px, 93.48% 13.8px, 95.65% 7.7px, 97.83% 10.3px, 100% 5.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 11.1px), 95.65% calc(100% - 7.6px), 93.48% calc(100% - 13.4px), 91.3% calc(100% - 9.2px), 89.13% calc(100% - 5.3px), 86.96% calc(100% - 12.2px), 84.78% calc(100% - 8.7px), 82.61% calc(100% - 11.6px), 80.43% calc(100% - 6.1px), 78.26% calc(100% - 14.3px), 76.09% calc(100% - 9.6px), 73.91% calc(100% - 12.9px), 71.74% calc(100% - 7.1px), 69.57% calc(100% - 10.8px), 67.39% calc(100% - 4.8px), 65.22% calc(100% - 13.7px), 63.04% calc(100% - 8.2px), 60.87% calc(100% - 11.3px), 58.7% calc(100% - 6.7px), 56.52% calc(100% - 10.1px), 54.35% calc(100% - 14.6px), 52.17% calc(100% - 9.4px), 50% calc(100% - 5.6px), 47.83% calc(100% - 12.4px), 45.65% calc(100% - 8.9px), 43.48% calc(100% - 11.8px), 41.3% calc(100% - 6.9px), 39.13% calc(100% - 13.2px), 36.96% calc(100% - 9.7px), 34.78% calc(100% - 5.2px), 32.61% calc(100% - 12.7px), 30.43% calc(100% - 8.3px), 28.26% calc(100% - 11.5px), 26.09% calc(100% - 7.3px), 23.91% calc(100% - 14.5px), 21.74% calc(100% - 9.9px), 19.57% calc(100% - 6.2px), 17.39% calc(100% - 12.8px), 15.22% calc(100% - 8.5px), 13.04% calc(100% - 11.2px), 10.87% calc(100% - 5.8px), 8.7% calc(100% - 13.9px), 6.52% calc(100% - 9.3px), 4.35% calc(100% - 6.4px), 2.17% calc(100% - 12.3px), 0% calc(100% - 8.6px)); }
-  .ek-onas-h1 { font-family: 'Spectral',serif; font-weight: 400; font-size: 52px; line-height: 1.08; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-onas-h2 { font-family: 'Spectral',serif; font-weight: 400; font-size: 34px; line-height: 1.15; color: #2D3A2E; margin: 0 0 14px; text-wrap: pretty; }
+  .ek-onas-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 52px; line-height: 1.08; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-onas-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 34px; line-height: 1.15; color: #2D3A2E; margin: 0 0 14px; text-wrap: pretty; }
   .ek-onas-p { margin: 0 0 16px; font-size: 17px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-eyebrow { margin: 0 0 10px; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
   .ek-scroll { scrollbar-width: thin; scrollbar-color: #cdbfa3 transparent; }
@@ -35,7 +35,7 @@
   .ek-scroll::-webkit-scrollbar-thumb { background: #cdbfa3; border-radius: 8px; }
   .ek-tl { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); row-gap: 34px; }
   .ek-tl-i { position: relative; padding: 0 20px 0 0; display: grid; grid-template-rows: auto auto auto 1fr; align-content: start; }
-  .ek-tl-year { display: block; font-family: 'Spectral',serif; font-size: 26px; line-height: 1; color: #4F6E2A; transition: color .22s ease; }
+  .ek-tl-year { display: block; font-family: 'EB Garamond',serif; font-size: 26px; line-height: 1; color: #4F6E2A; transition: color .22s ease; }
   .ek-tl-rail { position: relative; display: block; height: 2px; width: calc(100% + 20px); margin: 16px 0 20px; background: #DCE3CE; }
   
   .ek-tl-i:nth-child(4n) .ek-tl-rail { width: 100%; }
@@ -43,7 +43,7 @@
   .ek-tl-dot { position: absolute; left: 0; top: 50%; width: 13px; height: 13px; border-radius: 50%; background: #7BA23F; border: 2.5px solid #FFFFFF; box-shadow: 0 0 0 1.5px #BFD09F; transform: translate(0,-50%); transition: background .22s ease, box-shadow .22s ease; }
   .ek-tl-ico { display: inline-block; width: 22px; height: 22px; margin-right: 10px; vertical-align: -2px; background-color: #4F6E2A; transition: background-color .22s ease; }
   .ek-tl-i:hover .ek-tl-ico { background-color: #D14405; }
-  .ek-tl-t { margin: 0 0 8px; font-family: 'Spectral',serif; font-size: 20px; line-height: 1.2; color: #2D3A2E; }
+  .ek-tl-t { margin: 0 0 8px; font-family: 'EB Garamond',serif; font-size: 20px; line-height: 1.2; color: #2D3A2E; }
   .ek-tl-d { margin: 0; font-size: 14.5px; line-height: 1.55; color: #4A4A42; }
   .ek-tl-i:hover .ek-tl-year { color: #D14405; }
   .ek-tl-i:hover .ek-tl-dot { background: #D14405; box-shadow: 0 0 0 1.5px #D14405, 0 0 0 6px rgba(209,68,5,.16); }
@@ -76,7 +76,7 @@
 </style>
 </helmet>
 
-<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Hanken Grotesk',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
   <dc-import name="ui-Header" hint-size="100%,140px"></dc-import>
 
@@ -86,12 +86,12 @@
   <section style="padding:26px 32px 0;" class="ek-pad">
     <div style="max-width:1080px; margin:0 auto;">
       <nav style="display:flex; align-items:center; gap:8px; font-size:13.5px; color:#6B6B5E; margin-bottom:26px;">
-        <a href="index.html" class="ek-link-u" style="color:#3B5531; text-decoration:none;">Úvod</a>
+        <a href="index.html" class="ek-link-u" style="color:#4C653D; text-decoration:none;">Úvod</a>
         <span style="opacity:.5;">›</span>
         <span>O Ekokoze</span>
       </nav>
       <p class="ek-eyebrow">Náš příběh · od roku 2007</p>
-      <h1 class="ek-onas-h1">Začalo to jednou kozou.<br><em style="font-style:italic; color:#3B5531;">Pokračuje to ve vašich rukou.</em></h1>
+      <h1 class="ek-onas-h1">Začalo to jednou kozou.<br><em style="font-style:italic; color:#4C653D;">Pokračuje to ve vašich rukou.</em></h1>
       <p class="ek-onas-p" style="margin-top:22px; font-size:19px; max-width:74ch;">Ekokoza nevznikla z obchodního plánu. Vznikla z obyčejné rodinné potřeby, z práce rukama a z touhy rozumět tomu, co jíme, používáme a tvoříme. Od první kozy přes sýry a mýdla až po evropské zázemí pro více než půl milionu zákazníků se měnilo měřítko. <strong style="color:#2D3A2E;">Důvod zůstal stejný.</strong></p>
     </div>
   </section>
@@ -100,7 +100,7 @@
     <div style="max-width:1080px; margin:0 auto;">
       <img src="assets/onas/001-zakladatele.jpg" alt="Marta a Hugo Čapkovi, zakladatelé Ekokozy, ve své kozí stáji" style="display:block; width:100%; height:520px; object-fit:cover; object-position:center 32%; border-radius:14px;">
       <p class="ek-cap">Marta a Hugo Čapkovi v začátcích Ekokozy — v době, kdy každodenní život s kozami určoval rytmus celé rodiny.</p>
-      <blockquote style="margin:34px 0 0; padding:0 0 0 22px; border-left:3px solid #7BA23F; font-family:'Spectral',serif; font-size:22px; line-height:1.5; color:#2D3A2E; text-wrap:pretty;">Návrat ke kořenům pro nás neznamená odmítnout současnost. Znamená znovu vzít část odpovědnosti do vlastních rukou — vědět, z čeho věci vznikají, umět se rozhodnout a tvořit s pochopením.</blockquote>
+      <blockquote style="margin:34px 0 0; padding:0 0 0 22px; border-left:3px solid #7BA23F; font-family:'EB Garamond',serif; font-size:22px; line-height:1.5; color:#2D3A2E; text-wrap:pretty;">Návrat ke kořenům pro nás neznamená odmítnout současnost. Znamená znovu vzít část odpovědnosti do vlastních rukou — vědět, z čeho věci vznikají, umět se rozhodnout a tvořit s pochopením.</blockquote>
     </div>
   </section>
 
@@ -110,19 +110,19 @@
     <section style="position:relative; z-index:1; padding:38px 32px;" class="ek-pad">
       <div class="ek-nums" style="max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:26px;">
         <div>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:38px; font-weight:400; color:#3B5531; line-height:1;">2009</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:38px; font-weight:400; color:#4C653D; line-height:1;">2009</p>
           <p style="margin:0; font-size:14.5px; line-height:1.55; color:#4A4A42;">Rok, kdy vznikl první český e-shop a spolu s ním také e-shop pro Slovensko</p>
         </div>
         <div>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:38px; font-weight:400; color:#3B5531; line-height:1;">Stovky</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:38px; font-weight:400; color:#4C653D; line-height:1;">Stovky</p>
           <p style="margin:0; font-size:14.5px; line-height:1.55; color:#4A4A42;">Ověřených receptů a postupů, které propojují surovinu s konkrétním výsledkem</p>
         </div>
         <div>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:38px; font-weight:400; color:#3B5531; line-height:1;">500 000+</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:38px; font-weight:400; color:#4C653D; line-height:1;">500 000+</p>
           <p style="margin:0; font-size:14.5px; line-height:1.55; color:#4A4A42;">Zákazníků z celé Evropy, kteří u nás našli suroviny, postupy nebo zázemí pro svou výrobu</p>
         </div>
         <div>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:38px; font-weight:400; color:#3B5531; line-height:1;">Napříč EU</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:38px; font-weight:400; color:#4C653D; line-height:1;">Napříč EU</p>
           <p style="margin:0; font-size:14.5px; line-height:1.55; color:#4A4A42;">Pro domácí tvůrce, nadšence i profesionální výrobce</p>
         </div>
       </div>
@@ -135,7 +135,7 @@
       <div>
         <p class="ek-eyebrow">První potřeba</p>
         <h2 class="ek-onas-h2">Chtěli jsme vlastní mléko pro naši dceru.</h2>
-        <p style="margin:0 0 20px; font-family:'Spectral',serif; font-size:20px; font-style:italic; color:#3B5531;">Jedna koza vedla k druhé. A jedna otázka k další.</p>
+        <p style="margin:0 0 20px; font-family:'EB Garamond',serif; font-size:20px; font-style:italic; color:#4C653D;">Jedna koza vedla k druhé. A jedna otázka k další.</p>
         <p class="ek-onas-p">Pořídili jsme si jednu kozu. Jenže koza potřebuje společnost, takže přibyla druhá. Pak další. A než jsme se nadáli, žili jsme se stádem několika desítek koz.</p>
         <p class="ek-onas-p">Více koz znamenalo více mléka, než jsme dokázali spotřebovat. A tak přišla další přirozená otázka: <strong style="color:#2D3A2E;">co s ním?</strong> Začali jsme vyrábět sýry a jogurty. Bez školy, bez dostupných návodů a bez jistoty, že se první pokus povede.</p>
         <p class="ek-onas-p">Praktické informace byly tehdy na internetu jen těžko dostupné. Syřidla a kultury se prodávaly hlavně ve velkých množstvích a běžný člověk si neměl kde koupit právě tolik, kolik potřeboval. Učili jsme se pokusem, chybou, pozorováním a sdílením.</p>
@@ -243,19 +243,19 @@
         </div>
       </div>
       <div class="ek-thirds" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:38px;">
-        <div style="background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:26px;">
-          <p style="margin:0 0 10px; font-family:'Spectral',serif; font-size:26px; color:#7BA23F; line-height:1;">1</p>
-          <p style="margin:0 0 6px; font-family:'Spectral',serif; font-size:19px; color:#2D3A2E;">Vyzkoušet v praxi</p>
+        <div style="background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:26px;">
+          <p style="margin:0 0 10px; font-family:'EB Garamond',serif; font-size:26px; color:#7BA23F; line-height:1;">1</p>
+          <p style="margin:0 0 6px; font-family:'EB Garamond',serif; font-size:19px; color:#2D3A2E;">Vyzkoušet v praxi</p>
           <p style="margin:0; font-size:14.5px; line-height:1.55; color:#4A4A42;">Nejdříve pochopit surovinu, postup i jeho hranice.</p>
         </div>
-        <div style="background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:26px;">
-          <p style="margin:0 0 10px; font-family:'Spectral',serif; font-size:26px; color:#5E93B5; line-height:1;">2</p>
-          <p style="margin:0 0 6px; font-family:'Spectral',serif; font-size:19px; color:#2D3A2E;">Popsat souvislosti</p>
+        <div style="background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:26px;">
+          <p style="margin:0 0 10px; font-family:'EB Garamond',serif; font-size:26px; color:#5E93B5; line-height:1;">2</p>
+          <p style="margin:0 0 6px; font-family:'EB Garamond',serif; font-size:19px; color:#2D3A2E;">Popsat souvislosti</p>
           <p style="margin:0; font-size:14.5px; line-height:1.55; color:#4A4A42;">Sdílet recept, zkušenost, chyby i důvod, proč něco funguje.</p>
         </div>
-        <div style="background:linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:26px;">
-          <p style="margin:0 0 10px; font-family:'Spectral',serif; font-size:26px; color:#A8763B; line-height:1;">3</p>
-          <p style="margin:0 0 6px; font-family:'Spectral',serif; font-size:19px; color:#2D3A2E;">Zpřístupnit ostatním</p>
+        <div style="background:linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:26px;">
+          <p style="margin:0 0 10px; font-family:'EB Garamond',serif; font-size:26px; color:#A8763B; line-height:1;">3</p>
+          <p style="margin:0 0 6px; font-family:'EB Garamond',serif; font-size:19px; color:#2D3A2E;">Zpřístupnit ostatním</p>
           <p style="margin:0; font-size:14.5px; line-height:1.55; color:#4A4A42;">Nabídnout suroviny, obaly, pomůcky a možnost se zeptat.</p>
         </div>
       </div>
@@ -295,7 +295,7 @@
           <div>
             <p class="ek-onas-p"><strong style="color:#2D3A2E;">O to více si vážíme všech farmářů, kteří v této práci pokračují a každý den hledají co nejlepší podobu soužití lidí, zvířat a krajiny.</strong> Je to tvrdá, krásná a potřebná práce. Jsme upřímně vděční, že ji někdo dělá.</p>
             <div style="margin-top:26px; background:#FFFFFF; border:1px solid rgba(160,58,90,.16); border-radius:14px; padding:28px 30px;">
-              <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:22px; color:#2D3A2E; line-height:1.3;">Nebyl to konec našich hodnot.</p>
+              <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:22px; color:#2D3A2E; line-height:1.3;">Nebyl to konec našich hodnot.</p>
               <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Byl to důkaz, že je bereme vážně i ve chvíli, kdy je poctivé rozhodnutí těžší než pokračovat ve známém způsobu. Farma nás zároveň naučila hledat rovnováhu i tam, kde žádné dokonale čisté řešení neexistuje.</p>
             </div>
           </div>
@@ -320,8 +320,8 @@
           <p class="ek-cap">Dnešní Ekokoza ve Fryčovicích pod Beskydami — profesionální zázemí, které stále stojí na stejné poctivosti a blízkosti k lidem.</p>
         </div>
       </div>
-      <div style="margin-top:38px; background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:30px 34px;">
-        <p style="margin:0 0 10px; font-family:'Spectral',serif; font-size:22px; color:#2D3A2E;">Jazyk se mění. Naše odpovědnost ne.</p>
+      <div style="margin-top:38px; background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:30px 34px;">
+        <p style="margin:0 0 10px; font-family:'EB Garamond',serif; font-size:22px; color:#2D3A2E;">Jazyk se mění. Naše odpovědnost ne.</p>
         <p style="margin:0; font-size:16px; line-height:1.7; color:#4A4A42; max-width:92ch;">Od roku 2023 rozvíjíme Ekokozu ve Francii, Německu, Rakousku, Itálii a dalších zemích Evropské unie. Objednávky stále připravujeme ve Fryčovicích pod Beskydami. V zahraničí však nechceme pouze překládat stejná slova do jiného jazyka — nasloucháme konkrétním lidem, jejich zkušenostem a potřebám a podle nich přizpůsobujeme také naši komunikaci a podporu. Za každou zásilkou stojí tentýž tým a stejná odpovědnost. Potřeba rozumět tomu, co si dáváme na tělo, co používáme doma a z čeho vyrábíme, totiž žádné hranice nemá.</p>
       </div>
     </div>
@@ -336,24 +336,24 @@
         <h2 class="ek-onas-h2">Čtyři věci, o které se opíráme dodnes.</h2>
         <p class="ek-onas-p" style="max-width:70ch; margin-bottom:34px;">Sortiment, technologie i měřítko se vyvíjejí. Tyto principy jsou ale stejné od chvíle, kdy jsme poprvé hledali syřidlo pro vlastní sýr.</p>
         <div class="ek-quad" style="display:grid; grid-template-columns:1fr 1fr; gap:2px 44px;">
-          <div style="padding:22px 0; border-top:1px solid rgba(59,85,49,.16);">
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:17px; color:#7BA23F;">01</p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Příroda jako kompas, ne kulisa</p>
+          <div style="padding:22px 0; border-top:1px solid rgba(76,101,61,.16);">
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:17px; color:#7BA23F;">01</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Příroda jako kompas, ne kulisa</p>
             <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Máme hranice, které nepřekračujeme. Zároveň hledáme šetrná a funkční řešení i tam, kde ideální možnost neexistuje. Kompromisy nezakrýváme — otevřeně vysvětlujeme jejich důvody i to, proč jsme se rozhodli právě tak.</p>
           </div>
-          <div style="padding:22px 0; border-top:1px solid rgba(59,85,49,.16);">
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:17px; color:#7BA23F;">02</p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Vědět je stejně důležité jako mít</p>
+          <div style="padding:22px 0; border-top:1px solid rgba(76,101,61,.16);">
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:17px; color:#7BA23F;">02</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Vědět je stejně důležité jako mít</p>
             <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Surovina bez souvislostí není úplné řešení. Proto ji propojujeme s receptem, postupem, dokumentací a možností obrátit se na člověka, který poradí.</p>
           </div>
-          <div style="padding:22px 0; border-top:1px solid rgba(59,85,49,.16);">
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:17px; color:#7BA23F;">03</p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Poctivé řemeslo a ověřená praxe</p>
+          <div style="padding:22px 0; border-top:1px solid rgba(76,101,61,.16);">
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:17px; color:#7BA23F;">03</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Poctivé řemeslo a ověřená praxe</p>
             <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Vycházíme z toho, co lze skutečně vyrobit, zopakovat a vysvětlit. Ne z líbivých zkratek. Odbornost pro nás znamená přesnost bez povýšenosti.</p>
           </div>
-          <div style="padding:22px 0; border-top:1px solid rgba(59,85,49,.16);">
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:17px; color:#7BA23F;">04</p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Spolutvorba místo anonymního prodeje</p>
+          <div style="padding:22px 0; border-top:1px solid rgba(76,101,61,.16);">
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:17px; color:#7BA23F;">04</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Spolutvorba místo anonymního prodeje</p>
             <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Recepty, zkušenosti a otázky zákazníků se vracejí zpět do Ekokozy. Co objeví jeden člověk, může pomoci dalšímu — v jiném městě, zemi i jazyce.</p>
           </div>
         </div>
@@ -368,19 +368,19 @@
       <h2 class="ek-onas-h2">Ať vyrábíte první balzám, nebo stou šarži pro své zákazníky.</h2>
       <p class="ek-onas-p" style="max-width:70ch; margin-bottom:30px;">Stejná myšlenka může mít mnoho podob. Naší úlohou je dát vám zázemí odpovídající tomu, kde právě jste.</p>
       <div class="ek-thirds" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
-        <div style="background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:30px;">
+        <div style="background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:30px;">
           <p style="margin:0 0 10px; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Začínám</p>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">První jistý krok</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">První jistý krok</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Srozumitelný recept, malé balení, vysvětlení funkce surovin a možnost zeptat se, když si nejste jistí.</p>
         </div>
-        <div style="background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:30px;">
+        <div style="background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:30px;">
           <p style="margin:0 0 10px; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#3F6FA8;">Tvořím pravidelně</p>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Prostor pro vlastní cestu</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Prostor pro vlastní cestu</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Široký výběr, hlubší souvislosti, obaly a pomůcky, díky nimž můžete recepturu upravovat a posouvat dál.</p>
         </div>
-        <div style="background:linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:30px;">
+        <div style="background:linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:30px;">
           <p style="margin:0 0 10px; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#8A5A28;">Vyrábím profesionálně</p>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Stabilní partner pro výrobu</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Stabilní partner pro výrobu</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Větší balení, dokumentace, plánování odběrů, odborná komunikace a zázemí pro opakovanou výrobu.</p>
         </div>
       </div>
@@ -389,7 +389,7 @@
 
   <!-- ===== ZÁVĚR ===== -->
   <section style="padding:64px 32px 0;" class="ek-pad">
-    <div style="max-width:1080px; margin:0 auto; background:linear-gradient(155deg,#4C643C 0%,#22301F 100%); border-radius:18px; padding:52px 56px; position:relative; overflow:hidden;">
+    <div style="max-width:1080px; margin:0 auto; background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); border-radius:18px; padding:52px 56px; position:relative; overflow:hidden;">
       <img src="assets/botanika/mlicak1.png" alt="" class="ek-bot ek-bot-m" style="position:absolute; right:-30px; bottom:-40px; width:220px; opacity:.5; transform:rotate(12deg); pointer-events:none;">
       <div style="position:relative; max-width:70ch;">
         <p class="ek-eyebrow" style="color:#B9D096;">Příběh, který se stále píše</p>

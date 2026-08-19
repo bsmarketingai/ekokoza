@@ -10,15 +10,23 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 </helmet>
 
-<span style="{{ wrapStyle }}" title="{{ hint }}">
-  <span style="{{ iconStyle }}"></span>
-  <span>{{ label }}</span>
+<span style="{{ hostStyle }}" onMouseEnter="{{ open }}" onMouseLeave="{{ close }}">
+  <span style="{{ wrapStyle }}" title="{{ hint }}" onClick="{{ toggle }}" role="{{ role }}" tabIndex="{{ tabIndex }}" onFocus="{{ open }}" onBlur="{{ close }}">
+    <span style="{{ iconStyle }}"></span>
+    <span>{{ label }}</span>
+    <sc-if value="{{ withNote }}" hint-placeholder-val="{{ false }}">
+      <span style="{{ infoStyle }}"></span>
+    </sc-if>
+  </span>
+  <sc-if value="{{ noteOpen }}" hint-placeholder-val="{{ false }}">
+    <span style="{{ popStyle }}">{{ note }}</span>
+  </sc-if>
 </span>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:48},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ready&quot;,&quot;packing&quot;,&quot;expected&quot;],&quot;default&quot;:&quot;ready&quot;,&quot;tsType&quot;:&quot;'ready'|'packing'|'expected'&quot;},&quot;date&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;28. 8. 2026&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:13,&quot;min&quot;:11,&quot;max&quot;:18,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:120},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ready&quot;,&quot;packing&quot;,&quot;expected&quot;,&quot;unavail&quot;,&quot;ended&quot;],&quot;default&quot;:&quot;ready&quot;,&quot;tsType&quot;:&quot;'ready'|'packing'|'expected'|'unavail'|'ended'&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;inline&quot;,&quot;pill&quot;],&quot;default&quot;:&quot;inline&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;withNote&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;date&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;28. 8. 2026&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:13,&quot;min&quot;:11,&quot;max&quot;:18,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
 class Component extends DCLogic {
   mask(name, size, color) {
     const base = /\/components\//.test(location.pathname) ? '../' : '';
@@ -26,26 +34,76 @@ class Component extends DCLogic {
     return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
   }
 
+  // Semantická škála dostupnosti — jeden zdroj pravdy pro kartu, detail, buy bar i košík.
+  // level 1–5: od okamžitě k odeslání po definitivně nedostupné.
   static STATES = {
-    ready:   { color: '#4C643C', icon: 'checkmark-circle-01', label: 'Ihned k odeslání',
-               hint: 'Varianta je nabalená a připravená. Objednávka odchází většinou následující pracovní den.' },
-    packing: { color: '#8A5A28', icon: 'weight-scale-01',     label: 'Musíme to nabalit',
-               hint: 'Surovinu máme ve velkém balení a teprve ji navážíme. Odeslání se prodlouží zhruba o den.' },
-    expected:{ color: '#6B6B5E', icon: 'calendar-01',         label: 'Očekáváme',
-               hint: 'Momentálně není skladem. Uvedené datum je očekávané naskladnění.' },
+    ready:    { level: 1, color: '#3F7F2C', tint: 'rgba(63,127,44,.10)',  line: 'rgba(63,127,44,.32)',
+                icon: 'checkmark-circle-01', label: 'Ihned k odeslání', buyable: true,
+                note: 'Odesíláme obvykle následující pracovní den.',
+                hint: 'Varianta je nabalená a připravená. Objednávka odchází většinou následující pracovní den.' },
+    packing:  { level: 2, color: '#57712D', tint: 'rgba(87,113,45,.10)',  line: 'rgba(87,113,45,.30)',
+                icon: 'weight-scale-01', label: 'Musíme to nabalit', buyable: true,
+                note: 'Navažujeme z velkého balení — odeslání o jeden pracovní den později.',
+                hint: 'Surovinu máme skladem ve velkém balení a teprve ji navážíme. Můžete ji koupit teď, odeslání se prodlouží zhruba o den.' },
+    expected: { level: 3, color: '#57712D', tint: 'rgba(87,113,45,.10)',  line: 'rgba(87,113,45,.30)',
+                icon: 'truck-delivery', label: 'Očekáváme', buyable: true,
+                note: 'Můžete koupit teď — odešleme hned po naskladnění.',
+                hint: 'Zboží je na cestě k nám. Objednat lze i teď, odešleme ho hned po naskladnění k uvedenému datu.' },
+    unavail:  { level: 4, color: '#A33203', tint: 'rgba(163,50,3,.09)',   line: 'rgba(163,50,3,.30)',
+                icon: 'alert-circle', label: 'Nyní nedostupné', buyable: false,
+                note: 'Datum naskladnění zatím neznáme — zapněte si hlídacího psa.',
+                hint: 'Nyní nemáme skladem a neznáme datum naskladnění. Necháme vám vědět e-mailem, až bude zboží zpět.' },
+    ended:    { level: 5, color: '#8A2412', tint: 'rgba(138,36,18,.09)',  line: 'rgba(138,36,18,.30)',
+                icon: 'minus-sign-circle', label: 'Už nenabízíme', buyable: false,
+                note: 'Produkt jsme vyřadili z nabídky — podíváme se s vámi po náhradě.',
+                hint: 'Tento produkt už nenabízíme. U podobných surovin najdete náhradu.' },
   };
 
+  // Zpětná kompatibilita starších názvů stavů
+  static ALIAS = { available: 'ready', instock: 'ready', weighing: 'packing', soon: 'expected', out: 'unavail', unavailable: 'unavail', discontinued: 'ended' };
+
+  static resolve(key) {
+    const k = Component.ALIAS[key] || key;
+    return Component.STATES[k] || Component.STATES.ready;
+  }
+
+  state = { noteOpen: false };
+
   renderVals() {
-    const key = this.props.state ?? 'ready';
-    const s = Component.STATES[key] ?? Component.STATES.ready;
+    const s = Component.resolve(this.props.state ?? 'ready');
     const size = this.props.size ?? 13;
-    const date = this.props.date ?? '28. 8. 2026';
+    const date = this.props.date ?? '';
+    const variant = this.props.variant ?? 'inline';
+    const withNote = this.props.withNote ?? false;
+    const focusable = this.props.noteFocusable ?? true;
+    const showDate = s.level === 3 && date;
+
+    const base = 'display:inline-flex; align-items:center; gap:6px; font-family:\'Work Sans\',sans-serif; font-weight:600; line-height:1.3; font-size:' + size + 'px; color:' + s.color + ';'
+      + (withNote ? ' cursor:help;' : '');
+    const pill = 'padding:' + Math.round(size * 0.4) + 'px ' + Math.round(size * 0.72) + 'px; border-radius:999px; background:' + s.tint + '; border:1px solid ' + s.line + ';';
 
     return {
-      label: key === 'expected' ? s.label + ' ' + date : s.label,
+      label: showDate ? s.label + ' ' + date : s.label,
       hint: s.hint,
+      note: s.note,
+      withNote,
+      noteOpen: withNote && this.state.noteOpen,
+      // Uvnitř klikatelného řádku (výběr variant) nesmí být další ovladatelný prvek
+      role: withNote && focusable ? 'button' : null,
+      tabIndex: withNote && focusable ? 0 : null,
+      open: withNote ? () => this.setState({ noteOpen: true }) : null,
+      close: withNote ? () => this.setState({ noteOpen: false }) : null,
+      toggle: withNote ? (e) => {
+        if (e) { e.stopPropagation(); e.preventDefault(); }
+        this.setState({ noteOpen: !this.state.noteOpen });
+      } : null,
       iconStyle: this.mask(s.icon, Math.round(size * 1.15), s.color),
-      wrapStyle: 'display:inline-flex; align-items:center; gap:6px; font-family:\'Hanken Grotesk\',sans-serif; font-size:' + size + 'px; font-weight:600; line-height:1.3; color:' + s.color + ';',
+      infoStyle: this.mask('information-circle', Math.round(size * 0.92), s.color) + ' opacity:.6;',
+      hostStyle: 'position:relative; display:inline-flex;',
+      popStyle: 'position:absolute; bottom:calc(100% + 8px); left:0; z-index:120; width:max-content; max-width:266px; padding:10px 13px; border-radius:12px;'
+        + ' background:#FFFDF6; border:1px solid ' + s.line + '; box-shadow:0 14px 30px -16px rgba(45,58,46,.45);'
+        + ' font-family:\'Work Sans\',sans-serif; font-weight:400; font-size:13px; line-height:1.5; color:#4A4A42; text-align:left; white-space:normal; pointer-events:none;',
+      wrapStyle: base + (variant === 'pill' ? pill : ''),
     };
   }
 }

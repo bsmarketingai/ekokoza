@@ -10,26 +10,26 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; }
   ::selection { background: #D14405; color: #fff; }
-  a { color: #3B5531; }
+  a { color: #4C653D; }
   a:hover { color: #B23803; }
   .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
   .ek-link-u:hover { background-size: 100% 1.5px; }
   .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
-  .ek-btn-primary:hover { background: #3B5531 !important; border-color: #3B5531 !important; }
+  .ek-btn-primary:hover { background: #4C653D !important; border-color: #4C653D !important; }
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
-  .ek-btn-secondary:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
   .ek-btn-secondary:hover span { background-color: #F6F1E7 !important; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
-  .ek-bot { opacity: .95; filter: drop-shadow(0 10px 14px rgba(59,85,49,.28)); }
+  .ek-bot { opacity: .95; filter: drop-shadow(0 10px 14px rgba(76,101,61,.28)); }
   .ek-tear { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: 0; pointer-events: none; box-shadow: inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); clip-path: polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 9.9px, 15.22% 13.6px, 17.39% 7.4px, 19.57% 11.2px, 21.74% 6.1px, 23.91% 10.4px, 26.09% 14.2px, 28.26% 8.1px, 30.43% 4.7px, 32.61% 9.3px, 34.78% 12.8px, 36.96% 6.8px, 39.13% 10.9px, 41.3% 5.2px, 43.48% 13.1px, 45.65% 8.6px, 47.83% 11.7px, 50% 6.4px, 52.17% 9.8px, 54.35% 14.4px, 56.52% 7.9px, 58.7% 11.4px, 60.87% 5.7px, 63.04% 10.2px, 65.22% 13.3px, 67.39% 8.4px, 69.57% 4.9px, 71.74% 12.1px, 73.91% 7.2px, 76.09% 10.7px, 78.26% 14.1px, 80.43% 6.6px, 82.61% 11.9px, 84.78% 8.8px, 86.96% 5.1px, 89.13% 12.6px, 91.3% 9.1px, 93.48% 13.8px, 95.65% 7.7px, 97.83% 10.3px, 100% 5.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 11.1px), 95.65% calc(100% - 7.6px), 93.48% calc(100% - 13.4px), 91.3% calc(100% - 9.2px), 89.13% calc(100% - 5.3px), 86.96% calc(100% - 12.2px), 84.78% calc(100% - 8.7px), 82.61% calc(100% - 11.6px), 80.43% calc(100% - 6.1px), 78.26% calc(100% - 14.3px), 76.09% calc(100% - 9.6px), 73.91% calc(100% - 12.9px), 71.74% calc(100% - 7.1px), 69.57% calc(100% - 10.8px), 67.39% calc(100% - 4.8px), 65.22% calc(100% - 13.7px), 63.04% calc(100% - 8.2px), 60.87% calc(100% - 11.3px), 58.7% calc(100% - 6.7px), 56.52% calc(100% - 10.1px), 54.35% calc(100% - 14.6px), 52.17% calc(100% - 9.4px), 50% calc(100% - 5.6px), 47.83% calc(100% - 12.4px), 45.65% calc(100% - 8.9px), 43.48% calc(100% - 11.8px), 41.3% calc(100% - 6.9px), 39.13% calc(100% - 13.2px), 36.96% calc(100% - 9.7px), 34.78% calc(100% - 5.2px), 32.61% calc(100% - 12.7px), 30.43% calc(100% - 8.3px), 28.26% calc(100% - 11.5px), 26.09% calc(100% - 7.3px), 23.91% calc(100% - 14.5px), 21.74% calc(100% - 9.9px), 19.57% calc(100% - 6.2px), 17.39% calc(100% - 12.8px), 15.22% calc(100% - 8.5px), 13.04% calc(100% - 11.9px), 10.87% calc(100% - 6.4px), 8.7% calc(100% - 13.6px), 6.52% calc(100% - 9.3px), 4.35% calc(100% - 5.7px), 2.17% calc(100% - 12.3px), 0% calc(100% - 8.6px)); }
-  .ek-h1 { font-family: 'Spectral',serif; font-weight: 400; font-size: 38px; line-height: 1.12; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-h2 { font-family: 'Spectral',serif; font-weight: 400; font-size: 30px; line-height: 1.15; color: #2D3A2E; margin: 0 0 14px; text-wrap: pretty; }
-  .ek-h3 { font-family: 'Spectral',serif; font-weight: 500; font-size: 21px; line-height: 1.2; color: #2D3A2E; margin: 0 0 12px; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 38px; line-height: 1.12; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 30px; line-height: 1.15; color: #2D3A2E; margin: 0 0 14px; text-wrap: pretty; }
+  .ek-h3 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 21px; line-height: 1.2; color: #2D3A2E; margin: 0 0 12px; }
   .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
   .ek-p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; }
@@ -40,13 +40,13 @@
   .ek-det-grid { display: grid; grid-template-columns: minmax(0,1.55fr) minmax(0,.85fr); gap: 46px; align-items: start; }
   .ek-det-side { position: sticky; top: 152px; display: flex; flex-direction: column; gap: 18px; }
   .ek-card { background: #fff; border: 1px solid #ECE3D2; border-radius: 14px; }
-  .ek-mode { border: 1.5px solid #E2D9C4; background: #fff; color: #52524a; border-radius: 999px; padding: 7px 15px; font-family: 'Hanken Grotesk',sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
-  .ek-mode:hover { border-color: #4C643C; }
-  .ek-mode-on { background: #4C643C !important; border-color: #4C643C !important; color: #F6F1E7 !important; }
+  .ek-mode { border: 1.5px solid #E2D9C4; background: #fff; color: #52524a; border-radius: 999px; padding: 7px 15px; font-family: 'Work Sans',sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+  .ek-mode:hover { border-color: #4C653D; }
+  .ek-mode-on { background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
   .ek-prow { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 11px 0; border-bottom: 1px dashed #E4DAC6; font-size: 15px; }
   .ek-prow:last-child { border-bottom: none; }
   .ek-file { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid #E4DAC6; border-radius: 12px; background: #FDFBF5; text-decoration: none; transition: border-color .2s, background .2s; }
-  .ek-file:hover { border-color: #4C643C; background: #F4F7EA; }
+  .ek-file:hover { border-color: #4C653D; background: #F4F7EA; }
   .ek-bar { height: 8px; border-radius: 999px; background: #EFE7D6; overflow: hidden; }
   @media (max-width: 980px) {
     .ek-pd-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
@@ -64,7 +64,7 @@
 </style>
 </helmet>
 
-<div class="ek-pagebot" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Hanken Grotesk',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+<div class="ek-pagebot" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
   <dc-import name="ui-Header" hint-size="100%,140px"></dc-import>
 
@@ -92,13 +92,13 @@
           <h1 class="ek-h1">{{ title }}</h1>
           <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
             <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" size="{{ 16 }}" hint-size="130px,20px"></dc-import>
-            <a href="#hodnoceni" class="ek-link-u" style="font-size:14px; text-decoration:none; color:#3B5531;">{{ ratingLabel }}</a>
+            <a href="#hodnoceni" class="ek-link-u" style="font-size:14px; text-decoration:none; color:#4C653D;">{{ ratingLabel }}</a>
           </div>
           <p class="ek-p" style="margin:2px 0 0;">{{ shortDesc }} <a href="#popis" class="ek-link-u" style="text-decoration:none; white-space:nowrap;">Více informací</a></p>
         </div>
 
         <div style="display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap;">
-          <span style="font-family:'Spectral',serif; font-size:40px; line-height:1; font-weight:500; color:#2D3A2E;">{{ price }}</span>
+          <span style="font-family:'EB Garamond',serif; font-size:40px; line-height:1; font-weight:500; color:#2D3A2E;">{{ price }}</span>
           <span style="display:flex; flex-direction:column; gap:3px; font-size:14px; color:#6B6B5E; padding-bottom:3px;">
             <span>{{ priceNoVat }} bez DPH</span>
             <span>{{ unitPrice }}</span>
@@ -110,7 +110,7 @@
         </sc-if>
         <sc-if value="{{ isSingle }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 16px; border:1px solid #E4DAC6; border-radius:12px; background:#fff;">
-            <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" size="{{ 14.5 }}" hint-size="170px,20px"></dc-import>
+            <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" variant="pill" size="{{ 14.5 }}" hint-size="200px,36px"></dc-import>
             <span style="font-size:14px; color:#6B6B5E;">{{ stockNote }}</span>
           </div>
         </sc-if>
@@ -123,7 +123,7 @@
           <div id="hlidaci-pes" style="display:flex; flex-direction:column; gap:12px; padding:16px; border:1px solid #E4DAC6; border-radius:12px; background:#fff;">
             <span style="font-size:15px; font-weight:600; color:#2A2A24;">Tento produkt nelze zakoupit</span>
             <p style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ watchNote }}</p>
-            <a href="#" class="ek-btn-secondary" style="display:inline-flex; align-self:flex-start; align-items:center; gap:9px; border:1.5px solid #3B5531; color:#3B5531; text-decoration:none; border-radius:999px; padding:12px 22px; font-size:15px; font-weight:600; transition:background .2s, color .2s;"><span style="{{ iconBell }}"></span>Hlídací pes</a>
+            <a href="#" class="ek-btn-secondary" style="display:inline-flex; align-self:flex-start; align-items:center; gap:9px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; border-radius:999px; padding:12px 22px; font-size:15px; font-weight:600; transition:background .2s, color .2s;"><span style="{{ iconBell }}"></span>Hlídací pes</a>
           </div>
         </sc-if>
         </div>
@@ -136,7 +136,7 @@
           </sc-for>
         </div>
 
-        <div class="ek-card" style="display:flex; align-items:flex-start; gap:12px; padding:16px 18px; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%); border-color:rgba(59,85,49,.16);">
+        <div class="ek-card" style="display:flex; align-items:flex-start; gap:12px; padding:16px 18px; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%); border-color:rgba(76,101,61,.16);">
           <span style="{{ iconHelp }}"></span>
           <span style="font-size:14.5px; line-height:1.6; color:#4A4A42;">Nevíte si rady s výběrem? Napište nám na <a href="mailto:eshop@ekokoza.cz" class="ek-link-u" style="text-decoration:none; font-weight:600;">eshop@ekokoza.cz</a> nebo volejte <a href="tel:+420601365245" class="ek-link-u" style="text-decoration:none; font-weight:600; white-space:nowrap;">+420 601 365 245</a>.</span>
         </div>
@@ -244,7 +244,7 @@
       <p class="ek-p" style="max-width:64ch; margin-bottom:26px;">Recept je most mezi surovinou a hotovou věcí. Tyto tři jsou na kyselinu citronovou nejčastější.</p>
       <div class="ek-recipes" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px;">
         <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="3">
-          <dc-import name="ui-RecipeCard" title="{{ r.title }}" desc="{{ r.desc }}" category="{{ r.category }}" level="{{ r.level }}" time="{{ r.time }}" img="{{ r.img }}" hint-size="100%,400px"></dc-import>
+          <dc-import name="ui-RecipeCard" title="{{ r.title }}" desc="{{ r.desc }}" category="{{ r.category }}" level="{{ r.level }}" time="{{ r.time }}" img="{{ r.img }}" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" hint-size="100%,400px"></dc-import>
         </sc-for>
       </div>
     </div>
@@ -270,9 +270,9 @@
       <div class="ek-rev" style="display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:34px; align-items:start;">
         <div class="ek-card" style="padding:24px; display:flex; flex-direction:column; gap:16px;">
           <div style="display:flex; align-items:center; gap:14px;">
-            <span style="font-family:'Spectral',serif; font-size:44px; line-height:1; color:#2D3A2E;">{{ rating }}</span>
+            <span style="font-family:'EB Garamond',serif; font-size:44px; line-height:1; color:#2D3A2E;">{{ rating }}</span>
             <span style="display:flex; flex-direction:column; gap:4px;">
-              <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" showCount="{{ false }}" size="{{ 16 }}" hint-size="110px,20px"></dc-import>
+              <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" showValue="{{ false }}" size="{{ 16 }}" hint-size="180px,20px"></dc-import>
               <span style="font-size:13.5px; color:#6B6B5E;">{{ ratingLabel }}</span>
             </span>
           </div>
@@ -285,7 +285,7 @@
               </span>
             </sc-for>
           </div>
-          <a href="#" class="ek-btn-secondary" style="display:inline-flex; align-self:flex-start; align-items:center; gap:9px; border:1.5px solid #3B5531; color:#3B5531; text-decoration:none; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; transition:background .2s, color .2s;"><span style="{{ iconPen }}"></span>Přidat recenzi</a>
+          <a href="#" class="ek-btn-secondary" style="display:inline-flex; align-self:flex-start; align-items:center; gap:9px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; transition:background .2s, color .2s;"><span style="{{ iconPen }}"></span>Přidat recenzi</a>
         </div>
 
         <div style="display:flex; flex-direction:column; gap:16px;">
@@ -293,18 +293,18 @@
             <div class="ek-card" style="padding:20px 22px; display:flex; flex-direction:column; gap:10px;">
               <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
                 <span style="display:flex; align-items:center; gap:11px;">
-                  <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:#EFE7D6; font-size:14px; font-weight:700; color:#3B5531;">{{ r.initial }}</span>
+                  <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:#EFE7D6; font-size:14px; font-weight:700; color:#4C653D;">{{ r.initial }}</span>
                   <span style="display:flex; flex-direction:column;">
                     <span style="font-size:15px; font-weight:600; color:#2A2A24;">{{ r.name }}</span>
                     <span style="font-size:12.5px; color:#8a8776;">{{ r.meta }}</span>
                   </span>
                 </span>
-                <dc-import name="ui-Rating" value="{{ r.stars }}" count="{{ r.starCount }}" showCount="{{ false }}" size="{{ 14 }}" hint-size="100px,18px"></dc-import>
+                <dc-import name="ui-Rating" value="{{ r.stars }}" showCount="{{ false }}" size="{{ 14 }}" hint-size="110px,20px"></dc-import>
               </div>
               <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">{{ r.text }}</p>
             </div>
           </sc-for>
-          <a href="#" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; color:#3B5531; text-decoration:none; border:1.5px solid transparent; border-radius:999px; padding:11px 18px; font-size:14.5px; font-weight:600; transition:background .2s;">Další recenze<span style="{{ iconArrow }}"></span></a>
+          <a href="#" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; color:#4C653D; text-decoration:none; border:1.5px solid transparent; border-radius:999px; padding:11px 18px; font-size:14.5px; font-weight:600; transition:background .2s;">Další recenze<span style="{{ iconArrow }}"></span></a>
         </div>
       </div>
     </div>
@@ -312,12 +312,12 @@
 
   <section style="padding:58px 32px 0;" class="ek-pad">
     <div style="max-width:1280px; margin:0 auto;">
-      <div class="ek-card" style="padding:28px; display:flex; align-items:flex-start; justify-content:space-between; gap:26px; flex-wrap:wrap; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%); border-color:rgba(59,85,49,.16);">
+      <div class="ek-card" style="padding:28px; display:flex; align-items:flex-start; justify-content:space-between; gap:26px; flex-wrap:wrap; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%); border-color:rgba(76,101,61,.16);">
         <div style="min-width:0; max-width:60ch;">
           <h2 class="ek-h2" style="margin-bottom:10px;">Diskuze k produktu</h2>
           <p style="margin:0; font-size:16px; line-height:1.7; color:#4A4A42;">Máte otázku k použití nebo dávkování? Zeptejte se — odpovídáme v pracovní dny, obvykle do 24 hodin.</p>
         </div>
-        <a href="#" class="ek-btn-primary" style="display:inline-flex; align-items:center; gap:9px; background:#4C643C; color:#F6F1E7; border:1.5px solid #4C643C; text-decoration:none; border-radius:999px; padding:14px 26px; font-size:15.5px; font-weight:600; transition:background .2s, border-color .2s;"><span style="{{ iconChat }}"></span>Položit dotaz</a>
+        <a href="#" class="ek-btn-primary" style="display:inline-flex; align-items:center; gap:9px; background:#4C653D; color:#F6F1E7; border:1.5px solid #4C653D; text-decoration:none; border-radius:999px; padding:14px 26px; font-size:15.5px; font-weight:600; transition:background .2s, border-color .2s;"><span style="{{ iconChat }}"></span>Položit dotaz</a>
       </div>
 
       <div style="display:flex; flex-direction:column; gap:14px; margin-top:20px;">
@@ -330,7 +330,7 @@
             <div style="display:flex; gap:12px; padding:14px 16px; border-radius:12px; background:#F4F7EA;">
               <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; flex:0 0 auto;"><span style="display:block; width:26px; height:26px; background-color:#2D3A2E; -webkit-mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat; mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat;"></span></span>
               <span style="display:flex; flex-direction:column; gap:5px;">
-                <span style="font-size:14px; font-weight:700; color:#3B5531;">Ekokoza</span>
+                <span style="font-size:14px; font-weight:700; color:#4C653D;">Ekokoza</span>
                 <span style="font-size:15px; line-height:1.65; color:#4A4A42;">{{ q.answer }}</span>
               </span>
             </div>
@@ -347,7 +347,7 @@
   </div>
   </div>
 
-  <dc-import name="ui-BuyBar" title="{{ title }}" variantLabel="{{ barVariant }}" variants="{{ barVariants }}" selected="{{ selected }}" onSelect="{{ onSelect }}" price="{{ price }}" note="{{ unitPrice }}" img="{{ barImg }}" buyable="{{ buyable }}" max="{{ 99 }}" watch="#ek-buy-cta" pickTarget="{{ barTarget }}" onAdd="{{ onAdd }}" onQtyChange="{{ onQty }}" hint-size="100%,0px"></dc-import>
+  <dc-import name="ui-BuyBar" title="{{ title }}" variantLabel="{{ barVariant }}" variants="{{ barVariants }}" selected="{{ selected }}" onSelect="{{ onSelect }}" price="{{ price }}" note="{{ unitPrice }}" img="{{ barImg }}" buyable="{{ buyable }}" stockState="{{ stockState }}" stockDate="{{ stockDate }}" max="{{ 99 }}" watch="#ek-buy-cta" pickTarget="{{ barTarget }}" onAdd="{{ onAdd }}" onQtyChange="{{ onQty }}" hint-size="100%,0px"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;variant&quot;,&quot;single&quot;],&quot;default&quot;:&quot;variant&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ukázka&quot;}}">
@@ -370,7 +370,14 @@ class Component extends DCLogic {
     const isVariant = this.state.mode === 'variant';
     const v = Component.VARIANTS[this.state.sel] || Component.VARIANTS[0];
     const cur = isVariant ? v : { label: '1 kg', price: '110 Kč', noVat: '91 Kč', unit: '110 Kč / kg', state: 'ready' };
-    const buyable = cur.state !== 'expected';
+    const NOTES = {
+      ready: 'Odesíláme obvykle následující pracovní den.',
+      packing: 'Navažujeme z velkého balení — odeslání o jeden pracovní den později.',
+      expected: 'Můžete koupit teď — odešleme hned po naskladnění.',
+      unavail: 'Datum naskladnění zatím neznáme — zapneme vám hlídacího psa.',
+      ended: 'Produkt jsme vyřadili z nabídky — podíváme se s vámi po náhradě.',
+    };
+    const buyable = !['unavail', 'ended'].includes(cur.state);
 
     const prod = (title, price, img, rating, ratingCount, stockState, ctaVariant, badge) =>
       ({ title, price, img, rating, ratingCount, stockState, stockDate: '', ctaVariant, badge, href: '#' });
@@ -414,7 +421,7 @@ class Component extends DCLogic {
       onSelect: (i) => this.setState({ sel: i }),
       stockState: cur.state,
       stockDate: cur.date ?? '',
-      stockNote: 'Odesíláme obvykle následující pracovní den.',
+      stockNote: NOTES[cur.state] || NOTES.ready,
 
       buyable, notBuyable: !buyable,
       watchNote: 'Tato varianta není skladem. Necháme vám vědět e-mailem, jakmile ji naskladníme.',
@@ -431,7 +438,7 @@ class Component extends DCLogic {
       iconBell: this.mask('notification-01', 24, 'currentColor'),
       iconHelp: this.mask('message-question', 24, '#4F6E2A'),
       iconAlert: this.mask('alert-circle', 24, '#B8730B'),
-      iconDownload: this.mask('download-01', 24, '#3B5531'),
+      iconDownload: this.mask('download-01', 24, '#4C653D'),
       iconPen: this.mask('star', 24, 'currentColor'),
       iconArrow: this.mask('arrow-right-02', 24, 'currentColor'),
       iconChat: this.mask('bubble-chat', 24, 'currentColor'),
@@ -477,9 +484,9 @@ class Component extends DCLogic {
       ],
 
       recipes: [
-        { title: 'Šumivé bomby do vany', desc: 'Kyselina citronová a jedlá soda — základ, který zašumí. Zvládnete za půl hodiny.', category: 'Koupel', level: 'Začátečník', time: '30 min', img: 'assets/recipes/krem-na-paty.jpg' },
-        { title: 'Máchadlo na prádlo', desc: 'Nahradí komerční avivážy. Prádlo je měkké a bez zbytků mýdla.', category: 'Domácnost', level: 'Začátečník', time: '15 min', img: 'assets/recipes/tenzidy.jpg' },
-        { title: 'Tablety do myčky', desc: 'Sůl, soda a kyselina citronová. Jedna forma, dávka na měsíc.', category: 'Domácnost', level: 'Pokročilý', time: '45 min', img: 'assets/recipes/pasta-na-holeni.jpg' },
+        { title: 'Šumivé bomby do vany', desc: 'Kyselina citronová a jedlá soda — základ, který zašumí. Zvládnete za půl hodiny.', category: 'Koupel', level: 'Začátečník', time: '30 min', img: 'assets/recipes/krem-na-paty.jpg', rating: 4.9, ratingCount: 96 },
+        { title: 'Máchadlo na prádlo', desc: 'Nahradí komerční avivážy. Prádlo je měkké a bez zbytků mýdla.', category: 'Domácnost', level: 'Začátečník', time: '15 min', img: 'assets/recipes/tenzidy.jpg', rating: 4.7, ratingCount: 38 },
+        { title: 'Tablety do myčky', desc: 'Sůl, soda a kyselina citronová. Jedna forma, dávka na měsíc.', category: 'Domácnost', level: 'Pokročilý', time: '45 min', img: 'assets/recipes/pasta-na-holeni.jpg', rating: 4.8, ratingCount: 57 },
       ],
       crossSell: [
         prod('Jedlá soda, 1 kg', '69 Kč', 'assets/products/stabilizovany-vitamin-c-10-g.jpg', 4.8, 42, 'ready', 'koupit', ''),

@@ -14,15 +14,15 @@
   .ek-car-rail::-webkit-scrollbar-thumb { background: #cdbfa3; border-radius: 8px; }
   .ek-car-rail > * { scroll-snap-align: start; flex: 0 0 264px; }
   .ek-car-a { width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid #CFC4AA; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, border-color .2s; }
-  .ek-car-a:hover { background: #4C643C; border-color: #4C643C; }
+  .ek-car-a:hover { background: #4C653D; border-color: #4C653D; }
   .ek-car-a:hover span { background-color: #F6F1E7 !important; }
   @media (max-width: 700px) { .ek-car-rail > * { flex: 0 0 76%; } .ek-car-arrows { display: none !important; } }
 </style>
 </helmet>
-<section style="display:flex; flex-direction:column; gap:18px; font-family:'Hanken Grotesk',sans-serif;">
+<section style="display:flex; flex-direction:column; gap:18px; font-family:'Work Sans',sans-serif;">
   <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;">
     <div style="display:flex; flex-direction:column; gap:6px; min-width:0;">
-      <h2 style="margin:0; font-family:'Spectral',serif; font-weight:400; font-size:30px; line-height:1.15; color:#2D3A2E; text-wrap:pretty;">{{ title }}</h2>
+      <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:30px; line-height:1.15; color:#2D3A2E; text-wrap:pretty;">{{ title }}</h2>
       <p style="margin:0; font-size:15.5px; line-height:1.6; color:#52524a; max-width:60ch;">{{ subtitle }}</p>
     </div>
     <div class="ek-car-arrows" style="display:flex; gap:10px; flex:0 0 auto;">
@@ -62,8 +62,8 @@ class Component extends DCLogic {
       rail: this.rail,
       prev: () => this.slide(-1),
       next: () => this.slide(1),
-      iconPrev: this.mask('arrow-left-01', 24, '#3B5531'),
-      iconNext: this.mask('arrow-right-01', 24, '#3B5531'),
+      iconPrev: this.mask('arrow-left-01', 24, '#4C653D'),
+      iconNext: this.mask('arrow-right-01', 24, '#4C653D'),
     };
   }
 }

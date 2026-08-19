@@ -14,14 +14,14 @@ class Component extends DCLogic {
   renderVals() {
     const variant = this.props.variant ?? 'default';
     const label = this.props.label ?? 'Sezónní recept';
-    const base = "display:inline-flex; align-items:center; font-family:'Hanken Grotesk',sans-serif; font-weight:600; font-size:11.5px; letter-spacing:.04em; padding:5px 11px; border-radius:999px; white-space:nowrap;";
+    const base = "display:inline-flex; align-items:center; font-family:'Work Sans',sans-serif; font-weight:600; font-size:11.5px; letter-spacing:.04em; padding:5px 11px; border-radius:999px; white-space:nowrap;";
     const variants = {
-      default:  'background:#F6F1E7; color:#3B5531;',
-      onPhoto:  'background:#F6F1E7; color:#3B5531; border:1px solid #E4D9C2; box-shadow:0 2px 6px rgba(45,58,46,.08);',
-      green:    'background:#4C643C; color:#F6F1E7; text-transform:uppercase; letter-spacing:.06em; font-size:11px;',
-      sage:     'background:#CFE0B4; color:#3B5531;',
+      default:  'background:#F6F1E7; color:#4C653D;',
+      onPhoto:  'background:#F6F1E7; color:#4C653D; border:1px solid #E4D9C2; box-shadow:0 2px 6px rgba(45,58,46,.08);',
+      green:    'background:#4C653D; color:#F6F1E7; text-transform:uppercase; letter-spacing:.06em; font-size:11px;',
+      sage:     'background:#CFE0B4; color:#4C653D;',
       accent:   'background:#D14405; color:#fff;',
-      outline:  'background:transparent; color:#3B5531; border:1px solid #C9BFA6;',
+      outline:  'background:transparent; color:#4C653D; border:1px solid #C9BFA6;',
     };
     return { label, chipStyle: base + (variants[variant] || variants.default) };
   }

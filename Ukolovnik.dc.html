@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Úkolovník — zpětná vazba klienta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#F6F1E7; -webkit-font-smoothing:antialiased; }
+  a { color:#D14405; text-decoration:none; }
+  a:hover { color:#4C653D; text-decoration:underline; }
+  @media (max-width: 680px) { .uk-row { grid-template-columns: 1fr !important; gap: 3px !important; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;padding:clamp(20px,4vw,56px) clamp(14px,4vw,40px) 90px;font-family:'Work Sans',system-ui,sans-serif;color:#2D3A2E">
+<div style="max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:30px">
+
+  <header style="display:flex;flex-direction:column;gap:13px">
+    <div style="font:600 12px/1 'Work Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7BA23F">ekokoza.cz — redesign e-shopu</div>
+    <h1 style="margin:0;font:500 clamp(30px,4.4vw,46px)/1.1 'EB Garamond',Georgia,serif;color:#4C653D;text-wrap:pretty">Úkolovník ze zpětné vazby</h1>
+    <p style="margin:0;max-width:70ch;font:400 16.5px/1.6 'Work Sans',sans-serif;color:#5D6E55;text-wrap:pretty">Rozpad komentáře na konkrétní úkoly, otázky k zodpovězení a podklady, které od vás potřebujeme. Prioritu nastavíte kliknutím na P1 / P2 / P3. Úkoly označené <strong style="font-weight:600;color:#3C5B86">Ke schválení</strong> jsou zpracované a čekají na vaše potvrzení — až je společně probereme, odškrtnutím je posunete na Schváleno. Stav se ukládá ve vašem prohlížeči.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:3px">
+      <div style="display:flex;align-items:baseline;gap:7px;background:#fff;border:1px solid rgba(76,101,61,.14);border-radius:14px;padding:11px 15px"><span style="font:500 20px/1 'EB Garamond',serif;color:#4C653D">{{ totalCount }}</span><span style="font:500 13px/1 'Work Sans',sans-serif;color:#7B8A73">úkolů</span></div>
+      <div style="display:flex;align-items:baseline;gap:7px;background:#fff;border:1px solid rgba(209,68,5,.28);border-radius:14px;padding:11px 15px"><span style="font:500 20px/1 'EB Garamond',serif;color:#D14405">{{ p1Count }}</span><span style="font:500 13px/1 'Work Sans',sans-serif;color:#7B8A73">P1</span></div>
+      <div style="display:flex;align-items:baseline;gap:7px;background:#fff;border:1px solid rgba(184,134,43,.3);border-radius:14px;padding:11px 15px"><span style="font:500 20px/1 'EB Garamond',serif;color:#B8862B">{{ p2Count }}</span><span style="font:500 13px/1 'Work Sans',sans-serif;color:#7B8A73">P2</span></div>
+      <div style="display:flex;align-items:baseline;gap:7px;background:#fff;border:1px solid rgba(123,162,63,.34);border-radius:14px;padding:11px 15px"><span style="font:500 20px/1 'EB Garamond',serif;color:#6E9134">{{ p3Count }}</span><span style="font:500 13px/1 'Work Sans',sans-serif;color:#7B8A73">P3</span></div>
+      <div style="display:flex;align-items:baseline;gap:7px;background:#fff;border:1px solid rgba(94,131,190,.34);border-radius:14px;padding:11px 15px"><span style="font:500 20px/1 'EB Garamond',serif;color:#3C5B86">{{ reviewCount }}</span><span style="font:500 13px/1 'Work Sans',sans-serif;color:#7B8A73">ke schválení</span></div>
+      <div style="display:flex;align-items:baseline;gap:7px;background:rgba(76,101,61,.07);border:1px solid rgba(76,101,61,.14);border-radius:14px;padding:11px 15px"><span style="font:500 20px/1 'EB Garamond',serif;color:#4C653D">{{ doneCount }}</span><span style="font:500 13px/1 'Work Sans',sans-serif;color:#7B8A73">schváleno</span></div>
+      <button onClick="{{ reset }}" style="font:600 13px/1 'Work Sans',sans-serif;color:#7B8A73;background:transparent;border:1px solid rgba(76,101,61,.2);border-radius:14px;padding:11px 15px;cursor:pointer" style-hover="color:#D14405;border-color:rgba(209,68,5,.4)">Vymazat stav</button>
+    </div>
+  </header>
+
+  <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="3">
+    <section style="display:flex;flex-direction:column;gap:12px;margin-bottom:6px">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid rgba(76,101,61,.16);padding-bottom:9px">
+        <h2 style="margin:0;font:500 25px/1.15 'EB Garamond',Georgia,serif;color:#4C653D">{{ sec.title }}</h2>
+        <span style="font:500 13.5px/1.4 'Work Sans',sans-serif;color:#8A9682">{{ sec.note }}</span>
+      </div>
+      <sc-for list="{{ sec.tasks }}" as="t" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:26px 1fr auto;gap:13px;align-items:start;padding:14px 16px;background:#fff;border:1px solid rgba(76,101,61,.14);border-radius:14px">
+          <button onClick="{{ t.toggle }}" aria-label="Hotovo" style="{{ t.boxStyle }}">✓</button>
+          <div style="min-width:0">
+            <div style="display:flex;align-items:baseline;gap:9px;flex-wrap:wrap">
+              <div style="{{ t.titleStyle }}"><span style="font-weight:700;color:#7BA23F">{{ t.id }}</span> · {{ t.title }}</div>
+              <sc-if value="{{ t.hasStatus }}" hint-placeholder-val="{{ false }}">
+                <span style="{{ t.statusStyle }}">{{ t.statusLabel }}</span>
+              </sc-if>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+              <div class="uk-row" style="display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:start">
+                <span style="font:700 10.5px/1.5 'Work Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8A9682;padding-top:1px">Požadavek</span>
+                <p style="margin:0;font:400 14.2px/1.58 'Work Sans',sans-serif;color:#5D6E55;text-wrap:pretty">{{ t.detail }}</p>
+              </div>
+              <sc-if value="{{ t.hasSolution }}" hint-placeholder-val="{{ false }}">
+                <div class="uk-row" style="display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:start;padding-top:8px;border-top:1px solid rgba(76,101,61,.12)">
+                  <span style="font:700 10.5px/1.5 'Work Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#6E9134;padding-top:1px">Řešení</span>
+                  <p style="margin:0;font:400 14.2px/1.58 'Work Sans',sans-serif;color:#3F5238;text-wrap:pretty">{{ t.solution }}</p>
+                </div>
+              </sc-if>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:9px">
+              <sc-for list="{{ t.tags }}" as="tag" hint-placeholder-count="2">
+                <span style="{{ tag.style }}">{{ tag.label }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px">
+            <button onClick="{{ t.setP1 }}" style="{{ t.p1Style }}">P1</button>
+            <button onClick="{{ t.setP2 }}" style="{{ t.p2Style }}">P2</button>
+            <button onClick="{{ t.setP3 }}" style="{{ t.p3Style }}">P3</button>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+  </sc-for>
+
+  <footer style="margin-top:8px;padding:20px 22px;background:rgba(76,101,61,.06);border:1px solid rgba(76,101,61,.14);border-radius:14px">
+    <p style="margin:0;font:400 14.5px/1.6 'Work Sans',sans-serif;color:#5D6E55;text-wrap:pretty">Bloky <strong style="font-weight:600;color:#4C653D">G (receptář a propojení surovin)</strong> a <strong style="font-weight:600;color:#4C653D">A (typografie, barvy, claimy)</strong> doporučujeme řešit první — G kvůli rozjezdu úloh 157151 a 154436, A protože se dotýká všech ostatních obrazovek.</p>
+  </footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const TAGS = {
+  odpoved: ['odpověď klientovi', '#3C5B86', 'rgba(94,131,190,.16)'],
+  ds: ['design systém', '#4C653D', 'rgba(123,162,63,.15)'],
+  komponenta: ['komponenta', '#4C653D', 'rgba(123,162,63,.15)'],
+  uprava: ['úprava', '#8A5A22', 'rgba(184,134,43,.16)'],
+  nova: ['nová obrazovka', '#7A3C86', 'rgba(140,90,160,.14)'],
+  podklad: ['podklad od klienta', '#A83C0A', 'rgba(209,68,5,.12)'],
+  tech: ['k ověření s vývojem', '#3C6B6B', 'rgba(60,107,107,.13)'],
+};
+
+const SECTIONS = [
+  { id: 'A', title: 'A. Typografie, barvy a claimy', note: 'koncepční rozhodnutí, ovlivňuje všechno ostatní', tasks: [
+    ['A1', 'Změna typografie — zdůvodnit, nebo vrátit', 'Klient se ptá, proč se změnilo písmo. Vysvětlit volbu, nebo se vrátit k písmu z grafického manuálu. Rozhodnutí musí být jednoznačné, žádný mezistav.', ['ds','uprava'],
+      'Vráceno k písmům z grafického manuálu. Nadpisy a perexy: EB Garamond — Medium pro nadpisy, Regular pro delší serifové texty. Základní písmo: Work Sans (SemiBold nadpisy, Medium perexy, Regular a Bold text; nahrazuje Helvetiku). Propsáno do design systému a do všech stránek a komponent — Spectral ani Hanken Grotesk nikde nezůstaly. Zbývá vizuální kontrola nadpisů na mobilu; EB Garamond má menší optickou velikost, u nejmenších velikostí případně přidáme 1 px.'],
+    ['A2', 'Pročistit paletu: jedna tmavá zeleň, role barev', 'Dvě tmavě zelené jsou zbytečné — necháme jen jednu, a to #4C653D z grafického manuálu. K tomu v design systému detailně popsat, na co jednotlivé barvy slouží; nějaké popisky tam jsou, ale je třeba jít víc do detailu.', ['ds','uprava'],
+      'Druhý odstín zrušen: napříč 30 soubory platí jediná tmavá zeleň #4C653D. V sekci Barvy je nová tabulka „Role barev“ — pět skupin (nosná barva, konverze, podklady a rámy, akcenty, text) a u každé barvy je uvedeno, k čemu slouží, na jakém podkladu smí být a jaký má kontrast, včetně označení AA / AAA a omezení slabších odstínů na ikony a velký text. Doplněno pravidlo: nejvýše dva podkladové tóny a jedno terrakotové CTA na obrazovku.'],
+    ['A3', 'Ztlumit terrakotu na tmavém podkladu', 'Terrakota zůstává barvou hlavní konverze. Na tmavě zeleném bloku (věrnostní program na homepage) ale působí křiklavě — připravit „on dark“ variantu CTA (tlumenější odstín, nebo světlé tlačítko s tmavým textem), porovnat v reálném bloku a zafixovat pravidlo: terrakota na světlém, varianta B na tmavém.', ['uprava','komponenta'],
+      'Na tmavě zelené ploše nese hlavní akci světlé tlačítko — krémová plocha #F6F1E7 s textem #4C653D (kontrast 5,6:1), hover do #EDE4D0; doprovodná akce zůstává obrysová v krémové. Nasazeno na věrnostním bloku homepage i v hero věrnostního programu. V design systému je v sekci Tlačítka nová ukázka „CTA na tmavé ploše“ se správnou a nesprávnou variantou vedle sebe. Pravidlo: terrakota na světlých podkladech a na fotografii s tmavým přechodem (leží na snímku, ne na brandové zeleni), na zelené ploše varianta On dark.'],
+    ['A4', 'Přepsat claimy podle finálního brand positioningu', 'Nasadit claim architekturu: „Důvod, proč tvořit.“ (HP, brandové plochy), „Suroviny, recepty a důvod proč.“ (e-shop, rozcestníky), „Vědět proč. Vědět jak.“ (návody, edukace). Projít všechny stávající headliny a mikrocopy, vyhodit improvizované claimy a formulace mimo tone of voice.', ['uprava','ds']],
+  ]},
+  { id: 'B', title: 'B. Design systém jako pattern library', note: 'aby z něj šlo dlouhodobě skládat vlastní materiály', tasks: [
+    ['B1', 'Potvrdit rozsah pattern library a doplnit chybějící', 'Ano — stránka má fungovat jako pattern library. Doplnit u každého bloku: k čemu je, kdy ho použít, co s ním nedělat, a kopírovatelný HTML snippet. Přidat sekci „Jak složit novou podstránku“ (pořadí bloků, rytmus sekcí, pravidlo max 1–2 barev podkladu na stránku).', ['odpoved','ds']],
+    ['B2', 'Šablony podstránek a rozcestníků', 'Dvě až tři hotové skládané šablony k okamžitému použití: obsahová podstránka (text + obrázky + CTA), rozcestník (kategorie / téma) a landing page pro kampaň.', ['nova','ds']],
+    ['B3', 'Mailingová šablona v jednotném stylu', 'E-mailová šablona (tabulkové HTML, inline styly, testovaná v Outlooku a Gmailu): hlavička s logem, hero, blok produktů, blok receptu, patička. Plus varianta transakčního e-mailu.', ['nova','ds']],
+    ['B4', 'Tiskové a katalogové bloky', 'Sada bloků pro katalog / letáky / cenovky v tiskové kvalitě (A4, produktová mřížka, receptová strana) tak, aby vycházely ze stejných pravidel jako web.', ['nova','ds']],
+  ]},
+  { id: 'C', title: 'C. Skladovost', note: 'kompletní sada stavů + sjednocená barevnost', tasks: [
+    ['C1', 'Získat a zapsat úplný seznam skladových stavů', 'Potřebujeme od vás všechny reálné stavy, které systém vypisuje, včetně přesných textů a toho, zda v daném stavu lze produkt koupit. Zapíšeme je do systému jako jeden zdroj pravdy.', ['podklad'],
+      'Čekáme na seznam. Škála z bodu C2 je na napojení připravená — každý reálný stav namapujeme na jednu z pěti úrovní a komponenta si barvu, ikonu i text vezme sama.'],
+    ['C2', 'Definovat semantickou škálu dostupnosti', 'Jedna plynulá stupnice od „ihned k odeslání“ (zelená) přes dostupné s prodlevou (olivová / jantarová) až po skutečně nedostupné (červené tóny). Každý stav dostane přiřazenou barvu, ikonu a text — a to samé pak platí na kartě, detailu, v buy baru i v košíku.', ['uprava','komponenta'],
+      'Škála má pět úrovní a je zapsaná na jednom místě v komponentě ui-Stock: 1 Ihned k odeslání #3F7F2C (nejsytější zeleň), 2 Musíme to nabalit #57712D (tmavší oliva), 3 Očekáváme (s datem) #57712D — stejná oliva jako úroveň 2, liší se ikonou a textem, 4 Nyní nedostupné #A33203, 5 Už nenabízíme #8A2412 (temně cihlová). Každá úroveň nese barvu, ikonu, text, vysvětlující mikrocopy a příznak „lze koupit“ — hranice je mezi 3 a 4. Komponenta funguje ve dvou podobách (vložený text v kartě, našeptávači a košíku, pilulka v detailu produktu a ve sticky buy baru — ten teď stav dostupnosti také ukazuje) a stejná data řídí i tlačítko: úrovně 4–5 nabídnou místo Do košíku hlídacího psa. Doplněno do design systému včetně tabulky celé škály. Vysvětlující mikrocopy má dvě podoby podle toho, kolik je pro ni místa: u produktu bez variant je vypsaná jako text vedle pilulky stavu v detailu, u variantních produktů (kde je stav u každé varianty v řádku) se ke stavu přidá ikona „i“ a text se ukáže v popupu — na přejetí myší, na tabulátor i na kliknutí. Stejný popup má i pilulka ve sticky buy baru. Kliknutí na stav uvnitř řádku variantu nepřepne a stav v řádku není samostatně fokusovatelný, aby zůstal ovladatelný jen řádek. Texty mikrocopy jsou uložené v komponentě u příslušné úrovně, takže všude znějí stejně.'],
+    ['C3', '„Musíme to nabalit“ posunout do dostupného tónu', 'Produkt může odejít následující den — cokoli do červena působí jako problém. Přebarvit na zelený / olivový tón a doplnit vysvětlující mikrocopy o expedici.', ['uprava'],
+      'Stav je teď olivově zelený #57712D (dřív hnědá) a stojí hned za „Ihned k odeslání“ jako úroveň 2. Mikrocopy: „Navažujeme z velkého balení — odeslání o jeden pracovní den později.“ Produkt je normálně nakoupitelný.'],
+    ['C4', '„Očekáváme“ nechat jako nakoupitelný stav', 'Držet v jantarovém, stále dostupném tónu; jasně říct, že produkt lze koupit teď a kdy odejde. Případně doplnit očekávané datum.', ['uprava'],
+      'Úroveň 3, jantarová #8A5A28 (dřív šedá a nenakoupitelná). Stav zobrazuje očekávané datum naskladnění a mikrocopy „Můžete koupit teď — odešleme hned po naskladnění.“ Tlačítko Do košíku zůstává aktivní v kartě, detailu i buy baru. Skutečně nedostupné zboží se přesunulo do nové úrovně 4 „Nyní nedostupné“, kde se nabízí hlídací pes.'],
+    ['C5', 'Prověřit kontrast a nebarevné odlišení stavů', 'Barvy stavů ověřit na AA kontrast na bílé i krémové ploše a doplnit ikonu / text, aby stav nebyl čitelný jen barvou (barvoslepost, tisk).', ['uprava','ds'],
+      'Všech pět odstínů splňuje AA na bílé i na krémové #F6F1E7 (nejnižší hodnota 4,8:1 na krémové u olivové). Kvůli tomu se olivová i šedá o něco ztmavily. Stav vždy nese ikonu a text, barva je jen doplněk — čitelné i černobíle a při barvosleposti; pilulka má navíc obrys, ne jen podbarvení. Kontrastní hodnoty jsou vypsané v tabulce škály v design systému.'],
+  ]},
+  { id: 'D', title: 'D. Hodnocení', note: 'částečné hvězdy', tasks: [
+    ['D1', 'Hvězdy s částečným výplňem', 'Přepracovat komponentu tak, aby 4,75 znamenalo čtyři plné hvězdy a pátou vyplněnou ze tří čtvrtin — plocha vyplněná hodnoticí barvou, ne naznačená dělící čárkou. Přesnost na procenta, ne na půlky.', ['komponenta','uprava'],
+      'Každá hvězda je teď dvouvrstvá: spodní v tlumené zlaté (celý rozsah zůstává vidět) a přes ni plná zlatá výseč odstřižená na procenta. 4,75 tedy dá čtyři plné hvězdy a pátou vyplněnou ze tří čtvrtin, 4,2 pátou z jedné pětiny — dělící čárky ani půlhvězdy se už nepoužívají. Ukázka celé škály (5 / 4,75 / 4,5 / 4,2 / 3,2 / bez hodnocení) je v design systému.'],
+    ['D2', 'Sjednotit hodnocení ve všech výskytech', 'Stejná komponenta a stejný zápis (4,75 · 128 hodnocení) na kartě produktu, detailu, v recenzích, u receptů a v odznacích Heureka / Google v patičce.', ['uprava'],
+      'Zápis je jeden: hvězdy · hodnota · počet hodnocení, tedy „4,75 · 128 hodnocení“. Komponenta ui-Rating je nasazená všude — karta produktu, karta v megamenu, detail produktu, souhrn recenzí, jednotlivé recenze, recenzní blok a souhrn na homepage i odznaky Heureka a Google v patičce; ruční kreslení hvězd v index.html a v patičce zmizelo. Části zápisu lze vypnout tam, kde je hodnota vypsaná vedle (souhrn) nebo kde jde jen o vizuální signál (jednotlivá recenze, odznaky) — pořadí a barvy zůstávají stejné, na tmavé ploše se hvězdy přebarví na světlejší zlatou #F5C63C.'],
+  ]},
+  { id: 'E', title: 'E. Homepage', note: 'bannery, video, komunitní dílna', tasks: [
+    ['E1', 'Varianta jednoho banneru přes celou šířku', 'Doplnit k současnému rozložení variantu s jedním bannerem na plnou šířku (desktop i mobil), včetně pravidel pro text a CTA v ploše. Obě varianty ukázat v design systému jako přepínatelné.', ['uprava','ds'],
+      'Na homepage je dole plovoucí lišta „Hero: V1 / V2“, kterou se varianty přepínají přímo na živé stránce; volba se pamatuje mezi návštěvami. V1 je stávající mozaika čtyř karet. V2 je jeden banner na plnou šířku obsahu (1400 px, výška 520 px): fotka s tmavým přechodem zleva, kicker, claim „Důvod, proč tvořit.“ v EB Garamond 60 px, perex, terrakotové CTA vedle tlačítka Přehrát video, pod tím hodnocení 4,9 · 2 418 hodnocení a doprava zdarma; vpravo tři prosklené rozcestníky (Co vyrábět, Receptář, Věrnostní program). Na tabletu se sloupce skládají pod sebe, na mobilu se zmenšuje claim i perex a lišta přepínače se roztáhne přes celou šířku. Text v ploše drží pravidlo maximálně 44–52 znaků na řádek a leží vždy v nejtmavší části přechodu, aby zůstal čitelný. V obou variantách běží na pozadí videosmyčka a tlačítko otevírá lightbox — podrobnosti v bodu E2. Zbývá obě varianty přenést do design systému jako přepínatelnou ukázku.'],
+    ['E2', 'Automatické spuštění videa po načtení', 'Ano, jde to — s podmínkami: video musí být bez zvuku (muted), smyčka, playsinline, s posterem pro pomalé připojení a s respektem k „prefers-reduced-motion“. Doplnit tlačítko zvuku a pauzy.', ['odpoved','tech'],
+      'Nasazeno v obou variantách hero sekce. Krátká smyčka (assets/hero/hero-loop.mp4) běží automaticky na pozadí — v V2 přes celý banner, v V1 v prvním velkém banneru mozaiky. Vždy bez zvuku, ve smyčce, playsinline a s fotkou jako posterem, takže na pomalém připojení i před načtením je vidět obrázek. Zvuk je vypnutý nejen atributem, ale i přímo na elementu (muted, defaultMuted, volume 0), aby ho prohlížeč nemohl zapnout. Při „prefers-reduced-motion“ se video nepouští vůbec a zůstává fotka; na displejích do 600 px se v V2 kvůli datům také nespouští. Zvuk uslyšíte až po vlastním kliknutí: tlačítko „Přehrát celé video“ v V2 a pilulka „Přehrát video“ na prvním banneru V1 otevřou lightbox s celým videem z YouTube (se zvukem a ovládáním, zavření křížkem, kliknutím na pozadí nebo klávesou Esc). Po otevření lightboxu se smyčka na pozadí zastaví, aby neběžela dvě videa současně. Odkaz na video je v kódu na jednom místě, takže jeho výměna je otázka jednoho řádku, a v lightboxu je pro jistotu i odkaz „Otevřít na YouTube“. Do produkce doporučujeme smyčku ještě zkomprimovat (ideálně do 2–3 MB) a doplnit WebM variantu.'],
+    ['E3', 'Nový blok „Z komunitní dílny“', 'Galerie výrobků zákazníků (mřížka fotek s krátkým popisem a jménem) plus výzva „Chcete tu být taky? Pošlete nám svůj výrobek.“ s odkazem na formulář nebo e-mail. Řešit i stav s malým počtem fotek.', ['nova','komponenta']],
+    ['E4', 'Podklady pro komunitní dílnu a karusely', 'Potřebujeme reálné fotky zákaznických výrobků (ideálně 8–12), UGC příspěvky z Instagramu a finální produktové fotky do karuselů.', ['podklad']],
+  ]},
+  { id: 'F', title: 'F. Detail produktu', note: '', tasks: [
+    ['F1', 'Pravý sloupec s přepínáním obsahu', 'Vedle produktového popisu jeden sloupec s přepínáním mezi Parametry / Dokumentace / Recepty s touto surovinou. Na mobilu jako sbalitelné sekce pod popisem, s pořadím podle důležitosti.', ['uprava','komponenta']],
+    ['F2', 'Hlídací pes — upozornit na naskladnění', 'U nedostupných stavů blok s e-mailem (u přihlášených předvyplněný), potvrzením „budeme hlídat“ a přehledem hlídaných produktů v zákaznické zóně. Doplnit i do buy baru.', ['nova','komponenta']],
+    ['F3', 'Vzorový produktový obsah a definice bloků', 'Podle vzorového obsahu definujeme všechny bloky, které se mohou v popisu objevit (perex, tabulka, upozornění, návod krok za krokem, citace, video, galerie, odkaz na recept) a nastylujeme je v design systému.', ['podklad','ds']],
+    ['F4', 'Dořešit grafické prvky a listy v produktovém obsahu', 'Čekáme na vaši zpětnou vazbu k použitým grafickým prvkům; podle ní upravíme jejich sadu a pravidla použití.', ['podklad']],
+  ]},
+  { id: 'G', title: 'G. Receptář a propojení surovin', note: 'grafiku dodat co nejdřív — kvůli úlohám 157151 a 154436', tasks: [
+    ['G1', 'Receptář — přehled', 'Rozcestník receptů: filtry (kategorie, obtížnost, čas, surovina), řazení, karta receptu s hodnocením a klíčovými surovinami, prázdný stav.', ['nova']],
+    ['G2', 'Detail receptu', 'Struktura: úvod a fotka, suroviny s přímou návazností na produkty (včetně množství a ceny), postup po krocích, tipy, varianty, hodnocení a komentáře, související recepty. Plus akce „vložit všechny suroviny do košíku“ s řešením chybějících položek.', ['nova']],
+    ['G3', 'Vyhledávání receptů podle suroviny', 'Ano — po propojení surovina ⇄ produkt půjde hledat „mandlový olej“ a zobrazit recepty, kde se používá. Navrhnout napovídání ve vyhledávacím poli a vstup z detailu produktu.', ['odpoved','nova']],
+    ['G4', 'Hledání podle více surovin současně', 'Ano, jde to. UI: suroviny jako chipy („mám doma…“), přepínač „obsahuje všechny / alespoň jednu“, řazení podle míry pokrytí a označení „chybí 1 surovina“ s možností ji doplnit do košíku.', ['odpoved','nova']],
+    ['G5', 'Předat grafiku receptů vývoji jako první balík', 'Uzavřít G1–G4 dřív než zbytek, aby mohla naběhnout implementace úloh 157151 (předělání funkčnosti receptů) a 154436 (svázání surovin z receptu s produktem).', ['tech']],
+  ]},
+  { id: 'H', title: 'H. Zákaznická zóna', note: 'mini dashboard + podstránky', tasks: [
+    ['H1', 'Mini dashboard po přihlášení', 'Věrnostní úroveň a postup do další, poslední objednávky a faktury, oblíbené produkty a recepty, uložené košíky, dříve nakoupené produkty, čekající hodnocení. Modulární rozvržení, aby šlo bloky přidávat.', ['nova']],
+    ['H2', 'Horní lišta pro přihlášeného zákazníka', 'Jméno, věrnostní úroveň (a kolik chybí do další) a stav poslední objednávky přímo v liště, s rozbalovacím menu zóny. Mobilní varianta zkrácená.', ['uprava','komponenta']],
+    ['H3', 'Podstránky: objednávky, detail objednávky, faktury', 'Seznam objednávek se stavy, detail s položkami, dopravou a možností reklamace či opakování nákupu, stahování faktur.', ['nova']],
+    ['H4', 'Podstránky: oblíbené, uložené košíky, dříve nakoupené, hodnocení', 'Oblíbené produkty i recepty odděleně, uložené košíky s přejmenováním a obnovením, historie nakoupených produktů s rychlým doplněním, moje hodnocení a výzvy k hodnocení.', ['nova']],
+    ['H5', 'Přihlášení, registrace, obnova hesla', 'Sjednotit s existujícím přihlašovacím panelem: registrace s vysvětlením výhod (věrnostní program, oblíbené), obnova hesla, chybové a potvrzovací stavy.', ['nova','komponenta']],
+  ]},
+  { id: 'I', title: 'I. Košík a vložení do košíku', note: '', tasks: [
+    ['I1', 'Potvrzovací panel po vložení do košíku', 'Jasné potvrzení přidané položky (fotka, varianta, množství, cena), volby „Pokračovat v nákupu“ a „Přejít do košíku“, k tomu související produkty a doplňky. Řešit i chování při přidání z karuselu a z receptu.', ['nova','komponenta']],
+    ['I2', 'Stránka košíku', 'Rekapitulace položek s úpravou množství a variant, doprava a platba v souhrnu, věrnostní bonus či dárek, uložení košíku, prázdný stav s návaznostmi na recepty.', ['nova']],
+    ['I3', 'Ověřit rozsah pokladny', 'Domluvit, zda do předání patří i samotná pokladna (kroky, doprava, platba, souhrn, potvrzení) — pokud ano, doplníme jako samostatný balík.', ['odpoved']],
+  ]},
+  { id: 'J', title: 'J. Oblíbené — objevitelnost', note: 'jemně, nerušivě', tasks: [
+    ['J1', 'Jemná animace srdíčka', 'Občasné, nenápadné pulznutí srdíčka (jednou za návštěvu, ne u každé karty), s respektem k „prefers-reduced-motion“ a bez pohybu při skrolování.', ['uprava','komponenta']],
+    ['J2', 'Vysvětlující tooltip při delším podržení kurzoru', 'Po ~600 ms krátký text: k čemu oblíbené slouží a že přihlášenému zůstanou i příště. Na mobilu ekvivalent jako jednorázový tip.', ['uprava','komponenta']],
+    ['J3', 'Chování oblíbených pro nepřihlášené', 'Ukládat lokálně a po přihlášení přenést do účtu; návazně na to formulovat pobídku k přihlášení bez tlaku.', ['uprava','tech']],
+  ]},
+  { id: 'K', title: 'K. Kategorie a podkategorie', note: 'nejprve rozcestník, pak revize dlaždic', tasks: [
+    ['K1', 'Kategorie jako rozcestník', 'Doplnit obsahové bloky: úvodní vysvětlení, doporučené produkty, recepty s těmito surovinami, návody, časté dotazy. Aby stránka nebyla jen výpis produktů.', ['uprava','nova']],
+    ['K2', 'Až poté revize zobrazení podkategorií', 'Po dodělání rozcestníku znovu vyhodnotit dlaždice podkategorií — je možné, že současná jednodušší podoba bude stránku doplňovat dobře. Rozhodnout na hotovém rozcestníku, ne teď.', ['uprava']],
+  ]},
+  { id: 'L', title: 'L. Konzistence a předání', note: 'aby nezůstala nedodělaná místa', tasks: [
+    ['L1', 'Projít zbývající stránky webu', 'Suroviny, Obaly, Výroba / návody, kontakt, obchodní podmínky a další statické stránky — sjednotit rozvržení, typografii, bloky a odkazy na zbytek webu.', ['uprava']],
+    ['L2', 'Doplnit chybějící podklady', 'Produktové fotky do karuselů a galerií, ikona pro podkategorii „Pro psy“ (nyní zástupná), reálné počty a hodnocení Heureka a Google, reálné recepty.', ['podklad']],
+    ['L3', 'Kontrola konzistence napříč webem před předáním', 'Jeden průchod všemi obrazovkami: stavy skladu, hodnocení, tlačítka, odsazení, mikrocopy podle tone of voice, mobilní rozvržení od 290 px, kontrasty AA.', ['uprava']],
+    ['L4', 'Balík pro předání vývoji', 'Přehled obrazovek, komponent a jejich stavů, pravidla použití a poznámky k chování — tak, aby šlo implementovat bez dohadování.', ['tech','ds']],
+  ]},
+];
+
+const PRIO_COLORS = { 1: ['#D14405', 'rgba(209,68,5,.10)'], 2: ['#B8862B', 'rgba(184,134,43,.12)'], 3: ['#6E9134', 'rgba(123,162,63,.14)'] };
+const KEY = 'ekokoza-ukolovnik-v1';
+
+class Component extends DCLogic {
+  state = { prio: {}, done: {} };
+
+  componentDidMount() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) {
+        const s = JSON.parse(raw);
+        this.setState({ prio: s.prio || {}, done: s.done || {} });
+      }
+    } catch (e) {}
+  }
+
+  persist(next) {
+    try { localStorage.setItem(KEY, JSON.stringify(next)); } catch (e) {}
+  }
+
+  setPrio(id, p) {
+    this.setState(s => {
+      const prio = Object.assign({}, s.prio);
+      if (prio[id] === p) delete prio[id]; else prio[id] = p;
+      const next = { prio, done: s.done };
+      this.persist(next);
+      return next;
+    });
+  }
+
+  toggleDone(id) {
+    this.setState(s => {
+      const done = Object.assign({}, s.done);
+      if (done[id]) delete done[id]; else done[id] = true;
+      const next = { prio: s.prio, done };
+      this.persist(next);
+      return next;
+    });
+  }
+
+  prioBtn(id, p, active) {
+    const c = PRIO_COLORS[p];
+    return 'font:700 12px/1 \'Work Sans\',sans-serif;border-radius:9px;padding:8px 9px;min-width:34px;min-height:32px;cursor:pointer;transition:all .12s ease;'
+      + (active
+        ? 'color:' + c[0] + ';background:' + c[1] + ';border:1px solid ' + c[0] + ';'
+        : 'color:#8A9682;background:transparent;border:1px solid rgba(76,101,61,.2);');
+  }
+
+  renderVals() {
+    const { prio, done } = this.state;
+    let total = 0, p1 = 0, p2 = 0, p3 = 0, d = 0, review = 0;
+    const badge = (label, color, bg) => 'font:700 10.5px/1 \'Work Sans\',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:' + color + ';background:' + bg + ';border:1px solid ' + color + ';border-radius:999px;padding:5px 9px;white-space:nowrap';
+
+    const sections = SECTIONS.map(sec => ({
+      title: sec.title,
+      note: sec.note,
+      tasks: sec.tasks.map(([id, title, detail, tags, solution]) => {
+        total++;
+        const p = prio[id];
+        if (p === 1) p1++; if (p === 2) p2++; if (p === 3) p3++;
+        const isDone = !!done[id];
+        if (isDone) d++;
+        if (solution && !isDone) review++;
+        return {
+          id, title, detail,
+          solution: solution || '', hasSolution: !!solution,
+          hasStatus: !!solution,
+          statusLabel: isDone ? 'Schváleno' : 'Ke schválení',
+          statusStyle: isDone
+            ? badge('Schváleno', '#4C653D', 'rgba(76,101,61,.10)')
+            : badge('Ke schválení', '#3C5B86', 'rgba(94,131,190,.12)'),
+          tags: tags.map(k => {
+            const t = TAGS[k];
+            return { label: t[0], style: 'font:600 11px/1 \'Work Sans\',sans-serif;letter-spacing:.04em;text-transform:uppercase;color:' + t[1] + ';background:' + t[2] + ';border-radius:999px;padding:5px 8px;white-space:nowrap' };
+          }),
+          titleStyle: 'font:600 15.5px/1.4 \'Work Sans\',sans-serif;color:#2D3A2E;' + (isDone ? 'text-decoration:line-through;opacity:.5;' : ''),
+          boxStyle: 'width:26px;height:26px;border-radius:8px;cursor:pointer;display:grid;place-items:center;padding:0;font:700 14px/1 \'Work Sans\',sans-serif;'
+            + (isDone ? 'background:#4C653D;border:1.5px solid #4C653D;color:#F6F1E7;' : 'background:#fff;border:1.5px solid rgba(76,101,61,.3);color:transparent;'),
+          toggle: () => this.toggleDone(id),
+          setP1: () => this.setPrio(id, 1),
+          setP2: () => this.setPrio(id, 2),
+          setP3: () => this.setPrio(id, 3),
+          p1Style: this.prioBtn(id, 1, p === 1),
+          p2Style: this.prioBtn(id, 2, p === 2),
+          p3Style: this.prioBtn(id, 3, p === 3),
+        };
+      }),
+    }));
+
+    return {
+      sections,
+      totalCount: total, p1Count: p1, p2Count: p2, p3Count: p3, doneCount: d, reviewCount: review,
+      reset: () => { try { localStorage.removeItem(KEY); } catch (e) {} this.setState({ prio: {}, done: {} }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -9,11 +9,11 @@
 <x-dc>
 <helmet>
 <style>
-  .ek-atc-b { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; padding: 0 30px; font-family: 'Hanken Grotesk',sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+  .ek-atc-b { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; padding: 0 30px; font-family: 'Work Sans',sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
   .ek-atc-b:hover { background: #B23803 !important; border-color: #B23803 !important; }
 </style>
 </helmet>
-<div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; font-family:'Hanken Grotesk',sans-serif;">
+<div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; font-family:'Work Sans',sans-serif;">
   <dc-import name="ui-QtyStepper" value="{{ qty }}" min="{{ 1 }}" max="{{ max }}" height="{{ height }}" onChange="{{ onQty }}" hint-size="150px,54px"></dc-import>
   <button onClick="{{ add }}" class="ek-atc-b" style="{{ btnStyle }}"><span style="{{ icon }}"></span>{{ label }}</button>
 </div>

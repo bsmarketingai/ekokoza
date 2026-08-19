@@ -7,7 +7,7 @@
 </head>
 <body>
 <x-dc>
-<a href="{{ href }}" class="ek-card" style="display:flex; align-items:center; gap:14px; padding:12px 16px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; text-decoration:none; color:#2A2A24; transition:transform .25s, box-shadow .25s; font-family:'Hanken Grotesk',sans-serif;">
+<a href="{{ href }}" class="ek-card" style="display:flex; align-items:center; gap:14px; padding:12px 16px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; text-decoration:none; color:#2A2A24; transition:transform .25s, box-shadow .25s; font-family:'Work Sans',sans-serif;">
   <span style="{{ thumbStyle }}">
     <span style="{{ imgStyle }}"></span>
   </span>
@@ -18,7 +18,7 @@
 class Component extends DCLogic {
   renderVals() {
     const icon = this.props.icon ?? '';
-    const iconColor = this.props.iconColor ?? '#3B5531';
+    const iconColor = this.props.iconColor ?? '#4C653D';
     return {
       title: this.props.title ?? 'Oleje',
       thumbStyle: 'width:56px; height:56px; flex-shrink:0; border-radius:12px; background:' + (icon ? '#F4F7EA' : '#F6F1E7') + '; overflow:hidden; display:flex; align-items:center; justify-content:center;',

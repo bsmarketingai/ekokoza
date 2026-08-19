@@ -43,14 +43,14 @@ class Component extends DCLogic {
     const max = Number(this.props.max ?? 99);
     const qty = this.state.qty ?? Number(this.props.value ?? min);
     return {
-      wrapStyle: "display:inline-flex; align-items:stretch; height:" + Number(this.props.height ?? 48) + "px; border:1.5px solid #CFC4AA; border-radius:999px; background:#fff; overflow:hidden; font-family:'Hanken Grotesk',sans-serif;",
+      wrapStyle: "display:inline-flex; align-items:stretch; height:" + Number(this.props.height ?? 48) + "px; border:1.5px solid #CFC4AA; border-radius:999px; background:#fff; overflow:hidden; font-family:'Work Sans',sans-serif;",
       qty,
       atMin: qty <= min,
       atMax: qty >= max,
       dec: () => this.set(qty - 1),
       inc: () => this.set(qty + 1),
-      iconMinus: this.mask('minus-sign', 24, '#3B5531'),
-      iconPlus: this.mask('plus-sign', 24, '#3B5531'),
+      iconMinus: this.mask('minus-sign', 24, '#4C653D'),
+      iconPlus: this.mask('plus-sign', 24, '#4C653D'),
     };
   }
 }

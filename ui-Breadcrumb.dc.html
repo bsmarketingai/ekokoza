@@ -15,14 +15,14 @@
   .ek-bc-h:hover span { background-color: #B23803 !important; }
 </style>
 </helmet>
-<nav aria-label="Kde se nacházíte" style="display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-family:'Hanken Grotesk',sans-serif; font-size:13.5px; line-height:1.4; color:#6B6B5E;">
+<nav aria-label="Kde se nacházíte" style="display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-family:'Work Sans',sans-serif; font-size:13.5px; line-height:1.4; color:#6B6B5E;">
   <sc-for list="{{ crumbs }}" as="c" hint-placeholder-count="4">
     <span style="display:flex; align-items:center; gap:8px; min-width:0;">
       <sc-if value="{{ c.isHome }}" hint-placeholder-val="{{ false }}">
         <a href="{{ c.href }}" title="{{ c.label }}" aria-label="{{ c.label }}" class="ek-bc-h" style="display:flex; align-items:center;"><span style="{{ c.icon }}"></span></a>
       </sc-if>
       <sc-if value="{{ c.isLink }}" hint-placeholder-val="{{ true }}">
-        <a href="{{ c.href }}" class="ek-bc-l" style="color:#3B5531; text-decoration:none;">{{ c.label }}</a>
+        <a href="{{ c.href }}" class="ek-bc-l" style="color:#4C653D; text-decoration:none;">{{ c.label }}</a>
       </sc-if>
       <sc-if value="{{ c.isLast }}" hint-placeholder-val="{{ false }}">
         <span style="color:#6B6B5E; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ c.label }}</span>
@@ -50,7 +50,7 @@ class Component extends DCLogic {
         return {
           label: it.label, href: it.href ?? '#',
           isHome: home, isLink: !last && !home, isLast: last, sep: !last,
-          icon: 'display:inline-block; width:18px; height:18px; flex:0 0 auto; background-color:#3B5531; -webkit-mask:url("assets/icons/home-01.svg") center / contain no-repeat; mask:url("assets/icons/home-01.svg") center / contain no-repeat;',
+          icon: 'display:inline-block; width:18px; height:18px; flex:0 0 auto; background-color:#4C653D; -webkit-mask:url("assets/icons/home-01.svg") center / contain no-repeat; mask:url("assets/icons/home-01.svg") center / contain no-repeat;',
         };
       }),
     };

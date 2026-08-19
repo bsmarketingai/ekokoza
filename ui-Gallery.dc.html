@@ -11,10 +11,10 @@
 <style>
   .ek-g-main { border: none; padding: 0; cursor: zoom-in; display: block; width: 100%; }
   .ek-g-th { border: 1.5px solid #ECE3D2; padding: 0; cursor: pointer; border-radius: 10px; transition: border-color .2s, transform .2s; }
-  .ek-g-th:hover { border-color: #4C643C; transform: translateY(-2px); }
+  .ek-g-th:hover { border-color: #4C653D; transform: translateY(-2px); }
 </style>
 </helmet>
-<div style="display:flex; flex-direction:column; gap:14px; font-family:'Hanken Grotesk',sans-serif;">
+<div style="display:flex; flex-direction:column; gap:14px; font-family:'Work Sans',sans-serif;">
   <div style="position:relative; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; background:#fff;">
     <button onClick="{{ openZoom }}" class="ek-g-main" title="Zvětšit fotografii" style="{{ mainStyle }}"></button>
     <span style="position:absolute; top:16px; left:16px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; z-index:2; pointer-events:none;">
@@ -22,7 +22,7 @@
         <dc-import name="ui-Badge" variant="{{ b.variant }}" label="{{ b.label }}" hint-size="100px,26px"></dc-import>
       </sc-for>
     </span>
-    <span aria-hidden="true" style="position:absolute; right:14px; bottom:14px; display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.94); border:1px solid #ECE3D2; border-radius:999px; padding:8px 14px; font-size:12.5px; font-weight:600; color:#3B5531; pointer-events:none;"><span style="{{ iconZoom }}"></span>Zvětšit</span>
+    <span aria-hidden="true" style="position:absolute; right:14px; bottom:14px; display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.94); border:1px solid #ECE3D2; border-radius:999px; padding:8px 14px; font-size:12.5px; font-weight:600; color:#4C653D; pointer-events:none;"><span style="{{ iconZoom }}"></span>Zvětšit</span>
   </div>
 
   <div style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -80,9 +80,9 @@ class Component extends DCLogic {
         alt: im.alt || '',
         select: () => this.setState({ i: idx }),
         style: 'width:78px; height:78px; background:#fff center/contain no-repeat; background-image:url("' + url(im.src) + '");'
-          + (idx === i ? ' border-color:#4C643C; box-shadow:0 0 0 2px rgba(76,100,60,.22);' : ''),
+          + (idx === i ? ' border-color:#4C653D; box-shadow:0 0 0 2px rgba(76,101,61,.22);' : ''),
       })),
-      iconZoom: this.mask('search-01', 24, '#3B5531'),
+      iconZoom: this.mask('search-01', 24, '#4C653D'),
       iconClose: this.mask('cancel-01', 24, '#F6F1E7'),
     };
   }

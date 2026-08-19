@@ -10,13 +10,13 @@
 <helmet>
 <style>
   .ek-var { border: 1.5px solid #E2D9C4; background: #fff; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; cursor: pointer; text-align: left; transition: border-color .2s, background .2s, box-shadow .2s; }
-  .ek-var:hover { border-color: #4C643C; background: #FDFBF5; }
-  .ek-var-on { border-color: #4C643C !important; background: #F4F7EA !important; box-shadow: 0 0 0 2px rgba(76,100,60,.16); }
-  .ek-var-more { border: none; background: transparent; color: #3B5531; font-family: 'Hanken Grotesk',sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; padding: 4px 0; align-self: flex-start; }
+  .ek-var:hover { border-color: #4C653D; background: #FDFBF5; }
+  .ek-var-on { border-color: #4C653D !important; background: #F4F7EA !important; box-shadow: 0 0 0 2px rgba(76,101,61,.16); }
+  .ek-var-more { border: none; background: transparent; color: #4C653D; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; padding: 4px 0; align-self: flex-start; }
   .ek-var-more:hover { color: #B23803; }
 </style>
 </helmet>
-<div style="display:flex; flex-direction:column; gap:11px; font-family:'Hanken Grotesk',sans-serif;">
+<div style="display:flex; flex-direction:column; gap:11px; font-family:'Work Sans',sans-serif;">
   <sc-if value="{{ hasHeading }}" hint-placeholder-val="{{ true }}">
     <span style="font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">{{ heading }}</span>
   </sc-if>
@@ -25,7 +25,7 @@
       <button onClick="{{ v.select }}" class="{{ v.cls }}">
         <span style="display:flex; flex-direction:column; gap:5px; align-items:flex-start; min-width:0;">
           <span style="{{ v.labelStyle }}">{{ v.label }}</span>
-          <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" size="{{ 12.5 }}" hint-size="150px,18px"></dc-import>
+          <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" withNote="{{ true }}" noteFocusable="{{ false }}" size="{{ 12.5 }}" hint-size="150px,18px"></dc-import>
         </span>
         <span style="display:flex; align-items:center; gap:12px; flex:0 0 auto;">
           <span style="{{ v.priceStyle }}">{{ v.price }}</span>
@@ -77,9 +77,9 @@ class Component extends DCLogic {
           date: v.date ?? '',
           cls: on ? 'ek-var ek-var-on' : 'ek-var',
           labelStyle: 'font-size:16px; font-weight:' + (on ? '700' : '600') + '; color:#2A2A24;',
-          priceStyle: "font-family:'Spectral',serif; font-size:18px; font-weight:500; color:#3B5531; white-space:nowrap;",
+          priceStyle: "font-family:'EB Garamond',serif; font-size:18px; font-weight:500; color:#4C653D; white-space:nowrap;",
           tick: on
-            ? this.mask('checkmark-circle-01', 24, '#4C643C')
+            ? this.mask('checkmark-circle-01', 24, '#4C653D')
             : 'display:inline-block; width:24px; height:24px; flex:0 0 auto; border-radius:50%; border:1.5px solid #D8CDB4;',
           select: () => {
             this.setState({ sel: i });

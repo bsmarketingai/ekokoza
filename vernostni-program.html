@@ -10,23 +10,24 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; }
   ::selection { background: #D14405; color: #fff; }
-  a { color: #3B5531; }
+  a { color: #4C653D; }
   a:hover { color: #B23803; }
   .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
   .ek-link-u:hover { background-size: 100% 1.5px; }
   .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-onDark:hover { background: #EDE4D0 !important; border-color: #EDE4D0 !important; }
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
-  .ek-btn-secondary:hover { background: #3B5531 !important; color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
-  .ek-bot { opacity: .95; filter: drop-shadow(0 10px 14px rgba(59,85,49,.28)); }
+  .ek-bot { opacity: .95; filter: drop-shadow(0 10px 14px rgba(76,101,61,.28)); }
   .ek-tear { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: 0; pointer-events: none; box-shadow: inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); clip-path: polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 9.9px, 15.22% 13.6px, 17.39% 7.4px, 19.57% 11.2px, 21.74% 6.1px, 23.91% 10.4px, 26.09% 14.2px, 28.26% 8.1px, 30.43% 4.7px, 32.61% 9.3px, 34.78% 12.8px, 36.96% 6.8px, 39.13% 10.9px, 41.3% 5.2px, 43.48% 13.1px, 45.65% 8.6px, 47.83% 11.7px, 50% 6.4px, 52.17% 9.8px, 54.35% 14.4px, 56.52% 7.9px, 58.7% 11.4px, 60.87% 5.7px, 63.04% 10.2px, 65.22% 13.3px, 67.39% 8.4px, 69.57% 4.9px, 71.74% 12.1px, 73.91% 7.2px, 76.09% 10.7px, 78.26% 14.1px, 80.43% 6.6px, 82.61% 11.9px, 84.78% 8.8px, 86.96% 5.1px, 89.13% 12.6px, 91.3% 9.1px, 93.48% 13.8px, 95.65% 7.7px, 97.83% 10.3px, 100% 5.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 11.1px), 95.65% calc(100% - 7.6px), 93.48% calc(100% - 13.4px), 91.3% calc(100% - 9.2px), 89.13% calc(100% - 5.3px), 86.96% calc(100% - 12.2px), 84.78% calc(100% - 8.7px), 82.61% calc(100% - 11.6px), 80.43% calc(100% - 6.1px), 78.26% calc(100% - 14.3px), 76.09% calc(100% - 9.6px), 73.91% calc(100% - 12.9px), 71.74% calc(100% - 7.1px), 69.57% calc(100% - 10.8px), 67.39% calc(100% - 4.8px), 65.22% calc(100% - 13.7px), 63.04% calc(100% - 8.2px), 60.87% calc(100% - 11.3px), 58.7% calc(100% - 6.7px), 56.52% calc(100% - 10.1px), 54.35% calc(100% - 14.6px), 52.17% calc(100% - 9.4px), 50% calc(100% - 5.6px), 47.83% calc(100% - 12.4px), 45.65% calc(100% - 8.9px), 43.48% calc(100% - 11.8px), 41.3% calc(100% - 6.9px), 39.13% calc(100% - 13.2px), 36.96% calc(100% - 9.7px), 34.78% calc(100% - 5.2px), 32.61% calc(100% - 12.7px), 30.43% calc(100% - 8.3px), 28.26% calc(100% - 11.5px), 26.09% calc(100% - 7.3px), 23.91% calc(100% - 14.5px), 21.74% calc(100% - 9.9px), 19.57% calc(100% - 6.2px), 17.39% calc(100% - 12.8px), 15.22% calc(100% - 8.5px), 13.04% calc(100% - 11.2px), 10.87% calc(100% - 5.8px), 8.7% calc(100% - 13.9px), 6.52% calc(100% - 9.3px), 4.35% calc(100% - 6.4px), 2.17% calc(100% - 12.3px), 0% calc(100% - 8.6px)); }
-  .ek-h1 { font-family: 'Spectral',serif; font-weight: 400; font-size: 52px; line-height: 1.08; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-h2 { font-family: 'Spectral',serif; font-weight: 400; font-size: 34px; line-height: 1.15; color: #2D3A2E; margin: 0 0 14px; text-wrap: pretty; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 52px; line-height: 1.08; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 34px; line-height: 1.15; color: #2D3A2E; margin: 0 0 14px; text-wrap: pretty; }
   .ek-p { margin: 0 0 16px; font-size: 17px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-eyebrow { margin: 0 0 10px; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
   .ek-ico { display: inline-block; background-color: #4F6E2A; }
@@ -51,7 +52,7 @@
 </style>
 </helmet>
 
-<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Hanken Grotesk',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
   <dc-import name="ui-Header" active="vernost" hint-size="100%,140px"></dc-import>
 
@@ -61,19 +62,19 @@
   <section style="padding:26px 32px 0;" class="ek-pad">
     <div style="max-width:1080px; margin:0 auto;">
       <nav style="display:flex; align-items:center; gap:8px; font-size:13.5px; color:#6B6B5E; margin-bottom:26px;">
-        <a href="index.html" class="ek-link-u" style="color:#3B5531; text-decoration:none;">Úvod</a>
+        <a href="index.html" class="ek-link-u" style="color:#4C653D; text-decoration:none;">Úvod</a>
         <span style="opacity:.5;">›</span>
         <span>Věrnostní program</span>
       </nav>
       <div class="ek-hero" style="display:flex; align-items:flex-start; justify-content:space-between; gap:44px;">
         <div style="max-width:74ch;">
           <p class="ek-eyebrow">Věrnostní program · férové ceny bez slevových honů</p>
-          <h1 class="ek-h1">Čím více u nás tvoříte,<br><em style="font-style:italic; color:#3B5531;">tím lepší ceny máte.</em></h1>
+          <h1 class="ek-h1">Čím více u nás tvoříte,<br><em style="font-style:italic; color:#4C653D;">tím lepší ceny máte.</em></h1>
           <p class="ek-p" style="margin-top:22px; font-size:19px;">Chceme být fér. Když u nás nakupujete pravidelně nebo ve větším množství, můžeme vám nabídnout lepší ceny — a také to uděláme. Vaše uhrazené objednávky vždy vyhodnotíme za celé čtvrtletí a podle výsledku vám automaticky nastavíme ceny pro čtvrtletí následující. <strong style="color:#2D3A2E;">Bez kuponů, bez žádostí a bez složitého hlídání podmínek.</strong></p>
         </div>
         <img src="assets/vernostni-emblem.png" alt="" class="ek-hero-emblem ek-bot" style="width:230px; flex-shrink:0; transform:rotate(5deg);">
       </div>
-      <blockquote style="margin:34px 0 0; padding:0 0 0 22px; border-left:3px solid #7BA23F; font-family:'Spectral',serif; font-size:22px; line-height:1.5; color:#2D3A2E; text-wrap:pretty; max-width:80ch;">Vaše objednávky počítáme za vás. Před koncem čtvrtletí vám dáme vědět, jak si stojíte, a po jeho skončení vám podle celkového obratu nastavíme skupinu pro další čtvrtletí.</blockquote>
+      <blockquote style="margin:34px 0 0; padding:0 0 0 22px; border-left:3px solid #7BA23F; font-family:'EB Garamond',serif; font-size:22px; line-height:1.5; color:#2D3A2E; text-wrap:pretty; max-width:80ch;">Vaše objednávky počítáme za vás. Před koncem čtvrtletí vám dáme vědět, jak si stojíte, a po jeho skončení vám podle celkového obratu nastavíme skupinu pro další čtvrtletí.</blockquote>
     </div>
   </section>
 
@@ -86,25 +87,25 @@
         <h2 class="ek-h2">Čím více toho u nás najdete, tím lepší cenu získáte.</h2>
         <p class="ek-p" style="max-width:74ch; margin-bottom:34px;">Do věrnostní skupiny vás zařadíme podle součtu včas uhrazených objednávek za celé čtvrtletí. Čím více surovin, obalů a pomůcek pořídíte na jednom místě, tím výhodnější ceny můžete získat pro čtvrtletí následující.</p>
         <div class="ek-thirds" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px;">
-        <div class="ek-tier" style="background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:30px 30px 32px; display:flex; flex-direction:column;">
-          <p style="margin:0 0 14px; font-family:'Spectral',serif; font-size:17px; color:#4F6E2A;">01</p>
-          <p style="margin:0 0 6px; font-family:'Spectral',serif; font-size:24px; color:#2D3A2E; line-height:1.2;">Ekokozí fanoušek</p>
+        <div class="ek-tier" style="background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:30px 30px 32px; display:flex; flex-direction:column;">
+          <p style="margin:0 0 14px; font-family:'EB Garamond',serif; font-size:17px; color:#4F6E2A;">01</p>
+          <p style="margin:0 0 6px; font-family:'EB Garamond',serif; font-size:24px; color:#2D3A2E; line-height:1.2;">Ekokozí fanoušek</p>
           <p style="margin:0 0 22px; font-size:14.5px; color:#6B6B5E;">Čtvrtletní obrat 5 000–9 999 Kč</p>
-          <p style="margin:0 0 10px; font-family:'Spectral',serif; font-size:52px; line-height:1; color:#4F6E2A; font-weight:400;">5 %</p>
+          <p style="margin:0 0 10px; font-family:'EB Garamond',serif; font-size:52px; line-height:1; color:#4F6E2A; font-weight:400;">5 %</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Sleva na všechny objednávky po přihlášení k vašemu účtu.</p>
         </div>
-        <div class="ek-tier" style="background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:30px 30px 32px; display:flex; flex-direction:column;">
-          <p style="margin:0 0 14px; font-family:'Spectral',serif; font-size:17px; color:#3F6FA8;">02</p>
-          <p style="margin:0 0 6px; font-family:'Spectral',serif; font-size:24px; color:#2D3A2E; line-height:1.2;">Nadšený výrobce</p>
+        <div class="ek-tier" style="background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:30px 30px 32px; display:flex; flex-direction:column;">
+          <p style="margin:0 0 14px; font-family:'EB Garamond',serif; font-size:17px; color:#3F6FA8;">02</p>
+          <p style="margin:0 0 6px; font-family:'EB Garamond',serif; font-size:24px; color:#2D3A2E; line-height:1.2;">Nadšený výrobce</p>
           <p style="margin:0 0 22px; font-size:14.5px; color:#6B6B5E;">Čtvrtletní obrat 10 000–29 999 Kč</p>
-          <p style="margin:0 0 10px; font-family:'Spectral',serif; font-size:52px; line-height:1; color:#3F6FA8; font-weight:400;">10 %</p>
+          <p style="margin:0 0 10px; font-family:'EB Garamond',serif; font-size:52px; line-height:1; color:#3F6FA8; font-weight:400;">10 %</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Sleva na všechny objednávky po přihlášení k vašemu účtu.</p>
         </div>
-        <div class="ek-tier" style="background:linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:30px 30px 32px; display:flex; flex-direction:column;">
-          <p style="margin:0 0 14px; font-family:'Spectral',serif; font-size:17px; color:#8A5A28;">03</p>
-          <p style="margin:0 0 6px; font-family:'Spectral',serif; font-size:24px; color:#2D3A2E; line-height:1.2;">Profesionál</p>
+        <div class="ek-tier" style="background:linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:30px 30px 32px; display:flex; flex-direction:column;">
+          <p style="margin:0 0 14px; font-family:'EB Garamond',serif; font-size:17px; color:#8A5A28;">03</p>
+          <p style="margin:0 0 6px; font-family:'EB Garamond',serif; font-size:24px; color:#2D3A2E; line-height:1.2;">Profesionál</p>
           <p style="margin:0 0 22px; font-size:14.5px; color:#6B6B5E;">Čtvrtletní obrat 30 000 Kč a více</p>
-          <p style="margin:0 0 10px; font-family:'Spectral',serif; font-size:52px; line-height:1; color:#8A5A28; font-weight:400;">15 %</p>
+          <p style="margin:0 0 10px; font-family:'EB Garamond',serif; font-size:52px; line-height:1; color:#8A5A28; font-weight:400;">15 %</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Sleva na všechny objednávky a přednostní odeslání všech vašich objednávek bez poplatku.</p>
         </div>
         </div>
@@ -119,24 +120,24 @@
       <h2 class="ek-h2">Stačí se zaregistrovat a nakupovat.</h2>
       <p class="ek-p" style="max-width:70ch; margin-bottom:34px;">O nic dalšího se starat nemusíte. Vyhodnocení, upozornění i nastavení nových cen běží na naší straně.</p>
       <div class="ek-steps" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:26px;">
-        <div style="padding:22px 0 0; border-top:2px solid rgba(59,85,49,.16);">
-          <p style="margin:0 0 10px; display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#EFE7D6; font-family:'Spectral',serif; font-size:17px; color:#3B5531;">1</p>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:20px; color:#2D3A2E; line-height:1.25;">Jednoduchá registrace</p>
+        <div style="padding:22px 0 0; border-top:2px solid rgba(76,101,61,.16);">
+          <p style="margin:0 0 10px; display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#EFE7D6; font-family:'EB Garamond',serif; font-size:17px; color:#4C653D;">1</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:20px; color:#2D3A2E; line-height:1.25;">Jednoduchá registrace</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Stačí mít zákaznický účet a při nákupu se přihlásit. Díky tomu dokážeme vaše objednávky správně sčítat.</p>
         </div>
-        <div style="padding:22px 0 0; border-top:2px solid rgba(59,85,49,.16);">
-          <p style="margin:0 0 10px; display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#EFE7D6; font-family:'Spectral',serif; font-size:17px; color:#3B5531;">2</p>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:20px; color:#2D3A2E; line-height:1.25;">Nakupujete jako obvykle</p>
+        <div style="padding:22px 0 0; border-top:2px solid rgba(76,101,61,.16);">
+          <p style="margin:0 0 10px; display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#EFE7D6; font-family:'EB Garamond',serif; font-size:17px; color:#4C653D;">2</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:20px; color:#2D3A2E; line-height:1.25;">Nakupujete jako obvykle</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Včas uhrazené objednávky automaticky započítáváme do vašeho obratu za aktuální kvartál.</p>
         </div>
-        <div style="padding:22px 0 0; border-top:2px solid rgba(59,85,49,.16);">
-          <p style="margin:0 0 10px; display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#EFE7D6; font-family:'Spectral',serif; font-size:17px; color:#3B5531;">3</p>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:20px; color:#2D3A2E; line-height:1.25;">Dáme vám vědět, jak si stojíte</p>
+        <div style="padding:22px 0 0; border-top:2px solid rgba(76,101,61,.16);">
+          <p style="margin:0 0 10px; display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#EFE7D6; font-family:'EB Garamond',serif; font-size:17px; color:#4C653D;">3</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:20px; color:#2D3A2E; line-height:1.25;">Dáme vám vědět, jak si stojíte</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Před koncem kvartálu vás upozorníme, jaký obrat už máte a jak blízko jste k vyšší skupině.</p>
         </div>
-        <div style="padding:22px 0 0; border-top:2px solid rgba(59,85,49,.16);">
-          <p style="margin:0 0 10px; display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#EFE7D6; font-family:'Spectral',serif; font-size:17px; color:#3B5531;">4</p>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:20px; color:#2D3A2E; line-height:1.25;">Lepší ceny nastavíme automaticky</p>
+        <div style="padding:22px 0 0; border-top:2px solid rgba(76,101,61,.16);">
+          <p style="margin:0 0 10px; display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#EFE7D6; font-family:'EB Garamond',serif; font-size:17px; color:#4C653D;">4</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:20px; color:#2D3A2E; line-height:1.25;">Lepší ceny nastavíme automaticky</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Po skončení kvartálu vše sečteme a podle výsledku vám nastavíme odpovídající skupinu na celé další období.</p>
         </div>
       </div>
@@ -151,22 +152,22 @@
         <h2 class="ek-h2">Vyšší skupinu můžete získat i během kvartálu.</h2>
         <p class="ek-p">Běžně vyhodnocujeme váš celkový obrat až po skončení kvartálu. Pokud ale během něj vytvoříte jednu větší objednávku, která sama dosáhne hranice některé vyšší skupiny, po jejím zpracování vás do této skupiny přeřadíme.</p>
         <p class="ek-p">Tato skupina vám bude platit <strong style="color:#2D3A2E;">do konce současného čtvrtletí a po celé následující čtvrtletí</strong>. Pokud se součet vašich objednávek do konce kvartálu dostane ještě výš, při jeho vyhodnocení vám nastavíme odpovídající vyšší skupinu na další období.</p>
-        <div style="margin-top:26px; background:#FFFFFF; border:1px solid rgba(59,85,49,.16); border-radius:14px; padding:26px 28px;">
+        <div style="margin-top:26px; background:#FFFFFF; border:1px solid rgba(76,101,61,.16); border-radius:14px; padding:26px 28px;">
           <p style="margin:0 0 8px; display:flex; align-items:center; gap:9px; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A;"><span class="ek-ico" style="width:18px; height:18px; background-color:#4F6E2A; -webkit-mask:url('assets/icons/information-circle.svg') center / contain no-repeat; mask:url('assets/icons/information-circle.svg') center / contain no-repeat;"></span>Příklad</p>
           <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Objednávkou za 10 000 Kč můžete být po jejím zpracování přeřazeni mezi Nadšené výrobce a získat 10% slevu. Pokud pak váš celkový obrat za dané čtvrtletí, včetně této objednávky, dosáhne alespoň 30 000 Kč, při čtvrtletním vyhodnocení budete zařazeni mezi Profesionály na další čtvrtletí.</p>
         </div>
       </div>
       <div style="display:grid; gap:16px;">
-        <div style="background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:28px 30px;">
+        <div style="background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:28px 30px;">
           <p style="margin:0 0 14px;"><span class="ek-ico" style="width:26px; height:26px; background-color:#4F6E2A; -webkit-mask:url('assets/icons/calendar-01.svg') center / contain no-repeat; mask:url('assets/icons/calendar-01.svg') center / contain no-repeat;"></span></p>
           <p style="margin:0 0 6px; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Pravidelné nákupy</p>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Obrat za celé čtvrtletí</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Obrat za celé čtvrtletí</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Vaše uhrazené objednávky sčítáme. Podle výsledku vám automaticky nastavíme odpovídající skupinu.</p>
         </div>
-        <div style="background:linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:28px 30px;">
+        <div style="background:linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:28px 30px;">
           <p style="margin:0 0 14px;"><span class="ek-ico" style="width:26px; height:26px; background-color:#8A5A28; -webkit-mask:url('assets/icons/percent-circle.svg') center / contain no-repeat; mask:url('assets/icons/percent-circle.svg') center / contain no-repeat;"></span></p>
           <p style="margin:0 0 6px; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#8A5A28;">Jedna větší objednávka</p>
-          <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Okamžité navýšení</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Okamžité navýšení</p>
           <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Dosáhne-li jedna objednávka sama hranice některé vyšší skupiny, po jejím zpracování vám nastavíme výhodnější ceny bez čekání na konec čtvrtletí.</p>
         </div>
       </div>
@@ -182,25 +183,25 @@
         <h2 class="ek-h2">Lepší ceny platí také pro firmy a výrobce.</h2>
         <p class="ek-p" style="max-width:74ch; margin-bottom:34px;">Ekokoza je tu pro domácí tvůrce, menší výrobce i velkoobchodní zákazníky. Také při nákupu pro firmu vycházíte ze stejného věrnostního ceníku: podle čtvrtletního obratu můžete automaticky získat 5%, 10% nebo 15% cenové zvýhodnění.</p>
         <div class="ek-thirds" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px;">
-          <div style="background:#FFFFFF; border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:28px 30px;">
+          <div style="background:#FFFFFF; border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:28px 30px;">
             <p style="margin:0 0 14px;"><span class="ek-ico" style="width:26px; height:26px; background-color:#4F6E2A; -webkit-mask:url('assets/icons/building-03.svg') center / contain no-repeat; mask:url('assets/icons/building-03.svg') center / contain no-repeat;"></span></p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Standardní B2B ceny</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Standardní B2B ceny</p>
             <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Pro běžné firemní nákupy platí stejná pravidla věrnostních skupin jako pro ostatní registrované zákazníky. Ceny po přihlášení vždy odpovídají vaší aktuální skupině.</p>
           </div>
-          <div style="background:#FFFFFF; border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:28px 30px;">
+          <div style="background:#FFFFFF; border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:28px 30px;">
             <p style="margin:0 0 14px;"><span class="ek-ico" style="width:26px; height:26px; background-color:#4F6E2A; -webkit-mask:url('assets/icons/package.svg') center / contain no-repeat; mask:url('assets/icons/package.svg') center / contain no-repeat;"></span></p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Větší objemy a spolupráce</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Větší objemy a spolupráce</p>
             <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Potřebujete větší množství konkrétní suroviny, pravidelné dodávky, zvláštní cenovou nabídku nebo dlouhodobou spolupráci? Připravíme řešení podle vaší poptávky.</p>
           </div>
-          <div style="background:#FFFFFF; border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:28px 30px;">
+          <div style="background:#FFFFFF; border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:28px 30px;">
             <p style="margin:0 0 14px;"><span class="ek-ico" style="width:26px; height:26px; background-color:#4F6E2A; -webkit-mask:url('assets/icons/note-01.svg') center / contain no-repeat; mask:url('assets/icons/note-01.svg') center / contain no-repeat;"></span></p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Dokumentace k produktům</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Dokumentace k produktům</p>
             <p style="margin:0; font-size:15px; line-height:1.6; color:#4A4A42;">Na vyžádání dodáme technickou dokumentaci, bezpečnostní listy a dostupné certifikáty. Dokumenty postupně doplňujeme také přímo k jednotlivým produktům ke stažení.</p>
           </div>
         </div>
-        <div class="ek-two" style="display:grid; grid-template-columns:1fr auto; gap:26px; align-items:center; margin-top:26px; background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(59,85,49,.14); border-radius:14px; padding:28px 32px;">
+        <div class="ek-two" style="display:grid; grid-template-columns:1fr auto; gap:26px; align-items:center; margin-top:26px; background:linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%); border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:28px 32px;">
           <p style="margin:0; font-size:16px; line-height:1.65; color:#4A4A42; max-width:80ch;">Pro individuální nabídku nebo dlouhodobou B2B spolupráci nám napište. Do zprávy je ideální uvést produkty, předpokládaná množství a četnost odběrů.</p>
-          <a href="mailto:info@ekokoza.cz" class="ek-btn-secondary" style="display:inline-flex; align-items:center; gap:9px; justify-content:center; background:transparent; color:#3B5531; border:1.5px solid #4C643C; text-decoration:none; padding:13px 24px; border-radius:999px; font-weight:600; font-size:15.5px; white-space:nowrap; transition:background .2s, color .2s;"><span class="ek-ico" style="width:20px; height:20px; background-color:currentColor; -webkit-mask:url('assets/icons/mail-01.svg') center / contain no-repeat; mask:url('assets/icons/mail-01.svg') center / contain no-repeat;"></span>Napsat poptávku</a>
+          <a href="mailto:info@ekokoza.cz" class="ek-btn-secondary" style="display:inline-flex; align-items:center; gap:9px; justify-content:center; background:transparent; color:#4C653D; border:1.5px solid #4C653D; text-decoration:none; padding:13px 24px; border-radius:999px; font-weight:600; font-size:15.5px; white-space:nowrap; transition:background .2s, color .2s;"><span class="ek-ico" style="width:20px; height:20px; background-color:currentColor; -webkit-mask:url('assets/icons/mail-01.svg') center / contain no-repeat; mask:url('assets/icons/mail-01.svg') center / contain no-repeat;"></span>Napsat poptávku</a>
         </div>
       </div>
     </section>
@@ -213,24 +214,24 @@
       <h2 class="ek-h2">Co je dobré vědět</h2>
       <p class="ek-p" style="max-width:70ch; margin-bottom:30px;">Čtyři věci, které rozhodují o tom, zda se objednávka do vašeho obratu započítá a jakou cenu u produktů uvidíte.</p>
       <div class="ek-quad" style="display:grid; grid-template-columns:1fr 1fr; gap:2px 44px;">
-          <div style="padding:22px 0; border-top:1px solid rgba(59,85,49,.16);">
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:17px; color:#7BA23F;">01</p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Nakupujte po přihlášení</p>
+          <div style="padding:22px 0; border-top:1px solid rgba(76,101,61,.16);">
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:17px; color:#7BA23F;">01</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Nakupujte po přihlášení</p>
             <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Objednávky se mohou započítat jen tehdy, když jsou spojené s vaším zákaznickým účtem.</p>
           </div>
-          <div style="padding:22px 0; border-top:1px solid rgba(59,85,49,.16);">
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:17px; color:#7BA23F;">02</p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Počítají se uhrazené objednávky</p>
+          <div style="padding:22px 0; border-top:1px solid rgba(76,101,61,.16);">
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:17px; color:#7BA23F;">02</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Počítají se uhrazené objednávky</p>
             <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Do obratu zahrnujeme pouze objednávky uhrazené včas v daném čtvrtletí.</p>
           </div>
-          <div style="padding:22px 0; border-top:1px solid rgba(59,85,49,.16);">
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:17px; color:#7BA23F;">03</p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Své ceny vidíte rovnou</p>
+          <div style="padding:22px 0; border-top:1px solid rgba(76,101,61,.16);">
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:17px; color:#7BA23F;">03</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Své ceny vidíte rovnou</p>
             <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Po přihlášení se u produktů zobrazují ceny podle skupiny, která vám právě platí. Novou skupinu po čtvrtletním vyhodnocení nastavíme pro celé následující čtvrtletí.</p>
           </div>
-          <div style="padding:22px 0; border-top:1px solid rgba(59,85,49,.16);">
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:17px; color:#7BA23F;">04</p>
-            <p style="margin:0 0 8px; font-family:'Spectral',serif; font-size:21px; color:#2D3A2E;">Vždy dostanete výhodnější slevu</p>
+          <div style="padding:22px 0; border-top:1px solid rgba(76,101,61,.16);">
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:17px; color:#7BA23F;">04</p>
+            <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-size:21px; color:#2D3A2E;">Vždy dostanete výhodnější slevu</p>
             <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">Věrnostní a množstevní slevy se nesčítají. Systém automaticky použije tu lepší z nich.</p>
           </div>
       </div>
@@ -239,14 +240,14 @@
 
   <!-- ===== ZÁVĚR ===== -->
   <section style="padding:64px 32px 0;" class="ek-pad">
-    <div style="max-width:1080px; margin:0 auto; background:linear-gradient(155deg,#4C643C 0%,#22301F 100%); border-radius:18px; padding:52px 56px; position:relative; overflow:hidden;">
+    <div style="max-width:1080px; margin:0 auto; background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); border-radius:18px; padding:52px 56px; position:relative; overflow:hidden;">
       <img src="assets/botanika/mlicak1.png" alt="" class="ek-bot ek-bot-m" style="position:absolute; right:-30px; bottom:-40px; width:220px; opacity:.5; transform:rotate(12deg); pointer-events:none;">
       <div style="position:relative; max-width:70ch;">
         <p class="ek-eyebrow" style="color:#B9D096;">Děkujeme, že tvoříte s námi</p>
         <h2 class="ek-h2" style="color:#F6F1E7;">Čím více toho pro svou tvorbu najdete u Ekokozy, tím více vám můžeme vrátit.</h2>
         <p style="margin:0 0 28px; font-size:17px; line-height:1.7; color:#D3E0CB;">Věrnostní program jsme nastavili tak, aby byl jednoduchý, automatický a fér pro domácí tvůrce i profesionální výrobce. Vy se můžete soustředit na své recepty, výrobky a podnikání — správnou cenovou skupinu pohlídáme za vás.</p>
         <div style="display:flex; flex-wrap:wrap; gap:12px;">
-          <a href="#" class="ek-btn-main" style="display:inline-flex; align-items:center; justify-content:center; background:#D14405; color:#fff; border:1.5px solid #D14405; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15.5px; transition:background .2s, border-color .2s;">Založit zákaznický účet</a>
+          <a href="#" class="ek-btn-onDark" style="display:inline-flex; align-items:center; justify-content:center; background:#F6F1E7; color:#4C653D; border:1.5px solid #F6F1E7; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15.5px; transition:background .2s, border-color .2s;">Založit zákaznický účet</a>
           <a href="kategorie.html" style="display:inline-flex; align-items:center; justify-content:center; background:transparent; color:#F6F1E7; border:1.5px solid rgba(246,241,231,.5); text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15.5px;">Najít vše pro vlastní tvorbu</a>
         </div>
       </div>

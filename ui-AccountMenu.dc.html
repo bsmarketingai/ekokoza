@@ -15,10 +15,17 @@
   .ek-acc-item:hover { background: #F4F7EA; color: #4C653D !important; }
   .ek-acc-item:hover .ek-acc-ico { opacity: 1; }
   .ek-acc-out:hover { background: #FBF0EA; color: #B23803 !important; }
+  @media (max-width: 900px) {
+    .ek-acc-pop { position: fixed !important; inset: 0 !important; width: auto !important; max-width: none !important; top: 0 !important; right: 0 !important;
+      border-radius: 0 !important; border: none !important; box-shadow: none !important; z-index: 300 !important; overflow-y: auto !important; }
+    .ek-acc-pop > div:first-child { padding-top: max(18px, env(safe-area-inset-top)) !important; }
+    .ek-acc-pop nav { padding: 10px 12px max(14px, env(safe-area-inset-bottom)) !important; gap: 4px !important; }
+    .ek-acc-pop nav a { min-height: 46px !important; font-size: 16px !important; padding: 10px 14px !important; }
+  }
 </style>
 </helmet>
 
-<div style="{{ wrapStyle }}">
+<div class="ek-acc-pop" style="{{ wrapStyle }}">
   <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:14px; padding:16px 18px 14px; background:#FFFFFF; border-bottom:1px solid #EFE7D6;">
     <div style="display:flex; flex-direction:column; gap:6px; min-width:0;">
       <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:21px; line-height:1.15; color:#4C653D; overflow:hidden; text-overflow:ellipsis;">{{ name }}</span>

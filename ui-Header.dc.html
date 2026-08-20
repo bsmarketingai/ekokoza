@@ -386,8 +386,8 @@ class Component extends DCLogic {
       removeCartItem: (i) => this.setState(st => ({ cart: st.cart.filter((_, k) => k !== i) })),
 
       iconSearch: this.mask('search-01', 22, '#4C653D'),
-      iconUser: this.mask('user', 22, '#4C653D'),
-      iconUserSm: this.mask('user', 20, '#4C653D'),
+      iconUser: this.mask((this.props.loggedIn ?? false) ? 'user-check-01' : 'user', 22, '#4C653D'),
+      iconUserSm: this.mask((this.props.loggedIn ?? false) ? 'user-check-01' : 'user', 20, '#4C653D'),
       iconCart: this.mask('shopping-cart-01', 22, '#4C653D'),
       iconFav: this.mask('favourite', 22, '#4C653D'),
       favCount: S.favCount,

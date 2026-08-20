@@ -264,9 +264,10 @@ class Component extends DCLogic {
   static FACETS = [
     { key: 'avail', label: 'Dostupnost', options: [
       { value: 'ready', label: 'Ihned k odeslání' },
-      { value: 'packing', label: 'Musíme to nabalit' },
+      { value: 'packing', label: 'Nabalíme po objednání' },
       { value: 'expected', label: 'Očekáváme naskladnění' },
-      { value: 'unavail', label: 'Nyní nedostupné' },
+      { value: 'incoming', label: 'Na cestě k nám' },
+      { value: 'longterm', label: 'Dlouhodobě nedostupné' },
     ] },
     { key: 'use', label: 'Nejčastější použití', options: [
       { value: 'vlasy', label: 'Péče o vlasy' },
@@ -311,7 +312,7 @@ class Component extends DCLogic {
     { title: 'Kyselina stearová, E570', num: 98, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.3, ratingCount: 3, stockState: 'expected', ctaVariant: 'varianta', badge: '', use: ['plet'], weight: '1000', volume: '' },
     { title: 'Netkaná kosmetická maska na obličej', num: 10, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, ratingCount: 0, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['plet'], weight: '', volume: '' },
     { title: 'Vinný ocet bílý Andrea Milano, 1 000 ml', num: 54, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.7, ratingCount: 3, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['potraviny','nadobi'], weight: '', volume: '1000' },
-    { title: 'Digitální teploměr pro výrobu sýrů', num: 142, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.5, ratingCount: 6, stockState: 'unavail', ctaVariant: 'koupit', badge: '', use: ['potraviny'], weight: '', volume: '' },
+    { title: 'Digitální teploměr pro výrobu sýrů', num: 142, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.5, ratingCount: 6, stockState: 'longterm', ctaVariant: 'koupit', badge: '', use: ['potraviny'], weight: '', volume: '' },
     { title: 'Levandulové máslo, 100 g', num: 189, img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, ratingCount: 214, stockState: 'ready', ctaVariant: 'koupit', badge: 'doporucujeme', use: ['plet','rty'], weight: '100', volume: '' },
     { title: 'Tuhý šampon žloutkový', num: 159, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 4.6, ratingCount: 21, stockState: 'ready', ctaVariant: 'varianta', badge: 'novinka', use: ['vlasy','hygiena'], weight: '100', volume: '' },
     { title: 'Mýdlová hmota s bambuckým máslem, 1 kg', num: 329, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.6, ratingCount: 96, stockState: 'packing', ctaVariant: 'varianta', badge: '', use: ['hygiena'], weight: '1000', volume: '' },
@@ -450,7 +451,7 @@ class Component extends DCLogic {
       sort: this.state.sort,
       onSort: (e) => this.setState({ sort: e.target.value, page: 1 }),
 
-      visible: shown.map(p => Object.assign({}, p, { price: p.num.toLocaleString('cs-CZ') + ' Kč', href: 'produkt.html', stockDate: '28. 8. 2026' })),
+      visible: shown.map(p => Object.assign({}, p, { price: p.num.toLocaleString('cs-CZ') + ' Kč', href: 'produkt-vzor.html', stockDate: '28. 8. 2026' })),
       isEmpty: list.length === 0,
       canLoadMore: start + shown.length < list.length,
       loadMore: () => this.setState({ extra: this.state.extra + 8 }),

@@ -18,7 +18,7 @@
   <span>{{ label }}</span>
 </span>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:56},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;new&quot;,&quot;waiting&quot;,&quot;packing&quot;,&quot;sent&quot;,&quot;delivered&quot;,&quot;returned&quot;,&quot;cancelled&quot;],&quot;default&quot;:&quot;delivered&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:13,&quot;min&quot;:11,&quot;max&quot;:18,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:56},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;prijato&quot;,&quot;zpracovano&quot;,&quot;ceka_platba&quot;,&quot;pripraveno_expedice&quot;,&quot;pripraveno_odber&quot;,&quot;castecne_expedovano&quot;,&quot;castecne_vyzvednuto&quot;,&quot;expedovano&quot;,&quot;vyzvednuto&quot;,&quot;stornovano&quot;],&quot;default&quot;:&quot;expedovano&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:13,&quot;min&quot;:11,&quot;max&quot;:18,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   mask(name, size, color) {
     const base = /\/components\//.test(location.pathname) ? '../' : '';
@@ -27,19 +27,30 @@ class Component extends DCLogic {
   }
 
   // Stavy objednávky navazují na semantickou škálu skladovosti — stejná logika barev.
+  // Stavy objednávky — přesný seznam z e-shopu. Barvy navazují na semantickou škálu skladovosti.
   static STATES = {
-    new:       { color: '#856512', icon: 'note-01',              label: 'Přijato',        hint: 'Objednávku jsme přijali, začínáme ji připravovat.' },
-    packing:   { color: '#57712D', icon: 'package-open',         label: 'Připravujeme',   hint: 'Objednávku právě chystáme k odeslání.' },
-    sent:      { color: '#3F7F2C', icon: 'truck-delivery',       label: 'Odesláno',       hint: 'Objednávka je na cestě k vám.' },
-    delivered: { color: '#4C653D', icon: 'checkmark-circle-01',  label: 'Doručeno',       hint: 'Objednávka byla doručena a vyřízena.' },
-    waiting:   { color: '#8A5A28', icon: 'clock-01',             label: 'Čeká na platbu', hint: 'Čekáme na připsání platby na náš účet.' },
-    returned:  { color: '#A33203', icon: 'delivery-return-01',   label: 'Vráceno',        hint: 'Zboží se k nám vrátilo, řešíme s vámi další postup.' },
-    cancelled: { color: '#8A2412', icon: 'minus-sign-circle',    label: 'Stornováno',     hint: 'Objednávka byla stornována.' },
+    prijato:          { color: '#856512', icon: 'note-01',             label: 'Přijato',                hint: 'Objednávku jsme přijali, začínáme ji zpracovávat.' },
+    zpracovano:       { color: '#57712D', icon: 'task-01',             label: 'Zpracováno',             hint: 'Objednávka je zkontrolovaná a předaná do skladu.' },
+    ceka_platba:      { color: '#8A5A28', icon: 'clock-01',            label: 'Čeká na zaplacení',      hint: 'Čekáme na připsání platby na náš účet.' },
+    pripraveno_expedice: { color: '#57712D', icon: 'package',          label: 'Připraveno k expedici',  hint: 'Zboží je nabalené a čeká na předání přepravci.' },
+    pripraveno_odber: { color: '#57712D', icon: 'store-01',            label: 'Připraveno k odběru',    hint: 'Zboží je nabalené a čeká na vás na výdejním místě.' },
+    castecne_expedovano: { color: '#3F7F2C', icon: 'layers-01',        label: 'Částečně expedováno',    hint: 'Část objednávky je na cestě, zbytek doplníme.' },
+    castecne_vyzvednuto: { color: '#3F7F2C', icon: 'shopping-bag-03',  label: 'Částečně vyzvednuto',    hint: 'Část objednávky jste si vyzvedli, zbytek je připravený.' },
+    expedovano:       { color: '#3F7F2C', icon: 'truck-delivery',      label: 'Expedováno',             hint: 'Objednávka je na cestě k vám.' },
+    vyzvednuto:       { color: '#4C653D', icon: 'checkmark-circle-01', label: 'Vyzvednuto',             hint: 'Objednávku jste si vyzvedli, je vyřízená.' },
+    stornovano:       { color: '#8A2412', icon: 'minus-sign-circle',   label: 'Stornováno',             hint: 'Objednávka byla stornována.' },
+  };
+
+  // Starší klíče ze stránek — mapují se na platné stavy.
+  static ALIAS = {
+    new: 'prijato', waiting: 'ceka_platba', packing: 'pripraveno_expedice',
+    sent: 'expedovano', delivered: 'vyzvednuto', returned: 'stornovano', cancelled: 'stornovano',
   };
 
   renderVals() {
-    const key = this.props.state ?? 'delivered';
-    const s = Component.STATES[key] || Component.STATES.delivered;
+    const raw = this.props.state ?? 'prijato';
+    const key = Component.ALIAS[raw] || raw;
+    const s = Component.STATES[key] || Component.STATES.prijato;
     const size = Number(this.props.size ?? 13);
     const plain = this.props.plain === true;
     const rgb = [1, 3, 5].map(i => parseInt(s.color.substr(i, 2), 16)).join(',');

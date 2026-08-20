@@ -104,7 +104,7 @@ class Component extends DCLogic {
       selectDisplay: qtyMode ? 'none' : 'flex',
       qtyRows: shown.map((v, i) => {
         const st = v.state ?? 'ready';
-        const buyable = st !== 'unavail' && st !== 'discontinued';
+        const buyable = !['toorder', 'longterm', 'unavail', 'ended', 'discontinued'].includes(st);
         const q = Number(qtys[i] ?? 0);
         return {
           label: v.label,

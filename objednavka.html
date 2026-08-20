@@ -168,7 +168,7 @@
             <div class="ek-irow">
               <span class="ek-icell"><span class="ek-lbl">Kód</span><span style="font-size:14px; color:#6B6B5E;">{{ i.code }}</span></span>
               <span class="ek-icell"><span class="ek-lbl">Název</span>
-                <a href="produkt.html" class="ek-link-u" style="font-family:'EB Garamond',serif; font-weight:500; font-size:17px; color:#2A2A24; text-decoration:none;">{{ i.name }}</a>
+                <a href="produkt-vzor.html" class="ek-link-u" style="font-family:'EB Garamond',serif; font-weight:500; font-size:17px; color:#2A2A24; text-decoration:none;">{{ i.name }}</a>
               </span>
               <span class="ek-icell"><span class="ek-lbl">Cena / (m. j.) bez DPH</span><span style="font-size:14.5px; color:#4A4A42; white-space:nowrap;">{{ i.noVat }}</span></span>
               <span class="ek-icell"><span class="ek-lbl">Cena / (m. j.) s DPH</span><span style="font-size:14.5px; color:#4A4A42; white-space:nowrap;">{{ i.vat }}</span></span>
@@ -247,7 +247,7 @@ class Component extends DCLogic {
         { label: 'Detail objednávky č. 8870005229' },
       ],
       num: '8870005229',
-      state: 'new',
+      state: 'zpracovano',
 
       groups: [
         { title: 'Hlavní údaje', rows: [

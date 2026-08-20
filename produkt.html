@@ -444,18 +444,20 @@ class Component extends DCLogic {
       ready: 'Odesíláme obvykle následující pracovní den.',
       packing: 'Navažujeme z velkého balení — odeslání o jeden pracovní den později.',
       expected: 'Můžete koupit teď — odešleme hned po naskladnění.',
-      unavail: 'Datum naskladnění zatím neznáme — zapneme vám hlídacího psa.',
+      incoming: 'Zásilka je na cestě, přesné datum zatím nevíme — odešleme hned po naskladnění.',
+      toorder: 'U dodavatele zatím není objednané — napište nám a termín potvrdíme.',
+      longterm: 'Může trvat několik měsíců — zapneme vám hlídacího psa.',
       ended: 'Produkt jsme vyřadili z nabídky — podíváme se s vámi po náhradě.',
     };
     const soldOut = this.state.avail === 'out';
-    const curState = soldOut ? 'unavail' : cur.state;
-    const buyable = !soldOut && !['unavail', 'ended'].includes(cur.state);
+    const curState = soldOut ? 'longterm' : cur.state;
+    const buyable = !soldOut && !['toorder', 'longterm', 'unavail', 'ended'].includes(cur.state);
     const loggedIn = this.state.loggedIn;
     const segBtn = (on) => "font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; padding:8px 14px; min-height:32px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;"
       + (on ? ' background:#4C653D; color:#F6F1E7; border:1px solid #4C653D;' : ' background:transparent; color:#6B6B5E; border:1px solid transparent;');
     // při nedostupném produktu jsou nedostupné i všechny varianty
     const shownVariants = soldOut
-      ? Component.VARIANTS.map(v => Object.assign({}, v, { state: 'unavail', date: '' }))
+      ? Component.VARIANTS.map(v => Object.assign({}, v, { state: 'longterm', date: '' }))
       : Component.VARIANTS;
     const varQtys = this.state.varQtys ?? {};
     const pickedRows = shownVariants.map((v, i) => ({ v, i, q: Number(varQtys[i] ?? 0) }))
@@ -557,7 +559,7 @@ class Component extends DCLogic {
       // varianty s kvantifikátory: do košíku jde více variant najednou
       onVarQty: (all) => this.setState({ varQtys: all }),
       nothingPicked: pickedPieces === 0,
-      varCtaLabel: pickedPieces === 0 ? 'Do košíku' : 'Do košíku (' + pickedPieces + ' ks)',
+      varCtaLabel: 'Do košíku',
       varPickedNote: pickedPieces === 0
         ? 'Zadejte množství u variant, které chcete koupit.'
         : pickedRows.length + (pickedRows.length === 1 ? ' varianta' : (pickedRows.length < 5 ? ' varianty' : ' variant')) + ' · ' + this.money(pickedTotal),

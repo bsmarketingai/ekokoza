@@ -148,7 +148,7 @@
       <div style="max-width:1280px; margin:0 auto;">
         <div class="ek-favgrid">
           <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
-            <dc-import name="ui-ProductCard" fav="{{ true }}" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="produkt.html" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" hint-size="100%,420px"></dc-import>
+            <dc-import name="ui-ProductCard" fav="{{ true }}" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="produkt-vzor.html" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" hint-size="100%,420px"></dc-import>
           </sc-for>
         </div>
 
@@ -211,7 +211,7 @@ class Component extends DCLogic {
     { title: 'Tuhý šampon žloutkový', num: 159, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 4.6, ratingCount: 21, stockState: 'ready', ctaVariant: 'varianta', badge: 'novinka' },
     { title: 'Epsomská sůl, 1 kg', num: 129, img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.9, ratingCount: 64, stockState: 'expected', ctaVariant: 'koupit', badge: '' },
     { title: 'Sójový vosk na svíčky, 1 kg', num: 219, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.75, ratingCount: 37, stockState: 'ready', ctaVariant: 'varianta', badge: '' },
-    { title: 'Esenciální olej levandule, 10 ml', num: 149, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 4.7, ratingCount: 28, stockState: 'unavail', ctaVariant: 'koupit', badge: '' },
+    { title: 'Esenciální olej levandule, 10 ml', num: 149, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 4.7, ratingCount: 28, stockState: 'longterm', ctaVariant: 'koupit', badge: '' },
   ];
 
   state = { logged: true, empty: false, barOpen: true };

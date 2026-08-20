@@ -94,7 +94,7 @@
   @media (max-width: 560px) { .ek-dilna { grid-template-columns: 1fr !important; } }
   .ek-hero-play:hover { background: rgba(255,255,255,.3) !important; }
   .ek-hero2-play:hover { background: rgba(246,241,231,.22) !important; border-color: rgba(246,241,231,.7) !important; }
-  .ek-hero2-card:hover { background: rgba(246,241,231,.2) !important; transform: translateY(-2px); }
+  .ek-hero2-card:hover { background: #4C653D !important; border-color: #4C653D !important; backdrop-filter: none !important; transform: translateY(-2px); }
   @media (max-width: 1100px) {
     .ek-hero2 { height: auto !important; }
     .ek-hero2-in { grid-template-columns: 1fr !important; padding: 40px 32px !important; gap: 28px !important; }
@@ -106,7 +106,8 @@
     .ek-hero2-h1 { font-size: 34px !important; }
     .ek-hero2-p { font-size: 16.5px !important; }
     .ek-varbar-note { display: none !important; }
-    .ek-varbar { left: 12px !important; right: 12px !important; transform: none !important; justify-content: center; }
+    .ek-varbar { left: 12px !important; right: 12px !important; transform: none !important; justify-content: center; max-width: calc(100vw - 24px); box-sizing: border-box; gap: 8px !important; padding: 8px !important; flex-wrap: wrap; border-radius: 20px !important; }
+    .ek-varbar button { font-size: 12px !important; padding: 7px 10px !important; }
   }
   @keyframes ekSearchIn { from { opacity:0; transform:translateY(-50%) scale(.98); } to { opacity:1; transform:translateY(-50%) scale(1); } }
   /* 4 karty x 260px + mezery se pod ~1160px nevejdou -> karusel misto zalomeni */
@@ -270,7 +271,7 @@
 
 <div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
-  <dc-import name="ui-Header" hint-size="100%,140px"></dc-import>
+  <dc-import name="ui-Header" loggedIn="{{ logged }}" hint-size="100%,140px"></dc-import>
 
   <div style="max-width: 1440px; margin: 0 auto; position: relative">
 
@@ -607,7 +608,7 @@
 
   <!-- ============ NEWSLETTER — TRHANÝ PÁS ============ -->
   <div style="position:relative; margin:26px 0 0; padding:30px 0 40px;">
-    <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#FDF1F4 0%,#FBE9EE 58%,#F7DDE4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
+    <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#F3F4E5 0%,#EBEED9 58%,#E3E8CC 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
   <section style="padding:16px 32px 0; position:relative; z-index:1;" class="ek-pad">
     
     <div class="ek-two" style="position:relative; z-index:1; max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1.1fr 1fr; gap:40px; padding:48px 8px; align-items:center;">
@@ -664,15 +665,22 @@
   </sc-if>
 
   <sc-if value="{{ barOpen }}" hint-placeholder-val="{{ true }}">
-  <div class="ek-varbar" style="position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:300; display:flex; align-items:center; gap:14px; padding:10px 12px 10px 18px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
-    <span style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
-      <span style="{{ iconVarbar }}"></span>Hero
+  <div class="ek-varbar" style="position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:300; display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
+    <span title="Hero" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
+      <span style="{{ iconVarbar }}"></span>
     </span>
     <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
       <button onClick="{{ setHeroV1 }}" style="{{ heroV1Style }}">V1</button>
       <button onClick="{{ setHeroV2 }}" style="{{ heroV2Style }}">V2</button>
     </span>
-    <span class="ek-varbar-note" style="font-size:12.5px; color:#8a8776; white-space:nowrap;">{{ heroNote }}</span>
+    <span aria-hidden="true" style="width:1px; height:24px; background:#E4DAC6; flex:0 0 auto;"></span>
+    <span title="Účet" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
+      <span style="{{ iconVarUser }}"></span>
+    </span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setGuest }}" title="Nepřihlášený" style="{{ guestStyle }}">Host</button>
+      <button onClick="{{ setLogged }}" title="Přihlášený" style="{{ loggedStyle }}">Přihlášen</button>
+    </span>
     <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
   </div>
   </sc-if>
@@ -700,7 +708,7 @@ class Component extends DCLogic {
   P(d){ return React.createElement('path',{ key:d, d:d }); }
   C(cx,cy,r){ return React.createElement('circle',{ key:'c'+cx+cy, cx:cx, cy:cy, r:r }); }
 
-  state = { searchOpen: false, query: '', drawerOpen: false, megaIdx: null, drawerExp: -1, hero: 'v1', heroVideo: true, heroLightbox: false, barOpen: true };
+  state = { searchOpen: false, query: '', drawerOpen: false, megaIdx: null, drawerExp: -1, hero: 'v1', heroVideo: true, heroLightbox: false, barOpen: true, logged: false };
 
   componentDidMount() {
     try {
@@ -863,10 +871,10 @@ class Component extends DCLogic {
     ].map(r => Object.assign(r, { imgStyle: 'position:absolute; inset:0; background:#EFE7D6 center/cover no-repeat; background-image:url("' + r.img + '");' }));
 
     const products = [
-      { name:'Levandulové máslo, 100 g', price:'189 Kč', badge:'bestseller', ctaVariant:'koupit', rating:4.8, ratingCount:214, img:'assets/products/levandulove-maslo-100-g.jpg', stockState:'ready', href:'produkt.html' },
-      { name:'Mýdlová hmota s bambuckým máslem (shea), 1 kg', price:'329 Kč', badge:'', ctaVariant:'varianta', rating:4.6, ratingCount:96, img:'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', stockState:'packing', href:'produkt.html' },
-      { name:'Stabilizovaný vitamin C, 10 g', price:'149 Kč', badge:'doporucujeme', ctaVariant:'koupit', rating:4.7, ratingCount:58, img:'assets/products/stabilizovany-vitamin-c-10-g.jpg', stockState:'ready', href:'produkt.html' },
-      { name:'Tuhý šampon žloutkový', price:'159 Kč', badge:'novinka', ctaVariant:'varianta', rating:0, ratingCount:0, img:'assets/products/tuhy-sampon-zloutkovy.jpg', stockState:'expected', stockDate:'28. 8. 2026', href:'produkt.html' },
+      { name:'Levandulové máslo, 100 g', price:'189 Kč', badge:'bestseller', ctaVariant:'koupit', rating:4.8, ratingCount:214, img:'assets/products/levandulove-maslo-100-g.jpg', stockState:'ready', href:'produkt-vzor.html' },
+      { name:'Mýdlová hmota s bambuckým máslem (shea), 1 kg', price:'329 Kč', badge:'', ctaVariant:'varianta', rating:4.6, ratingCount:96, img:'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', stockState:'packing', href:'produkt-vzor.html' },
+      { name:'Stabilizovaný vitamin C, 10 g', price:'149 Kč', badge:'doporucujeme', ctaVariant:'koupit', rating:4.7, ratingCount:58, img:'assets/products/stabilizovany-vitamin-c-10-g.jpg', stockState:'ready', href:'produkt-vzor.html' },
+      { name:'Tuhý šampon žloutkový', price:'159 Kč', badge:'novinka', ctaVariant:'varianta', rating:0, ratingCount:0, img:'assets/products/tuhy-sampon-zloutkovy.jpg', stockState:'expected', stockDate:'28. 8. 2026', href:'produkt-vzor.html' },
     ];
 
     const starts = [
@@ -938,6 +946,12 @@ class Component extends DCLogic {
       heroNote: hero === 'v1' ? 'Mozaika čtyř karet' : 'Jeden banner na plnou šířku',
       setHeroV1: () => this.setHero('v1'),
       setHeroV2: () => this.setHero('v2'),
+      logged: this.state.logged,
+      guestStyle: segBtn(!this.state.logged),
+      loggedStyle: segBtn(this.state.logged),
+      setGuest: () => this.setState({ logged: false }),
+      setLogged: () => this.setState({ logged: true }),
+      iconVarUser: this.maskStyle('user', 17, '#4C653D'),
       iconVarbar: this.maskStyle('grid-view', 17, '#4C653D'),
       iconBarClose: this.maskStyle('cancel-01', 16, '#4C653D'),
       barOpen: this.state.barOpen,

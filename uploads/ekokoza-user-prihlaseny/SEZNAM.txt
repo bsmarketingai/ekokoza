@@ -1,0 +1,18 @@
+Ekokoza — přihlášený uživatel (Hugeicons, MIT)
+
+24 px mřížka, stroke-width 1.5, tah = currentColor.
+
+user-check-01.svg
+   doporučeno – fajfka vpravo dole, samostatná, čitelná i při 20 px
+user-check-02.svg
+   fajfka u hlavy vpravo nahoře – kompaktnější, ale při malé velikosti splývá s ramenem
+user.svg
+   odhlášený stav – tvarově shodná dvojice k user-check-01
+user-circle.svg
+   odhlášený stav v kolečku
+user-account.svg
+   můj účet / karta zákazníka
+user-id-verification.svg
+   ověření identity
+checkmark-badge-01.svg
+   obecné ověřeno

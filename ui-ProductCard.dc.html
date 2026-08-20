@@ -84,12 +84,12 @@ class Component extends DCLogic {
     const inferred = legacy == null ? 'ready'
       : /nabalit|nava/i.test(legacy) ? 'packing'
       : /oceka|naskladn/i.test(legacy) ? 'expected'
-      : /nedostup|vyprod|nelze/i.test(legacy) ? 'unavail'
+      : /nedostup|vyprod|nelze/i.test(legacy) ? 'longterm'
       : /nenab|vyraz/i.test(legacy) ? 'ended'
       : 'ready';
     const stockState = this.props.stockState ?? inferred;
-    // Nakoupitelné je vše až po úroveň 3 (Očekáváme) — viz semantická škála v ui-Stock
-    const buyable = !['unavail', 'unavailable', 'ended', 'discontinued', 'out'].includes(stockState);
+    // Nakoupitelné je vše až po úroveň 5 (Na cestě k nám) — viz semantická škála v ui-Stock
+    const buyable = !['toorder', 'longterm', 'unavail', 'unavailable', 'ended', 'discontinued', 'out'].includes(stockState);
 
     // CTA: single-variant products buy directly, multi-variant pick a variant
     const ctaVariant = this.props.ctaVariant ?? 'koupit';
@@ -104,7 +104,7 @@ class Component extends DCLogic {
       badgeLabel: this.props.badgeLabel ?? '',
       rating: this.props.rating ?? 4.6,
       ratingCount: this.props.ratingCount ?? 84,
-      href: this.props.href ?? '#',
+      href: this.props.href ?? 'produkt-vzor.html',
       ctaLabel,
       stockState,
       stockDate: this.props.stockDate ?? '28. 8. 2026',

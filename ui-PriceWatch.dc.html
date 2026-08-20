@@ -51,11 +51,6 @@
         </span>
       </label>
 
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <sc-for list="{{ presets }}" as="p" hint-placeholder-count="3">
-          <button type="button" onClick="{{ p.pick }}" class="{{ p.cls }}" style="{{ p.style }}">{{ p.label }}</button>
-        </sc-for>
-      </div>
 
       <label style="display:flex; flex-direction:column; gap:6px;">
         <span style="display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:13px; font-weight:600; color:#4A4A42;">

@@ -88,12 +88,12 @@ class Component extends DCLogic {
     const raw = this.props.products ?? [
       { name: 'Mýdlová hmota s bambuckým máslem, 1 kg', price: '329 Kč', av: 'Skladem', img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg' },
       { name: 'Mýdlová hmota transparentní, 1 kg', price: '299 Kč', av: 'Skladem', img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg' },
-      { name: 'Kyselina salicylová, 25 kg', price: '189 Kč', av: 'Musíme to nabalit', img: 'assets/products/levandulove-maslo-100-g.jpg' },
+      { name: 'Kyselina salicylová, 25 kg', price: '189 Kč', av: 'Nabalíme po objednání', img: 'assets/products/levandulove-maslo-100-g.jpg' },
       { name: 'Tuhý šampon žloutkový', price: '159 Kč', av: 'Skladem', img: 'assets/products/tuhy-sampon-zloutkovy.jpg' },
     ];
     const products = raw.map(p => {
       return Object.assign({}, p, {
-        href: p.href ?? 'produkt.html',
+        href: p.href ?? 'produkt-vzor.html',
         stockState: p.stockState ?? (/nabalit|nava/i.test(p.av || '') ? 'packing' : /oceka|naskladn/i.test(p.av || '') ? 'expected' : 'ready'),
         stockDate: p.stockDate ?? '28. 8. 2026',
         thumbStyle: 'width:44px; height:44px; flex:0 0 auto; border-radius:9px; background:#F6F1E7 center/contain no-repeat; background-image:url("' + abs(p.img) + '");',

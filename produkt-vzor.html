@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D14405; color: #fff; }
+  a { color: #4C653D; }
+  a:hover { color: #B23803; }
+  .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u:hover { background-size: 100% 1.5px; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-primary:hover { background: #3E5432 !important; border-color: #3E5432 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 38px; line-height: 1.12; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.18; color: #2D3A2E; margin: 0 0 12px; text-wrap: pretty; }
+  .ek-h3 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 20px; line-height: 1.25; color: #2D3A2E; margin: 0 0 8px; }
+  .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
+  .ek-p { margin: 0 0 12px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
+  .ek-ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .ek-ul li { position: relative; padding-left: 20px; font-size: 15.5px; line-height: 1.6; color: #4A4A42; }
+  .ek-ul li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; border-radius: 50%; background: #7BA23F; }
+  .ek-pd-grid { display: grid; grid-template-columns: minmax(0,1.02fr) minmax(0,.98fr); gap: 52px; align-items: start; }
+  .ek-buy { position: sticky; top: 152px; display: flex; flex-direction: column; gap: 20px; }
+  .ek-det-grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,.9fr); gap: 46px; align-items: start; }
+  .ek-det-side { position: sticky; top: 152px; display: flex; flex-direction: column; gap: 16px; max-height: calc(100vh - 176px); overflow-y: auto; padding-right: 4px; }
+  .ek-tear { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: 0; pointer-events: none; box-shadow: inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); clip-path: polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 9.9px, 15.22% 13.6px, 17.39% 7.4px, 19.57% 11.2px, 21.74% 6.1px, 23.91% 10.4px, 26.09% 14.2px, 28.26% 8.1px, 30.43% 4.7px, 32.61% 9.3px, 34.78% 12.8px, 36.96% 6.8px, 39.13% 10.9px, 41.3% 5.2px, 43.48% 13.1px, 45.65% 8.6px, 47.83% 11.7px, 50% 6.4px, 52.17% 9.8px, 54.35% 14.4px, 56.52% 7.9px, 58.7% 11.4px, 60.87% 5.7px, 63.04% 10.2px, 65.22% 13.3px, 67.39% 8.4px, 69.57% 4.9px, 71.74% 12.1px, 73.91% 7.2px, 76.09% 10.7px, 78.26% 14.1px, 80.43% 6.6px, 82.61% 11.9px, 84.78% 8.8px, 86.96% 5.1px, 89.13% 12.6px, 91.3% 9.1px, 93.48% 13.8px, 95.65% 7.7px, 97.83% 10.3px, 100% 5.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 11.1px), 95.65% calc(100% - 7.6px), 93.48% calc(100% - 13.4px), 91.3% calc(100% - 9.2px), 89.13% calc(100% - 5.3px), 86.96% calc(100% - 12.2px), 84.78% calc(100% - 8.7px), 82.61% calc(100% - 11.6px), 80.43% calc(100% - 6.1px), 78.26% calc(100% - 14.3px), 76.09% calc(100% - 9.6px), 73.91% calc(100% - 12.9px), 71.74% calc(100% - 7.1px), 69.57% calc(100% - 10.8px), 67.39% calc(100% - 4.8px), 65.22% calc(100% - 13.7px), 63.04% calc(100% - 8.2px), 60.87% calc(100% - 11.3px), 58.7% calc(100% - 6.7px), 56.52% calc(100% - 10.1px), 54.35% calc(100% - 14.6px), 52.17% calc(100% - 9.4px), 50% calc(100% - 5.6px), 47.83% calc(100% - 12.4px), 45.65% calc(100% - 8.9px), 43.48% calc(100% - 11.8px), 41.3% calc(100% - 6.9px), 39.13% calc(100% - 13.2px), 36.96% calc(100% - 9.7px), 34.78% calc(100% - 5.2px), 32.61% calc(100% - 12.7px), 30.43% calc(100% - 8.3px), 28.26% calc(100% - 11.5px), 26.09% calc(100% - 7.3px), 23.91% calc(100% - 14.5px), 21.74% calc(100% - 9.9px), 19.57% calc(100% - 6.2px), 17.39% calc(100% - 12.8px), 15.22% calc(100% - 8.5px), 13.04% calc(100% - 11.9px), 10.87% calc(100% - 6.4px), 8.7% calc(100% - 13.6px), 6.52% calc(100% - 9.3px), 4.35% calc(100% - 5.7px), 2.17% calc(100% - 12.3px), 0% calc(100% - 8.6px)); }
+  .ek-card { background: #fff; border: 1px solid #ECE3D2; border-radius: 14px; }
+  .ek-sec { padding-top: 30px; border-top: 1px solid #EFE7D6; scroll-margin-top: 150px; }
+  .ek-prow { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 10px 0; border-bottom: 1px dashed #E4DAC6; font-size: 14.5px; }
+  .ek-prow:last-child { border-bottom: none; }
+  .ek-file { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid #E4DAC6; border-radius: 12px; background: #FDFBF5; text-decoration: none; transition: border-color .2s, background .2s; }
+  .ek-file:hover { border-color: #4C653D; background: #F4F7EA; }
+  .ek-minirow { display: grid; grid-template-columns: 52px minmax(0,1fr); gap: 12px; align-items: center; padding: 9px 10px; border-radius: 12px; text-decoration: none; transition: background .2s; }
+  .ek-minirow:hover { background: #F6F1E7; }
+  .ek-chip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; background: #F3EDE0; color: #4A4A42; font-size: 13.5px; font-weight: 500; }
+  .ek-anchor { display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4DAC6; background: #fff; color: #4C653D; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s; }
+  .ek-anchor:hover { border-color: #4C653D; background: #F4F7EA; color: #4C653D; }
+  .ek-dose { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; background: rgba(63,127,44,.10); border: 1px solid rgba(63,127,44,.3); color: #33661F; font-size: 13.5px; font-weight: 600; }
+  @media (max-width: 980px) {
+    .ek-pd-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .ek-det-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+    .ek-buy, .ek-det-side { position: static !important; max-height: none !important; overflow: visible !important; }
+    .ek-h1 { font-size: 29px !important; }
+    .ek-h2 { font-size: 24px !important; }
+    .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-recipes { grid-template-columns: 1fr !important; }
+    .ek-2col { grid-template-columns: 1fr !important; }
+    .ek-pagebot { padding-bottom: 92px; }
+  }
+</style>
+</helmet>
+
+<div class="ek-pagebot" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+
+  <dc-import name="ui-Header" active="produkty" hint-size="100%,140px"></dc-import>
+
+  <div style="max-width:1440px; margin:0 auto; position:relative;">
+
+  <section style="padding:22px 32px 0;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto 26px;">
+      <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="420px,20px"></dc-import>
+    </div>
+
+    <div class="ek-pd-grid" style="max-width:1280px; margin:0 auto;">
+      <dc-import name="ui-Gallery" images="{{ images }}" badges="{{ galleryBadges }}" productName="{{ title }}" hint-size="100%,620px"></dc-import>
+
+      <div class="ek-buy">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+            <p class="ek-eyebrow">Ekokoza · Esenciální oleje</p>
+            <span style="font-size:12.5px; color:#8a8776;">ID produktu {{ productId }}</span>
+          </div>
+          <h1 class="ek-h1">{{ title }}</h1>
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" size="{{ 16 }}" hint-size="130px,20px"></dc-import>
+            <a href="#faq" class="ek-link-u" style="font-size:14px; text-decoration:none; color:#4C653D;">Časté otázky</a>
+          </div>
+          <p class="ek-p" style="margin:2px 0 0;">{{ shortDesc }}</p>
+        </div>
+
+        <div style="display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap;">
+          <span style="font-family:'EB Garamond',serif; font-size:40px; line-height:1; font-weight:500; color:#2D3A2E;">{{ price }}</span>
+          <span style="display:flex; flex-direction:column; gap:3px; font-size:14px; color:#6B6B5E; padding-bottom:3px;">
+            <span>{{ priceNoVat }} bez DPH</span>
+            <span>{{ unitPrice }}</span>
+          </span>
+        </div>
+
+        <dc-import name="ui-VariantPicker" mode="qty" heading="Vyberte balení a množství" variants="{{ variants }}" resetKey="{{ varResetKey }}" onQtyChange="{{ onVarQty }}" hint-size="100%,280px"></dc-import>
+
+        <div id="ek-buy-cta" class="ek-buyrow" style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+          <span style="display:flex; flex-direction:column; gap:7px; flex:0 0 auto;">
+            <button onClick="{{ addVariants }}" disabled="{{ nothingPicked }}" style="{{ varCtaStyle }}"><span style="{{ iconCartW }}"></span>Do košíku</button>
+            <span style="font-size:13.5px; color:#6B6B5E;">{{ varPickedNote }}</span>
+          </span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:11px; padding-top:4px;">
+          <sc-for list="{{ perks }}" as="p" hint-placeholder-count="3">
+            <span style="display:flex; align-items:flex-start; gap:10px; font-size:14.5px; line-height:1.5; color:#4A4A42;">
+              <span style="{{ p.icon }}"></span>{{ p.label }}
+            </span>
+          </sc-for>
+        </div>
+
+        <div class="ek-card" style="display:flex; align-items:flex-start; gap:12px; padding:16px 18px; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%); border-color:rgba(76,101,61,.16);">
+          <span style="{{ iconHelp }}"></span>
+          <span style="font-size:14.5px; line-height:1.6; color:#4A4A42;">Nejste si jistí dávkováním nebo kombinací? Napište nám na <a href="mailto:eshop@ekokoza.cz" class="ek-link-u" style="text-decoration:none; font-weight:600;">eshop@ekokoza.cz</a>.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="popis" style="position:relative; margin:56px 0 0; padding:30px 0 40px;">
+    <div aria-hidden="true" class="ek-tear" style="background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 64%,#FDFCF7 100%);"></div>
+    <section style="position:relative; z-index:1; padding:44px 32px;" class="ek-pad">
+      <div class="ek-det-grid" style="max-width:1280px; margin:0 auto;">
+
+        <div>
+          <p class="ek-eyebrow" style="margin-bottom:10px;">Detailní popis</p>
+          <h2 class="ek-h2" style="font-size:32px;">{{ descHeading }}</h2>
+          <p class="ek-p" style="font-size:17px;">{{ longDesc }}</p>
+
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 6px;">
+            <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="10">
+              <a href="{{ a.href }}" class="ek-anchor">{{ a.label }}</a>
+            </sc-for>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:34px; margin-top:34px;">
+
+            <section id="vlastnosti" class="ek-sec">
+              <h2 class="ek-h2">1. Hlavní vlastnosti</h2>
+              <div class="ek-2col" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px;">
+                <sc-for list="{{ features }}" as="f" hint-placeholder-count="6">
+                  <div style="display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px; padding:16px 18px; border:1px solid #ECE3D2; border-radius:14px; background:#FDFBF5;">
+                    <span style="{{ f.icon }}"></span>
+                    <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
+                      <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:17.5px; color:#2D3A2E;">{{ f.title }}</span>
+                      <span style="font-size:14.5px; line-height:1.55; color:#4A4A42;">{{ f.desc }}</span>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+            </section>
+
+            <section id="cotoje" class="ek-sec">
+              <h2 class="ek-h2">2. Co to je?</h2>
+              <div style="display:inline-flex; align-items:center; gap:9px; padding:9px 14px; border-radius:12px; background:#F3EDE0; margin-bottom:14px;">
+                <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">INCI</span>
+                <span style="font-family:ui-monospace,monospace; font-size:14px; color:#2A2A24;">{{ inci }}</span>
+              </div>
+              <sc-for list="{{ whatIs }}" as="w" hint-placeholder-count="3">
+                <p class="ek-p">{{ w.text }}</p>
+              </sc-for>
+            </section>
+
+            <section id="pouziti" class="ek-sec">
+              <h2 class="ek-h2">3. K čemu se používá?</h2>
+              <p class="ek-p">{{ usesIntro }}</p>
+              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px;">
+                <sc-for list="{{ uses }}" as="u" hint-placeholder-count="10">
+                  <span class="ek-chip">{{ u.label }}</span>
+                </sc-for>
+              </div>
+              <div style="display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px; padding:16px 18px; border:1px solid rgba(76,101,61,.2); border-radius:14px; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%);">
+                <span style="{{ iconBulb }}"></span>
+                <span style="display:flex; flex-direction:column; gap:4px;">
+                  <span style="font-weight:600; font-size:15.5px; color:#2D3A2E;">{{ tipTitle }}</span>
+                  <span style="font-size:15px; line-height:1.6; color:#4A4A42;">{{ tipText }}</span>
+                </span>
+              </div>
+            </section>
+
+            <section id="jak" class="ek-sec">
+              <h2 class="ek-h2">4. Jak se používá?</h2>
+              <p class="ek-p">{{ howIntro }}</p>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <sc-for list="{{ howRows }}" as="h" hint-placeholder-count="5">
+                  <div style="display:grid; grid-template-columns:auto minmax(0,1fr); gap:14px; padding:18px; border:1px solid #ECE3D2; border-radius:14px; background:#fff;">
+                    <span style="{{ h.icon }}"></span>
+                    <div style="min-width:0;">
+                      <h3 class="ek-h3">{{ h.title }}</h3>
+                      <p style="margin:0 0 10px; font-size:15.5px; line-height:1.65; color:#4A4A42;">{{ h.text }}</p>
+                      <sc-if value="{{ h.hasDose }}" hint-placeholder-val="{{ true }}">
+                        <span class="ek-dose"><span style="{{ h.doseIcon }}"></span>{{ h.dose }}</span>
+                      </sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </section>
+
+            <section id="karta" class="ek-sec">
+              <h2 class="ek-h2">5. Rychlá technická karta</h2>
+              <div class="ek-card" style="padding:8px 20px;">
+                <sc-for list="{{ techCard }}" as="t" hint-placeholder-count="11">
+                  <div class="ek-prow">
+                    <span style="color:#6B6B5E;">{{ t.k }}</span>
+                    <span style="font-weight:600; color:#2A2A24; text-align:right;">{{ t.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </section>
+
+            <section id="kombinace" class="ek-sec">
+              <h2 class="ek-h2">6. S čím se dobře kombinuje?</h2>
+              <p class="ek-p">{{ combosIntro }}</p>
+              <div class="ek-2col" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px;">
+                <sc-for list="{{ combos }}" as="c" hint-placeholder-count="6">
+                  <div style="padding:16px 18px; border:1px solid #ECE3D2; border-radius:14px; background:#FDFBF5;">
+                    <h3 class="ek-h3" style="font-size:18px;">{{ c.title }}</h3>
+                    <p style="margin:0 0 8px; font-size:14.5px; line-height:1.6; color:#4A4A42;">{{ c.desc }}</p>
+                    <sc-if value="{{ c.hasRatio }}" hint-placeholder-val="{{ false }}">
+                      <span class="ek-dose">{{ c.ratio }}</span>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+              <p style="margin:16px 0 0; font-size:14.5px; line-height:1.6; color:#6B6B5E;">{{ combosNote }}</p>
+            </section>
+
+            <section id="nahrady" class="ek-sec">
+              <h2 class="ek-h2">7. Čím jej případně nahradit?</h2>
+              <p class="ek-p">{{ altIntro }}</p>
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <sc-for list="{{ alternatives }}" as="a" hint-placeholder-count="4">
+                  <div style="display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px; padding:14px 16px; border:1px solid #ECE3D2; border-radius:12px; background:#fff;">
+                    <span style="{{ iconExchange }}"></span>
+                    <span style="display:flex; flex-direction:column; gap:3px;">
+                      <span style="font-weight:600; font-size:15.5px; color:#2A2A24;">{{ a.title }}</span>
+                      <span style="font-size:14.5px; line-height:1.6; color:#4A4A42;">{{ a.desc }}</span>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+              <p style="margin:14px 0 0; font-size:14.5px; line-height:1.6; color:#8A3A0C;">{{ altWarning }}</p>
+            </section>
+
+            <section id="pozor" class="ek-sec">
+              <h2 class="ek-h2">8. Na co si dát pozor při výrobě?</h2>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <sc-for list="{{ pitfalls }}" as="p" hint-placeholder-count="5">
+                  <div style="padding:16px 18px; border:1px solid #E8D9C2; border-radius:14px; background:linear-gradient(160deg,#FFFBF3 0%,#FDF4E6 100%);">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+                      <span style="{{ p.icon }}"></span>
+                      <span style="font-weight:600; font-size:15.5px; color:#2D3A2E;">{{ p.title }}</span>
+                    </div>
+                    <p style="margin:0 0 8px; font-size:15px; line-height:1.6; color:#4A4A42;">{{ p.text }}</p>
+                    <sc-if value="{{ p.hasFix }}" hint-placeholder-val="{{ true }}">
+                      <p style="margin:0; font-size:15px; line-height:1.6; color:#33661F;">Řešení: {{ p.fix }}</p>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </section>
+
+            <section id="puvod" class="ek-sec">
+              <h2 class="ek-h2">9. Původ, způsob získávání a složení</h2>
+              <div class="ek-card" style="padding:8px 20px; margin-bottom:18px;">
+                <sc-for list="{{ origin }}" as="o" hint-placeholder-count="9">
+                  <div class="ek-prow">
+                    <span style="color:#6B6B5E;">{{ o.k }}</span>
+                    <span style="font-weight:600; color:#2A2A24; text-align:right;">{{ o.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div class="ek-2col" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;">
+                <div>
+                  <h3 class="ek-h3">Co přesně kupujete</h3>
+                  <p style="margin:0 0 12px; font-size:15.5px; line-height:1.6; color:#4A4A42;">{{ contains }}</p>
+                  <span style="display:block; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776; margin-bottom:8px;">Neobsahuje</span>
+                  <ul class="ek-ul">
+                    <sc-for list="{{ notContains }}" as="n" hint-placeholder-count="6">
+                      <li>{{ n.label }}</li>
+                    </sc-for>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="ek-h3">Typické přirozené složky</h3>
+                  <div style="display:flex; flex-direction:column; gap:9px;">
+                    <sc-for list="{{ composition }}" as="c" hint-placeholder-count="8">
+                      <span style="display:grid; grid-template-columns:minmax(0,1fr) 56px; gap:10px; align-items:center; font-size:14.5px; color:#4A4A42;">
+                        <span style="display:flex; flex-direction:column; gap:5px; min-width:0;">
+                          <span>{{ c.name }}</span>
+                          <span style="display:block; height:6px; border-radius:999px; background:#EFE7D6;"><span style="{{ c.fill }}"></span></span>
+                        </span>
+                        <span style="text-align:right; font-weight:600; color:#2A2A24;">{{ c.value }}</span>
+                      </span>
+                    </sc-for>
+                  </div>
+                  <p style="margin:14px 0 0; font-size:13.5px; line-height:1.55; color:#6B6B5E;">{{ compositionNote }}</p>
+                </div>
+              </div>
+            </section>
+
+            <section id="skladovani" class="ek-sec">
+              <h2 class="ek-h2">10. Skladování a trvanlivost</h2>
+              <div class="ek-2col" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-bottom:16px;">
+                <sc-for list="{{ storage }}" as="s" hint-placeholder-count="6">
+                  <div style="display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px; padding:14px 16px; border:1px solid #ECE3D2; border-radius:12px; background:#fff;">
+                    <span style="{{ s.icon }}"></span>
+                    <span style="display:flex; flex-direction:column; gap:3px;">
+                      <span style="font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:#8a8776;">{{ s.k }}</span>
+                      <span style="font-size:15px; font-weight:600; color:#2A2A24;">{{ s.v }}</span>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+              <p class="ek-p" style="margin:0;">{{ storageNote }}</p>
+            </section>
+
+            <section id="bezpecnost" class="ek-sec">
+              <h2 class="ek-h2">11. Bezpečnostní upozornění</h2>
+              <div style="padding:18px 20px; border:1px solid rgba(163,50,3,.3); border-radius:14px; background:rgba(163,50,3,.05);">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                  <span style="{{ iconAlert }}"></span>
+                  <span style="font-weight:600; font-size:16px; color:#8A3A0C;">{{ safetyLead }}</span>
+                </div>
+                <ul class="ek-ul" style="margin-bottom:16px;">
+                  <sc-for list="{{ safetyShort }}" as="s" hint-placeholder-count="5">
+                    <li>{{ s.label }}</li>
+                  </sc-for>
+                </ul>
+                <button onClick="{{ toggleSafety }}" class="ek-btn-secondary" style="display:inline-flex; align-items:center; gap:9px; background:transparent; border:1.5px solid #A33203; color:#A33203; border-radius:999px; padding:11px 20px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; cursor:pointer;">{{ safetyBtn }}<span style="{{ safetyChev }}"></span></button>
+
+                <sc-if value="{{ safetyOpen }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex; flex-direction:column; gap:20px; margin-top:20px; padding-top:20px; border-top:1px solid rgba(163,50,3,.24);">
+                    <div>
+                      <h3 class="ek-h3" style="font-size:18px;">Klasifikace podle CLP</h3>
+                      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+                        <sc-for list="{{ ghs }}" as="g" hint-placeholder-count="3">
+                          <span class="ek-chip" style="background:rgba(163,50,3,.09); color:#8A3A0C;">{{ g.label }}</span>
+                        </sc-for>
+                      </div>
+                      <p style="margin:0; font-size:15px; color:#4A4A42;">Signální slovo: {{ signalWord }}</p>
+                    </div>
+                    <div>
+                      <h3 class="ek-h3" style="font-size:18px;">H-věty</h3>
+                      <ul class="ek-ul">
+                        <sc-for list="{{ hSentences }}" as="h" hint-placeholder-count="4">
+                          <li>{{ h.label }}</li>
+                        </sc-for>
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 class="ek-h3" style="font-size:18px;">P-věty</h3>
+                      <ul class="ek-ul">
+                        <sc-for list="{{ pSentences }}" as="p" hint-placeholder-count="6">
+                          <li>{{ p.label }}</li>
+                        </sc-for>
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 class="ek-h3" style="font-size:18px;">Kosmetické alergeny</h3>
+                      <p style="margin:0 0 10px; font-size:15px; line-height:1.6; color:#4A4A42;">Přirozeně může obsahovat zejména:</p>
+                      <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                        <sc-for list="{{ allergens }}" as="a" hint-placeholder-count="3">
+                          <span class="ek-chip">{{ a.label }}</span>
+                        </sc-for>
+                      </div>
+                      <p style="margin:12px 0 0; font-size:14px; line-height:1.6; color:#6B6B5E;">{{ allergenNote }}</p>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </section>
+
+            <section id="faq" class="ek-sec">
+              <h2 class="ek-h2">12. Časté otázky</h2>
+              <p class="ek-p" style="margin-bottom:18px;">Rozklikněte otázku, kterou právě řešíte. Odpovědi jsou modelové — vždy vycházejte z vlastní receptury a dokumentace k šarži.</p>
+              <dc-import name="ui-FAQ" items="{{ faq }}" hint-size="100%,560px"></dc-import>
+            </section>
+
+            <section id="poradime" class="ek-sec">
+              <h2 class="ek-h2">13. Poradíme vám</h2>
+              <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; padding:26px 28px; border:1px solid rgba(76,101,61,.18); border-radius:14px; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%);">
+                <div style="max-width:56ch;">
+                  <h3 class="ek-h3" style="font-size:22px;">{{ helpTitle }}</h3>
+                  <p style="margin:0 0 8px; font-size:16px; line-height:1.7; color:#4A4A42;">{{ helpText }}</p>
+                  <p style="margin:0; font-family:'EB Garamond',serif; font-size:19px; color:#4C653D;">Vědět proč. Vědět jak.</p>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                  <a href="mailto:eshop@ekokoza.cz" class="ek-btn-primary" style="display:inline-flex; align-items:center; gap:9px; background:#4C653D; color:#F6F1E7; border:1.5px solid #4C653D; text-decoration:none; border-radius:999px; padding:14px 24px; font-size:15.5px; font-weight:600; transition:background .2s;"><span style="{{ iconMail }}"></span>Napsat dotaz</a>
+                  <a href="tel:+420601365245" class="ek-btn-secondary" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; border-radius:999px; padding:13px 24px; font-size:15px; font-weight:600; transition:background .2s, color .2s;">+420 601 365 245</a>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+        <aside class="ek-det-side">
+          <div class="ek-card" style="padding:18px 20px;">
+            <h3 class="ek-h3" style="margin-bottom:12px;">Certifikace a vlastnosti</h3>
+            <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;">
+              <sc-for list="{{ certs }}" as="c" hint-placeholder-count="4">
+                <span style="display:flex; flex-direction:column; align-items:center; gap:7px; padding:14px 8px; border:1px solid #ECE3D2; border-radius:12px; background:#FDFBF5; text-align:center;">
+                  <span style="{{ c.icon }}"></span>
+                  <span style="font-size:13px; font-weight:600; line-height:1.35; color:#2A2A24;">{{ c.label }}</span>
+                </span>
+              </sc-for>
+            </div>
+          </div>
+
+          <div class="ek-card" style="padding:18px 20px;">
+            <h3 class="ek-h3" style="margin-bottom:6px;">Parametry</h3>
+            <div>
+              <sc-for list="{{ params }}" as="p" hint-placeholder-count="7">
+                <div class="ek-prow">
+                  <span style="color:#6B6B5E;">{{ p.k }}</span>
+                  <span style="font-weight:600; color:#2A2A24; text-align:right;">{{ p.v }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <a href="#karta" class="ek-link-u" style="display:inline-block; margin-top:12px; font-size:14px; font-weight:600; text-decoration:none;">Celá technická karta</a>
+          </div>
+
+          <div class="ek-card" style="padding:18px 20px;">
+            <button onClick="{{ toggleDocs }}" aria-expanded="{{ docsOpen }}" style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; padding:0; background:transparent; border:none; cursor:pointer; text-align:left; font-family:'Work Sans',sans-serif;">
+              <span style="display:flex; flex-direction:column; gap:3px;">
+                <span class="ek-h3" style="margin:0;">Dokumentace</span>
+                <span style="font-size:13px; color:#6B6B5E;">{{ docsMeta }}</span>
+              </span>
+              <span style="{{ docsChev }}"></span>
+            </button>
+            <sc-if value="{{ docsOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column; gap:9px; margin-top:14px;">
+              <sc-for list="{{ files }}" as="f" hint-placeholder-count="4">
+                <a href="{{ f.href }}" class="ek-file">
+                  <span style="{{ f.icon }}"></span>
+                  <span style="display:flex; flex-direction:column; gap:2px; min-width:0; flex:1;">
+                    <span style="font-size:14px; font-weight:600; color:#2A2A24;">{{ f.label }}</span>
+                    <span style="font-size:12px; color:#6B6B5E;">{{ f.meta }}</span>
+                  </span>
+                  <span style="{{ iconDownload }}"></span>
+                </a>
+              </sc-for>
+            </div>
+            </sc-if>
+          </div>
+
+          <div class="ek-card" style="padding:18px 14px 18px 20px;">
+            <h3 class="ek-h3" style="margin-bottom:6px;">Recepty se surovinou</h3>
+            <p style="margin:0 0 10px; font-size:13.5px; line-height:1.55; color:#6B6B5E;">Recept je most mezi surovinou a hotovou věcí.</p>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              <sc-for list="{{ recipeMini }}" as="r" hint-placeholder-count="4">
+                <a href="{{ r.href }}" class="ek-minirow">
+                  <span style="{{ r.thumb }}"></span>
+                  <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
+                    <span style="font-size:14.5px; font-weight:600; line-height:1.35; color:#2A2A24;">{{ r.title }}</span>
+                    <span style="font-size:12.5px; color:#6B6B5E;">{{ r.meta }}</span>
+                  </span>
+                </a>
+              </sc-for>
+            </div>
+            <a href="#recepty" class="ek-link-u" style="display:inline-block; margin:12px 0 0 6px; font-size:14px; font-weight:600; text-decoration:none;">Všechny recepty</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <section id="recepty" style="padding:56px 32px 0;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <p class="ek-eyebrow" style="margin-bottom:10px;">Vědět proč. Vědět jak.</p>
+      <h2 class="ek-h2" style="font-size:32px;">S touto surovinou si vyrobíte</h2>
+      <p class="ek-p" style="max-width:64ch; margin-bottom:26px;">Recepty, ve kterých levandulový esenciální olej hraje hlavní vonnou roli.</p>
+      <div class="ek-recipes" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px;">
+        <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="3">
+          <dc-import name="ui-RecipeCard" title="{{ r.title }}" desc="{{ r.desc }}" category="{{ r.category }}" level="{{ r.level }}" time="{{ r.time }}" img="{{ r.img }}" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" hint-size="100%,400px"></dc-import>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 32px 0;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <dc-import name="ui-Carousel" title="Co se k tomu hodí" subtitle="Suroviny a pomůcky, které se s esenciálním olejem nejčastěji kupují." items="{{ crossSell }}" hint-size="100%,500px"></dc-import>
+    </div>
+  </section>
+
+  <div style="position:relative; margin-top:74px;">
+    <div style="position:relative; z-index:1;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
+  </div>
+  </div>
+
+  <dc-import name="ui-BuyBar" title="{{ title }}" variantLabel="{{ barVariant }}" variants="{{ variants }}" selected="{{ selected }}" onSelect="{{ onSelect }}" price="{{ price }}" note="{{ unitPrice }}" img="{{ barImg }}" buyable="{{ true }}" stockState="{{ stockState }}" max="{{ 99 }}" watch="#ek-buy-cta" pickTarget="#ek-buy-cta" onAdd="{{ onAdd }}" hint-size="100%,0px"></dc-import>
+</div>
+<sc-if value="{{ cartAddedOpen }}" hint-placeholder-val="{{ false }}">
+  <dc-import name="ui-CartAdded" open="{{ true }}" items="{{ addedItems }}" cartTotal="{{ 1289 }}" cartCount="{{ 2 }}" turnover="{{ 7400 }}" onClose="{{ closeCartAdded }}" hint-size="100%,100%"></dc-import>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { sel: 0, varQtys: null, varReset: 0, cartAdded: false, lastAdded: null, safety: false, docs: false };
+
+  mask(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  static IMG = 'assets/products/levandulovy-esencialni-olej.webp';
+
+  static VARIANTS = [
+    { label: '10 ml',  price: '149 Kč',   noVat: '123 Kč',   unit: '14 900 Kč / l', state: 'ready' },
+    { label: '50 ml',  price: '590 Kč',   noVat: '488 Kč',   unit: '11 800 Kč / l', state: 'ready' },
+    { label: '100 ml', price: '1 090 Kč', noVat: '901 Kč',   unit: '10 900 Kč / l', state: 'packing' },
+    { label: '1 l',    price: '8 490 Kč', noVat: '7 016 Kč', unit: '8 490 Kč / l',  state: 'expected', date: '12. 9. 2026' },
+  ];
+
+  money0(s) { return Number(String(s).replace(/[^0-9]/g, '')) || 0; }
+  money(n) { return new Intl.NumberFormat('cs-CZ').format(Math.round(n)) + ' Kč'; }
+
+  renderVals() {
+    const cur = Component.VARIANTS[this.state.sel] || Component.VARIANTS[0];
+    const varQtys = this.state.varQtys ?? {};
+    const pickedRows = Component.VARIANTS.map((v, i) => ({ v, i, q: Number(varQtys[i] ?? 0) }))
+      .filter(r => r.q > 0)
+      .map(r => ({
+        title: 'Levandulový esenciální olej BIO',
+        variant: r.v.label, qty: r.q,
+        price: this.money0(r.v.price), noVat: this.money0(r.v.noVat),
+        img: Component.IMG, state: r.v.state ?? 'ready', date: r.v.date ?? '',
+      }));
+    const pieces = pickedRows.reduce((s, r) => s + r.qty, 0);
+    const total = pickedRows.reduce((s, r) => s + r.qty * r.price, 0);
+
+    const mini = (title, meta, img) => ({
+      title, meta, href: '#',
+      thumb: 'display:block; width:52px; height:52px; border-radius:10px; background:#F6F1E7 center/cover no-repeat; background-image:url("' + img + '");',
+    });
+
+    const prod = (title, price, img, rating, ratingCount, stockState, ctaVariant, badge) =>
+      ({ title, price, img, rating, ratingCount, stockState, stockDate: '', ctaVariant, badge, href: 'produkt-vzor.html' });
+
+    return {
+      crumbs: [
+        { label: 'Úvod', href: 'index.html' },
+        { label: 'Produkty', href: 'kategorie.html' },
+        { label: 'Esenciální oleje', href: 'kategorie.html' },
+        { label: 'Levandulový esenciální olej BIO' },
+      ],
+      images: [
+        { src: Component.IMG, alt: 'Levandulový esenciální olej BIO v odměrce s květy levandule' },
+        { src: 'assets/products/levandulove-maslo-100-g.jpg', alt: 'Levandulové máslo vyrobené s tímto olejem' },
+        { src: 'assets/products/tuhy-sampon-zloutkovy.jpg', alt: 'Tuhý šampon s levandulí' },
+      ],
+      galleryBadges: [{ variant: 'prirodni', label: 'BIO kvalita' }, { variant: 'bestseller' }],
+
+      title: 'Levandulový esenciální olej BIO',
+      productId: '4821',
+      rating: 4.8,
+      ratingCount: 46,
+      shortDesc: 'Jemně květinový esenciální olej z levandule lékařské pro výrobu přírodní kosmetiky, mýdel, koupelových výrobků a dalších vonných receptur.',
+
+      price: cur.price,
+      priceNoVat: cur.noVat,
+      unitPrice: cur.unit,
+      variants: Component.VARIANTS,
+      selected: this.state.sel,
+      onSelect: (i) => this.setState({ sel: i }),
+      stockState: cur.state,
+      barVariant: cur.label,
+      barImg: Component.IMG,
+
+      varResetKey: this.state.varReset,
+      onVarQty: (all) => this.setState({ varQtys: all }),
+      nothingPicked: pieces === 0,
+      varPickedNote: pieces === 0
+        ? 'Zadejte množství u balení, která chcete koupit.'
+        : pickedRows.length + ' balení · ' + this.money(total),
+      varCtaStyle: "display:inline-flex; align-items:center; justify-content:center; gap:10px; height:56px; padding:0 30px; min-width:220px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:16.5px; font-weight:600; cursor:pointer; transition:background .2s;",
+      iconCartW: this.mask('shopping-cart-01', 20, '#fff'),
+      addVariants: () => {
+        if (!pickedRows.length) return;
+        this.setState({ cartAdded: true, lastAdded: pickedRows, varQtys: null, varReset: this.state.varReset + 1 });
+      },
+      onAdd: () => this.setState({ cartAdded: true }),
+      cartAddedOpen: this.state.cartAdded,
+      closeCartAdded: () => this.setState({ cartAdded: false }),
+      addedItems: (this.state.lastAdded && this.state.lastAdded.length) ? this.state.lastAdded
+        : [{ title: 'Levandulový esenciální olej BIO', variant: cur.label, qty: 1, price: this.money0(cur.price), noVat: this.money0(cur.noVat), img: Component.IMG, state: cur.state }],
+
+      perks: [
+        { icon: this.mask('leaf-01', 24, '#4F6E2A'), label: 'Kontrolované ekologické zemědělství, Provence.' },
+        { icon: this.mask('test-tube-01', 24, '#4F6E2A'), label: '100 % přírodní olej bez nosného oleje a parfemace.' },
+        { icon: this.mask('shield-01', 24, '#4F6E2A'), label: 'Ke každé šarži bezpečnostní list a specifikace.' },
+      ],
+      iconHelp: this.mask('message-question', 24, '#4F6E2A'),
+      iconBulb: this.mask('bulb', 24, '#4F6E2A'),
+      iconAlert: this.mask('alert-circle', 24, '#A33203'),
+      iconDownload: this.mask('download-01', 22, '#4C653D'),
+      iconExchange: this.mask('exchange-01', 22, '#4F6E2A'),
+      iconMail: this.mask('mail-01', 20, '#F6F1E7'),
+      docsOpen: this.state.docs,
+      docsMeta: '4 soubory ke stažení k této šarži',
+      docsChev: this.mask(this.state.docs ? 'arrow-up-01' : 'arrow-down-01', 20, '#8a8776'),
+      toggleDocs: () => this.setState({ docs: !this.state.docs }),
+
+      anchors: [
+        { label: 'Vlastnosti', href: '#vlastnosti' },
+        { label: 'Co to je', href: '#cotoje' },
+        { label: 'Použití', href: '#pouziti' },
+        { label: 'Jak používat', href: '#jak' },
+        { label: 'Technická karta', href: '#karta' },
+        { label: 'Kombinace', href: '#kombinace' },
+        { label: 'Náhrady', href: '#nahrady' },
+        { label: 'Na co pozor', href: '#pozor' },
+        { label: 'Původ', href: '#puvod' },
+        { label: 'Skladování', href: '#skladovani' },
+        { label: 'Bezpečnost', href: '#bezpecnost' },
+        { label: 'Časté otázky', href: '#faq' },
+      ],
+
+      descHeading: 'Levandulový esenciální olej BIO',
+      longDesc: 'Patří mezi univerzální esenciální oleje, se kterými se dobře pracuje i v jednodušších domácích recepturách. Vůně pochází přímo z rostliny — nejde o vytvořenou vonnou kompozici.',
+
+      features: [
+        { title: 'Květinová, bylinná vůně', desc: 'Typická čistá levandulová vůně s jemně bylinným a lehce svěžím charakterem.', icon: this.mask('flower', 26, '#4F6E2A') },
+        { title: 'Pro kosmetiku i domácí tvoření', desc: 'Do krémů, tělových olejů, balzámů, mýdel i koupelových směsí.', icon: this.mask('body-soap', 26, '#4F6E2A') },
+        { title: 'Stačí malé množství', desc: 'Esenciální oleje jsou koncentrované, používají se v nízkém dávkování.', icon: this.mask('dropper', 26, '#4F6E2A') },
+        { title: 'Dobře se kombinuje', desc: 'Snadno se propojí s citrusovými, bylinnými i dřevitými vůněmi.', icon: this.mask('mixer', 26, '#4F6E2A') },
+        { title: '100% přírodní esenciální olej', desc: 'Bez přidaného nosného oleje, alkoholu a syntetické parfemace.', icon: this.mask('natural-food', 26, '#4F6E2A') },
+        { title: 'BIO kvalita', desc: 'Z levandule z kontrolovaného ekologického zemědělství.', icon: this.mask('leaf-02', 26, '#4F6E2A') },
+      ],
+
+      inci: 'Lavandula Angustifolia Oil',
+      whatIs: [
+        { text: 'Levandulový esenciální olej je koncentrovaná aromatická surovina získaná parní destilací kvetoucích částí levandule lékařské (Lavandula angustifolia).' },
+        { text: 'Na rozdíl od kosmetické parfemace nejde o vytvořenou vonnou kompozici. Vůně pochází přímo z těkavých aromatických látek přirozeně obsažených v rostlině.' },
+        { text: 'V kosmetické receptuře plní především vonnou a senzorickou funkci. Protože jde o vysoce koncentrovanou surovinu, používá se zpravidla v malém množství a podle typu výrobku se odpovídajícím způsobem ředí.' },
+      ],
+
+      usesIntro: 'Využijete jej všude tam, kde chcete výrobku dodat přírodní levandulovou vůni. Hodí se například do:',
+      uses: ['pleťových a tělových olejů', 'pleťových krémů', 'tělových mlék', 'balzámů', 'mastí', 'tuhých kosmetických výrobků', 'mýdel', 'šamponů', 'kondicionérů', 'koupelových solí', 'koupelových olejů', 'masážních směsí', 'deodorantů', 'voskových výrobků'].map(label => ({ label })),
+      tipTitle: 'Chcete jemnější vůni?',
+      tipText: 'Začněte s nižším množstvím. Intenzitu je jednodušší postupně zvýšit než napravovat příliš silně navoněnou recepturu.',
+
+      howIntro: 'Levandulový esenciální olej je rozpustný v olejích a alkoholu, ale není rozpustný ve vodě.',
+      howRows: [
+        { title: 'V olejových výrobcích', text: 'Přidejte jej do olejové fáze nebo až do hotové olejové směsi a důkladně promíchejte.', dose: 'Modelové dávkování 0,2–2 %', icon: this.mask('droplet', 26, '#4F6E2A') },
+        { title: 'V krémech a emulzích', text: 'Přidává se ideálně až během závěrečného chladnutí emulze, při teplotě pod 40 °C.', dose: 'Modelové dávkování 0,1–1 %', icon: this.mask('blender', 26, '#4F6E2A') },
+        { title: 'Ve vodních výrobcích', text: 'Esenciální olej se ve vodě sám nerozpustí. Pro spreje a tonika použijte vhodný solubilizátor.', dose: '1 díl oleje + 3–5 dílů solubilizátoru', icon: this.mask('test-tube-01', 26, '#4F6E2A') },
+        { title: 'V mýdlech', text: 'Přidává se zpravidla až do hotové mýdlové hmoty před nalitím do formy.', dose: 'Modelové dávkování 1–3 %', icon: this.mask('body-soap-02', 26, '#4F6E2A') },
+        { title: 'V koupelových výrobcích', text: 'Olej nejprve vhodně dispergujte nebo zapracujte do nosné složky. Nekapejte jej přímo do vody bez vhodného způsobu rozptýlení.', dose: '', icon: this.mask('bathtub-01', 26, '#4F6E2A') },
+      ].map(h => Object.assign({}, h, { hasDose: !!h.dose, doseIcon: this.mask('weight-scale-01', 16, '#33661F') })),
+
+      techCard: [
+        ['Obchodní název', 'Levandulový esenciální olej BIO'],
+        ['INCI', 'Lavandula Angustifolia Oil'],
+        ['Botanický název', 'Lavandula angustifolia'],
+        ['CAS', '8000-28-0'],
+        ['EC číslo', '289-995-2'],
+        ['Část rostliny', 'kvetoucí nať'],
+        ['Způsob získávání', 'parní destilace'],
+        ['Země původu', 'Francie'],
+        ['Forma', 'čirá kapalina'],
+        ['Barva', 'bezbarvá až světle žlutá'],
+        ['Vůně', 'květinová, bylinná, svěží'],
+      ].map(([k, v]) => ({ k, v })),
+
+      combosIntro: 'Levandule je univerzální vonná surovina, která může fungovat samostatně i jako součást složitější kompozice.',
+      combos: [
+        { title: 'Pomerančový esenciální olej', desc: 'Dodá směsi svěžejší a lehce sladký citrusový charakter.', ratio: '2 díly levandule + 1 díl pomeranče' },
+        { title: 'Bergamot', desc: 'Vytvoří elegantnější, lehčí a svěžejší květinově-citrusový profil.', ratio: '' },
+        { title: 'Rozmarýn', desc: 'Vůně bude zelenější, bylinnější a výraznější.', ratio: '' },
+        { title: 'Cedrové dřevo', desc: 'Dodá levanduli hlubší, sušší a dřevitější základ.', ratio: '' },
+        { title: 'Geranium', desc: 'Podpoří květinový charakter a vytvoří komplexnější vonnou kompozici.', ratio: '' },
+        { title: 'Panthenol, glycerin a hydratační složky', desc: 'Olej se dobře uplatní vedle běžných pečujících složek, pokud je receptura technologicky správně navržená.', ratio: '' },
+      ].map(c => Object.assign({}, c, { hasRatio: !!c.ratio })),
+      combosNote: 'Při kombinování více esenciálních olejů vždy posuzujte bezpečné dávkování celé výsledné vonné směsi, nikoli každé suroviny izolovaně.',
+
+      altIntro: 'Přímá náhrada esenciálního oleje většinou neexistuje. Každá alternativa změní vůni a často i regulatorní profil výsledného výrobku.',
+      alternatives: [
+        { title: 'Lavandin', desc: 'Zachová levandulový charakter, ale vůně je výraznější, ostřejší a lehce kafrovější.' },
+        { title: 'Geranium', desc: 'Pokud hledáte jinou přírodní květinovou vůni.' },
+        { title: 'Heřmánkový esenciální olej', desc: 'Jemnější bylinně-květinový charakter, ale výrazně odlišný senzorický profil.' },
+        { title: 'Levandulová kosmetická vůně', desc: 'Když je cílem stabilní a reprodukovatelná parfemace a čistý přírodní olej není podmínkou.' },
+      ],
+      altWarning: 'Pozor: alternativu vždy znovu dávkujte podle jejích vlastních bezpečnostních a technologických parametrů.',
+
+      pitfalls: [
+        { title: 'Olej plave na hladině vodního výrobku', text: 'To je očekávané — esenciální olej není rozpustný ve vodě.', fix: 'použijte vhodný solubilizátor.', icon: this.mask('droplet', 22, '#B8730B') },
+        { title: 'Vůně je příliš silná', text: 'Začínejte s nižší koncentrací a přidávejte postupně.', fix: 'pokud to receptura umožňuje, nařeďte výrobek další neparfemovanou základní směsí.', icon: this.mask('perfume', 22, '#B8730B') },
+        { title: 'Vůně během výroby zeslábla', text: 'Pravděpodobnou příčinou je vysoká teplota nebo dlouhé zahřívání.', fix: 'přidávejte olej pokud možno pod 40 °C.', icon: this.mask('thermometer-warm', 22, '#B8730B') },
+        { title: 'Emulze se po přidání vůně změnila', text: 'Vyšší množství esenciálního oleje může ovlivnit stabilitu některých systémů.', fix: 'ověřte maximální zatížení emulgačního systému a dávkování případně snižte.', icon: this.mask('blender', 22, '#B8730B') },
+        { title: 'Výrobek má jinou vůni než samotný olej', text: 'Ostatní suroviny výsledný aromatický profil ovlivňují — typicky nerafinovaná másla, rostlinné oleje, hydroláty a povrchově aktivní látky.', fix: '', icon: this.mask('jar', 22, '#B8730B') },
+        { title: 'Jak poznáte správný výsledek?', text: 'V bezvodé olejové směsi má být olej dokonale a rovnoměrně promíchaný. U emulze nesmí docházet k oddělování fází ani výrazné změně struktury. U solubilizovaného vodního výrobku má být směs homogenní bez samostatné olejové vrstvy.', fix: '', icon: this.mask('checkmark-circle-01', 22, '#B8730B') },
+      ].map(p => Object.assign({}, p, { hasFix: !!p.fix })),
+
+      origin: [
+        ['Botanický název', 'Lavandula angustifolia'],
+        ['Čeleď', 'Lamiaceae'],
+        ['Část rostliny', 'kvetoucí nať'],
+        ['Země původu / oblast', 'Francie — Provence'],
+        ['Způsob pěstování', 'ekologické zemědělství'],
+        ['Způsob získávání', 'parní destilace'],
+        ['Typ suroviny', '100% přírodní esenciální olej'],
+        ['Rafinace', 'nerafinovaný'],
+        ['Rozpouštědla při výrobě', 'nepoužita'],
+      ].map(([k, v]) => ({ k, v })),
+      contains: 'Produkt obsahuje 100 % Lavandula Angustifolia Oil.',
+      notContains: ['nosný rostlinný olej', 'ethanol', 'syntetickou parfemaci', 'barviva', 'konzervanty', 'antioxidant přidaný dodavatelem', 'živočišné složky'].map(label => ({ label })),
+      composition: [
+        ['Linalyl acetate', 34], ['Linalool', 30], ['Terpinen-4-ol', 4.5], ['Lavandulyl acetate', 4],
+        ['β-Caryophyllene', 3.5], ['Lavandulol', 1.2], ['1,8-Cineole', 0.8], ['Limonene', 0.6],
+        ['Geraniol', 0.5], ['Camphor', 0.4],
+      ].map(([name, pct]) => ({
+        name, value: String(pct).replace('.', ',') + ' %',
+        fill: 'display:block; height:100%; width:' + Math.max(3, Math.round((pct / 34) * 100)) + '%; border-radius:999px; background:#7BA23F;',
+      })),
+      compositionNote: 'Konkrétní zastoupení jednotlivých látek se může přirozeně měnit mezi šaržemi v rámci stanovené specifikace — stejně jako odstín a intenzita vůně. Drobná senzorická odchylka neznamená změnu deklarované kvality.',
+
+      storage: [
+        { k: 'Teplota skladování', v: '10–25 °C', icon: this.mask('thermometer-warm', 24, '#4F6E2A') },
+        { k: 'Optimální podmínky', v: 'chladno, suho, tma', icon: this.mask('archive-02', 24, '#4F6E2A') },
+        { k: 'Chraňte před', v: 'světlem, teplem, vzduchem', icon: this.mask('sun-01', 24, '#4F6E2A') },
+        { k: 'Trvanlivost od výroby', v: '36 měsíců', icon: this.mask('calendar-01', 24, '#4F6E2A') },
+        { k: 'Spotřeba po otevření', v: '12 měsíců', icon: this.mask('clock-01', 24, '#4F6E2A') },
+        { k: 'Šarže a trvanlivost', v: 'LA260514B · 05/2029', icon: this.mask('tag-01', 24, '#4F6E2A') },
+      ],
+      storageNote: 'Po použití obal vždy ihned uzavřete a nevystavujte produkt dlouhodobě přímému slunečnímu světlu. V průběhu skladování může docházet k přirozené oxidaci — výrazná změna vůně, barvy nebo charakteru může být známkou stárnutí produktu.',
+
+      safetyLead: 'Esenciální olej je koncentrovaná surovina.',
+      safetyShort: [
+        'Při použití respektujte doporučené dávkování a bezpečnostní omezení.',
+        'Nepoužívejte neředěný přímo na pokožku.',
+        'Zabraňte kontaktu s očima a sliznicemi.',
+        'Uchovávejte mimo dosah dětí.',
+        'Nevystavujte otevřenému ohni ani zdrojům zapálení.',
+      ].map(label => ({ label })),
+      safetyOpen: this.state.safety,
+      safetyBtn: this.state.safety ? 'Skrýt úplné bezpečnostní informace' : 'Zobrazit úplné bezpečnostní informace',
+      safetyChev: this.mask(this.state.safety ? 'arrow-up-01' : 'arrow-right-01', 18, '#A33203'),
+      toggleSafety: () => this.setState({ safety: !this.state.safety }),
+      ghs: ['GHS07 — vykřičník', 'GHS08 — nebezpečnost pro zdraví', 'GHS09 — nebezpečnost pro životní prostředí'].map(label => ({ label })),
+      signalWord: 'Varování',
+      hSentences: [
+        'H304 — Při požití a vniknutí do dýchacích cest může způsobit smrt.',
+        'H315 — Dráždí kůži.',
+        'H317 — Může vyvolat alergickou kožní reakci.',
+        'H411 — Toxický pro vodní organismy, s dlouhodobými účinky.',
+      ].map(label => ({ label })),
+      pSentences: [
+        'P102 — Uchovávejte mimo dosah dětí.',
+        'P261 — Zamezte vdechování par.',
+        'P264 — Po manipulaci důkladně omyjte ruce.',
+        'P272 — Kontaminovaný pracovní oděv neodnášejte z pracoviště.',
+        'P273 — Zabraňte uvolnění do životního prostředí.',
+        'P280 — Používejte ochranné rukavice a brýle.',
+        'P301+P310 — PŘI POŽITÍ: Okamžitě volejte toxikologické informační středisko nebo lékaře.',
+        'P302+P352 — PŘI STYKU S KŮŽÍ: Omyjte velkým množstvím vody.',
+        'P331 — NEVYVOLÁVEJTE zvracení.',
+        'P333+P313 — Při podráždění kůže nebo vyrážce vyhledejte lékařskou pomoc.',
+        'P391 — Uniklý produkt seberte.',
+        'P405 — Skladujte uzamčené.',
+        'P501 — Odstraňte obsah a obal v souladu s místními předpisy.',
+      ].map(label => ({ label })),
+      allergens: ['Linalool', 'Limonene', 'Geraniol'].map(label => ({ label })),
+      allergenNote: 'Deklarace alergenů v hotovém kosmetickém výrobku se řídí aktuální legislativou a koncentrací ve výsledné receptuře.',
+
+      faq: [
+        { q: 'Mohu levandulový esenciální olej použít přímo na pokožku?', a: 'Doporučujeme jej používat jako součást správně sestavené kosmetické receptury a dodržovat odpovídající koncentraci. Esenciální olej je koncentrovaná surovina.', icon: 'droplet' },
+        { q: 'Kolik kapek mám přidat do 100 g krému?', a: 'Pro přesnou výrobu doporučujeme pracovat s hmotností a procenty.\nPři modelovém dávkování 0,5 % použijete na 100 g krému 0,5 g oleje. Počet kapek se liší podle kapátka, teploty a vlastností oleje.', icon: 'weight-scale-01' },
+        { q: 'Kolik použiji do 50 g krému?', a: 'Při dávkování 0,5 %: 50 × 0,005 = 0,25 g. Použijete tedy 0,25 g esenciálního oleje.', icon: 'balance-scale' },
+        { q: 'Rozpustí se ve vodě?', a: 'Ne. Esenciální olej není rozpustný ve vodě. Pro vodní výrobky potřebujete vhodný solubilizátor.', icon: 'test-tube-01' },
+        { q: 'Mohu ho použít do mýdla?', a: 'Ano. Modelové dávkování pro mýdlo je například 1–3 %, vždy ale záleží na receptuře a příslušných bezpečnostních limitech.', icon: 'body-soap' },
+        { q: 'Mohu jej zahřívat?', a: 'Krátkodobé mírné zahřátí nemusí být problém, ale kvůli těkavosti aromatických látek doporučujeme přidávat olej až při nižší teplotě, ideálně pod 40 °C.', icon: 'thermometer-warm' },
+        { q: 'Proč moje lahvička voní trochu jinak než předchozí?', a: 'U přírodních esenciálních olejů jsou drobné rozdíly mezi šaržemi běžné. Složení rostliny ovlivňuje lokalita, počasí, termín sklizně i průběh destilace.', icon: 'flower' },
+        { q: 'Je esenciální olej stejný jako levandulová kosmetická vůně?', a: 'Ne. Esenciální olej vzniká destilací rostliny, kosmetická vůně je formulovaná vonná kompozice z různých aromatických látek. Každý produkt má jiné složení, vlastnosti i bezpečnostní limity.', icon: 'perfume' },
+        { q: 'Je vhodný do balzámu na rty?', a: 'Použití do produktů na rty závisí na konkrétní dokumentaci a bezpečnostních limitech suroviny. V našem modelovém příkladu není pro tuto aplikaci doporučen.', icon: 'lip-balm' },
+        { q: 'Je vhodný pro veganskou kosmetiku?', a: 'Ano. Produkt v tomto modelovém příkladu neobsahuje suroviny živočišného původu.', icon: 'leaf-01' },
+        { q: 'Obsahuje konzervant?', a: 'Ne. Jde o čistý esenciální olej bez přidaného konzervantu.', icon: 'shield-01' },
+        { q: 'Je nutné hotový výrobek konzervovat?', a: 'Samotný esenciální olej nenahrazuje konzervační systém. Pokud vyrábíte produkt obsahující vodu, potřebu konzervace posuzujte podle celé receptury.', icon: 'chemistry-01' },
+      ],
+
+      helpTitle: 'Nejste si jistí, jak jej použít?',
+      helpText: 'Vyrábíte krém, mýdlo, tělový olej nebo jiný výrobek a nevíte, kolik oleje použít nebo jak jej správně zapracovat? Napište nám, co chcete vyrobit — pomůžeme vám zorientovat se v dávkování, kombinacích i technologickém postupu.',
+
+      certs: [
+        { label: 'COSMOS / ECOCERT', icon: this.mask('certificate-01', 28, '#4F6E2A') },
+        { label: 'Vegan', icon: this.mask('leaf-01', 28, '#4F6E2A') },
+        { label: 'Natural origin', icon: this.mask('natural-origin', 30, '#4F6E2A') },
+        { label: 'Cosmetic grade', icon: this.mask('security-check', 28, '#4F6E2A') },
+      ],
+      params: [
+        { k: 'Forma', v: 'čirá kapalina' },
+        { k: 'Rozpustnost', v: 'olej, alkohol' },
+        { k: 'Dávkování', v: '0,1–3 %' },
+        { k: 'Země původu', v: 'Francie' },
+        { k: 'Získávání', v: 'parní destilace' },
+        { k: 'Balení', v: cur.label },
+        { k: 'EAN', v: '8595169214821' },
+      ],
+      files: [
+        { label: 'Bezpečnostní list (MSDS)', meta: 'PDF · 320 kB · CZ', href: '#', icon: this.mask('shield-01', 24, '#4F6E2A') },
+        { label: 'Technický list (TDS)', meta: 'PDF · 210 kB · CZ', href: '#', icon: this.mask('certificate-01', 24, '#4F6E2A') },
+        { label: 'Specifikace šarže LA260514B', meta: 'PDF · 180 kB', href: '#', icon: this.mask('doc-01', 24, '#4F6E2A') },
+        { label: 'Certifikát BIO / ECOCERT', meta: 'PDF · 260 kB', href: '#', icon: this.mask('award-01', 24, '#4F6E2A') },
+      ],
+      recipeMini: [
+        mini('Levandulové tělové máslo', 'Kosmetika · 30 min', 'assets/products/levandulove-maslo-100-g.jpg'),
+        mini('Tuhý šampon s levandulí', 'Vlasy · 45 min', 'assets/products/tuhy-sampon-zloutkovy.jpg'),
+        mini('Koupelová sůl s levandulí', 'Koupel · 15 min', 'assets/products/kyselina-citronova-1-kg.webp'),
+        mini('Levandulové mýdlo za studena', 'Mýdla · 90 min', 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg'),
+      ],
+      recipes: [
+        { title: 'Levandulové tělové máslo', desc: 'Tři suroviny, pět minut šlehání. Vůně z vlastní kuchyně.', category: 'Kosmetika', level: 'Začátečník', time: '30 min', img: 'assets/recipes/krem-na-paty.jpg', rating: 4.9, ratingCount: 74 },
+        { title: 'Tuhý šampon s levandulí', desc: 'Bez plastu a bez silikonů. Vydrží dva měsíce mytí.', category: 'Vlasy', level: 'Pokročilý', time: '45 min', img: 'assets/recipes/tenzidy.jpg', rating: 4.7, ratingCount: 41 },
+        { title: 'Koupelová sůl s levandulí', desc: 'Nejjednodušší způsob, jak levanduli dostat do vany.', category: 'Koupel', level: 'Začátečník', time: '15 min', img: 'assets/recipes/pasta-na-holeni.jpg', rating: 4.8, ratingCount: 58 },
+      ],
+      crossSell: [
+        prod('Solubilizátor pro vodní výrobky, 100 ml', '169 Kč', 'assets/products/stabilizovany-vitamin-c-10-g.jpg', 4.7, 22, 'ready', 'koupit', ''),
+        prod('Mýdlová hmota s bambuckým máslem, 1 kg', '329 Kč', 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', 4.6, 96, 'packing', 'varianta', ''),
+        prod('Skleněná lahvička s kapátkem, 30 ml', '59 Kč', 'assets/products/kyselina-citronova-1-kg.webp', 4.8, 34, 'ready', 'koupit', ''),
+        prod('Levandulové máslo, 100 g', '189 Kč', 'assets/products/levandulove-maslo-100-g.jpg', 4.8, 214, 'ready', 'koupit', 'bestseller'),
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

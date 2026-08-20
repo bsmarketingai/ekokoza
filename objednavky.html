@@ -279,24 +279,24 @@ class Component extends DCLogic {
 
   // Stavy i skladba údajů podle stávajícího e-shopu (přijatá / stornovaná / vyřízená…)
   static ORDERS = [
-    { num: '8870005229', date: '19.08.2026', amount: 0.12, cur: 'EUR', state: 'new', pay: 'Bankovním převodem', ship: 'Osobní odběr (Fryčovice 297)', msds: false, track: false },
-    { num: '8860002261', date: '19.08.2026', amount: 5.11, cur: 'EUR', state: 'new', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: false },
-    { num: '8810143892', date: '19.08.2026', amount: 1.21, cur: 'Kč', state: 'new', pay: 'Bankovním převodem', ship: 'Osobní odběr (Fryčovice 297)', msds: false, track: false },
-    { num: '8820011821', date: '19.08.2026', amount: 9.67, cur: 'EUR', state: 'new', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
-    { num: '8840018576', date: '19.08.2026', amount: 6.82, cur: 'EUR', state: 'new', pay: 'Kartou online', ship: 'France – zones éloignées / Corse', msds: false, track: false },
-    { num: '8830005737', date: '19.08.2026', amount: 43.39, cur: 'EUR', state: 'sent', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: true },
-    { num: '8850008203', date: '19.08.2026', amount: 8.65, cur: 'EUR', state: 'new', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: false },
-    { num: '8820011803', date: '17.08.2026', amount: 7.69, cur: 'EUR', state: 'cancelled', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
-    { num: '8820011798', date: '17.08.2026', amount: 13.92, cur: 'EUR', state: 'cancelled', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
-    { num: '8870005140', date: '17.08.2026', amount: 2.70, cur: 'EUR', state: 'cancelled', pay: 'Kartou on-line', ship: 'Osobní odběr (Fryčovice 297)', msds: true, track: false },
-    { num: '8840018532', date: '17.08.2026', amount: 7.69, cur: 'EUR', state: 'cancelled', pay: 'PayPal', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
-    { num: '8810143594', date: '17.08.2026', amount: 147.93, cur: 'Kč', state: 'delivered', pay: 'Kartou on-line', ship: 'PPL na adresu', msds: true, track: true },
-    { num: '8860002254', date: '17.08.2026', amount: 6.32, cur: 'EUR', state: 'cancelled', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: false },
-    { num: '8850008188', date: '17.08.2026', amount: 12.98, cur: 'EUR', state: 'delivered', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: true },
-    { num: '8830005729', date: '17.08.2026', amount: 137.09, cur: 'EUR', state: 'delivered', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: true },
-    { num: '8810143117', date: '13.08.2026', amount: 147.93, cur: 'Kč', state: 'cancelled', pay: 'Kartou on-line', ship: 'PPL na adresu', msds: true, track: false },
-    { num: '8870005029', date: '13.08.2026', amount: 2.69, cur: 'EUR', state: 'delivered', pay: 'Bankovním převodem', ship: 'Osobní odběr (Fryčovice 297)', msds: true, track: false },
-    { num: '8860002241', date: '13.08.2026', amount: 8.74, cur: 'EUR', state: 'delivered', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: true },
+    { num: '8870005229', date: '19.08.2026', amount: 0.12, cur: 'EUR', state: 'prijato', pay: 'Bankovním převodem', ship: 'Osobní odběr (Fryčovice 297)', msds: false, track: false },
+    { num: '8860002261', date: '19.08.2026', amount: 5.11, cur: 'EUR', state: 'zpracovano', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: false },
+    { num: '8810143892', date: '19.08.2026', amount: 1.21, cur: 'Kč', state: 'ceka_platba', pay: 'Bankovním převodem', ship: 'Osobní odběr (Fryčovice 297)', msds: false, track: false },
+    { num: '8820011821', date: '19.08.2026', amount: 9.67, cur: 'EUR', state: 'pripraveno_expedice', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
+    { num: '8840018576', date: '19.08.2026', amount: 6.82, cur: 'EUR', state: 'pripraveno_odber', pay: 'Kartou online', ship: 'France – zones éloignées / Corse', msds: false, track: false },
+    { num: '8830005737', date: '19.08.2026', amount: 43.39, cur: 'EUR', state: 'castecne_expedovano', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: true },
+    { num: '8850008203', date: '19.08.2026', amount: 8.65, cur: 'EUR', state: 'castecne_vyzvednuto', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: false },
+    { num: '8820011803', date: '17.08.2026', amount: 7.69, cur: 'EUR', state: 'expedovano', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
+    { num: '8820011798', date: '17.08.2026', amount: 13.92, cur: 'EUR', state: 'vyzvednuto', pay: 'Kartou online', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
+    { num: '8870005140', date: '17.08.2026', amount: 2.70, cur: 'EUR', state: 'stornovano', pay: 'Kartou on-line', ship: 'Osobní odběr (Fryčovice 297)', msds: true, track: false },
+    { num: '8840018532', date: '17.08.2026', amount: 7.69, cur: 'EUR', state: 'prijato', pay: 'PayPal', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: false },
+    { num: '8810143594', date: '17.08.2026', amount: 147.93, cur: 'Kč', state: 'zpracovano', pay: 'Kartou on-line', ship: 'PPL na adresu', msds: true, track: true },
+    { num: '8860002254', date: '17.08.2026', amount: 6.32, cur: 'EUR', state: 'ceka_platba', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: false },
+    { num: '8850008188', date: '17.08.2026', amount: 12.98, cur: 'EUR', state: 'pripraveno_expedice', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: true },
+    { num: '8830005729', date: '17.08.2026', amount: 137.09, cur: 'EUR', state: 'pripraveno_odber', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: true, track: true },
+    { num: '8810143117', date: '13.08.2026', amount: 147.93, cur: 'Kč', state: 'castecne_expedovano', pay: 'Kartou on-line', ship: 'PPL na adresu', msds: true, track: false },
+    { num: '8870005029', date: '13.08.2026', amount: 2.69, cur: 'EUR', state: 'castecne_vyzvednuto', pay: 'Bankovním převodem', ship: 'Osobní odběr (Fryčovice 297)', msds: true, track: false },
+    { num: '8860002241', date: '13.08.2026', amount: 8.74, cur: 'EUR', state: 'expedovano', pay: 'Bankovním převodem', ship: 'Colis Privé – Point relais ou Locker', msds: false, track: true },
   ];
 
   money(v, cur) {
@@ -310,7 +310,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const S = this.state;
-    const OPEN = ['new', 'waiting', 'packing'];
+    const OPEN = ['prijato', 'zpracovano', 'ceka_platba', 'pripraveno_expedice', 'pripraveno_odber', 'castecne_expedovano', 'castecne_vyzvednuto'];
 
     let list = Component.ORDERS.filter(o => {
       if (S.num && !o.num.includes(S.num.trim())) return false;
@@ -321,7 +321,7 @@ class Component extends DCLogic {
     });
 
     const dir = S.dir === 'asc' ? 1 : -1;
-    const ORDER_RANK = { new: 0, waiting: 1, packing: 2, sent: 3, delivered: 4, returned: 5, cancelled: 6 };
+    const ORDER_RANK = { prijato: 0, zpracovano: 1, ceka_platba: 2, pripraveno_expedice: 3, pripraveno_odber: 4, castecne_expedovano: 5, castecne_vyzvednuto: 6, expedovano: 7, vyzvednuto: 8, stornovano: 9 };
     list = list.slice().sort((a, b) => {
       if (S.sort === 'num') return a.num.localeCompare(b.num) * dir;
       if (S.sort === 'price') return (a.amount - b.amount) * dir;

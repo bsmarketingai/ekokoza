@@ -374,16 +374,8 @@
 
   <!-- ============ BLOK 2 — BENEFITY ============ -->
   <section style="margin-top:48px; padding:0 32px; position:relative;" class="ek-pad">
-    <div style="position:relative; z-index:1; max-width:1280px; margin:0 auto; padding:40px 32px; background:#FFFFFF; border:1px solid #EFE7D6; border-radius:14px; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);" class="ek-pad">
-      <div class="ek-grid6" style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:14px;">
-        <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="6">
-          <a href="#" style="display:flex; flex-direction:column; align-items:flex-start; gap:10px; text-decoration:none; color:#2A2A24; padding:10px 8px; border-radius:14px;">
-            <span style="{{ b.tileStyle }}">{{ b.icon }}</span>
-            <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:17px; line-height:1.2; color:#4C653D;">{{ b.title }}</span>
-            <span style="font-size:13.5px; color:#6B6B5E; line-height:1.45;">{{ b.desc }}</span>
-          </a>
-        </sc-for>
-      </div>
+    <div style="position:relative; z-index:1; max-width:1280px; margin:0 auto;" class="ek-pad">
+      <dc-import name="ui-USP" items="{{ benefits }}" media="none" withPhoto="{{ true }}" hint-size="100%,190px"></dc-import>
     </div></section>
 
   <!-- ============ BLOK 3 — CO CHCI VYRÁBĚT ============ -->
@@ -477,7 +469,7 @@
           <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:38px; color:#F6F1E7; line-height:1.08;">Odměňujeme opakovanou tvorbu.</h2>
           <p style="margin:0; color:#E2E8D6; font-size:17px; line-height:1.55;">Žádné slevové hony, žádné odpočty. Čím déle s námi tvoříte, tím lepší podmínky máte — jednoduše a férově.</p>
         </div>
-          <img src="assets/vernostni-emblem.png" alt="" class="ek-loyal-goat" style="width:210px; flex-shrink:0; transform:rotate(5deg); filter:drop-shadow(0 16px 28px rgba(0,0,0,.35));">
+          <img src="assets/vernostni-emblem-2.png" alt="" class="ek-loyal-goat" style="width:210px; flex-shrink:0; transform:rotate(5deg); filter:drop-shadow(0 16px 28px rgba(0,0,0,.35));">
         </div>
         <div class="ek-loyalty" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-bottom:36px;">
           <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
@@ -829,15 +821,13 @@ class Component extends DCLogic {
     const iconInsta24 = this.hi('instagram', 24);
 
     const benefits = [
-      { title:'Recepty, co prošly kuchyní', desc:'Každý postup jsme sami uvařili, zkazili a opravili.', icon: React.createElement('img', { src:'assets/usp/1-recepty.png', alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
-      { title:'Suroviny beze lží', desc:'Původ a složení najdete u každého produktu.', icon: React.createElement('img', { src:'assets/usp/2-suroviny.png', alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
-      { title:'Poradíme, nekoučujeme', desc:'Zeptejte se, odpovídá člověk z praxe.', icon: React.createElement('img', { src:'assets/usp/3-pece.png', alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
-      { title:'Věrnost se počítá', desc:'Až −15 % za to, že tvoříte dál.', icon: React.createElement('img', { src:'assets/usp/4-vernost.png', alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
-      { title:'Papíry ke všemu', desc:'Bezpečnostní listy a dokumentace ke stažení.', icon: React.createElement('img', { src:'assets/usp/5-dokumentace.png', alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
-      { title:'Od 2000 Kč vezeme zdarma', desc:'Po celé ČR, šetrně zabalené.', icon: React.createElement('img', { src:'assets/usp/6-doprava.png', alt:'', style:{ width:'100%', height:'100%', objectFit:'contain', display:'block' } }) },
-    ].map(b => Object.assign(b, { tileStyle: b.icon.type === 'img'
-      ? 'width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden;'
-      : 'width:48px; height:48px; border-radius:12px; background:#F6F1E7; display:flex; align-items:center; justify-content:center; color:#4C653D; margin:8px;' }));
+      { title:'Recepty, co prošly kuchyní', desc:'Každý postup jsme sami uvařili, zkazili a opravili.', img:'assets/usp/1-recepty.png', icon:'cook-book', href:'receptar.dc.html' },
+      { title:'Suroviny beze lží', desc:'Původ a složení najdete u každého produktu.', img:'assets/usp/2-suroviny.png', icon:'natural-origin', href:'kategorie.html' },
+      { title:'Poradíme, nekoučujeme', desc:'Zeptejte se, odpovídá člověk z praxe.', img:'assets/usp/3-pece.png', icon:'customer-support', href:'o-nas.html' },
+      { title:'Věrnost se počítá', desc:'Až −15 % za to, že tvoříte dál.', img:'assets/usp/4-vernost.png', icon:'percent-circle', href:'vernostni-program.html' },
+      { title:'Papíry ke všemu', desc:'Bezpečnostní listy a dokumentace ke stažení.', img:'assets/usp/5-dokumentace.png', icon:'pdf-01', href:'produkt-vzor.html' },
+      { title:'Od 2000 Kč vezeme zdarma', desc:'Po celé ČR, šetrně zabalené.', img:'assets/usp/6-doprava.png', icon:'truck-delivery', href:'objednavka.html' },
+    ];
 
     const makeCats = [
       { name:'Kosmetika', desc:'Krémy, másla a balzámy pro každodenní péči.', tone:'#EFE7D6 url("assets/make/kosmetika.png") 42% center / cover no-repeat' },
@@ -978,7 +968,7 @@ class Component extends DCLogic {
       heroLinks: [
         { title: 'Co chcete vyrábět?', desc: 'Kosmetika, domácnost, potraviny', href: '#blok3', icon: 'mortar' },
         { title: 'Receptář', desc: 'Ověřené postupy krok za krokem', href: 'receptar.dc.html', icon: 'chef-hat' },
-        { title: 'Věrnostní program', desc: 'Až −15 % za opakovanou tvorbu', href: 'vernostni-program.html', icon: 'award-01' },
+        { title: 'Věrnostní program', desc: 'Až −15 % za opakovanou tvorbu', href: 'vernostni-program.html', icon: 'percent-circle' },
       ].map(h => Object.assign({}, h, { icon: this.maskStyle(h.icon, 24, '#F6F1E7') + ' flex:0 0 auto;' })),
 
       workshop,

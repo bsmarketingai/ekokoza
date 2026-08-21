@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .ek-usp-grid { display: grid; gap: 10px 16px; }
+  .ek-usp-i { display: flex; text-decoration: none; border-radius: 14px; transition: background .2s, transform .2s; }
+  .ek-usp-i:hover { transform: translateY(-2px); }
+  .ek-usp-i:hover .ek-usp-t { color: #B23803; }
+  .ek-usp-dark .ek-usp-i:hover .ek-usp-t { color: #FFFFFF; }
+  .ek-usp-withphoto { display: grid; grid-template-columns: 124px minmax(0,1fr); gap: 20px; align-items: center; }
+  /* Jeden řádek držíme co nejdéle — nejdřív se stahují mezery a písmo, teprve pak se zalamuje */
+  @media (max-width: 1320px) and (min-width: 1041px) {
+    .ek-usp-grid { gap: 8px 12px !important; }
+    .ek-usp-t { font-size: 15px !important; }
+    .ek-usp-i .ek-usp-d { font-size: 12.5px !important; }
+  }
+  @media (max-width: 1120px) and (min-width: 1041px) {
+    .ek-usp-withphoto { grid-template-columns: 96px minmax(0,1fr) !important; gap: 14px !important; }
+    .ek-usp-t { font-size: 14.5px !important; }
+  }
+  @media (max-width: 1040px) { .ek-usp-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; } }
+  @media (max-width: 860px) { .ek-usp-withphoto { grid-template-columns: 1fr; gap: 14px; } .ek-usp-photo { max-width: 130px; margin: 0 auto; } }
+  @media (max-width: 720px) { .ek-usp-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 10px !important; } }
+  @media (max-width: 460px) {
+    .ek-usp-grid { grid-template-columns: 1fr !important; }
+    .ek-usp-i { align-items: center !important; flex-direction: row !important; gap: 14px !important; }
+    .ek-usp-i > .ek-usp-tile { width: 48px !important; height: 48px !important; }
+  }
+</style>
+</helmet>
+
+<section class="{{ rootCls }}" style="{{ rootStyle }}">
+  <sc-if value="{{ hasTitle }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:22px;">
+      <span style="font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:#4F6E2A;">{{ kicker }}</span>
+      <h2 style="{{ titleStyle }}">{{ title }}</h2>
+    </div>
+  </sc-if>
+  <div class="{{ wrapCls }}" style="{{ wrapStyle }}">
+  <sc-if value="{{ hasPhoto }}" hint-placeholder-val="{{ false }}">
+    <div class="ek-usp-photo" style="{{ photoWrap }}">
+      <span style="{{ photoStyle }}"></span>
+    </div>
+  </sc-if>
+  <div class="ek-usp-grid" style="{{ gridStyle }}">
+    <sc-for list="{{ items }}" as="b" hint-placeholder-count="6">
+      <a href="{{ b.href }}" class="ek-usp-i" style="{{ itemStyle }}">
+        <sc-if value="{{ hasMedia }}" hint-placeholder-val="{{ true }}">
+          <span class="ek-usp-tile" style="{{ b.tile }}"></span>
+        </sc-if>
+        <span style="display:flex; flex-direction:column; gap:6px; min-width:0;">
+          <span class="ek-usp-t" style="{{ titleItemStyle }}">{{ b.title }}</span>
+          <sc-if value="{{ b.desc }}" hint-placeholder-val="{{ true }}">
+            <span class="ek-usp-d" style="{{ descStyle }}">{{ b.desc }}</span>
+          </sc-if>
+        </span>
+      </a>
+    </sc-for>
+  </div>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:280},&quot;media&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;photo&quot;,&quot;icon&quot;,&quot;none&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;withPhoto&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;photo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/usp/koza-lezi.png&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;card&quot;,&quot;plain&quot;],&quot;default&quot;:&quot;card&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;tone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;stack&quot;,&quot;row&quot;],&quot;default&quot;:&quot;stack&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;columns&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;min&quot;:2,&quot;max&quot;:6,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;iconSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:64,&quot;min&quot;:40,&quot;max&quot;:88,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;kicker&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string, desc?:string, img?:string, icon?:string, href?:string}[]&quot;}}">
+class Component extends DCLogic {
+  static DEFAULT = [
+    { title: 'Recepty, co prošly kuchyní', desc: 'Každý postup jsme sami uvařili, zkazili a opravili.', img: 'assets/usp/1-recepty.png', icon: 'cook-book', href: 'receptar.dc.html' },
+    { title: 'Suroviny beze lží', desc: 'Původ a složení najdete u každého produktu.', img: 'assets/usp/2-suroviny.png', icon: 'natural-origin', href: 'kategorie.html' },
+    { title: 'Poradíme, nekoučujeme', desc: 'Zeptejte se, odpovídá člověk z praxe.', img: 'assets/usp/3-pece.png', icon: 'customer-support', href: 'o-nas.html' },
+    { title: 'Věrnost se počítá', desc: 'Až −15 % za to, že tvoříte dál.', img: 'assets/usp/4-vernost.png', icon: 'percent-circle', href: 'vernostni-program.html' },
+    { title: 'Papíry ke všemu', desc: 'Bezpečnostní listy a dokumentace ke stažení.', img: 'assets/usp/5-dokumentace.png', icon: 'pdf-01', href: 'produkt-vzor.html' },
+    { title: 'Od 2000 Kč vezeme zdarma', desc: 'Po celé ČR, šetrně zabalené.', img: 'assets/usp/6-doprava.png', icon: 'truck-delivery', href: 'objednavka.html' },
+  ];
+
+  mask(name, size, color) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const url = base + 'assets/icons/' + name + '.svg';
+    return `display:block; width:${size}px; height:${size}px; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  renderVals() {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const items = this.props.items ?? Component.DEFAULT;
+    const variant = this.props.variant ?? 'card';   // card = bílá deska, plain = bez desky
+    const tone = this.props.tone ?? 'light';        // light | dark
+    const cols = Number(this.props.columns ?? (items.length >= 6 ? 6 : items.length));
+    const layout = this.props.layout ?? 'stack';    // stack = ikona nad textem, row = ikona vedle
+    const dark = tone === 'dark';
+    const title = this.props.title ?? '';
+    const iconSize = Number(this.props.iconSize ?? 64);
+
+    const media = this.props.media ?? 'photo';   // photo | icon | none
+    const photo = this.props.photo ?? 'assets/usp/koza-lezi.png';
+    const photoUrl = /^(https?:|\/|\.\.)/.test(photo) ? photo : base + photo;
+    // U variant bez fotek v dlaždicích (icon / none) drží kozu vlevo jako vizuál sekce
+    const withPhoto = typeof this.props.withPhoto === 'boolean' ? this.props.withPhoto : media !== 'photo';
+
+    const tileFor = (b) => {
+      if (media === 'icon') {
+        const fg = dark ? '#EBD284' : '#4F6E2A';
+        return this.mask(b.icon || 'leaf-01', Math.round(iconSize * 0.52), fg) + ' flex:0 0 auto;';
+      }
+      if (b.img) {
+        const url = /^(https?:|\/|\.\.)/.test(b.img) ? b.img : base + b.img;
+        return 'width:' + iconSize + 'px; height:' + iconSize + 'px; flex:0 0 auto; border-radius:12px; overflow:hidden; background:center/contain no-repeat; background-image:url("' + url + '");';
+      }
+      const bg = dark ? 'rgba(246,241,231,.14)' : '#F6F1E7';
+      const fg = dark ? '#F6F1E7' : '#4C653D';
+      return 'width:' + Math.round(iconSize * 0.75) + 'px; height:' + Math.round(iconSize * 0.75) + 'px; flex:0 0 auto; border-radius:12px; background:' + bg + '; display:flex; align-items:center; justify-content:center; padding:' + Math.round(iconSize * 0.17) + 'px;'
+        + ' background-image:url("' + base + 'assets/icons/' + (b.icon || 'leaf-01') + '.svg"); background-repeat:no-repeat; background-position:center; background-size:' + Math.round(iconSize * 0.42) + 'px;';
+    };
+
+    return {
+      items: items.map(b => ({
+        title: b.title, desc: b.desc ?? '', href: b.href ?? '#', tile: tileFor(b),
+      })),
+      rootCls: dark ? 'ek-usp-dark' : 'ek-usp-light',
+      rootStyle: "font-family:'Work Sans',sans-serif;"
+        + (variant === 'card'
+          ? ' padding:24px 26px; background:' + (dark ? '#4C653D' : '#FFFFFF') + '; border:1px solid ' + (dark ? '#3E5432' : '#EFE7D6') + '; border-radius:14px; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);'
+          : ''),
+      hasMedia: media !== 'none',
+      hasPhoto: withPhoto,
+      wrapCls: withPhoto ? 'ek-usp-withphoto' : '',
+      wrapStyle: '',
+      photoWrap: 'display:block;',
+      photoStyle: 'display:block; width:100%; aspect-ratio:1/1; background:center/contain no-repeat; background-image:url("' + photoUrl + '"); filter:drop-shadow(0 12px 22px rgba(45,58,46,.2));',
+      gridStyle: 'grid-template-columns:repeat(' + cols + ',minmax(0,1fr));',
+      itemStyle: (layout === 'row'
+        ? 'align-items:center; gap:12px;'
+        : 'flex-direction:column; align-items:flex-start; gap:7px;')
+        + ' padding:7px 6px; color:' + (dark ? '#F6F1E7' : '#2A2A24') + ';',
+      titleItemStyle: "font-family:'EB Garamond',serif; font-weight:500; font-size:16px; line-height:1.2; transition:color .2s; color:" + (dark ? '#F6F1E7' : '#4C653D') + ';',
+      descStyle: 'font-size:13px; line-height:1.45; color:' + (dark ? '#D6E0C8' : '#6B6B5E') + ';',
+      hasTitle: title !== '',
+      title,
+      kicker: this.props.kicker ?? '',
+      titleStyle: "margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:30px; line-height:1.15; color:" + (dark ? '#F6F1E7' : '#2D3A2E') + ';',
+    };
+  }
+}
+
+</script>
+</body>
+</html>

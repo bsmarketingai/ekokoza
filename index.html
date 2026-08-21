@@ -297,7 +297,7 @@
         </div>
       </a>
 
-      <a href="#blok5" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#E7D6C2; display:block;">
+      <a href="recept.dc.html" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#E7D6C2; display:block;">
         <img src="assets/hero/telove-maslo-levandule.png" alt="Letní tělové máslo s levandulí" class="ek-ph" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 38%; transition:transform .6s ease;">
         <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(35,25,15,.28) 0%,rgba(35,25,15,0) 32%,rgba(30,22,14,.35) 62%,rgba(26,18,11,.82) 100%);"></div>
         <span style="position:absolute; top:16px; left:16px; background:#F6F1E7; color:#4C653D; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px; letter-spacing:.04em;">Sezónní recept</span>
@@ -423,11 +423,11 @@
       </div>
       <div class="ek-scrollrow ek-scroll" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
         <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="4">
-          <dc-import name="ui-RecipeCard" title="{{ r.name }}" desc="{{ r.desc }}" category="{{ r.cat }}" level="{{ r.level }}" time="{{ r.time }}" img="{{ r.img }}" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" hint-size="100%,420px"></dc-import>
+          <dc-import name="ui-RecipeCard" title="{{ r.name }}" desc="{{ r.desc }}" category="{{ r.cat }}" level="{{ r.level }}" time="{{ r.time }}" img="{{ r.img }}" href="recept.dc.html" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" hint-size="100%,420px"></dc-import>
         </sc-for>
       </div>
       <div style="text-align:center; margin-top:32px;">
-        <a href="#" class="ek-cta-sec" style="display:inline-flex; align-items:center; gap:9px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; padding:13px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:all .2s;">Zobrazit všechny recepty {{ iconArrow }}</a>
+        <a href="receptar.dc.html" class="ek-cta-sec" style="display:inline-flex; align-items:center; gap:9px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; padding:13px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:all .2s;">Zobrazit všechny recepty {{ iconArrow }}</a>
       </div>
     </div>
   </section>
@@ -761,8 +761,8 @@ class Component extends DCLogic {
       { label: 'Suroviny', allHref: '#blok4',
         sub: ['Oleje','Másla','Aktivní látky','Vůně','Vosky','Barviva','Emulgátory','Obaly'].map(n => ({ name: n, href: '#blok4' })),
         prod: { img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', name: 'Mýdlová hmota s bambuckým máslem, 1 kg', price: '329 Kč' } },
-      { label: 'Receptář', allHref: '#blok5',
-        sub: ['Pro začátečníky','Pokročilé techniky','Kosmetika','Mýdla','Svíčky','Vlasová péče'].map(n => ({ name: n, href: '#blok5' })),
+      { label: 'Receptář', allHref: 'receptar.dc.html',
+        sub: ['Pro začátečníky','Pokročilé techniky','Kosmetika','Mýdla','Svíčky','Vlasová péče'].map(n => ({ name: n, href: 'receptar.dc.html' })),
         prod: { img: 'assets/products/tuhy-sampon-zloutkovy.jpg', name: 'Tuhý šampon žloutkový', price: '169 Kč' } },
     ];
 
@@ -977,7 +977,7 @@ class Component extends DCLogic {
       iconLightboxClose: this.maskStyle('cancel-01', 26, '#F6F1E7'),
       heroLinks: [
         { title: 'Co chcete vyrábět?', desc: 'Kosmetika, domácnost, potraviny', href: '#blok3', icon: 'mortar' },
-        { title: 'Receptář', desc: 'Ověřené postupy krok za krokem', href: '#blok5', icon: 'chef-hat' },
+        { title: 'Receptář', desc: 'Ověřené postupy krok za krokem', href: 'receptar.dc.html', icon: 'chef-hat' },
         { title: 'Věrnostní program', desc: 'Až −15 % za opakovanou tvorbu', href: 'vernostni-program.html', icon: 'award-01' },
       ].map(h => Object.assign({}, h, { icon: this.maskStyle(h.icon, 24, '#F6F1E7') + ' flex:0 0 auto;' })),
 

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D14405; color: #fff; }
+  a { color: #4C653D; }
+  a:hover { color: #B23803; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover span { background-color: #F6F1E7 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.08; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 30px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h3 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 20px; line-height: 1.25; color: #2D3A2E; margin: 0; }
+  .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
+  .ek-p { margin: 0; font-size: 16.5px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
+  .ek-rgrid { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: 40px; align-items: start; }
+  .ek-meta { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border: 1px solid #E4DAC6; border-radius: 999px; background: #fff; font-size: 14.5px; font-weight: 600; color: #2A2A24; }
+  .ek-act { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border: 1.5px solid #E2D9C4; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 14px; font-weight: 600; color: #4C653D; cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s; }
+  .ek-act:hover { border-color: #4C653D; background: #F4F7EA; color: #4C653D; }
+  .ek-gl { color: #4C653D; text-decoration: none; transition: color .2s; }
+  .ek-gl:hover { color: #B23803; text-decoration: underline; text-underline-offset: 3px; }
+  .ek-sec { display: flex; flex-direction: column; gap: 16px; padding-top: 34px; }
+  .ek-ing { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px 18px; align-items: baseline; padding: 9px 0; border-bottom: 1px dashed #EAE0CD; }
+  .ek-ing:last-child { border-bottom: none; }
+  .ek-phase { padding: 16px 18px; border: 1px solid #ECE3D2; border-radius: 14px; background: #fff; }
+  .ek-note { display: flex; gap: 12px; padding: 16px 18px; border: 1px solid #E2EACF; border-radius: 14px; background: linear-gradient(160deg,#FCFAF3 0%,#F1F6E3 100%); }
+  .ek-sticky { position: sticky; top: 150px; z-index: 20; padding: 12px 16px; border: 1px solid #E4DAC6; border-radius: 14px; background: rgba(255,253,246,.97); backdrop-filter: blur(6px); box-shadow: 0 12px 26px -22px rgba(45,58,46,.5); }
+  .ek-step { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 18px; padding: 18px 0; border-bottom: 1px solid #F1EADC; }
+  .ek-step:last-child { border-bottom: none; }
+  .ek-num { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #4C653D; color: #F6F1E7; font-family: 'EB Garamond',serif; font-size: 20px; font-weight: 500; }
+  .ek-alt { display: flex; flex-direction: column; gap: 8px; padding: 18px 20px; border: 1px solid #ECE3D2; border-radius: 14px; background: #fff; }
+  .ek-two { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+  .ek-row { display: grid; grid-template-columns: 24px 52px minmax(0,1fr) auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid #F4EEE1; cursor: pointer; }
+  .ek-row:last-of-type { border-bottom: none; }
+  .ek-row:hover .ek-row-n { color: #4C653D; }
+  .ek-box { width: 22px; height: 22px; flex: 0 0 auto; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: border-color .2s, background .2s; }
+  .ek-tabs { display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: #F1EADC; }
+  .ek-tab { flex: 1; min-height: 34px; padding: 7px 12px; border: none; border-radius: 999px; background: transparent; font-family: 'Work Sans',sans-serif; font-size: 13px; font-weight: 700; color: #6B6B5E; cursor: pointer; transition: background .2s, color .2s; }
+  .ek-tab-on { background: #FFFDF6; color: #2D3A2E; box-shadow: 0 4px 10px -8px rgba(45,58,46,.6); }
+  @media (max-width: 1100px) {
+    .ek-rgrid { grid-template-columns: minmax(0,1fr) 340px; gap: 28px; }
+  }
+  @media (max-width: 960px) {
+    .ek-gwrap { grid-template-columns: 1fr !important; gap: 26px !important; padding: 26px 20px !important; }
+    .ek-gwrap h2 { font-size: 28px !important; }
+    .ek-gwrap p { font-size: 17px !important; }
+    .ek-sticky { top: 130px; }
+    .ek-rgrid { grid-template-columns: 1fr; }
+    .ek-buy { position: static !important; }
+    .ek-h1 { font-size: 31px; }
+    .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-two { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .ek-gfoot { padding: 12px 16px !important; gap: 10px !important; }
+    .ek-gfoot .ek-gdots { order: -1; flex-basis: 100%; justify-content: center; }
+    .ek-gfoot { flex-wrap: wrap; }
+    .ek-gfoot > button { flex: 1 1 0; justify-content: center; }
+  }
+  @media (max-width: 400px) {
+    .ek-gfoot .ek-gdots { display: none !important; }
+    .ek-gfoot .ek-glabel { display: none; }
+    .ek-gwrap { padding: 20px 16px !important; }
+    .ek-gwrap h2 { font-size: 25px !important; }
+  }
+  @media print {
+    .sc-host[data-sc-name="ui-Header"], .sc-host[data-sc-name="ui-Footer"], .ek-noprint { display: none !important; }
+    .ek-rgrid { grid-template-columns: 1fr !important; }
+  }
+</style>
+</helmet>
+
+<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+
+  <dc-import name="ui-Header" active="receptar" hint-size="100%,140px"></dc-import>
+
+  <div style="max-width:1440px; margin:0 auto;">
+  <section style="padding:22px 32px 0;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="620px,20px"></dc-import>
+
+      <div class="ek-rgrid" style="margin-top:24px;">
+        <div style="min-width:0;">
+          <p class="ek-eyebrow">Péče a barvy na vlasy</p>
+          <h1 class="ek-h1" style="margin-top:10px;">Lehký bezoplachový kondicionér pro hebké a lesklé vlasy</h1>
+
+          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
+            <span class="ek-meta"><span style="{{ iconClock }}"></span>30 min</span>
+            <span class="ek-meta"><span style="{{ iconLevel }}"></span>Pro pokročilé</span>
+            <span class="ek-meta"><span style="{{ iconYield }}"></span>~100 g výrobku</span>
+            <button onClick="{{ doPrint }}" class="ek-act ek-noprint"><span style="{{ iconPrint }}"></span>Vytisknout recept</button>
+            <button onClick="{{ toggleFav }}" class="ek-act ek-noprint"><span style="{{ iconFav }}"></span>{{ favLabel }}</button>
+          </div>
+
+          <div style="position:relative; margin-top:24px; border-radius:14px; overflow:hidden; aspect-ratio:16/10; background:#EFE7D6;">
+            <div style="{{ heroImg }}"></div>
+            <span style="position:absolute; top:14px; left:14px; padding:5px 12px; border-radius:999px; background:rgba(255,253,246,.94); font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Recept</span>
+          </div>
+          <span style="display:block; margin-top:8px; font-size:12.5px; color:#8a8776;">Obrázek je pouze ilustrační.</span>
+
+          <p class="ek-p" style="margin-top:22px; font-size:18px; max-width:70ch;">Lehký bezoplachový kondicionér pomáhá uhladit vlasové vlákno, omezit krepatění a usnadnit rozčesávání. Hydratační složky, lehké emolienty a hydrolyzované proteiny pečují o suché délky a konečky bez výrazného zatížení vlasů.</p>
+          <p style="margin:14px 0 0; font-size:14.5px; color:#6B6B5E;">Recept pro Ekokozu připravila Bianka z Holistické zdraví.</p>
+
+          <div class="ek-sec">
+            <h2 class="ek-h2">Co budete potřebovat</h2>
+            <p style="margin:0; font-size:15px; color:#6B6B5E;">Receptura je nastavená na přibližně 100 g hotového kondicionéru.</p>
+            <div style="display:flex; flex-direction:column; gap:14px;">
+              <div class="ek-phase">
+                <span style="display:flex; align-items:center; gap:9px; margin-bottom:8px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;"><span style="{{ iconWater }}"></span>Fáze A — vodná</span>
+                <div class="ek-ing"><a href="produkt-vzor.html">Rozmarýnový hydrolát</a><span style="font-weight:600; white-space:nowrap;">82,5 g</span></div>
+                <div class="ek-ing"><a href="produkt-vzor.html">Aloe vera 10:1</a><span style="font-weight:600; white-space:nowrap;">1 g</span></div>
+                <div class="ek-ing"><a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Glycerin</a><span style="font-weight:600; white-space:nowrap;">3 g</span></div>
+                <div class="ek-ing"><a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Inulin</a><span style="font-weight:600; white-space:nowrap;">0,5 g</span></div>
+                <div class="ek-ing"><span><a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Panthenol</a> — provitamin B5 75 %</span><span style="font-weight:600; white-space:nowrap;">2 g</span></div>
+              </div>
+              <div class="ek-phase">
+                <span style="display:flex; align-items:center; gap:9px; margin-bottom:8px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;"><span style="{{ iconOil }}"></span>Fáze B — olejová</span>
+                <div class="ek-ing"><span><a href="produkt-vzor.html">Varisoft® EQ 65</a> — kationtový emulgátor</span><span style="font-weight:600; white-space:nowrap;">2,5 g</span></div>
+                <div class="ek-ing"><a href="produkt-vzor.html">MCT Caprylis</a><span style="font-weight:600; white-space:nowrap;">3 g</span></div>
+                <div class="ek-ing"><a href="produkt-vzor.html">Brokolicový olej</a><span style="font-weight:600; white-space:nowrap;">1,5 g</span></div>
+              </div>
+              <div class="ek-phase">
+                <span style="display:flex; align-items:center; gap:9px; margin-bottom:8px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;"><span style="{{ iconDrop }}"></span>Fáze C — po vychladnutí</span>
+                <div class="ek-ing"><a href="produkt-vzor.html">Vege-Keratin</a><span style="font-weight:600; white-space:nowrap;">2 g</span></div>
+                <div class="ek-ing"><a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Tekuté hedvábí</a><span style="font-weight:600; white-space:nowrap;">1 g</span></div>
+                <div class="ek-ing"><span><a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Cosgard</a> — konzervant</span><span style="font-weight:600; white-space:nowrap;">1 g</span></div>
+                <div class="ek-ing"><a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Kyselina mléčná</a><span style="font-weight:600; white-space:nowrap;">dle potřeby</span></div>
+              </div>
+            </div>
+            <div class="ek-note">
+              <span style="{{ iconInfo }}"></span>
+              <p style="margin:0; font-size:15px; line-height:1.65; color:#4A4A42;"><strong>Množství hydrolátu</strong> je nastavené tak, aby receptura po smíchání odpovídala přibližně 100 g. Kyselinu mléčnou přidávejte postupně podle naměřeného pH, dokud nedosáhnete hodnoty přibližně 4,5.</p>
+            </div>
+          </div>
+
+          <div class="ek-sec">
+            <h2 class="ek-h2">Co se vám bude hodit</h2>
+            <div class="ek-two">
+              <div class="ek-phase">
+                <span style="display:flex; align-items:center; gap:9px; margin-bottom:10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;"><span style="{{ iconScale }}"></span>Vážení a zahřívání</span>
+                <ul style="margin:0; padding-left:20px; font-size:15px; line-height:1.85; color:#4A4A42;">
+                  <li><a href="produkt-vzor.html">digitální váha</a> s přesností na 0,1 g</li>
+                  <li>dvě čisté žáruvzdorné nádoby</li>
+                  <li>vodní lázeň a kosmetický teploměr</li>
+                  <li>čistá lžička nebo stěrka</li>
+                </ul>
+              </div>
+              <div class="ek-phase">
+                <span style="display:flex; align-items:center; gap:9px; margin-bottom:10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;"><span style="{{ iconMix }}"></span>Míchání, kontrola a plnění</span>
+                <ul style="margin:0; padding-left:20px; font-size:15px; line-height:1.85; color:#4A4A42;">
+                  <li>malý homogenizátor nebo tyčový mixér</li>
+                  <li><a href="produkt-vzor.html">indikátorové pH papírky</a></li>
+                  <li><a href="produkt-vzor.html">plastová pipeta</a></li>
+                  <li><a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">ethanol</a> ve spreji a papírové utěrky</li>
+                  <li>lahvička s pumpičkou nebo výklopným uzávěrem</li>
+                </ul>
+              </div>
+            </div>
+            <div class="ek-note">
+              <span style="{{ iconInfo }}"></span>
+              <p style="margin:0; font-size:15px; line-height:1.65; color:#4A4A42;"><strong>Obal vybírejte podle výsledné konzistence.</strong> Kondicionér může být po výrobě tekutější a během prvních 24 hodin ještě mírně zhoustnout.</p>
+            </div>
+          </div>
+
+          <div class="ek-sec">
+            <h2 class="ek-h2">Postup krok za krokem</h2>
+            <button onClick="{{ openGuide }}" class="ek-btn-secondary ek-noprint" style="align-self:flex-start; display:inline-flex; align-items:center; gap:10px; border:1.5px solid #4C653D; background:transparent; color:#4C653D; border-radius:999px; padding:13px 24px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;"><span style="{{ iconGuide }}"></span>Provést krok za krokem</button>
+            <div>
+              <div class="ek-step">
+                <span class="ek-num">1</span>
+                <div>
+                  <h3 class="ek-h3">Připravte si čisté pomůcky</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Nádoby, míchací pomůcky a obal ošetřete <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">ethanolem</a>. Nechte je volně oschnout nebo je jemně otřete čistou papírovou utěrkou. Čím čistěji budete pracovat, tím lépe podpoříte trvanlivost hotového kondicionéru.</p>
+                </div>
+              </div>
+              <div class="ek-step">
+                <span class="ek-num">2</span>
+                <div>
+                  <h3 class="ek-h3">Připravte vodnou fázi</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Do první žáruvzdorné nádoby odvažte rozmarýnový hydrolát, <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">aloe vera</a>, <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">glycerin</a>, <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">inulin</a> a <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">panthenol</a>. Směs promíchejte, aby se všechny složky rovnoměrně rozptýlily.</p>
+                </div>
+              </div>
+              <div class="ek-step">
+                <span class="ek-num">3</span>
+                <div>
+                  <h3 class="ek-h3">Zahřejte fázi A</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Nádobu vložte do vodní lázně a směs zahřejte na 70–75 °C. Během zahřívání ji občas klidnými pohyby promíchejte.</p>
+                </div>
+              </div>
+              <div class="ek-step">
+                <span class="ek-num">4</span>
+                <div>
+                  <h3 class="ek-h3">Připravte olejovou fázi</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Do druhé nádoby odvažte Varisoft® EQ 65, MCT Caprylis a brokolicový olej.</p>
+                </div>
+              </div>
+              <div class="ek-step">
+                <span class="ek-num">5</span>
+                <div>
+                  <h3 class="ek-h3">Rozpusťte Varisoft</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Olejovou fázi zahřejte rovněž na 70–75 °C. <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Emulgátor</a> se rozpouští pomaleji než tekuté oleje, proto směs průběžně míchejte a vyčkejte, dokud nebude jednotná a bez viditelných pevných částeček.</p>
+                </div>
+              </div>
+              <div class="ek-step">
+                <span class="ek-num">6</span>
+                <div>
+                  <h3 class="ek-h3">Spojte obě fáze</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Jakmile mají obě fáze přibližně stejnou teplotu, pomalu přilévejte olejovou fázi do vodné. Směs současně míchejte a poté ji přibližně jednu minutu homogenizujte.</p>
+                </div>
+              </div>
+              <div class="ek-step">
+                <span class="ek-num">7</span>
+                <div>
+                  <h3 class="ek-h3">Nechte emulzi chladnout</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Po homogenizaci pokračujte v pomalém míchání. Během chladnutí začne směs získávat mléčnou až lehce krémovou konzistenci. Míchejte do poklesu teploty přibližně na 40 °C.</p>
+                </div>
+              </div>
+              <div class="ek-step">
+                <span class="ek-num">8</span>
+                <div>
+                  <h3 class="ek-h3">Přidejte fázi C</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Při teplotě nejvýše 40 °C přidejte keratin, <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">hedvábný protein</a> a <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">konzervant</a>. Každou složku pečlivě, ale šetrně vmíchejte.</p>
+                </div>
+              </div>
+              <div class="ek-step">
+                <span class="ek-num">9</span>
+                <div>
+                  <h3 class="ek-h3">Upravte pH</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Změřte pH kondicionéru. <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Kyselinu mléčnou</a> přidávejte pipetou po jednotlivých kapkách. Po každém přidání směs promíchejte a znovu přeměřte. Cílem je pH přibližně 4,5.</p>
+                </div>
+              </div>
+              <div class="ek-step">
+                <span class="ek-num">10</span>
+                <div>
+                  <h3 class="ek-h3">Naplňte kondicionér do obalu</h3>
+                  <p class="ek-p" style="margin-top:7px; font-size:16px;">Hotový výrobek přelijte do čisté lahvičky a nechte jej přibližně 24 hodin ustálit. Konečnou hustotu posuzujte až po úplném vychladnutí.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ek-sec">
+            <h2 class="ek-h2">Jak má výsledek vypadat</h2>
+            <p class="ek-p" style="max-width:74ch;">Hotový kondicionér má být hladký a jednotný, bez oddělené olejové vrstvy nebo viditelných částeček emulgátoru. Podle způsobu míchání a rychlosti chladnutí může mít podobu tekutějšího mléka nebo lehkého krému.</p>
+            <p class="ek-p" style="max-width:74ch;">Pokud je výrobek bezprostředně po výrobě řidší, než jste čekali, nechte jej do druhého dne ustálit. Struktura emulze se může během úplného vychladnutí ještě mírně změnit.</p>
+          </div>
+
+          <div class="ek-sec">
+            <h2 class="ek-h2">Jak kondicionér používat</h2>
+            <p class="ek-p" style="max-width:74ch;">Po umytí vlasů naneste malé množství do vlhkých délek a konečků. Jemně jej rozetřete prsty nebo vlasy pročešte hřebenem se širšími zuby. Kondicionér se neoplachuje.</p>
+            <p class="ek-p" style="max-width:74ch;">Použít jej můžete také mezi jednotlivými mytími na suché vlasy — velmi malé množství nejprve rozetřete v dlaních a poté zapracujte do konečků nebo krepatých délek. Začněte raději menší dávkou: jemným vlasům často stačí opravdu málo, silnější nebo sušší vlasy mohou potřebovat o něco více.</p>
+          </div>
+
+          <div class="ek-sec">
+            <h2 class="ek-h2">Možné alternativy</h2>
+            <div class="ek-two">
+              <div class="ek-alt">
+                <span style="font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Jiný hydrolát</span>
+                <h3 class="ek-h3">Použijte hydrolát podle potřeb vlasů</h3>
+                <p class="ek-p" style="font-size:15px;">Rozmarýnový hydrolát nahradíte například levandulovým nebo heřmánkovým. Zachovejte stejné celkové množství vodné fáze a po dokončení znovu zkontrolujte pH.</p>
+              </div>
+              <div class="ek-alt">
+                <span style="font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Jiný lehký emolient</span>
+                <h3 class="ek-h3">Nahraďte MCT lehkým emolientem</h3>
+                <p class="ek-p" style="font-size:15px;">MCT Caprylis lze nahradit jiným lehkým emolientem pro vlasovou kosmetiku. Těžší rostlinný olej může být výživnější, ale jemné vlasy více zatíží.</p>
+              </div>
+              <div class="ek-alt">
+                <span style="font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Jiný vlasový olej</span>
+                <h3 class="ek-h3">Nahraďte brokolicový olej</h3>
+                <p class="ek-p" style="font-size:15px;">Použít můžete například <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">jojobový olej</a>. Výsledný pocit nebude zcela stejný — brokolicový olej dodává vlasům charakteristický skluz.</p>
+              </div>
+              <div class="ek-alt">
+                <span style="font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Méně proteinů</span>
+                <h3 class="ek-h3">Upravte recepturu podle vlasů</h3>
+                <p class="ek-p" style="font-size:15px;">Pokud vašim vlasům vyšší podíl proteinů nevyhovuje, snižte množství keratinu nebo hedvábného proteinu. Chybějící množství doplňte hydrolátem, aby receptura zůstala na 100 g.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ek-sec">
+            <h2 class="ek-h2">Když se něco nepovede</h2>
+            <dc-import name="ui-FAQ" items="{{ troubles }}" hint-size="100%,420px"></dc-import>
+          </div>
+
+          <div class="ek-sec">
+            <h2 class="ek-h2">Uchovávání a trvanlivost</h2>
+            <p class="ek-p" style="max-width:74ch;">Kondicionér uchovávejte v dobře uzavřeném obalu při pokojové teplotě, mimo přímé slunce a zdroje tepla. Při používání dbejte na to, aby se do výrobku nedostávala voda ani nečistoty.</p>
+            <p class="ek-p" style="max-width:74ch;">Skutečná trvanlivost závisí na zvoleném konzervantu, čistotě výroby, obalu a mikrobiologické stabilitě receptury. Pokud se změní vůně, barva nebo vzhled, případně se začnou oddělovat vrstvy, kondicionér dále nepoužívejte.</p>
+            <div class="ek-note" style="margin-top:4px;">
+              <span style="{{ iconDone }}"></span>
+              <p style="margin:0; font-size:15px; line-height:1.65; color:#4A4A42;"><strong>A je hotovo.</strong> Teď už stačí nanést malé množství do délek a konečků a postupně si najít dávku, která vyhovuje právě vašim vlasům.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="ek-buy ek-noprint" style="position:sticky; top:158px; border:1px solid #E4DAC6; border-radius:14px; background:#FFFDF6; box-shadow:0 18px 40px -30px rgba(45,58,46,.55); overflow:hidden;">
+          <div style="padding:20px 22px 16px; border-bottom:1px solid #EFE7D6;">
+            <span style="display:block; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">Nákup na tento recept</span>
+            <h2 class="ek-h2" style="margin-top:6px; font-size:23px;">Vše, co k výrobě potřebujete</h2>
+            <div class="ek-tabs" style="margin-top:14px;">
+              <button onClick="{{ setIng }}" class="{{ clsIng }}">Suroviny {{ nIng }}</button>
+              <button onClick="{{ setTools }}" class="{{ clsTools }}">Pomůcky {{ nTools }}</button>
+            </div>
+          </div>
+
+          <div style="padding:6px 22px 0; max-height:min(46vh, 420px); overflow-y:auto;">
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+              <div onClick="{{ r.toggle }}" class="ek-row">
+                <span style="{{ r.box }}"><span style="{{ r.tick }}"></span></span>
+                <span style="{{ r.thumb }}"></span>
+                <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
+                  <span class="ek-row-n" style="font-size:14.5px; font-weight:600; line-height:1.35; color:#2A2A24; transition:color .2s;">{{ r.name }}</span>
+                  <span style="font-size:12.5px; color:#8a8776;">{{ r.note }}</span>
+                </span>
+                <span style="font-size:14.5px; font-weight:700; white-space:nowrap; color:#2A2A24;">{{ r.price }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="padding:16px 22px 22px; border-top:1px solid #EFE7D6; background:#fff;">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+              <span style="font-size:14.5px; color:#6B6B5E;">{{ sumLabel }}</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:28px; color:#2D3A2E;">{{ sumPrice }}</span>
+            </div>
+            <sc-if value="{{ hasSaving }}" hint-placeholder-val="{{ true }}">
+              <span style="display:block; margin-top:4px; font-size:13px; color:#4F6E2A;">{{ savingLabel }}</span>
+            </sc-if>
+            <button onClick="{{ addAll }}" class="ek-btn-main" style="display:flex; align-items:center; justify-content:center; gap:10px; width:100%; height:52px; margin-top:14px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:16px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;"><span style="{{ iconCart }}"></span>{{ ctaLabel }}</button>
+            <button onClick="{{ selectAll }}" class="ek-btn-ghost" style="display:block; width:100%; margin-top:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:10px; font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ selectLabel }}</button>
+            <p style="margin:14px 0 0; font-size:12.5px; line-height:1.55; color:#8a8776;">Ceny jsou za celá balení surovin — vystačí i na další výrobu. Odklikněte, co už máte doma.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:64px 32px 0;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:18px;">
+        <h2 class="ek-h2">Podobné recepty</h2>
+        <a href="receptar.dc.html" style="font-size:14.5px; font-weight:600; text-decoration:none;">Celý receptář</a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px;">
+        <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
+          <dc-import name="ui-RecipeCard" title="{{ r.title }}" desc="{{ r.desc }}" category="{{ r.category }}" type="" level="{{ r.level }}" time="{{ r.time }}" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" img="{{ r.img }}" href="recept.dc.html" ingredients="{{ r.ingredients }}" hint-size="100%,470px"></dc-import>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <div style="margin-top:74px;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
+  </div>
+
+  <sc-if value="{{ guideOn }}" hint-placeholder-val="{{ false }}">
+    <div class="ek-noprint" style="position:fixed; inset:0; z-index:400; display:flex; flex-direction:column; background:linear-gradient(rgba(255,254,248,.92), rgba(255,254,248,.92)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif;">
+      <div style="flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:18px 32px; border-bottom:1px solid #E4DAC6;">
+        <div style="display:flex; flex-direction:column; gap:3px; min-width:0;">
+          <span style="font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:#8a8776;">Lehký bezoplachový kondicionér</span>
+          <span style="font-size:14.5px; font-weight:600; color:#4C653D;">{{ guideCounter }}</span>
+        </div>
+        <button onClick="{{ closeGuide }}" aria-label="Zavřít průvodce" class="ek-act" style="height:44px;"><span style="{{ iconClose }}"></span>Zavřít</button>
+      </div>
+
+      <div style="flex:0 0 auto; height:4px; background:#EFE7D6;"><div style="{{ guideBar }}"></div></div>
+
+      <div class="ek-gwrap" style="flex:1; min-height:0; overflow-y:auto; display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:44px; align-content:start; max-width:1180px; width:100%; margin:0 auto; padding:44px 32px;">
+        <div style="min-width:0;">
+          <span class="ek-num" style="width:56px; height:56px; font-size:24px;">{{ guideStep.n }}</span>
+          <h2 style="margin:20px 0 0; font-family:'EB Garamond',serif; font-weight:500; font-size:38px; line-height:1.12; color:#2D3A2E; text-wrap:pretty;">{{ guideStep.title }}</h2>
+          <p style="margin:18px 0 0; font-size:20px; line-height:1.65; color:#4A4A42; max-width:60ch; text-wrap:pretty;">{{ guideStep.text }}</p>
+          <sc-if value="{{ guideStep.tip }}" hint-placeholder-val="{{ false }}">
+            <div class="ek-note" style="margin-top:24px; max-width:60ch;">
+              <span style="{{ iconInfo }}"></span>
+              <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">{{ guideStep.tip }}</p>
+            </div>
+          </sc-if>
+        </div>
+        <aside style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">{{ guideStep.phaseLabel }}</span>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <sc-for list="{{ guideStep.items }}" as="it" hint-placeholder-count="4">
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:11px 14px; border:1px solid #E2EACF; border-radius:12px; background:#F8FBF1;">
+                <span style="font-size:14.5px; color:#4A4A42;">{{ it.name }}</span>
+                <strong style="font-size:14.5px; font-weight:700; white-space:nowrap; color:#2D3A2E;">{{ it.qty }}</strong>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ guideStep.noItems }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0; font-size:14.5px; line-height:1.6; color:#8a8776;">V tomto kroku nic neodvažujete — jen pracujete s tím, co už máte v nádobě.</p>
+          </sc-if>
+        </aside>
+      </div>
+
+      <div class="ek-gfoot" style="flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 32px; border-top:1px solid #E4DAC6; background:rgba(255,253,246,.9);">
+        <button onClick="{{ guidePrev }}" class="ek-act" aria-label="Předchozí krok" title="Předchozí krok" style="height:48px; padding:0 20px;"><span style="{{ iconPrev }}"></span><span class="ek-glabel">Předchozí</span></button>
+        <span class="ek-gdots" style="display:flex; gap:6px;">
+          <sc-for list="{{ guideDots }}" as="d" hint-placeholder-count="10">
+            <button onClick="{{ d.go }}" aria-label="{{ d.label }}" title="{{ d.label }}" style="{{ d.style }}"></button>
+          </sc-for>
+        </span>
+        <button onClick="{{ guideNext }}" class="ek-btn-main" style="display:inline-flex; align-items:center; gap:9px; height:48px; padding:0 24px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;">{{ guideNextLabel }}<span style="{{ iconNextW }}"></span></button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { tab: 'ing', off: {}, fav: false, recapOpen: true, guide: null };
+
+  static RECAP = [
+    { label: 'Fáze A', items: [
+      { name: 'Rozmarýnový hydrolát', qty: '82,5 g' }, { name: 'Aloe vera 10:1', qty: '1 g' },
+      { name: 'Glycerin', qty: '3 g' }, { name: 'Inulin', qty: '0,5 g' }, { name: 'Panthenol', qty: '2 g' },
+    ] },
+    { label: 'Fáze B', items: [
+      { name: 'Varisoft® EQ 65', qty: '2,5 g' }, { name: 'MCT Caprylis', qty: '3 g' }, { name: 'Brokolicový olej', qty: '1,5 g' },
+    ] },
+    { label: 'Fáze C', items: [
+      { name: 'Vege-Keratin', qty: '2 g' }, { name: 'Tekuté hedvábí', qty: '1 g' },
+      { name: 'Cosgard', qty: '1 g' }, { name: 'Kyselina mléčná', qty: 'dle pH' },
+    ] },
+  ];
+
+  static ING = [
+    { name: 'Rozmarýnová květová voda, 250 ml', note: 'hydrolát · 82,5 g v receptu', price: 119, img: 'assets/products/levandulove-maslo-100-g.jpg' },
+    { name: 'Aloe Vera 10:1 koncentrát, 50 ml', note: '1 g v receptu', price: 79, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg' },
+    { name: 'Glycerin — palm free, 200 g', note: '3 g v receptu', price: 49, img: 'assets/products/kyselina-citronova-1-kg.webp' },
+    { name: 'Inulín, 50 g', note: '0,5 g v receptu', price: 79, img: 'assets/products/kyselina-citronova-1-kg.webp' },
+    { name: 'Panthenol provitamine B5 75 %, 20 ml', note: '2 g v receptu', price: 50, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg' },
+    { name: 'VARISOFT® EQ 65, 100 g', note: 'emulgátor · 2,5 g v receptu', price: 90, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg' },
+    { name: 'MCT Caprylis, 200 ml', note: '3 g v receptu', price: 139, img: 'assets/products/levandulove-maslo-100-g.jpg' },
+    { name: 'Brokolicový olej, 50 ml', note: '1,5 g v receptu', price: 129, img: 'assets/products/levandulove-maslo-100-g.jpg' },
+    { name: 'Vege-Keratin, 30 ml', note: '2 g v receptu', price: 89, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg' },
+    { name: 'Tekuté hedvábí, 30 ml', note: 'hedvábný protein · 1 g', price: 129, img: 'assets/products/tuhy-sampon-zloutkovy.jpg' },
+    { name: 'Cosgard, 10 ml', note: 'konzervant · 1 g v receptu', price: 49, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg' },
+    { name: 'Kyselina mléčná, 100 ml', note: 'úprava pH · dle potřeby', price: 33, img: 'assets/products/kyselina-citronova-1-kg.webp' },
+  ];
+
+  static TOOLS = [
+    { name: 'Digitální váha 500 g / 0,1 g', note: 'vážení surovin', price: 349, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg' },
+    { name: 'Indikátorové pH papírky, 100 ks', note: 'kontrola pH', price: 79, img: 'assets/products/kyselina-citronova-1-kg.webp' },
+    { name: 'Plastová pipeta 3 ml', note: 'dávkování kyseliny', price: 12, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg' },
+    { name: 'Kosmetický teploměr', note: 'kontrola teploty fází', price: 149, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg' },
+    { name: 'Lahvička s pumpičkou, 100 ml', note: 'obal na hotový výrobek', price: 39, img: 'assets/products/tuhy-sampon-zloutkovy.jpg' },
+  ];
+
+  static STEPS = [
+    { title: 'Připravte si čisté pomůcky', text: 'Nádoby, míchací pomůcky a obal ošetřete ethanolem. Nechte je volně oschnout nebo je jemně otřete čistou papírovou utěrkou.', tip: 'Čím čistěji budete pracovat, tím lépe podpoříte trvanlivost hotového kondicionéru.', phase: -1 },
+    { title: 'Připravte vodnou fázi', text: 'Do první žáruvzdorné nádoby odvažte rozmarýnový hydrolát, aloe vera, glycerin, inulin a panthenol. Směs promíchejte, aby se všechny složky rovnoměrně rozptýlily.', phase: 0 },
+    { title: 'Zahřejte fázi A', text: 'Nádobu vložte do vodní lázně a směs zahřejte na 70–75 °C. Během zahřívání ji občas klidnými pohyby promíchejte.', phase: -1 },
+    { title: 'Připravte olejovou fázi', text: 'Do druhé nádoby odvažte Varisoft® EQ 65, MCT Caprylis a brokolicový olej.', phase: 1 },
+    { title: 'Rozpusťte Varisoft', text: 'Olejovou fázi zahřejte rovněž na 70–75 °C. Emulgátor se rozpouští pomaleji než tekuté oleje, proto směs průběžně míchejte.', tip: 'Vyčkejte, dokud nebude fáze jednotná a bez viditelných pevných částeček.', phase: -1 },
+    { title: 'Spojte obě fáze', text: 'Jakmile mají obě fáze přibližně stejnou teplotu, pomalu přilévejte olejovou fázi do vodné. Směs současně míchejte a poté ji přibližně jednu minutu homogenizujte.', phase: -1 },
+    { title: 'Nechte emulzi chladnout', text: 'Po homogenizaci pokračujte v pomalém míchání. Během chladnutí začne směs získávat mléčnou až lehce krémovou konzistenci. Míchejte do poklesu teploty přibližně na 40 °C.', phase: -1 },
+    { title: 'Přidejte fázi C', text: 'Při teplotě nejvýše 40 °C přidejte keratin, hedvábný protein a konzervant. Každou složku pečlivě, ale šetrně vmíchejte.', phase: 2 },
+    { title: 'Upravte pH', text: 'Změřte pH kondicionéru. Kyselinu mléčnou přidávejte pipetou po jednotlivých kapkách. Po každém přidání směs promíchejte a znovu přeměřte.', tip: 'Cílem je pH přibližně 4,5. Kyselinu přidávejte postupně, aby pH nekleslo víc, než potřebujete.', phase: -1 },
+    { title: 'Naplňte kondicionér do obalu', text: 'Hotový výrobek přelijte do čisté lahvičky a nechte jej přibližně 24 hodin ustálit. Konečnou hustotu posuzujte až po úplném vychladnutí.', phase: -1 },
+  ];
+
+  componentDidMount() {
+    this.onKey = (e) => {
+      if (this.state.guide === null) return;
+      if (e.key === 'Escape') this.setState({ guide: null });
+      if (e.key === 'ArrowRight') this.step(1);
+      if (e.key === 'ArrowLeft') this.step(-1);
+    };
+    window.addEventListener('keydown', this.onKey);
+  }
+
+  componentWillUnmount() { window.removeEventListener('keydown', this.onKey); }
+
+  step(dir) {
+    const n = Component.STEPS.length;
+    const cur = this.state.guide ?? 0;
+    const next = cur + dir;
+    if (next < 0) return;
+    if (next >= n) { this.setState({ guide: null }); return; }
+    this.setState({ guide: next });
+  }
+
+  mask(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  static czk(n) { return n.toLocaleString('cs-CZ') + ' Kč'; }
+
+  static plural(n, one, few, many) {
+    if (n === 1) return n + ' ' + one;
+    if (n >= 2 && n <= 4) return n + ' ' + few;
+    return n + ' ' + many;
+  }
+
+  list() { return this.state.tab === 'tools' ? Component.TOOLS : Component.ING; }
+
+  isOn(name) { return !this.state.off[name]; }
+
+  toggle(name) {
+    const off = Object.assign({}, this.state.off);
+    if (off[name]) delete off[name]; else off[name] = true;
+    this.setState({ off });
+  }
+
+  renderVals() {
+    const S = this.state;
+    const rows = this.list();
+    const selected = rows.filter(r => this.isOn(r.name));
+    const sum = selected.reduce((a, r) => a + r.price, 0);
+    const allIngOn = Component.ING.every(r => this.isOn(r.name));
+
+    return {
+      crumbs: [
+        { label: 'Úvod', href: 'index.html' },
+        { label: 'Receptář', href: 'receptar.dc.html' },
+        { label: 'Recepty', href: 'receptar.dc.html' },
+        { label: 'Péče a barvy na vlasy', href: 'receptar.dc.html' },
+        { label: 'Lehký bezoplachový kondicionér' },
+      ],
+
+      heroImg: 'position:absolute; inset:0; background:#EFE7D6 center/cover no-repeat; background-image:url("assets/recipes/krem-na-paty.jpg");',
+      iconClock: this.mask('clock-01', 18, '#4F6E2A'),
+      iconLevel: this.mask('medium-signal', 18, '#4F6E2A'),
+      iconYield: this.mask('jar', 18, '#4F6E2A'),
+      iconPrint: this.mask('printer', 18, '#4C653D'),
+      iconFav: this.mask(S.fav ? 'favourite-filled' : 'favourite', 18, S.fav ? '#D8763B' : '#4C653D'),
+      favLabel: S.fav ? 'Uloženo v mých receptech' : 'Uložit do mých receptů',
+      toggleFav: () => this.setState({ fav: !S.fav }),
+      doPrint: () => window.print(),
+
+      iconWater: this.mask('droplet', 17, '#4F6E2A'),
+      iconOil: this.mask('dropper', 17, '#4F6E2A'),
+      iconDrop: this.mask('test-tube', 17, '#4F6E2A'),
+      iconScale: this.mask('weight-scale-01', 17, '#4F6E2A'),
+      iconMix: this.mask('whisk', 17, '#4F6E2A'),
+      iconInfo: this.mask('information-circle', 22, '#4F6E2A'),
+      iconDone: this.mask('checkmark-circle-01', 22, '#4F6E2A'),
+      iconCart: this.mask('shopping-cart-add-01', 22, '#FFFFFF'),
+
+      recap: Component.RECAP,
+      recapOpen: S.recapOpen,
+      recapLabel: S.recapOpen ? 'Skrýt' : 'Zobrazit',
+      toggleRecap: () => this.setState({ recapOpen: !S.recapOpen }),
+      iconRecapCaret: this.mask(S.recapOpen ? 'arrow-up-01' : 'arrow-down-01', 17, 'currentColor'),
+      iconList: this.mask('clipboard', 17, '#4F6E2A'),
+
+      iconGuide: this.mask('play', 20, 'currentColor'),
+      iconClose: this.mask('cancel-01', 18, '#4C653D'),
+      iconPrev: this.mask('arrow-left-01', 20, '#4C653D'),
+      iconNextW: this.mask('arrow-right-01', 20, '#FFFFFF'),
+      openGuide: () => this.setState({ guide: 0 }),
+      closeGuide: () => this.setState({ guide: null }),
+      guideOn: S.guide !== null,
+      guideCounter: 'Krok ' + ((S.guide ?? 0) + 1) + ' z ' + Component.STEPS.length,
+      guideBar: 'height:100%; width:' + Math.round((((S.guide ?? 0) + 1) / Component.STEPS.length) * 100) + '%; background:#4C653D; transition:width .3s ease;',
+      guideStep: (() => {
+        const i = S.guide ?? 0;
+        const st = Component.STEPS[i];
+        const ph = st.phase >= 0 ? Component.RECAP[st.phase] : null;
+        const items = ph ? (i === 7 ? ph.items.slice(0, 3) : ph.items) : (i === 8 ? [{ name: 'Kyselina mléčná', qty: 'dle pH' }] : []);
+        return {
+          n: String(i + 1), title: st.title, text: st.text, tip: st.tip || '',
+          phaseLabel: ph ? 'Odvažte — ' + ph.label : (items.length ? 'Budete potřebovat' : 'V tomto kroku'),
+          items, noItems: items.length === 0,
+        };
+      })(),
+      guidePrev: () => this.step(-1),
+      guideNext: () => this.step(1),
+      guideNextLabel: (S.guide ?? 0) === Component.STEPS.length - 1 ? 'Hotovo' : 'Krok ' + ((S.guide ?? 0) + 2),
+      guideDots: Component.STEPS.map((st, i) => ({
+        label: 'Krok ' + (i + 1) + ' — ' + st.title,
+        go: () => this.setState({ guide: i }),
+        style: 'width:' + (i === (S.guide ?? 0) ? '26px' : '10px') + '; height:10px; padding:0; border:none; border-radius:999px; cursor:pointer; transition:width .25s, background .25s; background:' + (i === (S.guide ?? 0) ? '#4C653D' : '#D9CEB4') + ';',
+      })),
+
+      clsIng: S.tab === 'ing' ? 'ek-tab ek-tab-on' : 'ek-tab',
+      clsTools: S.tab === 'tools' ? 'ek-tab ek-tab-on' : 'ek-tab',
+      setIng: () => this.setState({ tab: 'ing' }),
+      setTools: () => this.setState({ tab: 'tools' }),
+      nIng: String(Component.ING.length),
+      nTools: String(Component.TOOLS.length),
+
+      rows: rows.map(r => {
+        const on = this.isOn(r.name);
+        return {
+          name: r.name, note: r.note, price: Component.czk(r.price),
+          thumb: 'display:block; width:52px; height:52px; flex:0 0 auto; border-radius:10px; background:#fff center/contain no-repeat; border:1px solid #F1EADC; background-image:url("' + r.img + '");',
+          box: 'width:22px; height:22px; flex:0 0 auto; border-radius:6px; display:flex; align-items:center; justify-content:center; border:1.5px solid ' + (on ? '#4C653D' : '#CFC4AA') + '; background:' + (on ? '#4C653D' : '#fff') + ';',
+          tick: on ? this.mask('tick-01', 15, '#fff') : 'display:none;',
+          toggle: () => this.toggle(r.name),
+        };
+      }),
+
+      sumLabel: (S.tab === 'tools' ? 'Vybrané pomůcky' : 'Vybrané suroviny') + ' (' + selected.length + ')',
+      sumPrice: Component.czk(sum),
+      hasSaving: selected.length > 0,
+      savingLabel: 'Vystačí na několik výrob — na 100 g receptu padne jen část balení.',
+      ctaLabel: 'Vložit ' + Component.plural(selected.length, 'položku', 'položky', 'položek') + ' do košíku',
+      addAll: () => window.dispatchEvent(new CustomEvent('ek-add-recipe-cart', { detail: selected })),
+      selectLabel: allIngOn && S.tab === 'ing' ? 'Označit, co už mám doma' : 'Vybrat vše',
+      selectAll: () => this.setState({ off: {} }),
+
+      troubles: [
+        { q: 'Kondicionér se odděluje', a: 'Příčinou může být nedostatečně rozpuštěný Varisoft, příliš rozdílná teplota obou fází nebo krátká homogenizace. Při další výrobě nechte emulgátor zcela rozpustit a obě fáze spojujte při podobné teplotě.', icon: 'droplet' },
+        { q: 'Kondicionér je příliš řídký', a: 'Nechte jej nejprve 24 až 48 hodin ustálit. Pokud zůstane tekutý, nemusí to být u bezoplachového kondicionéru na závadu — použijte obal s vhodným rozprašovačem.', icon: 'test-tube' },
+        { q: 'Vlasy jsou po použití těžké', a: 'Použijte menší množství a nanášejte kondicionér pouze do délek a konečků. Jemným nebo rychle se mastícím vlasům často stačí opravdu malá dávka.', icon: 'shampoo' },
+        { q: 'Vlasy jsou na dotek tužší', a: 'Některým vlasům nemusí vyhovovat vyšší množství proteinů. Při další výrobě snižte podíl keratinu nebo hedvábného proteinu a chybějící množství doplňte hydrolátem.', icon: 'leaf-01' },
+        { q: 'Rozprašovač se ucpává', a: 'Kondicionér je pro daný uzávěr pravděpodobně příliš hustý. Přelijte jej do lahvičky s pumpičkou nebo výklopným uzávěrem. Hotový konzervovaný výrobek dodatečně neřeďte vodou.', icon: 'medicine-bottle-01' },
+        { q: 'pH je vyšší než 4,5', a: 'Přidejte jednu kapku kyseliny mléčné, směs dobře promíchejte a znovu přeměřte. Kyselinu přidávejte opravdu postupně, aby pH nekleslo více, než potřebujete.', icon: 'chemistry-01' },
+      ],
+
+      related: [
+        { title: 'Tuhý šampon s panthenolem', desc: 'Bez plastu, na cesty i do sprchy. Vydrží měsíce.', category: 'Vlasová péče', level: 'Zkušený', time: '60 min', rating: 4.5, ratingCount: 19, img: 'assets/recipes/tenzidy.jpg', ingredients: ['Tenzid Coco Glucoside', 'Panthenol', 'Bambucké máslo'] },
+        { title: 'Jemný zklidňující gel po opalování', desc: 'Chladí a zavlažuje. Vhodný i na dětskou pokožku.', category: 'Kosmetika', level: 'Začátečník', time: '20 min', rating: 4.7, ratingCount: 11, img: 'assets/recipes/repelent.jpg', ingredients: ['Hyaluron', 'Panthenol', 'Glycerin'] },
+        { title: 'Levandulové tělové máslo', desc: 'Tři suroviny, hebká pokožka. Ideální první recept.', category: 'Kosmetika', level: 'Začátečník', time: '25 min', rating: 4.9, ratingCount: 41, img: 'assets/recipes/krem-na-paty.jpg', ingredients: ['Bambucké máslo', 'Mandlový olej', 'Levandulová silice'] },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .ek-ig-grid { display: grid; column-gap: 18px; row-gap: 34px; }
+  @media (max-width: 900px) { .ek-ig-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; } }
+  @media (max-width: 600px) {
+    .ek-ig-grid { column-gap: 12px !important; row-gap: 26px !important; }
+    .ek-ig-row { grid-template-columns: 1fr !important; }
+    .ek-ig-row a { padding: 8px 14px !important; }
+    .ek-ig-row a > span:first-child { width: 44px !important; height: 44px !important; }
+    .ek-ig-row a > span:last-child { font-size: 15px !important; }
+    .ek-ig-life a > span:last-child { font-size: 17px !important; }
+  }
+  .ek-ig-all:hover { color: #B23803 !important; }
+  .ek-ig-life a > span:first-child > span { transition: transform .45s ease; }
+  .ek-ig-life a:hover > span:first-child > span { transform: scale(1.05); }
+  .ek-ig-life a:hover > span:last-child { color: #4C653D; }
+</style>
+</helmet>
+
+<section style="display:flex; flex-direction:column; font-family:'Work Sans',sans-serif;">
+  <div style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:26px;">
+    <div style="display:flex; flex-direction:column; gap:6px; min-width:0;">
+      <sc-if value="{{ hasKicker }}" hint-placeholder-val="{{ false }}">
+        <span style="font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:#4F6E2A;">{{ kicker }}</span>
+      </sc-if>
+      <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; line-height:1.1; color:#4C653D;">{{ title }}</h2>
+      <sc-if value="{{ hasSubtitle }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0; font-size:16px; line-height:1.6; color:#6B6B5E; max-width:64ch;">{{ subtitle }}</p>
+      </sc-if>
+    </div>
+    <sc-if value="{{ hasAll }}" hint-placeholder-val="{{ false }}">
+      <a href="{{ allHref }}" class="ek-ig-all" style="display:inline-flex; align-items:center; gap:8px; flex:0 0 auto; font-size:15px; font-weight:600; color:#4C653D; text-decoration:none; transition:color .2s;">{{ allLabel }}<span style="{{ iconArrow }}"></span></a>
+    </sc-if>
+  </div>
+
+  <div class="{{ gridCls }}" style="{{ gridStyle }}">
+    <sc-for list="{{ items }}" as="c" hint-placeholder-count="8">
+      <dc-import name="ui-IngredientTile" variant="{{ tileVariant }}" ratio="{{ ratio }}" title="{{ c.name }}" img="{{ c.img }}" icon="{{ c.icon }}" href="{{ c.href }}" hint-size="100%,230px"></dc-import>
+    </sc-for>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:300},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Suroviny dle kategorie&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;kicker&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;subtitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;allLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Všechny suroviny&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;allHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;columns&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:6,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{name:string, img?:string, icon?:string, href?:string}[]&quot;}}">
+class Component extends DCLogic {
+  static DEFAULT = [
+    { name: 'Oleje', img: 'assets/categories/oleje.png' },
+    { name: 'Másla', img: 'assets/categories/masla.png' },
+    { name: 'Aktivní látky', img: 'assets/categories/aktivni-latky.png' },
+    { name: 'Vůně', img: 'assets/categories/vune.png' },
+    { name: 'Vosky', img: 'assets/categories/vosky.png' },
+    { name: 'Barviva', img: 'assets/categories/barviva.png' },
+    { name: 'Emulgátory', img: 'assets/categories/emulgatory.png' },
+    { name: 'Obaly', img: 'assets/categories/obaly.png' },
+  ];
+
+  mask(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  renderVals() {
+    const kicker = this.props.kicker ?? '';
+    const subtitle = this.props.subtitle ?? '';
+    const allHref = this.props.allHref ?? '';
+    const cols = Number(this.props.columns ?? 4);
+    const items = (this.props.items ?? Component.DEFAULT).map(c => ({
+      name: c.name ?? c.title ?? '',
+      img: c.img ?? '',
+      icon: c.icon ?? '',
+      href: c.href ?? '#',
+    }));
+    return {
+      title: this.props.title ?? 'Suroviny dle kategorie',
+      kicker,
+      hasKicker: kicker !== '',
+      subtitle,
+      hasSubtitle: subtitle !== '',
+      allHref,
+      hasAll: allHref !== '',
+      allLabel: this.props.allLabel ?? 'Všechny suroviny',
+      iconArrow: this.mask('arrow-right-02', 17, '#4C653D'),
+      items,
+      tileVariant: this.props.variant ?? 'lifestyle',
+      gridCls: 'ek-ig-grid ' + ((this.props.variant ?? 'lifestyle') === 'lifestyle' ? 'ek-ig-life' : 'ek-ig-row'),
+      ratio: this.props.ratio ?? '4/3',
+      gridStyle: 'grid-template-columns:repeat(' + cols + ',minmax(0,1fr));',
+    };
+  }
+}
+</script>
+</body>
+</html>

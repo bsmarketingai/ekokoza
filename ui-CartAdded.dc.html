@@ -97,7 +97,7 @@
   </div>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:720},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string,variant?:string,qty:number,price:number,noVat?:number,img?:string,state?:string,date?:string}[]&quot;},&quot;cartItems&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string,qty?:number,price:number,img?:string}[]&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;turnover&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:7400,&quot;min&quot;:0,&quot;max&quot;:60000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Přejít do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;()=&gt;void&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:720},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string,variant?:string,qty:number,price:number,noVat?:number,img?:string,state?:string,date?:string}[]&quot;},&quot;cartItems&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string,qty?:number,price:number,img?:string}[]&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;turnover&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12400,&quot;min&quot;:0,&quot;max&quot;:60000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Přejít do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;()=&gt;void&quot;}}">
 class Component extends DCLogic {
   state = { cartOpen: false, closed: false };
 
@@ -161,7 +161,7 @@ class Component extends DCLogic {
       shippingLabel: added + Number(this.props.cartTotal ?? 0) >= 2000
         ? 'Dopravu máte zdarma.'
         : 'Do dopravy zdarma chybí ' + this.money(2000 - added - Number(this.props.cartTotal ?? 0)) + '.',
-      turnover: Number(this.props.turnover ?? 7400),
+      turnover: Number(this.props.turnover ?? 12400),
       hasCart: cartItems.length > 0,
       cartOpen: this.state.cartOpen,
       toggleCart: () => this.setState({ cartOpen: !this.state.cartOpen }),

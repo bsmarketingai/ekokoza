@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D14405; color: #fff; }
+  a { color: #4C653D; }
+  a:hover { color: #B23803; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover span { background-color: #F6F1E7 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 26px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
+  .ek-p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
+  .ek-abc { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ek-let { min-width: 40px; height: 40px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid #E2D9C4; border-radius: 12px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 15px; font-weight: 700; color: #2A2A24; cursor: pointer; transition: border-color .2s, background .2s, color .2s; }
+  .ek-let:hover { border-color: #4C653D; background: #F4F7EA; }
+  .ek-let-on { background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-let-off { opacity: .38; cursor: not-allowed; }
+  .ek-fchip { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 8px 15px; border: 1.5px solid #E2D9C4; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 13.5px; font-weight: 600; color: #4A4A42; cursor: pointer; transition: border-color .2s, background .2s, color .2s; }
+  .ek-fchip:hover { border-color: #4C653D; background: #F9FBF3; }
+  .ek-fchip-on { background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-term { display: block; width: 100%; text-align: left; padding: 7px 0; border: none; background: transparent; cursor: pointer; font-family: 'Work Sans',sans-serif; font-size: 15.5px; line-height: 1.5; color: #4C653D; transition: color .2s; }
+  .ek-term:hover { color: #B23803; text-decoration: underline; text-underline-offset: 3px; }
+  .ek-tlist { column-count: 4; column-gap: 34px; }
+  .ek-dgrid { display: grid; grid-template-columns: minmax(0,1fr) 360px; gap: 34px; align-items: start; }
+  .ek-facts { display: grid; grid-template-columns: 132px minmax(0,1fr); gap: 12px 16px; }
+  .ek-two { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+  .ek-navterm { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border: 1px solid #ECE3D2; border-radius: 14px; background: #fff; cursor: pointer; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; color: #2A2A24; transition: border-color .2s, background .2s; }
+  .ek-navterm:hover { border-color: #4C653D; background: #F9FBF3; }
+  .ek-rlink { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid #F1EADC; font-size: 14.5px; color: #2A2A24; text-decoration: none; transition: color .2s; }
+  .ek-rlink:last-child { border-bottom: none; }
+  .ek-rlink:hover { color: #4C653D; }
+  @media (max-width: 1100px) {
+    .ek-tlist { column-count: 3; }
+    .ek-dgrid { grid-template-columns: minmax(0,1fr) 300px; gap: 24px; }
+  }
+  @media (max-width: 900px) {
+    .ek-dgrid { grid-template-columns: 1fr; }
+    .ek-h1 { font-size: 31px; }
+    .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-tlist { column-count: 2; column-gap: 22px; }
+    .ek-two { grid-template-columns: 1fr; }
+    .ek-facts { grid-template-columns: 1fr; gap: 4px 0; }
+    .ek-facts > span:nth-child(odd) { margin-top: 10px; }
+  }
+  @media (max-width: 560px) {
+    .ek-tlist { column-count: 1; }
+  }
+</style>
+</helmet>
+
+<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+
+  <dc-import name="ui-Header" active="receptar" hint-size="100%,140px"></dc-import>
+
+  <div style="max-width:1440px; margin:0 auto; position:relative;">
+
+  <sc-if value="{{ isIndex }}" hint-placeholder-val="{{ true }}">
+  <section style="padding:22px 32px 0;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="420px,20px"></dc-import>
+
+      <div style="margin-top:26px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+        <div style="min-width:0;">
+          <p class="ek-eyebrow" style="margin-bottom:10px;">Vysvětlujeme, netlačíme</p>
+          <h1 class="ek-h1">Slovníček pojmů</h1>
+        </div>
+        <span style="font-size:15px; color:#6B6B5E;">{{ totalLabel }}</span>
+      </div>
+
+      <p class="ek-p" style="margin-top:16px; max-width:74ch;">Co která surovina v receptuře dělá, jak se chová a na co si u ní dát pozor. Hledejte podle názvu i podle INCI — u každého pojmu najdete rozpustnost, pH a odkaz na recepty, kde se používá.</p>
+
+      <div style="position:relative; max-width:560px; margin-top:8px;">
+        <span style="{{ iconSearch }}"></span>
+        <input value="{{ q }}" onChange="{{ onQ }}" placeholder="Hledat pojem nebo INCI, např. tocopherol" style="width:100%; height:50px; padding:0 16px 0 48px; border:1.5px solid #CFC4AA; border-radius:999px; background:#fff; font-family:'Work Sans',sans-serif; font-size:15.5px; color:#2A2A24;">
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px; margin-top:22px; padding:18px 20px; border:1px solid #E4DAC6; border-radius:14px; background:#FFFDF6;">
+        <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:baseline;">
+          <span style="flex:0 0 108px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">Abeceda</span>
+          <div class="ek-abc" style="flex:1; min-width:0;">
+            <sc-for list="{{ letters }}" as="l" hint-placeholder-count="24">
+              <button onClick="{{ l.go }}" class="{{ l.cls }}">{{ l.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <sc-if value="{{ hasFilter }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:12px; border-top:1px solid #F1EADC;">
+            <span style="font-size:14.5px; color:#4A4A42;">{{ foundLabel }}</span>
+            <button onClick="{{ clearAll }}" class="ek-btn-ghost" style="border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:#B23803; cursor:pointer; transition:background .2s;">Zrušit výběr</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:34px 32px 0;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:38px;">
+      <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+        <div>
+          <div style="display:flex; align-items:baseline; gap:14px; padding-bottom:12px; margin-bottom:16px; border-bottom:1px solid #E4DAC6;">
+            <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:32px; line-height:1; color:#4C653D;">{{ g.letter }}</span>
+            <span style="font-size:13.5px; color:#8a8776;">{{ g.count }}</span>
+          </div>
+          <div class="ek-tlist">
+            <sc-for list="{{ g.items }}" as="t" hint-placeholder-count="8">
+              <button onClick="{{ t.open }}" class="ek-term">{{ t.name }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:40px 34px; border:1px solid #E4DAC6; border-radius:14px; background:#fff; text-align:center;">
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#2D3A2E;">Takový pojem tu zatím nemáme.</p>
+          <p style="margin:0 0 20px; font-size:15.5px; line-height:1.6; color:#6B6B5E;">Zkuste hledat podle INCI názvu, nebo nám napište — surovinu do slovníčku doplníme.</p>
+          <button onClick="{{ clearAll }}" class="ek-btn-secondary" style="border:1.5px solid #4C653D; background:transparent; color:#4C653D; border-radius:999px; padding:12px 24px; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;">Zobrazit celý slovníček</button>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+  </sc-if>
+
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+  <section style="padding:22px 32px 0;" class="ek-pad">
+    <div style="max-width:1280px; margin:0 auto;">
+      <dc-import name="ui-Breadcrumb" items="{{ dCrumbs }}" hint-size="520px,20px"></dc-import>
+
+      <div class="ek-dgrid" style="margin-top:24px;">
+        <div style="min-width:0;">
+          <h1 class="ek-h1">{{ d.name }}</h1>
+          <p style="margin:8px 0 0; font-size:16.5px; font-style:italic; color:#6B6B5E;">{{ d.syn }}</p>
+          <p class="ek-p" style="margin-top:18px; font-size:18px; line-height:1.65; max-width:70ch;">{{ d.def }}</p>
+
+          <sc-if value="{{ d.use }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top:26px;">
+              <h2 class="ek-h2">Využití v kosmetice</h2>
+              <p class="ek-p" style="margin-top:12px; max-width:74ch;">{{ d.use }}</p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hasProsCons }}" hint-placeholder-val="{{ true }}">
+            <div class="ek-two" style="margin-top:22px;">
+              <div style="padding:20px 22px; border:1px solid #E2EACF; border-radius:14px; background:#F8FBF1;">
+                <span style="display:flex; align-items:center; gap:9px; margin-bottom:10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;"><span style="{{ iconPlus }}"></span>Výhody</span>
+                <p style="margin:0; font-size:15px; line-height:1.65; color:#4A4A42;">{{ d.pros }}</p>
+              </div>
+              <div style="padding:20px 22px; border:1px solid #ECDCCE; border-radius:14px; background:#FDF7F1;">
+                <span style="display:flex; align-items:center; gap:9px; margin-bottom:10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#B23803;"><span style="{{ iconMinus }}"></span>Na co si dát pozor</span>
+                <p style="margin:0; font-size:15px; line-height:1.65; color:#4A4A42;">{{ d.cons }}</p>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ d.work }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top:26px;">
+              <h2 class="ek-h2">Jak se s ní pracuje</h2>
+              <p class="ek-p" style="margin-top:12px; max-width:74ch;">{{ d.work }}</p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ d.origin }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top:26px;">
+              <h2 class="ek-h2">Způsob získávání</h2>
+              <p class="ek-p" style="margin-top:12px; max-width:74ch;">{{ d.origin }}</p>
+            </div>
+          </sc-if>
+
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-top:34px;">
+            <button onClick="{{ goPrev }}" class="ek-navterm"><span style="{{ iconPrev }}"></span>{{ prevLabel }}</button>
+            <button onClick="{{ backToIndex }}" class="ek-btn-ghost" style="border:1.5px solid transparent; background:transparent; border-radius:999px; padding:12px 18px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">Celý slovníček</button>
+            <button onClick="{{ goNext }}" class="ek-navterm">{{ nextLabel }}<span style="{{ iconNext }}"></span></button>
+          </div>
+        </div>
+
+        <aside style="display:flex; flex-direction:column; gap:16px;">
+          <div style="padding:20px 22px; border:1px solid #E4DAC6; border-radius:14px; background:#fff;">
+            <span style="display:block; margin-bottom:14px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">Rychlá fakta</span>
+            <div class="ek-facts">
+              <span style="font-size:13.5px; color:#8a8776;">Synonyma</span>
+              <span style="font-size:14.5px; line-height:1.5; color:#2A2A24;">{{ d.syn2 }}</span>
+              <span style="font-size:13.5px; color:#8a8776;">Složení</span>
+              <span style="font-size:14.5px; line-height:1.5; color:#2A2A24;">{{ d.comp }}</span>
+              <span style="font-size:13.5px; color:#8a8776;">pH</span>
+              <span style="font-size:14.5px; line-height:1.5; color:#2A2A24;">{{ d.ph }}</span>
+              <span style="font-size:13.5px; color:#8a8776;">Rozpustnost</span>
+              <span style="font-size:14.5px; line-height:1.5; color:#2A2A24;">{{ d.sol }}</span>
+            </div>
+          </div>
+
+          <div style="padding:20px 22px; border:1px solid #E2EACF; border-radius:14px; background:linear-gradient(160deg,#FCFAF3 0%,#F1F6E3 100%);">
+            <span style="display:block; margin-bottom:6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Koupit surovinu</span>
+            <span style="display:block; font-family:'EB Garamond',serif; font-weight:500; font-size:20px; line-height:1.25; color:#2D3A2E;">{{ d.name }}</span>
+            <span style="display:block; margin:6px 0 14px; font-size:14px; color:#6B6B5E;">{{ d.shopNote }}</span>
+            <a href="produkt-vzor.html" class="ek-btn-main" style="display:inline-flex; align-items:center; gap:9px; height:46px; padding:0 22px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; text-decoration:none; font-size:15px; font-weight:600; transition:background .2s, border-color .2s;">Zobrazit v e-shopu<span style="{{ iconNextW }}"></span></a>
+          </div>
+
+          <div style="padding:20px 22px; border:1px solid #E4DAC6; border-radius:14px; background:#fff;">
+            <span style="display:block; margin-bottom:8px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">Recepty s touto surovinou</span>
+            <sc-for list="{{ d.recipes }}" as="r" hint-placeholder-count="3">
+              <a href="receptar.dc.html" class="ek-rlink"><span style="{{ iconRecipe }}"></span>{{ r }}</a>
+            </sc-for>
+            <a href="receptar.dc.html" style="display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-size:14px; font-weight:600; text-decoration:none;">Všechny recepty<span style="{{ iconNextG }}"></span></a>
+          </div>
+
+          <div style="padding:20px 22px; border:1px solid #E4DAC6; border-radius:14px; background:#fff;">
+            <span style="display:block; margin-bottom:10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">Podobné pojmy</span>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <sc-for list="{{ related }}" as="r" hint-placeholder-count="4">
+                <button onClick="{{ r.open }}" class="ek-fchip">{{ r.name }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <div style="margin-top:74px;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { view: 'index', term: '', q: '', types: [], letter: '' };
+
+  // [název, INCI / synonymum, typ, krátká definice]
+  static T = [
+    ['Acai olej', 'Euterpe Oleracea Fruit Oil', 'Olej', 'Lehký olej z plodů acai palmy, bohatý na antioxidanty.'],
+    ['Aktivní uhlí', 'Charcoal Powder', 'Aktivní látka', 'Váže nečistoty, používá se v maskách a mýdlech.'],
+    ['Allantoin', 'Allantoin', 'Aktivní látka', 'Zklidňuje a podporuje obnovu podrážděné kůže.'],
+    ['Aloe vera extrakt', 'Aloe Barbadensis Leaf Extract', 'Aktivní látka', 'Hydratuje a chladí, vhodná po opalování.'],
+    ['Alpha Arbutin', 'Alpha-Arbutin', 'Aktivní látka', 'Zesvětluje pigmentové skvrny, šetrnější než hydrochinon.'],
+    ['Arabská guma', 'Acacia Senegal Gum', 'Zahušťovadlo', 'Přírodní guma pro stabilizaci a zahuštění.'],
+    ['Arganový olej', 'Argania Spinosa Kernel Oil', 'Olej', 'Vyživuje pleť i vlasy, rychle se vstřebává.'],
+    ['Avokádový olej', 'Persea Gratissima Oil', 'Olej', 'Bohatý, mastný olej pro suchou a zralou pleť.'],
+    ['Bakuchiol', 'Bakuchiol', 'Aktivní látka', 'Rostlinná alternativa retinolu bez fotosenzitivity.'],
+    ['Bambucké máslo', 'Butyrospermum Parkii Butter', 'Máslo', 'Univerzální máslo pro krémy, balzámy a mýdla.'],
+    ['Baobabový olej', 'Adansonia Digitata Seed Oil', 'Olej', 'Stabilní olej, který dobře obnovuje kožní bariéru.'],
+    ['Benzoan sodný', 'Sodium Benzoate', 'Konzervant', 'Konzervant účinný jen v kyselém prostředí.'],
+    ['Bentonit', 'Bentonite', 'Jíl', 'Silně sající jíl na mastnou pleť a masky.'],
+    ['Beta Glucan', 'Beta-Glucan', 'Aktivní látka', 'Zklidňuje, podporuje hojení a zadržuje vlhkost.'],
+    ['Bílý jíl (kaolín)', 'Kaolin', 'Jíl', 'Nejjemnější jíl, vhodný i pro citlivou pleť.'],
+    ['Bisabolol', 'Bisabolol', 'Aktivní látka', 'Účinná složka kamilky, tlumí zarudnutí.'],
+    ['Ceramidy', 'Ceramide NP', 'Aktivní látka', 'Doplňují lipidy kožní bariéry, brání vysušení.'],
+    ['Cetearyl alkohol', 'Cetearyl Alcohol', 'Emulgátor', 'Mastný alkohol — dává krémům tělo a stabilitu.'],
+    ['Cetyl alkohol', 'Cetyl Alcohol', 'Emulgátor', 'Zjemňuje texturu, není to vysušující alkohol.'],
+    ['Coco glucoside', 'Coco-Glucoside', 'Tenzid', 'Jemný cukerný tenzid pro šampony a pěny.'],
+    ['Cocamidopropyl Betaine', 'Cocamidopropyl Betaine', 'Tenzid', 'Sekundární tenzid, zjemňuje a zahušťuje.'],
+    ['Cosgard', 'Dehydroacetic Acid & Benzyl Alcohol', 'Konzervant', 'Široce používaný konzervant pro domácí výrobu.'],
+    ['Čajovníkový olej', 'Melaleuca Alternifolia Leaf Oil', 'Olej', 'Silice s antibakteriálním účinkem, vždy ředit.'],
+    ['Černý jíl', 'Illite', 'Jíl', 'Detoxikační jíl na problematickou pleť.'],
+    ['Chia olej', 'Salvia Hispanica Seed Oil', 'Olej', 'Vysoký obsah omega-3, rychle se kazí.'],
+    ['Chitosan', 'Chitosan', 'Zahušťovadlo', 'Tvoří film, používá se ve vlasové péči.'],
+    ['Chlorid hořečnatý', 'Magnesium Chloride', 'Aktivní látka', 'Základ hořčíkových olejů a koupelových solí.'],
+    ['Decyl glukosid', 'Decyl Glucoside', 'Tenzid', 'Velmi jemný tenzid, vhodný pro dětskou kosmetiku.'],
+    ['Draselný sorbát', 'Potassium Sorbate', 'Konzervant', 'Chrání proti kvasinkám a plísním, potřebuje nízké pH.'],
+    ['Dýňový olej', 'Cucurbita Pepo Seed Oil', 'Olej', 'Tmavý olej se zinkem, dobrý na mastnou pleť.'],
+    ['Ectoin', 'Ectoin', 'Aktivní látka', 'Chrání buňky před stresem a vysušením.'],
+    ['Emulgační vosk NF', 'Cetearyl Alcohol & Ceteareth-20', 'Emulgátor', 'Snadný emulgátor pro první krémy typu voda v oleji.'],
+    ['Ethanol (líh)', 'Alcohol', 'Rozpouštědlo', 'Rozpouští silice, konzervuje tinktury a parfémy.'],
+    ['Ethylhexylglycerin', 'Ethylhexylglycerin', 'Konzervant', 'Posiluje účinek konzervantů, sám nekonzervuje.'],
+    ['Ferulic Acid', 'Ferulic Acid', 'Kyselina', 'Antioxidant, který stabilizuje vitamin C.'],
+    ['Fialový jíl', 'Illite', 'Jíl', 'Jemný jíl pro rozjasnění unavené pleti.'],
+    ['Geogard', 'Benzyl Alcohol & Salicylic Acid & Glycerin', 'Konzervant', 'Konzervant schválený pro přírodní kosmetiku.'],
+    ['Glycerin', 'Glycerin', 'Humektant', 'Váže vodu v pokožce, základ hydratace.'],
+    ['Guarová guma', 'Cyamopsis Tetragonoloba Gum', 'Zahušťovadlo', 'Zahušťuje a zjemňuje, hodí se do kondicionérů.'],
+    ['Guma xanthanová', 'Xanthan Gum', 'Zahušťovadlo', 'Nejběžnější zahušťovadlo gelů a emulzí.'],
+    ['Hedvábný protein', 'Hydrolyzed Silk', 'Protein', 'Dává vlasům lesk a hebkost bez zatížení.'],
+    ['Hroznový olej', 'Vitis Vinifera Seed Oil', 'Olej', 'Lehký, nemastný olej pro smíšenou pleť.'],
+    ['Hyaluronic Acid', 'Sodium Hyaluronate', 'Aktivní látka', 'Zadržuje vodu v pokožce, vyhlazuje povrch.'],
+    ['Hydrolyzovaný kolagen', 'Hydrolyzed Collagen', 'Protein', 'Vytváří pružný film, hydratuje povrch pleti.'],
+    ['Illipe máslo', 'Shorea Stenoptera Seed Butter', 'Máslo', 'Tvrdé máslo s vysokou teplotou tání.'],
+    ['Inulin', 'Inulin', 'Aktivní látka', 'Prebiotikum podporující kožní mikrobiom.'],
+    ['Jahodový olej', 'Fragaria Ananassa Seed Oil', 'Olej', 'Lehký olej se svěží vůní, do sér a balzámů.'],
+    ['Jojobový olej', 'Simmondsia Chinensis Seed Oil', 'Olej', 'Vlastně tekutý vosk — velmi stabilní, nekomedogenní.'],
+    ['Kakaové máslo', 'Theobroma Cacao Seed Butter', 'Máslo', 'Tvrdé máslo s vůní kakaa, drží tvar balzámů.'],
+    ['Kandelilový vosk', 'Euphorbia Cerifera Wax', 'Vosk', 'Rostlinná náhrada včelího vosku, tvrdší.'],
+    ['Karnaubský vosk', 'Copernicia Cerifera Wax', 'Vosk', 'Nejtvrdší rostlinný vosk, dávkuje se v jednotkách procent.'],
+    ['Kokosový olej', 'Cocos Nucifera Oil', 'Olej', 'Za pokojové teploty tuhý, do mýdel dává pěnu.'],
+    ['Koenzym Q10', 'Ubiquinone', 'Aktivní látka', 'Antioxidant podporující energii buněk.'],
+    ['Křemelina', 'Diatomaceous Earth', 'Aktivní látka', 'Jemný abraziv a sušicí složka.'],
+    ['Kyselina citronová', 'Citric Acid', 'Kyselina', 'Upravuje pH, do šumivek reaguje se sodou.'],
+    ['Kyselina mléčná', 'Lactic Acid', 'Kyselina', 'Jemný peeling a úprava pH emulzí.'],
+    ['Lecithin', 'Lecithin', 'Emulgátor', 'Přírodní emulgátor ze sóji nebo slunečnice.'],
+    ['Levandulový květ', 'Lavandula Angustifolia Flower', 'Aktivní látka', 'Sušený květ do macerátů, solí a mýdel.'],
+    ['Lněný olej', 'Linum Usitatissimum Seed Oil', 'Olej', 'Velmi nestabilní olej, jen na okamžité použití.'],
+    ['Makadamiový olej', 'Macadamia Ternifolia Seed Oil', 'Olej', 'Hebký olej podobný kožnímu lipidu.'],
+    ['Mandlový olej', 'Prunus Amygdalus Dulcis Oil', 'Olej', 'Univerzální olej pro celou rodinu, i pro děti.'],
+    ['Marocký jíl (rhassoul)', 'Moroccan Lava Clay', 'Jíl', 'Myje bez tenzidů, hodí se na vlasy.'],
+    ['Mica prášek', 'Mica', 'Barvivo', 'Minerální perleťový pigment do mýdel a balzámů.'],
+    ['Murumuru máslo', 'Astrocaryum Murumuru Butter', 'Máslo', 'Máslo pro velmi suché vlasy a konečky.'],
+    ['Naticide', 'Parfum', 'Konzervant', 'Konzervant na bázi rostlinných silic, výrazná vůně.'],
+    ['Neemový olej', 'Melia Azadirachta Seed Oil', 'Olej', 'Silná vůně, tradičně proti parazitům a lupům.'],
+    ['Niacinamid', 'Niacinamide', 'Vitamin', 'Zmenšuje póry, vyrovnává tón, snáší ho i citlivá pleť.'],
+    ['Olivový olej', 'Olea Europaea Fruit Oil', 'Olej', 'Základ marseillského mýdla a mastných krémů.'],
+    ['Olivový squalane', 'Squalane', 'Olej', 'Nemastná, extrémně stabilní olejová složka.'],
+    ['Oxid zinečnatý', 'Zinc Oxide', 'Aktivní látka', 'Minerální UV filtr a zklidňující pudr.'],
+    ['Panthenol', 'Panthenol', 'Vitamin', 'Provitamin B5 — hojí, hydratuje, zvláčňuje vlasy.'],
+    ['Pektin', 'Pectin', 'Zahušťovadlo', 'Ovocné zahušťovadlo, tvoří gely.'],
+    ['Phenoxyethanol', 'Phenoxyethanol', 'Konzervant', 'Spolehlivý konzervant s širokým rozsahem pH.'],
+    ['Propanediol', 'Propanediol', 'Rozpouštědlo', 'Lehčí a méně lepivá alternativa glycerinu.'],
+    ['Pupalkový olej', 'Oenothera Biennis Oil', 'Olej', 'Olej s GLA pro suchou a atopickou kůži.'],
+    ['Rakytníkový olej', 'Hippophae Rhamnoides Oil', 'Olej', 'Silně oranžový olej na regeneraci, barví.'],
+    ['Retinol', 'Retinol', 'Vitamin', 'Vitamin A na vrásky, začínejte nízkou koncentrací.'],
+    ['Ricinový olej', 'Ricinus Communis Seed Oil', 'Olej', 'Hustý olej do mýdel, řasenek a balzámů na rty.'],
+    ['Rozmarýn extrakt', 'Rosmarinus Officinalis Extract', 'Aktivní látka', 'Antioxidant, který zpomaluje žluknutí olejů.'],
+    ['Sezamový olej', 'Sesamum Indicum Seed Oil', 'Olej', 'Hřejivý olej pro masáže a zralou pleť.'],
+    ['Sodium Coco Sulfate', 'Sodium Coco-Sulfate', 'Tenzid', 'Silný pěnivý tenzid do syndetů a šampuků.'],
+    ['Sodium Hydroxide', 'Sodium Hydroxide', 'Aktivní látka', 'Louh pro mýdlo studenou cestou — nutná ochrana.'],
+    ['Stearyl alkohol', 'Stearyl Alcohol', 'Emulgátor', 'Zpevňuje emulze, dává krémům hustotu.'],
+    ['Šípkový olej', 'Rosa Canina Fruit Oil', 'Olej', 'Regeneruje jizvy a pigmentace, rychle žlukne.'],
+    ['Tamanu olej', 'Calophyllum Inophyllum Seed Oil', 'Olej', 'Tmavý hojivý olej se výraznou vůní.'],
+    ['Triethyl Citrate', 'Triethyl Citrate', 'Aktivní látka', 'Omezuje vznik pachu, základ moderních deodorantů.'],
+    ['Ucuuba máslo', 'Virola Surinamensis Butter', 'Máslo', 'Amazonské máslo pro velmi poškozenou kůži.'],
+    ['Urea (močovina)', 'Urea', 'Aktivní látka', 'Ve vyšší koncentraci rozpouští ztvrdlou kůži.'],
+    ['Včelí vosk', 'Cera Alba', 'Vosk', 'Klasický vosk do balzámů, mastí a svíček.'],
+    ['Vitamin C', 'Ascorbic Acid', 'Vitamin', 'Rozjasňuje a chrání, ve vodě je nestabilní.'],
+    ['Vitamin E', 'Tocopherol', 'Vitamin', 'Antioxidant, který chrání oleje před žluknutím.'],
+    ['Zelený jíl', 'Illite', 'Jíl', 'Klasický jíl na mastnou a smíšenou pleť.'],
+    ['Zinc PCA', 'Zinc PCA', 'Aktivní látka', 'Reguluje maz, hodí se do vlasové i pleťové péče.'],
+    ['Žlutý jíl', 'Illite', 'Jíl', 'Rozjasňující jíl pro unavenou pleť.'],
+  ];
+
+  static D = {
+    'Acai olej': {
+      syn2: 'Acai Berry Oil',
+      comp: 'olej z plodů acai palmy (Euterpe oleracea)',
+      ph: 'Není relevantní — jde o olej',
+      sol: 'Rozpustný v tucích a olejích, ve vodě nerozpustný',
+      dose: '2–15 % v olejové fázi',
+      origin: 'Získává se lisováním plodů acai palmy za studena, aby olej neztratil antioxidanty ani barvu.',
+      use: 'Cení se pro obsah antioxidantů, esenciálních mastných kyselin a vitaminu E. Dobře proniká do pokožky, takže se hodí do sér a krémů pro suchou a dehydratovanou pleť — hydratuje, podporuje regeneraci a zlepšuje pružnost.',
+      pros: 'Chrání před volnými radikály, obnovuje lipidovou bariéru a tlumí zarudnutí. Po vstřebání zanechává pleť hebkou, ne mastnou.',
+      cons: 'U citlivých jedinců může vyvolat alergickou reakci. V přebytku působí těžce, mastné pleti nemusí sedět.',
+      work: 'Tuhne kolem 35–45 °C, za běžných podmínek je stabilní. Skladujte v chladu a temnu a dodržujte dávkování, aby se nezměnila konzistence výrobku. S běžnými kosmetickými složkami je snášenlivý.',
+      recipes: ['Pleťové sérum s vitaminem C', 'Levandulové tělové máslo', 'Krém na paty a ztvrdlá místa'],
+    },
+    'Bambucké máslo': {
+      syn2: 'Shea Butter, karité',
+      comp: 'tuk z jader plodů máslovníku (Vitellaria paradoxa)',
+      ph: 'Není relevantní — jde o tuk',
+      sol: 'Rozpustné v olejích, ve vodě nerozpustné',
+      dose: '5–100 % podle typu výrobku',
+      origin: 'Jádra se drtí, praží a lisují; nerafinované máslo si nechává oříškovou vůni i nezmýdelnitelné látky.',
+      use: 'Nejuniverzálnější máslo domácí výroby. Tvoří základ tělových másel, balzámů a krémů, v mýdle dodává jemnost. Vytváří ochranný film, který zpomaluje odpar vody z pokožky.',
+      pros: 'Vysoký obsah nezmýdelnitelných látek, výborně zvláčňuje a zklidňuje suchou i podrážděnou kůži. Dlouhá trvanlivost.',
+      cons: 'Při rychlém chladnutí zrní — je potřeba temperovat. Nerafinované má výraznou vůni, mastné pleti může být těžké.',
+      work: 'Taje kolem 32–38 °C. Rozehřejte na vodní lázni na maximálně 45 °C a nechte chladnout pomalu, nebo naopak rychle zchlaďte, aby se netvořily krystalky.',
+      recipes: ['Levandulové tělové máslo', 'Krém na paty a ztvrdlá místa', 'Masážní svíčka s bambuckým máslem'],
+    },
+    'Panthenol': {
+      syn2: 'Provitamin B5, D-Panthenol',
+      comp: 'D-pantenol, alkoholová obdoba kyseliny pantothenové',
+      ph: 'Nejlépe pracuje v rozmezí 4–6',
+      sol: 'Rozpustný ve vodě a v alkoholu',
+      dose: '0,5–5 % ve vodné fázi',
+      origin: 'Vyrábí se synteticky ve formě čisté viskózní kapaliny nebo bílého prášku.',
+      use: 'V pleťové péči podporuje hojení a zadržuje vodu, ve vlasové péči zvláčňuje a snižuje lámavost. Přidává se do sér, krémů, kondicionérů i bezoplachových sprejů.',
+      pros: 'Snáší ho i citlivá pleť, po podráždění zklidňuje. Zlepšuje pocit z výrobku, aniž by ho ztěžoval.',
+      cons: 'Při vysokém pH se rozkládá na kyselinu pantothenovou. Nad 5 % může být výrobek lepivý.',
+      work: 'Přidávejte do vychladlé vodné fáze, ideálně pod 40 °C. Vodné výrobky s panthenolem vždy konzervujte.',
+      recipes: ['Lehký bezoplachový kondicionér', 'Jemný zklidňující gel po opalování', 'Tuhý šampon s panthenolem'],
+    },
+    'Kyselina citronová': {
+      syn2: 'Citric Acid, E330',
+      comp: 'kyselina citronová monohydrát',
+      ph: 'Snižuje pH, 1% roztok má pH okolo 2,2',
+      sol: 'Velmi dobře rozpustná ve vodě',
+      dose: '0,1–1 % na úpravu pH, v šumivkách až 25 %',
+      origin: 'Získává se fermentací cukerného substrátu, výsledkem jsou bílé krystalky.',
+      use: 'Nejběžnější způsob, jak srazit pH emulze nebo šamponu do kožní hodnoty. V koupelových šumivkách reaguje se sodou a tvoří bublinky, v domácnosti odstraňuje vodní kámen.',
+      pros: 'Levná, dostupná a přesně dávkovatelná. Zlepšuje účinnost konzervantů, které potřebují kyselé prostředí.',
+      cons: 'Vysoká koncentrace dráždí kůži a oči. V šumivkách reaguje s vlhkostí vzduchu — výrobek pak nebublá.',
+      work: 'Nejlépe se dávkuje jako 20–50% roztok, po kapkách a s měřením pH. Pro šumivky pracujte v suché místnosti a hotové kusy hned zabalte.',
+      recipes: ['Šumivé koule do vany', 'Domácí čisticí gel na nádobí', 'Prací gel z marseillského mýdla'],
+    },
+  };
+
+  static DEFAULTS = {
+    'Olej': { ph: 'Není relevantní — jde o olej', sol: 'Rozpustný v olejích, ve vodě nerozpustný', dose: '2–20 % v olejové fázi' },
+    'Máslo': { ph: 'Není relevantní — jde o tuk', sol: 'Rozpustné v olejích, ve vodě nerozpustné', dose: '5–30 % v olejové fázi' },
+    'Vosk': { ph: 'Není relevantní', sol: 'Rozpustný v olejích za tepla', dose: '3–15 % podle tvrdosti výrobku' },
+    'Tenzid': { ph: 'Účinný zhruba v rozmezí 4–7', sol: 'Rozpustný ve vodě', dose: '10–40 % mycí báze' },
+    'Konzervant': { ph: 'Sledujte doporučené rozmezí výrobce', sol: 'Rozpustný ve vodě', dose: '0,2–1 % podle výrobce' },
+    'Jíl': { ph: 'Mírně alkalický, 7–9', sol: 'Nerozpustný, ve vodě tvoří suspenzi', dose: '5–40 % v maskách' },
+    'Zahušťovadlo': { ph: 'Stabilní v rozmezí 4–9', sol: 'Rozpustné ve vodě', dose: '0,2–2 % ve vodné fázi' },
+    'Emulgátor': { ph: 'Bez vlivu na pH', sol: 'Rozpustný v olejové fázi za tepla', dose: '3–8 % emulze' },
+    'Protein': { ph: 'Nejlépe pracuje v rozmezí 4–6', sol: 'Rozpustný ve vodě', dose: '1–5 % ve vodné fázi' },
+    'Kyselina': { ph: 'Snižuje pH výrobku', sol: 'Rozpustná ve vodě', dose: '0,1–2 % podle účelu' },
+    'Vitamin': { ph: 'Nejlépe pracuje v rozmezí 4–6', sol: 'Podle formy — ve vodě nebo v oleji', dose: '0,5–5 %' },
+    'Aktivní látka': { ph: 'Nejlépe pracuje v rozmezí 4–6', sol: 'Podle formy — ve vodě nebo v oleji', dose: '0,5–5 %' },
+    'Humektant': { ph: 'Bez vlivu na pH', sol: 'Rozpustný ve vodě', dose: '2–10 % ve vodné fázi' },
+    'Rozpouštědlo': { ph: 'Bez vlivu na pH', sol: 'Mísitelné s vodou', dose: '2–15 %' },
+    'Barvivo': { ph: 'Bez vlivu na pH', sol: 'Nerozpustné, dispergované', dose: '0,1–2 %' },
+  };
+
+  norm(s) { return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+
+  letterOf(name) {
+    const n = name.toUpperCase();
+    if (n.indexOf('CH') === 0) return 'CH';
+    return n.charAt(0);
+  }
+
+  mask(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  open(name) { this.setState({ view: 'detail', term: name }); window.scrollTo({ top: 0 }); }
+
+  renderVals() {
+    const S = this.state;
+    const all = Component.T.map(r => ({ name: r[0], syn: r[1], type: r[2], def: r[3] }));
+    const types = [];
+    all.forEach(t => { if (types.indexOf(t.type) === -1) types.push(t.type); });
+
+    const nq = this.norm(S.q.trim());
+    const filtered = all.filter(t => {
+      if (S.types.length && S.types.indexOf(t.type) === -1) return false;
+      if (S.letter && this.letterOf(t.name) !== S.letter) return false;
+      if (nq && this.norm(t.name).indexOf(nq) === -1 && this.norm(t.syn).indexOf(nq) === -1) return false;
+      return true;
+    });
+
+    const order = [];
+    all.forEach(t => { const l = this.letterOf(t.name); if (order.indexOf(l) === -1) order.push(l); });
+    const groups = order.map(l => ({
+      letter: l,
+      items: filtered.filter(t => this.letterOf(t.name) === l).map(t => Object.assign({}, t, { open: () => this.open(t.name) })),
+    })).filter(g => g.items.length).map(g => Object.assign(g, {
+      count: g.items.length === 1 ? '1 pojem' : (g.items.length < 5 ? g.items.length + ' pojmy' : g.items.length + ' pojmů'),
+    }));
+
+    const cur = all.find(t => t.name === S.term) || all[0];
+    const idx = all.indexOf(cur);
+    const prev = all[(idx - 1 + all.length) % all.length];
+    const next = all[(idx + 1) % all.length];
+    const dd = Component.D[cur.name] || {};
+    const def = Component.DEFAULTS[cur.type] || Component.DEFAULTS['Aktivní látka'];
+    const d = {
+      name: cur.name, syn: cur.syn, type: cur.type, def: cur.def,
+      syn2: dd.syn2 || cur.syn,
+      comp: dd.comp || cur.syn,
+      ph: dd.ph || def.ph,
+      sol: dd.sol || def.sol,
+      dose: dd.dose || def.dose,
+      origin: dd.origin || '',
+      use: dd.use || '',
+      pros: dd.pros || '',
+      cons: dd.cons || '',
+      work: dd.work || '',
+      recipes: dd.recipes || ['Levandulové tělové máslo', 'Krém na paty a ztvrdlá místa', 'Pleťové sérum s vitaminem C'],
+      shopNote: 'Surovinu vedeme ve více baleních. Cenu a dostupnost najdete v e-shopu.',
+    };
+
+    return {
+      isIndex: S.view === 'index',
+      isDetail: S.view === 'detail',
+      crumbs: [{ label: 'Úvod', href: 'index.html' }, { label: 'Receptář', href: 'receptar.dc.html' }, { label: 'Slovníček pojmů' }],
+      totalLabel: all.length + ' pojmů ve slovníčku',
+
+      q: S.q,
+      onQ: (e) => this.setState({ q: e.target.value, letter: '' }),
+      iconSearch: this.mask('search-01', 21, '#8a8776') + ' position:absolute; left:18px; top:15px; pointer-events:none;',
+
+      letters: ['A','B','C','Č','CH','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','Š','T','U','V','Z','Ž'].map(l => {
+        const has = all.some(t => this.letterOf(t.name) === l);
+        return {
+          label: l,
+          cls: 'ek-let' + (S.letter === l ? ' ek-let-on' : (has ? '' : ' ek-let-off')),
+          go: () => { if (has) this.setState({ letter: S.letter === l ? '' : l, q: '' }); },
+        };
+      }),
+
+      typeChips: types.map(t => ({
+        label: t,
+        n: String(all.filter(x => x.type === t).length),
+        cls: S.types.indexOf(t) > -1 ? 'ek-fchip ek-fchip-on' : 'ek-fchip',
+        toggle: () => this.setState({ types: S.types.indexOf(t) > -1 ? S.types.filter(x => x !== t) : S.types.concat([t]) }),
+      })),
+
+      hasFilter: !!(S.letter || S.types.length || S.q.trim()),
+      foundLabel: filtered.length === 1 ? 'Odpovídá 1 pojem' : (filtered.length < 5 ? 'Odpovídají ' + filtered.length + ' pojmy' : 'Odpovídá ' + filtered.length + ' pojmů'),
+      clearAll: () => this.setState({ q: '', types: [], letter: '' }),
+
+      groups,
+      isEmpty: filtered.length === 0,
+
+      d,
+      hasProsCons: !!(d.pros && d.cons),
+      dCrumbs: [{ label: 'Úvod', href: 'index.html' }, { label: 'Receptář', href: 'receptar.dc.html' }, { label: 'Slovníček pojmů', href: '#', onClick: (e) => { if (e) e.preventDefault(); this.setState({ view: 'index' }); window.scrollTo({ top: 0 }); } }, { label: cur.name }],
+      backToIndex: () => { this.setState({ view: 'index' }); window.scrollTo({ top: 0 }); },
+      goPrev: () => this.open(prev.name),
+      goNext: () => this.open(next.name),
+      prevLabel: prev.name,
+      nextLabel: next.name,
+      related: all.filter(t => t.type === cur.type && t.name !== cur.name).slice(0, 5).map(t => ({ name: t.name, open: () => this.open(t.name) })),
+
+      iconPrev: this.mask('arrow-left-01', 18, '#4C653D'),
+      iconNext: this.mask('arrow-right-01', 18, '#4C653D'),
+      iconNextG: this.mask('arrow-right-02', 16, '#4C653D'),
+      iconNextW: this.mask('arrow-right-02', 17, '#FFFFFF'),
+      iconPlus: this.mask('plus-sign-circle', 17, '#4F6E2A'),
+      iconMinus: this.mask('alert-circle', 17, '#B23803'),
+      iconRecipe: this.mask('cook-book', 17, '#4F6E2A'),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -47,7 +47,7 @@
   </nav>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:380,&quot;height&quot;:420},&quot;name&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Anežka Drtinová&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;turnover&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:7400,&quot;min&quot;:0,&quot;max&quot;:60000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;priceGroup&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Registrovaný zákazník&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;floating&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;logoutHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:380,&quot;height&quot;:420},&quot;name&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Anežka Drtinová&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;turnover&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12400,&quot;min&quot;:0,&quot;max&quot;:60000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;priceGroup&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Registrovaný zákazník&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;floating&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;logoutHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
 class Component extends DCLogic {
   mask(name, size, color, extra) {
     const base = /\/components\//.test(location.pathname) ? '../' : '';
@@ -67,7 +67,7 @@ class Component extends DCLogic {
     return {
       name: this.props.name ?? 'Anežka Drtinová',
       priceGroup: this.props.priceGroup ?? 'Registrovaný zákazník',
-      turnover: Number(this.props.turnover ?? 7400),
+      turnover: Number(this.props.turnover ?? 12400),
       logoutHref: this.props.logoutHref ?? '#',
       close: () => { if (this.props.onClose) this.props.onClose(); },
       items: ITEMS.map(([label, href, icon]) => ({

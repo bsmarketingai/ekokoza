@@ -171,7 +171,7 @@
           <a href="#blok4" class="{{ navsuroviny }}" onMouseEnter="{{ openMega1 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Suroviny<span style="{{ iconCaret }}"></span></a>
           <a href="kategorie.html" class="{{ navprodukty }}" onMouseEnter="{{ openMega2 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Produkty<span style="{{ iconCaret }}"></span></a>
           <a href="#blok4" class="ek-nav-obaly {{ navobaly }}" onMouseEnter="{{ openMega3 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Obaly<span style="{{ iconCaret }}"></span></a>
-          <a href="#blok5" class="{{ navreceptar }}" onMouseEnter="{{ openMega4 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Receptář<span style="{{ iconCaret }}"></span></a>
+          <a href="receptar.dc.html" class="{{ navreceptar }}" onMouseEnter="{{ openMega4 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Receptář<span style="{{ iconCaret }}"></span></a>
         </div>
         <div style="display:flex; align-items:center; gap:18px;" onMouseEnter="{{ megaClose }}">
           <a href="{{ aboutHref }}" class="ek-nav-onas {{ navonas }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; transition:color .2s;">O nás</a>
@@ -314,7 +314,7 @@ class Component extends DCLogic {
   renderVals() {
     // Aktivni polozku poznáme z nazvu otevrene stranky, prop 'active' ma prednost
     const file = decodeURIComponent(location.pathname.split('/').pop() || '');
-    const auto = /vernostni-program/i.test(file) ? 'vernost' : (/o-nas|o nas/i.test(file) ? 'onas' : (/kategorie|produkt/i.test(file) ? 'produkty' : ''));
+    const auto = /receptar/i.test(file) ? 'receptar' : (/vernostni-program/i.test(file) ? 'vernost' : (/o-nas|o nas/i.test(file) ? 'onas' : (/kategorie|produkt/i.test(file) ? 'produkty' : '')));
     const active = this.props.active ?? auto;
     const navCls = (key) => (active === key ? 'ek-nav-active' : '');
     const about = this.props.aboutHref ?? 'o-nas.html';
@@ -335,9 +335,9 @@ class Component extends DCLogic {
       { label: 'Obaly', allHref: '#blok4', title: 'Obaly pro vaše výrobky',
         prod: { name: 'Tuhý šampon žloutkový', price: '159 Kč', img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, count: 0 },
         sub: [ {name:'Skleněné lahvičky',href:'#blok4'}, {name:'Skleněné dózy',href:'#blok4'}, {name:'Hliníkové a kovové',href:'#blok4'}, {name:'Plastové kelímky',href:'#blok4'}, {name:'Papírové',href:'#blok4'}, {name:'Na svíčky',href:'#blok4'}, {name:'Roll-on',href:'#blok4'}, {name:'Airless',href:'#blok4'}, {name:'Pro péči o rty',href:'#blok4'}, {name:'Uzávěry samostatně',href:'#blok4'} ] },
-      { label: 'Receptář', allHref: '#blok5', title: 'Recepty, které fungují',
+      { label: 'Receptář', allHref: 'receptar.dc.html', title: 'Recepty, které fungují',
         prod: { name: 'Levandulové máslo, 100 g', price: '189 Kč', img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, count: 214 },
-        sub: [ {name:'Recepty',href:'#blok5'}, {name:'Výroba domácí kosmetiky',href:'#blok5'}, {name:'Tvoření s dětmi',href:'#blok5'}, {name:'Články k surovinám',href:'#blok5'}, {name:'Sezónní kolekce',href:'#blok5'}, {name:'Slovníček pojmů',href:'#blok5'} ] },
+        sub: [ {name:'Recepty',href:'receptar.dc.html'}, {name:'Výroba domácí kosmetiky',href:'receptar.dc.html'}, {name:'Tvoření s dětmi',href:'receptar.dc.html'}, {name:'Články k surovinám',href:'receptar.dc.html'}, {name:'Sezónní kolekce',href:'receptar.dc.html'}, {name:'Slovníček pojmů',href:'receptar.dc.html'} ] },
     ];
 
     const mega = S.mega >= 0 ? menuTree[S.mega] : null;

@@ -25,6 +25,7 @@
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
   .ek-tool { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px; border: 1.5px solid #E2D9C4; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 14px; font-weight: 600; color: #2A2A24; cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s; }
   .ek-tool:hover { border-color: #4C653D; background: #FDFBF5; }
+  .ek-tool-on { background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
   .ek-card { background: #fff; border: 1px solid #ECE3D2; border-radius: 14px; }
   .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
@@ -123,8 +124,12 @@
           <dc-import name="ui-AccountNav" active="oblibene" hint-size="100%,170px"></dc-import>
         </sc-if>
         <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;">
-          <h1 class="ek-h1">Oblíbené produkty</h1>
+          <h1 class="ek-h1">Oblíbené</h1>
           <span style="font-size:14.5px; color:#6B6B5E;">{{ countLabel }}</span>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button onClick="{{ setTabP }}" class="{{ clsTabP }}">Produkty<span style="font-size:12.5px; font-weight:700; opacity:.65;">{{ nProducts }}</span></button>
+          <button onClick="{{ setTabR }}" class="{{ clsTabR }}">Recepty<span style="font-size:12.5px; font-weight:700; opacity:.65;">{{ nRecipes }}</span></button>
         </div>
         <sc-if value="{{ guest }}" hint-placeholder-val="{{ false }}">
           <div class="ek-card ek-guest" style="display:grid; grid-template-columns:minmax(0,1fr) auto; gap:22px; align-items:center; padding:24px 26px; border-color:rgba(76,101,61,.18); background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%);">
@@ -146,19 +151,28 @@
 
     <section style="padding:26px 32px 0;" class="ek-pad">
       <div style="max-width:1280px; margin:0 auto;">
+        <sc-if value="{{ tabRecipes }}" hint-placeholder-val="{{ false }}">
+        <div class="ek-favgrid">
+          <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="5">
+            <dc-import name="ui-RecipeCard" fav="{{ true }}" title="{{ r.title }}" desc="{{ r.desc }}" category="{{ r.category }}" type="" level="{{ r.level }}" time="{{ r.time }}" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" img="{{ r.img }}" href="receptar.dc.html" ingredients="{{ r.ingredients }}" hint-size="100%,470px"></dc-import>
+          </sc-for>
+        </div>
+        </sc-if>
+        <sc-if value="{{ tabProducts }}" hint-placeholder-val="{{ true }}">
         <div class="ek-favgrid">
           <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
             <dc-import name="ui-ProductCardV2" fav="{{ true }}" loggedIn="{{ loggedIn }}" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="produkt-vzor.html" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" hint-size="100%,520px"></dc-import>
           </sc-for>
         </div>
+        </sc-if>
 
         <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
           <div class="ek-card" style="padding:44px 28px; display:flex; flex-direction:column; gap:14px; align-items:center; text-align:center;">
             <span style="{{ iconHeart }}"></span>
             <h2 class="ek-h2" style="font-size:24px;">Zatím tu nic není</h2>
-            <p class="ek-p" style="max-width:56ch;">Srdíčkem u produktu si uložíte suroviny, ke kterým se chcete vrátit. Přihlášenému zákazníkovi zůstanou i příště.</p>
+            <p class="ek-p" style="max-width:56ch;">{{ emptyText }}</p>
             <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-              <a href="kategorie.html" class="ek-btn-main" style="display:inline-flex; align-items:center; gap:9px; height:48px; padding:0 26px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; text-decoration:none; font-size:15.5px; font-weight:600; transition:background .2s, border-color .2s;">Prohlédnout suroviny</a>
+              <a href="{{ emptyHref }}" class="ek-btn-main" style="display:inline-flex; align-items:center; gap:9px; height:48px; padding:0 26px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; text-decoration:none; font-size:15.5px; font-weight:600; transition:background .2s, border-color .2s;">{{ emptyCta }}</a>
               <sc-if value="{{ guest }}" hint-placeholder-val="{{ false }}">
                 <a href="muj-ucet.html" class="ek-tool" style="height:48px; padding:0 22px; font-size:15px;">Přihlásit se</a>
               </sc-if>
@@ -214,12 +228,23 @@ class Component extends DCLogic {
     { title: 'Esenciální olej levandule, 10 ml', num: 149, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 4.7, ratingCount: 28, stockState: 'longterm', ctaVariant: 'koupit', badge: '' },
   ];
 
-  state = { logged: true, empty: false, barOpen: true };
+  static FAV_RECIPES = [
+    { title: 'Levandulové tělové máslo', desc: 'Tři suroviny, hebká pokožka. Ideální první recept.', category: 'Kosmetika', level: 'Začátečník', time: '25 min', rating: 4.9, ratingCount: 41, img: 'assets/recipes/krem-na-paty.jpg', ingredients: ['Bambucké máslo', 'Mandlový olej', 'Levandulová silice'] },
+    { title: 'Prací gel z marseillského mýdla', desc: 'Tři suroviny, jedna hodina a víte přesně, čím perete.', category: 'Domácnost', level: 'Začátečník', time: '30 min', rating: 4.9, ratingCount: 21, img: 'assets/recipes/tenzidy.jpg', ingredients: ['Marseillské mýdlo', 'Uhličitan sodný', 'Levandulová silice'] },
+    { title: 'Krém na paty a ztvrdlá místa', desc: 'Vyživující krém, který změkčí ztvrdlou kůži za pár dní.', category: 'Kosmetika', level: 'Pokročilý', time: '40 min', rating: 4.8, ratingCount: 34, img: 'assets/recipes/krem-na-paty.jpg', ingredients: ['Bambucké máslo', 'Ricinový olej', 'Bílý vosk', 'Vitamin E'] },
+    { title: 'Repelent pro děti, dospělé i zvířata', desc: 'Bez DEET, s citronelou. Jemné složení pro celou domácnost.', category: 'Zdraví', level: 'Začátečník', time: '15 min', rating: 4.7, ratingCount: 26, img: 'assets/recipes/repelent.jpg', ingredients: ['Citronela', 'Glycerin'] },
+    { title: 'Krémová pasta na holení', desc: 'Bohatá pěna bez tenzidů, která nedráždí.', category: 'Kosmetika', level: 'Pokročilý', time: '35 min', rating: 4.6, ratingCount: 17, img: 'assets/recipes/pasta-na-holeni.jpg', ingredients: ['Kokosový olej', 'Bambucké máslo', 'Olivem 1000'] },
+  ];
+
+  state = { logged: true, empty: false, barOpen: true, tab: 'produkty' };
 
   renderVals() {
     const S = this.state;
-    const list = S.empty ? [] : Component.FAVS;
-    const n = list.length;
+    const isR = S.tab === 'recepty';
+    const list = S.empty || isR ? [] : Component.FAVS;
+    const rlist = S.empty || !isR ? [] : Component.FAV_RECIPES;
+    const n = isR ? rlist.length : list.length;
+    const tab = (on) => on ? 'ek-tool ek-tool-on' : 'ek-tool';
     const seg = (on) => "font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; padding:8px 14px; min-height:32px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;"
       + (on ? ' background:#4C653D; color:#F6F1E7; border:1px solid #4C653D;' : ' background:transparent; color:#6B6B5E; border:1px solid transparent;');
     return {
@@ -241,14 +266,28 @@ class Component extends DCLogic {
       iconBarClose: this.mask('cancel-01', 16, '#4C653D'),
       iconHeartSm: this.mask('favourite', 24, '#4C653D'),
       crumbs: S.logged
-        ? [{ label: 'Úvod', href: 'index.html' }, { label: 'Můj účet', href: 'ucet.html' }, { label: 'Oblíbené produkty' }]
-        : [{ label: 'Úvod', href: 'index.html' }, { label: 'Oblíbené produkty' }],
+        ? [{ label: 'Úvod', href: 'index.html' }, { label: 'Můj účet', href: 'ucet.html' }, { label: 'Oblíbené' }]
+        : [{ label: 'Úvod', href: 'index.html' }, { label: 'Oblíbené' }],
       products: list.map(p => Object.assign({}, p, {
         price: p.num.toLocaleString('cs-CZ') + ' Kč',
         stockDate: '28. 8. 2026',
       })),
-      countLabel: n === 0 ? '' : n + (n === 1 ? ' produkt' : n < 5 ? ' produkty' : ' produktů'),
+      countLabel: n === 0 ? '' : (isR ? n + (n === 1 ? ' recept' : n < 5 ? ' recepty' : ' receptů') : n + (n === 1 ? ' produkt' : n < 5 ? ' produkty' : ' produktů')),
       isEmpty: n === 0,
+      tabProducts: !isR,
+      tabRecipes: isR,
+      recipes: rlist,
+      nProducts: String(S.empty ? 0 : Component.FAVS.length),
+      nRecipes: String(S.empty ? 0 : Component.FAV_RECIPES.length),
+      clsTabP: tab(!isR),
+      clsTabR: tab(isR),
+      setTabP: () => this.setState({ tab: 'produkty' }),
+      setTabR: () => this.setState({ tab: 'recepty' }),
+      emptyText: isR
+        ? 'Srdíčkem u receptu si uložíte postupy, ke kterým se chcete vrátit. Přihlášenému zákazníkovi zůstanou i příště.'
+        : 'Srdíčkem u produktu si uložíte suroviny, ke kterým se chcete vrátit. Přihlášenému zákazníkovi zůstanou i příště.',
+      emptyCta: isR ? 'Otevřít receptář' : 'Prohlédnout suroviny',
+      emptyHref: isR ? 'receptar.dc.html' : 'kategorie.html',
       iconHeart: this.mask('favourite', 32, '#CFC4AA'),
     };
   }

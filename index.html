@@ -408,12 +408,7 @@
   <!-- ============ BLOK 4 — SUROVINY DLE KATEGORIE ============ -->
   <section id="blok4" style="padding:56px 32px 8px;" class="ek-pad">
     <div style="max-width:1280px; margin:0 auto;">
-      <h2 class="ek-h2" style="margin:0 0 26px; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D;">Suroviny dle kategorie</h2>
-      <div class="ek-grid8" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px;">
-        <sc-for list="{{ ingCats }}" as="c" hint-placeholder-count="8">
-          <dc-import name="ui-IngredientTile" title="{{ c.name }}" img="{{ c.img }}" hint-size="100%,84px"></dc-import>
-        </sc-for>
-      </div>
+      <dc-import name="ui-IngredientGrid" title="Suroviny dle kategorie" items="{{ ingCats }}" hint-size="100%,300px"></dc-import>
     </div>
   </section>
 
@@ -854,14 +849,14 @@ class Component extends DCLogic {
     ];
 
     const ingCats = [
-      { name:'Oleje', img:'assets/categories/oleje.png' },
-      { name:'Másla', img:'assets/categories/masla.png' },
-      { name:'Aktivní látky', img:'assets/categories/aktivni-latky.png' },
-      { name:'Vůně', img:'assets/categories/vune.png' },
-      { name:'Vosky', img:'assets/categories/vosky.png' },
-      { name:'Barviva', img:'assets/categories/barviva.png' },
-      { name:'Emulgátory', img:'assets/categories/emulgatory.png' },
-      { name:'Obaly', img:'assets/categories/obaly.png' },
+      { name:'Oleje', img:'assets/categories/oleje.png', icon:'droplet' },
+      { name:'Másla', img:'assets/categories/masla.png', icon:'mortar' },
+      { name:'Aktivní látky', img:'assets/categories/aktivni-latky.png', icon:'test-tube-01' },
+      { name:'Vůně', img:'assets/categories/vune.png', icon:'perfume' },
+      { name:'Vosky', img:'assets/categories/vosky.png', icon:'honey-01' },
+      { name:'Barviva', img:'assets/categories/barviva.png', icon:'blush-brush-01' },
+      { name:'Emulgátory', img:'assets/categories/emulgatory.png', icon:'whisk' },
+      { name:'Obaly', img:'assets/categories/obaly.png', icon:'package' },
     ].map(c => Object.assign(c, { thumbStyle: 'width:56px; height:56px; flex-shrink:0; border-radius:12px; background:center/cover no-repeat; background-image:url("' + c.img + '");' }));
 
     const recipes = [

@@ -49,6 +49,17 @@
   .ek-anchor { display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4DAC6; background: #fff; color: #4C653D; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s; }
   .ek-anchor:hover { border-color: #4C653D; background: #F4F7EA; color: #4C653D; }
   .ek-dose { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; background: rgba(63,127,44,.10); border: 1px solid rgba(63,127,44,.3); color: #33661F; font-size: 13.5px; font-weight: 600; }
+  .ek-var-cta:hover:not(:disabled) { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-var-cta:disabled { opacity: .45; cursor: not-allowed; }
+  @media (max-width: 900px) {
+    .ek-varbar { left: 10px !important; right: 10px !important; transform: none !important; flex-wrap: wrap; justify-content: center; border-radius: 18px !important; }
+    .ek-varbar-note { display: none !important; }
+  }
+  @media (max-width: 700px) {
+    .ek-modal-wrap { padding: 0 !important; align-items: stretch !important; }
+    .ek-modal-card { width: 100% !important; max-width: none !important; min-height: 100%; border-radius: 0 !important; box-shadow: none !important; }
+    .ek-modal-body { min-height: 100vh; padding: 22px 18px 32px !important; }
+  }
   @media (max-width: 980px) {
     .ek-pd-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     .ek-det-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
@@ -65,7 +76,7 @@
 
 <div class="ek-pagebot" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
-  <dc-import name="ui-Header" active="produkty" hint-size="100%,140px"></dc-import>
+  <dc-import name="ui-Header" active="produkty" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
 
   <div style="max-width:1440px; margin:0 auto; position:relative;">
 
@@ -99,13 +110,42 @@
           </span>
         </div>
 
-        <dc-import name="ui-VariantPicker" mode="qty" heading="Vyberte balení a množství" variants="{{ variants }}" resetKey="{{ varResetKey }}" onQtyChange="{{ onVarQty }}" hint-size="100%,280px"></dc-import>
+        <sc-if value="{{ isVariant }}" hint-placeholder-val="{{ true }}">
+          <dc-import name="ui-VariantPicker" mode="qty" heading="Vyberte balení a množství" variants="{{ variants }}" resetKey="{{ varResetKey }}" onQtyChange="{{ onVarQty }}" hint-size="100%,280px"></dc-import>
+        </sc-if>
+        <sc-if value="{{ isSingle }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 16px; border:1px solid #E4DAC6; border-radius:12px; background:#fff;">
+            <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" variant="pill" size="{{ 14.5 }}" hint-size="200px,36px"></dc-import>
+            <span style="font-size:14px; color:#6B6B5E;">{{ stockNote }}</span>
+          </div>
+        </sc-if>
 
-        <div id="ek-buy-cta" class="ek-buyrow" style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-          <span style="display:flex; flex-direction:column; gap:7px; flex:0 0 auto;">
-            <button onClick="{{ addVariants }}" disabled="{{ nothingPicked }}" style="{{ varCtaStyle }}"><span style="{{ iconCartW }}"></span>Do košíku</button>
-            <span style="font-size:13.5px; color:#6B6B5E;">{{ varPickedNote }}</span>
-          </span>
+        <div id="ek-buy-cta">
+        <sc-if value="{{ buyable }}" hint-placeholder-val="{{ true }}">
+          <div class="ek-buyrow" style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+            <sc-if value="{{ isVariant }}" hint-placeholder-val="{{ true }}">
+              <span style="display:flex; flex-direction:column; gap:7px; flex:0 0 auto;">
+                <button onClick="{{ addVariants }}" disabled="{{ nothingPicked }}" class="ek-var-cta" style="{{ varCtaStyle }}"><span style="{{ iconCartW }}"></span>Do košíku</button>
+                <span style="width:240px; font-size:13.5px; line-height:1.45; color:#6B6B5E;">{{ varPickedNote }}</span>
+              </span>
+            </sc-if>
+            <sc-if value="{{ isSingle }}" hint-placeholder-val="{{ false }}">
+              <span style="flex:1; min-width:260px;">
+                <dc-import name="ui-AddToCart" max="{{ 99 }}" onAdd="{{ onAdd }}" hint-size="100%,56px"></dc-import>
+              </span>
+            </sc-if>
+            <button onClick="{{ openPriceWatch }}" class="ek-btn-ghost" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; gap:8px; height:56px; background:transparent; border:1.5px solid transparent; border-radius:999px; padding:0 16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; white-space:nowrap; transition:background .2s;"><span style="{{ iconTagSm }}"></span>Hlídat cenu</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notBuyable }}" hint-placeholder-val="{{ false }}">
+          <div id="hlidaci-pes" style="display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; flex-direction:column; gap:8px; padding:16px; border:1px solid rgba(163,50,3,.28); border-radius:12px; background:rgba(163,50,3,.05);">
+              <span style="font-size:15px; font-weight:600; color:#A33203;">Tento produkt nelze zakoupit</span>
+              <p style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ watchNote }}</p>
+            </div>
+            <dc-import name="ui-WatchDog" productName="{{ title }}" variantLabel="{{ watchVariant }}" loggedIn="{{ loggedIn }}" onSubmit="{{ onWatch }}" hint-size="100%,300px"></dc-import>
+          </div>
+        </sc-if>
         </div>
 
         <div style="display:flex; flex-direction:column; gap:11px; padding-top:4px;">
@@ -498,15 +538,48 @@
   </div>
   </div>
 
-  <dc-import name="ui-BuyBar" title="{{ title }}" variantLabel="{{ barVariant }}" variants="{{ variants }}" selected="{{ selected }}" onSelect="{{ onSelect }}" price="{{ price }}" note="{{ unitPrice }}" img="{{ barImg }}" buyable="{{ true }}" stockState="{{ stockState }}" max="{{ 99 }}" watch="#ek-buy-cta" pickTarget="#ek-buy-cta" onAdd="{{ onAdd }}" hint-size="100%,0px"></dc-import>
+  <dc-import name="ui-BuyBar" title="{{ title }}" variantLabel="{{ barVariant }}" variants="{{ barVariants }}" selected="{{ selected }}" onSelect="{{ onSelect }}" price="{{ price }}" note="{{ unitPrice }}" img="{{ barImg }}" buyable="{{ buyable }}" stockState="{{ stockState }}" stockDate="{{ stockDate }}" max="{{ 99 }}" watch="#ek-buy-cta" pickTarget="{{ barTarget }}" onAdd="{{ onAdd }}" hint-size="100%,0px"></dc-import>
 </div>
 <sc-if value="{{ cartAddedOpen }}" hint-placeholder-val="{{ false }}">
   <dc-import name="ui-CartAdded" open="{{ true }}" items="{{ addedItems }}" cartTotal="{{ 1289 }}" cartCount="{{ 2 }}" turnover="{{ 7400 }}" onClose="{{ closeCartAdded }}" hint-size="100%,100%"></dc-import>
 </sc-if>
+
+<sc-if value="{{ priceWatchOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closePriceWatch }}" role="dialog" aria-label="Hlídat cenu" class="ek-modal-wrap" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(34,48,31,.55); backdrop-filter:blur(5px); font-family:'Work Sans',sans-serif;">
+    <div onClick="{{ stopProp }}" class="ek-modal-card" style="position:relative; width:min(520px,100%); max-height:100%; overflow:auto; border-radius:16px; box-shadow:0 30px 70px -28px rgba(45,58,46,.65);">
+      <button onClick="{{ closePriceWatch }}" aria-label="Zavřít" style="position:absolute; top:14px; right:14px; z-index:2; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#F6F1E7; border:1px solid #E4DAC6; cursor:pointer;"><span style="{{ iconCloseModal }}"></span></button>
+      <div class="ek-modal-body" style="padding:28px 30px; background:#FFFFFF;">
+        <dc-import name="ui-PriceWatch" productName="{{ title }}" variantLabel="{{ watchVariant }}" price="{{ priceNum }}" loggedIn="{{ loggedIn }}" boxed="{{ false }}" onClose="{{ closePriceWatch }}" hint-size="100%,380px"></dc-import>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ barCollapsed }}" hint-placeholder-val="{{ false }}">
+  <button onClick="{{ openBar }}" title="Zobrazit ovládání ukázky" style="position:fixed; right:20px; bottom:104px; z-index:300; display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 14px 32px -16px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif; font-size:13px; font-weight:600; color:#4C653D; cursor:pointer;">
+    <span style="{{ iconBarOpen }}"></span>Ukázka
+  </button>
+</sc-if>
+
+<sc-if value="{{ barOpen }}" hint-placeholder-val="{{ true }}">
+<div class="ek-varbar" style="position:fixed; left:50%; bottom:104px; transform:translateX(-50%); z-index:300; display:flex; align-items:center; gap:8px; padding:10px 10px 10px 14px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
+  <sc-for list="{{ demoGroups }}" as="g" hint-placeholder-count="3">
+    <span style="display:flex; align-items:center; gap:8px;">
+      <span class="ek-varbar-note" style="font-size:12.5px; font-weight:600; color:#8a8776; white-space:nowrap;">{{ g.label }}</span>
+      <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+        <sc-for list="{{ g.options }}" as="o" hint-placeholder-count="2">
+          <button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button>
+        </sc-for>
+      </span>
+    </span>
+  </sc-for>
+  <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
+</div>
+</sc-if>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
-  state = { sel: 0, varQtys: null, varReset: 0, cartAdded: false, lastAdded: null, safety: false, docs: false };
+  state = { sel: 0, varQtys: null, varReset: 0, cartAdded: false, lastAdded: null, safety: false, docs: false, mode: 'variant', avail: 'in', loggedIn: false, priceModal: false, barOpen: true, qty: 1 };
 
   mask(name, size, color) {
     const url = 'assets/icons/' + name + '.svg';
@@ -526,9 +599,43 @@ class Component extends DCLogic {
   money(n) { return new Intl.NumberFormat('cs-CZ').format(Math.round(n)) + ' Kč'; }
 
   renderVals() {
-    const cur = Component.VARIANTS[this.state.sel] || Component.VARIANTS[0];
+    const isVariant = this.state.mode === 'variant';
+    const soldOut = this.state.avail === 'out';
+    const loggedIn = this.state.loggedIn;
+    const NOTES = {
+      ready: 'Odesíláme obvykle následující pracovní den.',
+      packing: 'Navažujeme z velkého balení — odeslání o jeden pracovní den později.',
+      expected: 'Můžete koupit teď — odešleme hned po naskladnění.',
+      incoming: 'Zásilka je na cestě, přesné datum zatím nevíme — odešleme hned po naskladnění.',
+      toorder: 'U dodavatele zatím není objednané — napište nám a termín potvrdíme.',
+      longterm: 'Může trvat několik měsíců — zapneme vám hlídacího psa.',
+      ended: 'Produkt jsme vyřadili z nabídky — podíváme se s vámi po náhradě.',
+    };
+    const segBtn = (on) => "font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; padding:8px 14px; min-height:32px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;"
+      + (on ? ' background:#4C653D; color:#F6F1E7; border:1px solid #4C653D;' : ' background:transparent; color:#6B6B5E; border:1px solid transparent;');
+    const baseVariants = soldOut
+      ? Component.VARIANTS.map(v => Object.assign({}, v, { state: 'longterm', date: '' }))
+      : Component.VARIANTS;
+    const cur0 = baseVariants[this.state.sel] || baseVariants[0];
+    const cur = isVariant ? cur0 : Object.assign({}, baseVariants[1], { label: '50 ml' });
+    const curState = soldOut ? 'longterm' : cur.state;
+    const buyable = !soldOut && !['toorder', 'longterm', 'ended'].includes(cur.state);
+    const demoGroups = [
+      { label: 'Produkt', options: [
+        { label: 'Variantní', on: isVariant, pick: () => this.setState({ mode: 'variant', sel: 0 }) },
+        { label: 'Jednoduchý', on: !isVariant, pick: () => this.setState({ mode: 'single' }) },
+      ] },
+      { label: 'Dostupnost', options: [
+        { label: 'Dostupný', on: !soldOut, pick: () => this.setState({ avail: 'in' }) },
+        { label: 'Nedostupný', on: soldOut, pick: () => this.setState({ avail: 'out' }) },
+      ] },
+      { label: 'Zákazník', options: [
+        { label: 'Host', on: !loggedIn, pick: () => this.setState({ loggedIn: false }) },
+        { label: 'Přihlášen', on: loggedIn, pick: () => this.setState({ loggedIn: true }) },
+      ] },
+    ].map(g => Object.assign({}, g, { options: g.options.map(o => Object.assign({}, o, { style: segBtn(o.on) })) }));
     const varQtys = this.state.varQtys ?? {};
-    const pickedRows = Component.VARIANTS.map((v, i) => ({ v, i, q: Number(varQtys[i] ?? 0) }))
+    const pickedRows = baseVariants.map((v, i) => ({ v, i, q: Number(varQtys[i] ?? 0) }))
       .filter(r => r.q > 0)
       .map(r => ({
         title: 'Levandulový esenciální olej BIO',
@@ -570,12 +677,38 @@ class Component extends DCLogic {
       price: cur.price,
       priceNoVat: cur.noVat,
       unitPrice: cur.unit,
-      variants: Component.VARIANTS,
+      variants: baseVariants,
       selected: this.state.sel,
       onSelect: (i) => this.setState({ sel: i }),
-      stockState: cur.state,
-      barVariant: cur.label,
+      stockState: curState,
+      stockDate: cur.date ?? '',
+      stockNote: NOTES[curState] || NOTES.ready,
+      isVariant, isSingle: !isVariant,
+      buyable, notBuyable: !buyable,
+      loggedIn,
+      watchVariant: isVariant ? cur.label : '',
+      watchNote: isVariant
+        ? 'Toto balení teď není skladem a datum naskladnění neznáme. Zapněte si hlídacího psa a napíšeme vám.'
+        : 'Produkt teď není skladem a datum naskladnění neznáme. Zapněte si hlídacího psa a napíšeme vám.',
+      onWatch: (mail) => window.dispatchEvent(new CustomEvent('ek-watchdog', { detail: { mail } })),
+      priceNum: Number(String(cur.price).replace(/[^0-9]/g, '')) || 149,
+      priceWatchOpen: this.state.priceModal,
+      openPriceWatch: () => this.setState({ priceModal: true }),
+      closePriceWatch: () => this.setState({ priceModal: false }),
+      stopProp: (e) => e.stopPropagation(),
+      iconCloseModal: this.mask('cancel-01', 20, '#4C653D'),
+      iconTagSm: this.mask('notification-01', 17, '#4C653D'),
+      demoGroups,
+      barOpen: this.state.barOpen,
+      barCollapsed: !this.state.barOpen,
+      openBar: () => this.setState({ barOpen: true }),
+      closeBar: () => this.setState({ barOpen: false }),
+      iconBarOpen: this.mask('grid-view', 16, '#4C653D'),
+      iconBarClose: this.mask('cancel-01', 16, '#4C653D'),
+      barVariant: isVariant ? cur.label : '',
       barImg: Component.IMG,
+      barVariants: isVariant ? baseVariants : [],
+      barTarget: buyable ? '#ek-buy-cta' : '#hlidaci-pes',
 
       varResetKey: this.state.varReset,
       onVarQty: (all) => this.setState({ varQtys: all }),
@@ -583,13 +716,13 @@ class Component extends DCLogic {
       varPickedNote: pieces === 0
         ? 'Zadejte množství u balení, která chcete koupit.'
         : pickedRows.length + ' balení · ' + this.money(total),
-      varCtaStyle: "display:inline-flex; align-items:center; justify-content:center; gap:10px; height:56px; padding:0 30px; min-width:220px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:16.5px; font-weight:600; cursor:pointer; transition:background .2s;",
+      varCtaStyle: "display:inline-flex; align-items:center; justify-content:center; gap:10px; height:56px; padding:0 24px; width:240px; flex:0 0 auto; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:16.5px; font-weight:600; cursor:pointer; transition:background .2s;",
       iconCartW: this.mask('shopping-cart-01', 20, '#fff'),
       addVariants: () => {
         if (!pickedRows.length) return;
         this.setState({ cartAdded: true, lastAdded: pickedRows, varQtys: null, varReset: this.state.varReset + 1 });
       },
-      onAdd: () => this.setState({ cartAdded: true }),
+      onAdd: (q) => this.setState({ qty: q || 1, cartAdded: true }),
       cartAddedOpen: this.state.cartAdded,
       closeCartAdded: () => this.setState({ cartAdded: false }),
       addedItems: (this.state.lastAdded && this.state.lastAdded.length) ? this.state.lastAdded

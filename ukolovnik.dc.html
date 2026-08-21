@@ -271,7 +271,16 @@ const SECTIONS = [
       ['K odsouhlasení', 'Z naší strany je návrh hotový. Potřebujeme jen potvrdit chování na straně systému: jak dlouho se mají oblíbené držet v prohlížeči nepřihlášenému a co se stane při přihlášení, když už má zákazník v účtu jiný seznam — sloučit oba, nebo nechat ten z účtu.']],
   ]},
   { id: 'K', title: 'K. Kategorie a podkategorie', note: 'nejprve rozcestník, pak revize dlaždic', tasks: [
-    ['K1', 'Kategorie jako rozcestník', 'Doplnit obsahové bloky: úvodní vysvětlení, doporučené produkty, recepty s těmito surovinami, návody, časté dotazy. Aby stránka nebyla jen výpis produktů.', ['uprava','nova']],
+    ['K1', 'Kategorie jako rozcestník', 'Doplnit obsahové bloky: úvodní vysvětlení, doporučené produkty, recepty s těmito surovinami, návody, časté dotazy. Aby stránka nebyla jen výpis produktů, ale provedla zákazníka výběrem.', ['nova','ds'],
+      'K ČEMU TO JE — kategorie zákazníka provede výběrem, ne jen vypíše produkty. U másel nebo emulgátorů potřebuje vysvětlit rozdíly; kdo chce jen nakoupit, jde rovnou do výpisu pod hlavičkou. Stručný obsah je přímo v kategorii, delší text v samostatném článku — to pomůže i internímu prolinkování a dá se recyklovat do newsletteru a na sítě.\n' +
+      'DVĚ ŠABLONY — v plovoucí liště dole se přepíná „Nakupovací“ (jen úvod, tlačítko Přečíst celé a řádek otázkových chipů) a „Edukativní“ (celá edukativní zóna). Prázdné bloky se nikdy nevypíšou, takže jedna šablona posune na všechny kategorie.\n' +
+      'OTÁZKOVÉ CHIPY — pod úvodním textem je řádek otázek, kterými zákazník obvykle začíná: Jak vybrat, Co znamená INCI, Časté chyby, Vhodné pro citlivou pleť. Každý chip vede na článek nebo na kotvu v delším textu.\n' +
+      'PRŮVODCE VÝBĚREM — vpravo vedle úvodu jsou dvě úzké karty: hlavní edukativní článek s miniaturou a časem čtení a videonávod s miniaturou a délkou. Zabírají místo, které bylo dosud prázdné, a nesnižují viditelnost výpisu.\n' +
+      'MINI KURZ — samostatný proužek s polem na e-mail a tlačítkem „Chci lekce“, v tmavě zelené s krémovým tlačítkem podle pravidla CTA na tmavé ploše. Je to nejvýraznější prvek hlavičky, ale nekonkuruje terrakotovým tlačítkům ve výpisu.\n' +
+      'SROVNÁVACÍ TABULKA — rozbalená tabulka „Který typ vybrat“: typ suroviny, k čemu se hodí, na co si dát pozor a odkaz. Právě tohle u másel a emulgátorů nahrazuje dlouhý text. Na mobilu se řádky skládají pod sebe.\n' +
+      'DVĚ PODOBY HLAVIČKY (A / B) — přepínají se v liště. A: úvod a chipy vlevo, průvodce vpravo, pod tím proužek kurzu a tabulka na plnou šířku. B: srovnání vlevo jako kompaktní seznam, vpravo sloupec článek + video + karta kurzu — celkem o cca 90 px nižší. Vyberte prosím jednu, druhou pak odstraníme.\n' +
+      'CO TAM VĚDOMĚ NENÍ — nejprodávanější produkty (jsou hned pod hlavičkou ve výpisu), velké bannery a dlouhé texty. Celá zóna má na desktopu do 260 px výšky, aby výpis začínal vysoko.',
+      ['K odsouhlasení', 'Vyberte prosím podobu hlavičky (A nebo B) a potvrďte, které kategorie budou edukativní a které nakupovací. Dále potřebujeme obsah: titulky a odkazy článků, videa, znění otázkových chipů a řádky srovnávací tabulky — a kdo je bude psát a udržovat.']],
     ['K2', 'Až poté revize zobrazení podkategorií', 'Po dodělání rozcestníku znovu vyhodnotit dlaždice podkategorií — je možné, že současná jednodušší podoba bude stránku doplňovat dobře. Rozhodnout na hotovém rozcestníku, ne teď.', ['uprava']],
   ]},
   { id: 'L', title: 'L. Konzistence a předání', note: 'aby nezůstala nedodělaná místa', tasks: [
@@ -289,6 +298,8 @@ const SECTIONS = [
       'Navigace zóny se pod 760 px zalomí do mřížky 2×2 (pod 380 px do jednoho sloupce), takže jsou všechny položky vidět naráz. Věrnostní škála tří úrovní se na mobilu vůbec nezobrazuje — zůstává aktuální úroveň s postupem a zbývající částkou. Záhlaví zóny se skládá do sloupce a odhlášení jde pod jméno. Výzva k přihlášení na Oblíbených se pod 860 px skládá do jednoho sloupce s tlačítky na plnou šířku.'],
     ['M4', 'Sjednocení písma v hlavním menu', 'Odkaz na věrnostní program v menu vypadal jako jiné, tlustší písmo.', ['uprava'],
       'Odkaz má teď stejnou váhu i velikost jako ostatní položky menu; barvu jsme ponechali, aby si zvýraznění udržel.'],
+    ['M6', 'Vertikální dlaždice podkategorií na mobilu', 'V pásu podkategorií se na telefonu vešly jen dvě dlaždice — ikona vedle textu zabírala příliš šířky.', ['uprava'],
+      'Dlaždice podkategorie (ui-IngredientTile) má pod 860 px vertikální podobu: ikona v kolečku uprostřed nahoře, popis vycentrovaný pod ní (13,5 px, zalamuje se na dva řádky). Sloupce pásu se zúžily na 27 % šířky (pod 560 px na 33 %), takže na obrazovku jsou vidět tři až tři a půl dlaždice místo dvou — vodorovný scroll a snapování zůstávají. Na desktopu podoba zůstává vodorovná (ikona vlevo, text vpravo).'],
     ['M5', 'Průchod celého webu na mobilu před předáním', 'Zbývá jeden soustavný průchod všemi obrazovkami od 290 px — ne jednotlivé opravy podle nálezů, ale kontrola v jednom sedu.', ['uprava'],
       '',
       ['K odsouhlasení', 'Až budou hotové zbývající obrazovky (receptář, statické stránky), projdeme mobil v jednom sedu. Řekněte prosím, na kterých zařízeních to má sedět především — nyní ladíme od 290 px, což pokrývá i nejmenší telefony.']],
@@ -384,7 +395,8 @@ class Component extends DCLogic {
         return {
           id, title, detail,
           solution: solution || '', hasSolution: !!solution,
-          solutionParts: (solution || '').split(' ŘEŠENÍ #').map((t, i) => ({ text: i === 0 ? t : 'ŘEŠENÍ #' + t })),
+          solutionParts: (solution || '').split(' ŘEŠENÍ #').map((t, i) => (i === 0 ? t : 'ŘEŠENÍ #' + t))
+            .join('\n').split('\n').map(s => s.trim()).filter(Boolean).map(text => ({ text })),
           ask: ask ? ask[1] : '', askLabel: ask ? ask[0] : '', hasAsk: !!ask,
           hasStatus: !!solution,
           statusLabel: isDone ? 'Schváleno' : 'Ke schválení',

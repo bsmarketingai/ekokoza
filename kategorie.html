@@ -81,17 +81,71 @@
     .ek-tiles { grid-auto-columns: minmax(164px, 52%) !important; }
     .ek-bot-m { display: none !important; }
   }
+  @media (max-width: 860px) {
+    /* Vertikální dlaždice na mobilu: ikona nad popisem — do pásu se jich vejde víc */
+    .ek-tiles { grid-auto-columns: minmax(108px, 27%) !important; }
+    .ek-tiles .ek-card { flex-direction: column !important; align-items: center !important; justify-content: flex-start !important; text-align: center; gap: 9px !important; padding: 14px 8px !important; }
+    .ek-tiles .ek-card > span:first-child { width: 46px !important; height: 46px !important; border-radius: 12px !important; }
+    .ek-tiles .ek-card > span:last-child { font-size: 13.5px !important; line-height: 1.3 !important; text-wrap: pretty; }
+  }
+  @media (max-width: 560px) {
+    .ek-tiles { grid-auto-columns: minmax(100px, 33%) !important; }
+  }
+  /* V2 — pevný levý sloupec s filtrací, širší plocha */
+  .ek-side { display: none; }
+  .ek-v2 .ek-outer { max-width: 1720px !important; }
+  .ek-v2 .ek-cwrap { max-width: 1660px !important; }
+  .ek-v2 .ek-listgrid { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 34px; align-items: start; }
+  .ek-v2 .ek-side { display: block; position: sticky; top: 148px; max-height: calc(100vh - 172px); overflow-y: auto; padding-right: 4px; }
+  .ek-v2 .ek-filterbtn { display: none !important; }
+  .ek-v2 .ek-bar { position: static; }
+  @media (max-width: 1100px) {
+    .ek-v2 .ek-listgrid { grid-template-columns: 264px minmax(0,1fr); gap: 24px; }
+  }
+  @media (max-width: 980px) {
+    /* Na mobilu se V2 chová jako V1 — filtry jako klasický side drawer */
+    .ek-v2 .ek-listgrid { grid-template-columns: 1fr !important; }
+    .ek-v2 .ek-side { display: none !important; }
+    .ek-v2 .ek-filterbtn { display: inline-flex !important; }
+    .ek-v2 .ek-cwrap { max-width: 1280px !important; }
+  }
+  @media (min-width: 981px) {
+    .ek-v2 .ek-topbar > div, .ek-v2 .ek-hdr-row { max-width: 1724px !important; }
+  }
+  /* Hlavička kategorie — kompaktní edukativní zóna */
+  .ek-hzone { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 30px; align-items: start; }
+  .ek-hside { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .ek-guidechip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4DAC6; background: #fff; color: #4C653D; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s; }
+  .ek-guidechip:hover { border-color: #4C653D; background: #F4F7EA; color: #4C653D; }
+  .ek-guidecard { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid #ECE3D2; border-radius: 14px; background: #fff; text-decoration: none; transition: border-color .2s, transform .2s; }
+  .ek-guidecard:hover { border-color: #CFC4AA; transform: translateY(-1px); }
+  .ek-course { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 18px; padding: 18px 22px; border: 1px solid #3E5432; border-radius: 14px; background: linear-gradient(150deg,#4C653D 0%,#33452A 100%); box-shadow: 0 14px 30px -20px rgba(45,58,46,.6); }
+  .ek-course-t { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 21px; color: #F6F1E7; }
+  .ek-course-n { font-size: 14px; color: #D6E0C8; }
+  .ek-course-b { flex: 0 0 auto; height: 46px; padding: 0 22px; border: 1.5px solid #F6F1E7; border-radius: 999px; background: #F6F1E7; color: #4C653D; font-family: 'Work Sans',sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s; }
+  .ek-course-b:hover { background: #EDE4D0; border-color: #EDE4D0; }
+  .ek-compare { margin-top: 16px; padding: 16px 18px; border: 1px solid #ECE3D2; border-radius: 14px; background: #fff; }
+  .ek-comparehead { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr) auto; gap: 16px; padding: 0 0 8px; border-bottom: 1px solid #EFE7D6; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
+  .ek-comparerow { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr) auto; gap: 16px; align-items: center; padding: 11px 0; border-bottom: 1px solid #F4EEE1; font-size: 14.5px; line-height: 1.5; }
+  .ek-comparerow:last-child { border-bottom: none; }
+  @media (max-width: 980px) {
+    .ek-hzone { grid-template-columns: 1fr !important; gap: 20px; }
+    .ek-comparehead { display: none; }
+    .ek-comparerow { grid-template-columns: minmax(0,1fr) !important; gap: 5px; }
+  }
+  .ek-varbar-note { font-size: 12.5px; font-weight: 600; color: #8a8776; white-space: nowrap; }
+  @media (max-width: 700px) { .ek-varbar-note { display: none; } .ek-varbar { left: 12px !important; right: 12px !important; transform: none !important; justify-content: center; border-radius: 20px !important; } }
 </style>
 </helmet>
 
-<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+<div class="{{ modeCls }}" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
   <dc-import name="ui-Header" active="produkty" hint-size="100%,140px"></dc-import>
 
-  <div style="max-width:1440px; margin:0 auto; position:relative;">
+  <div class="ek-outer" style="max-width:1440px; margin:0 auto; position:relative;">
 
   <section style="padding:22px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div class="ek-cwrap" style="max-width:1280px; margin:0 auto;">
       <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="320px,20px"></dc-import>
 
       <div style="margin-top:26px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
@@ -102,21 +156,146 @@
         <span style="font-size:15px; color:#6B6B5E;">{{ totalLabel }}</span>
       </div>
 
-      <div style="margin-top:20px; max-width:76ch;">
-        <p class="ek-p">Líbí se vám přírodní kosmetika, ale netroufáte si na domácí výrobu? Najdete zde mýdla, krémy a další produkty vyráběné v malých mýdlařských provozech — vždy s důrazem na přírodní suroviny bez syntetických konzervantů a náhražek.</p>
-        <sc-if value="{{ descOpen }}" hint-placeholder-val="{{ false }}">
-          <div>
-            <p class="ek-p">Pozornost věnujte i pevným šamponům, které získávají čím dál větší oblibu. U přírodní kosmetiky nemůžeme opomenout zubní hygienu — najdete u nás bambusové kartáčky, zubní pasty i dřívko miswak.</p>
-            <p class="ek-p">Nabízíme pouze pečlivě vybrané produkty vhodné i pro citlivou pokožku. Když si nebudete vědět rady s výběrem, napište nám — v produktech se vyznáme a rádi poradíme.</p>
-          </div>
+      <sc-if value="{{ headA }}" hint-placeholder-val="{{ true }}">
+      <div class="{{ hzoneCls }}" style="margin-top:20px;">
+        <div style="min-width:0;">
+        <div style="max-width:74ch;">
+          <p class="ek-p">Líbí se vám přírodní kosmetika, ale netroufáte si na domácí výrobu? Najdete zde mýdla, krémy a další produkty vyráběné v malých mýdlařských provozech — vždy s důrazem na přírodní suroviny bez syntetických konzervantů a náhražek.</p>
+          <sc-if value="{{ descOpen }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <p class="ek-p">Pozornost věnujte i pevným šamponům, které získávají čím dál větší oblibu. U přírodní kosmetiky nemůžeme opomenout zubní hygienu — najdete u nás bambusové kartáčky, zubní pasty i dřívko miswak.</p>
+              <p class="ek-p">Nabízíme pouze pečlivě vybrané produkty vhodné i pro citlivou pokožku. Když si nebudete vědět rady s výběrem, napište nám — v produktech se vyznáme a rádi poradíme.</p>
+            </div>
+          </sc-if>
+          <button onClick="{{ toggleDesc }}" class="ek-btn-ghost" style="display:inline-flex; align-items:center; gap:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; margin-left:-16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ descLabel }}<span style="{{ iconDescCaret }}"></span></button>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;">
+          <sc-for list="{{ guideChips }}" as="q" hint-placeholder-count="4">
+            <a href="{{ q.href }}" class="ek-guidechip"><span style="{{ q.icon }}"></span>{{ q.label }}</a>
+          </sc-for>
+        </div>
+        </div>
+        <sc-if value="{{ isEdu }}" hint-placeholder-val="{{ true }}">
+        <aside class="ek-hside">
+          <a href="{{ guideArticle.href }}" class="ek-guidecard">
+            <span style="{{ guideArticle.thumb }}"></span>
+            <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
+              <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Průvodce výběrem</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2D3A2E;">{{ guideArticle.title }}</span>
+              <span style="font-size:13px; color:#6B6B5E;">{{ guideArticle.meta }}</span>
+            </span>
+          </a>
+          <a href="{{ guideVideo.href }}" class="ek-guidecard">
+            <span style="{{ guideVideo.thumb }}"><span style="{{ iconPlay }}"></span></span>
+            <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
+              <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Videonávod</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2D3A2E;">{{ guideVideo.title }}</span>
+              <span style="font-size:13px; color:#6B6B5E;">{{ guideVideo.meta }}</span>
+            </span>
+          </a>
+        </aside>
         </sc-if>
-        <button onClick="{{ toggleDesc }}" class="ek-btn-ghost" style="display:inline-flex; align-items:center; gap:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; margin-left:-16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ descLabel }}<span style="{{ iconDescCaret }}"></span></button>
       </div>
+      <sc-if value="{{ isEdu }}" hint-placeholder-val="{{ true }}">
+        <div class="ek-course">
+          <span style="display:flex; align-items:center; gap:11px; min-width:0;">
+            <span style="{{ iconCourseLight }}"></span>
+            <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
+              <span class="ek-course-t">{{ courseTitle }}</span>
+              <span class="ek-course-n">{{ courseNote }}</span>
+            </span>
+          </span>
+          <form onSubmit="{{ onCourse }}" style="display:flex; gap:8px; flex:0 1 380px; min-width:240px;">
+            <input type="email" placeholder="váš e-mail" style="flex:1; min-width:0; height:46px; padding:0 16px; border:1.5px solid rgba(246,241,231,.45); border-radius:999px; background:rgba(255,253,246,.96); font-family:'Work Sans',sans-serif; font-size:15px; color:#2A2A24;">
+            <button type="submit" class="ek-course-b">Chci lekce</button>
+          </form>
+        </div>
+        <div class="ek-compare">
+          <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+            <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; color:#2D3A2E;">{{ compareTitle }}</span>
+            <span style="font-size:13.5px; color:#8a8776;">{{ compareNote }}</span>
+          </div>
+          <div class="ek-comparehead">
+            <span>Typ</span><span>K čemu se hodí</span><span>Na co si dát pozor</span><span></span>
+          </div>
+          <sc-for list="{{ compareRows }}" as="c" hint-placeholder-count="4">
+            <div class="ek-comparerow">
+              <span style="display:flex; align-items:center; gap:10px; font-weight:600; color:#2A2A24;"><span style="{{ c.icon }}"></span>{{ c.type }}</span>
+              <span style="color:#4A4A42;">{{ c.use }}</span>
+              <span style="color:#6B6B5E;">{{ c.watch }}</span>
+              <a href="{{ c.href }}" class="ek-link-u" style="font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap;">Zobrazit</a>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      </sc-if>
+
+      <sc-if value="{{ headB }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:20px;">
+        <div style="max-width:74ch;">
+          <p class="ek-p">Líbí se vám přírodní kosmetika, ale netroufáte si na domácí výrobu? Najdete zde mýdla, krémy a další produkty vyráběné v malých mýdlařských provozech — vždy s důrazem na přírodní suroviny bez syntetických konzervantů a náhražek.</p>
+          <sc-if value="{{ descOpen }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <p class="ek-p">Pozornost věnujte i pevným šamponům, které získávají čím dál větší oblibu. U přírodní kosmetiky nemůžeme opomenout zubní hygienu — najdete u nás bambusové kartáčky, zubní pasty i dřívko miswak.</p>
+              <p class="ek-p">Nabízíme pouze pečlivě vybrané produkty vhodné i pro citlivou pokožku. Když si nebudete vědět rady s výběrem, napište nám — v produktech se vyznáme a rádi poradíme.</p>
+            </div>
+          </sc-if>
+          <button onClick="{{ toggleDesc }}" class="ek-btn-ghost" style="display:inline-flex; align-items:center; gap:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; margin-left:-16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ descLabel }}<span style="{{ iconDescCaret }}"></span></button>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;">
+          <sc-for list="{{ guideChips }}" as="q" hint-placeholder-count="4">
+            <a href="{{ q.href }}" class="ek-guidechip"><span style="{{ q.icon }}"></span>{{ q.label }}</a>
+          </sc-for>
+        </div>
+        <sc-if value="{{ isEdu }}" hint-placeholder-val="{{ true }}">
+        <div class="ek-hzone" style="margin-top:22px; align-items:stretch;">
+          <div class="ek-compare" style="margin-top:0;">
+            <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; color:#2D3A2E;">{{ compareTitle }}</span>
+            </div>
+            <sc-for list="{{ compareRows }}" as="c" hint-placeholder-count="4">
+              <div class="ek-comparerow" style="grid-template-columns:minmax(0,1fr);">
+                <span style="display:flex; align-items:center; gap:10px; font-weight:600; color:#2A2A24;"><span style="{{ c.icon }}"></span>{{ c.type }}</span>
+                <span style="font-size:14.5px; color:#4A4A42;">{{ c.use }} · <span style="color:#8a8776;">{{ c.watch }}</span></span>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ isEdu }}" hint-placeholder-val="{{ true }}">
+        <aside class="ek-hside">
+          <a href="{{ guideArticle.href }}" class="ek-guidecard">
+            <span style="{{ guideArticle.thumb }}"></span>
+            <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
+              <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Průvodce výběrem</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2D3A2E;">{{ guideArticle.title }}</span>
+              <span style="font-size:13px; color:#6B6B5E;">{{ guideArticle.meta }}</span>
+            </span>
+          </a>
+          <a href="{{ guideVideo.href }}" class="ek-guidecard">
+            <span style="{{ guideVideo.thumb }}"><span style="{{ iconPlay }}"></span></span>
+            <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
+              <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Videonávod</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2D3A2E;">{{ guideVideo.title }}</span>
+              <span style="font-size:13px; color:#6B6B5E;">{{ guideVideo.meta }}</span>
+            </span>
+          </a>
+            <div class="ek-guidecard" style="flex-direction:column; align-items:stretch; gap:10px; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%);">
+              <span style="display:flex; align-items:center; gap:10px;"><span style="{{ iconCourse }}"></span><span style="font-family:'EB Garamond',serif; font-weight:500; font-size:17.5px; color:#2D3A2E;">{{ courseTitle }}</span></span>
+              <span style="font-size:13.5px; line-height:1.5; color:#4A4A42;">{{ courseNote }}</span>
+              <form onSubmit="{{ onCourse }}" style="display:flex; gap:8px;">
+                <input type="email" placeholder="váš e-mail" style="flex:1; min-width:0; height:44px; padding:0 14px; border:1.5px solid #CFC4AA; border-radius:999px; background:#fff; font-family:'Work Sans',sans-serif; font-size:14.5px; color:#2A2A24;">
+                <button type="submit" class="ek-btn-secondary" style="flex:0 0 auto; height:44px; padding:0 18px; border:1.5px solid #4C653D; border-radius:999px; background:transparent; color:#4C653D; font-family:'Work Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;">Chci lekce</button>
+              </form>
+            </div>
+          </aside>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
     </div>
   </section>
 
   <section style="padding:34px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div class="ek-cwrap" style="max-width:1280px; margin:0 auto;">
       <h2 class="ek-h2" style="margin-bottom:18px;">Vyberte podkategorii</h2>
       <div class="ek-tiles">
         <sc-for list="{{ subcats }}" as="c" hint-placeholder-count="12">
@@ -127,10 +306,15 @@
   </section>
 
   <section style="padding:40px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div class="ek-cwrap" style="max-width:1280px; margin:0 auto;">
+    <div class="ek-listgrid">
+      <aside class="ek-side">
+        <dc-import name="ui-FilterPanel" variant="sidebar" groups="{{ facetGroups }}" priceMin="{{ priceMin }}" priceMax="{{ priceMax }}" onPriceMin="{{ onPriceMin }}" onPriceMax="{{ onPriceMax }}" onClear="{{ clearFilters }}" hint-size="100%,620px"></dc-import>
+      </aside>
+      <div style="min-width:0;">
       <div class="ek-bar">
         <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-          <button onClick="{{ openDrawer }}" class="ek-tool"><span style="{{ iconFilter }}"></span>Filtrovat<sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:22px; padding:0 6px; border-radius:999px; background:#D14405; color:#fff; font-size:12.5px;">{{ filterCount }}</span></sc-if></button>
+          <button onClick="{{ openDrawer }}" class="ek-tool ek-filterbtn"><span style="{{ iconFilter }}"></span>Filtrovat<sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:22px; padding:0 6px; border-radius:999px; background:#D14405; color:#fff; font-size:12.5px;">{{ filterCount }}</span></sc-if></button>
           <span style="font-size:14.5px; color:#6B6B5E;">{{ shownLabel }}</span>
         </div>
         <label style="display:inline-flex; align-items:center; gap:10px; position:relative;">
@@ -181,6 +365,8 @@
         </nav>
         </sc-if>
       </div>
+      </div>
+    </div>
     </div>
   </section>
 
@@ -193,66 +379,51 @@
     <div class="ek-drawer">
       <div onClick="{{ closeDrawer }}" class="ek-drawer-bd"></div>
       <div class="ek-drawer-p">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 24px; border-bottom:1px solid #EFE7D6;">
-          <span style="display:flex; align-items:center; gap:10px; font-family:'EB Garamond',serif; font-size:24px; color:#2D3A2E;"><span style="{{ iconFilterTitle }}"></span>Filtrovat produkty</span>
-          <button onClick="{{ closeDrawer }}" title="Zavřít" aria-label="Zavřít filtry" style="border:none; background:transparent; cursor:pointer; display:flex; padding:6px;"><span style="{{ iconClose }}"></span></button>
-        </div>
-
-        <div style="flex:1; overflow-y:auto; padding:8px 24px 24px;">
-          <div style="padding:20px 0; border-bottom:1px solid #EFE7D6;">
-            <span style="display:block; font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A; margin-bottom:12px;">Cena za balení</span>
-            <div style="display:flex; align-items:center; gap:12px;">
-              <label style="display:flex; flex-direction:column; gap:5px; flex:1; min-width:0;">
-                <span style="font-size:12.5px; color:#6B6B5E;">od</span>
-                <input type="number" value="{{ priceMin }}" onChange="{{ onPriceMin }}" style="width:100%; height:46px; padding:0 14px; border:1.5px solid #CFC4AA; border-radius:12px; background:#fff; font-family:'Work Sans',sans-serif; font-size:15px; color:#2A2A24;">
-              </label>
-              <span style="align-self:flex-end; height:46px; display:flex; align-items:center; color:#CFC4AA;">–</span>
-              <label style="display:flex; flex-direction:column; gap:5px; flex:1; min-width:0;">
-                <span style="font-size:12.5px; color:#6B6B5E;">do</span>
-                <input type="number" value="{{ priceMax }}" onChange="{{ onPriceMax }}" style="width:100%; height:46px; padding:0 14px; border:1.5px solid #CFC4AA; border-radius:12px; background:#fff; font-family:'Work Sans',sans-serif; font-size:15px; color:#2A2A24;">
-              </label>
-            </div>
-          </div>
-
-          <sc-for list="{{ facetGroups }}" as="g" hint-placeholder-count="4">
-            <div style="padding:20px 0; border-bottom:1px solid #EFE7D6;">
-              <button onClick="{{ g.toggle }}" style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; border:none; background:transparent; padding:0; cursor:pointer; text-align:left;">
-                <span style="font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A; font-family:'Work Sans',sans-serif;">{{ g.label }}</span>
-                <span style="{{ g.caret }}"></span>
-              </button>
-              <sc-if value="{{ g.open }}" hint-placeholder-val="{{ true }}">
-                <div style="display:flex; flex-direction:column; margin-top:8px;">
-                  <sc-for list="{{ g.options }}" as="o" hint-placeholder-count="5">
-                    <label class="ek-fac" style="{{ o.rowStyle }}">
-                      <input type="checkbox" checked="{{ o.on }}" disabled="{{ o.disabled }}" onChange="{{ o.toggle }}" style="position:absolute; width:22px; height:22px; opacity:0; margin:0; cursor:pointer;">
-                      <span style="{{ o.box }}"><span style="{{ o.tick }}"></span></span>
-                      <span style="flex:1; min-width:0;">{{ o.label }}</span>
-                      <span style="font-size:13px; color:#8a8776;">{{ o.count }}</span>
-                    </label>
-                  </sc-for>
-                </div>
-              </sc-if>
-            </div>
-          </sc-for>
-        </div>
-
-        <div style="display:flex; align-items:center; gap:12px; padding:18px 24px; border-top:1px solid #EFE7D6; background:#FDFBF5;">
-          <button onClick="{{ clearFilters }}" class="ek-btn-ghost" style="border:1.5px solid transparent; background:transparent; border-radius:999px; padding:13px 18px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">Zrušit vše</button>
-          <button onClick="{{ closeDrawer }}" class="ek-btn-main" style="flex:1; border:1.5px solid #D14405; background:#D14405; color:#fff; border-radius:999px; padding:13px 20px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;">{{ applyLabel }}</button>
+        <div style="flex:1; min-height:0; display:flex;">
+          <dc-import name="ui-FilterPanel" variant="drawer" groups="{{ facetGroups }}" priceMin="{{ priceMin }}" priceMax="{{ priceMax }}" onPriceMin="{{ onPriceMin }}" onPriceMax="{{ onPriceMax }}" onClear="{{ clearFilters }}" onClose="{{ closeDrawer }}" applyLabel="{{ applyLabel }}" hint-size="100%,100%"></dc-import>
         </div>
       </div>
     </div>
+  </sc-if>
+
+  <sc-if value="{{ barCollapsed }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ openBar }}" title="Zobrazit ovládání ukázky" style="position:fixed; right:20px; bottom:20px; z-index:300; display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 14px 32px -16px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif; font-size:13px; font-weight:600; color:#4C653D; cursor:pointer;"><span style="{{ iconBarOpen }}"></span>Ukázka</button>
+  </sc-if>
+  <sc-if value="{{ barOpen }}" hint-placeholder-val="{{ true }}">
+  <div class="ek-varbar" style="position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:300; display:flex; align-items:center; gap:10px; padding:10px 10px 10px 14px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
+    <span class="ek-varbar-note">Výpis</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setV1 }}" title="Filtry v panelu (drawer)" style="{{ v1Style }}">V1</button>
+      <button onClick="{{ setV2 }}" title="Pevný levý sloupec s filtrací" style="{{ v2Style }}">V2</button>
+    </span>
+    <span class="ek-varbar-note">Šablona</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setShop }}" title="Nakupovací kategorie — jen úvod a otázky" style="{{ tplShopStyle }}">Nakupovací</button>
+      <button onClick="{{ setEdu }}" title="Edukativní kategorie — článek, video, mini kurz, srovnání" style="{{ tplEduStyle }}">Edukativní</button>
+    </span>
+    <span class="ek-varbar-note">Hlavička</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setHeadA }}" title="Průvodce vpravo, srovnání pod textem" style="{{ headAStyle }}">A</button>
+      <button onClick="{{ setHeadB }}" title="Srovnání vlevo, průvodce a kurz vpravo" style="{{ headBStyle }}">B</button>
+    </span>
+    <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
+  </div>
   </sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:4,&quot;max&quot;:48,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Výpis&quot;}}">
 class Component extends DCLogic {
   state = {
-    descOpen: false, drawerOpen: false, sort: 'default', page: 1, perPage: 12,
+    descOpen: false, drawerOpen: false, sort: 'default', page: 1, perPage: 12, mode: 'v1', barOpen: true, head: 'a', tpl: 'edu',
     filters: { use: [], weight: [], volume: [], avail: [] }, extra: 0,
     openGroups: { use: true, avail: true, weight: false, volume: false },
     priceMin: '', priceMax: '',
   };
+
+  static segBtn(on) {
+    return "font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; padding:8px 14px; min-height:32px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;"
+      + (on ? ' background:#4C653D; color:#F6F1E7; border:1px solid #4C653D;' : ' background:transparent; color:#6B6B5E; border:1px solid transparent;');
+  }
 
   static plural(n, one, few, many) {
     if (n === 1) return n + ' ' + one;
@@ -418,6 +589,64 @@ class Component extends DCLogic {
       closeDrawer: () => this.setState({ drawerOpen: false }),
       drawerOpen: this.state.drawerOpen,
       applyLabel: 'Zobrazit ' + Component.pcs(list.length),
+
+      headA: this.state.head === 'a',
+      headB: this.state.head === 'b',
+      isEdu: this.state.tpl === 'edu',
+      hzoneCls: this.state.tpl === 'edu' ? 'ek-hzone' : '',
+      guideChips: [
+        { label: 'Jak vybrat přírodní mýdlo?', icon: 'help-circle', href: '#' },
+        { label: 'Co znamená INCI', icon: 'book-open-01', href: '#' },
+        { label: 'Časté chyby při výběru', icon: 'alert-circle', href: '#' },
+        { label: 'Vhodné pro citlivou pleť', icon: 'leaf-01', href: '#' },
+      ].map(c => Object.assign({}, c, { icon: this.mask(c.icon, 17, '#4F6E2A') })),
+      guideArticle: {
+        title: 'Jak vybrat přírodní mýdlo a čemu se vyhnout',
+        meta: '7 min čtení · aktualizováno 8/2026',
+        href: '#',
+        thumb: 'display:block; width:64px; height:64px; flex:0 0 auto; border-radius:12px; background:#F6F1E7 center/cover no-repeat; background-image:url("assets/recipes/tenzidy.jpg");',
+      },
+      guideVideo: {
+        title: 'Jak čteme složení: ukázka na třech mýdlech',
+        meta: 'video · 4:20',
+        href: '#',
+        thumb: 'display:flex; align-items:center; justify-content:center; width:64px; height:64px; flex:0 0 auto; border-radius:12px; background:#EFE7D6 center/cover no-repeat; background-image:linear-gradient(rgba(30,38,30,.35),rgba(30,38,30,.35)), url("assets/recipes/krem-na-paty.jpg");',
+      },
+      iconPlay: this.mask('play', 22, '#FFFFFF'),
+      iconCourse: this.mask('idea-01', 26, '#4F6E2A'),
+      iconCourseLight: this.mask('idea-01', 30, '#EBD284'),
+      courseTitle: 'Mini kurz: přírodní péče bez omylů',
+      courseNote: '5 krátkých lekcí e-mailem, jedna za týden. Zdarma a kdykoli se odhlásíte.',
+      onCourse: (e) => { if (e) e.preventDefault(); window.dispatchEvent(new CustomEvent('ek-course-signup')); },
+      compareTitle: 'Který typ vybrat',
+      compareNote: 'Stručně to podstatné — detail najdete v článku',
+      compareRows: [
+        { type: 'Tuhé mýdlo', use: 'Každodenní mytí rukou i těla, cestování', watch: 'U tvrdé vody může zůstávat film', icon: 'body-soap', href: '#' },
+        { type: 'Tekuté mýdlo', use: 'Kuchyň, dávkovač, sdílená domácnost', watch: 'Vždy obsahuje konzervant — hledejte šetrný', icon: 'hand-sanitizer', href: '#' },
+        { type: 'Tuhý šampon', use: 'Bez plastu, na cesty, normální vlasy', watch: 'Prvních 14 dní si vlasy zvykají', icon: 'shampoo', href: '#' },
+        { type: 'Zubní hygiena', use: 'Pasty, prášky, bambusové kartáčky', watch: 'Sledujte obsah fluoridu podle své potřeby', icon: 'dental-care', href: '#' },
+      ].map(r => Object.assign({}, r, { icon: this.mask(r.icon, 20, '#4F6E2A') })),
+
+      modeCls: this.state.mode === 'v2' ? 'ek-v2' : 'ek-v1',
+      modeNote: this.state.mode === 'v2' ? 'Pevný levý sloupec s filtrací, plocha až 1660 px' : 'Filtry v panelu, obsah 1280 px',
+      v1Style: Component.segBtn(this.state.mode !== 'v2'),
+      v2Style: Component.segBtn(this.state.mode === 'v2'),
+      setV1: () => this.setState({ mode: 'v1' }),
+      headAStyle: Component.segBtn(this.state.head === 'a'),
+      headBStyle: Component.segBtn(this.state.head === 'b'),
+      setHeadA: () => this.setState({ head: 'a' }),
+      setHeadB: () => this.setState({ head: 'b' }),
+      tplShopStyle: Component.segBtn(this.state.tpl === 'shop'),
+      tplEduStyle: Component.segBtn(this.state.tpl === 'edu'),
+      setShop: () => this.setState({ tpl: 'shop' }),
+      setEdu: () => this.setState({ tpl: 'edu' }),
+      setV2: () => this.setState({ mode: 'v2', drawerOpen: false }),
+      barOpen: this.state.barOpen,
+      barCollapsed: !this.state.barOpen,
+      openBar: () => this.setState({ barOpen: true }),
+      closeBar: () => this.setState({ barOpen: false }),
+      iconBarOpen: this.mask('grid-view', 16, '#4C653D'),
+      iconBarClose: this.mask('cancel-01', 16, '#4C653D'),
 
       hasFilters: filterCount > 0,
       filterCount,

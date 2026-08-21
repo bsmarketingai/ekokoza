@@ -11,8 +11,8 @@
 <style>
   .ek-var { border: 1.5px solid #E2D9C4; background: #fff; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; cursor: pointer; text-align: left; transition: border-color .2s, background .2s, box-shadow .2s; }
   .ek-var:hover { border-color: #4C653D; background: #FDFBF5; }
-  .ek-var-row { cursor: default; }
-  .ek-var-row:hover { border-color: #E2D9C4; background: #fff; }
+  .ek-var-row { cursor: pointer; }
+  .ek-var-row:hover { border-color: #4C653D; background: #FDFBF5; }
   .ek-var-row.ek-var-on:hover { border-color: #4C653D; background: #F4F7EA; }
   @media (max-width: 560px) {
     .ek-var-row { flex-wrap: wrap; }
@@ -30,7 +30,7 @@
   <sc-if value="{{ qtyMode }}" hint-placeholder-val="{{ false }}">
     <div style="display:flex; flex-direction:column; gap:8px;">
       <sc-for list="{{ qtyRows }}" as="v" hint-placeholder-count="3">
-        <div class="{{ v.cls }}">
+        <div class="{{ v.cls }}" onClick="{{ v.select }}">
           <span style="display:flex; flex-direction:column; gap:5px; align-items:flex-start; min-width:0;">
             <span style="{{ v.labelStyle }}">{{ v.label }}</span>
             <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" withNote="{{ true }}" noteFocusable="{{ false }}" size="{{ 12.5 }}" hint-size="160px,18px"></dc-import>
@@ -41,7 +41,9 @@
               <span style="font-size:12.5px; color:#8a8776; white-space:nowrap;">{{ v.unit }}</span>
             </span>
             <sc-if value="{{ v.buyable }}" hint-placeholder-val="{{ true }}">
-              <dc-import name="ui-QtyStepper" value="{{ v.qty }}" min="{{ 0 }}" max="{{ 99 }}" height="{{ 42 }}" onChange="{{ v.setQty }}" hint-size="150px,42px"></dc-import>
+              <span onClick="{{ v.stopRow }}" style="display:flex; flex:0 0 auto;">
+                <dc-import name="ui-QtyStepper" value="{{ v.qty }}" min="{{ 0 }}" max="{{ 99 }}" height="{{ 42 }}" onChange="{{ v.setQty }}" hint-size="150px,42px"></dc-import>
+              </span>
             </sc-if>
             <sc-if value="{{ v.notBuyable }}" hint-placeholder-val="{{ false }}">
               <span style="font-size:13.5px; font-weight:600; color:#8a8776; white-space:nowrap;">Nelze koupit</span>
@@ -106,6 +108,7 @@ class Component extends DCLogic {
         const st = v.state ?? 'ready';
         const buyable = !['toorder', 'longterm', 'unavail', 'ended', 'discontinued'].includes(st);
         const q = Number(qtys[i] ?? 0);
+        const on = i === sel;
         return {
           label: v.label,
           price: v.price,
@@ -115,8 +118,15 @@ class Component extends DCLogic {
           buyable,
           notBuyable: !buyable,
           qty: q,
-          cls: q > 0 ? 'ek-var ek-var-row ek-var-on' : 'ek-var ek-var-row',
-          labelStyle: 'font-size:16px; font-weight:' + (q > 0 ? '700' : '600') + '; color:#2A2A24;',
+          cls: (on || q > 0) ? 'ek-var ek-var-row ek-var-on' : 'ek-var ek-var-row',
+          labelStyle: 'font-size:16px; font-weight:' + ((on || q > 0) ? '700' : '600') + '; color:#2A2A24;',
+          stopRow: (e) => { if (e) e.stopPropagation(); },
+          select: () => {
+            if (this.state.sel !== i) {
+              this.setState({ sel: i });
+              if (this.props.onSelect) this.props.onSelect(i, v);
+            }
+          },
           priceStyle: "font-family:'EB Garamond',serif; font-size:18px; font-weight:500; color:#4C653D; white-space:nowrap;",
           setQty: (n) => {
             this.setState(st => {

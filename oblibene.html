@@ -148,7 +148,7 @@
       <div style="max-width:1280px; margin:0 auto;">
         <div class="ek-favgrid">
           <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
-            <dc-import name="ui-ProductCard" fav="{{ true }}" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="produkt-vzor.html" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" hint-size="100%,420px"></dc-import>
+            <dc-import name="ui-ProductCard" fav="{{ true }}" loggedIn="{{ loggedIn }}" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="produkt-vzor.html" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" hint-size="100%,420px"></dc-import>
           </sc-for>
         </div>
 

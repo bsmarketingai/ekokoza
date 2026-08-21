@@ -35,9 +35,14 @@
     <h3 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25;"><a href="{{ href }}" class="ek-card-t" style="color:#2A2A24; text-decoration:none;">{{ title }}</a></h3>
     <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" size="{{ 13 }}" hint-size="140px,18px"></dc-import>
     <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-top:auto;">
-      <span style="font-family:'EB Garamond',serif; font-size:19px; color:#4C653D; font-weight:500; white-space:nowrap;">{{ price }}</span>
+      <span style="display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;">
+        <span style="font-family:'EB Garamond',serif; font-size:19px; color:#4C653D; font-weight:500; white-space:nowrap;">{{ price }}</span>
+        <sc-if value="{{ showPriceOrig }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size:12.5px; color:#6B6B5E; text-decoration:line-through; white-space:nowrap;">{{ priceOrigLabel }}</span>
+        </sc-if>
+      </span>
       <sc-if value="{{ buyable }}" hint-placeholder-val="{{ true }}">
-        <a href="{{ href }}" class="ek-btn-main" style="background:#D14405; color:#fff; text-decoration:none; padding:9px 16px; border-radius:999px; font-weight:600; font-size:13.5px; transition:background .2s; white-space:nowrap;">{{ ctaLabel }}</a>
+        <a href="{{ href }}" class="ek-btn-main" style="display:inline-flex; align-items:center; gap:7px; background:#D14405; color:#fff; text-decoration:none; padding:9px 16px; border-radius:999px; font-weight:600; font-size:13.5px; transition:background .2s; white-space:nowrap;"><span style="{{ iconCart }}"></span>{{ ctaLabel }}</a>
       </sc-if>
     </div>
     <sc-if value="{{ notBuyable }}" hint-placeholder-val="{{ false }}">
@@ -68,6 +73,10 @@ class Component extends DCLogic {
     }
   }
 
+  static czk(n) {
+    return Math.round(n).toLocaleString('cs-CZ').replace(/\u00a0/g, ' ') + ' Kč';
+  }
+
   mask(name, size) {
     const base = /\/components\//.test(location.pathname) ? '../' : '';
     const url = base + 'assets/icons/' + name + '.svg';
@@ -95,11 +104,16 @@ class Component extends DCLogic {
     const ctaVariant = this.props.ctaVariant ?? 'koupit';
     const ctaLabel = ctaVariant === 'varianta' ? 'Vybrat variantu' : 'Koupit';
 
+    const loggedIn = !!this.props.loggedIn;
+    const tier = this.props.loyaltyTier ?? 10;
+    const basePrice = Number(String(this.props.price ?? '189').replace(/[^\d]/g, '')) || 189;
     const fav = this.state.fav !== null ? this.state.fav : !!this.props.fav;
 
     return {
       title: this.props.title ?? 'Levandulové máslo, 100 g',
-      price: this.props.price ?? '189 Kč',
+      price: loggedIn ? Component.czk(basePrice * (1 - tier / 100)) : (this.props.price ?? '189 Kč'),
+      priceOrigLabel: 'běžně ' + (this.props.price ?? '189 Kč'),
+      showPriceOrig: loggedIn,
       badge: this.props.badge ?? 'bestseller',
       badgeLabel: this.props.badgeLabel ?? '',
       rating: this.props.rating ?? 4.6,
@@ -112,6 +126,7 @@ class Component extends DCLogic {
       notBuyable: !buyable,
       watchHref: this.props.watchHref ?? '#',
       iconWatch: this.mask('notification-01', 20),
+      iconCart: this.mask('shopping-cart-01', 17).replace('currentColor', '#FFFFFF'),
       imgStyle: 'position:absolute; inset:14px; background:#fff center/contain no-repeat; background-image:url("' + imgUrl + '");',
       favStyle: [
         'position:absolute', 'top:10px', 'right:10px', 'z-index:2',

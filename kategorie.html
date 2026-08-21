@@ -140,7 +140,7 @@
 
 <div class="{{ modeCls }}" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
-  <dc-import name="ui-Header" active="produkty" hint-size="100%,140px"></dc-import>
+  <dc-import name="ui-Header" active="produkty" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
 
   <div class="ek-outer" style="max-width:1440px; margin:0 auto; position:relative;">
 
@@ -340,7 +340,12 @@
 
       <div class="ek-grid" style="margin-top:22px;">
         <sc-for list="{{ visible }}" as="p" hint-placeholder-count="12">
-          <dc-import name="ui-ProductCard" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" hint-size="100%,410px"></dc-import>
+          <sc-if value="{{ cardV1 }}" hint-placeholder-val="{{ true }}">
+            <dc-import name="ui-ProductCard" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" loggedIn="{{ loggedIn }}" loyaltyTier="{{ loyaltyTier }}" hint-size="100%,410px"></dc-import>
+          </sc-if>
+          <sc-if value="{{ cardV2 }}" hint-placeholder-val="{{ false }}">
+            <dc-import name="ui-ProductCardV2" title="{{ p.title }}" price="{{ p.price }}" pack="{{ p.pack }}" variants="{{ p.variants }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" loggedIn="{{ loggedIn }}" loyaltyTier="{{ loyaltyTier }}" hint-size="100%,520px"></dc-import>
+          </sc-if>
         </sc-for>
       </div>
 
@@ -401,6 +406,16 @@
       <button onClick="{{ setShop }}" title="Nakupovací kategorie — jen úvod a otázky" style="{{ tplShopStyle }}">Nakupovací</button>
       <button onClick="{{ setEdu }}" title="Edukativní kategorie — článek, video, mini kurz, srovnání" style="{{ tplEduStyle }}">Edukativní</button>
     </span>
+    <span class="ek-varbar-note">Karta</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setCardV1 }}" title="Základní karta" style="{{ cardV1Style }}">V1</button>
+      <button onClick="{{ setCardV2 }}" title="Karta s výběrem balení, množstvím a věrnostní cenou" style="{{ cardV2Style }}">V2</button>
+    </span>
+    <span class="ek-varbar-note">Zákazník</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setGuest }}" title="Nepřihlášený" style="{{ guestStyle }}">Host</button>
+      <button onClick="{{ setLogged }}" title="Přihlášený" style="{{ loggedStyle }}">Přihlášen</button>
+    </span>
     <span class="ek-varbar-note">Hlavička</span>
     <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
       <button onClick="{{ setHeadA }}" title="Průvodce vpravo, srovnání pod textem" style="{{ headAStyle }}">A</button>
@@ -414,11 +429,27 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:4,&quot;max&quot;:48,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Výpis&quot;}}">
 class Component extends DCLogic {
   state = {
-    descOpen: false, drawerOpen: false, sort: 'default', page: 1, perPage: 12, mode: 'v1', barOpen: true, head: 'a', tpl: 'edu',
+    descOpen: false, drawerOpen: false, sort: 'default', page: 1, perPage: 12, mode: 'v1', barOpen: true, head: 'a', tpl: 'edu', card: 'v1', logged: false,
     filters: { use: [], weight: [], volume: [], avail: [] }, extra: 0,
     openGroups: { use: true, avail: true, weight: false, volume: false },
     priceMin: '', priceMax: '',
   };
+
+  // Balení z názvu produktu (ukázková data) — kvůli jednotkové ceně na kartě
+  static packOf(title) {
+    const m = String(title).match(/(\d[\d\s]*(?:,\d+)?)\s*(kg|g|ml|l|ks)\b/i);
+    return m ? m[0].replace(/\s+/g, ' ') : '';
+  }
+
+  // Ukázkové varianty balení pro variantní produkty
+  static variantsOf(p) {
+    const b = p.num;
+    return [
+      { label: '100 g', price: b, state: p.stockState },
+      { label: '500 g', price: Math.round(b * 4.2), state: 'ready' },
+      { label: '1 kg', price: Math.round(b * 7.4), state: 'packing' },
+    ];
+  }
 
   static segBtn(on) {
     return "font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; padding:8px 14px; min-height:32px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;"
@@ -680,7 +711,25 @@ class Component extends DCLogic {
       sort: this.state.sort,
       onSort: (e) => this.setState({ sort: e.target.value, page: 1 }),
 
-      visible: shown.map(p => Object.assign({}, p, { price: p.num.toLocaleString('cs-CZ') + ' Kč', href: 'produkt-vzor.html', stockDate: '28. 8. 2026' })),
+      visible: shown.map(p => Object.assign({}, p, {
+        price: p.num.toLocaleString('cs-CZ') + ' Kč',
+        href: 'produkt-vzor.html',
+        stockDate: '28. 8. 2026',
+        pack: Component.packOf(p.title),
+        variants: p.ctaVariant === 'varianta' ? Component.variantsOf(p) : null,
+      })),
+      cardV1: this.state.card === 'v1',
+      cardV2: this.state.card === 'v2',
+      loggedIn: this.state.logged,
+      loyaltyTier: 10,
+      cardV1Style: Component.segBtn(this.state.card === 'v1'),
+      cardV2Style: Component.segBtn(this.state.card === 'v2'),
+      setCardV1: () => this.setState({ card: 'v1' }),
+      setCardV2: () => this.setState({ card: 'v2' }),
+      guestStyle: Component.segBtn(!this.state.logged),
+      loggedStyle: Component.segBtn(this.state.logged),
+      setGuest: () => this.setState({ logged: false }),
+      setLogged: () => this.setState({ logged: true }),
       isEmpty: list.length === 0,
       canLoadMore: start + shown.length < list.length,
       loadMore: () => this.setState({ extra: this.state.extra + 8 }),

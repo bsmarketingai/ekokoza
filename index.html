@@ -291,8 +291,8 @@
         <div onClick="{{ openHeroVideoFromCard }}" title="Přehrát video" class="ek-hero-play" style="position:absolute; top:16px; left:16px; z-index:3; display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.16); backdrop-filter:blur(4px); padding:6px 12px; border-radius:999px; color:#F6F1E7; font-size:12.5px; font-weight:500; cursor:pointer; transition:background .2s;">{{ iconPlay }} Přehrát video</div>
         <div style="position:absolute; bottom:0; left:0; right:0; padding:22px;">
           <p style="margin:0 0 8px; color:#E3ECC5; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">Ekokoza</p>
-          <h1 class="ek-h1" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:31px; line-height:1.05; color:#F6F1E7; text-wrap:balance;">Důvod, proč tvořit.</h1>
-          <p style="margin:0 0 16px; color:#EDE8D6; font-size:14px; line-height:1.45;">Suroviny, recepty a klid na práci.</p>
+          <h1 class="ek-h1" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:31px; line-height:1.05; color:#F6F1E7; text-wrap:balance;">S námi víte, co tvoříte.</h1>
+          <p style="margin:0 0 16px; color:#EDE8D6; font-size:14px; line-height:1.45;">Suroviny, recepty a ověřené postupy.</p>
           <span class="ek-cta" style="align-self:flex-start; background:#D14405; color:#fff; padding:11px 22px; border-radius:999px; font-weight:600; font-size:14px; display:inline-flex; align-items:center; gap:8px; transition:background .2s;">Začněte tady {{ iconArrow }}</span>
         </div>
       </a>
@@ -344,8 +344,8 @@
       <div class="ek-hero2-in" style="position:relative; height:100%; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); align-items:center; gap:40px; padding:48px 52px;">
         <div style="display:flex; flex-direction:column; align-items:flex-start; gap:18px; max-width:52ch;">
           <span style="display:inline-flex; align-items:center; gap:8px; background:rgba(246,241,231,.14); backdrop-filter:blur(4px); color:#F6F1E7; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; padding:7px 14px; border-radius:999px;">Ekokoza</span>
-          <h1 class="ek-hero2-h1" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:60px; line-height:1.02; color:#F6F1E7; text-wrap:balance;">Důvod, proč tvořit.</h1>
-          <p class="ek-hero2-p" style="margin:0; font-size:19px; line-height:1.55; color:#E5EBD8; max-width:44ch;">Suroviny, recepty a klid na práci. Vysvětlíme proč, ukážeme jak — a zbytek už zvládnete sami.</p>
+          <h1 class="ek-hero2-h1" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:60px; line-height:1.02; color:#F6F1E7; text-wrap:balance;">S námi víte, co tvoříte.</h1>
+          <p class="ek-hero2-p" style="margin:0; font-size:19px; line-height:1.55; color:#E5EBD8; max-width:44ch;">Suroviny, recepty a ověřené postupy. Vysvětlíme proč, ukážeme jak — a zbytek už zvládnete sami.</p>
           <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:4px;">
             <a href="#blok3" class="ek-cta" style="display:inline-flex; align-items:center; gap:9px; background:#D14405; color:#fff; text-decoration:none; padding:15px 30px; border-radius:999px; font-weight:600; font-size:16px; transition:background .2s;">Začněte tady {{ iconArrow }}</a>
             <button onClick="{{ openHeroVideo }}" class="ek-hero2-play" style="display:inline-flex; align-items:center; gap:10px; background:rgba(246,241,231,.12); color:#F6F1E7; border:1.5px solid rgba(246,241,231,.42); cursor:pointer; padding:15px 26px; border-radius:999px; font-family:'Work Sans',sans-serif; font-weight:600; font-size:16px; transition:background .2s, border-color .2s;">{{ iconPlay }} Přehrát celé video</button>
@@ -424,7 +424,7 @@
       <div style="text-align:center; margin-bottom:34px;">
         <p style="margin:0 0 8px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Receptář</p>
         <h2 class="ek-h2" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D;">Recepty, které fungují</h2>
-        <p style="margin:0; color:#6B6B5E; font-size:17px;">Suroviny, recepty a důvod proč.</p>
+        <p style="margin:0; color:#6B6B5E; font-size:17px;">Od suroviny k vlastnímu výrobku.</p>
       </div>
       <div class="ek-scrollrow ek-scroll" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
         <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="4">
@@ -446,7 +446,7 @@
       </div>
       <div class="ek-scrollrow ek-scroll" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
         <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
-          <dc-import name="ui-ProductCard" title="{{ p.name }}" price="{{ p.price }}" badge="{{ p.badge }}" cta-variant="{{ p.ctaVariant }}" rating="{{ p.rating }}" rating-count="{{ p.ratingCount }}" img="{{ p.img }}" stock-state="{{ p.stockState }}" stock-date="{{ p.stockDate }}" href="{{ p.href }}" hint-size="100%,400px"></dc-import>
+          <dc-import name="ui-ProductCard" loggedIn="{{ logged }}" title="{{ p.name }}" price="{{ p.price }}" badge="{{ p.badge }}" cta-variant="{{ p.ctaVariant }}" rating="{{ p.rating }}" rating-count="{{ p.ratingCount }}" img="{{ p.img }}" stock-state="{{ p.stockState }}" stock-date="{{ p.stockDate }}" href="{{ p.href }}" hint-size="100%,400px"></dc-import>
         </sc-for>
       </div>
     </div>
@@ -615,7 +615,7 @@
     <div class="ek-two" style="position:relative; z-index:1; max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1.1fr 1fr; gap:40px; padding:48px 8px; align-items:center;">
       <div>
         <p style="margin:0 0 10px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Novinky e-mailem</p>
-        <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D; line-height:1.1;">Jednou měsíčně. Vědět proč, vědět jak.</h2>
+        <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D; line-height:1.1;">Jednou měsíčně. Od suroviny k vlastnímu výrobku.</h2>
         <form onSubmit="{{ submitNewsletter }}" style="display:flex; gap:10px; margin:22px 0 10px; max-width:460px; flex-wrap:wrap;">
           <input type="email" placeholder="váš e-mail" style="flex:1; min-width:220px; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:14px 22px; font-family:'Work Sans',sans-serif; font-size:15.5px; color:#2A2A24; outline:none;">
           <button type="submit" class="ek-cta" style="background:#D14405; color:#fff; border:none; cursor:pointer; padding:14px 26px; border-radius:999px; font-family:'Work Sans',sans-serif; font-weight:600; font-size:15px; transition:background .2s;">Odebírat</button>
@@ -817,7 +817,7 @@ class Component extends DCLogic {
     const submitNewsletter = (e) => { e.preventDefault(); };
     const nlReasons = [
       { title: 'Recepty dřív než na webu', desc: 'Nové ověřené recepty dostanete do schránky jako první.', icon: this.hi('book-open-01', 18) },
-      { title: 'Vědět proč', desc: 'Krátká vysvětlení surovin a postupů — žádné reklamní letáky.', icon: this.hi('idea-01', 18) },
+      { title: 'Vysvětlíme proč', desc: 'Krátká vysvětlení surovin a postupů — žádné reklamní letáky.', icon: this.hi('idea-01', 18) },
       { title: 'Žádný tlak', desc: 'Jednou měsíčně a bez slevové urgence. Odhlášení kdykoli.', icon: this.hi('checkmark-circle-01', 18) },
     ];
 

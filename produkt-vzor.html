@@ -102,16 +102,43 @@
           <p class="ek-p" style="margin:2px 0 0;">{{ shortDesc }}</p>
         </div>
 
-        <div style="display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap;">
-          <span style="font-family:'EB Garamond',serif; font-size:40px; line-height:1; font-weight:500; color:#2D3A2E;">{{ price }}</span>
-          <span style="display:flex; flex-direction:column; gap:3px; font-size:14px; color:#6B6B5E; padding-bottom:3px;">
-            <span>{{ priceNoVat }} bez DPH</span>
-            <span>{{ unitPrice }}</span>
-          </span>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <sc-if value="{{ showPriceOrig }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:14px; color:#6B6B5E; text-decoration:line-through;">{{ priceOrigLabel }}</span>
+          </sc-if>
+          <div style="display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap;">
+            <span style="font-family:'EB Garamond',serif; font-size:40px; line-height:1; font-weight:500; color:#2D3A2E;">{{ price }}</span>
+            <span style="display:flex; flex-direction:column; gap:3px; font-size:14px; color:#6B6B5E; padding-bottom:3px;">
+              <span>{{ priceNoVat }} bez DPH</span>
+              <span>{{ unitPrice }}</span>
+            </span>
+          </div>
         </div>
 
+        <sc-if value="{{ showLoyaltyHint }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:10px 13px; border-radius:12px; background:#FBF8F1; border:1px dashed #D8CDB4;">
+            <span style="display:flex; align-items:center; gap:8px; min-width:0; color:#6B6B5E; font-size:14px; font-weight:600; line-height:1.35;">
+              <span style="{{ iconLoyaltyPct }}"></span>{{ loyaltyHintText }}
+            </span>
+            <span style="display:flex; align-items:center; gap:6px; flex:0 0 auto; font-size:14px; font-weight:600;">
+              <a href="#" onClick="{{ onLoyaltyLogin }}" style="color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:1px;">Přihlásit se</a>
+              <span style="color:#CFC4AA;">·</span>
+              <a href="#" onClick="{{ onLoyaltyLogin }}" style="color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:1px;">Registrace</a>
+            </span>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showLoyaltyMine }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:10px 13px; border-radius:12px; background:#EEF4DC; border:1px solid rgba(76,101,61,.35);">
+            <span style="display:flex; align-items:center; gap:8px; min-width:0; color:#4C653D; font-size:14px; font-weight:600; line-height:1.35;">
+              <span style="{{ iconLoyaltyPctOn }}"></span>{{ loyaltyMineText }}
+            </span>
+            <a href="vernostni-program.html" style="flex:0 0 auto; font-size:14px; font-weight:600; color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:1px;">Věrnostní program</a>
+          </div>
+        </sc-if>
+
         <sc-if value="{{ isVariant }}" hint-placeholder-val="{{ true }}">
-          <dc-import name="ui-VariantPicker" mode="qty" heading="Vyberte balení a množství" variants="{{ variants }}" resetKey="{{ varResetKey }}" onQtyChange="{{ onVarQty }}" hint-size="100%,280px"></dc-import>
+          <dc-import name="ui-VariantPicker" mode="qty" selected="{{ selected }}" onSelect="{{ onSelect }}" heading="Vyberte balení a množství" variants="{{ variants }}" resetKey="{{ varResetKey }}" onQtyChange="{{ onVarQty }}" hint-size="100%,280px"></dc-import>
         </sc-if>
         <sc-if value="{{ isSingle }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 16px; border:1px solid #E4DAC6; border-radius:12px; background:#fff;">
@@ -431,7 +458,7 @@
                 <div style="max-width:56ch;">
                   <h3 class="ek-h3" style="font-size:22px;">{{ helpTitle }}</h3>
                   <p style="margin:0 0 8px; font-size:16px; line-height:1.7; color:#4A4A42;">{{ helpText }}</p>
-                  <p style="margin:0; font-family:'EB Garamond',serif; font-size:19px; color:#4C653D;">Vědět proč. Vědět jak.</p>
+                  <p style="margin:0; font-family:'EB Garamond',serif; font-size:19px; color:#4C653D;">Provedeme vás vlastní výrobou.</p>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                   <a href="mailto:eshop@ekokoza.cz" class="ek-btn-primary" style="display:inline-flex; align-items:center; gap:9px; background:#4C653D; color:#F6F1E7; border:1.5px solid #4C653D; text-decoration:none; border-radius:999px; padding:14px 24px; font-size:15.5px; font-weight:600; transition:background .2s;"><span style="{{ iconMail }}"></span>Napsat dotaz</a>
@@ -516,7 +543,7 @@
 
   <section id="recepty" style="padding:56px 32px 0;" class="ek-pad">
     <div style="max-width:1280px; margin:0 auto;">
-      <p class="ek-eyebrow" style="margin-bottom:10px;">Vědět proč. Vědět jak.</p>
+      <p class="ek-eyebrow" style="margin-bottom:10px;">Od suroviny k vlastnímu výrobku.</p>
       <h2 class="ek-h2" style="font-size:32px;">S touto surovinou si vyrobíte</h2>
       <p class="ek-p" style="max-width:64ch; margin-bottom:26px;">Recepty, ve kterých levandulový esenciální olej hraje hlavní vonnou roli.</p>
       <div class="ek-recipes" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px;">
@@ -529,7 +556,7 @@
 
   <section style="padding:60px 32px 0;" class="ek-pad">
     <div style="max-width:1280px; margin:0 auto;">
-      <dc-import name="ui-Carousel" title="Co se k tomu hodí" subtitle="Suroviny a pomůcky, které se s esenciálním olejem nejčastěji kupují." items="{{ crossSell }}" hint-size="100%,500px"></dc-import>
+      <dc-import name="ui-Carousel" loggedIn="{{ loggedIn }}" title="Co se k tomu hodí" subtitle="Suroviny a pomůcky, které se s esenciálním olejem nejčastěji kupují." items="{{ crossSell }}" hint-size="100%,500px"></dc-import>
     </div>
   </section>
 
@@ -616,6 +643,11 @@ class Component extends DCLogic {
     const baseVariants = soldOut
       ? Component.VARIANTS.map(v => Object.assign({}, v, { state: 'longterm', date: '' }))
       : Component.VARIANTS;
+    const disc = (s) => this.money(this.money0(s) * 0.9);
+    const discUnit = (s) => s ? disc(s) + ' / ' + String(s).split('/').slice(1).join('/').trim() : s;
+    const shownVariants = loggedIn
+      ? baseVariants.map(v => Object.assign({}, v, { price: disc(v.price), noVat: v.noVat ? disc(v.noVat) : v.noVat, unit: discUnit(v.unit) }))
+      : baseVariants;
     const cur0 = baseVariants[this.state.sel] || baseVariants[0];
     const cur = isVariant ? cur0 : Object.assign({}, baseVariants[1], { label: '50 ml' });
     const curState = soldOut ? 'longterm' : cur.state;
@@ -674,10 +706,12 @@ class Component extends DCLogic {
       ratingCount: 46,
       shortDesc: 'Jemně květinový esenciální olej z levandule lékařské pro výrobu přírodní kosmetiky, mýdel, koupelových výrobků a dalších vonných receptur.',
 
-      price: cur.price,
-      priceNoVat: cur.noVat,
-      unitPrice: cur.unit,
-      variants: baseVariants,
+      price: loggedIn ? this.money(this.money0(cur.price) * 0.9) : cur.price,
+      priceOrigLabel: 'běžně ' + cur.price,
+      showPriceOrig: loggedIn,
+      priceNoVat: loggedIn ? this.money(this.money0(cur.noVat) * 0.9) : cur.noVat,
+      unitPrice: loggedIn ? discUnit(cur.unit) : cur.unit,
+      variants: shownVariants,
       selected: this.state.sel,
       onSelect: (i) => this.setState({ sel: i }),
       stockState: curState,
@@ -692,6 +726,13 @@ class Component extends DCLogic {
         : 'Produkt teď není skladem a datum naskladnění neznáme. Zapněte si hlídacího psa a napíšeme vám.',
       onWatch: (mail) => window.dispatchEvent(new CustomEvent('ek-watchdog', { detail: { mail } })),
       priceNum: Number(String(cur.price).replace(/[^0-9]/g, '')) || 149,
+      showLoyaltyHint: !loggedIn && buyable,
+      showLoyaltyMine: loggedIn && buyable,
+      loyaltyHintText: 'Ve věrnostním programu máte slevu 5–15 % z každé objednávky',
+      loyaltyMineText: 'Vaše sleva −10 %',
+      onLoyaltyLogin: (e) => { if (e) e.preventDefault(); window.dispatchEvent(new CustomEvent('ek-open-login')); },
+      iconLoyaltyPct: this.mask('percent-circle', 17, '#8A5A28'),
+      iconLoyaltyPctOn: this.mask('percent-circle', 17, '#4C653D'),
       priceWatchOpen: this.state.priceModal,
       openPriceWatch: () => this.setState({ priceModal: true }),
       closePriceWatch: () => this.setState({ priceModal: false }),
@@ -707,7 +748,7 @@ class Component extends DCLogic {
       iconBarClose: this.mask('cancel-01', 16, '#4C653D'),
       barVariant: isVariant ? cur.label : '',
       barImg: Component.IMG,
-      barVariants: isVariant ? baseVariants : [],
+      barVariants: isVariant ? shownVariants : [],
       barTarget: buyable ? '#ek-buy-cta' : '#hlidaci-pes',
 
       varResetKey: this.state.varReset,

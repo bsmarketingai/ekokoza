@@ -104,16 +104,43 @@
           <p class="ek-p" style="margin:2px 0 0;">{{ shortDesc }} <a href="#popis" class="ek-link-u" style="text-decoration:none; white-space:nowrap;">Více informací</a></p>
         </div>
 
-        <div style="display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap;">
-          <span style="font-family:'EB Garamond',serif; font-size:40px; line-height:1; font-weight:500; color:#2D3A2E;">{{ price }}</span>
-          <span style="display:flex; flex-direction:column; gap:3px; font-size:14px; color:#6B6B5E; padding-bottom:3px;">
-            <span>{{ priceNoVat }} bez DPH</span>
-            <span>{{ unitPrice }}</span>
-          </span>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <sc-if value="{{ showPriceOrig }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:14px; color:#6B6B5E; text-decoration:line-through;">{{ priceOrigLabel }}</span>
+          </sc-if>
+          <div style="display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap;">
+            <span style="font-family:'EB Garamond',serif; font-size:40px; line-height:1; font-weight:500; color:#2D3A2E;">{{ price }}</span>
+            <span style="display:flex; flex-direction:column; gap:3px; font-size:14px; color:#6B6B5E; padding-bottom:3px;">
+              <span>{{ priceNoVat }} bez DPH</span>
+              <span>{{ unitPrice }}</span>
+            </span>
+          </div>
         </div>
 
+        <sc-if value="{{ showLoyaltyHint }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:10px 13px; border-radius:12px; background:#FBF8F1; border:1px dashed #D8CDB4;">
+            <span style="display:flex; align-items:center; gap:8px; min-width:0; color:#6B6B5E; font-size:14px; font-weight:600; line-height:1.35;">
+              <span style="{{ iconLoyaltyPct }}"></span>{{ loyaltyHintText }}
+            </span>
+            <span style="display:flex; align-items:center; gap:6px; flex:0 0 auto; font-size:14px; font-weight:600;">
+              <a href="#" onClick="{{ onLoyaltyLogin }}" style="color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:1px;">Přihlásit se</a>
+              <span style="color:#CFC4AA;">·</span>
+              <a href="#" onClick="{{ onLoyaltyLogin }}" style="color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:1px;">Registrace</a>
+            </span>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showLoyaltyMine }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:10px 13px; border-radius:12px; background:#EEF4DC; border:1px solid rgba(76,101,61,.35);">
+            <span style="display:flex; align-items:center; gap:8px; min-width:0; color:#4C653D; font-size:14px; font-weight:600; line-height:1.35;">
+              <span style="{{ iconLoyaltyPctOn }}"></span>{{ loyaltyMineText }}
+            </span>
+            <a href="vernostni-program.html" style="flex:0 0 auto; font-size:14px; font-weight:600; color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:1px;">Věrnostní program</a>
+          </div>
+        </sc-if>
+
         <sc-if value="{{ isVariant }}" hint-placeholder-val="{{ true }}">
-          <dc-import name="ui-VariantPicker" mode="qty" heading="Vyberte varianty a množství" variants="{{ variants }}" resetKey="{{ varResetKey }}" onQtyChange="{{ onVarQty }}" hint-size="100%,280px"></dc-import>
+          <dc-import name="ui-VariantPicker" mode="qty" selected="{{ selected }}" onSelect="{{ onSelect }}" heading="Vyberte varianty a množství" variants="{{ variants }}" resetKey="{{ varResetKey }}" onQtyChange="{{ onVarQty }}" hint-size="100%,280px"></dc-import>
         </sc-if>
         <sc-if value="{{ isSingle }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 16px; border:1px solid #E4DAC6; border-radius:12px; background:#fff;">
@@ -262,7 +289,7 @@
 
   <section style="padding:56px 32px 0;" class="ek-pad">
     <div style="max-width:1280px; margin:0 auto;">
-      <p class="ek-eyebrow" style="margin-bottom:10px;">Vědět proč. Vědět jak.</p>
+      <p class="ek-eyebrow" style="margin-bottom:10px;">Od suroviny k vlastnímu výrobku.</p>
       <h2 class="ek-h2">S touto surovinou si vyrobíte</h2>
       <p class="ek-p" style="max-width:64ch; margin-bottom:26px;">Recept je most mezi surovinou a hotovou věcí. Tyto tři jsou na kyselinu citronovou nejčastější.</p>
       <div class="ek-recipes" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px;">
@@ -275,13 +302,13 @@
 
   <section style="padding:60px 32px 0;" class="ek-pad">
     <div style="max-width:1280px; margin:0 auto;">
-      <dc-import name="ui-Carousel" title="Nepotřebujete dokoupit i toto?" subtitle="Suroviny a pomůcky, které se k tomuto produktu nejčastěji přidávají." items="{{ crossSell }}" hint-size="100%,500px"></dc-import>
+      <dc-import name="ui-Carousel" loggedIn="{{ loggedIn }}" title="Nepotřebujete dokoupit i toto?" subtitle="Suroviny a pomůcky, které se k tomuto produktu nejčastěji přidávají." items="{{ crossSell }}" hint-size="100%,500px"></dc-import>
     </div>
   </section>
 
   <section style="padding:56px 32px 0;" class="ek-pad">
     <div style="max-width:1280px; margin:0 auto;">
-      <dc-import name="ui-Carousel" title="Mohlo by se vám také líbit" subtitle="Podobné suroviny ze stejné kategorie." items="{{ related }}" hint-size="100%,500px"></dc-import>
+      <dc-import name="ui-Carousel" loggedIn="{{ loggedIn }}" title="Mohlo by se vám také líbit" subtitle="Podobné suroviny ze stejné kategorie." items="{{ related }}" hint-size="100%,500px"></dc-import>
     </div>
   </section>
 
@@ -456,9 +483,14 @@ class Component extends DCLogic {
     const segBtn = (on) => "font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; padding:8px 14px; min-height:32px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;"
       + (on ? ' background:#4C653D; color:#F6F1E7; border:1px solid #4C653D;' : ' background:transparent; color:#6B6B5E; border:1px solid transparent;');
     // při nedostupném produktu jsou nedostupné i všechny varianty
-    const shownVariants = soldOut
+    const disc = (s) => this.money(this.money0(s) * 0.9);
+    const discUnit = (s) => s ? disc(s) + ' / ' + String(s).split('/').slice(1).join('/').trim() : s;
+    const baseVariants = soldOut
       ? Component.VARIANTS.map(v => Object.assign({}, v, { state: 'longterm', date: '' }))
       : Component.VARIANTS;
+    const shownVariants = loggedIn
+      ? baseVariants.map(v => Object.assign({}, v, { price: disc(v.price), noVat: v.noVat ? disc(v.noVat) : v.noVat, unit: discUnit(v.unit) }))
+      : baseVariants;
     const varQtys = this.state.varQtys ?? {};
     const pickedRows = shownVariants.map((v, i) => ({ v, i, q: Number(varQtys[i] ?? 0) }))
       .filter(r => r.q > 0)
@@ -517,9 +549,11 @@ class Component extends DCLogic {
       ratingCount: 13,
       ratingLabel: '13 hodnocení',
 
-      price: cur.price,
-      priceNoVat: cur.noVat,
-      unitPrice: cur.unit,
+      price: loggedIn ? this.money(this.money0(cur.price) * 0.9) : cur.price,
+      priceOrigLabel: 'běžně ' + cur.price,
+      showPriceOrig: loggedIn,
+      priceNoVat: loggedIn ? this.money(this.money0(cur.noVat) * 0.9) : cur.noVat,
+      unitPrice: loggedIn ? discUnit(cur.unit) : cur.unit,
 
       variants: shownVariants,
       selected: this.state.sel,
@@ -549,6 +583,13 @@ class Component extends DCLogic {
       closePriceWatch: () => this.setState({ priceModal: false }),
       onPriceWatch: (v) => window.dispatchEvent(new CustomEvent('ek-price-watch', { detail: v })),
       priceNum: Number(String(cur.price).replace(/[^0-9]/g, '')) || 110,
+      showLoyaltyHint: !loggedIn && buyable,
+      showLoyaltyMine: loggedIn && buyable,
+      loyaltyHintText: 'Ve věrnostním programu máte slevu 5–15 % z každé objednávky',
+      loyaltyMineText: 'Vaše sleva −10 %',
+      onLoyaltyLogin: (e) => { if (e) e.preventDefault(); window.dispatchEvent(new CustomEvent('ek-open-login')); },
+      iconLoyaltyPct: this.mask('percent-circle', 17, '#8A5A28'),
+      iconLoyaltyPctOn: this.mask('percent-circle', 17, '#4C653D'),
       iconTagSm: this.mask('notification-01', 17, '#4C653D'),
       closeWatchModal: () => this.setState({ watchModal: false }),
       stopProp: (e) => e.stopPropagation(),

@@ -1,6 +1,8 @@
 # Ekokoza — Brand Positioning
 
-_Zdroj: BP Ekokoza verze 260504 (květen 2026). Uloženo pro práci s copywritingem._
+_Zdroj: BP Ekokoza v03 FINAL (260705, červenec 2026) — finální verze. Zpracoval BS Marketing s.r.o. Uloženo pro práci s copywritingem._
+
+> **Změna proti květnové verzi:** celá claim architektura. Claimy „Důvod, proč tvořit.“, „Suroviny, recepty a důvod proč.“ a „Vědět proč. Vědět jak.“ se **už nepoužívají** — nahrazuje je hlavní claimová dvojice a tři podpůrné aplikační věty (viz sekce Claim).
 
 Brand Positioning
 Značka: Ekokoza
@@ -27,13 +29,28 @@ Obaly a pomůcky: sklenice, lahvičky, uzávěry, formy, nástroje a další prv
 Recepty a návody: systematicky propojené s konkrétními surovinami; z inspirace se stává realizace.
 Podpora a servis: vysvětlení, odpovědi a opora při rozhodování i samotné výrobě.
 Claim
-„Důvod, proč tvořit.“, případně „Důvod tvořit.“
-Hlavní postojová věta značky. Vhodná pro homepage, úvodní brandové materiály, prezentace a dlouhodobou komunikaci.
-„Suroviny, recepty a důvod proč.“
-Rychle vysvětlí, co Ekokoza reálně přináší. Dobře funguje na e-shopu, v rozcestnících, v obsahových blocích, newsletterech nebo u receptů.
-„Vědět proč. Vědět jak.“
-Vhodná pro návody, recepty, poradenský obsah, FAQ, videa a komunikaci se začátečníky i pokročilými tvůrci.
-* Jedná se o claimovou architekturu. Jeden hlavní, druhý a třetí pro různé situace (podpůrné varianty).
+
+**Hlavní claimová dvojice**
+
+„S námi víte, co tvoříte.“
+První věta je hlavní postojová věta značky. Říká, že Ekokoza zákazníkovi nepředává jen suroviny, ale jistotu, pochopení a oporu při vlastní tvorbě.
+
+„Suroviny, recepty a ověřené postupy.“
+Druhá věta prakticky ukotvuje, čím Ekokoza tento slib naplňuje: sortimentem, recepty a ověřenými postupy z praxe.
+
+Tím se claim posouvá od obecného sloganu k použitelné hlavní větě značky: vhodné pro homepage, úvodní brandové bloky, bannery, receptář, navigační rozcestníky i další aplikace.
+
+**Podpůrné aplikační věty**
+Vedle hlavní claimové dvojice lze v konkrétních situacích používat podpůrné aplikační věty. Nenahrazují hlavní claim, ale pomáhají ho rozvíjet podle kontextu.
+
+„Od suroviny k vlastnímu výrobku.“ — vhodné pro recepty, návody, rozcestníky a komunikaci krok za krokem.
+
+„Provedeme vás vlastní výrobou.“ — vhodné pro začátečníky, startovací obsah, edukaci a situace, kde zákazník potřebuje oporu.
+
+„Vše pro vlastní výrobu.“ — vhodné pro homepage, kategorie, sortimentní sdělení a vysvětlení šíře nabídky.
+
+Variantu „domácí výrobu“ místo „vlastní“ používat případně tam, kde je sdělení určeno primárně koncovým domácím zákazníkům, nikoli malovýrobcům nebo profíkům.
+
 GOLDEN CIRCLE
 GOLDEN CIRCLE by Simon Sinek:
 Model pomáhá vysvětlit značku způsobem, který odpovídá přirozenému lidskému uvažování:WHY → HOW → WHAT.Proč to děláme → Jak to děláme → Co nabízíme.Lidé nehledají jen produkty nebo ingredience, ale jistotu, že to, co tvoří, dává smysl - zdravotně, eticky i prakticky. Snáz se rozhodují pro značku, která má jasně pojmenovaný hodnotový postoj a z něj odvozuje způsob práce i konkrétní nabídku.Tento přístup dlouhodobě využívají značky jako Apple, Tesla nebo Patagonia - nezačínají tím, co prodávají, ale proč existují a jaký problém pomáhají řešit.U Ekokozy nejde jen o prodej surovin, obalů nebo hotových produktů, ale o možnost tvořit a žít vědomě: s pochopením souvislostí, s hodnotovým filtrem a s oporou značky, která nenutí koupit, ale umožňuje rozhodnutí.

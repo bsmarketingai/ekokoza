@@ -3,10 +3,17 @@
 ## Brand positioning & tone of voice
 Plné brand positioning je v `brand/brand-positioning.md` — **používej ho pro veškerý copywriting.**
 
-### Claim architektura
-- Hlavní (postojová): **„Důvod, proč tvořit."** (homepage, brandové materiály)
-- Druhá (co přináší): **„Suroviny, recepty a důvod proč."** (e-shop, rozcestníky, bloky)
-- Třetí (návody/edukace): **„Vědět proč. Vědět jak."**
+### Claim architektura (v03 FINAL, červenec 2026)
+Hlavní claimová dvojice — používat spolu:
+- **„S námi víte, co tvoříte."** (postojová věta — homepage, brandové bloky, bannery)
+- **„Suroviny, recepty a ověřené postupy."** (čím to značka naplňuje)
+
+Podpůrné aplikační věty (nenahrazují hlavní claim, rozvíjejí ho podle kontextu):
+- **„Od suroviny k vlastnímu výrobku."** — recepty, návody, rozcestníky, komunikace krok za krokem
+- **„Provedeme vás vlastní výrobou."** — začátečníci, startovací obsah, edukace
+- **„Vše pro vlastní výrobu."** — homepage, kategorie, sortimentní sdělení („domácí výrobu“ tam, kde jde primárně o koncové zákazníky, ne malovýrobce)
+
+Starší claimy („Důvod, proč tvořit.“, „Suroviny, recepty a důvod proč.“, „Vědět proč. Vědět jak.“) se už **nepoužívají.**
 
 ### Tone of voice (závazné)
 - Klidný, věcný, vysvětlující — jako zkušený člověk z praxe („ekologie z praxe, ne z počítače").

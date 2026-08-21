@@ -114,7 +114,7 @@
     <header style="margin-bottom:60px;">
       <p style="margin:0 0 10px; color:#D8763B; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Ekokoza</p>
       <h1 class="ds-h1" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:52px; line-height:1.04; color:#4C653D;">Design systém</h1>
-      <p style="margin:0; font-size:17.5px; line-height:1.6; color:#52524a; max-width:62ch;">Barvy, typografie, komponenty a pravidla pro web ekokoza.cz. Postaveno na brand positioningu „Důvod, proč tvořit." — klidně, věcně, bez slevové urgence.</p>
+      <p style="margin:0; font-size:17.5px; line-height:1.6; color:#52524a; max-width:62ch;">Barvy, typografie, komponenty a pravidla pro web ekokoza.cz. Postaveno na brand positioningu „S námi víte, co tvoříte. Suroviny, recepty a ověřené postupy." — klidně, věcně, bez slevové urgence.</p>
     </header>
 
     <!-- ===== BARVY ===== -->
@@ -220,7 +220,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; padding:0 26px 24px;">
           <sc-for list="{{ darkGrads }}" as="g" hint-placeholder-count="6">
             <div style="border:1px solid #ECE3D2; border-radius:12px; overflow:hidden;">
-              <div style="{{ g.style }}"><span style="font-family:'EB Garamond',serif; font-size:18px; color:#F6F1E7;">Důvod, proč tvořit.</span></div>
+              <div style="{{ g.style }}"><span style="font-family:'EB Garamond',serif; font-size:18px; color:#F6F1E7;">S námi víte, co tvoříte.</span></div>
               <div style="padding:10px 13px; background:#fff;">
                 <p style="margin:0 0 2px; font-weight:600; font-size:13px;">{{ g.name }}</p>
                 <p style="margin:0; font-size:11.5px; color:#8a8776; line-height:1.4;">{{ g.use }}</p>
@@ -682,7 +682,7 @@
       <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 38px; display:flex; flex-direction:column; gap:34px;">
         <dc-import name="ui-SectionHeading" kicker="Rozcestník" title="Co chcete vyrábět?" link-label="Vše ke tvorbě" hint-size="100%,110px"></dc-import>
         <div style="border-top:1px solid #F3EDE0; padding-top:30px;">
-          <dc-import name="ui-SectionHeading" align="center" kicker="Receptář" title="Recepty, které fungují" subtitle="Suroviny, recepty a důvod proč." hint-size="100%,130px"></dc-import>
+          <dc-import name="ui-SectionHeading" align="center" kicker="Receptář" title="Recepty, které fungují" subtitle="Od suroviny k vlastnímu výrobku." hint-size="100%,130px"></dc-import>
         </div>
       </div>
     </section>
@@ -809,7 +809,7 @@ class Component extends DCLogic {
     const tearPads = [
       ['Bílý list', 'Receptář', 'Základní varianta. Recepty, návody, bestsellery — všude, kde má obsah působit jako vložený čistý list.', '#FFFFFF → #FAFDF4', 'linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%)'],
       ['Krémový list', 'Náš příběh', 'Teplejší varianta pro obsahové a brandové sekce — o nás, hodnoty, dopis zákazníkům.', '#FBF6EA → #F3EBDA', 'linear-gradient(168deg,#FBF6EA 0%,#F7F1E3 60%,#F3EBDA 100%)'],
-      ['Šalvějový list', 'Vědět proč. Vědět jak.', 'Zelený akcent pro edukaci a návody. Nejvýraznější oddělení — na stránce nejvýš jednou.', '#F4F7EA → #E4EED2', 'linear-gradient(168deg,#F4F7EA 0%,#EDF3DE 60%,#E4EED2 100%)'],
+      ['Šalvějový list', 'Od suroviny k vlastnímu výrobku.', 'Zelený akcent pro edukaci a návody. Nejvýraznější oddělení — na stránce nejvýš jednou.', '#F4F7EA → #E4EED2', 'linear-gradient(168deg,#F4F7EA 0%,#EDF3DE 60%,#E4EED2 100%)'],
     ].map(([name, kicker, use, hex, bg]) => ({
       name, kicker, use, hex,
       padStyle: 'position:absolute; inset:0; pointer-events:none; background:' + bg + '; box-shadow:' + TEAR_SHADOW + '; clip-path:' + TEAR_POLY + ';',
@@ -918,7 +918,7 @@ class Component extends DCLogic {
     ];
 
     const typeScale = [
-      { label: 'H1', sample: 'Důvod, proč tvořit.', spec: "EB Garamond Medium · 60/1.02", style: "font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.05; color:#4C653D;" },
+      { label: 'H1', sample: 'S námi víte, co tvoříte.', spec: "EB Garamond Medium · 60/1.02", style: "font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.05; color:#4C653D;" },
       { label: 'H2', sample: 'Co chcete vyrábět?', spec: 'EB Garamond Medium · 40/1.05', style: "font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;" },
       { label: 'H3 karta', sample: 'Krém na paty a ztvrdlá místa', spec: 'EB Garamond Medium · 18/1.25', style: "font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;" },
       { label: 'Kicker', sample: 'RECEPTÁŘ', spec: 'Work Sans SemiBold · 13 · +.16em', style: "font-family:'Work Sans',sans-serif; font-weight:600; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:#D8763B;" },
@@ -1000,9 +1000,11 @@ class Component extends DCLogic {
     ];
 
     const claims = [
-      { text: '„Důvod, proč tvořit."', use: 'Postojová — homepage, brandové materiály' },
-      { text: '„Suroviny, recepty a důvod proč."', use: 'Co přináší — e-shop, rozcestníky' },
-      { text: '„Vědět proč. Vědět jak."', use: 'Návody a edukace' },
+      { text: '„S námi víte, co tvoříte."', use: 'Hlavní postojová věta — homepage, brandové bloky, bannery' },
+      { text: '„Suroviny, recepty a ověřené postupy."', use: 'Druhá věta hlavní dvojice — čím to značka naplňuje' },
+      { text: '„Od suroviny k vlastnímu výrobku."', use: 'Podpůrná — recepty, návody, rozcestníky' },
+      { text: '„Provedeme vás vlastní výrobou."', use: 'Podpůrná — začátečníci, startovací obsah, edukace' },
+      { text: '„Vše pro vlastní výrobu."', use: 'Podpůrná — homepage, kategorie, sortimentní sdělení' },
     ];
 
     return {

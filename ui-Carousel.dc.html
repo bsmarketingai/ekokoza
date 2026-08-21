@@ -33,7 +33,7 @@
 
   <div ref="{{ rail }}" class="ek-car-rail">
     <sc-for list="{{ items }}" as="p" hint-placeholder-count="4">
-      <dc-import name="ui-ProductCard" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" hint-size="264px,420px"></dc-import>
+      <dc-import name="ui-ProductCard" loggedIn="{{ loggedIn }}" loyaltyTier="{{ loyaltyTier }}" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" hint-size="264px,420px"></dc-import>
     </sc-for>
   </div>
 </section>
@@ -56,6 +56,8 @@ class Component extends DCLogic {
 
   renderVals() {
     return {
+      loggedIn: !!this.props.loggedIn,
+      loyaltyTier: this.props.loyaltyTier ?? 10,
       title: this.props.title ?? 'Nepotřebujete dokoupit i toto?',
       subtitle: this.props.subtitle ?? 'Suroviny a pomůcky, které se k tomuto produktu nejčastěji přidávají.',
       items: this.props.items ?? [],

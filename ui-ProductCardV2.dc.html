@@ -139,15 +139,23 @@ class Component extends DCLogic {
       return isNaN(n) ? 189 : n;
     };
     const basePrice = this.props.priceNum ?? numFromPrice(this.props.price);
-    const packLabel = this.props.pack ?? '';
+    // balení: buď z propu, nebo odvozené z názvu produktu („…, 100 g“)
+    const titleForPack = String(this.props.title ?? '');
+    const packMatch = titleForPack.match(/(\d[\d\s]*(?:,\d+)?)\s*(kg|g|ml|l|ks)\b/i);
+    const packLabel = this.props.pack ?? (packMatch ? packMatch[0].replace(/\s+/g, ' ') : '');
 
     // Varianty: buď přijdou z dat, nebo se dopočítají jako ukázka (balení × cena)
     const given = this.props.variants;
     const isVariant = Array.isArray(given) ? given.length > 1 : (this.props.ctaVariant ?? 'koupit') === 'varianta';
+    // Ukázkové varianty: základní cena patří balení z názvu, větší balení mají poměrnou úsporu
+    const pm = String(packLabel).replace(',', '.').match(/([\d.]+)\s*(kg|g|l|ml|ks)/i);
+    const pAmount = pm ? parseFloat(pm[1]) : 1;
+    const pUnit = pm ? pm[2].toLowerCase() : 'ks';
+    const fmt = (n) => (Number.isInteger(n) ? n : n.toFixed(1).replace('.', ',')) + ' ' + pUnit;
     const auto = [
-      { label: '10 g', price: Math.max(19, Math.round(basePrice * 0.22 / 1) ), state: 'ready' },
-      { label: '100 g', price: basePrice, state: 'ready' },
-      { label: '1 kg', price: Math.round(basePrice * 6.4), state: 'packing' },
+      { label: packLabel || '1 ks', price: basePrice, state: this.props.stockState ?? 'ready' },
+      { label: fmt(pAmount * 5), price: Math.round(basePrice * 5 * 0.9), state: 'ready' },
+      { label: fmt(pAmount * 10), price: Math.round(basePrice * 10 * 0.82), state: 'packing' },
     ];
     const list = (Array.isArray(given) && given.length ? given : (isVariant ? auto : [{ label: packLabel, price: basePrice, state: this.props.stockState ?? 'ready' }]))
       .map(v => ({ label: v.label ?? '', price: v.price ?? basePrice, state: v.state ?? 'ready' }));

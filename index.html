@@ -446,7 +446,7 @@
       </div>
       <div class="ek-scrollrow ek-scroll" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
         <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
-          <dc-import name="ui-ProductCard" loggedIn="{{ logged }}" title="{{ p.name }}" price="{{ p.price }}" badge="{{ p.badge }}" cta-variant="{{ p.ctaVariant }}" rating="{{ p.rating }}" rating-count="{{ p.ratingCount }}" img="{{ p.img }}" stock-state="{{ p.stockState }}" stock-date="{{ p.stockDate }}" href="{{ p.href }}" hint-size="100%,400px"></dc-import>
+          <dc-import name="ui-ProductCardV2" loggedIn="{{ logged }}" title="{{ p.name }}" price="{{ p.price }}" badge="{{ p.badge }}" cta-variant="{{ p.ctaVariant }}" rating="{{ p.rating }}" rating-count="{{ p.ratingCount }}" img="{{ p.img }}" stock-state="{{ p.stockState }}" stock-date="{{ p.stockDate }}" href="{{ p.href }}" hint-size="100%,520px"></dc-import>
         </sc-for>
       </div>
     </div>

@@ -340,10 +340,10 @@
 
       <div class="ek-grid" style="margin-top:22px;">
         <sc-for list="{{ visible }}" as="p" hint-placeholder-count="12">
-          <sc-if value="{{ cardV1 }}" hint-placeholder-val="{{ true }}">
+          <sc-if value="{{ cardV1 }}" hint-placeholder-val="{{ false }}">
             <dc-import name="ui-ProductCard" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" loggedIn="{{ loggedIn }}" loyaltyTier="{{ loyaltyTier }}" hint-size="100%,410px"></dc-import>
           </sc-if>
-          <sc-if value="{{ cardV2 }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ cardV2 }}" hint-placeholder-val="{{ true }}">
             <dc-import name="ui-ProductCardV2" title="{{ p.title }}" price="{{ p.price }}" pack="{{ p.pack }}" variants="{{ p.variants }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" loggedIn="{{ loggedIn }}" loyaltyTier="{{ loyaltyTier }}" hint-size="100%,520px"></dc-import>
           </sc-if>
         </sc-for>
@@ -429,7 +429,7 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:4,&quot;max&quot;:48,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Výpis&quot;}}">
 class Component extends DCLogic {
   state = {
-    descOpen: false, drawerOpen: false, sort: 'default', page: 1, perPage: 12, mode: 'v1', barOpen: true, head: 'a', tpl: 'edu', card: 'v1', logged: false,
+    descOpen: false, drawerOpen: false, sort: 'default', page: 1, perPage: 12, mode: 'v1', barOpen: true, head: 'a', tpl: 'edu', card: 'v2', logged: false,
     filters: { use: [], weight: [], volume: [], avail: [] }, extra: 0,
     openGroups: { use: true, avail: true, weight: false, volume: false },
     priceMin: '', priceMax: '',

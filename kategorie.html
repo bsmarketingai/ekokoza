@@ -35,7 +35,18 @@
   .ek-p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
   .ek-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
-  .ek-bar { position: sticky; top: 148px; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; padding: 12px 16px; border: 1px solid #E4DAC6; border-radius: 14px; background: linear-gradient(160deg, rgba(252,250,243,.97) 0%, rgba(238,244,220,.97) 60%, rgba(226,239,203,.97) 100%); backdrop-filter: blur(6px); box-shadow: 0 12px 26px -22px rgba(45,58,46,.5); }
+  .ek-bar { position: sticky; top: 148px; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: nowrap; padding: 12px 16px; border: 1px solid #E4DAC6; border-radius: 14px; background: linear-gradient(160deg, rgba(252,250,243,.97) 0%, rgba(238,244,220,.97) 60%, rgba(226,239,203,.97) 100%); backdrop-filter: blur(6px); box-shadow: 0 12px 26px -22px rgba(45,58,46,.5); }
+  .ek-facetrow { display: flex; flex-wrap: nowrap; gap: 8px; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, #000 calc(100% - 56px), rgba(0,0,0,0) 100%); }
+  .ek-allfilters { flex: 0 0 auto; background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-allfilters:hover { background: #3E5432 !important; border-color: #3E5432 !important; }
+  .ek-facetpop { position: absolute; top: calc(100% + 8px); left: 12px; z-index: 30; min-width: 250px; max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 11px; padding: 16px 18px; background: #fff; border: 1px solid #E4DAC6; border-radius: 14px; box-shadow: 0 22px 46px -26px rgba(45,58,46,.55); }
+  .ek-check { position: relative; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+  .ek-check input { position: absolute; left: 0; top: 0; width: 20px; height: 20px; margin: 0; opacity: 0; cursor: pointer; }
+  .ek-check-box { width: 20px; height: 20px; flex: 0 0 auto; border: 1.5px solid #CFC4AA; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; transition: background .15s, border-color .15s; }
+  .ek-check-box > span { opacity: 0; transition: opacity .15s; }
+  .ek-check:hover .ek-check-box { border-color: #4C653D; }
+  .ek-check input:checked + .ek-check-box { background: #4C653D; border-color: #4C653D; }
+  .ek-check input:checked + .ek-check-box > span { opacity: 1; }
   .ek-tool { display: inline-flex; align-items: center; gap: 9px; height: 44px; padding: 0 18px; border: 1.5px solid #CFC4AA; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; color: #2A2A24; cursor: pointer; transition: border-color .2s, background .2s; }
   .ek-tool:hover { border-color: #4C653D; background: #FDFBF5; }
   .ek-select { height: 44px; padding: 0 40px 0 16px; border: 1.5px solid #CFC4AA; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; color: #2A2A24; cursor: pointer; appearance: none; }
@@ -66,6 +77,8 @@
     .ek-tiles { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
     .ek-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 14px !important; }
     .ek-bar { position: static !important; }
+    .ek-facetrow { display: none !important; }
+    .ek-allfilters { width: 100%; justify-content: center; }
     .ek-bot { width: 96px !important; }
   }
   @media (max-width: 860px) {
@@ -107,7 +120,7 @@
     .ek-v2 .ek-listgrid { grid-template-columns: 1fr !important; }
     .ek-v2 .ek-side { display: none !important; }
     .ek-v2 .ek-filterbtn { display: inline-flex !important; }
-    .ek-v2 .ek-cwrap { max-width: 1280px !important; }
+    .ek-v2 .ek-cwrap { max-width: 1560px !important; }
   }
   @media (min-width: 981px) {
     .ek-v2 .ek-topbar > div, .ek-v2 .ek-hdr-row { max-width: 1724px !important; }
@@ -142,10 +155,10 @@
 
   <dc-import name="ui-Header" active="produkty" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
 
-  <div class="ek-outer" style="max-width:1440px; margin:0 auto; position:relative;">
+  <div class="ek-outer" style="max-width:1720px; margin:0 auto; position:relative;">
 
   <section style="padding:22px 32px 0;" class="ek-pad">
-    <div class="ek-cwrap" style="max-width:1280px; margin:0 auto;">
+    <div class="ek-cwrap" style="max-width:1560px; margin:0 auto;">
       <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="320px,20px"></dc-import>
 
       <div style="margin-top:26px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
@@ -295,7 +308,7 @@
   </section>
 
   <section style="padding:34px 32px 0;" class="ek-pad">
-    <div class="ek-cwrap" style="max-width:1280px; margin:0 auto;">
+    <div class="ek-cwrap" style="max-width:1560px; margin:0 auto;">
       <h2 class="ek-h2" style="margin-bottom:18px;">Vyberte podkategorii</h2>
       <div class="ek-tiles">
         <sc-for list="{{ subcats }}" as="c" hint-placeholder-count="12">
@@ -306,17 +319,14 @@
   </section>
 
   <section style="padding:40px 32px 0;" class="ek-pad">
-    <div class="ek-cwrap" style="max-width:1280px; margin:0 auto;">
+    <div class="ek-cwrap" style="max-width:1560px; margin:0 auto;">
     <div class="ek-listgrid">
       <aside class="ek-side">
         <dc-import name="ui-FilterPanel" variant="sidebar" groups="{{ facetGroups }}" priceMin="{{ priceMin }}" priceMax="{{ priceMax }}" onPriceMin="{{ onPriceMin }}" onPriceMax="{{ onPriceMax }}" onClear="{{ clearFilters }}" hint-size="100%,620px"></dc-import>
       </aside>
       <div style="min-width:0;">
-      <div class="ek-bar">
-        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-          <button onClick="{{ openDrawer }}" class="ek-tool ek-filterbtn"><span style="{{ iconFilter }}"></span>Filtrovat<sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:22px; padding:0 6px; border-radius:999px; background:#D14405; color:#fff; font-size:12.5px;">{{ filterCount }}</span></sc-if></button>
-          <span style="font-size:14.5px; color:#6B6B5E;">{{ shownLabel }}</span>
-        </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+        <span style="font-size:14.5px; color:#6B6B5E;">{{ shownLabel }}</span>
         <label style="display:inline-flex; align-items:center; gap:10px; position:relative;">
           <span style="font-size:14.5px; color:#6B6B5E;">Řadit</span>
           <select onChange="{{ onSort }}" value="{{ sort }}" class="ek-select">
@@ -328,6 +338,32 @@
           <span style="{{ iconSortCaret }}"></span>
         </label>
       </div>
+
+      <div class="ek-bar">
+        <div class="ek-facetrow">
+          <sc-for list="{{ barFacets }}" as="g" hint-placeholder-count="4">
+            <div style="position:relative; flex:0 0 auto;">
+              <button onClick="{{ g.toggle }}" aria-expanded="{{ g.open }}" class="ek-tool" style="{{ g.btnStyle }}">{{ g.label }}<sc-if value="{{ g.hasCount }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 6px; border-radius:999px; background:#4C653D; color:#F6F1E7; font-size:12px; font-weight:600;">{{ g.count }}</span></sc-if><span style="{{ g.caret }}"></span></button>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ facetOpen }}" hint-placeholder-val="{{ false }}">
+          <div class="ek-facetpop">
+            <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">{{ facetTitle }}</span>
+            <sc-for list="{{ facetOptions }}" as="o" hint-placeholder-count="5">
+              <label class="ek-check">
+                <input type="checkbox" checked="{{ o.on }}" onChange="{{ o.toggle }}">
+                <span class="ek-check-box" aria-hidden="true"><span style="{{ iconCheckTick }}"></span></span>
+                <span style="font-size:14.5px; color:#4A4A42;">{{ o.label }}</span>
+              </label>
+            </sc-for>
+          </div>
+        </sc-if>
+        <button onClick="{{ openDrawer }}" class="ek-tool ek-allfilters"><span style="{{ iconFilter }}"></span>Všechny filtry<sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:22px; padding:0 6px; border-radius:999px; background:#D14405; color:#fff; font-size:12.5px;">{{ filterCount }}</span></sc-if></button>
+      </div>
+      <sc-if value="{{ facetOpen }}" hint-placeholder-val="{{ false }}">
+        <div onClick="{{ closeFacet }}" style="position:fixed; inset:0; z-index:19;"></div>
+      </sc-if>
 
       <sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:16px;">
@@ -375,9 +411,8 @@
     </div>
   </section>
 
-  <div style="position:relative; margin-top:74px;">
-    <div style="position:relative; z-index:1;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
-  </div>
+<div aria-hidden="true" style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw; height:30px; margin-top:56px; background:#4C653D; clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% 100%, 0% 100%);"></div>
+<div style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
   </div>
 
   <sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
@@ -429,8 +464,8 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:4,&quot;max&quot;:48,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Výpis&quot;}}">
 class Component extends DCLogic {
   state = {
-    descOpen: false, drawerOpen: false, sort: 'default', page: 1, perPage: 12, mode: 'v1', barOpen: true, head: 'a', tpl: 'edu', card: 'v2', logged: false,
-    filters: { use: [], weight: [], volume: [], avail: [] }, extra: 0,
+    descOpen: false, drawerOpen: false, facet: null, sort: 'default', page: 1, perPage: 12, mode: 'v1', barOpen: true, head: 'a', tpl: 'edu', card: 'v2', logged: false,
+    filters: { use: [], weight: [], volume: [], avail: [], purpose: [], skin: [], packType: [], emulsion: [], transparency: [] }, extra: 0,
     openGroups: { use: true, avail: true, weight: false, volume: false },
     priceMin: '', priceMax: '',
   };
@@ -492,6 +527,35 @@ class Component extends DCLogic {
       { value: '5000', label: '5 000' },
       { value: '25000', label: '25 000' },
     ] },
+    { key: 'purpose', label: 'K čemu se používá', options: [
+      { value: 'kremy', label: 'Krémy a emulze' },
+      { value: 'zahustuje', label: 'Zahušťuje' },
+      { value: 'konzervuje', label: 'Konzervuje' },
+      { value: 'voni', label: 'Vůně a parfemace' },
+      { value: 'barvi', label: 'Barví' },
+    ] },
+    { key: 'skin', label: 'Typ pleti', options: [
+      { value: 'normalni', label: 'Normální pleť' },
+      { value: 'suchá', label: 'Suchá a citlivá pleť' },
+      { value: 'mastna', label: 'Mastná a smíšená pleť' },
+      { value: 'zrala', label: 'Zralá pleť' },
+    ] },
+    { key: 'packType', label: 'Typ obalu', options: [
+      { value: 'sklo', label: 'Skleněný' },
+      { value: 'plast', label: 'Plastový' },
+      { value: 'hlinik', label: 'Hliníkový a kovový' },
+      { value: 'papir', label: 'Papírový' },
+      { value: 'ostatni', label: 'Ostatní' },
+    ] },
+    { key: 'emulsion', label: 'Typ emulze', options: [
+      { value: 'ov', label: 'Olej ve vodě (O/V)' },
+      { value: 'vo', label: 'Voda v oleji (V/O)' },
+      { value: 'koemulgator', label: 'Koemulgátor / zahušťovadlo' },
+    ] },
+    { key: 'transparency', label: 'Průhlednost', options: [
+      { value: 'pruhledny', label: 'Průhledný' },
+      { value: 'nepruhledny', label: 'Neprůhledný' },
+    ] },
     { key: 'volume', label: 'Objem (ml)', options: [
       { value: '30', label: '30' },
       { value: '50', label: '50' },
@@ -503,30 +567,31 @@ class Component extends DCLogic {
   ];
 
   static PRODUCTS = [
-    { title: 'Uhličitan sodný, prací soda', num: 38, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.7, ratingCount: 11, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['prani'], weight: '1000', volume: '' },
-    { title: 'Marseillské mýdlo — Brut, 300 g', num: 69, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.8, ratingCount: 10, stockState: 'ready', ctaVariant: 'koupit', badge: 'bestseller', use: ['hygiena','prani'], weight: '200', volume: '' },
-    { title: 'Vlněné koule do sušičky, 1 ks', num: 99, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, ratingCount: 0, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['prani'], weight: '50', volume: '' },
-    { title: 'Plastová nálevka se sítkem, průměr 6 cm', num: 39, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.4, ratingCount: 5, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: [], weight: '50', volume: '' },
-    { title: 'TAED — aktivátor perkarbonátu sodného', num: 49, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.9, ratingCount: 15, stockState: 'packing', ctaVariant: 'varianta', badge: '', use: ['prani'], weight: '500', volume: '' },
-    { title: 'Spirulina — sladkovodní řasa mletá', num: 77, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.6, ratingCount: 4, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['potraviny'], weight: '100', volume: '' },
-    { title: 'Sušené droždí saf instant, 500 g', num: 199, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.9, ratingCount: 33, stockState: 'ready', ctaVariant: 'koupit', badge: 'bestseller', use: ['potraviny'], weight: '500', volume: '' },
-    { title: 'Růžová voda, 600 ml', num: 184, img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, ratingCount: 11, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['plet'], weight: '', volume: '600' },
-    { title: 'Kyselina stearová, E570', num: 98, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.3, ratingCount: 3, stockState: 'expected', ctaVariant: 'varianta', badge: '', use: ['plet'], weight: '1000', volume: '' },
-    { title: 'Netkaná kosmetická maska na obličej', num: 10, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, ratingCount: 0, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['plet'], weight: '', volume: '' },
-    { title: 'Vinný ocet bílý Andrea Milano, 1 000 ml', num: 54, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.7, ratingCount: 3, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['potraviny','nadobi'], weight: '', volume: '1000' },
-    { title: 'Digitální teploměr pro výrobu sýrů', num: 142, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.5, ratingCount: 6, stockState: 'longterm', ctaVariant: 'koupit', badge: '', use: ['potraviny'], weight: '', volume: '' },
-    { title: 'Levandulové máslo, 100 g', num: 189, img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, ratingCount: 214, stockState: 'ready', ctaVariant: 'koupit', badge: 'doporucujeme', use: ['plet','rty'], weight: '100', volume: '' },
-    { title: 'Tuhý šampon žloutkový', num: 159, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 4.6, ratingCount: 21, stockState: 'ready', ctaVariant: 'varianta', badge: 'novinka', use: ['vlasy','hygiena'], weight: '100', volume: '' },
-    { title: 'Mýdlová hmota s bambuckým máslem, 1 kg', num: 329, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.6, ratingCount: 96, stockState: 'packing', ctaVariant: 'varianta', badge: '', use: ['hygiena'], weight: '1000', volume: '' },
-    { title: 'Stabilizovaný vitamin C, 10 g', num: 149, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.7, ratingCount: 58, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['plet'], weight: '50', volume: '' },
+    { title: 'Uhličitan sodný, prací soda', num: 38, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.7, ratingCount: 11, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['prani'], weight: '1000', volume: '', purpose: ['zahustuje'], packType: 'papir', transparency: 'nepruhledny' },
+    { title: 'Marseillské mýdlo — Brut, 300 g', num: 69, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.8, ratingCount: 10, stockState: 'ready', ctaVariant: 'koupit', badge: 'bestseller', use: ['hygiena','prani'], weight: '200', volume: '', purpose: [], packType: 'papir', transparency: 'nepruhledny' },
+    { title: 'Vlněné koule do sušičky, 1 ks', num: 99, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, ratingCount: 0, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['prani'], weight: '50', volume: '', purpose: [], packType: 'ostatni' },
+    { title: 'Plastová nálevka se sítkem, průměr 6 cm', num: 39, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.4, ratingCount: 5, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: [], weight: '50', volume: '', purpose: [], packType: 'plast', transparency: 'pruhledny' },
+    { title: 'TAED — aktivátor perkarbonátu sodného', num: 49, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.9, ratingCount: 15, stockState: 'packing', ctaVariant: 'varianta', badge: '', use: ['prani'], weight: '500', volume: '', purpose: [], packType: 'papir' },
+    { title: 'Spirulina — sladkovodní řasa mletá', num: 77, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.6, ratingCount: 4, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['potraviny'], weight: '100', volume: '', purpose: ['barvi'], packType: 'papir' },
+    { title: 'Sušené droždí saf instant, 500 g', num: 199, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.9, ratingCount: 33, stockState: 'ready', ctaVariant: 'koupit', badge: 'bestseller', use: ['potraviny'], weight: '500', volume: '', purpose: [], packType: 'papir' },
+    { title: 'Růžová voda, 600 ml', num: 184, img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, ratingCount: 11, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['plet'], weight: '', volume: '600', purpose: ['kremy'], skin: ['normalni','suchá'], packType: 'plast', transparency: 'pruhledny' },
+    { title: 'Kyselina stearová, E570', num: 98, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.3, ratingCount: 3, stockState: 'expected', ctaVariant: 'varianta', badge: '', use: ['plet'], weight: '1000', volume: '', purpose: ['kremy','zahustuje'], emulsion: 'koemulgator', packType: 'papir' },
+    { title: 'Netkaná kosmetická maska na obličej', num: 10, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, ratingCount: 0, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['plet'], weight: '', volume: '', purpose: [], skin: ['normalni'], packType: 'ostatni' },
+    { title: 'Vinný ocet bílý Andrea Milano, 1 000 ml', num: 54, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.7, ratingCount: 3, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['potraviny','nadobi'], weight: '', volume: '1000', purpose: [], packType: 'sklo', transparency: 'pruhledny' },
+    { title: 'Digitální teploměr pro výrobu sýrů', num: 142, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.5, ratingCount: 6, stockState: 'longterm', ctaVariant: 'koupit', badge: '', use: ['potraviny'], weight: '', volume: '', purpose: [], packType: 'ostatni' },
+    { title: 'Levandulové máslo, 100 g', num: 189, img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, ratingCount: 214, stockState: 'ready', ctaVariant: 'koupit', badge: 'doporucujeme', use: ['plet','rty'], weight: '100', volume: '', purpose: ['kremy','voni'], skin: ['suchá','zrala'], emulsion: 'vo', packType: 'sklo', transparency: 'nepruhledny' },
+    { title: 'Tuhý šampon žloutkový', num: 159, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 4.6, ratingCount: 21, stockState: 'ready', ctaVariant: 'varianta', badge: 'novinka', use: ['vlasy','hygiena'], weight: '100', volume: '', purpose: [], skin: [], packType: 'papir' },
+    { title: 'Mýdlová hmota s bambuckým máslem, 1 kg', num: 329, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.6, ratingCount: 96, stockState: 'packing', ctaVariant: 'varianta', badge: '', use: ['hygiena'], weight: '1000', volume: '', purpose: ['kremy'], packType: 'plast', transparency: 'nepruhledny' },
+    { title: 'Stabilizovaný vitamin C, 10 g', num: 149, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.7, ratingCount: 58, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['plet'], weight: '50', volume: '', purpose: ['konzervuje'], skin: ['mastna','zrala'], packType: 'hlinik' },
   ];
 
   // Pocty u filtru odvozujeme z dat, aby nikdy nelhaly proti vysledku
   facetCount(key, value) {
     return Component.PRODUCTS.filter(p => {
       if (key === 'avail') return p.stockState === value;
-      if (key === 'use') return p.use.includes(value);
-      return p[key] === value;
+      const val = p[key];
+      if (Array.isArray(val)) return val.includes(value);
+      return val === value;
     }).length;
   }
 
@@ -551,6 +616,13 @@ class Component extends DCLogic {
       if (F.use.length && !p.use.some(u => F.use.includes(u))) return false;
       if (F.weight.length && !F.weight.includes(p.weight)) return false;
       if (F.volume.length && !F.volume.includes(p.volume)) return false;
+      for (const k of ['purpose', 'skin', 'packType', 'emulsion', 'transparency']) {
+        const sel = F[k] || [];
+        if (!sel.length) continue;
+        const val = p[k];
+        const has = Array.isArray(val) ? val.some(v => sel.includes(v)) : sel.includes(val);
+        if (!has) return false;
+      }
       if (p.num < min || p.num > max) return false;
       return true;
     });
@@ -616,7 +688,35 @@ class Component extends DCLogic {
         { title: 'Dárkové poukazy', icon: 'gift-card', href: '#' },
       ],
 
-      openDrawer: () => this.setState({ drawerOpen: true }),
+      barFacets: Component.FACETS.map(g => {
+        const on = this.state.facet === g.key;
+        const n = (F[g.key] || []).length;
+        return {
+          label: g.label,
+          open: on,
+          count: n,
+          hasCount: n > 0,
+          toggle: () => this.setState({ facet: on ? null : g.key }),
+          btnStyle: 'white-space:nowrap;' + (on || n > 0 ? ' border-color:#4C653D; background:#FDFBF5; color:#2D3A2E;' : ''),
+          caret: this.mask('arrow-down-01', 16, '#4C653D'),
+          options: g.options.map(o => ({
+            label: o.label,
+            on: (F[g.key] || []).includes(o.value),
+            toggle: () => this.toggleFacet(g.key, o.value),
+          })),
+        };
+      }),
+      facetOpen: this.state.facet !== null,
+      facetTitle: (Component.FACETS.find(g => g.key === this.state.facet) || {}).label || '',
+      facetOptions: ((Component.FACETS.find(g => g.key === this.state.facet) || {}).options || []).map(o => ({
+        label: o.label,
+        on: (F[this.state.facet] || []).includes(o.value),
+        toggle: () => this.toggleFacet(this.state.facet, o.value),
+      })),
+      closeFacet: () => this.setState({ facet: null }),
+      iconCheckTick: this.mask('tick-01', 13, '#F6F1E7'),
+
+      openDrawer: () => this.setState({ drawerOpen: true, facet: null }),
       closeDrawer: () => this.setState({ drawerOpen: false }),
       drawerOpen: this.state.drawerOpen,
       applyLabel: 'Zobrazit ' + Component.pcs(list.length),
@@ -682,7 +782,7 @@ class Component extends DCLogic {
       hasFilters: filterCount > 0,
       filterCount,
       activeChips: chips,
-      clearFilters: () => this.setState({ filters: { use: [], weight: [], volume: [], avail: [] }, priceMin: '', priceMax: '', page: 1 }),
+      clearFilters: () => this.setState({ filters: { use: [], weight: [], volume: [], avail: [], purpose: [], skin: [], packType: [], emulsion: [], transparency: [] }, priceMin: '', priceMax: '', page: 1 }),
 
       facetGroups: Component.FACETS.map(g => ({
         label: g.label,
@@ -739,7 +839,7 @@ class Component extends DCLogic {
       prevPage: () => this.setState({ page: Math.max(1, page - 1), extra: 0 }),
       nextPage: () => this.setState({ page: Math.min(pageCount, page + 1), extra: 0 }),
 
-      iconFilter: this.mask('filter-horizontal', 24, '#4C653D'),
+      iconFilter: this.mask('filter-horizontal', 22, '#F6F1E7'),
       iconFilterTitle: this.mask('filter-horizontal', 22, '#2D3A2E'),
       iconClose: this.mask('cancel-01', 24, '#6B6B5E'),
       iconChipX: this.mask('cancel-01', 16, 'currentColor'),

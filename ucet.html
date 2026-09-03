@@ -79,10 +79,10 @@
 
   <dc-import name="ui-Header" loggedIn="{{ true }}" hint-size="100%,140px"></dc-import>
 
-  <div style="max-width:1440px; margin:0 auto; position:relative;">
+  <div style="max-width:1720px; margin:0 auto; position:relative;">
 
     <section style="padding:22px 32px 0;" class="ek-pad">
-      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
+      <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
         <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="330px,20px"></dc-import>
         <dc-import name="ui-AccountNav" active="ucet" hint-size="100%,170px"></dc-import>
 
@@ -234,7 +234,7 @@
     <div style="position:relative; margin:34px 0 0; padding:34px 0 44px;">
       <div aria-hidden="true" class="ek-tear" style="background:linear-gradient(168deg,#FBF6EA 0%,#F7F1E3 60%,#F3EBDA 100%);"></div>
       <section style="position:relative; z-index:1; padding:26px 32px;" class="ek-pad">
-        <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+        <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
           <div style="display:flex; flex-direction:column; gap:6px;">
             <p class="ek-eyebrow">Váš účet</p>
             <h2 class="ek-h2">Co ještě můžete spravovat.</h2>
@@ -260,8 +260,8 @@
     </div>
   </div>
 
-  <div style="max-width:1440px; margin:0 auto;">
-    <dc-import name="ui-Footer" hint-size="100%,520px"></dc-import>
+  <div style="max-width:1720px; margin:0 auto;">
+    <dc-import name="ui-Footer" loggedIn="{{ true }}" loyaltyTier="{{ 2 }}" hint-size="100%,520px"></dc-import>
   </div>
 </div>
 </x-dc>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deník úprav — ekokoza.cz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F6F1E7; font-family: 'Work Sans', sans-serif; color: #2A2A24; }
+  a { color: #4C653D; }
+  a:hover { color: #B23803; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 56px 24px 96px; }
+  h1 { margin: 0 0 8px; font-family: 'EB Garamond', serif; font-weight: 500; font-size: 40px; line-height: 1.1; color: #4C653D; }
+  .lead { margin: 0 0 40px; font-size: 16.5px; line-height: 1.6; color: #6B6B5E; max-width: 62ch; }
+  .day { margin-bottom: 34px; background: #FFFFFF; border: 1px solid #ECE3D2; border-radius: 14px; padding: 26px 28px; }
+  .day > h2 { margin: 0 0 4px; font-family: 'EB Garamond', serif; font-weight: 500; font-size: 26px; color: #4C653D; }
+  .day > .sum { margin: 0 0 22px; font-size: 14.5px; line-height: 1.55; color: #6B6B5E; }
+  .item { display: flex; flex-direction: column; gap: 8px; padding: 18px 0; border-top: 1px solid #F1EADC; }
+  .item:first-of-type { border-top: none; padding-top: 4px; }
+  .tag { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #4F6E2A; background: rgba(76,101,61,.10); border-radius: 999px; padding: 5px 9px; }
+  .item h3 { margin: 0; font-family: 'EB Garamond', serif; font-weight: 500; font-size: 18px; line-height: 1.3; color: #2D3A2E; }
+  .row { display: grid; grid-template-columns: 96px 1fr; gap: 10px 14px; font-size: 14.5px; line-height: 1.6; }
+  .k { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #8a8776; padding-top: 3px; }
+  .v { margin: 0; color: #4A4A42; text-wrap: pretty; }
+  .meet { border-color: #E0CDB2; background: #FDF7EC; }
+  .meet > h2 { color: #A33203; }
+  .tag-open { color: #A33203; background: rgba(163,50,3,.09); }
+  .mlist { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 7px; font-size: 14.5px; line-height: 1.6; color: #4A4A42; }
+  .mlist li { text-wrap: pretty; }
+  @media (max-width: 640px) {
+    .wrap { padding: 32px 18px 64px; }
+    h1 { font-size: 30px; }
+    .day { padding: 20px 18px; }
+    .row { grid-template-columns: 1fr; gap: 3px; }
+    .k { padding-top: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Deník úprav</h1>
+  <p class="lead">Záznam zásadní práce na projektu ekokoza.cz. Každý den má vlastní sekci, u každé úpravy je požadavek a jak jsme ho vyřešili. Podrobné plnění jednotlivých úkolů je v <a href="ukolovnik.dc.html">úkolovníku</a>.</p>
+
+  <section class="day meet">
+    <h2>Probrat na schůzce</h2>
+    <p class="sum">Zadání, kterým si nejsme jistí nebo je potřeba upřesnit společně.</p>
+
+    <div class="item">
+      <span class="tag tag-open">produkt-vzor · 1. září</span>
+      <h3>„Jak se používá“</h3>
+      <ul class="mlist">
+        <li>Uvažované řešení: jednoduchá horizontální forma ikona + nadpis/popisek.</li>
+        <li>Pokud bude obsah vycházet z parametrů, musí být tato sekce řešena samostatně, nikoliv vložená doprostřed běžného produktového popisu.</li>
+        <li>Z pohledu zákazníka může být důležitější např. „co si z toho můžu vyrobit“ než některé technické/certifikační informace — tomu přizpůsobit hierarchii detailu.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="day">
+    <h2>3. září 2026</h2>
+    <p class="sum">Akordeony v detailu produktu, napojení patičky na všech stránkách a sjednocení postranního panelu.</p>
+
+    <div class="item">
+      <span class="tag">Homepage · Hero E2</span>
+      <h3>Šířka hero sekce podle obsahu webu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hero sekce zůstala v původní úzké šířce, i když jsme obsah webu rozšiřovali — srovnat ji se zbytkem stránky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Hero má nyní stejnou maximální šířku jako ostatní obsah webu (1560 px) místo dřívějších 1400 px.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Hodnocení a diskuze</span>
+      <h3>Doplněné sekce hodnocení a diskuze</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na detailu produktu chyběly sekce hodnocení a diskuze — doplňte je.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Přidána sekce Hodnocení a recenze (souhrnná známka, rozložení hvězdiček, tlačítko pro přidání recenze a tři recenze) a sekce Diskuze k produktu (výzva k dotazu a dva dotazy s odpovědí Ekokozy).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Hlavička produktu</span>
+      <h3>INCI místo kategorie nad názvem</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Řádek „Ekokoza · Esenciální oleje“ nad názvem vynechat a místo něj viditelně vypsat INCI, včetně samotného slova INCI. Zobrazit to formou chipu, ne jiným písmem.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nad názvem je chip na světle zeleném podkladu se zaobleným rámečkem: štítek INCI verzálkami a za ním název suroviny. Vše ve Work Sans, bez cizího písma.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Detailní popis</span>
+      <h3>Akordeon u číslovaných sekcí</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Všech 13 sekcí detailního popisu zabalit do akordeonu, kde je otevřená vždy jen jedna položka — otevření další zavře předchozí. „Hlavní vlastnosti“ výchozně otevřené. Rozbalování udělat plynulé, ne okamžité. Sekci „Poradíme vám“ z akordeonu vyjmout — zůstává jako samostatný, trvale rozbalený blok.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Sekce 1–12 (Hlavní vlastnosti až Časté otázky) jsou akordeon s jednou otevřenou položkou; kotvy nad popisem otevírají příslušnou sekci. Rozbalování je plynulé (grid-based animace výšky, ~0,3 s), šipka se otáčí místo výměny ikony. Obsah zavřených panelů zůstává v HTML (jen skrytý), takže se neztrácí pro SEO. „Poradíme vám“ je mimo akordeon, vždy vidět; telefonní číslo v něm se zobrazuje jen přihlášeným.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Patička · všechny stránky</span>
+      <h3>Napojení na trhaný pás a full-bleed i mimo homepage</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Patička má na všech stránkách vypadat stejně jako na homepage — napojená na trhaný pás a přes celou šířku. Na detailu produktu, výpisu kategorie a dalších stránkách tak nastavená nebyla.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na šesti podstránkách (detail produktu, výpis kategorie, produkt, receptář, recept, slovníček) je patička vysunutá do plné šířky okna, ne jen do šířky obsahu. Nad ní je trhaná hrana, kterou krémové pozadí přechází přímo do zelené patičky — bez prázdného mezipásu a bez mezery.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Postranní panel</span>
+      <h3>Pořadí karet, akordeon u parametrů, hover pryč</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Kartám v postranním panelu odebrat hover efekt. Parametry dát také do rozbalovacího akordeonu. Recepty posunout na první pozici.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Hover byl skutečný — pravidlo pro zvednutí karty se stínem bylo deklarované v hlavičce a propisovalo se globálně na všechny karty na každé stránce s hlavičkou; nyní je omezené jen na hlavičku samotnou. Parametry mají rozbalovací nadpis se šipkou a stejnou plynulou animací jako sekce popisu (výchozí stav otevřeno); odkaz „Celá technická karta“ se sbaluje s nimi. Pořadí karet: Recepty, Certifikace a vlastnosti, Parametry, Dokumentace.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Recepty</span>
+      <h3>Karta receptů podle receptáře</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">„Recepty se surovinou“ udělat stejně jako blok doporučených receptů v hlavičce receptáře — stejné UI a chování, fotky z receptů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Řádky mají fotku receptu 56 px, serifový nadpis, meta ve tvaru kategorie · úroveň · čas a šipku vpravo; při najetí zezelená nadpis i šipka. Pod výpisem je obrysové tlačítko „Všechny recepty“. Nadpis karty zůstal serifový jako u ostatních karet v panelu.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Sekce receptů</span>
+      <h3>Odkaz „Všechny recepty“ nad výpisem</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Do sekce „S touto surovinou si vyrobíte“ doplnit klasické tlačítko „Všechny recepty“, jak ho používáme u karuselů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Hlavička sekce má stejné rozvržení jako karusely na homepage: kicker, nadpis a perex vlevo, textový odkaz se šipkou vpravo nahoře.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Dokumentace</span>
+      <h3>Tlačítko „Stáhnout vše“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Do karty Dokumentace doplnit tlačítko pro hromadné stažení souborů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod výpisem souborů je obrysové tlačítko „Stáhnout vše“ s ikonou stažení, ve stejném stylu jako ostatní sekundární tlačítka v panelu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="day">
+    <h2>1. září 2026</h2>
+    <p class="sum">Návrat variantního výběru k jednoduššímu toku a rozšíření věrnostní informace i na nedostupné produkty.</p>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Varianty</span>
+      <h3>Množství jen u tlačítka „Do košíku“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vrátit se k původnímu toku u variantního produktu: u jednotlivých variant nemá být kvantifikátor, jen výběr balení. Množství se naklikává až u CTA tlačítka — vyberu variantu, u tlačítka nastavím množství, dám koupit; pro jinou variantu stejný postup.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Výběr balení je zpět v režimu „select“ (řádky bez počítadla). CTA je pro variantní i jednoduchý produkt stejná komponenta ui-AddToCart se stepperem množství. Přepnutí varianty resetuje množství na 1.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Věrnostní program</span>
+      <h3>Informace pod cenou i u nedostupného produktu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Box s informací o věrnostní slevě pod hlavní cenou zobrazovat i tehdy, když je produkt nedostupný.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Podmínka zobrazení box už nekontroluje dostupnost, jen přihlášení — box je vidět vždy.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Dostupnost</span>
+      <h3>Skrytý dostupnostní řádek u nedostupného jednoduchého produktu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U jednoduchého (nevariantního) nedostupného produktu odebrat pilulku s poznámkou o dostupnosti nad tlačítkem.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Řádek s pilulkou a poznámkou se zobrazuje jen pro jednoduchý produkt, který je koupitelný. U nedostupného zůstává jen box „Tento produkt nelze zakoupit“ s tlačítkem na upozornění.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="day">
+    <h2>28. srpna 2026</h2>
+    <p class="sum">Klientské připomínky k typografii na mobilu, sjednocení terrakoty, homepage a odpovědi k hlídání dostupnosti.</p>
+
+    <div class="item">
+      <span class="tag">A1 · Typografie</span>
+      <h3>Malé nadpisy na mobilu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nadpisy v USP jsou na mobilu malé — zvětšit alespoň 2×. Texty vedle ikony v kartách „Suroviny dle kategorie“ alespoň 1,25×.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Malý serifový nadpis (EB Garamond Medium) je nyní centrálně 18 px — USP dlaždice, body „Novinky e-mailem“ i stupně věrnostního programu. Na mobilu (do 720 px) mají tyto nadpisy jednotných 22 px a popisky 15 px; velikost se dál nemění podle šířky displeje. USP se přepíná do jednoho sloupce už při 600 px, ikona 56 px. Názvy dlaždic surovin na mobilu 18 px a nezalamují se.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">A3 · Barvy</span>
+      <h3>Jeden přesně definovaný odstín terrakoty</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Ověřit, jestli všechna terrakotová tlačítka používají odstín z design systému — někde působí jako odstín „mezi“ uvedenými barvami.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Projeli jsme všechny soubory: hlavní CTA má bez výjimky #D14405 a hover #B23803, žádné tlačítko nebylo mimo. Čtyři místa mimo tlačítka používala nedefinované odstíny (hover oblíbeného receptu, mazání v košíku, varovná ikona u produktu, číslo „3“ v O nás) — sjednoceny. Terrakotová řada má nyní přesně čtyři hodnoty: #D14405 hlavní CTA, #B23803 hover, #A33203 varování a chyby, #D8763B akcent. Navíc byl ojedinělý terrakotový kicker „Z komunitní dílny“ sjednocen na zelenou #4F6E2A.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">E1–E5 · Homepage</span>
+      <h3>Rozhodnutí klienta k hero sekci, videu a komunitní dílně</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Obě varianty hero sekce ponechat a přepínat je v administraci. Video je zatím dočasný podklad, finální dodá klient. Komunitní dílnu nechat, jak je. Fotky kategorií dodá klient.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Zaneseno do úkolovníku jako finální rozhodnutí. Úkolovník má nově zelený box „Finální rozhodnutí“ a modrý „Podklad od klienta“ vedle terrakotového „K odsouhlasení“, aby bylo na první pohled vidět, co je uzavřené a co čeká na podklady.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage</span>
+      <h3>Jednotná podoba rozcestníků</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Blok „Co chcete vyrábět?“ udělat stejně jako „Suroviny dle kategorie“ — fotka ve stejném poměru, nadpis s ikonou, popis. Držet jeden řádek karet, dokud to jde.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Dlaždice kategorie má novou variantu „lifestyle“: fotka 4:3 se zaoblením 14 px, pod ní nadpis EB Garamond 20 px s ikonou a popis. Hover je stejný jako u surovin (jemné přiblížení fotky, nadpis zezelená). Na širokém desktopu šest sloupců v jednom řádku, pod 1180 px tři, na mobilu karusel.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · mobil</span>
+      <h3>Karusely na plnou šířku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vodorovný výpis nesmí končit useknutý před okrajem — má mizet až na kraji stránky. Odebrat scrollbar a naznačit, že se dá scrollovat dál.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karusely jsou vysunuté do krajů obrazovky s vnitřním odsazením, scrollbar je skrytý a vpravo je měkký přechod do ztracena (52 px).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">F2 · Detail produktu</span>
+      <h3>Upozornit na naskladnění místo hlídacího psa</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hlídat pouze dostupnost, nikoli cenu. Funkci přejmenovat na „Upozornit na naskladnění“, vázat ji na konkrétní variantu, nepoužívat potvrzování e-mailu odkazem a nabízet ji i u produktů, které se aktuálně neprodávají. Blok v detailu zredukovat na jedno tlačítko se zvonečkem.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Hlídání ceny je z návrhu odstraněné (tlačítko „Hlídat cenu“ i komponenta ui-PriceWatch). Funkce se všude jmenuje „Upozornit na naskladnění“ — formulář, buy bar, produktové karty, design systém; v zákaznické zóně dlaždice „Sledované produkty“. Potvrzení vypisuje konkrétní balení. V detailu produktu zůstalo jen terrakotové tlačítko se zvonečkem, formulář se otevírá ve vyskakovacím okně. Double opt-in jsme nezaváděli — jde o jednorázové transakční oznámení a riziko zneužití cizí adresy pokrývá jednoklikové zrušení v každém e-mailu.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">J1 · Oblíbené</span>
+      <h3>Pulzující srdíčko zrušeno</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Animaci srdíčka v hlavičce nebudeme dělat, výraznost srdíčka na kartě stačí.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pulzování je z hlavičky odstraněné včetně časovačů a keyframes. Vysvětlující bublina po delším podržení kurzoru (J2) zůstává beze změny.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Receptář na HP</span>
+      <h3>Sjednocený layout sekce</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Texty doleva, odkaz „Zobrazit všechny recepty“ vpravo nahoru nad karusel, stejný styl jako u ostatních bloků.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Sekce má stejnou hlavičku jako zbytek stránky: kicker, nadpis a perex vlevo, textový odkaz se šipkou vpravo. Vycentrované tlačítko pod karuselem zrušeno.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Newsletter</span>
+      <h3>Výběr obsahu newsletteru</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Přidat čtyři volby: Novinky, Návody, Slevy, Všechno — zákazník si vybere, co mu budeme posílat.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nad polem pro e-mail je řada standardních zaškrtávacích polí podle design systému (ne chipsy). „Všechno“ zapne nebo vypne všechny tři; výchozí stav je Novinky a Návody.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Patička</span>
+      <h3>Full-bleed a napojení na trhaný pás</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Podbarvení stejnou plnou zelenou jako hlavička, na celou šířku a přímo navázané na trhaný pás.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Patička je bez zaoblení a stínu, plná zeleň #4C653D od kraje ke kraji; obsah uvnitř drží šířku kontejneru. Pod trhaným pásem je zelený podklad, takže zuby čtou jako horní okraj patičky, bez krémové mezery.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Patička · věrnostní program</span>
+      <h3>Telefon jen pro 2. úroveň</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Telefonní číslo zobrazovat jen přihlášeným zákazníkům od druhé úrovně věrnostního programu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Patička má nové propy loggedIn a loyaltyTier; číslo se vypíše jen přihlášenému od úrovně 2. Nepřihlášeným zůstává e-mail.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Galerie produktu</span>
+      <h3>Náhledy skryté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U produktů zatím není víc fotek — náhledy skrýt.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Galerie má prop showThumbs, výchozí vypnuto. Až fotky přibudou, stačí ho zapnout.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Komunitní dílna</span>
+      <h3>Pevné fotografie</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Odebrat možnost měnit obrázky přetažením, nechat dodané fotky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Přetahovací plochy nahrazeny pevnými fotografiemi.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Rozvržení webu</span>
+      <h3>Šířka obsahu 1560 px</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nastavit výchozí maximální šířku obsahu na 1560 px.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Kontejner je 1560 px, vnější shell 1720 px; hlavička, megamenu a patička odpovídajícím způsobem. Propsáno do všech stránek, komponent, design systému i projektových instrukcí.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Filtry</span>
+      <h3>Filtrační lišta s rozbalovacími filtry</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V řádku zobrazovat jednotlivé filtry jako dropdowny; co se nevejde, se nezobrazí. Poslední položka bude tlačítko otevírající drawer se všemi filtry. Řazení dát mimo filtrační lištu. Doplnit další filtry podle ostrého webu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta má nově jednotlivé filtry jako tlačítka s rozbalovacím panelem zaškrtávacích polí a s počtem zvolených voleb; řada se nezalamuje a přebytek se ořízne. Vpravo je zelené tlačítko „Všechny filtry“ s počtem, které otevře drawer s kompletní sadou. Řazení je nad lištou vpravo, vedle počtu produktů. Sada filtrů odpovídá ostrému webu: Dostupnost, Nejčastější použití, Hmotnost (g), K čemu se používá, Typ pleti, Typ obalu, Typ emulze, Průhlednost, Objem (ml).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Nová komponenta</span>
+      <h3>Pás hlavních parametrů produktu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vypsat hlavní parametry produktu jako samostatnou komponentu — ikona a u ní informace, šest položek na jeden řádek, zalomení jen na velmi malých displejích. Parametry vzít z popisu produktu, vynechat EAN.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nová komponenta ui-ParamStrip: vodorovné kartičky (ikona vlevo, nad sebou popisek a hodnota) — Forma, Rozpustnost, Dávkování, Země původu, Získávání, Balení. Umístěná pod galerii, kde je místo; v užším sloupci se zalomí na dva řádky po třech, na mobilu po dvou. Balení se přebírá z vybrané varianty. Kartickám jsme dali šalvějový podklad #EEF4DC, aby stránka nebyla jednolitá.</p>
+        <span class="k">Proč takto</span>
+        <p class="v">Volili jsme boxy, ne karusel. Karusel by byl další extra pracná komponenta — zvlášť kdyby měl donačítat nezobrazené parametry. Takto je to kompaktní a vše je přehledně vidět najednou.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Produktová karta</span>
+      <h3>Hvězdičky pod název</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hodnocení přesunout až pod nadpis, centrálně pro celou kartu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Upraveno v obou produktových kartách (ui-ProductCard i ui-ProductCardV2), takže se změna propisuje do všech výpisů, vyhledávání i megamenu.</p>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

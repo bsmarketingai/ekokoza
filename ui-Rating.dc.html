@@ -72,10 +72,12 @@ class Component extends DCLogic {
       stars,
       text,
       hasText: !!text,
-      hint: empty ? 'Produkt zatím nemá hodnocení' : valueText + ' z 5 · ' + count.toLocaleString('cs-CZ') + ' hodnocení',
+      hint: empty ? '' : valueText + ' z 5 · ' + count.toLocaleString('cs-CZ') + ' hodnocení',
       textStyle: 'font-family:\'Work Sans\',sans-serif; font-weight:500; font-size:' + textSize + 'px; line-height:1.3; white-space:nowrap; color:'
         + (this.props.textColor ?? (empty ? '#8a8776' : '#4A4A42')) + ';',
-      wrapStyle: 'display:inline-flex; align-items:center; gap:7px; min-height:' + (size + 4) + 'px; font-family:\'Work Sans\',sans-serif;',
+      wrapStyle: 'display:inline-flex; align-items:center; gap:7px; min-height:' + (size + 4) + 'px; font-family:\'Work Sans\',sans-serif;'
+        // Bez hodnocení nic nevypisujeme — místo ale držíme, aby karty měly stejnou výšku
+        + (empty ? ' visibility:hidden;' : ''),
     };
   }
 }

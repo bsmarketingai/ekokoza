@@ -32,11 +32,13 @@
     <span aria-hidden="true" style="position:absolute; right:14px; bottom:14px; display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.94); border:1px solid #ECE3D2; border-radius:999px; padding:8px 14px; font-size:12.5px; font-weight:600; color:#4C653D; pointer-events:none;"><span style="{{ iconZoom }}"></span>Zvětšit</span>
   </div>
 
-  <div style="display:flex; gap:10px; flex-wrap:wrap;">
-    <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="4">
-      <button onClick="{{ t.select }}" class="ek-g-th" title="{{ t.alt }}" style="{{ t.style }}"></button>
-    </sc-for>
-  </div>
+  <sc-if value="{{ showThumbs }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="4">
+        <button onClick="{{ t.select }}" class="ek-g-th" title="{{ t.alt }}" style="{{ t.style }}"></button>
+      </sc-for>
+    </div>
+  </sc-if>
 
   <p style="margin:0; font-size:13px; line-height:1.5; color:#6B6B5E; font-style:italic;">{{ note }}</p>
 
@@ -91,6 +93,7 @@ class Component extends DCLogic {
       closeZoom: () => this.setState({ zoom: false }),
       mainStyle: 'aspect-ratio:1/1; background:#fff center/contain no-repeat; background-image:url("' + url(active.src) + '");',
       zoomStyle: 'width:min(820px,92vw,84vh); max-width:92vw; max-height:84vh; aspect-ratio:1/1; border-radius:16px; background:#fff center/contain no-repeat; background-image:url("' + url(active.src) + '");',
+      showThumbs: this.props.showThumbs === true && images.length > 1,
       thumbs: images.map((im, idx) => ({
         alt: im.alt || '',
         select: () => this.setState({ i: idx }),

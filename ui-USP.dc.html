@@ -18,20 +18,24 @@
   /* Jeden řádek držíme co nejdéle — nejdřív se stahují mezery a písmo, teprve pak se zalamuje */
   @media (max-width: 1320px) and (min-width: 1041px) {
     .ek-usp-grid { gap: 8px 12px !important; }
-    .ek-usp-t { font-size: 15px !important; }
+    .ek-usp-t { font-size: 17px !important; }
     .ek-usp-i .ek-usp-d { font-size: 12.5px !important; }
   }
   @media (max-width: 1120px) and (min-width: 1041px) {
     .ek-usp-withphoto { grid-template-columns: 96px minmax(0,1fr) !important; gap: 14px !important; }
-    .ek-usp-t { font-size: 14.5px !important; }
+    .ek-usp-t { font-size: 16px !important; }
   }
   @media (max-width: 1040px) { .ek-usp-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; } }
   @media (max-width: 860px) { .ek-usp-withphoto { grid-template-columns: 1fr; gap: 14px; } .ek-usp-photo { max-width: 130px; margin: 0 auto; } }
-  @media (max-width: 720px) { .ek-usp-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 10px !important; } }
-  @media (max-width: 460px) {
-    .ek-usp-grid { grid-template-columns: 1fr !important; }
+  @media (max-width: 720px) {
+    .ek-usp-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 14px !important; }
+    .ek-usp-t { font-size: 22px !important; line-height: 1.15 !important; }
+    .ek-usp-i .ek-usp-d { font-size: 15px !important; }
+  }
+  @media (max-width: 600px) {
+    .ek-usp-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
     .ek-usp-i { align-items: center !important; flex-direction: row !important; gap: 14px !important; }
-    .ek-usp-i > .ek-usp-tile { width: 48px !important; height: 48px !important; }
+    .ek-usp-i > .ek-usp-tile { width: 56px !important; height: 56px !important; }
   }
 </style>
 </helmet>
@@ -137,7 +141,7 @@ class Component extends DCLogic {
         ? 'align-items:center; gap:12px;'
         : 'flex-direction:column; align-items:flex-start; gap:7px;')
         + ' padding:7px 6px; color:' + (dark ? '#F6F1E7' : '#2A2A24') + ';',
-      titleItemStyle: "font-family:'EB Garamond',serif; font-weight:500; font-size:16px; line-height:1.2; transition:color .2s; color:" + (dark ? '#F6F1E7' : '#4C653D') + ';',
+      titleItemStyle: "font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.2; transition:color .2s; color:" + (dark ? '#F6F1E7' : '#4C653D') + ';',
       descStyle: 'font-size:13px; line-height:1.45; color:' + (dark ? '#D6E0C8' : '#6B6B5E') + ';',
       hasTitle: title !== '',
       title,

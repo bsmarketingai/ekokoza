@@ -135,10 +135,10 @@
 
   <dc-import name="ui-Header" loggedIn="{{ true }}" hint-size="100%,140px"></dc-import>
 
-  <div style="max-width:1440px; margin:0 auto; position:relative;">
+  <div style="max-width:1720px; margin:0 auto; position:relative;">
 
     <section style="padding:22px 32px 0;" class="ek-pad">
-      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
+      <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
         <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="300px,20px"></dc-import>
         <dc-import name="ui-AccountNav" active="faktury" hint-size="100%,170px"></dc-import>
         <h1 class="ek-h1">Faktury</h1>
@@ -147,7 +147,7 @@
 
     <div style="position:relative;">
       <section style="padding:8px 32px;" class="ek-pad">
-        <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+        <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
           <form onSubmit="{{ applyFilter }}" class="ek-filters">
             <label class="ek-flabel"><span>Objednáno od</span><span class="ek-datewrap"><input type="date" class="ek-fin" value="{{ fFrom }}" onInput="{{ setFrom }}"><span class="ek-dateico" style="{{ iconCal }}"></span></span></label>
             <label class="ek-flabel"><span>Faktura č.</span><input class="ek-fin" value="{{ fNum }}" onInput="{{ setNum }}" placeholder="26VZF04812"></label>
@@ -170,7 +170,7 @@
     </div>
 
     <section style="padding:0 32px;" class="ek-pad">
-      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:16px;">
+      <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:16px;">
         <div class="ek-card" style="overflow:hidden;">
           <div class="ek-fhead">
             <sc-for list="{{ heads }}" as="h" hint-placeholder-count="9">
@@ -250,7 +250,7 @@
 
     <div style="position:relative;">
       <section style="padding:26px 32px;" class="ek-pad">
-        <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+        <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
           <div style="display:flex; flex-direction:column; gap:6px;">
             <p class="ek-eyebrow">Fakturace a doklady</p>
             <h2 class="ek-h2">Co s tím obvykle potřebujete.</h2>
@@ -269,8 +269,8 @@
     </div>
   </div>
 
-  <div style="max-width:1440px; margin:0 auto;">
-    <dc-import name="ui-Footer" hint-size="100%,520px"></dc-import>
+  <div style="max-width:1720px; margin:0 auto;">
+    <dc-import name="ui-Footer" loggedIn="{{ true }}" loyaltyTier="{{ 2 }}" hint-size="100%,520px"></dc-import>
   </div>
 </div>
 </x-dc>

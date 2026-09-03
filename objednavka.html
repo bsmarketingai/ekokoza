@@ -116,10 +116,10 @@
 
   <dc-import name="ui-Header" loggedIn="{{ true }}" hint-size="100%,140px"></dc-import>
 
-  <div style="max-width:1440px; margin:0 auto; position:relative;">
+  <div style="max-width:1720px; margin:0 auto; position:relative;">
 
     <section style="padding:22px 32px 0;" class="ek-pad">
-      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+      <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
         <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="420px,20px"></dc-import>
         <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;">
           <h1 class="ek-h1">Detail objednávky č. {{ num }}</h1>
@@ -130,7 +130,7 @@
 
     <div style="position:relative;">
       <section style="padding:10px 32px;" class="ek-pad">
-        <div style="max-width:1280px; margin:0 auto;">
+        <div style="max-width:1560px; margin:0 auto;">
           <div class="ek-idet">
             <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
               <div style="display:flex; flex-direction:column; gap:8px; min-width:0;">
@@ -146,7 +146,7 @@
     </div>
 
     <section style="padding:0 32px;" class="ek-pad">
-      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
+      <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
 
         <div style="display:flex; flex-direction:column; gap:8px;">
           <h2 class="ek-h2" style="font-size:22px;">Poznámka</h2>
@@ -196,7 +196,7 @@
 
     <div style="position:relative;">
       <section style="padding:26px 32px;" class="ek-pad">
-        <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+        <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
           <div style="display:flex; flex-direction:column; gap:6px;">
             <p class="ek-eyebrow">Potřebujete pomoc</p>
             <h2 class="ek-h2">Začněte tím, co právě řešíte.</h2>
@@ -215,8 +215,8 @@
     </div>
   </div>
 
-  <div style="max-width:1440px; margin:0 auto;">
-    <dc-import name="ui-Footer" hint-size="100%,520px"></dc-import>
+  <div style="max-width:1720px; margin:0 auto;">
+    <dc-import name="ui-Footer" loggedIn="{{ true }}" loyaltyTier="{{ 2 }}" hint-size="100%,520px"></dc-import>
   </div>
 </div>
 </x-dc>

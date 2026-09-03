@@ -10,7 +10,7 @@
 <helmet>
 <style>
   .ek-bb { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: rgba(255,253,246,.97); backdrop-filter: blur(8px); border-top: 1px solid #E4DAC6; box-shadow: 0 -14px 30px -22px rgba(45,58,46,.55); transition: transform .28s ease, opacity .28s ease; }
-  .ek-bb-in { max-width: 1280px; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+  .ek-bb-in { max-width: 1560px; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
   .ek-bb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; padding: 0 28px; font-family: 'Work Sans',sans-serif; font-size: 15.5px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background .2s, border-color .2s, color .2s; }
   .ek-bb-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
   .ek-bb-sec:hover { background: #4C653D !important; color: #F6F1E7 !important; }
@@ -69,7 +69,7 @@
         <button onClick="{{ goPick }}" class="ek-bb-btn ek-bb-main" style="height:48px; background:#D14405; color:#fff; border:1.5px solid #D14405;">Vyberte variantu<span style="{{ iconArrowUp }}"></span></button>
       </sc-if>
       <sc-if value="{{ modeWatch }}" hint-placeholder-val="{{ false }}">
-        <button onClick="{{ goPick }}" class="ek-bb-btn ek-bb-sec" style="height:48px; background:transparent; color:#4C653D; border:1.5px solid #4C653D;"><span style="{{ iconBell }}"></span>Hlídací pes</button>
+        <button onClick="{{ goPick }}" class="ek-bb-btn ek-bb-sec" style="height:48px; background:transparent; color:#4C653D; border:1.5px solid #4C653D;"><span style="{{ iconBell }}"></span>Upozornit na naskladnění</button>
       </sc-if>
     </div>
   </div>

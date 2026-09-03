@@ -115,10 +115,10 @@
 
   <dc-import name="ui-Header" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
 
-  <div style="max-width:1440px; margin:0 auto; position:relative;">
+  <div style="max-width:1720px; margin:0 auto; position:relative;">
 
     <section style="padding:22px 32px 0;" class="ek-pad">
-      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
+      <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
         <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="360px,20px"></dc-import>
         <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ true }}">
           <dc-import name="ui-AccountNav" active="oblibene" hint-size="100%,170px"></dc-import>
@@ -150,7 +150,7 @@
     </section>
 
     <section style="padding:26px 32px 0;" class="ek-pad">
-      <div style="max-width:1280px; margin:0 auto;">
+      <div style="max-width:1560px; margin:0 auto;">
         <sc-if value="{{ tabRecipes }}" hint-placeholder-val="{{ false }}">
         <div class="ek-favgrid">
           <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="5">
@@ -183,7 +183,7 @@
     </section>
   </div>
 
-  <div style="max-width:1440px; margin:44px auto 0;">
+  <div style="max-width:1720px; margin:44px auto 0;">
     <dc-import name="ui-Footer" hint-size="100%,520px"></dc-import>
   </div>
 </div>

@@ -25,7 +25,7 @@
   .ek-rc-add:hover { color: #B23803 !important; }
   .ek-fav:hover { border-color: #D8763B !important; }
   .ek-fav:hover span { background-color: #D8763B !important; }
-  .ek-fav.is-on:hover { background: #C4682F !important; }
+  .ek-fav.is-on:hover { background: #B23803 !important; }
   .ek-fav.is-on:hover span { background-color: #FFFFFF !important; }
   .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
   .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
@@ -107,10 +107,10 @@
 
   <dc-import name="ui-Header" active="receptar" hint-size="100%,140px"></dc-import>
 
-  <div style="max-width:1440px; margin:0 auto; position:relative;">
+  <div style="max-width:1720px; margin:0 auto; position:relative;">
 
   <section style="padding:22px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
       <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="320px,20px"></dc-import>
 
       <div style="margin-top:26px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
@@ -172,7 +172,7 @@
   </section>
 
   <section style="padding:30px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
       <h2 class="ek-h2" style="margin-bottom:18px;">Kategorie receptáře</h2>
       <sc-if value="{{ tilesV1 }}" hint-placeholder-val="{{ false }}">
         <div class="ek-tiles">
@@ -192,7 +192,7 @@
   </section>
 
   <section style="padding:52px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
       <div id="skrinka" style="border:1px solid #E2EACF; border-radius:14px; background:linear-gradient(160deg,#FCFAF3 0%,#F1F6E3 100%); padding:26px 28px;">
         <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:20px;">
           <div style="display:flex; gap:14px; min-width:0;">
@@ -247,7 +247,7 @@
   </section>
 
   <section style="padding:52px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
       <div id="vypis" style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;">
         <h2 class="ek-h2">{{ listTitle }}</h2>
         <span style="font-size:14.5px; color:#6B6B5E;">{{ listNote }}</span>
@@ -303,7 +303,8 @@
     </div>
   </section>
 
-  <div style="margin-top:74px;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
+<div aria-hidden="true" style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw; height:30px; margin-top:56px; background:#4C653D; clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% 100%, 0% 100%);"></div>
+<div style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
   </div>
 
   <sc-if value="{{ barCollapsed }}" hint-placeholder-val="{{ false }}">

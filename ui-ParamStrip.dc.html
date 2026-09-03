@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .ek-ps-wrap { container-type: inline-size; }
+  .ek-ps { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 10px; }
+  @container (max-width: 900px) { .ek-ps { grid-template-columns: repeat(3, minmax(0,1fr)) !important; } }
+  @container (max-width: 420px) { .ek-ps { grid-template-columns: repeat(2, minmax(0,1fr)) !important; } }
+  .ek-ps-i { display: flex; align-items: center; gap: 11px; padding: 13px 14px; border-radius: 14px; min-width: 0; }
+  @media (max-width: 460px) { .ek-ps { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 8px; } }
+</style>
+</helmet>
+
+<div class="ek-ps-wrap"><div class="ek-ps" style="font-family:'Work Sans',sans-serif;">
+  <sc-for list="{{ items }}" as="p" hint-placeholder-count="6">
+    <div class="ek-ps-i" style="{{ cardStyle }}">
+      <span style="{{ p.icon }}"></span>
+      <span style="display:flex; flex-direction:column; gap:1px; min-width:0;">
+        <span class="ek-ps-k" style="{{ keyStyle }}">{{ p.k }}</span>
+        <span class="ek-ps-v" style="{{ valStyle }}">{{ p.v }}</span>
+      </span>
+    </div>
+  </sc-for>
+</div></div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:140},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{k:string, v:string, icon?:string}[]&quot;},&quot;iconSize&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:26,&quot;min&quot;:18,&quot;max&quot;:36,&quot;tsType&quot;:&quot;number&quot;},&quot;iconColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#4F6E2A&quot;,&quot;options&quot;:[&quot;#4F6E2A&quot;,&quot;#4C653D&quot;,&quot;#D14405&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  static ICONS = {
+    'Forma': 'droplet',
+    'Rozpustnost': 'test-tube-01',
+    'Dávkování': 'weight-scale-01',
+    'Země původu': 'earth',
+    'Získávání': 'plant-01',
+    'Balení': 'package',
+  };
+
+  mask(name, size, color) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const url = base + 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  renderVals() {
+    const size = Number(this.props.iconSize ?? 24);
+    const tone = this.props.tone ?? 'sage';
+    const T = {
+      sage:  { bg: '#EEF4DC', border: 'rgba(76,101,61,.18)', key: '#5E7A3F', val: '#2D3A2E', icon: '#4F6E2A' },
+      cream: { bg: '#F6F1E7', border: '#E4DAC6', key: '#8a8776', val: '#2D3A2E', icon: '#4F6E2A' },
+      white: { bg: '#FFFFFF', border: '#ECE3D2', key: '#8a8776', val: '#2D3A2E', icon: '#4F6E2A' },
+    }[tone] || {};
+    const color = this.props.iconColor ?? T.icon;
+    const src = this.props.items ?? [
+      { k: 'Forma', v: 'čirá kapalina' },
+      { k: 'Rozpustnost', v: 'olej, alkohol' },
+      { k: 'Dávkování', v: '0,1–3 %' },
+      { k: 'Země původu', v: 'Francie' },
+      { k: 'Získávání', v: 'parní destilace' },
+      { k: 'Balení', v: '10 ml' },
+    ];
+    return {
+      cardStyle: 'background:' + T.bg + '; border:1px solid ' + T.border + ';',
+      keyStyle: 'font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color:' + T.key + ';',
+      valStyle: "font-family:'EB Garamond',serif; font-weight:500; font-size:17px; line-height:1.25; text-wrap:pretty; color:" + T.val + ';',
+      items: src.map(p => ({
+        k: p.k,
+        v: p.v,
+        icon: this.mask(p.icon || Component.ICONS[p.k] || 'leaf-01', size, color),
+      })),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -120,9 +120,9 @@
 
   <dc-import name="ui-Header" loggedIn="{{ true }}" hint-size="100%,140px"></dc-import>
 
-  <div style="max-width:1440px; margin:0 auto; position:relative;">
+  <div style="max-width:1720px; margin:0 auto; position:relative;">
     <section style="padding:22px 32px 0;" class="ek-pad">
-      <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
+      <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
         <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="280px,20px"></dc-import>
 
         <div style="display:flex; flex-direction:column; gap:8px;">
@@ -187,8 +187,8 @@
     </section>
   </div>
 
-  <div style="max-width:1440px; margin:44px auto 0;">
-    <dc-import name="ui-Footer" hint-size="100%,520px"></dc-import>
+  <div style="max-width:1720px; margin:44px auto 0;">
+    <dc-import name="ui-Footer" loggedIn="{{ true }}" loyaltyTier="{{ 2 }}" hint-size="100%,520px"></dc-import>
   </div>
 </div>
 </x-dc>
@@ -211,7 +211,7 @@ class Component extends DCLogic {
       { title: 'Uložené košíky', desc: 'Rozdělané nákupy k obnovení.', href: '#', icon: 'shopping-cart-01', soon: true },
       { title: 'Dříve nakoupené produkty', desc: 'Rychlé doplnění zásob.', href: '#', icon: 'shopping-cart-check-in-01', soon: true },
       { title: 'Moje hodnocení', desc: 'Napsané recenze a výzvy k hodnocení.', href: '#', icon: 'star', soon: true },
-      { title: 'Hlídané produkty', desc: 'Upozornění na naskladnění.', href: '#', icon: 'notification-01', soon: true },
+      { title: 'Sledované produkty', desc: 'Upozornění na naskladnění.', href: '#', icon: 'notification-01', soon: true },
       { title: 'Sledování zásilky', desc: 'Kde je vaše objednávka.', href: '#', icon: 'delivery-tracking-01', soon: true },
       { title: 'Vrácení a reklamace', desc: 'Jak postupovat a do kdy.', href: '#', icon: 'delivery-return-01', soon: true },
     ];

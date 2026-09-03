@@ -49,7 +49,7 @@
         <span style="display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600; color:#A33203;"><span style="{{ iconAlert }}"></span>{{ error }}</span>
       </sc-if>
       <div style="display:flex; align-items:center; gap:11px; flex-wrap:wrap;">
-        <button type="submit" class="ek-wd-main" style="display:inline-flex; align-items:center; gap:9px; background:#D14405; color:#fff; border:1.5px solid #D14405; border-radius:999px; padding:13px 24px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;">{{ submitLabel }}</button>
+        <button type="submit" class="ek-wd-main" style="display:inline-flex; align-items:center; gap:9px; background:#D14405; color:#fff; border:1.5px solid #D14405; border-radius:999px; padding:13px 24px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;"><span style="{{ iconBellW }}"></span>{{ submitLabel }}</button>
         <sc-if value="{{ hasCancel }}" hint-placeholder-val="{{ false }}">
           <button type="button" onClick="{{ cancel }}" class="ek-wd-ghost" style="background:transparent; border:1.5px solid transparent; border-radius:999px; padding:13px 18px; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">Zavřít</button>
         </sc-if>
@@ -60,13 +60,13 @@
 
   <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
     <div style="display:flex; flex-direction:column; gap:12px;">
-      <span style="display:flex; align-items:center; gap:9px; font-size:15.5px; font-weight:600; color:#3F7F2C;"><span style="{{ iconOk }}"></span>Hlídáme za vás</span>
+      <span style="display:flex; align-items:center; gap:9px; font-size:15.5px; font-weight:600; color:#3F7F2C;"><span style="{{ iconOk }}"></span>Upozornění nastaveno</span>
       <p style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ doneNote }}</p>
       <div style="display:flex; align-items:center; gap:11px; flex-wrap:wrap;">
         <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
-          <a href="#" style="display:inline-flex; align-items:center; gap:8px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:2px;">Přehled hlídaných produktů</a>
+          <a href="#" style="display:inline-flex; align-items:center; gap:8px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:2px;">Přehled sledovaných produktů</a>
         </sc-if>
-        <button type="button" onClick="{{ undo }}" class="ek-wd-ghost" style="background:transparent; border:1.5px solid transparent; border-radius:999px; padding:11px 16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#6B6B5E; cursor:pointer; transition:background .2s;">Zrušit hlídání</button>
+        <button type="button" onClick="{{ undo }}" class="ek-wd-ghost" style="background:transparent; border:1.5px solid transparent; border-radius:999px; padding:11px 16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#6B6B5E; cursor:pointer; transition:background .2s;">Zrušit upozornění</button>
       </div>
     </div>
   </sc-if>
@@ -95,7 +95,7 @@ class Component extends DCLogic {
     return {
       loggedIn,
       email,
-      heading: this.state.sent ? 'Naskladnění vám oznámíme' : 'Hlídací pes',
+      heading: this.state.sent ? 'Naskladnění vám oznámíme' : 'Upozornit na naskladnění',
       intro: this.state.sent
         ? 'Jedno oznámení, žádný další newsletter.'
         : (loggedIn
@@ -103,9 +103,9 @@ class Component extends DCLogic {
             : 'Napíšeme vám e-mail, jakmile ' + what + ' naskladníme. Nic jiného vám posílat nebudeme.'),
       isForm: !this.state.sent,
       isDone: this.state.sent,
-      submitLabel: loggedIn ? 'Hlídat naskladnění' : 'Chci vědět o naskladnění',
-      consent: 'E-mail použijeme jen k tomuto jednomu oznámení. Hlídání můžete kdykoli zrušit odkazem v e-mailu.',
-      doneNote: 'Hlídáme ' + what + ' na adrese ' + email + '. Napíšeme vám v den, kdy bude zboží zpět na skladu.',
+      submitLabel: 'Upozornit na naskladnění',
+      consent: 'E-mail použijeme jen k tomuto jednomu oznámení, nic dalšího vám posílat nebudeme. Upozornění zrušíte odkazem v e-mailu.',
+      doneNote: 'Sledujeme ' + what + ' pro adresu ' + email + '. Napíšeme vám v den, kdy bude zboží zpět na skladu.',
       hasError: !!this.state.error,
       error: this.state.error,
       hasCancel: !!onClose,
@@ -123,6 +123,7 @@ class Component extends DCLogic {
         if (this.props.onSubmit) this.props.onSubmit(val);
       },
       iconBell: this.mask('notification-01', 22, '#4C653D'),
+      iconBellW: this.mask('notification-01', 18, '#FFFFFF'),
       iconAlert: this.mask('alert-circle', 17, '#A33203'),
       iconOk: this.mask('checkmark-circle-01', 20, '#3F7F2C'),
       iconWrap: 'display:flex; align-items:center; justify-content:center; width:44px; height:44px; flex:0 0 auto; border-radius:12px; background:#F4F7EA; border:1px solid rgba(76,101,61,.18);',

@@ -269,7 +269,7 @@
     <!-- ===== ROZESTUPY A TVARY ===== -->
     <section id="spacing" style="margin-bottom:64px;">
       <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Rozestupy a tvary</h2>
-      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Container 1280 px, maximální šířka 1440 px. Kulaté rohy 14 px na kartách a obrázcích.</p>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Container 1560 px, maximální šířka 1720 px. Kulaté rohy 14 px na kartách a obrázcích.</p>
       <div class="ds-grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
         <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
           <h3 style="margin:0 0 18px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Rozestupy</h3>
@@ -418,7 +418,7 @@
     <!-- ===== FORMULÁŘOVÉ PRVKY ===== -->
     <section id="formulare" style="margin-bottom:64px;">
       <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Formulářové prvky</h2>
-      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jedna sada pro celý web — filtry, zákaznická zóna, hlídací pes, newsletter i pokladna. Výška pole 48 px (kompaktní varianta 46 px ve filtrech), rám #CFC4AA, rádius 12 px, popisek vždy nad polem v Work Sans SemiBold 13 px.</p>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jedna sada pro celý web — filtry, zákaznická zóna, upozornění na naskladnění, newsletter i pokladna. Výška pole 48 px (kompaktní varianta 46 px ve filtrech), rám #CFC4AA, rádius 12 px, popisek vždy nad polem v Work Sans SemiBold 13 px.</p>
       <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Focus stav nese tmavá zeleň a světlý prstenec — nikdy jen barva rámu. Chyba se hlásí pod polem textem s ikonou, ne pouze červeným rámem. Hit target zaškrtávacích prvků je 22 px plus celý řádek popisku.</p>
 
       <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 32px; display:flex; flex-direction:column; gap:26px;">
@@ -613,7 +613,7 @@
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Rating</code>
       </div>
       <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Pět hvězd s výplní na procenta: 4,75 znamená čtyři plné hvězdy a pátou vyplněnou ze tří čtvrtin — plocha je opravdu vyplněná, ne naznačená dělící čárkou. Spodní vrstva hvězdy zůstává v tlumené zlaté, aby byl vidět celý rozsah.</p>
-      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Jeden zápis pro celý web: <strong style="font-weight:600; color:#4C653D;">hvězdy · hodnota · počet hodnocení</strong> (4,75 · 128 hodnocení). Stejná komponenta je na kartě produktu, v detailu, v recenzích, u receptů i v odznacích Heureka a Google v patičce. Bez hodnocení drží řádek stejnou výšku, aby karty neposkakovaly.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Jeden zápis pro celý web: <strong style="font-weight:600; color:#4C653D;">hvězdy · hodnota · počet hodnocení</strong> (4,75 · 128 hodnocení). Stejná komponenta je na kartě produktu, v detailu, v recenzích, u receptů i v odznacích Heureka a Google v patičce. Produkt bez hodnocení nevypisuje nic — řádek se skryje, ale jeho místo zůstává, aby karty měly stejnou výšku a nepřeskládaly se. Textovou variantu „Bez hodnocení“ nepoužíváme.</p>
 
       <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-direction:column; gap:18px;">
         <sc-for list="{{ ratingRows }}" as="r" hint-placeholder-count="6">
@@ -843,7 +843,7 @@ class Component extends DCLogic {
       ['4,5 — půl hvězdy', 4.5, 96],
       ['4,2 — pětina', 4.2, 61],
       ['3,2', 3.2, 12],
-      ['Bez hodnocení', 0, 0],
+      ['Bez hodnocení — skryté, místo zůstává', 0, 0],
     ].map(([label, value, count]) => ({ label, value, count }));
 
 

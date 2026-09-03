@@ -80,14 +80,14 @@
 
   <dc-import name="ui-Header" active="produkty" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
 
-  <div style="max-width:1440px; margin:0 auto; position:relative;">
+  <div style="max-width:1720px; margin:0 auto; position:relative;">
 
   <section style="padding:22px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:26px;">
+    <div style="max-width:1560px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:26px;">
       <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="380px,20px"></dc-import>
     </div>
 
-    <div class="ek-pd-grid" style="max-width:1280px; margin:0 auto;">
+    <div class="ek-pd-grid" style="max-width:1560px; margin:0 auto;">
       <dc-import name="ui-Gallery" images="{{ images }}" badges="{{ galleryBadges }}" productName="{{ watchProduct }}" hint-size="100%,620px"></dc-import>
 
       <div class="ek-buy">
@@ -163,7 +163,6 @@
                 <dc-import name="ui-AddToCart" max="{{ 99 }}" onAdd="{{ onAdd }}" onQtyChange="{{ onQty }}" hint-size="100%,56px"></dc-import>
               </span>
             </sc-if>
-            <button onClick="{{ openPriceWatch }}" class="ek-btn-ghost" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; gap:8px; height:56px; background:transparent; border:1.5px solid transparent; border-radius:999px; padding:0 16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; white-space:nowrap; transition:background .2s;"><span style="{{ iconTagSm }}"></span>Hlídat cenu</button>
           </div>
         </sc-if>
         <sc-if value="{{ notBuyable }}" hint-placeholder-val="{{ false }}">
@@ -172,8 +171,7 @@
               <span style="font-size:15px; font-weight:600; color:#A33203;">Tento produkt nelze zakoupit</span>
               <p style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ watchNote }}</p>
             </div>
-            <dc-import name="ui-WatchDog" productName="{{ watchProduct }}" variantLabel="{{ watchVariant }}" loggedIn="{{ loggedIn }}" onSubmit="{{ onWatch }}" hint-size="100%,300px"></dc-import>
-            <button onClick="{{ openWatchModal }}" class="ek-btn-ghost" style="align-self:flex-start; display:inline-flex; align-items:center; gap:8px; background:transparent; border:1.5px solid transparent; border-radius:999px; padding:10px 16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">Ukázat jako vyskakovací okno</button>
+            <button onClick="{{ openWatchModal }}" class="ek-btn-main" style="align-self:flex-start; display:inline-flex; align-items:center; gap:9px; height:52px; padding:0 26px; background:#D14405; color:#fff; border:1.5px solid #D14405; border-radius:999px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;"><span style="{{ iconBellW }}"></span>Upozornit na naskladnění</button>
           </div>
         </sc-if>
         </div>
@@ -197,7 +195,7 @@
   <div id="popis" style="position:relative; margin:56px 0 0; padding:34px 0 44px;">
     <div aria-hidden="true" class="ek-tear" style="background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%);"></div>
     <section style="position:relative; z-index:1; padding:40px 32px;" class="ek-pad">
-      <div class="ek-det-grid" style="max-width:1280px; margin:0 auto;">
+      <div class="ek-det-grid" style="max-width:1560px; margin:0 auto;">
 
         <div>
           <p class="ek-eyebrow" style="margin-bottom:10px;">Detailní popis</p>
@@ -288,7 +286,7 @@
   </div>
 
   <section style="padding:56px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
       <p class="ek-eyebrow" style="margin-bottom:10px;">Od suroviny k vlastnímu výrobku.</p>
       <h2 class="ek-h2">S touto surovinou si vyrobíte</h2>
       <p class="ek-p" style="max-width:64ch; margin-bottom:26px;">Recept je most mezi surovinou a hotovou věcí. Tyto tři jsou na kyselinu citronovou nejčastější.</p>
@@ -301,19 +299,19 @@
   </section>
 
   <section style="padding:60px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
       <dc-import name="ui-Carousel" loggedIn="{{ loggedIn }}" title="Nepotřebujete dokoupit i toto?" subtitle="Suroviny a pomůcky, které se k tomuto produktu nejčastěji přidávají." items="{{ crossSell }}" hint-size="100%,500px"></dc-import>
     </div>
   </section>
 
   <section style="padding:56px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
       <dc-import name="ui-Carousel" loggedIn="{{ loggedIn }}" title="Mohlo by se vám také líbit" subtitle="Podobné suroviny ze stejné kategorie." items="{{ related }}" hint-size="100%,500px"></dc-import>
     </div>
   </section>
 
   <section id="hodnoceni" style="padding:60px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
       <h2 class="ek-h2">Hodnocení a recenze</h2>
       <p class="ek-p" style="max-width:64ch; margin-bottom:26px;">Píší lidé, kteří surovinu skutečně použili. Recenze nijak neupravujeme.</p>
 
@@ -361,7 +359,7 @@
   </section>
 
   <section style="padding:58px 32px 0;" class="ek-pad">
-    <div style="max-width:1280px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
       <div class="ek-card" style="padding:28px; display:flex; align-items:flex-start; justify-content:space-between; gap:26px; flex-wrap:wrap; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%); border-color:rgba(76,101,61,.16);">
         <div style="min-width:0; max-width:60ch;">
           <h2 class="ek-h2" style="margin-bottom:10px;">Diskuze k produktu</h2>
@@ -390,9 +388,8 @@
     </div>
   </section>
 
-  <div style="position:relative; margin-top:74px;">
-    <div style="position:relative; z-index:1;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
-  </div>
+<div aria-hidden="true" style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw; height:30px; margin-top:56px; background:#4C653D; clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% 100%, 0% 100%);"></div>
+<div style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
   </div>
 
   <dc-import name="ui-BuyBar" title="{{ title }}" variantLabel="{{ barVariant }}" variants="{{ barVariants }}" selected="{{ selected }}" onSelect="{{ onSelect }}" price="{{ price }}" note="{{ unitPrice }}" img="{{ barImg }}" buyable="{{ buyable }}" stockState="{{ stockState }}" stockDate="{{ stockDate }}" max="{{ 99 }}" watch="#ek-buy-cta" pickTarget="{{ barTarget }}" onAdd="{{ onAdd }}" onQtyChange="{{ onQty }}" hint-size="100%,0px"></dc-import>
@@ -401,7 +398,7 @@
     <dc-import name="ui-CartAdded" open="{{ true }}" items="{{ addedItems }}" cartItems="{{ demoCartItems }}" cartTotal="{{ 1289 }}" cartCount="{{ 2 }}" turnover="{{ 12400 }}" onClose="{{ closeCartAdded }}" hint-size="100%,100%"></dc-import>
   </sc-if>
   <sc-if value="{{ watchModalOpen }}" hint-placeholder-val="{{ false }}">
-    <div onClick="{{ closeWatchModal }}" role="dialog" aria-label="Hlídací pes" class="ek-modal-wrap" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(34,48,31,.55); backdrop-filter:blur(5px); font-family:'Work Sans',sans-serif;">
+    <div onClick="{{ closeWatchModal }}" role="dialog" aria-label="Upozornit na naskladnění" class="ek-modal-wrap" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(34,48,31,.55); backdrop-filter:blur(5px); font-family:'Work Sans',sans-serif;">
       <div onClick="{{ stopProp }}" class="ek-modal-card" style="position:relative; width:min(520px,100%); max-height:100%; overflow:auto; border-radius:16px; box-shadow:0 30px 70px -28px rgba(45,58,46,.65);">
         <button onClick="{{ closeWatchModal }}" aria-label="Zavřít" style="position:absolute; top:14px; right:14px; z-index:2; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#F6F1E7; border:1px solid #E4DAC6; cursor:pointer;"><span style="{{ iconCloseModal }}"></span></button>
         <div class="ek-modal-body" style="padding:28px 30px; background:#FFFDF6;">
@@ -415,17 +412,6 @@
     <button onClick="{{ openBar }}" class="ek-varbar-tab" title="Zobrazit ovládání ukázky" style="position:fixed; right:20px; bottom:104px; z-index:300; display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 14px 32px -16px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif; font-size:13px; font-weight:600; color:#4C653D; cursor:pointer;">
       <span style="{{ iconBarOpen }}"></span>Ukázka
     </button>
-  </sc-if>
-
-  <sc-if value="{{ priceWatchOpen }}" hint-placeholder-val="{{ false }}">
-    <div onClick="{{ closePriceWatch }}" role="dialog" aria-label="Hlídat cenu" class="ek-modal-wrap" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(34,48,31,.55); backdrop-filter:blur(5px); font-family:'Work Sans',sans-serif;">
-      <div onClick="{{ stopProp }}" class="ek-modal-card" style="position:relative; width:min(520px,100%); max-height:100%; overflow:auto; border-radius:16px; box-shadow:0 30px 70px -28px rgba(45,58,46,.65);">
-        <button onClick="{{ closePriceWatch }}" aria-label="Zavřít" style="position:absolute; top:14px; right:14px; z-index:2; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#F6F1E7; border:1px solid #E4DAC6; cursor:pointer;"><span style="{{ iconCloseModal }}"></span></button>
-        <div class="ek-modal-body" style="padding:28px 30px; background:#FFFFFF;">
-          <dc-import name="ui-PriceWatch" productName="{{ watchProduct }}" variantLabel="{{ watchVariant }}" price="{{ priceNum }}" loggedIn="{{ loggedIn }}" boxed="{{ false }}" onClose="{{ closePriceWatch }}" onSubmit="{{ onPriceWatch }}" hint-size="100%,420px"></dc-import>
-        </div>
-      </div>
-    </div>
   </sc-if>
 
   <sc-if value="{{ barOpen }}" hint-placeholder-val="{{ true }}">
@@ -446,7 +432,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;variant&quot;,&quot;single&quot;],&quot;default&quot;:&quot;variant&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ukázka&quot;}}">
 class Component extends DCLogic {
-  state = { varQtys: null, cartAdded: false, lastAdded: null, varReset: 0, mode: 'variant', sel: 0, qty: 1, avail: 'in', loggedIn: false, watchModal: false, priceModal: false, barOpen: true };
+  state = { varQtys: null, cartAdded: false, lastAdded: null, varReset: 0, mode: 'variant', sel: 0, qty: 1, avail: 'in', loggedIn: false, watchModal: false, barOpen: true };
 
   mask(name, size, color) {
     const url = 'assets/icons/' + name + '.svg';
@@ -564,8 +550,8 @@ class Component extends DCLogic {
 
       buyable, notBuyable: !buyable,
       watchNote: isVariant
-        ? 'Tato varianta teď není skladem a datum naskladnění neznáme. Zapněte si hlídacího psa a napíšeme vám.'
-        : 'Produkt teď není skladem a datum naskladnění neznáme. Zapněte si hlídacího psa a napíšeme vám.',
+        ? 'Tato varianta teď není skladem a datum naskladnění neznáme. Nechte nám e-mail a napíšeme vám, jakmile ji naskladníme.'
+        : 'Produkt teď není skladem a datum naskladnění neznáme. Nechte nám e-mail a napíšeme vám, jakmile ho naskladníme.',
       watchProduct: 'Kyselina citronová',
       watchVariant: isVariant ? cur.label : '',
       loggedIn,
@@ -578,10 +564,6 @@ class Component extends DCLogic {
       iconBarClose: this.mask('cancel-01', 16, '#4C653D'),
       watchModalOpen: this.state.watchModal,
       openWatchModal: () => this.setState({ watchModal: true }),
-      priceWatchOpen: this.state.priceModal,
-      openPriceWatch: () => this.setState({ priceModal: true }),
-      closePriceWatch: () => this.setState({ priceModal: false }),
-      onPriceWatch: (v) => window.dispatchEvent(new CustomEvent('ek-price-watch', { detail: v })),
       priceNum: Number(String(cur.price).replace(/[^0-9]/g, '')) || 110,
       showLoyaltyHint: !loggedIn && buyable,
       showLoyaltyMine: loggedIn && buyable,
@@ -590,8 +572,8 @@ class Component extends DCLogic {
       onLoyaltyLogin: (e) => { if (e) e.preventDefault(); window.dispatchEvent(new CustomEvent('ek-open-login')); },
       iconLoyaltyPct: this.mask('percent-circle', 17, '#8A5A28'),
       iconLoyaltyPctOn: this.mask('percent-circle', 17, '#4C653D'),
-      iconTagSm: this.mask('notification-01', 17, '#4C653D'),
       closeWatchModal: () => this.setState({ watchModal: false }),
+      iconBellW: this.mask('notification-01', 19, '#FFFFFF'),
       stopProp: (e) => e.stopPropagation(),
       iconCloseModal: this.mask('cancel-01', 20, '#4C653D'),
       onWatch: (mail) => window.dispatchEvent(new CustomEvent('ek-watchdog', { detail: { mail } })),
@@ -635,7 +617,7 @@ class Component extends DCLogic {
       iconCart: this.mask('shopping-cart-check-in-01', 24, 'currentColor'),
       iconBell: this.mask('notification-01', 24, 'currentColor'),
       iconHelp: this.mask('message-question', 24, '#4F6E2A'),
-      iconAlert: this.mask('alert-circle', 24, '#B8730B'),
+      iconAlert: this.mask('alert-circle', 24, '#A33203'),
       iconDownload: this.mask('download-01', 24, '#4C653D'),
       iconPen: this.mask('star', 24, 'currentColor'),
       iconArrow: this.mask('arrow-right-02', 24, 'currentColor'),

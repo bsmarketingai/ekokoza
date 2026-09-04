@@ -15,7 +15,7 @@
   .ek-ca-close { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; flex: 0 0 auto; border-radius: 50%; background: #F6F1E7; border: 1px solid #E4DAC6; cursor: pointer; transition: background .18s, border-color .18s; }
   .ek-ca-close:hover { background: #EFE7D6; border-color: #CFC4AA; }
   .ek-ca-cta { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 52px; padding: 0 28px; border: 1.5px solid #D14405; border-radius: 999px; background: #D14405; color: #fff; text-decoration: none; font-family: 'Work Sans',sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s; }
-  .ek-ca-cta:hover { background: #B23803; border-color: #B23803; }
+  .ek-ca-cta:hover { background: #B23803; border-color: #B23803; color: #fff; }
   .ek-ca-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 22px; border: 1.5px solid #CFC4AA; border-radius: 999px; background: #fff; color: #4C653D; text-decoration: none; font-family: 'Work Sans',sans-serif; font-size: 15.5px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s; }
   .ek-ca-ghost:hover { background: #F6F1E7; border-color: #4C653D; }
   .ek-ca-toggle { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 13px 16px; border: 1px solid #ECE3D2; border-radius: 12px; background: #fff; cursor: pointer; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; color: #4C653D; text-align: left; transition: background .18s, border-color .18s; }
@@ -31,6 +31,8 @@
     .ek-ca-foot { padding: 14px 18px 18px !important; }
     .ek-ca-sum { flex-direction: column !important; align-items: stretch !important; }
     .ek-ca-sum > a, .ek-ca-sum > button { width: 100%; }
+    .ek-ca-sum > span:last-child { flex-direction: column-reverse !important; align-items: stretch !important; }
+    .ek-ca-sum > span:last-child > a, .ek-ca-sum > span:last-child > button { width: 100%; }
     .ek-ca-mobile-only { display: flex !important; }
     .ek-ca-item { grid-template-columns: 64px minmax(0,1fr) !important; }
     .ek-ca-item > span:last-child { grid-column: 2; justify-self: start !important; text-align: left !important; }
@@ -89,9 +91,11 @@
             <span style="font-size:13px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Přidané zboží</span>
             <span style="font-family:'EB Garamond',serif; font-size:28px; font-weight:500; line-height:1.1; color:#2D3A2E;">{{ addedTotal }}</span>
           </span>
-          <a href="kosik.html" class="ek-ca-cta">{{ ctaLabel }}<span style="{{ iconArrow }}"></span></a>
+          <span style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <button onClick="{{ close }}" class="ek-ca-ghost"><span style="{{ iconBack }}"></span>Zpět do obchodu</button>
+            <a href="kosik.html" class="ek-ca-cta">{{ ctaLabel }}<span style="{{ iconArrow }}"></span></a>
+          </span>
         </div>
-        <button onClick="{{ close }}" class="ek-ca-ghost ek-ca-mobile-only" style="display:none;"><span style="{{ iconBack }}"></span>Zpět do obchodu</button>
       </div>
     </div>
   </div>
@@ -99,7 +103,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:720},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string,variant?:string,qty:number,price:number,noVat?:number,img?:string,state?:string,date?:string}[]&quot;},&quot;cartItems&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string,qty?:number,price:number,img?:string}[]&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;turnover&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12400,&quot;min&quot;:0,&quot;max&quot;:60000,&quot;step&quot;:100,&quot;unit&quot;:&quot;Kč&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Přejít do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;()=&gt;void&quot;}}">
 class Component extends DCLogic {
-  state = { cartOpen: false, closed: false };
+  state = { cartOpen: false, closed: false, live: null };
 
   mask(name, size, color) {
     const base = /\/components\//.test(location.pathname) ? '../' : '';
@@ -110,12 +114,27 @@ class Component extends DCLogic {
   componentDidMount() {
     this._esc = (e) => { if (e.key === 'Escape') this.close(); };
     window.addEventListener('keydown', this._esc);
+    // Samoobslužný režim: na výpisech si okno otevře samo podle události z karty produktu
+    if (this.props.listen === true) {
+      this._onAdd = (e) => {
+        const d = e.detail || {};
+        if (!d.title || d.silent) return;
+        this.setState({
+          live: [{ title: d.title, variant: d.variant ?? '', qty: Number(d.qty ?? 1), price: Number(d.price ?? 0), img: d.img || undefined, state: d.state ?? 'ready' }],
+          closed: false, cartOpen: false,
+        });
+      };
+      window.addEventListener('ek-cart-add', this._onAdd);
+    }
   }
 
-  componentWillUnmount() { window.removeEventListener('keydown', this._esc); }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this._esc);
+    if (this._onAdd) window.removeEventListener('ek-cart-add', this._onAdd);
+  }
 
   close = () => {
-    this.setState({ closed: true, cartOpen: false });
+    this.setState({ closed: true, cartOpen: false, live: null });
     if (this.props.onClose) this.props.onClose();
   };
 
@@ -124,10 +143,13 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const open = (this.props.open ?? true) && !this.state.closed;
-    const items = (this.props.items ?? [
+    const listen = this.props.listen === true;
+    const open = listen
+      ? (!!this.state.live && !this.state.closed)
+      : ((this.props.open ?? true) && !this.state.closed);
+    const items = (listen ? (this.state.live ?? []) : (this.props.items ?? [
       { title: 'Přírodní jíl – bílý', variant: '100 g', qty: 2, price: 49, noVat: 40, img: 'assets/products/kyselina-citronova-1-kg.webp', state: 'ready' },
-    ]).filter(i => Number(i.qty) > 0);
+    ])).filter(i => Number(i.qty) > 0);
     const pieces = items.reduce((s, i) => s + Number(i.qty), 0);
     const added = items.reduce((s, i) => s + Number(i.qty) * Number(i.price), 0);
     const addedNoVat = items.reduce((s, i) => s + Number(i.qty) * Number(i.noVat ?? i.price * 0.826), 0);

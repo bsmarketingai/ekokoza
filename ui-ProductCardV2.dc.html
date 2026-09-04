@@ -217,7 +217,7 @@ class Component extends DCLogic {
       ctaLabel: 'Do košíku',
       addToCart: (e) => {
         e.preventDefault();
-        window.dispatchEvent(new CustomEvent('ek-cart-add', { detail: { title: this.props.title, variant: cur.label, qty, price: cur.price } }));
+        window.dispatchEvent(new CustomEvent('ek-cart-add', { detail: { title: this.props.title, variant: cur.label, qty, price: cur.price, img: this.props.img ?? '' } }));
         this.setState({ qty: 1 });
       },
       imgStyle: 'position:absolute; inset:14px; background:#fff center/contain no-repeat; background-image:url("' + imgUrl + '");',

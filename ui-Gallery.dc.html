@@ -112,7 +112,7 @@ class Component extends DCLogic {
         this.setState({ fav: next });
         window.dispatchEvent(new CustomEvent('ek-fav-change', { detail: { count: store.size } }));
       },
-      iconZoom: this.mask('search-01', 24, '#4C653D'),
+      iconZoom: this.mask('zoom-in-01', 24, '#4C653D'),
       iconClose: this.mask('cancel-01', 24, '#F6F1E7'),
     };
   }

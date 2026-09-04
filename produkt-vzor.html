@@ -53,8 +53,8 @@
   .ek-anchor:hover { border-color: #4C653D; background: #F4F7EA; color: #4C653D; }
   .ek-acc-btn:hover { background: #F4F7EA !important; }
   .ek-dose { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; background: rgba(63,127,44,.10); border: 1px solid rgba(63,127,44,.3); color: #33661F; font-size: 13.5px; font-weight: 600; }
-  @media (max-width: 900px) {
-    .ek-varbar { left: 10px !important; right: 10px !important; transform: none !important; flex-wrap: wrap; justify-content: center; border-radius: 18px !important; }
+  @media (max-width: 1320px) {
+    .ek-varbar { left: 10px !important; right: 10px !important; transform: none !important; flex-wrap: wrap; justify-content: center; max-width: calc(100vw - 20px); border-radius: 18px !important; }
     .ek-varbar-note { display: none !important; }
   }
   @media (max-width: 700px) {
@@ -79,7 +79,7 @@
 
 <div class="ek-pagebot" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
-  <dc-import name="ui-Header" active="produkty" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
+  <dc-import name="ui-Header" active="produkty" topbarVariant="{{ topbarVar }}" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
 
   <div style="max-width:1720px; margin:0 auto; position:relative;">
 
@@ -144,7 +144,7 @@
         </sc-if>
 
         <sc-if value="{{ isVariant }}" hint-placeholder-val="{{ true }}">
-          <dc-import name="ui-VariantPicker" mode="select" selected="{{ selected }}" onSelect="{{ onSelect }}" heading="Vyberte balení" variants="{{ variants }}" hint-size="100%,280px"></dc-import>
+          <dc-import name="ui-VariantPicker" mode="select" layout="{{ varLayout }}" selected="{{ selected }}" onSelect="{{ onSelect }}" heading="Vyberte balení" variants="{{ variants }}" hint-size="100%,280px"></dc-import>
         </sc-if>
         <sc-if value="{{ isSingle }}" hint-placeholder-val="{{ false }}">
           <sc-if value="{{ buyable }}" hint-placeholder-val="{{ true }}">
@@ -612,24 +612,6 @@
           </div>
 
           <div class="ek-card" style="padding:18px 20px;">
-            <button onClick="{{ toggleParams }}" aria-expanded="{{ paramsOpen }}" style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; padding:0; background:transparent; border:none; cursor:pointer; text-align:left; font-family:'Work Sans',sans-serif;">
-              <span class="ek-h3" style="margin:0;">Parametry</span>
-              <span style="{{ paramsChev }}"></span>
-            </button>
-            <div style="display:grid; grid-template-rows:{{ paramsRows }}; transition:grid-template-rows .32s ease;">
-              <div style="min-height:0; overflow:hidden;">
-              <sc-for list="{{ params }}" as="p" hint-placeholder-count="7">
-                <div class="ek-prow">
-                  <span style="color:#6B6B5E;">{{ p.k }}</span>
-                  <span style="font-weight:600; color:#2A2A24; text-align:right;">{{ p.v }}</span>
-                </div>
-              </sc-for>
-              <a href="#karta" class="ek-link-u" style="display:inline-block; margin-top:12px; font-size:14px; font-weight:600; text-decoration:none;">Celá technická karta</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="ek-card" style="padding:18px 20px;">
             <button onClick="{{ toggleDocs }}" aria-expanded="{{ docsOpen }}" style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; padding:0; background:transparent; border:none; cursor:pointer; text-align:left; font-family:'Work Sans',sans-serif;">
               <span style="display:flex; flex-direction:column; gap:3px;">
                 <span class="ek-h3" style="margin:0;">Dokumentace</span>
@@ -769,6 +751,7 @@
 <sc-if value="{{ cartAddedOpen }}" hint-placeholder-val="{{ false }}">
   <dc-import name="ui-CartAdded" open="{{ true }}" items="{{ addedItems }}" cartTotal="{{ 1289 }}" cartCount="{{ 2 }}" turnover="{{ 12400 }}" onClose="{{ closeCartAdded }}" hint-size="100%,100%"></dc-import>
 </sc-if>
+<dc-import name="ui-CartAdded" listen="{{ true }}" cartTotal="{{ 1289 }}" cartCount="{{ 2 }}" turnover="{{ 12400 }}" hint-size="100%,100%"></dc-import>
 
 <sc-if value="{{ watchModalOpen }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ closeWatchModal }}" role="dialog" aria-label="Upozornit na naskladnění" class="ek-modal-wrap" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(34,48,31,.55); backdrop-filter:blur(5px); font-family:'Work Sans',sans-serif;">
@@ -805,7 +788,13 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
-  state = { sel: 0, cartAdded: false, safety: false, docs: false, params: true, mode: 'variant', avail: 'in', loggedIn: false, watchModal: false, barOpen: true, qty: 1, openSection: 'vlastnosti' };
+  state = { sel: 0, cartAdded: false, safety: false, docs: false, params: true, mode: 'variant', avail: 'in', loggedIn: false, watchModal: false, barOpen: true, qty: 1, openSection: 'vlastnosti', varLayout: 'rows' };
+
+  setTopbar(v) {
+    try { localStorage.setItem('ekokoza-topbar-variant', v); } catch (e) {}
+    window.dispatchEvent(new CustomEvent('ek-topbar-variant', { detail: { variant: v } }));
+    this.setState({ topbarVar: v });
+  }
 
   mask(name, size, color) {
     const url = 'assets/icons/' + name + '.svg';
@@ -851,10 +840,21 @@ class Component extends DCLogic {
     const cur = isVariant ? cur0 : Object.assign({}, baseVariants[1], { label: '50 ml' });
     const curState = soldOut ? 'longterm' : cur.state;
     const buyable = !soldOut && !['toorder', 'longterm', 'ended'].includes(cur.state);
+    const varLayout = this.state.varLayout ?? 'rows';
+    const topbarVar = this.state.topbarVar ?? 'v1';
     const demoGroups = [
       { label: 'Produkt', options: [
         { label: 'Variantní', on: isVariant, pick: () => this.setState({ mode: 'variant', sel: 0 }) },
         { label: 'Jednoduchý', on: !isVariant, pick: () => this.setState({ mode: 'single' }) },
+      ] },
+      { label: 'Varianty', options: [
+        { label: 'Řádkově', on: varLayout === 'rows', pick: () => this.setState({ varLayout: 'rows' }) },
+        { label: 'Karty', on: varLayout === 'cards', pick: () => this.setState({ varLayout: 'cards' }) },
+      ] },
+      { label: 'Horní lišta', options: [
+        { label: 'V1', on: topbarVar === 'v1', pick: () => this.setTopbar('v1') },
+        { label: 'V2', on: topbarVar === 'v2', pick: () => this.setTopbar('v2') },
+        { label: 'V3', on: topbarVar === 'v3', pick: () => this.setTopbar('v3') },
       ] },
       { label: 'Dostupnost', options: [
         { label: 'Dostupný', on: !soldOut, pick: () => this.setState({ avail: 'in' }) },
@@ -919,6 +919,8 @@ class Component extends DCLogic {
       stockDate: cur.date ?? '',
       stockNote: NOTES[curState] || NOTES.ready,
       isVariant, isSingle: !isVariant,
+      varLayout,
+      topbarVar,
       sections,
       buyable, notBuyable: !buyable,
       loggedIn,

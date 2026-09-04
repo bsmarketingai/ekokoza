@@ -26,6 +26,10 @@
   .ek-tool { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px; border: 1.5px solid #E2D9C4; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 14px; font-weight: 600; color: #2A2A24; cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s; }
   .ek-tool:hover { border-color: #4C653D; background: #FDFBF5; }
   .ek-tool-on { background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-seg { display: inline-flex; align-items: center; gap: 3px; padding: 3px; border: 1.5px solid #E2D9C4; border-radius: 999px; background: #F1EADC; }
+  .ek-seg-b { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 18px; border: 0; border-radius: 999px; background: transparent; font-family: 'Work Sans',sans-serif; font-size: 15px; font-weight: 600; color: #4C653D; cursor: pointer; transition: background .18s, color .18s; }
+  .ek-seg-b:hover { background: rgba(76,101,61,.1); }
+  .ek-seg-on, .ek-seg-on:hover { background: #4C653D; color: #F6F1E7; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
   .ek-card { background: #fff; border: 1px solid #ECE3D2; border-radius: 14px; }
   .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
@@ -127,7 +131,7 @@
           <h1 class="ek-h1">Oblíbené</h1>
           <span style="font-size:14.5px; color:#6B6B5E;">{{ countLabel }}</span>
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <div class="ek-seg">
           <button onClick="{{ setTabP }}" class="{{ clsTabP }}">Produkty<span style="font-size:12.5px; font-weight:700; opacity:.65;">{{ nProducts }}</span></button>
           <button onClick="{{ setTabR }}" class="{{ clsTabR }}">Recepty<span style="font-size:12.5px; font-weight:700; opacity:.65;">{{ nRecipes }}</span></button>
         </div>
@@ -208,6 +212,7 @@
       <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
     </div>
   </sc-if>
+<dc-import name="ui-CartAdded" listen="{{ true }}" turnover="{{ 12400 }}" hint-size="100%,100%"></dc-import>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
@@ -244,7 +249,7 @@ class Component extends DCLogic {
     const list = S.empty || isR ? [] : Component.FAVS;
     const rlist = S.empty || !isR ? [] : Component.FAV_RECIPES;
     const n = isR ? rlist.length : list.length;
-    const tab = (on) => on ? 'ek-tool ek-tool-on' : 'ek-tool';
+    const tab = (on) => on ? 'ek-seg-b ek-seg-on' : 'ek-seg-b';
     const seg = (on) => "font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; padding:8px 14px; min-height:32px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;"
       + (on ? ' background:#4C653D; color:#F6F1E7; border:1px solid #4C653D;' : ' background:transparent; color:#6B6B5E; border:1px solid transparent;');
     return {

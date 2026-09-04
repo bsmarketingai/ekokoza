@@ -348,7 +348,7 @@
           </sc-for>
         </div>
         <sc-if value="{{ facetOpen }}" hint-placeholder-val="{{ false }}">
-          <div class="ek-facetpop">
+          <div class="ek-facetpop" style="{{ facetPopStyle }}">
             <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">{{ facetTitle }}</span>
             <sc-for list="{{ facetOptions }}" as="o" hint-placeholder-count="5">
               <label class="ek-check">
@@ -460,6 +460,7 @@
   </div>
   </sc-if>
 </div>
+<dc-import name="ui-CartAdded" listen="{{ true }}" turnover="{{ 12400 }}" hint-size="100%,100%"></dc-import>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:4,&quot;max&quot;:48,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Výpis&quot;}}">
 class Component extends DCLogic {
@@ -696,7 +697,18 @@ class Component extends DCLogic {
           open: on,
           count: n,
           hasCount: n > 0,
-          toggle: () => this.setState({ facet: on ? null : g.key }),
+          toggle: (e) => {
+            let left = 12;
+            const btn = e && e.currentTarget;
+            if (btn && btn.closest) {
+              const bar = btn.closest('.ek-bar');
+              if (bar) {
+                const b = btn.getBoundingClientRect(), r = bar.getBoundingClientRect();
+                left = Math.max(8, Math.min(b.left - r.left, Math.max(8, r.width - 266)));
+              }
+            }
+            this.setState({ facet: on ? null : g.key, facetLeft: left });
+          },
           btnStyle: 'white-space:nowrap;' + (on || n > 0 ? ' border-color:#4C653D; background:#FDFBF5; color:#2D3A2E;' : ''),
           caret: this.mask('arrow-down-01', 16, '#4C653D'),
           options: g.options.map(o => ({
@@ -707,6 +719,7 @@ class Component extends DCLogic {
         };
       }),
       facetOpen: this.state.facet !== null,
+      facetPopStyle: 'left:' + Number(this.state.facetLeft ?? 12) + 'px;',
       facetTitle: (Component.FACETS.find(g => g.key === this.state.facet) || {}).label || '',
       facetOptions: ((Component.FACETS.find(g => g.key === this.state.facet) || {}).options || []).map(o => ({
         label: o.label,

@@ -422,7 +422,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
-  state = { tab: 'ing', off: {}, fav: false, recapOpen: true, guide: null };
+  state = { tab: 'ing', off: Component.TOOLS.reduce((a, t) => { a[t.name] = true; return a; }, {}), fav: false, recapOpen: true, guide: null };
 
   static RECAP = [
     { label: 'Fáze A', items: [

@@ -21,6 +21,12 @@
   .ek-var-on { border-color: #4C653D !important; background: #F4F7EA !important; box-shadow: 0 0 0 2px rgba(76,101,61,.16); }
   .ek-var-more { border: none; background: transparent; color: #4C653D; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; padding: 4px 0; align-self: flex-start; }
   .ek-var-more:hover { color: #B23803; }
+  .ek-varc { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 11px 13px 10px; min-width: 0; border: 1.5px solid #E2D9C4; border-radius: 12px; background: #fff; cursor: pointer; text-align: left; font-family: 'Work Sans',sans-serif; transition: border-color .2s, background .2s, box-shadow .2s; }
+  .ek-varc:hover { border-color: #4C653D; background: #FDFBF5; }
+  .ek-varc.ek-var-on:hover { background: #F4F7EA; }
+  .ek-varc-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+  @media (max-width: 520px) { .ek-varc-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  .ek-varc > span:nth-child(2), .ek-varc > span:nth-child(3) { padding-right: 26px; }
 </style>
 </helmet>
 <div style="display:flex; flex-direction:column; gap:11px; font-family:'Work Sans',sans-serif;">
@@ -50,6 +56,20 @@
             </sc-if>
           </span>
         </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ cardsMode }}" hint-placeholder-val="{{ false }}">
+    <div class="ek-varc-grid">
+      <sc-for list="{{ cardRows }}" as="v" hint-placeholder-count="4">
+        <button onClick="{{ v.select }}" class="{{ v.cls }}" aria-pressed="{{ v.on }}">
+          <span style="{{ v.tick }}"></span>
+          <span style="{{ v.labelStyle }}">{{ v.label }}</span>
+          <span style="{{ v.priceStyle }}">{{ v.price }}</span>
+          <span style="display:block; width:100%; margin-top:7px; padding-top:7px; border-top:1px solid #EFE7D6;">
+            <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" withNote="{{ false }}" size="{{ 12 }}" hint-size="100%,16px"></dc-import>
+          </span>
+        </button>
       </sc-for>
     </div>
   </sc-if>
@@ -99,11 +119,34 @@ class Component extends DCLogic {
     const shown = hasMore && !open ? variants.slice(0, maxVisible) : variants;
 
     const qtyMode = (this.props.mode ?? 'select') === 'qty';
+    const cardsMode = !qtyMode && (this.props.layout ?? 'rows') === 'cards';
     const qtys = this.state.qtys ?? {};
 
     return {
       qtyMode,
-      selectDisplay: qtyMode ? 'none' : 'flex',
+      cardsMode,
+      selectDisplay: (qtyMode || cardsMode) ? 'none' : 'flex',
+      cardRows: shown.map((v, i) => {
+        const on = i === sel;
+        return {
+          label: v.label,
+          price: v.price,
+          on,
+          state: v.state ?? 'ready',
+          date: v.date ?? '',
+          cls: on ? 'ek-varc ek-var-on' : 'ek-varc',
+          labelStyle: 'font-size:16.5px; font-weight:' + (on ? '700' : '600') + '; color:#2A2A24; white-space:nowrap;',
+          tick: 'position:absolute; top:9px; right:9px; '
+            + (on
+              ? this.mask('checkmark-circle-01', 22, '#4C653D')
+              : 'display:inline-block; width:22px; height:22px; flex:0 0 auto; border-radius:50%; border:1.5px solid #D8CDB4;'),
+          priceStyle: "font-family:'EB Garamond',serif; font-size:19px; font-weight:500; color:#4C653D; white-space:nowrap;",
+          select: () => {
+            this.setState({ sel: i });
+            if (this.props.onSelect) this.props.onSelect(i, v);
+          },
+        };
+      }),
       qtyRows: shown.map((v, i) => {
         const st = v.state ?? 'ready';
         const buyable = !['toorder', 'longterm', 'unavail', 'ended', 'discontinued'].includes(st);

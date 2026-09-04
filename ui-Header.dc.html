@@ -118,10 +118,16 @@
     .ek-hdr-icons { margin-right: 8px !important; }
     .ek-topbar-txt { font-size: 12px !important; }
   }
+  .ek-topbar-v2 > .ek-topbar { background: #4F6B3E !important; color: #F6F1E7 !important; box-shadow: inset 0 -1px 0 rgba(246,241,231,.18); }
+  .ek-topbar-v2 > .ek-topbar > .ek-pad { padding-top: 9px !important; padding-bottom: 9px !important; }
+  .ek-topbar-v2 > .ek-topbar a { color: #F6F1E7 !important; }
+  .ek-topbar-v3 > .ek-topbar { display: none !important; }
+  .ek-topbar-v3 .ek-logo-badge { top: -27px !important; }
+  .ek-topbar-v2 .ek-logo-badge { top: -65px !important; }
 </style>
 </helmet>
 
-<div style="position:sticky; top:0; z-index:50; font-family:'Work Sans',sans-serif;">
+<div class="{{ topbarCls }}" style="position:sticky; top:0; z-index:50; font-family:'Work Sans',sans-serif;">
 
   <!-- TOPBAR -->
   <div class="ek-topbar" style="background:#4C653D; color:#EFE7D6;">
@@ -263,6 +269,12 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    try {
+      const tv = localStorage.getItem('ekokoza-topbar-variant');
+      if (tv === 'v1' || tv === 'v2' || tv === 'v3') this.setState({ topbar: tv });
+    } catch (e) {}
+    this._onTopbar = (e) => { const v = e.detail && e.detail.variant; if (v === 'v1' || v === 'v2' || v === 'v3') this.setState({ topbar: v }); };
+    window.addEventListener('ek-topbar-variant', this._onTopbar);
     this._onOpenLogin = () => this.setState({ loginOpen: true, cartOpen: false, mega: -1 });
     window.addEventListener('ek-open-login', this._onOpenLogin);
     this._onDocDown = (e) => {
@@ -337,6 +349,8 @@ class Component extends DCLogic {
       setCz: () => this.setState({ lang: 'cz' }),
       setSk: () => this.setState({ lang: 'sk' }),
       topbarText: this.props.topbarText ?? 'Doprava zdarma od 2000 Kč · Ověřené recepty od roku 2009',
+      topbarCls: (this.props.topbarVariant ?? this.state.topbar ?? 'v1') === 'v2' ? 'ek-topbar-v2'
+        : ((this.props.topbarVariant ?? this.state.topbar ?? 'v1') === 'v3' ? 'ek-topbar-v3' : ''),
       homeHref: this.props.homeHref ?? 'index.html',
       cartCount: S.cart.reduce((a, p) => a + p.qty, 0),
       hasCart: S.cart.length > 0,

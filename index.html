@@ -52,7 +52,7 @@
     .ek-usp3-t { flex: 1 1 auto; min-width: 0; font-size: 18px !important; padding-right: 74px !important; }
     .ek-usp3-d { flex: 0 0 100%; margin-top: -4px; font-size: 13px !important; padding-right: 80px !important; }
     .ek-usp3-more { flex: 0 0 100%; margin-top: 0 !important; font-size: 12.5px !important; }
-    .ek-usp3-img { width: 88px !important; height: 88px !important; right: -6px !important; bottom: -10px !important; }
+    .ek-usp3-img { width: 88px !important; height: 88px !important; right: 6px !important; bottom: 6px !important; }
     .ek-usp4-panel { grid-template-columns: 1fr !important; }
   }
   /* imported card components must fill their grid cell so rows stay equal height */
@@ -222,10 +222,21 @@
     .ek-hdr-icons { margin-right: 8px !important; }
     .ek-topbar-txt { font-size: 11px !important; }
   }
+  /* Blok 8: maskot vpravo dole, text i karty si nechávají volné místo, aby do něj nezasahovaly */
+  #blok8 .ek-loyal-head { max-width: min(1080px, calc(100% - 500px)) !important; }
+  #blok8 .ek-loyalty { max-width: min(1080px, calc(100% - 500px)) !important; }
+  @media (max-width: 1180px) and (min-width: 901px) {
+    #blok8 .ek-loyalty { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+  }
+  @media (max-width: 1340px) {
+    #blok8 .ek-loyal-head, #blok8 .ek-loyalty { max-width: none !important; }
+    #blok8 .ek-loyal-head { padding-right: 29% !important; }
+    #blok8 .ek-loyal-goat { width: 25% !important; right: 14px !important; top: 26px !important; bottom: auto !important; }
+  }
   @media (max-width: 900px) {
     .ek-thirds { grid-template-columns: repeat(3,1fr) !important; gap: 12px !important; }
     .ek-two { grid-template-columns: 1fr !important; }
-    .ek-loyalty { grid-template-columns: 1fr !important; }
+    .ek-loyalty { grid-template-columns: 1fr !important; max-width: none !important; }
     .ek-ugc { grid-template-columns: repeat(3,1fr) !important; }
     .ek-foot { grid-template-columns: repeat(2,1fr) !important; }
     .ek-nav { display: none !important; }
@@ -252,7 +263,6 @@
     #blok3 .ek-scrollrow { grid-auto-columns: 240px !important; }
     #blok5 .ek-scrollrow, #blok6 .ek-scrollrow { grid-auto-columns: 260px !important; }
     .ek-rev3 { grid-template-columns: repeat(3,1fr) !important; gap: 12px !important; }
-    .ek-loyal-goat { width: 130px !important; }
     /* Fix: hero recipe/loyalty cards collapse to 0 (only absolute children) */
     .ek-hero > .ek-cat { min-height: 360px !important; }
     .ek-mobtap { min-height: 44px; }
@@ -279,7 +289,6 @@
   @media (max-width: 600px) {
     .ek-rev3 { grid-template-columns: 1fr !important; }
     .ek-thirds { grid-template-columns: 1fr !important; }
-    .ek-loyal-goat { display: none !important; }
     .ek-nl-t { font-size: 22px !important; line-height: 1.15 !important; }
     .ek-nl-d { font-size: 15px !important; line-height: 1.45 !important; }
     .ek-nl-i { width: 56px !important; height: 56px !important; }
@@ -358,12 +367,12 @@
       </a>
 
       <a href="#blok7" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#4C653D; display:block;">
-        <div class="ek-ph" style="position:absolute; inset:0; background:linear-gradient(165deg,#5A7548 0%,#4C653D 55%,#425834 100%); transition:transform .6s ease;"></div>
-        <img src="assets/usp/1-recepty.png" alt="" class="ek-hero-goat" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-62%); width:58%; border-radius:50%; aspect-ratio:1/1; object-fit:cover; border:5px solid rgba(246,241,231,.25); box-shadow:0 14px 30px rgba(0,0,0,.35); transition:transform .6s ease;">
+        <img src="assets/hero/pro-zacatecniky.png" alt="Koza u mísící mísy se surovinami" class="ek-ph" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 34%; transition:transform .6s ease;">
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(30,25,15,.30) 0%,rgba(30,25,15,0) 30%,rgba(26,22,14,.32) 64%,rgba(22,18,11,.82) 100%);"></div>
         <span style="position:absolute; top:16px; left:16px; background:#F6F1E7; color:#4C653D; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px; letter-spacing:.04em;">Pro začátečníky</span>
         <div style="position:absolute; bottom:0; left:0; right:0; padding:22px;">
-          <h3 style="margin:0 0 4px; font-family:'EB Garamond',serif; font-weight:500; font-size:21px; color:#fff; line-height:1.15;">Tvoříte poprvé? Provedeme vás</h3>
-          <span style="color:#F6EFDD; font-size:14px; display:inline-flex; align-items:center; gap:6px;">Otevřít průvodce {{ iconArrow }}</span>
+          <h3 style="margin:0 0 4px; font-family:'EB Garamond',serif; font-weight:500; font-size:21px; color:#fff; line-height:1.15; text-shadow:0 1px 8px rgba(0,0,0,.45);">Tvoříte poprvé? Provedeme vás</h3>
+          <span style="color:#F6EFDD; font-size:14px; display:inline-flex; align-items:center; gap:6px; text-shadow:0 1px 6px rgba(0,0,0,.4);">Otevřít průvodce {{ iconArrow }}</span>
         </div>
       </a>
     </div>
@@ -416,7 +425,7 @@
   <sc-if value="{{ uspV1 }}" hint-placeholder-val="{{ true }}">
   <section style="margin-top:48px; padding:0 32px; position:relative;" class="ek-pad">
     <div style="position:relative; z-index:1; max-width:1560px; margin:0 auto;">
-      <dc-import name="ui-USP" items="{{ benefits }}" media="none" withPhoto="{{ true }}" hint-size="100%,190px"></dc-import>
+      <dc-import name="ui-USP" items="{{ benefits }}" media="none" withPhoto="{{ true }}" photo="assets/maskot-lezici.png" hint-size="100%,190px"></dc-import>
     </div></section>
   </sc-if>
 
@@ -590,18 +599,18 @@
   <!-- ============ BLOK 8 — VĚRNOSTNÍ PROGRAM ============ -->
   <section id="blok8" style="padding:64px 32px 8px; position:relative; z-index:1;" class="ek-pad">
     <div style="max-width:1560px; margin:0 auto; background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); border-radius:18px; overflow:hidden; position:relative; z-index:1; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);">
-      <div style="padding:52px;" class="ek-pad">
+      <img src="assets/maskot-balicek.png" alt="" class="ek-loyal-goat" style="position:absolute; right:-160px; bottom:-90px; width:620px; opacity:1; pointer-events:none; z-index:0;">
+      <div style="padding:52px; position:relative; z-index:1;" class="ek-pad">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:40px; margin-bottom:36px;">
-          <div style="max-width:620px;">
+          <div class="ek-loyal-head">
           <p style="margin:0 0 10px; color:#D6E0C8; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Věrnostní program</p>
           <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:38px; color:#F6F1E7; line-height:1.08;">Odměňujeme opakovanou tvorbu.</h2>
           <p style="margin:0; color:#E2E8D6; font-size:17px; line-height:1.55;">Žádné slevové hony, žádné odpočty. Čím déle s námi tvoříte, tím lepší podmínky máte — jednoduše a férově.</p>
         </div>
-          <img src="assets/vernostni-emblem-2.png" alt="" class="ek-loyal-goat" style="width:210px; flex-shrink:0; transform:rotate(5deg); filter:drop-shadow(0 16px 28px rgba(0,0,0,.35));">
         </div>
         <div class="ek-loyalty" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-bottom:36px;">
           <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
-            <div style="background:rgba(246,241,231,.06); border:1px solid rgba(246,241,231,.14); border-radius:14px; padding:26px;">
+            <div style="background:rgba(59,79,47,.7); border:1px solid rgba(246,241,231,.16); border-radius:14px; padding:26px;">
               <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:12px;">
                 <span style="font-family:'EB Garamond',serif; font-size:21px; color:#F6F1E7; font-weight:500;">{{ t.name }}</span>
                 <span style="font-family:'EB Garamond',serif; font-size:28px; color:#EBD284; font-weight:500;">{{ t.off }}</span>
@@ -610,7 +619,7 @@
             </div>
           </sc-for>
         </div>
-        <a href="vernostni-program.html" class="ek-cta-dark" style="display:inline-flex; align-items:center; gap:9px; background:#F6F1E7; color:#4C653D; border:1.5px solid #F6F1E7; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:background .2s, border-color .2s;">Zjistit více o věrnostním programu {{ iconArrow }}</a>
+        <a href="vernostni-program.html" class="ek-cta-dark" style="display:inline-flex; align-items:center; gap:9px; background:#F6F1E7; color:#4C653D; border:1.5px solid #F6F1E7; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:background .2s, border-color .2s;"><span style="{{ iconLoyalCta }}"></span>Zjistit více o věrnostním programu {{ iconArrow }}</a>
       </div>
     </div>
   </section>
@@ -1021,9 +1030,9 @@ class Component extends DCLogic {
       const accent = i === 3;
       return Object.assign({}, b, {
         hasImg: true,
-        boxStyle: 'position:relative; overflow:hidden; display:flex; flex-direction:column; gap:8px; min-height:0; padding:18px 22px 16px; border-radius:14px; text-decoration:none; transition:transform .25s, box-shadow .25s;'
+        boxStyle: 'position:relative; display:flex; flex-direction:column; gap:8px; min-height:148px; padding:18px 22px 16px; border-radius:14px; text-decoration:none; transition:transform .25s, box-shadow .25s;'
           + ' background:' + (accent ? '#E9EDDF' : '#FFFDF6') + '; border:1px solid ' + (accent ? '#D8E0C6' : '#EFE7D6') + ';',
-        imgStyle: 'position:absolute; right:-8px; bottom:-12px; width:116px; height:116px; background:center/contain no-repeat; background-image:url("' + b.img + '"); mix-blend-mode:multiply; pointer-events:none; transition:transform .3s ease;',
+        imgStyle: 'position:absolute; right:8px; bottom:8px; width:112px; height:112px; max-height:calc(100% - 16px); background:center bottom/contain no-repeat; background-image:url("' + b.img + '"); mix-blend-mode:multiply; pointer-events:none; transition:transform .3s ease;',
         tStyle: "font-family:'EB Garamond',serif; font-weight:500; font-size:21px; line-height:1.15; padding-right:84px; color:#4C653D;",
         dStyle: 'font-size:13.5px; line-height:1.45; padding-right:92px; color:#6B6B5E;',
         moreStyle: 'margin-top:4px; font-size:13px; font-weight:600; transition:letter-spacing .25s; color:#D14405;',
@@ -1160,6 +1169,7 @@ class Component extends DCLogic {
       iconVarUser: this.maskStyle('user', 17, '#4C653D'),
       iconVarbar: this.maskStyle('grid-view', 17, '#4C653D'),
       iconVarUsp: this.maskStyle('leaf-01', 17, '#4C653D'),
+      iconLoyalCta: this.maskStyle('percent-circle', 19, '#D14405') + ' flex:0 0 auto;',
       uspV1: uspVar === 'v1', uspV2: uspVar === 'v2', uspV3: uspVar === 'v3', uspV4: uspVar === 'v4',
       uspV1Style: segBtn(uspVar === 'v1'), uspV2Style: segBtn(uspVar === 'v2'),
       uspV3Style: segBtn(uspVar === 'v3'), uspV4Style: segBtn(uspVar === 'v4'),

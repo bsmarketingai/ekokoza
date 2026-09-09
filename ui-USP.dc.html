@@ -14,7 +14,7 @@
   .ek-usp-i:hover { transform: translateY(-2px); }
   .ek-usp-i:hover .ek-usp-t { color: #B23803; }
   .ek-usp-dark .ek-usp-i:hover .ek-usp-t { color: #FFFFFF; }
-  .ek-usp-withphoto { display: grid; grid-template-columns: 124px minmax(0,1fr); gap: 20px; align-items: center; }
+  .ek-usp-withphoto { display: grid; grid-template-columns: 152px minmax(0,1fr); gap: 20px; align-items: center; }
   /* Jeden řádek držíme co nejdéle — nejdřív se stahují mezery a písmo, teprve pak se zalamuje */
   @media (max-width: 1320px) and (min-width: 1041px) {
     .ek-usp-grid { gap: 8px 12px !important; }
@@ -22,11 +22,11 @@
     .ek-usp-i .ek-usp-d { font-size: 12.5px !important; }
   }
   @media (max-width: 1120px) and (min-width: 1041px) {
-    .ek-usp-withphoto { grid-template-columns: 96px minmax(0,1fr) !important; gap: 14px !important; }
+    .ek-usp-withphoto { grid-template-columns: 118px minmax(0,1fr) !important; gap: 14px !important; }
     .ek-usp-t { font-size: 16px !important; }
   }
   @media (max-width: 1040px) { .ek-usp-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; } }
-  @media (max-width: 860px) { .ek-usp-withphoto { grid-template-columns: 1fr; gap: 14px; } .ek-usp-photo { max-width: 130px; margin: 0 auto; } }
+  @media (max-width: 860px) { .ek-usp-withphoto { grid-template-columns: 1fr; gap: 14px; } .ek-usp-photo { max-width: 160px; margin: 0 auto; } }
   @media (max-width: 720px) {
     .ek-usp-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 14px !important; }
     .ek-usp-t { font-size: 22px !important; line-height: 1.15 !important; }
@@ -72,7 +72,7 @@
 </section>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:280},&quot;media&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;photo&quot;,&quot;icon&quot;,&quot;none&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;withPhoto&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;photo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/usp/koza-lezi.png&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;card&quot;,&quot;plain&quot;],&quot;default&quot;:&quot;card&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;tone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;stack&quot;,&quot;row&quot;],&quot;default&quot;:&quot;stack&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;columns&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;min&quot;:2,&quot;max&quot;:6,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;iconSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:64,&quot;min&quot;:40,&quot;max&quot;:88,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;kicker&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string, desc?:string, img?:string, icon?:string, href?:string}[]&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:280},&quot;media&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;photo&quot;,&quot;icon&quot;,&quot;none&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;withPhoto&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;photo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/maskot-lezici.png&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;card&quot;,&quot;plain&quot;],&quot;default&quot;:&quot;card&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;tone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vzhled&quot;},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;stack&quot;,&quot;row&quot;],&quot;default&quot;:&quot;stack&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;columns&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;min&quot;:2,&quot;max&quot;:6,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;iconSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:64,&quot;min&quot;:40,&quot;max&quot;:88,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;kicker&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string, desc?:string, img?:string, icon?:string, href?:string}[]&quot;}}">
 class Component extends DCLogic {
   static DEFAULT = [
     { title: 'Recepty, co prošly kuchyní', desc: 'Každý postup jsme sami uvařili, zkazili a opravili.', img: 'assets/usp/1-recepty.png', icon: 'cook-book', href: 'receptar.dc.html' },
@@ -101,7 +101,7 @@ class Component extends DCLogic {
     const iconSize = Number(this.props.iconSize ?? 64);
 
     const media = this.props.media ?? 'photo';   // photo | icon | none
-    const photo = this.props.photo ?? 'assets/usp/koza-lezi.png';
+    const photo = this.props.photo ?? 'assets/maskot-lezici.png';
     const photoUrl = /^(https?:|\/|\.\.)/.test(photo) ? photo : base + photo;
     // U variant bez fotek v dlaždicích (icon / none) drží kozu vlevo jako vizuál sekce
     const withPhoto = typeof this.props.withPhoto === 'boolean' ? this.props.withPhoto : media !== 'photo';

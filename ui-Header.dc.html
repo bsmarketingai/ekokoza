@@ -31,6 +31,7 @@
   .ek-fav:hover { background: #F6F1E7 !important; color: #D8763B !important; border-color: #E4D9C2 !important; transform: scale(1.06); }
   .sc-host[data-sc-name^="ui-"]:not([data-sc-name="ui-Header"]) { display: flex; }
   .sc-host[data-sc-name^="ui-"]:not([data-sc-name="ui-Header"]) > * { flex: 1; min-width: 0; }
+  .sc-host[data-sc-name="ui-OrderStatus"] > * { flex: 0 0 auto !important; }
   /* Hlavicka musi byt sticky vuci strance, ne vuci vlastnimu obalu */
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
   /* Tablet: pill se smrskne na ikonu, aby zustaly viditelne vsechny polozky
@@ -118,9 +119,9 @@
     .ek-hdr-icons { margin-right: 8px !important; }
     .ek-topbar-txt { font-size: 12px !important; }
   }
-  .ek-topbar-v2 > .ek-topbar { background: #4F6B3E !important; color: #F6F1E7 !important; box-shadow: inset 0 -1px 0 rgba(246,241,231,.18); }
+  .ek-topbar-v2 > .ek-topbar { background: #4C653D !important; color: #EFE7D6 !important; box-shadow: inset 0 -1px 0 rgba(246,241,231,.18); }
   .ek-topbar-v2 > .ek-topbar > .ek-pad { padding-top: 9px !important; padding-bottom: 9px !important; }
-  .ek-topbar-v2 > .ek-topbar a { color: #F6F1E7 !important; }
+  .ek-topbar-v2 > .ek-topbar a { color: #EFE7D6 !important; }
   .ek-topbar-v3 > .ek-topbar { display: none !important; }
   .ek-topbar-v3 .ek-logo-badge { top: -27px !important; }
   .ek-topbar-v2 .ek-logo-badge { top: -65px !important; }
@@ -190,7 +191,7 @@
         <span class="ek-hdr-cartwrap" onMouseEnter="{{ cartHover }}" onMouseLeave="{{ cartLeave }}" style="position:relative; display:flex; align-items:center;">
           <span class="ek-hdr-cart" onClick="{{ cartToggle }}" title="Košík" style="position:relative; width:22px; height:22px; color:#4C653D; cursor:pointer;"><span style="{{ iconCart }}"></span><sc-if value="{{ hasCart }}" hint-placeholder-val="{{ true }}"><span class="ek-badge" style="position:absolute; top:-6px; right:-7px; background:#D14405; color:#fff; font-size:10px; font-weight:700; min-width:16px; height:16px; padding:0 3px; border-radius:999px; display:flex; align-items:center; justify-content:center; line-height:1;">{{ cartCount }}</span></sc-if></span>
           <sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
-            <dc-import name="ui-CartOverlay" items="{{ cartItems }}" on-close="{{ closeCart }}" on-remove="{{ removeCartItem }}" checkout-href="#" hint-size="400px,480px"></dc-import>
+            <dc-import name="ui-CartOverlay" items="{{ cartItems }}" on-close="{{ closeCart }}" on-remove="{{ removeCartItem }}" checkout-href="kosik.dc.html" hint-size="400px,480px"></dc-import>
           </sc-if>
         </span>
       </div>
@@ -203,7 +204,7 @@
     </div>
 
     <sc-if value="{{ megaOpen }}" hint-placeholder-val="{{ false }}">
-      <dc-import name="ui-MegaMenu" title="{{ megaTitle }}" all-href="{{ megaAllHref }}" links="{{ megaLinks }}" on-close="{{ megaClose }}" prod-name="{{ megaProdName }}" prod-price="{{ megaProdPrice }}" prod-img="{{ megaProdImg }}" prod-rating="{{ megaProdRating }}" prod-rating-count="{{ megaProdRatingCount }}" hint-size="100%,380px"></dc-import>
+      <dc-import name="ui-MegaMenu" title="{{ megaTitle }}" all-href="{{ megaAllHref }}" links="{{ megaLinks }}" variant="{{ megaVariant }}" groups="{{ megaGroups }}" on-close="{{ megaClose }}" prod-name="{{ megaProdName }}" prod-price="{{ megaProdPrice }}" prod-img="{{ megaProdImg }}" prod-rating="{{ megaProdRating }}" prod-rating-count="{{ megaProdRatingCount }}" hint-size="100%,380px"></dc-import>
     </sc-if>
   </header>
 
@@ -270,11 +271,16 @@ class Component extends DCLogic {
 
   componentDidMount() {
     try {
-      const tv = localStorage.getItem('ekokoza-topbar-variant');
+      // Horní lišta: schváleno V2 (09/2026). Pro znovuotevření výběru nastavte TOPBAR_SWITCH = true (i v produkt-vzor.html).
+      const TOPBAR_SWITCH = false;
+      const tv = TOPBAR_SWITCH ? localStorage.getItem('ekokoza-topbar-variant') : null;
       if (tv === 'v1' || tv === 'v2' || tv === 'v3') this.setState({ topbar: tv });
     } catch (e) {}
     this._onTopbar = (e) => { const v = e.detail && e.detail.variant; if (v === 'v1' || v === 'v2' || v === 'v3') this.setState({ topbar: v }); };
     window.addEventListener('ek-topbar-variant', this._onTopbar);
+    try { const mv = localStorage.getItem('ekokoza-mega-variant'); if (mv === 'mm2' || mv === 'mm3') this.setState({ mm: mv }); } catch (e) {}
+    this._onMega = (e) => { const v = e.detail && e.detail.variant; if (v === 'mm1' || v === 'mm2' || v === 'mm3') this.setState({ mm: v }); };
+    window.addEventListener('ek-mega-variant', this._onMega);
     this._onOpenLogin = () => this.setState({ loginOpen: true, cartOpen: false, mega: -1 });
     window.addEventListener('ek-open-login', this._onOpenLogin);
     this._onDocDown = (e) => {
@@ -308,20 +314,21 @@ class Component extends DCLogic {
     const S = this.state;
 
     // Struktura odpovída realnemu menu na ekokoza.cz (Vyroba / Produkty / Obaly / Receptar)
+    const MM2 = {"vyroba":[{"name":"Kosmetika","img":"assets/vyroba/kosmetika.png","children":[{"name":"Základy pro mytí, krémy a difuzéry","href":"kategorie.html"},{"name":"Kosmetické jíly","href":"kategorie.html"},{"name":"Tenzidy a solubilizéry","href":"kategorie.html"},{"name":"Konzervanty a antioxidanty","href":"kategorie.html"},{"name":"Emolienty","href":"kategorie.html"},{"name":"Másla, lanolin a vosky","href":"kategorie.html"},{"name":"Aktivní látky","href":"kategorie.html"},{"name":"Mýdlová hmota a tekuté mýdlo","href":"kategorie.html"},{"name":"Stabilizátory, zahušťovadla","href":"kategorie.html"},{"name":"Rostlinné oleje a tuky","href":"kategorie.html"},{"name":"Emulgátory","href":"kategorie.html"},{"name":"Vůně, esenciální oleje, extrakty a maceráty","href":"kategorie.html"},{"name":"Pudry, gumy a peeling","href":"kategorie.html"},{"name":"Barviva","href":"kategorie.html"},{"name":"Glycerin, hydroxid, oxid","href":"kategorie.html"},{"name":"Sušené bylinky, plody a pryskyřice","href":"kategorie.html"},{"name":"Vitamíny","href":"kategorie.html"},{"name":"Prací prášky","href":"kategorie.html"},{"name":"Šumivky a soli","href":"kategorie.html"},{"name":"Pomůcky","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Svíčky","img":"assets/vyroba/svicky.png","children":[{"name":"Vosky","href":"kategorie.html"},{"name":"Gely","href":"kategorie.html"},{"name":"Vůně","href":"kategorie.html"},{"name":"Barviva","href":"kategorie.html"},{"name":"Knoty","href":"kategorie.html"},{"name":"Obaly na svíčky","href":"kategorie.html"},{"name":"Příslušenství ke knotům","href":"kategorie.html"},{"name":"Formy","href":"kategorie.html"},{"name":"Sady na výrobu","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Potraviny","img":"assets/vyroba/potraviny.png","children":[{"name":"Koření","href":"kategorie.html"},{"name":"Sýry","href":"kategorie.html"},{"name":"Čokoláda","href":"kategorie.html"},{"name":"Tofu a tempeh","href":"kategorie.html"},{"name":"Kuchyňské potřeby","href":"kategorie.html"},{"name":"Formy","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Obaly","img":"assets/vyroba/obaly.png","children":[{"name":"Skleněné lahvičky","href":"kategorie.html"},{"name":"Skleněné dózy","href":"kategorie.html"},{"name":"Hliníkové a kovové","href":"kategorie.html"},{"name":"Plastové kelímky","href":"kategorie.html"},{"name":"Plastové lahvičky","href":"kategorie.html"},{"name":"Papírové","href":"kategorie.html"},{"name":"Na svíčky","href":"kategorie.html"},{"name":"Roll-on","href":"kategorie.html"},{"name":"Airless","href":"kategorie.html"},{"name":"Pro péči o rty","href":"kategorie.html"},{"name":"Deodoranty, parfémy a difuzéry","href":"kategorie.html"},{"name":"Uzávěry samostatně","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Knihy a návody","img":"assets/vyroba/knihy.png","children":[],"href":"kategorie.html"},{"name":"Doprava zdarma","children":[],"href":"kategorie.html"}],"produkty":[{"name":"Péče o pleť a kůži","children":[{"name":"Pleťové krémy","href":"kategorie.html"},{"name":"Přírodní opalovací krémy","href":"kategorie.html"},{"name":"Čištění pleti","href":"kategorie.html"},{"name":"Koupel","href":"kategorie.html"},{"name":"Květové vody","href":"kategorie.html"},{"name":"Depilace a holení","href":"kategorie.html"},{"name":"Mýdla","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Péče o vlasy","children":[{"name":"Šampony","href":"kategorie.html"},{"name":"Šampuky","href":"kategorie.html"},{"name":"Kondicionéry","href":"kategorie.html"},{"name":"Barvy na vlasy a henna","href":"kategorie.html"},{"name":"Styling","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Zdraví","children":[{"name":"Přírodní detoxikace, Epsomská sůl, křemelina","href":"kategorie.html"},{"name":"Vitamíny a magnesium","href":"kategorie.html"},{"name":"Přírodní repelenty a filtrace vody","href":"kategorie.html"},{"name":"Extrakty z hub a rostlin","href":"kategorie.html"},{"name":"Květové esence","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Voňavky a parfémy","children":[{"name":"Parfémy","href":"kategorie.html"},{"name":"Deodoranty","href":"kategorie.html"},{"name":"Do bytu a auta","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Potraviny","children":[{"name":"Kakao a čokoláda","href":"kategorie.html"},{"name":"Koření","href":"kategorie.html"},{"name":"Kuchyňské nezbytnosti","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Mytí a praní","children":[{"name":"Prací prostředky","href":"kategorie.html"},{"name":"Mytí nádobí","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Péče o rty","children":[],"href":"kategorie.html"},{"name":"Zubní hygiena","children":[],"href":"kategorie.html"},{"name":"Svíčky","children":[],"href":"kategorie.html"},{"name":"Šungit","children":[],"href":"kategorie.html"},{"name":"Pro psy","children":[],"href":"kategorie.html"},{"name":"Květové esence","children":[],"href":"kategorie.html"},{"name":"Dárkové poukazy","children":[],"href":"kategorie.html"}],"receptar":[{"name":"Recepty","children":[{"name":"Výroba domácí kosmetiky","href":"receptar.dc.html"},{"name":"Tvoření s dětmi","href":"receptar.dc.html"},{"name":"Články k surovinám","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Letní pleťová péče bez chemie","children":[{"name":"Květové vody","href":"receptar.dc.html"},{"name":"Přírodní deodoranty","href":"receptar.dc.html"},{"name":"Přírodní opalovací krémy","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Podzimní DIY tvoření","children":[{"name":"Domácí pohoda","href":"receptar.dc.html"},{"name":"Péče o pokožku a rty","href":"receptar.dc.html"},{"name":"Vánoční dárky s předstihem","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Vánoce plné tvoření, vůní a přírodní péče","children":[{"name":"Dárky pro péči, pleť a rty","href":"receptar.dc.html"},{"name":"Vánoční dárky na míru","href":"receptar.dc.html"},{"name":"Voňavé dárky: parfémy, difuzéry, svíčky","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Zimní relaxace a tvoření","children":[{"name":"Domácí čokoláda, pralinky, sladkosti","href":"receptar.dc.html"},{"name":"Masážní svíčky a dárky z lásky","href":"receptar.dc.html"},{"name":"Vše pro koupel: Mýdla, soli, šumivky","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Novinky","children":[],"href":"receptar.dc.html"},{"name":"Slovníček pojmů","children":[],"href":"receptar.dc.html"}]};
     const menuTree = this.props.menuTree ?? [
-      { label: 'Výroba', allHref: '#blok3', title: 'Co chcete vyrábět?',
+      { label: 'Výroba', allHref: '#blok3', title: 'Co chcete vyrábět?', groups: MM2.vyroba,
         prod: { name: 'Mýdlová hmota s bambuckým máslem, 1 kg', price: '329 Kč', img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.6, count: 96 },
-        sub: [ {name:'Kosmetika',href:'#blok3'}, {name:'Mýdla',href:'#blok3'}, {name:'Svíčky',href:'#blok3'}, {name:'Parfémy a vůně',href:'#blok3'}, {name:'Vlasová péče',href:'#blok3'}, {name:'Séra',href:'#blok3'}, {name:'Potraviny',href:'#blok3'}, {name:'Knihy a návody',href:'#blok5'} ] },
+        sub: [ {name:'Kosmetika',img:'assets/vyroba/kosmetika.png',href:'#blok3'}, {name:'Mýdla',href:'#blok3'}, {name:'Svíčky',img:'assets/vyroba/svicky.png',href:'#blok3'}, {name:'Parfémy a vůně',href:'#blok3'}, {name:'Vlasová péče',href:'#blok3'}, {name:'Séra',href:'#blok3'}, {name:'Potraviny',img:'assets/vyroba/potraviny.png',href:'#blok3'}, {name:'Knihy a návody',img:'assets/vyroba/knihy.png',href:'#blok5'} ] },
       { label: 'Suroviny', allHref: '#blok4', title: 'Suroviny dle kategorie',
         prod: { name: 'Levandulové máslo, 100 g', price: '189 Kč', img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, count: 214 },
-        sub: [ {name:'Oleje',href:'#blok4'}, {name:'Másla',href:'#blok4'}, {name:'Aktivní látky',href:'#blok4'}, {name:'Vůně',href:'#blok4'}, {name:'Vosky',href:'#blok4'}, {name:'Barviva',href:'#blok4'}, {name:'Emulgátory',href:'#blok4'}, {name:'Jíly a tenzidy',href:'#blok4'} ] },
-      { label: 'Produkty', allHref: 'kategorie.html', title: 'Hotové přírodní produkty',
+        sub: [ {name:'Oleje',icon:'droplet',href:'#blok4'}, {name:'Másla',icon:'mortar',href:'#blok4'}, {name:'Aktivní látky',icon:'test-tube-01',href:'#blok4'}, {name:'Vůně',icon:'perfume',href:'#blok4'}, {name:'Vosky',icon:'honey-01',href:'#blok4'}, {name:'Barviva',icon:'blush-brush-01',href:'#blok4'}, {name:'Emulgátory',icon:'whisk',href:'#blok4'}, {name:'Jíly a tenzidy',icon:'body-soap',href:'#blok4'} ] },
+      { label: 'Produkty', allHref: 'kategorie.html', title: 'Hotové přírodní produkty', groups: MM2.produkty,
         prod: { name: 'Stabilizovaný vitamin C, 10 g', price: '149 Kč', img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.7, count: 58 },
         sub: [ {name:'Péče o pleť a kůži',href:'kategorie.html'}, {name:'Péče o rty',href:'kategorie.html'}, {name:'Péče o vlasy',href:'kategorie.html'}, {name:'Zubní hygiena',href:'kategorie.html'}, {name:'Voňavky a parfémy',href:'kategorie.html'}, {name:'Mytí a praní',href:'kategorie.html'}, {name:'Svíčky',href:'kategorie.html'}, {name:'Zdraví',href:'kategorie.html'}, {name:'Potraviny',href:'kategorie.html'}, {name:'Pro psy',href:'kategorie.html'} ] },
       { label: 'Obaly', allHref: '#blok4', title: 'Obaly pro vaše výrobky',
         prod: { name: 'Tuhý šampon žloutkový', price: '159 Kč', img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, count: 0 },
-        sub: [ {name:'Skleněné lahvičky',href:'#blok4'}, {name:'Skleněné dózy',href:'#blok4'}, {name:'Hliníkové a kovové',href:'#blok4'}, {name:'Plastové kelímky',href:'#blok4'}, {name:'Papírové',href:'#blok4'}, {name:'Na svíčky',href:'#blok4'}, {name:'Roll-on',href:'#blok4'}, {name:'Airless',href:'#blok4'}, {name:'Pro péči o rty',href:'#blok4'}, {name:'Uzávěry samostatně',href:'#blok4'} ] },
-      { label: 'Receptář', allHref: 'receptar.dc.html', title: 'Recepty, které fungují',
+        sub: [ {name:'Skleněné lahvičky',img:'assets/obaly/01-sklenene-lahvicky.jpg',href:'#blok4'}, {name:'Skleněné dózy',img:'assets/obaly/02-sklenene-dozy.jpg',href:'#blok4'}, {name:'Hliníkové a kovové',img:'assets/obaly/03-hlinikove-a-kovove.jpg',href:'#blok4'}, {name:'Plastové kelímky',img:'assets/obaly/04-plastove-kelimky.jpg',href:'#blok4'}, {name:'Plastové lahvičky',img:'assets/obaly/05-plastove-lahvicky.png',href:'#blok4'}, {name:'Papírové',img:'assets/obaly/06-papirove.jpg',href:'#blok4'}, {name:'Na svíčky',img:'assets/obaly/07-na-svicky.jpg',href:'#blok4'}, {name:'Roll-on',img:'assets/obaly/08-roll-on.jpg',href:'#blok4'}, {name:'Airless',img:'assets/obaly/09-airless.jpg',href:'#blok4'}, {name:'Pro péči o rty',img:'assets/obaly/10-pece-o-rty.jpg',href:'#blok4'}, {name:'Deodoranty, parfémy a difuzéry',img:'assets/obaly/11-deodoranty-parfemy-difuzery.jpg',href:'#blok4'}, {name:'Uzávěry samostatně',img:'assets/obaly/12-uzavery-samostatne.jpg',href:'#blok4'} ] },
+      { label: 'Receptář', allHref: 'receptar.dc.html', title: 'Recepty, které fungují', groups: MM2.receptar,
         prod: { name: 'Levandulové máslo, 100 g', price: '189 Kč', img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, count: 214 },
         sub: [ {name:'Recepty',href:'receptar.dc.html'}, {name:'Výroba domácí kosmetiky',href:'receptar.dc.html'}, {name:'Tvoření s dětmi',href:'receptar.dc.html'}, {name:'Články k surovinám',href:'receptar.dc.html'}, {name:'Sezónní kolekce',href:'receptar.dc.html'}, {name:'Slovníček pojmů',href:'receptar.dc.html'} ] },
     ];
@@ -349,8 +356,8 @@ class Component extends DCLogic {
       setCz: () => this.setState({ lang: 'cz' }),
       setSk: () => this.setState({ lang: 'sk' }),
       topbarText: this.props.topbarText ?? 'Doprava zdarma od 2000 Kč · Ověřené recepty od roku 2009',
-      topbarCls: (this.props.topbarVariant ?? this.state.topbar ?? 'v1') === 'v2' ? 'ek-topbar-v2'
-        : ((this.props.topbarVariant ?? this.state.topbar ?? 'v1') === 'v3' ? 'ek-topbar-v3' : ''),
+      topbarCls: (this.props.topbarVariant ?? this.state.topbar ?? 'v2') === 'v2' ? 'ek-topbar-v2'
+        : ((this.props.topbarVariant ?? this.state.topbar ?? 'v2') === 'v3' ? 'ek-topbar-v3' : ''),
       homeHref: this.props.homeHref ?? 'index.html',
       cartCount: S.cart.reduce((a, p) => a + p.qty, 0),
       hasCart: S.cart.length > 0,
@@ -421,6 +428,8 @@ class Component extends DCLogic {
       megaTitle: mega ? mega.title : '',
       megaAllHref: mega ? mega.allHref : '#',
       megaLinks: mega ? mega.sub : [],
+      megaVariant: S.mm || 'mm1',
+      megaGroups: mega && mega.groups ? mega.groups : null,
       megaProdName: mega ? mega.prod.name : '',
       megaProdPrice: mega ? mega.prod.price : '',
       megaProdImg: mega ? mega.prod.img : '',

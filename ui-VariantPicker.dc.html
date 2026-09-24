@@ -14,9 +14,12 @@
   .ek-var-row { cursor: pointer; }
   .ek-var-row:hover { border-color: #4C653D; background: #FDFBF5; }
   .ek-var-row.ek-var-on:hover { border-color: #4C653D; background: #F4F7EA; }
-  @media (max-width: 560px) {
+  @media (max-width: 549px) {
     .ek-var-row { flex-wrap: wrap; }
     .ek-var-row .ek-var-right { width: 100%; justify-content: space-between; }
+    .ek-var-row .ek-var-right > span:first-child { align-items: flex-start !important; }
+    .ek-var-row .ek-var-left { width: 100%; justify-content: space-between; }
+    .ek-var-row .ek-var-left > span:first-child { min-width: 0 !important; }
   }
   .ek-var-on { border-color: #4C653D !important; background: #F4F7EA !important; box-shadow: 0 0 0 2px rgba(76,101,61,.16); }
   .ek-var-more { border: none; background: transparent; color: #4C653D; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; padding: 4px 0; align-self: flex-start; }
@@ -37,8 +40,8 @@
     <div style="display:flex; flex-direction:column; gap:8px;">
       <sc-for list="{{ qtyRows }}" as="v" hint-placeholder-count="3">
         <div class="{{ v.cls }}" onClick="{{ v.select }}">
-          <span style="display:flex; flex-direction:column; gap:5px; align-items:flex-start; min-width:0;">
-            <span style="{{ v.labelStyle }}">{{ v.label }}</span>
+          <span class="ek-var-left" style="display:flex; flex-direction:row; flex-wrap:wrap; gap:4px 16px; align-items:center; min-width:0;">
+            <span style="min-width:96px;"><span style="{{ v.labelStyle }}">{{ v.label }}</span></span>
             <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" withNote="{{ true }}" noteFocusable="{{ false }}" size="{{ 12.5 }}" hint-size="160px,18px"></dc-import>
           </span>
           <span class="ek-var-right" style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
@@ -76,13 +79,18 @@
   <div style="display:{{ selectDisplay }}; flex-direction:column; gap:8px;">
     <sc-for list="{{ rows }}" as="v" hint-placeholder-count="3">
       <button onClick="{{ v.select }}" class="{{ v.cls }}">
-        <span style="display:flex; flex-direction:column; gap:5px; align-items:flex-start; min-width:0;">
-          <span style="{{ v.labelStyle }}">{{ v.label }}</span>
+        <span style="display:flex; align-items:center; gap:14px; min-width:0; flex:1 1 auto;">
+        <span style="{{ v.tick }}"></span>
+        <span class="ek-var-left" style="display:flex; flex-direction:row; flex-wrap:wrap; gap:4px 16px; align-items:center; min-width:0;">
+          <span style="min-width:96px;"><span style="{{ v.labelStyle }}">{{ v.label }}</span></span>
           <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" withNote="{{ true }}" noteFocusable="{{ false }}" size="{{ 12.5 }}" hint-size="150px,18px"></dc-import>
         </span>
-        <span style="display:flex; align-items:center; gap:12px; flex:0 0 auto;">
-          <span style="{{ v.priceStyle }}">{{ v.price }}</span>
-          <span style="{{ v.tick }}"></span>
+        </span>
+        <span class="ek-var-right" style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
+          <span style="display:flex; flex-direction:column; gap:1px; align-items:flex-end;">
+            <span style="{{ v.priceStyle }}">{{ v.price }}</span>
+            <sc-if value="{{ v.hasUnit }}" hint-placeholder-val="{{ false }}"><span style="font-size:12.5px; color:#8a8776; white-space:nowrap;">{{ v.unit }}</span></sc-if>
+          </span>
         </span>
       </button>
     </sc-for>
@@ -193,7 +201,9 @@ class Component extends DCLogic {
           price: v.price,
           state: v.state ?? 'ready',
           date: v.date ?? '',
-          cls: on ? 'ek-var ek-var-on' : 'ek-var',
+          unit: v.unit ?? '',
+          hasUnit: !!v.unit,
+          cls: on ? 'ek-var ek-var-row ek-var-on' : 'ek-var ek-var-row',
           labelStyle: 'font-size:16px; font-weight:' + (on ? '700' : '600') + '; color:#2A2A24;',
           priceStyle: "font-family:'EB Garamond',serif; font-size:18px; font-weight:500; color:#4C653D; white-space:nowrap;",
           tick: on

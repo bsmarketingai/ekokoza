@@ -30,7 +30,7 @@ class Component extends DCLogic {
   // Stavy objednávky — přesný seznam z e-shopu. Barvy navazují na semantickou škálu skladovosti.
   static STATES = {
     prijato:          { color: '#856512', icon: 'note-01',             label: 'Přijato',                hint: 'Objednávku jsme přijali, začínáme ji zpracovávat.' },
-    zpracovano:       { color: '#57712D', icon: 'task-01',             label: 'Zpracováno',             hint: 'Objednávka je zkontrolovaná a předaná do skladu.' },
+    zpracovano:       { color: '#57712D', icon: 'checkmark-circle-01',             label: 'Zpracováno',             hint: 'Objednávka je zkontrolovaná a předaná do skladu.' },
     ceka_platba:      { color: '#8A5A28', icon: 'clock-01',            label: 'Čeká na zaplacení',      hint: 'Čekáme na připsání platby na náš účet.' },
     pripraveno_expedice: { color: '#57712D', icon: 'package',          label: 'Připraveno k expedici',  hint: 'Zboží je nabalené a čeká na předání přepravci.' },
     pripraveno_odber: { color: '#57712D', icon: 'store-01',            label: 'Připraveno k odběru',    hint: 'Zboží je nabalené a čeká na vás na výdejním místě.' },
@@ -59,7 +59,7 @@ class Component extends DCLogic {
       label: s.label,
       hint: s.hint,
       iconStyle: this.mask(s.icon, Math.round(size * 1.2), s.color),
-      wrapStyle: 'display:inline-flex; align-items:center; gap:7px; font-family:\'Work Sans\',sans-serif; font-weight:600; line-height:1.3; white-space:nowrap;'
+      wrapStyle: 'display:inline-flex; width:max-content; max-width:100%; align-self:flex-start; justify-self:start; align-items:center; gap:7px; font-family:\'Work Sans\',sans-serif; font-weight:600; line-height:1.3; white-space:nowrap;'
         + ' font-size:' + size + 'px; color:' + s.color + ';'
         + (plain ? '' : ' padding:' + Math.round(size * 0.42) + 'px ' + Math.round(size * 0.78) + 'px; border-radius:999px;'
             + ' background:rgba(' + rgb + ',.10); border:1px solid rgba(' + rgb + ',.32);'),

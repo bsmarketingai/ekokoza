@@ -29,8 +29,8 @@
   .ek-cat:hover .ek-cat-ov { opacity: 1; }
   .ek-cat .ek-ph { transition: transform .6s ease; }
   .ek-bot { opacity: .95; filter: drop-shadow(0 10px 14px rgba(76,101,61,.28)); }
-  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #4C653D; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #4C653D; margin: 0; text-wrap: pretty; }
   .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
   .ek-p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
@@ -131,6 +131,8 @@
   .ek-guidechip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4DAC6; background: #fff; color: #4C653D; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s; }
   .ek-guidechip:hover { border-color: #4C653D; background: #F4F7EA; color: #4C653D; }
   .ek-guidecard { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid #ECE3D2; border-radius: 14px; background: #fff; text-decoration: none; transition: border-color .2s, transform .2s; }
+  .ek-guiderow { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 4px; }
+  @media (max-width: 819px) { .ek-guiderow { grid-template-columns: 1fr; gap: 10px; } }
   .ek-guidecard:hover { border-color: #CFC4AA; transform: translateY(-1px); }
   .ek-course { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 18px; padding: 18px 22px; border: 1px solid #3E5432; border-radius: 14px; background: linear-gradient(150deg,#4C653D 0%,#33452A 100%); box-shadow: 0 14px 30px -20px rgba(45,58,46,.6); }
   .ek-course-t { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 21px; color: #F6F1E7; }
@@ -153,6 +155,7 @@
 
 <div class="{{ modeCls }}" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
+  <dc-import name="ui-InfoBar" hint-size="100%,40px"></dc-import>
   <dc-import name="ui-Header" active="produkty" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
 
   <div class="ek-outer" style="max-width:1720px; margin:0 auto; position:relative;">
@@ -166,7 +169,7 @@
           <p class="ek-eyebrow" style="margin-bottom:10px;">Hotové přírodní produkty</p>
           <h1 class="ek-h1">Produkty</h1>
         </div>
-        <span style="font-size:15px; color:#6B6B5E;">{{ totalLabel }}</span>
+        <span style="display:none; font-size:15px; color:#6B6B5E;">{{ totalLabel }}</span>
       </div>
 
       <sc-if value="{{ headA }}" hint-placeholder-val="{{ true }}">
@@ -180,34 +183,47 @@
               <p class="ek-p">Nabízíme pouze pečlivě vybrané produkty vhodné i pro citlivou pokožku. Když si nebudete vědět rady s výběrem, napište nám — v produktech se vyznáme a rádi poradíme.</p>
             </div>
           </sc-if>
-          <button onClick="{{ toggleDesc }}" class="ek-btn-ghost" style="display:inline-flex; align-items:center; gap:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; margin-left:-16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ descLabel }}<span style="{{ iconDescCaret }}"></span></button>
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;">
-          <sc-for list="{{ guideChips }}" as="q" hint-placeholder-count="4">
-            <a href="{{ q.href }}" class="ek-guidechip"><span style="{{ q.icon }}"></span>{{ q.label }}</a>
+        </div>
+      </div>
+      <sc-if value="{{ eduOpen }}" hint-placeholder-val="{{ false }}">
+        <div class="ek-guiderow">
+          <sc-for list="{{ guideCards }}" as="g" hint-placeholder-count="3">
+            <a href="{{ g.href }}" class="ek-guidecard">
+              <span style="{{ g.thumb }}"><span style="{{ g.play }}"></span></span>
+              <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
+                <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">{{ g.kicker }}</span>
+                <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;">{{ g.title }}</span>
+                <span style="font-size:13px; color:#6B6B5E;">{{ g.meta }}</span>
+              </span>
+            </a>
           </sc-for>
         </div>
+        <div class="ek-compare">
+          <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+            <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; color:#2A2A24;">{{ compareTitle }}</span>
+            <span style="font-size:13.5px; color:#8a8776;">{{ compareNote }}</span>
+          </div>
+          <div class="ek-comparehead">
+            <span>Typ</span><span>K čemu se hodí</span><span>Na co si dát pozor</span><span></span>
+          </div>
+          <sc-for list="{{ compareRows }}" as="c" hint-placeholder-count="4">
+            <div class="ek-comparerow">
+              <span style="display:flex; align-items:center; gap:10px; font-weight:600; color:#2A2A24;"><span style="{{ c.icon }}"></span>{{ c.type }}</span>
+              <span style="color:#4A4A42;">{{ c.use }}</span>
+              <span style="color:#6B6B5E;">{{ c.watch }}</span>
+              <a href="{{ c.href }}" class="ek-link-u" style="font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap;">Zobrazit</a>
+            </div>
+          </sc-for>
         </div>
-        <sc-if value="{{ isEdu }}" hint-placeholder-val="{{ true }}">
-        <aside class="ek-hside">
-          <a href="{{ guideArticle.href }}" class="ek-guidecard">
-            <span style="{{ guideArticle.thumb }}"></span>
-            <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
-              <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Průvodce výběrem</span>
-              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2D3A2E;">{{ guideArticle.title }}</span>
-              <span style="font-size:13px; color:#6B6B5E;">{{ guideArticle.meta }}</span>
-            </span>
-          </a>
-          <a href="{{ guideVideo.href }}" class="ek-guidecard">
-            <span style="{{ guideVideo.thumb }}"><span style="{{ iconPlay }}"></span></span>
-            <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
-              <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Videonávod</span>
-              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2D3A2E;">{{ guideVideo.title }}</span>
-              <span style="font-size:13px; color:#6B6B5E;">{{ guideVideo.meta }}</span>
-            </span>
-          </a>
-        </aside>
-        </sc-if>
+      </sc-if>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;">
+        <sc-for list="{{ guideChips }}" as="q" hint-placeholder-count="4">
+          <a href="{{ q.href }}" class="ek-guidechip"><span style="{{ q.icon }}"></span>{{ q.label }}</a>
+        </sc-for>
+      </div>
+      <div style="margin-top:16px;">
+        <button onClick="{{ toggleDesc }}" style="display:inline-flex; align-items:center; gap:6px; border:none; background:transparent; padding:0; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; color:#4C653D; cursor:pointer;"><span class="ek-link-u">{{ descLabel }}</span><span style="{{ iconDescCaret }}"></span></button>
       </div>
       <sc-if value="{{ isEdu }}" hint-placeholder-val="{{ true }}">
         <div class="ek-course">
@@ -222,23 +238,6 @@
             <input type="email" placeholder="váš e-mail" style="flex:1; min-width:0; height:46px; padding:0 16px; border:1.5px solid rgba(246,241,231,.45); border-radius:999px; background:rgba(255,253,246,.96); font-family:'Work Sans',sans-serif; font-size:15px; color:#2A2A24;">
             <button type="submit" class="ek-course-b">Chci lekce</button>
           </form>
-        </div>
-        <div class="ek-compare">
-          <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
-            <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; color:#2D3A2E;">{{ compareTitle }}</span>
-            <span style="font-size:13.5px; color:#8a8776;">{{ compareNote }}</span>
-          </div>
-          <div class="ek-comparehead">
-            <span>Typ</span><span>K čemu se hodí</span><span>Na co si dát pozor</span><span></span>
-          </div>
-          <sc-for list="{{ compareRows }}" as="c" hint-placeholder-count="4">
-            <div class="ek-comparerow">
-              <span style="display:flex; align-items:center; gap:10px; font-weight:600; color:#2A2A24;"><span style="{{ c.icon }}"></span>{{ c.type }}</span>
-              <span style="color:#4A4A42;">{{ c.use }}</span>
-              <span style="color:#6B6B5E;">{{ c.watch }}</span>
-              <a href="{{ c.href }}" class="ek-link-u" style="font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap;">Zobrazit</a>
-            </div>
-          </sc-for>
         </div>
       </sc-if>
       </sc-if>
@@ -264,7 +263,7 @@
         <div class="ek-hzone" style="margin-top:22px; align-items:stretch;">
           <div class="ek-compare" style="margin-top:0;">
             <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
-              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; color:#2D3A2E;">{{ compareTitle }}</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; color:#2A2A24;">{{ compareTitle }}</span>
             </div>
             <sc-for list="{{ compareRows }}" as="c" hint-placeholder-count="4">
               <div class="ek-comparerow" style="grid-template-columns:minmax(0,1fr);">
@@ -273,13 +272,13 @@
               </div>
             </sc-for>
           </div>
-          <sc-if value="{{ isEdu }}" hint-placeholder-val="{{ true }}">
+          <sc-if value="{{ eduOpen }}" hint-placeholder-val="{{ false }}">
         <aside class="ek-hside">
           <a href="{{ guideArticle.href }}" class="ek-guidecard">
             <span style="{{ guideArticle.thumb }}"></span>
             <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
               <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Průvodce výběrem</span>
-              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2D3A2E;">{{ guideArticle.title }}</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;">{{ guideArticle.title }}</span>
               <span style="font-size:13px; color:#6B6B5E;">{{ guideArticle.meta }}</span>
             </span>
           </a>
@@ -287,12 +286,12 @@
             <span style="{{ guideVideo.thumb }}"><span style="{{ iconPlay }}"></span></span>
             <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
               <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Videonávod</span>
-              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2D3A2E;">{{ guideVideo.title }}</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;">{{ guideVideo.title }}</span>
               <span style="font-size:13px; color:#6B6B5E;">{{ guideVideo.meta }}</span>
             </span>
           </a>
             <div class="ek-guidecard" style="flex-direction:column; align-items:stretch; gap:10px; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%);">
-              <span style="display:flex; align-items:center; gap:10px;"><span style="{{ iconCourse }}"></span><span style="font-family:'EB Garamond',serif; font-weight:500; font-size:17.5px; color:#2D3A2E;">{{ courseTitle }}</span></span>
+              <span style="display:flex; align-items:center; gap:10px;"><span style="{{ iconCourse }}"></span><span style="font-family:'EB Garamond',serif; font-weight:500; font-size:17.5px; color:#2A2A24;">{{ courseTitle }}</span></span>
               <span style="font-size:13.5px; line-height:1.5; color:#4A4A42;">{{ courseNote }}</span>
               <form onSubmit="{{ onCourse }}" style="display:flex; gap:8px;">
                 <input type="email" placeholder="váš e-mail" style="flex:1; min-width:0; height:44px; padding:0 14px; border:1.5px solid #CFC4AA; border-radius:999px; background:#fff; font-family:'Work Sans',sans-serif; font-size:14.5px; color:#2A2A24;">
@@ -310,11 +309,12 @@
   <section style="padding:34px 32px 0;" class="ek-pad">
     <div class="ek-cwrap" style="max-width:1560px; margin:0 auto;">
       <h2 class="ek-h2" style="margin-bottom:18px;">Vyberte podkategorii</h2>
-      <div class="ek-tiles">
+      <div class="ek-tiles" ref="{{ ktRef }}">
         <sc-for list="{{ subcats }}" as="c" hint-placeholder-count="12">
           <dc-import name="ui-IngredientTile" title="{{ c.title }}" icon="{{ c.icon }}" href="{{ c.href }}" hint-size="100%,82px"></dc-import>
         </sc-for>
       </div>
+      <div aria-hidden="true" style="{{ ktTrack }}"><span style="{{ ktThumb }}"></span></div>
     </div>
   </section>
 
@@ -339,6 +339,7 @@
         </label>
       </div>
 
+      <h2 class="ek-h2" style="margin:0 0 12px; font-size:24px;">Filtrovat</h2>
       <div class="ek-bar">
         <div class="ek-facetrow">
           <sc-for list="{{ barFacets }}" as="g" hint-placeholder-count="4">
@@ -456,6 +457,7 @@
       <button onClick="{{ setHeadA }}" title="Průvodce vpravo, srovnání pod textem" style="{{ headAStyle }}">A</button>
       <button onClick="{{ setHeadB }}" title="Srovnání vlevo, průvodce a kurz vpravo" style="{{ headBStyle }}">B</button>
     </span>
+    <dc-import name="ui-MenuSwitch" hint-size="200px,36px"></dc-import>
     <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
   </div>
   </sc-if>
@@ -464,6 +466,37 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:4,&quot;max&quot;:48,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Výpis&quot;}}">
 class Component extends DCLogic {
+  trackRef(key) {
+    this._tr = this._tr || {};
+    if (this._tr[key]) return this._tr[key];
+    const upd = (el) => {
+      const max = el.scrollWidth - el.clientWidth;
+      const w = max > 1 ? el.clientWidth / el.scrollWidth : 1;
+      const x = max > 1 ? el.scrollLeft / max : 0;
+      const cur = (this.state.tracks || {})[key];
+      if (cur && Math.abs(cur.w - w) < 0.002 && Math.abs(cur.x - x) < 0.002) return;
+      this.setState(s => ({ tracks: Object.assign({}, s.tracks, { [key]: { w, x } }) }));
+    };
+    let bound = null, ro = null, fn = null;
+    this._tr[key] = (el) => {
+      if (bound && bound !== el) { bound.removeEventListener('scroll', fn); if (ro) ro.disconnect(); bound = null; }
+      if (!el || bound === el) return;
+      bound = el; fn = () => upd(el);
+      el.addEventListener('scroll', fn, { passive: true });
+      if (window.ResizeObserver) { ro = new ResizeObserver(fn); ro.observe(el); }
+      requestAnimationFrame(fn);
+    };
+    return this._tr[key];
+  }
+  thumbStyle(key) {
+    const t = (this.state.tracks || {})[key] || { w: 0.4, x: 0 };
+    const w = Math.max(t.w, 0.12);
+    return 'position:absolute; top:0; bottom:0; left:' + (t.x * (1 - w) * 100).toFixed(2) + '%; width:' + (w * 100).toFixed(2) + '%; border-radius:999px; background:#4C653D;';
+  }
+  trackStyle(key) {
+    const t = (this.state.tracks || {})[key];
+    return 'display:' + (t && t.w < 0.995 ? 'block' : 'none') + '; position:relative; height:3px; margin-top:6px; border-radius:999px; background:#E4DAC6; overflow:hidden;';
+  }
   state = {
     descOpen: false, drawerOpen: false, facet: null, sort: 'default', page: 1, perPage: 12, mode: 'v1', barOpen: true, head: 'a', tpl: 'edu', card: 'v2', logged: false,
     filters: { use: [], weight: [], volume: [], avail: [], purpose: [], skin: [], packType: [], emulsion: [], transparency: [] }, extra: 0,
@@ -665,12 +698,14 @@ class Component extends DCLogic {
 
 
     return {
+      ktRef: this.trackRef('kt'), ktThumb: this.thumbStyle('kt'), ktTrack: this.trackStyle('kt'),
       crumbs: [{ label: 'Úvod', href: 'index.html' }, { label: 'Produkty' }],
       totalLabel: Component.pcs(Component.PRODUCTS.length) + ' v kategorii',
       shownLabel: 'Zobrazeno ' + shown.length + ' z ' + list.length + ' produktů',
 
       descOpen: this.state.descOpen,
-      descLabel: this.state.descOpen ? 'Zabalit' : 'Přečíst celé',
+      descClosed: !this.state.descOpen,
+      descLabel: this.state.descOpen ? 'Zabalit' : 'Detailní popis kategorie',
       toggleDesc: () => this.setState({ descOpen: !this.state.descOpen }),
       iconDescCaret: this.mask(this.state.descOpen ? 'arrow-up-01' : 'arrow-down-01', 20, 'currentColor'),
 
@@ -709,7 +744,7 @@ class Component extends DCLogic {
             }
             this.setState({ facet: on ? null : g.key, facetLeft: left });
           },
-          btnStyle: 'white-space:nowrap;' + (on || n > 0 ? ' border-color:#4C653D; background:#FDFBF5; color:#2D3A2E;' : ''),
+          btnStyle: 'white-space:nowrap;' + (on || n > 0 ? ' border-color:#4C653D; background:#FDFBF5; color:#2A2A24;' : ''),
           caret: this.mask('arrow-down-01', 16, '#4C653D'),
           options: g.options.map(o => ({
             label: o.label,
@@ -737,7 +772,8 @@ class Component extends DCLogic {
       headA: this.state.head === 'a',
       headB: this.state.head === 'b',
       isEdu: this.state.tpl === 'edu',
-      hzoneCls: this.state.tpl === 'edu' ? 'ek-hzone' : '',
+      hzoneCls: '',
+      eduOpen: this.state.tpl === 'edu' && this.state.descOpen,
       guideChips: [
         { label: 'Jak vybrat přírodní mýdlo?', icon: 'help-circle', href: '#' },
         { label: 'Co znamená INCI', icon: 'book-open-01', href: '#' },
@@ -757,6 +793,14 @@ class Component extends DCLogic {
         thumb: 'display:flex; align-items:center; justify-content:center; width:64px; height:64px; flex:0 0 auto; border-radius:12px; background:#EFE7D6 center/cover no-repeat; background-image:linear-gradient(rgba(30,38,30,.35),rgba(30,38,30,.35)), url("assets/recipes/krem-na-paty.jpg");',
       },
       iconPlay: this.mask('play', 22, '#FFFFFF'),
+      guideCards: [
+        { kicker: 'Průvodce výběrem', title: 'Jak vybrat přírodní mýdlo a čemu se vyhnout', meta: '7 min čtení · aktualizováno 8/2026', href: '#', img: 'assets/recipes/tenzidy.jpg' },
+        { kicker: 'Videonávod', title: 'Jak čteme složení: ukázka na třech mýdlech', meta: 'video · 4:20', href: '#', img: 'assets/recipes/krem-na-paty.jpg', video: true },
+        { kicker: 'Slovníček', title: 'Co znamená INCI a jak číst etiketu', meta: '4 min čtení', href: 'slovnicek.dc.html', img: 'assets/recipes/pasta-na-holeni.jpg' },
+      ].map(g => Object.assign({}, g, {
+        thumb: 'display:flex; align-items:center; justify-content:center; width:64px; height:64px; flex:0 0 auto; border-radius:12px; background:#EFE7D6 center/cover no-repeat; background-image:' + (g.video ? 'linear-gradient(rgba(30,38,30,.35),rgba(30,38,30,.35)), ' : '') + 'url("' + g.img + '");',
+        play: g.video ? this.mask('play', 22, '#FFFFFF') : 'display:none;',
+      })),
       iconCourse: this.mask('idea-01', 26, '#4F6E2A'),
       iconCourseLight: this.mask('idea-01', 30, '#EBD284'),
       courseTitle: 'Mini kurz: přírodní péče bez omylů',

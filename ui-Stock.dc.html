@@ -17,9 +17,6 @@
   <span style="{{ wrapStyle }}" title="{{ hint }}" onClick="{{ toggle }}" role="{{ role }}" tabIndex="{{ tabIndex }}" onFocus="{{ open }}" onBlur="{{ close }}">
     <span style="{{ iconStyle }}"></span>
     <span>{{ label }}</span>
-    <sc-if value="{{ withNote }}" hint-placeholder-val="{{ false }}">
-      <span style="{{ infoStyle }}"></span>
-    </sc-if>
   </span>
   <sc-if value="{{ noteOpen }}" hint-placeholder-val="{{ false }}">
     <span style="{{ popStyle }}">{{ note }}</span>
@@ -97,7 +94,7 @@ class Component extends DCLogic {
 
     return {
       label: showDate ? s.label + ' ' + date : s.label,
-      hint: s.hint,
+      hint: withNote ? null : s.hint,
       note: s.note,
       withNote,
       noteOpen: withNote && this.state.noteOpen,

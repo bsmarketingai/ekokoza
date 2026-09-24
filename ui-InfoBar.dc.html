@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .ek-info-link:hover { text-decoration-thickness: 2px !important; }
+  .ek-info-x:hover { background: rgba(255,255,255,.16) !important; }
+  @media (max-width: 640px) {
+    .ek-info-in { padding: 9px 52px 9px 16px !important; font-size: 13px !important; }
+  }
+</style>
+</helmet>
+<sc-if value="{{ open }}" hint-placeholder-val="{{ true }}">
+<div role="region" aria-label="Informační lišta" style="position:relative; background:#D14405; color:#FFFFFF; font-family:'Work Sans',sans-serif;">
+  <div class="ek-info-in" style="max-width:1720px; margin:0 auto; padding:10px 64px; text-align:center; font-size:14px; line-height:1.45; text-wrap:pretty;">
+    <span aria-hidden="true" style="margin-right:4px; font-size:16px; line-height:1;">{{ emoji }}</span>
+    <span>{{ text }}</span>
+    <a class="ek-info-link" href="{{ href }}" style="margin-left:8px; color:#FFFFFF; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">{{ linkLabel }}</a>
+  </div>
+  <button class="ek-info-x" onClick="{{ close }}" aria-label="Zavřít lištu" style="position:absolute; top:50%; right:12px; transform:translateY(-50%); width:36px; height:36px; display:flex; align-items:center; justify-content:center; border:none; border-radius:999px; background:transparent; color:#FFFFFF; cursor:pointer; padding:0;">
+    <span style="{{ iconX }}"></span>
+  </button>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:60},&quot;emoji&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;🫒&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;visible&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;text&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Připravili jsme pro vás neodolatelnou nabídku nových olejů.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;linkLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Prohlédnout&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;kategorie.html&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { closed: false };
+  renderVals() {
+    const url = 'assets/icons/cancel-01.svg';
+    return {
+      open: (this.props.visible ?? true) && !this.state.closed,
+      emoji: this.props.emoji ?? '🫒',
+      text: this.props.text ?? 'Připravili jsme pro vás neodolatelnou nabídku nových olejů.',
+      linkLabel: this.props.linkLabel ?? 'Prohlédnout',
+      href: this.props.href ?? 'kategorie.html',
+      iconX: `display:inline-block; width:18px; height:18px; background-color:#FFFFFF; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`,
+      close: () => this.setState({ closed: true }),
+    };
+  }
+}
+</script>
+</body>
+</html>

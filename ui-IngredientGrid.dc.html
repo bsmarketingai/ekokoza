@@ -17,18 +17,33 @@
     .ek-ig-row a { padding: 8px 14px !important; }
     .ek-ig-row a > span:first-child { width: 44px !important; height: 44px !important; }
     .ek-ig-row a > span:last-child { font-size: 19px !important; }
-    .ek-ig-life a > span:last-child { font-size: 18px !important; }
-    .ek-ig-life a > span:last-child > span { width: 18px !important; height: 18px !important; }
+    .ek-ig-life a > span:last-child > span:first-child { font-size: 22px !important; }
+    .ek-ig-life a > span:last-child > span:first-child > span { width: 18px !important; height: 18px !important; }
+  }
+  /* S2: pod 900 px karusel stejně jako „Co chcete vyrábět?“ */
+  .ek-ig-car { scrollbar-width: none; -ms-overflow-style: none; }
+  .ek-ig-car::-webkit-scrollbar { display: none; }
+  @media (max-width: 900px) {
+    .ek-ig-grid.ek-ig-car { overflow-x: auto !important; grid-auto-flow: column !important; grid-auto-columns: 240px !important; grid-template-columns: none !important; column-gap: 16px !important; scroll-snap-type: x proximity; padding-bottom: 16px !important; margin-left: -20px !important; margin-right: -20px !important; padding-left: 20px !important; padding-right: 20px !important; scroll-padding-left: 20px !important; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; }
+    .ek-ig-car > * { scroll-snap-align: start; }
+    .ek-ig-track { display: block !important; }
+    .ek-ig-head { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+  }
+  @media (min-width: 901px) and (max-width: 1180px) {
+    .ek-ig-grid.ek-ig-car { grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
   }
   .ek-ig-all:hover { color: #B23803 !important; }
   .ek-ig-life a > span:first-child > span { transition: transform .45s ease; }
   .ek-ig-life a:hover > span:first-child > span { transform: scale(1.05); }
   .ek-ig-life a:hover > span:last-child { color: #4C653D; }
+  .ek-car-btn { width:38px; height:38px; border-radius:999px; border:1.5px solid #4C653D; background:#fff; color:#4C653D; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; padding:0; transition:background .2s, color .2s, opacity .2s; }
+  .ek-car-btn:hover:not(:disabled) { background:#4C653D; color:#F6F1E7; }
+  .ek-car-btn:disabled { opacity:.35; cursor:default; }
 </style>
 </helmet>
 
 <section style="display:flex; flex-direction:column; font-family:'Work Sans',sans-serif;">
-  <div style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:26px;">
+  <div class="ek-ig-head" style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:26px;">
     <div style="display:flex; flex-direction:column; gap:6px; min-width:0;">
       <sc-if value="{{ hasKicker }}" hint-placeholder-val="{{ false }}">
         <span style="font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:#4F6E2A;">{{ kicker }}</span>
@@ -38,19 +53,25 @@
         <p style="margin:0; font-size:16px; line-height:1.6; color:#6B6B5E; max-width:64ch;">{{ subtitle }}</p>
       </sc-if>
     </div>
+    <div style="display:flex; align-items:center; gap:18px; margin-left:auto;">
     <sc-if value="{{ hasAll }}" hint-placeholder-val="{{ false }}">
       <a href="{{ allHref }}" class="ek-ig-all" style="display:inline-flex; align-items:center; gap:8px; flex:0 0 auto; font-size:15px; font-weight:600; color:#4C653D; text-decoration:none; transition:color .2s;">{{ allLabel }}<span style="{{ iconArrow }}"></span></a>
     </sc-if>
+    <div style="{{ igNav }}"><button onClick="{{ igPrev }}" disabled="{{ igAtStart }}" aria-label="Předchozí" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat;"></span></button><button onClick="{{ igNext }}" disabled="{{ igAtEnd }}" aria-label="Další" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat;"></span></button></div>
+    </div>
   </div>
 
-  <div class="{{ gridCls }}" style="{{ gridStyle }}">
+  <div class="{{ gridCls }}" ref="{{ gridRef }}" style="{{ gridStyle }}">
     <sc-for list="{{ items }}" as="c" hint-placeholder-count="8">
-      <dc-import name="ui-IngredientTile" variant="{{ tileVariant }}" ratio="{{ ratio }}" title="{{ c.name }}" img="{{ c.img }}" icon="{{ c.icon }}" href="{{ c.href }}" hint-size="100%,230px"></dc-import>
+      <dc-import name="ui-IngredientTile" variant="{{ tileVariant }}" ratio="{{ ratio }}" title="{{ c.name }}" desc="{{ c.desc }}" img="{{ c.img }}" icon="{{ c.icon }}" href="{{ c.href }}" hint-size="100%,230px"></dc-import>
     </sc-for>
   </div>
+  <sc-if value="{{ isCar }}" hint-placeholder-val="{{ false }}">
+    <div class="ek-ig-track" aria-hidden="true" style="display:none; position:relative; height:3px; margin-top:6px; border-radius:999px; background:#E4DAC6; overflow:hidden;"><span style="{{ igThumb }}"></span></div>
+  </sc-if>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:300},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Suroviny dle kategorie&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;kicker&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;subtitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;allLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Všechny suroviny&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;allHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;columns&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:6,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{name:string, img?:string, icon?:string, href?:string}[]&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:300},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Suroviny dle kategorie&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;kicker&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;subtitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;allLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Všechny suroviny&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;allHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obsah&quot;},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;grid&quot;,&quot;carousel&quot;],&quot;default&quot;:&quot;grid&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;columns&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:6,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rozvržení&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{name:string, img?:string, icon?:string, desc?:string, href?:string}[]&quot;}}">
 class Component extends DCLogic {
   static DEFAULT = [
     { name: 'Oleje', img: 'assets/categories/oleje.png' },
@@ -63,6 +84,36 @@ class Component extends DCLogic {
     { name: 'Obaly', img: 'assets/categories/obaly.png' },
   ];
 
+  carNav(key) { const t = (this.state.tracks || {})[key]; return 'display:' + (t && t.w < 0.995 ? 'flex' : 'none') + '; gap:8px; flex-shrink:0;'; }
+  carGo(key, dir) { const el = this._trEl && this._trEl[key]; if (!el) return; const it = el.firstElementChild; const gap = parseFloat(getComputedStyle(el).columnGap) || 16; const step = it ? it.getBoundingClientRect().width + gap : el.clientWidth; const per = Math.max(1, Math.floor((el.clientWidth + gap) / step)); el.scrollBy({ left: dir * step * per, behavior: 'smooth' }); }
+  carVals(key) { const t = (this.state.tracks || {})[key] || { w: 1, x: 0 }; return { [key + 'Nav']: this.carNav(key), [key + 'Prev']: () => this.carGo(key, -1), [key + 'Next']: () => this.carGo(key, 1), [key + 'AtStart']: t.x <= 0.01, [key + 'AtEnd']: t.x >= 0.99 }; }
+  trackRef(key) {
+    this._tr = this._tr || {};
+    if (this._tr[key]) return this._tr[key];
+    const upd = (el) => {
+      const max = el.scrollWidth - el.clientWidth;
+      const w = max > 1 ? el.clientWidth / el.scrollWidth : 1;
+      const x = max > 1 ? el.scrollLeft / max : 0;
+      const cur = (this.state.tracks || {})[key];
+      if (cur && Math.abs(cur.w - w) < 0.002 && Math.abs(cur.x - x) < 0.002) return;
+      this.setState(s => ({ tracks: Object.assign({}, s.tracks, { [key]: { w, x } }) }));
+    };
+    let bound = null, ro = null, fn = null;
+    this._tr[key] = (el) => {
+      if (bound && bound !== el) { bound.removeEventListener('scroll', fn); if (ro) ro.disconnect(); bound = null; }
+      if (!el || bound === el) return;
+      bound = el; fn = () => upd(el); this._trEl = this._trEl || {}; this._trEl[key] = el;
+      el.addEventListener('scroll', fn, { passive: true });
+      if (window.ResizeObserver) { ro = new ResizeObserver(fn); ro.observe(el); }
+      requestAnimationFrame(fn);
+    };
+    return this._tr[key];
+  }
+  thumbStyle(key) {
+    const t = (this.state.tracks || {})[key] || { w: 0.4, x: 0 };
+    const w = Math.max(t.w, 0.12);
+    return 'position:absolute; top:0; bottom:0; left:' + (t.x * (1 - w) * 100).toFixed(2) + '%; width:' + (w * 100).toFixed(2) + '%; border-radius:999px; background:#4C653D;';
+  }
   mask(name, size, color) {
     const url = 'assets/icons/' + name + '.svg';
     return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
@@ -77,6 +128,7 @@ class Component extends DCLogic {
       name: c.name ?? c.title ?? '',
       img: c.img ?? '',
       icon: c.icon ?? '',
+      desc: c.desc ?? '',
       href: c.href ?? '#',
     }));
     return {
@@ -91,7 +143,9 @@ class Component extends DCLogic {
       iconArrow: this.mask('arrow-right-02', 17, '#4C653D'),
       items,
       tileVariant: this.props.variant ?? 'lifestyle',
-      gridCls: 'ek-ig-grid ' + ((this.props.variant ?? 'lifestyle') === 'lifestyle' ? 'ek-ig-life' : 'ek-ig-row'),
+      isCar: (this.props.layout ?? 'grid') === 'carousel',
+      gridRef: this.trackRef('ig'), ...this.carVals('ig'), igThumb: this.thumbStyle('ig'),
+      gridCls: 'ek-ig-grid ' + ((this.props.variant ?? 'lifestyle') === 'lifestyle' ? 'ek-ig-life' : 'ek-ig-row') + ((this.props.layout ?? 'grid') === 'carousel' ? ' ek-ig-car' : ''),
       ratio: this.props.ratio ?? '4/3',
       gridStyle: 'grid-template-columns:repeat(' + cols + ',minmax(0,1fr));',
     };

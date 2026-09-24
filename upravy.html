@@ -49,6 +49,16 @@
     <p class="sum">Zadání, kterým si nejsme jistí nebo je potřeba upřesnit společně.</p>
 
     <div class="item">
+      <span class="tag tag-open">Receptář · 24. září</span>
+      <h3>Hodnocení receptů</h3>
+      <ul class="mlist">
+        <li>U receptů v návrhu zobrazujeme hvězdičkové hodnocení a počet hodnocení (karta receptu, detail receptu). Zatím jde jen o vizuál bez vazby na data.</li>
+        <li>Recept není produkt, takže se na něj nevztahuje stávající hodnocení produktů (ověřené nákupem). Nevíme, kdo a jak bude recepty hodnotit ani jakou službou nebo systémem se hodnocení bude sbírat.</li>
+        <li>Probrat s klientem: kdo smí hodnotit (kdokoli / jen přihlášený / jen zákazník, který koupil suroviny), zda k hodnocení patří i text recenze nebo fotka výsledku, jakou službu nebo modul BS použít a zda hodnocení recepty vůbec potřebují. Pokud ne, hvězdičky z karet i detailu odebereme.</li>
+      </ul>
+    </div>
+
+    <div class="item">
       <span class="tag tag-open">Vizuál · 4. září</span>
       <h3>Finální maskot</h3>
       <ul class="mlist">
@@ -75,6 +85,673 @@
         <li>Rozbalování delšího textu (SEO popis) — kolik ukázat hned a kolik skrýt.</li>
         <li>Jednotné provedení pro všechny úrovně kategorií.</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="day">
+    <h2>24. září 2026</h2>
+    <p class="sum">Recepty v detailu produktu zůstávají na menších šířkách ve sloupcích.</p>
+
+    <div class="item">
+      <span class="tag">Košík · Kroky 1–3</span>
+      <h3>Nový třikrokový košík</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Převést stávající košík (Doprava a platba, Kontaktní údaje, Souhrn objednávky) 1:1 do nového designu. Bez tlačítka Google hodnocení a AI asistenta.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Stránka kosik.dc.html se všemi třemi kroky, stepperem a spodní lištou. Rozložení a texty podle současného webu, formulářové prvky sjednocené podle design systému. V ukázce jde přepínat kroky, sbalené/rozbalené sekce ve 2. kroku a chybový vzhled polí.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Prolinkování</span>
+      <h3>Odkazy do košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Prolinkovat odkazy, které mají vést na stránku košíku.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na kosik.dc.html nyní vede tlačítko „Přejít do košíku“ v popupu košíku z hlavičky i v okně po vložení do košíku (to dřív mířilo na neexistující stránku), a to na všech stránkách.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Úpravy</span>
+      <h3>První ladění košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Odebrat štítek Ověřeno zákazníky, spodní lištu přes celou šířku jako na detailu produktu, Doporučujeme přesunout na konec kroku 1, dopravu a platbu bez společného boxu, ikony u Zpět a Pokračovat.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Štítek je pryč. Spodní lišta je přes celou šířku okna a vystředěná. Doporučujeme je poslední sekce kroku 1. Každá možnost dopravy a platby je samostatná karta. Zpět má šipku vlevo, Pokračovat šipku vpravo.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Varianty</span>
+      <h3>Zaškrtávátko varianty vlevo</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U výběru varianty přesunout zaškrtávátko úplně doleva.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Kroužek výběru je nově na začátku řádku před názvem varianty, cena zůstává vpravo.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Patička · Všechny stránky</span>
+      <h3>Jednotná patička s trhaným okrajem přes celou šířku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Patička má být všude stejná jako na homepage: oddělená trhaným pásem a přes celou šířku okna.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Stránky účtu (Můj účet, Objednávky, Detail objednávky, Faktury, Údaje účtu), Oblíbené, Věrnostní program a O nás mají nově patičku přes celou šířku okna se zeleným trhaným okrajem nahoře, stejně jako homepage, kategorie, produkt a receptář.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Můj účet · Faktury</span>
+      <h3>Výrazný souhrn k úhradě</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Zpřehlednit souhrn „Celkem uhradit / Z toho po splatnosti“ a zvýraznit hlavní údaje.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Souhrn tvoří dvě karty vedle sebe: „Celkem k úhradě“ a „Z toho po splatnosti“, obě s částkou velkým písmem (34 px). Pokud je něco po splatnosti, karta má teplý podklad a částku i popisek v tmavě terakotové, jinak je bílá jako první karta.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Můj účet · Detail objednávky</span>
+      <h3>Přehlednější údaje objednávky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Zpřehlednit sekci Hlavní / Kontaktní / Fakturační / Dodací údaje.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Každá skupina je v samostatné bílé kartě s malým zeleným nadpisem, karty v řadě mají stejnou výšku podle nejvyšší. Řádky oddělují jemné linky, popisek je šedý a bez dvojtečky, hodnota tmavá. Adresa je sloučená do jednoho řádku (ulice, PSČ a město). U dodacích údajů odpadl prázdný řádek Firma. Cena s DPH je zvýrazněná větším písmem. Poznámka od zákazníka je ve světle žlutém boxu s ikonou tužky. Položky objednávky mají před názvem miniaturu produktu 52 × 52 px (odkaz na detail produktu). Epsomská sůl zatím fotku nemá, zobrazuje se prázdný béžový čtverec.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Můj účet · Objednávky</span>
+      <h3>Odebrán sloupec „Úhrada / Typ dopravy“ (objednávky i faktury)</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V přehledu objednávek a faktur odebrat sloupec Úhrada / Typ dopravy.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Sloupec je v obou tabulkách odebraný, včetně mobilního zobrazení. Uvolněné místo připadlo ostatním sloupcům. Způsob platby a dopravy zůstává v detailu objednávky. Štítek stavu objednávky má šířku podle textu a neroztahuje se přes celý sloupec. Stav „Zpracováno“ má ikonu zaškrtnutí v kroužku. Objednávky ve stavu „Vyzvednuto“ (dokončený celý proces) mají celý řádek podbarvený světle zelenou, objednávky „Čeká na zaplacení“ světle oranžovou (čekají na akci zákazníka). Nadpisy Objednávky a Faktury mají nad sebou o 22 px větší odstup od navigace účtu.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail receptu · Postup</span>
+      <h3>Tlačítko „Video“ vedle „Provést krok za krokem“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Přidat vedle „Provést krok za krokem“ stejně velké tlačítko Video a u průvodce změnit ikonu na roztažení na celou obrazovku.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod nadpisem Postup krok za krokem jsou vedle sebe dvě stejná obrysová tlačítka: „Provést krok za krokem“ s ikonou roztažení na celou obrazovku a „Video“ s ikonou přehrávání. Video otevře stejné okno jako tlačítko na hlavní fotce.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail receptu · Postup</span>
+      <h3>Místo pro fotku u každého kroku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U kroků postupu připravit místo pro fotku k danému kroku, i v průvodci „Provést krok za krokem“.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod textem každého kroku je čárkovaný rámeček „Fotka ke kroku N“ (poměr 16 : 10, max. šířka 420 px), který se nahradí fotkou. V průvodci krok za krokem je stejný rámeček pod textem kroku v šířce textu.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail receptu · Hlavní fotka</span>
+      <h3>Tlačítko „Video“ na fotce receptu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Doplnit na fotku receptu tlačítko Video jako na produkt-vzor, tlačítko nesmí být průhledné.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Vpravo dole na hlavní fotce je tlačítko „Video“ se stejným tvarem jako v galerii produktu, ale s plně bílým podkladem a jemným stínem, aby bylo čitelné na každé fotce. Otevře video přes celou obrazovku (zavření křížkem nebo kliknutím mimo video). Zatím s ukázkovým videem.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail receptu · Oblíbené</span>
+      <h3>Srdíčko pro uložení receptu do oblíbených</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Doplnit ikonu srdíčka jako u produktu, aby šlo recepty ukládat do oblíbených.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na hlavní fotce receptu je vpravo nahoře stejné kulaté tlačítko se srdíčkem jako v galerii produktu (bílé s obrysem, po uložení terakotové s plným srdíčkem). Uložení se propíše do počítadla oblíbených v hlavičce.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail receptu · Nákup surovin</span>
+      <h3>Odebráno tlačítko „Označit, co už mám doma“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Smazat funkci „Označit, co už mám doma“.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítko pod „Vložit do košíku“ je z nákupního panelu receptu odebrané (včetně jeho druhého stavu „Vybrat vše“). Jednotlivé suroviny jde dál odškrtnout přímo v seznamu.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Našeptávač</span>
+      <h3>Větší písmo v našeptávači</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Zvětšit písmo v našeptávači vyhledávání.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na desktopu mají názvy produktů 18 px (dříve 15,5 px), ceny 18,5 px (dříve 17 px) a odkazy na recepty 15,5 px (dříve 14 px). Mobilní velikosti zůstaly beze změny.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Receptář · Mám doma</span>
+      <h3>Hledání podle surovin na vlastní stránce</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Sekci „Mám doma…“ přesunout z Receptáře na vlastní stránku, na kterou vede karta z rozbalovací hlavičky. Nahoře výběr surovin, pod ním recepty podle toho, co si zákazník nakliká.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nová stránka mate-doma.dc.html (drobečky Úvod › Receptář › Mám doma). Nahoře je blok Mám doma… s vyhledáváním a skupinami surovin, pod ním výpis receptů, který se podle vybraných surovin zužuje. Filtry obtížnosti, času a kategorie jsou na této stránce skryté (zůstávají v kódu). Z Receptáře je sekce odebraná, karta „Mám doma…“ v rozbalené hlavičce vede na novou stránku.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Receptář · Hlavička stránky</span>
+      <h3>Odebrán počet receptů u nadpisu, rozcestník až po rozbalení</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Smazat text „20 receptů v receptáři“ vedle nadpisu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Počet receptů se vedle nadpisu Receptář už nezobrazuje. Karty „Mám doma…“ a „Všech 20 receptů“ i panel Doporučené recepty se zobrazí až po kliknutí na „Přečíst celé“. Rozbalený obsah tvoří jeden řádek: vlevo zbytek úvodního textu, pod ním obě karty a tlačítko „Zabalit“, vpravo ve stejném řádku panel Doporučené recepty. Ve sbaleném stavu je vidět jen první odstavec a „Přečíst celé“.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Megamenu</span>
+      <h3>Megamenu — finální stav</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Souhrn všech úprav megamenu (topovaný produkt, ikony, fotky kategorií, varianty MM1 / MM2 / MM3).</p>
+        <span class="k">Řešení</span>
+        <div class="v">
+          <p style="margin:0 0 8px;"><strong>Obecně:</strong> karta topovaného produktu je skrytá (zůstává v kódu), odkazy zabírají celou šířku ve 4 sloupcích.</p>
+        <p style="margin:0 0 8px;"><strong>Obrázky u kategorií:</strong> Suroviny mají před názvem zelenou ikonu 20 px (stejné jako na homepage, „Jíly a tenzidy“ ikonu mýdla). Obaly (12 kategorií) a Výroba (Kosmetika, Svíčky, Potraviny, Obaly, Knihy a návody) mají fotku 48 × 48 px na bílém podkladu bez rámečku, fotka se neořezává. Doprava zdarma fotku nemá.</p>
+        <p style="margin:0 0 8px;"><strong>Přepínač MM1 / MM2 / MM3:</strong> je v ovládací liště ukázky, na stránkách bez lišty jako malá plovoucí lišta vlevo dole. Volba platí pro všechny stránky a pamatuje se.</p>
+        <p style="margin:0 0 8px;"><strong>MM1 (výchozí):</strong> jen hlavní kategorie v mřížce po čtyřech.</p>
+        <p style="margin:0 0 8px;"><strong>MM2:</strong> u Výroby, Produktů a Receptáře má každá kategorie vlastní sloupec s názvem a všemi podkategoriemi podle ekokoza.cz. Fotka kategorie stojí vlevo od sloupce. Kategorie s více než 10 podkategoriemi (Kosmetika) zabírá dva sloupce a vypisuje je ve dvou řadách.</p>
+        <p style="margin:0 0 8px;"><strong>MM3:</strong> stejné sloupce jako MM2, ale nejvýš 5 podkategorií a pod nimi odkaz „Zobrazit vše“ do celé kategorie.</p>
+        <p style="margin:0 0 8px;"><strong>Otevřené:</strong> Suroviny a Obaly podkategorie nemají, v MM2/MM3 se proto zobrazují jako v MM1 — čeká se na seznam podkategorií nebo souhlas s návrhem. U Produkty › Potraviny a čtyř kategorií Receptáře jsou zatím jen první tři podkategorie z webu.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">produkt-vzor · Galerie</span>
+      <h3>Tlačítko „Video“ v galerii</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Doplnit tlačítko a funkčnost Video stejně jako na stránce Produkt.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Galerie na produkt-vzor dostala stejné tlačítko „Video“ a přehrávání jako šablona produkt (stejná komponenta ui-Gallery, zatím s ukázkovým videem).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Recepty</span>
+      <h3>Recepty ve dvou sloupcích na tabletu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na menších šířkách zobrazovat recepty vedle sebe, karty v jednom sloupci jsou příliš velké. Do jednoho sloupce přejít až tam, kde je to nutné.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Sekce „S touto surovinou si vyrobíte“: 3 sloupce na XXL–L, 2 sloupce na M a S (pod 1000 px), 1 sloupec až na XS/XXS (pod 550 px).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Pravý panel</span>
+      <h3>Pravý panel bez vlastního posuvníku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V pravém panelu (recepty, certifikace, dokumentace) se nemá tvořit posuvník, obsah má být vidět celý.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Panel už nemá omezenou výšku ani vlastní posuvník. Pokud se vejde pod hlavičku a lištu chipů, zůstává přilepený nahoře jako dosud. Pokud je vyšší než okno, při posunu stránky dojede celý a přilepí se spodní hranou k oknu, takže je vždy vidět i jeho konec.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Dokumentace</span>
+      <h3>Dokumentace otevřená ve výchozím stavu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Blok Dokumentace v pravém panelu má být ve výchozím stavu otevřený.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Po načtení stránky je seznam souborů ke stažení rovnou vidět. Zavřít a znovu otevřít jde kliknutím na záhlaví.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Diskuze</span>
+      <h3>Diskuze v trhaném pásu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Sekci „Diskuze k produktu“ umístit do trhaného pásu s bílým podkladem.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Sekce leží v bílém trhaném pásu přes celou šířku okna, stejném jako na homepage (jemný stín na hranách). Obsah sekce zůstal beze změny. Pás navazuje přímo na patičku (spodní hrana rovná, zelený trhaný okraj patičky leží na bílé), takže mezi nimi už není béžový proužek.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Karusely</span>
+      <h3>Šipky pro listování u všech karuselů</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Doplnit navigaci ke všem karuselům: vpravo nahoře šipka doleva a doprava.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karusely „Co chcete vyrábět?“, „Suroviny dle kategorie“ a obě produktové řady (včetně „Zákazníci nejraději kupují“) mají vpravo v záhlaví vedle odkazu kulatá tlačítka se šipkami. Posouvají o tolik karet, kolik je právě vidět. Na začátku a na konci řady je příslušná šipka ztlumená. Šipky se zobrazují jen tehdy, když se řada skutečně posouvá (jinak jsou skryté, stejně jako posuvník). Na užších šířkách, kde se záhlaví skládá pod sebe, je odkaz vlevo a šipky vpravo.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Detailní popis</span>
+      <h3>Menší mezery mezi akordeony</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Zmenšit mezery mezi položkami akordeonu na polovinu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Mezera mezi oddíly detailního popisu zmenšena z 34 px na 17 px.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Recepty</span>
+      <h3>Recepty v pravém panelu jako karusel (varianta R2)</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vytvořit variantu bloku „Recepty se surovinou“ v pravém sloupci: karusel standardních karet receptu s možností listování. Původní seznam zůstává jako R1.</p>
+        <span class="k">Řešení</span>
+        <p class="v">R2 zobrazuje karty ui-RecipeCard v posuvné řadě se šipkami v záhlaví a posuvníkem pod řadou. Na XXL/XL jsou vedle sebe 2 karty, na L 1 karta (užší panel). Pod 980 px panel přechází pod obsah: na M 3 karty, na S 2 karty, na XS/XXS 1 karta s náhledem další. Šipky a posuvník se skryjí, když se všechny karty vejdou. Mezi R1 a R2 se přepíná v demo liště (výchozí R2). Ve verzi R2 je spodní sekce „S touto surovinou si vyrobíte“ skrytá a tlačítko „Všechny recepty“ vede do Receptáře.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="day">
+    <h2>23. září 2026</h2>
+    <p class="sum">Rozhodnutí o horní liště hlavičky a nová informační lišta nad webem.</p>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Detailní popis</span>
+      <h3>Kotevní chipy se stejnými texty jako nadpisy akordeonu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Texty v chipech nad akordeonem mají být stejné jako nadpisy oddílů, ne zkrácené.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všech 12 chipů má plné znění nadpisu svého oddílu (např. „Na co pozor“ je nově „Na co si dát pozor při výrobě?“). Chipy jsou nově přes celou šířku obsahu, nad oběma sloupci (i nad pravým). Při scrollování detailním popisem zůstávají přilepené pod hlavičkou na poloprůhledném bílém pruhu s linkou dole. Na desktopu se zalamují do více řádků, pod 820 px jsou v jednom vodorovně posuvném řádku, aby nezabíraly obrazovku. Chip právě otevřeného oddílu je aktivní (tmavě zelený s krémovým textem). Po kliknutí na chip se oddíl rozbalí a stránka se posune tak, aby jeho nadpis byl hned pod lištou chipů (16 px mezera) a nic ho nepřekrývalo. Přilepený pravý sloupec (recepty se surovinou a další) se drží pod lištou chipů, ne pod hlavičkou, takže pod lištu nezalézá a je celý vidět.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Detailní popis</span>
+      <h3>Oddíly akordeonu bez číslování</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V akordeonu nečíslovat sekce, nechat jen nadpis.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Z nadpisů oddílů je odstraněné pořadové číslo („1. Hlavní vlastnosti“ je teď „Hlavní vlastnosti“), celkem 13 oddílů.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Detailní popis</span>
+      <h3>Odstraněn úvod sekce Detailní popis</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V sekci s detailním popisem odstranit nadtitulek, nadpis (název produktu) a úvodní popis.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nadtitulek „Detailní popis“, nadpis s názvem produktu i úvodní odstavec jsou pryč. Sekce začíná rovnou rozcestníkem kotev (Vlastnosti, Použití…) a rozbalovacími oddíly.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Benefity (USP)</span>
+      <h3>Obrysová ikona u benefitu „Suroviny beze lží“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vyměnit ikonu za vhodnou obrysovou (outline), jako mají ostatní benefity.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Plná ikona „natural-origin“ je nahrazená obrysovou ikonou rostlinky (plant-02), stejného stylu jako ostatní ikony v bloku.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Výběr varianty</span>
+      <h3>Název balení a dostupnost v jednom řádku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U varianty dát název balení (např. „1 kg“) a dostupnost („Ihned k odeslání“) do jednoho řádku.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Název balení a dostupnost jsou vedle sebe na jednom řádku, takže řádek varianty je nižší. Název má pevný sloupec (min. 96 px) a dostupnost začíná u všech variant na stejném místě, pod sebou, bez ohledu na délku názvu. Jen když se vedle sebe nevejdou, dostupnost se zalomí pod název. Na XS a XXS (do 550 px) je dostupnost zarovnaná úplně vpravo na řádku s názvem balení.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Výběr varianty</span>
+      <h3>Ceny u variant zarovnané vlevo na mobilu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na mobilu zarovnat ceny u variant doleva.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na XS a XXS (do 550 px), kde se cena zalomí pod název varianty, je cena i jednotková cena zarovnaná vlevo. Hranice zalomení je nově podle breakpointů projektu (549 px místo původních 560 px).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Celý web · Dostupnost</span>
+      <h3>Dostupnost bez ikony „i“, vysvětlení se ukáže po najetí</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U dostupnosti odebrat ikonu „i“. Vysvětlující okénko se má zobrazit po najetí na dostupnost.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Ikona „i“ za stavem dostupnosti je odstraněná. Okénko s vysvětlením se ukáže po najetí myší na celý údaj o dostupnosti (na dotykových zařízeních po klepnutí). Kurzor se změní na otazník. Zároveň jsme odebrali systémovou bublinu prohlížeče, aby se nezobrazovaly dvě nápovědy najednou. Změna je v komponentě ui-Stock, takže platí všude, kde se dostupnost zobrazuje.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Věrnostní sleva</span>
+      <h3>Informační ikona u „Vaše sleva“ s vysvětlením v okně</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Za text „Vaše sleva −10 %“ doplnit ikonu „i“, která otevře okno s informací, že sleva je u produktu už maximální, i když je zákazník ve věrnostním programu. Text musí přesně formulovat klient.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Za textem je malá ikona „i“. Otevře okno s nadpisem „Jak se počítá vaše sleva“, pracovním textem a odkazem na věrnostní program. Okno se zavře křížkem nebo kliknutím mimo. V okně je viditelný štítek „Doplnit text — formulaci dodá klient“. Ikona a okno jsou u přihlášeného zákazníka na obou šablonách detailu produktu (produkt i produkt-vzor). <strong>Čeká na klienta:</strong> přesné znění textu a pravidla, kdy se okno u produktu zobrazuje.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Nákupní box</span>
+      <h3>Skryté výhody produktu pod tlačítkem nákupu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Úplně skrýt sekci se třemi body (původ z ekologického zemědělství, 100 % přírodní olej, bezpečnostní list ke každé šarži).</p>
+        <span class="k">Řešení</span>
+        <p class="v">Sekce je v nákupním boxu skrytá na obou šablonách detailu produktu (produkt-vzor i produkt), pro nepřihlášeného i přihlášeného zákazníka. Na šabloně produkt jde o body „Doprava zdarma od 2 000 Kč“, „Navažujeme z velkých balení“ a „Bezpečnostní a technický list“. Obsah zůstává v kódu a jde znovu zobrazit.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Výběr varianty</span>
+      <h3>Výběr balení řádkově jako výchozí, přepínač skrytý</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nastavit výběr varianty „Řádkově“ jako výchozí, variantu „Karty“ schovat a odebrat přepínač z ovládací lišty ukázky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Varianty balení se zobrazují vždy řádkově. Přepínač „Varianty: Řádkově / Karty“ je z ovládací lišty odebraný. Varianta Karty zůstává v kódu a přepínač jde kdykoli znovu zobrazit.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Nákupní box</span>
+      <h3>Skrytý štítek INCI pod názvem produktu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Úplně skrýt štítek „INCI Lavandula Angustifolia Oil“ v horní části nákupního boxu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Štítek je skrytý. INCI se dál zobrazuje v záložce se složením. ID produktu je přesunuté pod název, na řádek s hodnocením a „Častými otázkami“, zarovnané úplně vpravo. Nad názvem tak nic nezůstává.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Celý web · Nadpisy</span>
+      <h3>Nadpisy stránek v tmavě zelené jako na homepage</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nadpisy na podstránkách (např. „Produkty“) působí moc černě. Dát je stejnou barvou jako nadpisy na homepage.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Hlavní nadpisy stránek (H1) i nadpisy sekcí (H2) mají nově tmavě zelenou #4C653D jako na homepage. Platí pro výpis kategorie, detail produktu, receptář a recept, slovníček, věrnostní program, oblíbené a všechny stránky účtu.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Výpis kategorie · Filtry</span>
+      <h3>Nadpis „Filtrovat“ nad filtrační lištou</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nad lištu s filtry doplnit nadpis „Filtrovat“.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nad lištou filtrů je nadpis „Filtrovat“ (EB Garamond, 24 px) se stejným stylem jako ostatní nadpisy na stránce.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie</span>
+      <h3>Tlačítko „Video“ v galerii produktu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vedle tlačítka „Zvětšit“ doplnit tlačítko, které ukáže, že produkt má video. V lightboxu má být video druhá položka po fotce. Klik na ikonu videa má v lightboxu rovnou spustit video. Ikona klidně červeně.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Vlevo od „Zvětšit“ je tlačítko „Video“ s terakotovou ikonou přehrání. Obě tlačítka jsou stejně velká (výška 40 px) a mají stejně velké ikony (20 px). Lightbox je nově galerie se šipkami (i klávesami ← →) a počítadlem. Pořadí je první fotka, video a pak ostatní fotky. Klik na fotku otevře lightbox na fotce, klik na „Video“ ho otevře rovnou na videu a spustí ho. Tlačítko se ukáže jen u produktu, který video má (nové nastavení video v komponentě ui-Gallery). V ukázce je zatím zástupné video z homepage.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Výpis kategorie · Hlavička</span>
+      <h3>Rozbalovací edukativní obsah v hlavičce kategorie</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Obsah hlavičky kategorie (průvodce výběrem, videonávod a tabulku „Který typ vybrat“) udělat rozbalovací a zabalovací.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Po načtení je vidět jen perex, tlačítko „Přečíst celé“ a rychlé odkazy (chipy). Tlačítko „Přečíst celé“ rozbalí zbytek popisu, karty průvodce a videonávodu vpravo i srovnávací tabulku typů. Tlačítkem „Zabalit“ se vše zase sbalí. Box „Mini kurz“ zůstává vidět vždy. Hlavička je tak po načtení výrazně nižší a produkty jsou blíž. Rychlé odkazy (chipy) jsou na konci celého bloku, pod rozbaleným obsahem, a pod nimi je tlačítko „Detailní popis kategorie“ / „Zabalit“ (dříve „Přečíst celé“). Jde o textové tlačítko stejné jako odkazy u karuselů: bez podkladu, při najetí myší se podtrhne.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Výpis kategorie · Mini kurz</span>
+      <h3>Box „Mini kurz“ přesunut pod srovnání typů</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Přesunout box „Mini kurz: přírodní péče bez omylů“ o sekci níž.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Box s přihlášením k mini kurzu je teď pod srovnávací tabulkou typů. Zákazník nejdřív vidí srovnání a až potom nabídku kurzu.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Benefity (USP) V2</span>
+      <h3>Kompaktní řádková podoba benefitů na mobilu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na nejmenších displejích (XS, XXS) zobrazit USP v řádcích a zkompaktnit je.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na XS a XXS (do 550 px) jsou benefity v jednom sloupci jako řádky. Vlevo je ikona (28 px), vpravo nadpis (18 px) a pod ním popis. Řádky oddělují vodorovné linky místo svislých a každý má 13 px odsazení nahoře i dole, takže blok zabere zhruba polovinu původní výšky. Od 550 px výš se nic nemění.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Celý web · Barvy</span>
+      <h3>Tmavý text sjednocen na barvu z design systému</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Názvy karet („Kosmetika“ apod.) měly barvu #2D3A2E, která v rolích barev design systému není. Změnit na #2A2A24.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všechny texty v barvě #2D3A2E jsou na celém webu převedené na „Text silný“ #2A2A24 podle design systému, celkem 128 míst. Jde o názvy karet kategorií a surovin, nadpisy v účtu, košíku, receptech, na stránkách O nás a Věrnostní program, v patičce a v overlayích. Tmavé přechody v design systému, kde #2D3A2E slouží jako koncová barva pozadí, zůstávají beze změny. Názvy karet v blocích „Co chcete vyrábět?“ a Suroviny jsme po kontrole převedli na tmavě zelenou #4C653D, stejnou jako nadpis sekce, protože #2A2A24 na nich působil příliš tmavě.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Benefity (USP)</span>
+      <h3>Nová ikona u benefitu „Poradíme, nekoučujeme“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vyměnit ikonu za vhodnější, která vyjadřuje „ověřeno, vyzkoušeno, praxe“.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Ikonu sluchátek s mikrofonem (zákaznická podpora) nahradil odznak s fajfkou (checkmark-badge). Lépe odpovídá sdělení, že odpovídá člověk z praxe s ověřenými zkušenostmi.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Benefity (USP) V2</span>
+      <h3>Podtržení nadpisu benefitu při najetí myší</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Při najetí myší na kartu benefitu podtrhnout nadpis.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Po najetí na kartu se nadpis podtrhne tenkou linkou (1 px, odsazení 4 px) v barvě nadpisu. Jiný hover efekt karta nemá.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Benefity (USP) V2</span>
+      <h3>Skryté záhlaví bloku benefitů</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Skrýt záhlaví bloku, tedy „Proč Ekokoza“, nadpis „Šest důvodů, proč tvořit s námi“ a perex vpravo.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Záhlaví je skryté a blok začíná rovnou kartami benefitů. V kódu zůstává a jde znovu zobrazit.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Benefity (USP) V2</span>
+      <h3>Ikony benefitů bez podkladu, v terakotové barvě</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Ikony dát bez podkladu a v terakotové barvě. Když nebudou v boxu, můžou být větší.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Béžový čtvercový podklad pod ikonami je odstraněný. Ikony jsou v terakotové (#D14405) a zvětšené z 26 px na 36 px, zarovnané k levé hraně karty. Změna platí jen pro variantu V2, ostatní skryté varianty zůstávají beze změny.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Benefity (USP) V2</span>
+      <h3>Benefity bez hoveru a bez čísel, text zarovnaný vlevo</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Odebrat hover efekt a díky tomu zarovnat text na každé kartičce úplně doleva. Odebrat čísla u jednotlivých USP.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karty už nemají hover (podklad, stín ani změnu barvy nadpisu) ani vnitřní odsazení vlevo. Ikona, nadpis a popis začínají na levé hraně sloupce a první karta lícuje s nadpisem sekce. Dělicí linky jsou nově na pravé straně karty a mají z obou stran stejné odsazení, 20 px od textu vlevo i vpravo. Pořadová čísla 01–06 jsou odstraněná.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Benefity (USP)</span>
+      <h3>Blok benefitů ve variantě V2 jako výchozí</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nastavit blok USP ve výchozím stavu na variantu V2 a ostatní varianty skrýt z ovládací lišty. Varianty nemazat.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Homepage ukazuje blok benefitů ve variantě V2 (redakční mřížka). Přepínač USP V1–V4 v ovládání ukázky je skrytý. Varianty V1, V3 a V4 zůstávají v kódu a přepínač jde kdykoli znovu zobrazit.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Záhlaví sekcí</span>
+      <h3>Odkaz v záhlaví sekce pod nadpisem na menších displejích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na menších displejích zalomit CTA pod nadpis, a to ve všech sekcích, kde je.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 900 px se odkaz nebo CTA vpravo od nadpisu přesune pod nadpis, zarovnaný vlevo, s mezerou 12 px. Platí pro „Co chcete vyrábět?“, Suroviny, Recepty, „Zákazníci nejraději kupují“, Komunitní dílnu a záhlaví variant bloku benefitů. Na desktopu zůstává odkaz vpravo.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Celý web · Karusely</span>
+      <h3>Spodní posuvník u všech karuselů</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Stejný spodní posuvník jako u „Co chcete vyrábět?“ doplnit ke všem karuselům.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Stejný posuvník (béžová linka a zelený úsek, který jede s řadou) je teď i u Receptů a Produktů na homepage, u produktových karuselů na detailu produktu, kde nahradil původní systémový scrollbar, u kategorií receptáře a u podkategorií ve výpisu kategorie. Zobrazí se jen tehdy, když se řada opravdu dá posunout. Na desktopu, kde se vše vejde, zůstává skrytý.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Karusely</span>
+      <h3>Posuvník pod karusely „Co chcete vyrábět?“ a Suroviny</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Pod karusel doplnit spodní posuvník, aby bylo vidět, že se řada dá posouvat. U „Co chcete vyrábět?“ i u surovin.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod karuselem je tenká linka (3 px, krémově béžová) s tmavě zeleným úsekem. Jeho šířka ukazuje, kolik karet je vidět, a při posouvání se pohybuje s řadou. Zobrazí se jen tam, kde je řada opravdu posuvná (pod 900 px). U surovin platí pro variantu S2, S1 zůstává mřížkou bez posuvníku.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Suroviny</span>
+      <h3>Odkaz „Všechny suroviny“ v záhlaví bloku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Do záhlaví bloku „Suroviny dle kategorie“ přidat vpravo tlačítko „Všechny suroviny“.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Vpravo od nadpisu je odkaz „Všechny suroviny“ se šipkou, stejně jako „Vše ke tvorbě“ u rozcestníku. Vede na výpis kategorie a platí pro obě varianty, S1 i S2.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Suroviny</span>
+      <h3>Dvě varianty bloku „Suroviny dle kategorie“ (S1 / S2)</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">S1 zachovat, jak se blok chová teď od desktopu po mobil. S2 udělat tak, aby se choval stejně jako „Co chcete vyrábět?“ a na menších displejích z něj byl stejný karusel.</p>
+        <span class="k">Řešení</span>
+        <p class="v">S1 je beze změny: čtyři sloupce, pod 900 px dva sloupce pod sebou. S2 má na desktopu čtyři sloupce, mezi 901 a 1180 px tři a pod 900 px se změní ve vodorovný karusel. Karty mají 240 px, přichytávají se při posunu a u pravého okraje postupně mizí, stejně jako v rozcestníku. Varianty se přepínají v ovládání ukázky dole („S1 / S2“, ikona kapky) a volba se pamatuje. V komponentě ui-IngredientGrid je to nové nastavení rozvržení (mřížka / karusel). Zároveň jsme opravili mobilní styl názvu karty, který se po přidání popisu přestal uplatňovat.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Suroviny</span>
+      <h3>Krátký popis u karet surovin</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Doplnit ke kartám surovin krátký popis, stejně jako mají karty v bloku „Co chcete vyrábět?“.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod názvem každé kategorie surovin je jednořádkový popis stejným stylem jako v rozcestníku (13,5 px, šedá). Komponenta ui-IngredientTile má nově volitelný popis. Texty jsou pracovní a čekají na schválení klientem.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Rozcestník a Suroviny</span>
+      <h3>Větší názvy na kartách kategorií</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Zvětšit o 4 px názvy karet v bloku „Co chcete vyrábět?“ i na kartách v bloku Suroviny.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Názvy mají na desktopu místo 20 px nově 24 px, a to v obou blocích. U surovin je na mobilu zvětšený i název, z 18 px na 22 px. Změna je přímo v komponentách ui-CategoryTile a ui-IngredientTile, takže platí všude, kde se karty používají.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Rozcestník</span>
+      <h3>Odstraněny nadtitulky „Rozcestník“ a „Receptář“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Smazat nadtitulek „Rozcestník“ nad nadpisem „Co chcete vyrábět?“ a nadtitulek „Receptář“ nad nadpisem „Recepty, které fungují“.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba nadtitulky jsou odstraněné. Bloky začínají rovnou nadpisem.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Informační lišta</span>
+      <h3>Nová informační lišta nad celým webem</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Klasická informační lišta přes celou šířku jako první sekce webu, nepřekrývá obsah. Kontrastní barva, zavírací křížek, text uprostřed, na konci odkaz „Prohlédnout“. Udělat ji jako komponentu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nová komponenta ui-InfoBar: pruh v terakotové barvě s bílým textem, umístěný nad hlavičkou na všech stránkách. Obsah pod sebou posune dolů a při scrollování odjede, lepivá zůstává jen hlavička. Text je na střed. Před ním je barevná emoji ikona 🫒 s menší mezerou k textu (4 px). Ikonu jde v komponentě vyměnit. Za textem je podtržený odkaz „Prohlédnout“. Vpravo je křížek. Lišta se jím skryje jen do obnovení stránky, po refreshi nebo na další stránce se zobrazí znovu. Text, odkaz, cíl odkazu i zapnutí a vypnutí lišty jdou nastavit v komponentě.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Horní lišta</span>
+      <h3>Horní lišta V2 platí na celém webu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U varianty V2 použít stejnou zelenou jako v logu (jako ve V1), ale ponechat větší výšku V2. Variantu V2 nastavit na celém webu a přepínač horní lišty skrýt.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V2 má teď zelenou z loga (#4C653D) a krémový text jako V1. Zůstává vyšší o 8 px a s jemnou linkou dole. Varianta V2 je výchozí v hlavičce, takže platí na všech stránkách. Přepínač „Horní lišta“ ve spodním pruhu ukázky jsme skryli. Varianty V1 a V3 zůstávají v kódu a přepínač jde kdykoli znovu zobrazit.</p>
+      </div>
     </div>
   </section>
 

@@ -50,10 +50,10 @@
           <a href="{{ sp.href }}" class="ek-mega-link" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
             <span style="{{ sp.thumbStyle }}"></span>
             <span style="flex:1; min-width:0;">
-              <span class="ek-mh" style="display:block; font-family:'EB Garamond',serif; font-weight:500; font-size:15.5px; line-height:1.25;">{{ sp.name }}</span>
+              <span class="ek-mh" style="display:block; font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25;">{{ sp.name }}</span>
               <dc-import name="ui-Stock" state="{{ sp.stockState }}" date="{{ sp.stockDate }}" size="{{ 12.5 }}" hint-size="130px,17px"></dc-import>
             </span>
-            <span class="ek-mprice" style="font-family:'EB Garamond',serif; font-size:17px; color:#4C653D; font-weight:500; white-space:nowrap;">{{ sp.price }}</span>
+            <span class="ek-mprice" style="font-family:'EB Garamond',serif; font-size:18.5px; color:#4C653D; font-weight:500; white-space:nowrap;">{{ sp.price }}</span>
           </a>
         </sc-for>
       </div>
@@ -65,7 +65,7 @@
       <dc-import name="ui-RecipeCard" title="{{ topRecipeName }}" desc="" category="{{ topRecipeCat }}" level="{{ topRecipeLevel }}" time="{{ topRecipeTime }}" img="{{ topRecipeImg }}" cta="Zobrazit recept" hint-size="100%,300px"></dc-import>
       <div style="display:flex; flex-direction:column;">
         <sc-for list="{{ recipes }}" as="sr" hint-placeholder-count="3">
-          <a href="#" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; font-size:14px; font-weight:500; transition:background .15s;" class="ek-mega-link ek-mlink">{{ sr }}<span style="{{ iconChevron }}"></span></a>
+          <a href="#" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; font-size:15.5px; font-weight:500; transition:background .15s;" class="ek-mega-link ek-mlink">{{ sr }}<span style="{{ iconChevron }}"></span></a>
         </sc-for>
       </div>
     </div>

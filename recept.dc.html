@@ -22,9 +22,13 @@
   .ek-btn-secondary:hover span { background-color: #F6F1E7 !important; }
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
-  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.08; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 30px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-h3 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 20px; line-height: 1.25; color: #2D3A2E; margin: 0; }
+  .ek-fav-btn { transition: transform .2s, background .2s, border-color .2s; }
+  .ek-fav-btn:hover { transform: scale(1.06); }
+  .ek-vid-btn { transition: border-color .2s; }
+  .ek-vid-btn:hover { border-color: #D14405 !important; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.08; color: #4C653D; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 30px; line-height: 1.15; color: #4C653D; margin: 0; text-wrap: pretty; }
+  .ek-h3 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 20px; line-height: 1.25; color: #2A2A24; margin: 0; }
   .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
   .ek-p { margin: 0; font-size: 16.5px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-rgrid { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: 40px; align-items: start; }
@@ -50,7 +54,7 @@
   .ek-box { width: 22px; height: 22px; flex: 0 0 auto; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: border-color .2s, background .2s; }
   .ek-tabs { display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: #F1EADC; }
   .ek-tab { flex: 1; min-height: 34px; padding: 7px 12px; border: none; border-radius: 999px; background: transparent; font-family: 'Work Sans',sans-serif; font-size: 13px; font-weight: 700; color: #6B6B5E; cursor: pointer; transition: background .2s, color .2s; }
-  .ek-tab-on { background: #FFFDF6; color: #2D3A2E; box-shadow: 0 4px 10px -8px rgba(45,58,46,.6); }
+  .ek-tab-on { background: #FFFDF6; color: #2A2A24; box-shadow: 0 4px 10px -8px rgba(45,58,46,.6); }
   @media (max-width: 1100px) {
     .ek-rgrid { grid-template-columns: minmax(0,1fr) 340px; gap: 28px; }
   }
@@ -86,7 +90,9 @@
 
 <div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
+  <dc-import name="ui-InfoBar" hint-size="100%,40px"></dc-import>
   <dc-import name="ui-Header" active="receptar" hint-size="100%,140px"></dc-import>
+  <dc-import name="ui-MenuSwitch" floating="{{ true }}" hint-size="0px,0px"></dc-import>
 
   <div style="max-width:1720px; margin:0 auto;">
   <section style="padding:22px 32px 0;" class="ek-pad">
@@ -108,7 +114,17 @@
 
           <div style="position:relative; margin-top:24px; border-radius:14px; overflow:hidden; aspect-ratio:16/10; background:#EFE7D6;">
             <div style="{{ heroImg }}"></div>
+            <button onClick="{{ openVid }}" class="ek-vid-btn" title="Přehrát video k receptu" style="position:absolute; right:14px; bottom:14px; z-index:3; display:flex; align-items:center; gap:7px; box-sizing:border-box; height:40px; line-height:1; background:#FFFFFF; border:1px solid #ECE3D2; border-radius:999px; padding:0 14px; font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:600; color:#4C653D; cursor:pointer; box-shadow:0 6px 18px -8px rgba(45,58,46,.45);"><span style="{{ iconVid }}"></span>Video</button>
+            <button onClick="{{ toggleFav }}" class="ek-fav-btn" title="{{ favTitle }}" aria-pressed="{{ favOn }}" style="{{ favBtnStyle }}"><span style="{{ favIcon }}"></span></button>
             <span style="position:absolute; top:14px; left:14px; padding:5px 12px; border-radius:999px; background:rgba(255,253,246,.94); font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Recept</span>
+            <sc-if value="{{ vidOpen }}" hint-placeholder-val="{{ false }}">
+              <div onClick="{{ closeVid }}" role="dialog" aria-label="Video k receptu" style="position:fixed; inset:0; z-index:400; background:rgba(34,48,31,.9); display:flex; align-items:center; justify-content:center; padding:28px; cursor:zoom-out;">
+                <div onClick="{{ stopVid }}" style="position:relative; cursor:default;">
+                  <video src="assets/hero/hero-loop.mp4" controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" style="display:block; width:min(1040px,86vw); max-height:78vh; border-radius:14px; background:#000;"></video>
+                  <button onClick="{{ closeVid }}" aria-label="Zavřít video" style="position:absolute; top:-18px; right:-18px; width:40px; height:40px; border-radius:50%; border:none; background:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer;"><span style="{{ iconVidClose }}"></span></button>
+                </div>
+              </div>
+            </sc-if>
           </div>
           <span style="display:block; margin-top:8px; font-size:12.5px; color:#8a8776;">Obrázek je pouze ilustrační.</span>
 
@@ -178,13 +194,17 @@
 
           <div class="ek-sec">
             <h2 class="ek-h2">Postup krok za krokem</h2>
-            <button onClick="{{ openGuide }}" class="ek-btn-secondary ek-noprint" style="align-self:flex-start; display:inline-flex; align-items:center; gap:10px; border:1.5px solid #4C653D; background:transparent; color:#4C653D; border-radius:999px; padding:13px 24px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;"><span style="{{ iconGuide }}"></span>Provést krok za krokem</button>
+            <div class="ek-noprint" style="display:flex; flex-wrap:wrap; gap:10px; align-self:flex-start;">
+              <button onClick="{{ openGuide }}" class="ek-btn-secondary ek-noprint" style="display:inline-flex; align-items:center; gap:10px; border:1.5px solid #4C653D; background:transparent; color:#4C653D; border-radius:999px; padding:13px 24px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;"><span style="{{ iconGuide }}"></span>Provést krok za krokem</button>
+              <button onClick="{{ openVid }}" class="ek-btn-secondary ek-noprint" style="display:inline-flex; align-items:center; gap:10px; border:1.5px solid #4C653D; background:transparent; color:#4C653D; border-radius:999px; padding:13px 24px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;"><span style="{{ iconVidBtn }}"></span>Video</button>
+            </div>
             <div>
               <div class="ek-step">
                 <span class="ek-num">1</span>
                 <div>
                   <h3 class="ek-h3">Připravte si čisté pomůcky</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Nádoby, míchací pomůcky a obal ošetřete <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">ethanolem</a>. Nechte je volně oschnout nebo je jemně otřete čistou papírovou utěrkou. Čím čistěji budete pracovat, tím lépe podpoříte trvanlivost hotového kondicionéru.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 1</div>
                 </div>
               </div>
               <div class="ek-step">
@@ -192,6 +212,7 @@
                 <div>
                   <h3 class="ek-h3">Připravte vodnou fázi</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Do první žáruvzdorné nádoby odvažte rozmarýnový hydrolát, <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">aloe vera</a>, <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">glycerin</a>, <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">inulin</a> a <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">panthenol</a>. Směs promíchejte, aby se všechny složky rovnoměrně rozptýlily.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 2</div>
                 </div>
               </div>
               <div class="ek-step">
@@ -199,6 +220,7 @@
                 <div>
                   <h3 class="ek-h3">Zahřejte fázi A</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Nádobu vložte do vodní lázně a směs zahřejte na 70–75 °C. Během zahřívání ji občas klidnými pohyby promíchejte.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 3</div>
                 </div>
               </div>
               <div class="ek-step">
@@ -206,6 +228,7 @@
                 <div>
                   <h3 class="ek-h3">Připravte olejovou fázi</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Do druhé nádoby odvažte Varisoft® EQ 65, MCT Caprylis a brokolicový olej.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 4</div>
                 </div>
               </div>
               <div class="ek-step">
@@ -213,6 +236,7 @@
                 <div>
                   <h3 class="ek-h3">Rozpusťte Varisoft</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Olejovou fázi zahřejte rovněž na 70–75 °C. <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Emulgátor</a> se rozpouští pomaleji než tekuté oleje, proto směs průběžně míchejte a vyčkejte, dokud nebude jednotná a bez viditelných pevných částeček.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 5</div>
                 </div>
               </div>
               <div class="ek-step">
@@ -220,6 +244,7 @@
                 <div>
                   <h3 class="ek-h3">Spojte obě fáze</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Jakmile mají obě fáze přibližně stejnou teplotu, pomalu přilévejte olejovou fázi do vodné. Směs současně míchejte a poté ji přibližně jednu minutu homogenizujte.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 6</div>
                 </div>
               </div>
               <div class="ek-step">
@@ -227,6 +252,7 @@
                 <div>
                   <h3 class="ek-h3">Nechte emulzi chladnout</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Po homogenizaci pokračujte v pomalém míchání. Během chladnutí začne směs získávat mléčnou až lehce krémovou konzistenci. Míchejte do poklesu teploty přibližně na 40 °C.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 7</div>
                 </div>
               </div>
               <div class="ek-step">
@@ -234,6 +260,7 @@
                 <div>
                   <h3 class="ek-h3">Přidejte fázi C</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Při teplotě nejvýše 40 °C přidejte keratin, <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">hedvábný protein</a> a <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">konzervant</a>. Každou složku pečlivě, ale šetrně vmíchejte.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 8</div>
                 </div>
               </div>
               <div class="ek-step">
@@ -241,6 +268,7 @@
                 <div>
                   <h3 class="ek-h3">Upravte pH</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Změřte pH kondicionéru. <a href="slovnicek.dc.html" class="ek-gl" title="Slovníček pojmů">Kyselinu mléčnou</a> přidávejte pipetou po jednotlivých kapkách. Po každém přidání směs promíchejte a znovu přeměřte. Cílem je pH přibližně 4,5.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 9</div>
                 </div>
               </div>
               <div class="ek-step">
@@ -248,6 +276,7 @@
                 <div>
                   <h3 class="ek-h3">Naplňte kondicionér do obalu</h3>
                   <p class="ek-p" style="margin-top:7px; font-size:16px;">Hotový výrobek přelijte do čisté lahvičky a nechte jej přibližně 24 hodin ustálit. Konečnou hustotu posuzujte až po úplném vychladnutí.</p>
+                  <div class="ek-step-ph" style="margin-top:12px; max-width:420px; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:12px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#8a8776;">Fotka ke kroku 10</div>
                 </div>
               </div>
             </div>
@@ -310,7 +339,7 @@
         <aside class="ek-buy ek-noprint" style="position:sticky; top:158px; border:1px solid #E4DAC6; border-radius:14px; background:#FFFDF6; box-shadow:0 18px 40px -30px rgba(45,58,46,.55); overflow:hidden;">
           <div style="padding:20px 22px 16px; border-bottom:1px solid #EFE7D6;">
             <span style="display:block; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">Nákup na tento recept</span>
-            <h2 class="ek-h2" style="margin-top:6px; font-size:23px;">Vše, co k výrobě potřebujete</h2>
+            <h2 class="ek-h2" style="margin-top:6px; font-size:23px;">Vše, co potřebujete k výrobě 100 ml výrobku</h2>
             <div class="ek-tabs" style="margin-top:14px;">
               <button onClick="{{ setIng }}" class="{{ clsIng }}">Suroviny {{ nIng }}</button>
               <button onClick="{{ setTools }}" class="{{ clsTools }}">Pomůcky {{ nTools }}</button>
@@ -334,13 +363,12 @@
           <div style="padding:16px 22px 22px; border-top:1px solid #EFE7D6; background:#fff;">
             <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
               <span style="font-size:14.5px; color:#6B6B5E;">{{ sumLabel }}</span>
-              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:28px; color:#2D3A2E;">{{ sumPrice }}</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:28px; color:#2A2A24;">{{ sumPrice }}</span>
             </div>
             <sc-if value="{{ hasSaving }}" hint-placeholder-val="{{ true }}">
               <span style="display:block; margin-top:4px; font-size:13px; color:#4F6E2A;">{{ savingLabel }}</span>
             </sc-if>
             <button onClick="{{ addAll }}" class="ek-btn-main" style="display:flex; align-items:center; justify-content:center; gap:10px; width:100%; height:52px; margin-top:14px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:16px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;"><span style="{{ iconCart }}"></span>{{ ctaLabel }}</button>
-            <button onClick="{{ selectAll }}" class="ek-btn-ghost" style="display:block; width:100%; margin-top:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:10px; font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ selectLabel }}</button>
             <p style="margin:14px 0 0; font-size:12.5px; line-height:1.55; color:#8a8776;">Ceny jsou za celá balení surovin — vystačí i na další výrobu. Odklikněte, co už máte doma.</p>
           </div>
         </aside>
@@ -381,8 +409,9 @@
       <div class="ek-gwrap" style="flex:1; min-height:0; overflow-y:auto; display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:44px; align-content:start; max-width:1180px; width:100%; margin:0 auto; padding:44px 32px;">
         <div style="min-width:0;">
           <span class="ek-num" style="width:56px; height:56px; font-size:24px;">{{ guideStep.n }}</span>
-          <h2 style="margin:20px 0 0; font-family:'EB Garamond',serif; font-weight:500; font-size:38px; line-height:1.12; color:#2D3A2E; text-wrap:pretty;">{{ guideStep.title }}</h2>
+          <h2 style="margin:20px 0 0; font-family:'EB Garamond',serif; font-weight:500; font-size:38px; line-height:1.12; color:#2A2A24; text-wrap:pretty;">{{ guideStep.title }}</h2>
           <p style="margin:18px 0 0; font-size:20px; line-height:1.65; color:#4A4A42; max-width:60ch; text-wrap:pretty;">{{ guideStep.text }}</p>
+          <div style="margin-top:22px; max-width:60ch; aspect-ratio:16/10; border:1.5px dashed #CFC4AA; border-radius:14px; background:#FBF8F1; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:600; color:#8a8776;">Fotka ke kroku {{ guideStep.n }}</div>
           <sc-if value="{{ guideStep.tip }}" hint-placeholder-val="{{ false }}">
             <div class="ek-note" style="margin-top:24px; max-width:60ch;">
               <span style="{{ iconInfo }}"></span>
@@ -396,7 +425,7 @@
             <sc-for list="{{ guideStep.items }}" as="it" hint-placeholder-count="4">
               <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:11px 14px; border:1px solid #E2EACF; border-radius:12px; background:#F8FBF1;">
                 <span style="font-size:14.5px; color:#4A4A42;">{{ it.name }}</span>
-                <strong style="font-size:14.5px; font-weight:700; white-space:nowrap; color:#2D3A2E;">{{ it.qty }}</strong>
+                <strong style="font-size:14.5px; font-weight:700; white-space:nowrap; color:#2A2A24;">{{ it.qty }}</strong>
               </div>
             </sc-for>
           </div>
@@ -534,6 +563,30 @@ class Component extends DCLogic {
         { label: 'Lehký bezoplachový kondicionér' },
       ],
 
+      ...(() => {
+        const store = window.__ekFav || (window.__ekFav = new Set());
+        const id = 'recept:krem-na-paty';
+        const on = S.fav != null ? S.fav : store.has(id);
+        return {
+          favOn: on,
+          favTitle: on ? 'Odebrat z oblíbených' : 'Přidat do oblíbených',
+          favIcon: this.mask(on ? 'favourite-filled' : 'favourite', 21, on ? '#FFFFFF' : '#8a8776'),
+          favBtnStyle: 'position:absolute; top:14px; right:14px; z-index:3; display:flex; align-items:center; justify-content:center; width:42px; height:42px; padding:0; border-radius:50%; cursor:pointer; ' + (on ? 'background:#D8763B; border:1px solid #D8763B;' : 'background:rgba(255,255,255,.94); border:1px solid #ECE3D2;'),
+          toggleFav: (e) => {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            const next = !on;
+            if (next) store.add(id); else store.delete(id);
+            this.setState({ fav: next });
+            window.dispatchEvent(new CustomEvent('ek-fav-change', { detail: { count: store.size } }));
+          },
+        };
+      })(),
+      vidOpen: !!S.vid,
+      openVid: (e) => { if (e) { e.preventDefault(); e.stopPropagation(); } this.setState({ vid: true }); },
+      closeVid: (e) => { if (e) e.stopPropagation(); this.setState({ vid: false }); },
+      stopVid: (e) => e.stopPropagation(),
+      iconVid: this.mask('play', 20, '#D14405'),
+      iconVidClose: this.mask('cancel-01', 20, '#4C653D'),
       heroImg: 'position:absolute; inset:0; background:#EFE7D6 center/cover no-repeat; background-image:url("assets/recipes/krem-na-paty.jpg");',
       iconClock: this.mask('clock-01', 18, '#4F6E2A'),
       iconLevel: this.mask('medium-signal', 18, '#4F6E2A'),
@@ -560,7 +613,8 @@ class Component extends DCLogic {
       iconRecapCaret: this.mask(S.recapOpen ? 'arrow-up-01' : 'arrow-down-01', 17, 'currentColor'),
       iconList: this.mask('clipboard', 17, '#4F6E2A'),
 
-      iconGuide: this.mask('play', 20, 'currentColor'),
+      iconGuide: this.mask('maximize-01', 20, 'currentColor'),
+      iconVidBtn: this.mask('play', 20, 'currentColor'),
       iconClose: this.mask('cancel-01', 18, '#4C653D'),
       iconPrev: this.mask('arrow-left-01', 20, '#4C653D'),
       iconNextW: this.mask('arrow-right-01', 20, '#FFFFFF'),

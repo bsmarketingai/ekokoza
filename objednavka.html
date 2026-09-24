@@ -28,8 +28,8 @@
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
   .ek-card { background: #fff; border: 1px solid #ECE3D2; border-radius: 14px; }
   .ek-card:hover { transform: none !important; box-shadow: none !important; }
-  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #4C653D; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #4C653D; margin: 0; text-wrap: pretty; }
   .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
   .ek-p { margin: 0; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-tear { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: 0; pointer-events: none; box-shadow: inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); clip-path: polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 9.9px, 15.22% 13.6px, 17.39% 7.4px, 19.57% 11.2px, 21.74% 6.1px, 23.91% 10.4px, 26.09% 14.2px, 28.26% 8.1px, 30.43% 4.7px, 32.61% 9.3px, 34.78% 12.8px, 36.96% 6.8px, 39.13% 10.9px, 41.3% 5.2px, 43.48% 13.1px, 45.65% 8.6px, 47.83% 11.7px, 50% 6.4px, 52.17% 9.8px, 54.35% 14.4px, 56.52% 7.9px, 58.7% 11.4px, 60.87% 5.7px, 63.04% 10.2px, 65.22% 13.3px, 67.39% 8.4px, 69.57% 4.9px, 71.74% 12.1px, 73.91% 7.2px, 76.09% 10.7px, 78.26% 14.1px, 80.43% 6.6px, 82.61% 11.9px, 84.78% 8.8px, 86.96% 5.1px, 89.13% 12.6px, 91.3% 9.1px, 93.48% 13.8px, 95.65% 7.7px, 97.83% 10.3px, 100% 5.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 11.1px), 95.65% calc(100% - 7.6px), 93.48% calc(100% - 13.4px), 91.3% calc(100% - 9.2px), 89.13% calc(100% - 5.3px), 86.96% calc(100% - 12.2px), 84.78% calc(100% - 8.7px), 82.61% calc(100% - 11.6px), 80.43% calc(100% - 6.1px), 78.26% calc(100% - 14.3px), 76.09% calc(100% - 9.6px), 73.91% calc(100% - 12.9px), 71.74% calc(100% - 7.1px), 69.57% calc(100% - 10.8px), 67.39% calc(100% - 4.8px), 65.22% calc(100% - 13.7px), 63.04% calc(100% - 8.2px), 60.87% calc(100% - 11.3px), 58.7% calc(100% - 6.7px), 56.52% calc(100% - 10.1px), 54.35% calc(100% - 14.6px), 52.17% calc(100% - 9.4px), 50% calc(100% - 5.6px), 47.83% calc(100% - 12.4px), 45.65% calc(100% - 8.9px), 43.48% calc(100% - 11.8px), 41.3% calc(100% - 6.9px), 39.13% calc(100% - 13.2px), 36.96% calc(100% - 9.7px), 34.78% calc(100% - 5.2px), 32.61% calc(100% - 12.7px), 30.43% calc(100% - 8.3px), 28.26% calc(100% - 11.5px), 26.09% calc(100% - 7.3px), 23.91% calc(100% - 14.5px), 21.74% calc(100% - 9.9px), 19.57% calc(100% - 6.2px), 17.39% calc(100% - 12.8px), 15.22% calc(100% - 8.5px), 13.04% calc(100% - 11.9px), 10.87% calc(100% - 6.4px), 8.7% calc(100% - 13.6px), 6.52% calc(100% - 9.3px), 4.35% calc(100% - 5.7px), 2.17% calc(100% - 12.3px), 0% calc(100% - 8.6px)); }
@@ -90,10 +90,11 @@
   @media (max-width: 900px) { .ek-help { grid-template-columns: repeat(2,minmax(0,1fr)) !important; } }
   @media (max-width: 520px) { .ek-help { grid-template-columns: 1fr !important; } }
 
-  .ek-idet { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 26px; }
-  .ek-drow { display: grid; grid-template-columns: 128px minmax(0,1fr); gap: 12px; align-items: baseline; padding: 5px 0; }
-  .ek-drow > span:first-child { font-size: 14px; font-weight: 700; color: #4C653D; }
-  .ek-drow > span:last-child { font-size: 14.5px; color: #4A4A42; word-break: break-word; }
+  .ek-idet { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: stretch; }
+  .ek-drow { display: grid; grid-template-columns: 112px minmax(0,1fr); gap: 12px; align-items: baseline; padding: 9px 0; border-top: 1px solid #F3EDE0; }
+  .ek-drow:first-of-type { border-top: none; }
+  .ek-drow > span:first-child { font-size: 13px; font-weight: 600; color: #8a8776; }
+  .ek-drow > span:last-child { word-break: break-word; }
   .ek-ihead { display: grid; grid-template-columns: 110px minmax(0,1fr) 120px 120px 92px 110px 120px; gap: 14px; padding: 12px 22px; background: #FBF8F1; border-bottom: 1px solid #EFE7D6; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
   .ek-irow { display: grid; grid-template-columns: 110px minmax(0,1fr) 120px 120px 92px 110px 120px; gap: 14px; align-items: center; padding: 15px 22px; border-bottom: 1px solid #F3EDE0; }
   .ek-irow:last-of-type { border-bottom: none; }
@@ -114,7 +115,9 @@
 
 <div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
+  <dc-import name="ui-InfoBar" hint-size="100%,40px"></dc-import>
   <dc-import name="ui-Header" loggedIn="{{ true }}" hint-size="100%,140px"></dc-import>
+  <dc-import name="ui-MenuSwitch" floating="{{ true }}" hint-size="0px,0px"></dc-import>
 
   <div style="max-width:1720px; margin:0 auto; position:relative;">
 
@@ -133,10 +136,10 @@
         <div style="max-width:1560px; margin:0 auto;">
           <div class="ek-idet">
             <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
-              <div style="display:flex; flex-direction:column; gap:8px; min-width:0;">
-                <h2 class="ek-h2" style="font-size:21px; margin-bottom:4px;">{{ g.title }}</h2>
+              <div class="ek-card" style="display:flex; flex-direction:column; min-width:0; padding:18px 20px 12px;">
+                <h2 style="margin:0 0 6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">{{ g.title }}</h2>
                 <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="5">
-                  <span class="ek-drow"><span>{{ r.k }}</span><span>{{ r.v }}</span></span>
+                  <span class="ek-drow"><span>{{ r.k }}</span><span style="{{ r.vStyle }}">{{ r.v }}</span></span>
                 </sc-for>
               </div>
             </sc-for>
@@ -148,9 +151,12 @@
     <section style="padding:0 32px;" class="ek-pad">
       <div style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
 
-        <div style="display:flex; flex-direction:column; gap:8px;">
-          <h2 class="ek-h2" style="font-size:22px;">Poznámka</h2>
-          <p class="ek-p" style="max-width:82ch;">{{ note }}</p>
+        <div style="display:flex; align-items:flex-start; gap:14px; padding:16px 20px; border:1px solid #EFDFA8; border-radius:14px; background:#FDF8E4;">
+          <span style="{{ iconNote }}"></span>
+          <div style="display:flex; flex-direction:column; gap:4px; min-width:0;">
+            <h2 style="margin:0; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#856512;">Poznámka od zákazníka</h2>
+            <p class="ek-p" style="margin:0; color:#4A4A42;">{{ note }}</p>
+          </div>
         </div>
 
         <div style="display:flex; gap:11px; flex-wrap:wrap;">
@@ -167,14 +173,17 @@
           <sc-for list="{{ items }}" as="i" hint-placeholder-count="3">
             <div class="ek-irow">
               <span class="ek-icell"><span class="ek-lbl">Kód</span><span style="font-size:14px; color:#6B6B5E;">{{ i.code }}</span></span>
-              <span class="ek-icell"><span class="ek-lbl">Název</span>
-                <a href="produkt-vzor.html" class="ek-link-u" style="font-family:'EB Garamond',serif; font-weight:500; font-size:17px; color:#2A2A24; text-decoration:none;">{{ i.name }}</a>
+              <span class="ek-icell" style="align-items:center;"><span class="ek-lbl">Název</span>
+                <span style="display:flex; align-items:center; gap:12px; min-width:0;">
+                  <a href="produkt-vzor.html" aria-hidden="true" tabindex="-1" style="{{ i.thumb }}"></a>
+                  <a href="produkt-vzor.html" class="ek-link-u" style="font-family:'EB Garamond',serif; font-weight:500; font-size:17px; color:#2A2A24; text-decoration:none;">{{ i.name }}</a>
+                </span>
               </span>
               <span class="ek-icell"><span class="ek-lbl">Cena / (m. j.) bez DPH</span><span style="font-size:14.5px; color:#4A4A42; white-space:nowrap;">{{ i.noVat }}</span></span>
               <span class="ek-icell"><span class="ek-lbl">Cena / (m. j.) s DPH</span><span style="font-size:14.5px; color:#4A4A42; white-space:nowrap;">{{ i.vat }}</span></span>
               <span class="ek-icell"><span class="ek-lbl">Množství</span><span style="font-size:14.5px; color:#4A4A42; white-space:nowrap;">{{ i.qty }}</span></span>
               <span class="ek-icell" style="justify-items:end;"><span class="ek-lbl">Celkem</span>
-                <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; color:#2D3A2E; white-space:nowrap;">{{ i.total }}</span>
+                <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; color:#2A2A24; white-space:nowrap;">{{ i.total }}</span>
               </span>
               <span class="ek-icell"><span class="ek-lbl">Poznámka</span><span style="font-size:13.5px; line-height:1.5; color:#6B6B5E;">{{ i.note }}</span></span>
             </div>
@@ -215,8 +224,9 @@
     </div>
   </div>
 
-  <div style="max-width:1720px; margin:0 auto;">
-    <dc-import name="ui-Footer" loggedIn="{{ true }}" loyaltyTier="{{ 2 }}" hint-size="100%,520px"></dc-import>
+  <div style="overflow-x:clip;">
+  <div aria-hidden="true" style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw; height:30px; margin-top:56px; background:#4C653D; clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% 100%, 0% 100%);"></div>
+  <div style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw;"><dc-import name="ui-Footer" loggedIn="{{ true }}" loyaltyTier="{{ 2 }}" hint-size="100%,520px"></dc-import></div>
   </div>
 </div>
 </x-dc>
@@ -233,9 +243,9 @@ class Component extends DCLogic {
     const m = (v) => v.toLocaleString('cs-CZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ' + cur;
 
     const ITEMS = [
-      { code: 'KYSCIT5', name: 'Kyselina citronová monohydrát, 5 kg', noVat: 3.72, vat: 4.50, qty: '1 ks', note: '' },
+      { code: 'KYSCIT5', name: 'Kyselina citronová monohydrát, 5 kg', img: 'assets/products/kyselina-citronova-1-kg.webp', noVat: 3.72, vat: 4.50, qty: '1 ks', note: '' },
       { code: 'EPSOM1', name: 'Epsomská sůl, 1 kg', noVat: 1.07, vat: 1.29, qty: '2 ks', note: 'Zabalit zvlášť' },
-      { code: 'LEVMAS100', name: 'Levandulové máslo, 100 g', noVat: 1.56, vat: 1.89, qty: '1 ks', note: '' },
+      { code: 'LEVMAS100', name: 'Levandulové máslo, 100 g', img: 'assets/products/levandulove-maslo-100-g.jpg', noVat: 1.56, vat: 1.89, qty: '1 ks', note: '' },
     ];
     const totalNoVat = ITEMS.reduce((s, i) => s + i.noVat * parseFloat(i.qty), 0);
     const totalVat = ITEMS.reduce((s, i) => s + i.vat * parseFloat(i.qty), 0);
@@ -249,43 +259,40 @@ class Component extends DCLogic {
       num: '8870005229',
       state: 'zpracovano',
 
+      iconNote: this.mask ? this.mask('pencil-edit-01', 20, '#856512') + ' margin-top:2px;' : '',
       groups: [
         { title: 'Hlavní údaje', rows: [
-          { k: 'Číslo:', v: '8870005229' },
-          { k: 'Vystaveno:', v: '19.08.2026' },
-          { k: 'Objednal:', v: 'Anežka Drtinová' },
-          { k: 'Forma úhrady:', v: 'Bankovním převodem' },
-          { k: 'Typ dopravy:', v: 'Osobní odběr (Fryčovice 297)' },
-          { k: 'Cena bez DPH:', v: m(totalNoVat) },
-          { k: 'Cena s DPH:', v: m(totalVat) },
+          { k: 'Číslo', v: '8870005229' },
+          { k: 'Vystaveno', v: '19.08.2026' },
+          { k: 'Objednal', v: 'Anežka Drtinová' },
+          { k: 'Forma úhrady', v: 'Bankovním převodem' },
+          { k: 'Typ dopravy', v: 'Osobní odběr (Fryčovice 297)' },
+          { k: 'Cena bez DPH', v: m(totalNoVat) },
+          { k: 'Cena s DPH', v: m(totalVat), strong: true },
         ] },
         { title: 'Kontaktní údaje', rows: [
-          { k: 'Jméno:', v: 'Anežka Drtinová' },
-          { k: 'Ulice, č.p.:', v: 'Dlouhá 128' },
-          { k: 'PSČ:', v: '760 01' },
-          { k: 'Město:', v: 'Zlín' },
-          { k: 'E-mail:', v: 'testovaci-objednavka@bsshop.cz' },
-          { k: 'Telefon:', v: '736 541 684' },
+          { k: 'Jméno', v: 'Anežka Drtinová' },
+          { k: 'Adresa', v: 'Dlouhá 128, 760 01 Zlín' },
+          { k: 'E-mail', v: 'testovaci-objednavka@bsshop.cz' },
+          { k: 'Telefon', v: '736 541 684' },
         ] },
         { title: 'Fakturační údaje', rows: [
-          { k: 'Firma:', v: 'bsshop s.r.o.' },
-          { k: 'IČ:', v: '12345678' },
-          { k: 'DIČ:', v: 'CZ12345678' },
+          { k: 'Firma', v: 'bsshop s.r.o.' },
+          { k: 'IČ', v: '12345678' },
+          { k: 'DIČ', v: 'CZ12345678' },
         ] },
         { title: 'Dodací údaje', rows: [
-          { k: 'Firma:', v: '—' },
-          { k: 'Jméno:', v: 'Anežka Drtinová' },
-          { k: 'PSČ:', v: '739 45' },
-          { k: 'Město:', v: 'Fryčovice' },
-          { k: 'Ulice:', v: 'Fryčovice 297' },
+          { k: 'Jméno', v: 'Anežka Drtinová' },
+          { k: 'Adresa', v: 'Fryčovice 297, 739 45 Fryčovice' },
         ] },
-      ],
+      ].map(g => ({ title: g.title, rows: g.rows.map(r => ({ k: r.k, v: r.v, vStyle: r.strong ? "font-family:'EB Garamond',serif; font-size:20px; font-weight:500; color:#2A2A24;" : 'font-size:14.5px; color:#2A2A24;' })) })),
 
-      note: 'Poznámka od zákazníka: Jedná se o testovací objednávku pro kontrolu funkčnosti systému. Tuto objednávku prosíme stornujte.',
+      note: 'Jedná se o testovací objednávku pro kontrolu funkčnosti systému. Tuto objednávku prosíme stornujte.',
 
       items: ITEMS.map(i => ({
         code: i.code,
         name: i.name,
+        thumb: 'display:block; width:52px; height:52px; flex:0 0 52px; border-radius:10px; border:1px solid #ECE3D2; ' + (i.img ? 'background:#fff url("' + i.img + '") center/contain no-repeat;' : 'background:#F6F1E7;'),
         noVat: m(i.noVat),
         vat: m(i.vat),
         qty: i.qty,
@@ -302,7 +309,7 @@ class Component extends DCLogic {
         row: s.kind === 'total' ? 'border-top:1px solid rgba(76,101,61,.16);' : '',
         k: 'font-weight:' + (s.kind === 'total' ? '700' : '600') + '; color:#2A2A24;',
         v: s.kind === 'total'
-          ? "font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#2D3A2E; white-space:nowrap;"
+          ? "font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#2A2A24; white-space:nowrap;"
           : 'font-weight:600; color:#2A2A24; white-space:nowrap;',
       })),
 
@@ -316,7 +323,7 @@ class Component extends DCLogic {
         { title: 'Časté otázky', desc: 'Odpovědi na to nejčastější.', href: '#', icon: 'help-circle' },
       ].map(h => Object.assign({}, h, { icon: this.mask(h.icon, 24, '#4C653D') })),
 
-      iconRepeat: this.mask('shopping-cart-add-01', 17, '#fff'),
+      iconRepeat: this.mask('repeat', 18, '#fff'),
       iconBack: this.mask('arrow-left-01', 17, '#4C653D'),
       iconPrint: this.mask('printer', 17, '#4C653D'),
       iconDownload: this.mask('pdf-01', 18, '#A33203'),

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ floating }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; left:20px; bottom:20px; z-index:300; display:flex; align-items:center; gap:10px; padding:8px 8px 8px 14px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
+    <span style="font-size:12.5px; font-weight:600; color:#8a8776; white-space:nowrap;">Megamenu</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setMM1 }}" title="Hlavní kategorie" style="{{ mm1Style }}">MM1</button>
+      <button onClick="{{ setMM2 }}" title="Kategorie včetně všech podkategorií" style="{{ mm2Style }}">MM2</button>
+      <button onClick="{{ setMM3 }}" title="Kategorie s 5 podkategoriemi a odkazem Zobrazit vše" style="{{ mm3Style }}">MM3</button>
+    </span>
+  </div>
+</sc-if>
+<sc-if value="{{ inline }}" hint-placeholder-val="{{ true }}">
+  <span style="display:flex; align-items:center; gap:10px; font-family:'Work Sans',sans-serif;">
+    <span style="font-size:12.5px; font-weight:600; color:#8a8776; white-space:nowrap;">Megamenu</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setMM1 }}" title="Hlavní kategorie" style="{{ mm1Style }}">MM1</button>
+      <button onClick="{{ setMM2 }}" title="Kategorie včetně všech podkategorií" style="{{ mm2Style }}">MM2</button>
+      <button onClick="{{ setMM3 }}" title="Kategorie s 5 podkategoriemi a odkazem Zobrazit vše" style="{{ mm3Style }}">MM3</button>
+    </span>
+  </span>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:60},&quot;floating&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { mm: 'mm1' };
+  componentDidMount() {
+    try { const mv = localStorage.getItem('ekokoza-mega-variant'); if (mv === 'mm2' || mv === 'mm3') this.setState({ mm: mv }); } catch (e) {}
+    this._on = (e) => { const v = e.detail && e.detail.variant; if (v === 'mm1' || v === 'mm2' || v === 'mm3') this.setState({ mm: v }); };
+    window.addEventListener('ek-mega-variant', this._on);
+  }
+  componentWillUnmount() { window.removeEventListener('ek-mega-variant', this._on); }
+  set(v) {
+    try { localStorage.setItem('ekokoza-mega-variant', v); } catch (e) {}
+    window.dispatchEvent(new CustomEvent('ek-mega-variant', { detail: { variant: v } }));
+  }
+  btn(on) {
+    return 'border:0; cursor:pointer; padding:6px 12px; border-radius:999px; font-family:inherit; font-size:13px; font-weight:600; transition:background .15s, color .15s; background:' + (on ? '#4C653D' : 'transparent') + '; color:' + (on ? '#F6F1E7' : '#4C653D') + ';';
+  }
+  renderVals() {
+    const floating = !!this.props.floating;
+    return {
+      floating, inline: !floating,
+      mm1Style: this.btn(this.state.mm === 'mm1'),
+      mm2Style: this.btn(this.state.mm === 'mm2'),
+      setMM1: () => this.set('mm1'),
+      setMM2: () => this.set('mm2'),
+      mm3Style: this.btn(this.state.mm === 'mm3'),
+      setMM3: () => this.set('mm3'),
+    };
+  }
+}
+</script>
+</body>
+</html>

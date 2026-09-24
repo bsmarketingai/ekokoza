@@ -18,6 +18,11 @@
   .ek-g-fav-off:hover { border-color: #E4D9C2; background: #F6F1E7; }
   .ek-g-fav-on { background: #D8763B; border: 1px solid #D8763B; }
   .ek-g-fav-on:hover { background: #B23803; border-color: #B23803; }
+  .ek-g-vid { pointer-events: auto; cursor: pointer; font-family: 'Work Sans',sans-serif; transition: border-color .2s, background .2s; }
+  .ek-g-vid:hover { border-color: #D14405 !important; background: #FFFFFF !important; }
+  .ek-g-nav { width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid rgba(246,241,231,.5); background: rgba(34,48,31,.5); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: background .2s, border-color .2s; }
+  .ek-g-nav:hover { background: #4C653D; border-color: #4C653D; }
+  @media (max-width: 549px) { .ek-g-nav { width: 40px; height: 40px; } }
 </style>
 </helmet>
 <div style="display:flex; flex-direction:column; gap:14px; font-family:'Work Sans',sans-serif;">
@@ -29,7 +34,12 @@
         <dc-import name="ui-Badge" variant="{{ b.variant }}" label="{{ b.label }}" hint-size="100px,26px"></dc-import>
       </sc-for>
     </span>
-    <span aria-hidden="true" style="position:absolute; right:14px; bottom:14px; display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.94); border:1px solid #ECE3D2; border-radius:999px; padding:8px 14px; font-size:12.5px; font-weight:600; color:#4C653D; pointer-events:none;"><span style="{{ iconZoom }}"></span>Zvětšit</span>
+    <span style="position:absolute; right:14px; bottom:14px; z-index:2; display:flex; align-items:center; gap:8px; pointer-events:none;">
+      <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ openVideo }}" class="ek-g-vid" title="Přehrát video k produktu" style="display:flex; align-items:center; gap:7px; box-sizing:border-box; height:40px; line-height:1; background:rgba(255,255,255,.94); border:1px solid #ECE3D2; border-radius:999px; padding:0 14px; font-size:12.5px; font-weight:600; color:#4C653D;"><span style="{{ iconVideo }}"></span>Video</button>
+      </sc-if>
+      <span aria-hidden="true" style="display:flex; align-items:center; gap:7px; box-sizing:border-box; height:40px; line-height:1; background:rgba(255,255,255,.94); border:1px solid #ECE3D2; border-radius:999px; padding:0 14px; font-size:12.5px; font-weight:600; color:#4C653D;"><span style="{{ iconZoom }}"></span>Zvětšit</span>
+    </span>
   </div>
 
   <sc-if value="{{ showThumbs }}" hint-placeholder-val="{{ false }}">
@@ -43,16 +53,30 @@
   <p style="margin:0; font-size:13px; line-height:1.5; color:#6B6B5E; font-style:italic;">{{ note }}</p>
 
   <sc-if value="{{ zoom }}" hint-placeholder-val="{{ false }}">
-    <div onClick="{{ closeZoom }}" style="position:fixed; inset:0; z-index:300; background:rgba(34,48,31,.86); display:flex; align-items:center; justify-content:center; padding:28px; cursor:zoom-out;">
-      <div style="{{ zoomStyle }}"></div>
+    <div onClick="{{ closeZoom }}" role="dialog" aria-label="Galerie produktu" style="position:fixed; inset:0; z-index:300; background:rgba(34,48,31,.9); display:flex; align-items:center; justify-content:center; gap:18px; padding:28px; cursor:zoom-out;">
+      <sc-if value="{{ multi }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ lbPrev }}" class="ek-g-nav" aria-label="Předchozí" style="flex:0 0 auto;"><span style="{{ iconPrev }}"></span></button>
+      </sc-if>
+      <div onClick="{{ stop }}" style="position:relative; cursor:default; display:flex; flex-direction:column; align-items:center; gap:12px; min-width:0;">
+        <sc-if value="{{ lbIsImage }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ zoomStyle }}"></div>
+        </sc-if>
+        <sc-if value="{{ lbIsVideo }}" hint-placeholder-val="{{ false }}">
+          <video src="{{ videoSrc }}" poster="{{ videoPoster }}" controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" style="display:block; width:min(1040px,80vw); max-height:78vh; aspect-ratio:16/9; border-radius:16px; background:#1E261E; object-fit:contain;"></video>
+        </sc-if>
+        <span style="font-size:13px; color:#D6E0C8;">{{ lbCounter }}</span>
+      </div>
+      <sc-if value="{{ multi }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ lbNext }}" class="ek-g-nav" aria-label="Další" style="flex:0 0 auto;"><span style="{{ iconNext }}"></span></button>
+      </sc-if>
       <span style="position:absolute; top:22px; right:24px; display:flex; align-items:center; gap:8px; color:#F6F1E7; font-size:14px; font-weight:600;"><span style="{{ iconClose }}"></span>Zavřít</span>
     </div>
   </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:680},&quot;productName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kyselina citronová&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;images&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{src:string, alt?:string}[]&quot;},&quot;note&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Obrázek je pouze ilustrační.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;badges&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(string|{variant:string,label?:string})[]&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:680},&quot;productName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kyselina citronová&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;images&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{src:string, alt?:string}[]&quot;},&quot;video&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{src:string, poster?:string}&quot;},&quot;note&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Obrázek je pouze ilustrační.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;badges&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(string|{variant:string,label?:string})[]&quot;}}">
 class Component extends DCLogic {
-  state = { i: 0, zoom: false, fav: null };
+  state = { i: 0, zoom: false, fav: null, lb: 0 };
 
   favStore() {
     if (!window.__ekFav) window.__ekFav = new Set();
@@ -66,8 +90,17 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
-    this.esc = (e) => { if (e.key === 'Escape') this.setState({ zoom: false }); };
+    this.esc = (e) => {
+      if (!this.state.zoom) return;
+      if (e.key === 'Escape') this.setState({ zoom: false });
+      if (e.key === 'ArrowRight') this.step(1);
+      if (e.key === 'ArrowLeft') this.step(-1);
+    };
     window.addEventListener('keydown', this.esc);
+  }
+  step(d) {
+    const n = this._lbCount || 1;
+    this.setState(s => ({ lb: (s.lb + d + n) % n }));
   }
   componentWillUnmount() { window.removeEventListener('keydown', this.esc); }
 
@@ -82,6 +115,14 @@ class Component extends DCLogic {
     const i = Math.min(this.state.i, images.length - 1);
     const active = images[i] || images[0];
 
+    // Položky lightboxu: 1. fotka, pak video (je-li), pak ostatní fotky
+    const video = this.props.video ?? null;
+    const lbItems = images.map((im, idx) => ({ type: 'img', src: im.src, idx }));
+    if (video && video.src) lbItems.splice(Math.min(1, lbItems.length), 0, { type: 'video' });
+    this._lbCount = lbItems.length;
+    const lbi = Math.min(this.state.lb, lbItems.length - 1);
+    const cur = lbItems[lbi] || lbItems[0];
+    const zoomSrc = cur && cur.type === 'img' ? cur.src : active.src;
     const favId = this.props.productName ?? 'produkt';
     const favOn = this.state.fav !== null ? this.state.fav : this.favStore().has(favId);
 
@@ -89,10 +130,24 @@ class Component extends DCLogic {
       note: this.props.note ?? 'Obrázek je pouze ilustrační.',
       badges: (this.props.badges ?? []).map(b => (typeof b === 'string' ? { variant: b, label: '' } : { variant: b.variant, label: b.label ?? '' })),
       zoom: this.state.zoom,
-      openZoom: () => this.setState({ zoom: true }),
+      openZoom: () => this.setState({ zoom: true, lb: Math.max(0, lbItems.findIndex(x => x.type === 'img' && x.idx === i)) }),
+      hasVideo: !!(video && video.src),
+      openVideo: (e) => { if (e) { e.preventDefault(); e.stopPropagation(); } this.setState({ zoom: true, lb: lbItems.findIndex(x => x.type === 'video') }); },
+      videoSrc: video ? url(video.src) : '',
+      videoPoster: video && video.poster ? url(video.poster) : '',
+      lbIsVideo: cur && cur.type === 'video',
+      lbIsImage: !(cur && cur.type === 'video'),
+      multi: lbItems.length > 1,
+      lbCounter: lbItems.length > 1 ? (lbi + 1) + ' / ' + lbItems.length + (cur && cur.type === 'video' ? ' · video' : '') : '',
+      lbPrev: (e) => { e.stopPropagation(); this.step(-1); },
+      lbNext: (e) => { e.stopPropagation(); this.step(1); },
+      stop: (e) => e.stopPropagation(),
+      iconVideo: this.mask('play', 20, '#D14405'),
+      iconPrev: this.mask('arrow-left-01', 24, '#F6F1E7'),
+      iconNext: this.mask('arrow-right-01', 24, '#F6F1E7'),
       closeZoom: () => this.setState({ zoom: false }),
       mainStyle: 'aspect-ratio:1/1; background:#fff center/contain no-repeat; background-image:url("' + url(active.src) + '");',
-      zoomStyle: 'width:min(820px,92vw,84vh); max-width:92vw; max-height:84vh; aspect-ratio:1/1; border-radius:16px; background:#fff center/contain no-repeat; background-image:url("' + url(active.src) + '");',
+      zoomStyle: 'width:min(820px,92vw,84vh); max-width:92vw; max-height:84vh; aspect-ratio:1/1; border-radius:16px; background:#fff center/contain no-repeat; background-image:url("' + url(zoomSrc) + '");',
       showThumbs: this.props.showThumbs === true && images.length > 1,
       thumbs: images.map((im, idx) => ({
         alt: im.alt || '',
@@ -112,7 +167,7 @@ class Component extends DCLogic {
         this.setState({ fav: next });
         window.dispatchEvent(new CustomEvent('ek-fav-change', { detail: { count: store.size } }));
       },
-      iconZoom: this.mask('zoom-in-01', 24, '#4C653D'),
+      iconZoom: this.mask('zoom-in-01', 20, '#4C653D'),
       iconClose: this.mask('cancel-01', 24, '#F6F1E7'),
     };
   }

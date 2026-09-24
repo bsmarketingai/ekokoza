@@ -34,7 +34,7 @@
   <sc-if value="{{ popOpen }}" hint-placeholder-val="{{ false }}">
     <div class="ek-bb-pop">
       <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:12px;">
-        <span style="font-family:'EB Garamond',serif; font-size:19px; color:#2D3A2E;">Vyberte variantu</span>
+        <span style="font-family:'EB Garamond',serif; font-size:19px; color:#2A2A24;">Vyberte variantu</span>
         <button onClick="{{ closePop }}" title="Zavřít" aria-label="Zavřít" style="border:none; background:transparent; cursor:pointer; display:flex; padding:4px;"><span style="{{ iconClose }}"></span></button>
       </div>
       <dc-import name="ui-VariantPicker" variants="{{ variants }}" selected="{{ selected }}" heading="" onSelect="{{ pick }}" hint-size="100%,240px"></dc-import>
@@ -44,12 +44,12 @@
     <div style="display:flex; align-items:center; gap:14px; min-width:0;">
       <span class="ek-bb-thumb" style="{{ thumbStyle }}"></span>
       <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
-        <span class="ek-bb-title" style="font-family:'EB Garamond',serif; font-size:17px; line-height:1.2; color:#2D3A2E; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ title }}</span>
+        <span class="ek-bb-title" style="font-family:'EB Garamond',serif; font-size:17px; line-height:1.2; color:#2A2A24; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ title }}</span>
         <span style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
           <sc-if value="{{ hasVariant }}" hint-placeholder-val="{{ true }}">
             <button onClick="{{ togglePop }}" class="ek-bb-chip" title="Změnit variantu">{{ variantLabel }}<span style="{{ iconCaret }}"></span></button>
           </sc-if>
-          <span style="font-family:'EB Garamond',serif; font-size:21px; line-height:1; color:#2D3A2E; white-space:nowrap;">{{ price }}</span>
+          <span style="font-family:'EB Garamond',serif; font-size:21px; line-height:1; color:#2A2A24; white-space:nowrap;">{{ price }}</span>
           <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" variant="pill" withNote="{{ true }}" size="{{ 13 }}" hint-size="170px,30px"></dc-import>
           <span class="ek-bb-note" style="font-size:12.5px; color:#6B6B5E; white-space:nowrap;">{{ note }}</span>
         </span>

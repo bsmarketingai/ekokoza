@@ -22,8 +22,8 @@
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
   .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
-  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 26px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #4C653D; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 26px; line-height: 1.15; color: #4C653D; margin: 0; text-wrap: pretty; }
   .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
   .ek-p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-abc { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -66,7 +66,9 @@
 
 <div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
+  <dc-import name="ui-InfoBar" hint-size="100%,40px"></dc-import>
   <dc-import name="ui-Header" active="receptar" hint-size="100%,140px"></dc-import>
+  <dc-import name="ui-MenuSwitch" floating="{{ true }}" hint-size="0px,0px"></dc-import>
 
   <div style="max-width:1720px; margin:0 auto; position:relative;">
 
@@ -127,7 +129,7 @@
 
       <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
         <div style="padding:40px 34px; border:1px solid #E4DAC6; border-radius:14px; background:#fff; text-align:center;">
-          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#2D3A2E;">Takový pojem tu zatím nemáme.</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#2A2A24;">Takový pojem tu zatím nemáme.</p>
           <p style="margin:0 0 20px; font-size:15.5px; line-height:1.6; color:#6B6B5E;">Zkuste hledat podle INCI názvu, nebo nám napište — surovinu do slovníčku doplníme.</p>
           <button onClick="{{ clearAll }}" class="ek-btn-secondary" style="border:1.5px solid #4C653D; background:transparent; color:#4C653D; border-radius:999px; padding:12px 24px; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;">Zobrazit celý slovníček</button>
         </div>
@@ -205,7 +207,7 @@
 
           <div style="padding:20px 22px; border:1px solid #E2EACF; border-radius:14px; background:linear-gradient(160deg,#FCFAF3 0%,#F1F6E3 100%);">
             <span style="display:block; margin-bottom:6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">Koupit surovinu</span>
-            <span style="display:block; font-family:'EB Garamond',serif; font-weight:500; font-size:20px; line-height:1.25; color:#2D3A2E;">{{ d.name }}</span>
+            <span style="display:block; font-family:'EB Garamond',serif; font-weight:500; font-size:20px; line-height:1.25; color:#2A2A24;">{{ d.name }}</span>
             <span style="display:block; margin:6px 0 14px; font-size:14px; color:#6B6B5E;">{{ d.shopNote }}</span>
             <a href="produkt-vzor.html" class="ek-btn-main" style="display:inline-flex; align-items:center; gap:9px; height:46px; padding:0 22px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; text-decoration:none; font-size:15px; font-weight:600; transition:background .2s, border-color .2s;">Zobrazit v e-shopu<span style="{{ iconNextW }}"></span></a>
           </div>

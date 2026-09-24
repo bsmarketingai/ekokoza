@@ -27,8 +27,8 @@
   .ek-fav:hover span { background-color: #D8763B !important; }
   .ek-fav.is-on:hover { background: #B23803 !important; }
   .ek-fav.is-on:hover span { background-color: #FFFFFF !important; }
-  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #2D3A2E; margin: 0; text-wrap: pretty; }
-  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #2D3A2E; margin: 0; text-wrap: pretty; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #4C653D; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #4C653D; margin: 0; text-wrap: pretty; }
   .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
   .ek-p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
@@ -66,7 +66,7 @@
   .ek-page-on { background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
   .ek-seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: #EFE9DA; }
   .ek-segb { min-height: 34px; padding: 7px 16px; border: none; border-radius: 999px; background: transparent; font-family: 'Work Sans',sans-serif; font-size: 13px; font-weight: 700; color: #6B6B5E; cursor: pointer; transition: background .2s, color .2s; }
-  .ek-segb-on { background: #FFFDF6; color: #2D3A2E; box-shadow: 0 4px 10px -8px rgba(45,58,46,.6); }
+  .ek-segb-on { background: #FFFDF6; color: #2A2A24; box-shadow: 0 4px 10px -8px rgba(45,58,46,.6); }
   @media (max-width: 1100px) {
     .ek-life { grid-template-columns: repeat(3, minmax(0,1fr)); }
     .ek-tiles { grid-template-columns: repeat(3, minmax(0,1fr)); }
@@ -105,6 +105,7 @@
 
 <div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
+  <dc-import name="ui-InfoBar" hint-size="100%,40px"></dc-import>
   <dc-import name="ui-Header" active="receptar" hint-size="100%,140px"></dc-import>
 
   <div style="max-width:1720px; margin:0 auto; position:relative;">
@@ -118,25 +119,26 @@
           <p class="ek-eyebrow" style="margin-bottom:10px;">Od suroviny k vlastnímu výrobku</p>
           <h1 class="ek-h1">Receptář</h1>
         </div>
-        <span style="font-size:15px; color:#6B6B5E;">{{ totalLabel }}</span>
       </div>
 
-      <div class="ek-hzone" style="margin-top:18px;">
-      <div style="min-width:0; max-width:68ch; display:flex; flex-direction:column;">
+      <div style="margin-top:18px; max-width:68ch; display:flex; flex-direction:column;">
         <p class="ek-p">Chcete se pustit do domácí výroby, ale nevíte, jak na to? Najdete zde ověřené recepty na domácí kosmetiku, mýdla, svíčky i potraviny — vždy s postupem krok za krokem a se surovinami, které u nás pořídíte.</p>
-
-        <sc-if value="{{ descOpen }}" hint-placeholder-val="{{ false }}">
-          <div>
+        <sc-if value="{{ descClosed }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ toggleDesc }}" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-start; margin-top:8px; align-items:center; gap:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; margin-left:-16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ descLabel }}<span style="{{ iconDescCaret }}"></span></button>
+        </sc-if>
+      </div>
+      <sc-if value="{{ descOpen }}" hint-placeholder-val="{{ false }}">
+      <div class="ek-hzone" style="margin-top:10px;">
+        <div style="min-width:0; display:flex; flex-direction:column;">
+          <div style="max-width:68ch;">
             <p class="ek-p">Každý recept jsme sami vyzkoušeli. U surovin vysvětlujeme, k čemu v receptuře slouží a čím je lze zaměnit, takže postup zvládnete přizpůsobit tomu, co máte doma.</p>
             <p class="ek-p">Nevíte, kde začít? Zkuste recepty pro začátečníky do 30 minut, nebo si níže naklikejte suroviny, které máte doma, a nechte si vypsat, co z nich vyrobíte.</p>
           </div>
-        </sc-if>
-        <button onClick="{{ toggleDesc }}" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; margin-left:-16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ descLabel }}<span style="{{ iconDescCaret }}"></span></button>
-        <div class="ek-two" style="margin-top:auto; padding-top:22px;">
-          <a href="#skrinka" onClick="{{ scrollToPantry }}" class="ek-jump" style="border-color:#E2EACF; background:linear-gradient(160deg,#FCFAF3 0%,#F1F6E3 100%);">
+          <div class="ek-two" style="padding-top:22px;">
+          <a href="mate-doma.dc.html" class="ek-jump" style="border-color:#E2EACF; background:linear-gradient(160deg,#FCFAF3 0%,#F1F6E3 100%);">
             <span style="{{ iconJumpPantry }}"></span>
             <span style="display:flex; flex-direction:column; gap:5px; min-width:0;">
-              <span class="ek-jump-t" style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; line-height:1.2; color:#2D3A2E; transition:color .2s;">Mám doma…</span>
+              <span class="ek-jump-t" style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; line-height:1.2; color:#2A2A24; transition:color .2s;">Mám doma…</span>
               <span style="font-size:14px; line-height:1.55; color:#52524a;">Naklikejte suroviny ze své skříňky a vypíšeme recepty, které z nich zvládnete — i s tím, co případně chybí.</span>
               <span class="ek-jump-l" style="display:inline-flex; align-items:center; gap:7px; margin-top:2px; font-size:13.5px; font-weight:600; color:#4C653D;">Hledat podle surovin<span style="{{ iconJumpArrow }}"></span></span>
             </span>
@@ -144,21 +146,22 @@
           <a href="#vypis" onClick="{{ scrollToList }}" class="ek-jump" style="border-color:#EBD3BC; background:linear-gradient(160deg,#FDF3E4 0%,#F6E0C6 100%);">
             <span style="{{ iconJumpAll }}"></span>
             <span style="display:flex; flex-direction:column; gap:5px; min-width:0;">
-              <span class="ek-jump-t" style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; line-height:1.2; color:#2D3A2E; transition:color .2s;">{{ jumpAllTitle }}</span>
+              <span class="ek-jump-t" style="font-family:'EB Garamond',serif; font-weight:500; font-size:20px; line-height:1.2; color:#2A2A24; transition:color .2s;">{{ jumpAllTitle }}</span>
               <span style="font-size:14px; line-height:1.55; color:#52524a;">Celý receptář od nejnovějšího, s filtry na obtížnost, čas a to, co chcete vyrábět.</span>
               <span class="ek-jump-l" style="display:inline-flex; align-items:center; gap:7px; margin-top:2px; font-size:13.5px; font-weight:600; color:#4C653D;">Přejít na výpis<span style="{{ iconJumpArrow }}"></span></span>
             </span>
           </a>
         </div>
-      </div>
-      <aside style="border:1px solid #E4DAC6; border-radius:14px; background:#FFFDF6; padding:18px 20px;">
+          <button onClick="{{ toggleDesc }}" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-start; margin-top:14px; align-items:center; gap:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; margin-left:-16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ descLabel }}<span style="{{ iconDescCaret }}"></span></button>
+        </div>
+        <aside style="border:1px solid #E4DAC6; border-radius:14px; background:#FFFDF6; padding:18px 20px;">
         <span style="display:block; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">Doporučené recepty</span>
         <div style="display:flex; flex-direction:column; margin-top:6px;">
           <sc-for list="{{ featured }}" as="r" hint-placeholder-count="5">
             <a href="{{ r.href }}" class="ek-pick">
               <span style="{{ r.thumb }}"></span>
               <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
-                <span class="ek-pick-t" style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2D3A2E; transition:color .2s;">{{ r.title }}</span>
+                <span class="ek-pick-t" style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24; transition:color .2s;">{{ r.title }}</span>
                 <span style="font-size:12.5px; color:#8a8776;">{{ r.meta }}</span>
               </span>
               <span style="{{ iconPickArrow }}"></span>
@@ -168,6 +171,7 @@
         <a href="#vypis" onClick="{{ scrollToList }}" class="ek-btn-secondary" style="display:inline-flex; align-items:center; gap:8px; margin-top:16px; border:1.5px solid #4C653D; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none; transition:background .2s, color .2s;">Všechny recepty<span style="{{ iconPickAll }}"></span></a>
       </aside>
       </div>
+      </sc-if>
     </div>
   </section>
 
@@ -175,74 +179,21 @@
     <div style="max-width:1560px; margin:0 auto;">
       <h2 class="ek-h2" style="margin-bottom:18px;">Kategorie receptáře</h2>
       <sc-if value="{{ tilesV1 }}" hint-placeholder-val="{{ false }}">
-        <div class="ek-tiles">
+        <div class="ek-tiles" ref="{{ rtRef }}">
           <sc-for list="{{ subcats }}" as="c" hint-placeholder-count="7">
             <dc-import name="ui-IngredientTile" title="{{ c.title }}" icon="{{ c.icon }}" href="{{ c.href }}" hint-size="100%,82px"></dc-import>
           </sc-for>
         </div>
+        <div aria-hidden="true" style="{{ rtTrack }}"><span style="{{ rtThumb }}"></span></div>
       </sc-if>
       <sc-if value="{{ tilesV2 }}" hint-placeholder-val="{{ true }}">
-        <div class="ek-life">
+        <div class="ek-life" ref="{{ rlRef }}">
           <sc-for list="{{ subcats }}" as="c" hint-placeholder-count="7">
             <dc-import name="ui-IngredientTile" variant="lifestyle" ratio="4/3" title="{{ c.title }}" icon="{{ c.icon }}" img="{{ c.img }}" href="{{ c.href }}" hint-size="100%,240px"></dc-import>
           </sc-for>
         </div>
+        <div aria-hidden="true" style="{{ rlTrack }}"><span style="{{ rlThumb }}"></span></div>
       </sc-if>
-    </div>
-  </section>
-
-  <section style="padding:52px 32px 0;" class="ek-pad">
-    <div style="max-width:1560px; margin:0 auto;">
-      <div id="skrinka" style="border:1px solid #E2EACF; border-radius:14px; background:linear-gradient(160deg,#FCFAF3 0%,#F1F6E3 100%); padding:26px 28px;">
-        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:20px;">
-          <div style="display:flex; gap:14px; min-width:0;">
-            <span style="{{ iconPantry }}"></span>
-            <div style="min-width:0;">
-              <h2 class="ek-h2" style="font-size:26px;">Mám doma…</h2>
-              <p style="margin:6px 0 0; font-size:15px; line-height:1.6; color:#52524a; max-width:64ch;">Naklikejte suroviny, které máte ve skříňce. Vypíšeme recepty, které z nich zvládnete — a u těch, kde něco chybí, ukážeme co.</p>
-            </div>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
-            <span style="font-size:12.5px; font-weight:600; color:#6B6B5E;">Recept musí obsahovat</span>
-            <div class="ek-seg">
-              <button onClick="{{ setAll }}" class="{{ clsAll }}" title="Jen recepty, které z toho vyrobíte celé">jen mé suroviny</button>
-              <button onClick="{{ setAny }}" class="{{ clsAny }}" title="Recepty, kde se objeví aspoň jedna z nich">alespoň jednu</button>
-            </div>
-          </div>
-        </div>
-
-        <div style="position:relative; max-width:520px; margin-bottom:20px;">
-          <span style="{{ iconSearch }}"></span>
-          <input value="{{ q }}" onChange="{{ onQ }}" placeholder="Napište surovinu, např. mandlový olej" style="width:100%; height:48px; padding:0 16px 0 46px; border:1.5px solid #CFC4AA; border-radius:999px; background:#fff; font-family:'Work Sans',sans-serif; font-size:15px; color:#2A2A24;">
-          <sc-if value="{{ hasSugg }}" hint-placeholder-val="{{ false }}">
-            <div style="position:absolute; top:54px; left:0; right:0; z-index:30; padding:6px 0; border:1px solid #E4DAC6; border-radius:14px; background:#FFFDF6; box-shadow:0 18px 40px -22px rgba(45,58,46,.5); overflow:hidden;">
-              <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="3">
-                <button onClick="{{ s.pick }}" class="ek-sugg"><span style="{{ s.icon }}"></span>{{ s.label }}<span style="margin-left:auto; font-size:12.5px; color:#8a8776;">{{ s.count }}</span></button>
-              </sc-for>
-            </div>
-          </sc-if>
-        </div>
-
-        <div style="display:flex; flex-direction:column; gap:14px;">
-          <sc-for list="{{ ingGroups }}" as="g" hint-placeholder-count="4">
-            <div class="ek-frow" style="display:flex; gap:16px; flex-wrap:wrap; align-items:baseline;">
-              <span style="flex:0 0 132px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">{{ g.label }}</span>
-              <div style="display:flex; flex-wrap:wrap; gap:8px; flex:1; min-width:0;">
-                <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="5">
-                  <button onClick="{{ i.toggle }}" class="{{ i.cls }}">{{ i.label }}<span style="{{ i.icon }}"></span></button>
-                </sc-for>
-              </div>
-            </div>
-          </sc-for>
-        </div>
-
-        <sc-if value="{{ pantryOn }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:20px; padding-top:18px; border-top:1px solid #E2EACF;">
-            <span style="font-size:15px; color:#4A4A42;">{{ pantryLabel }}</span>
-            <button onClick="{{ clearPantry }}" class="ek-btn-ghost" style="border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:#B23803; cursor:pointer; transition:background .2s;">Vyprázdnit skříňku</button>
-          </div>
-        </sc-if>
-      </div>
     </div>
   </section>
 
@@ -279,7 +230,7 @@
 
       <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
         <div style="margin-top:24px; padding:40px 34px; border:1px solid #E4DAC6; border-radius:14px; background:#fff; text-align:center;">
-          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#2D3A2E;">Tomuto výběru zatím neodpovídá žádný recept.</p>
+          <p style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#2A2A24;">Tomuto výběru zatím neodpovídá žádný recept.</p>
           <p style="margin:0 0 20px; font-size:15.5px; line-height:1.6; color:#6B6B5E;">Zkuste přepnout na „alespoň jednu surovinu“, ubrat filtr, nebo se podívejte na recepty pro začátečníky.</p>
           <button onClick="{{ resetAll }}" class="ek-btn-secondary" style="border:1.5px solid #4C653D; background:transparent; color:#4C653D; border-radius:999px; padding:12px 24px; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;">Zobrazit všechny recepty</button>
         </div>
@@ -317,7 +268,8 @@
         <button onClick="{{ setTilesV1 }}" title="Řádkové dlaždice s ikonou" class="{{ clsTilesV1 }}">V1</button>
         <button onClick="{{ setTilesV2 }}" title="Fotka a pod ní nadpis s ikonou" class="{{ clsTilesV2 }}">V2</button>
       </span>
-      <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
+      <dc-import name="ui-MenuSwitch" hint-size="200px,36px"></dc-import>
+    <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
     </div>
   </sc-if>
 </div>
@@ -325,6 +277,37 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:4,&quot;max&quot;:48,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Výpis&quot;}}">
 class Component extends DCLogic {
+  trackRef(key) {
+    this._tr = this._tr || {};
+    if (this._tr[key]) return this._tr[key];
+    const upd = (el) => {
+      const max = el.scrollWidth - el.clientWidth;
+      const w = max > 1 ? el.clientWidth / el.scrollWidth : 1;
+      const x = max > 1 ? el.scrollLeft / max : 0;
+      const cur = (this.state.tracks || {})[key];
+      if (cur && Math.abs(cur.w - w) < 0.002 && Math.abs(cur.x - x) < 0.002) return;
+      this.setState(s => ({ tracks: Object.assign({}, s.tracks, { [key]: { w, x } }) }));
+    };
+    let bound = null, ro = null, fn = null;
+    this._tr[key] = (el) => {
+      if (bound && bound !== el) { bound.removeEventListener('scroll', fn); if (ro) ro.disconnect(); bound = null; }
+      if (!el || bound === el) return;
+      bound = el; fn = () => upd(el);
+      el.addEventListener('scroll', fn, { passive: true });
+      if (window.ResizeObserver) { ro = new ResizeObserver(fn); ro.observe(el); }
+      requestAnimationFrame(fn);
+    };
+    return this._tr[key];
+  }
+  thumbStyle(key) {
+    const t = (this.state.tracks || {})[key] || { w: 0.4, x: 0 };
+    const w = Math.max(t.w, 0.12);
+    return 'position:absolute; top:0; bottom:0; left:' + (t.x * (1 - w) * 100).toFixed(2) + '%; width:' + (w * 100).toFixed(2) + '%; border-radius:999px; background:#4C653D;';
+  }
+  trackStyle(key) {
+    const t = (this.state.tracks || {})[key];
+    return 'display:' + (t && t.w < 0.995 ? 'block' : 'none') + '; position:relative; height:3px; margin-top:6px; border-radius:999px; background:#E4DAC6; overflow:hidden;';
+  }
   state = { descOpen: false, pantry: [], mode: 'all', q: '', page: 1, filters: { type: [], level: [], time: [], cat: [] }, tiles: 'v2', barOpen: true, extra: 0 };
 
   static ING = [
@@ -482,10 +465,12 @@ class Component extends DCLogic {
     const fullyMakeable = Component.ITEMS.filter(it => (it.ing || []).length && !(it.ing || []).some(n => P.indexOf(n) === -1)).length;
 
     return {
+      rtRef: this.trackRef('rt'), rtThumb: this.thumbStyle('rt'), rtTrack: this.trackStyle('rt'), rlRef: this.trackRef('rl'), rlThumb: this.thumbStyle('rl'), rlTrack: this.trackStyle('rl'),
       crumbs: [{ label: 'Úvod', href: 'index.html' }, { label: 'Receptář' }],
       totalLabel: Component.plural(Component.ITEMS.length, 'recept v receptáři', 'recepty v receptáři', 'receptů v receptáři'),
 
       descOpen: S.descOpen,
+      descClosed: !S.descOpen,
       descLabel: S.descOpen ? 'Zabalit' : 'Přečíst celé',
       toggleDesc: () => this.setState({ descOpen: !S.descOpen }),
       iconDescCaret: this.mask(S.descOpen ? 'arrow-up-01' : 'arrow-down-01', 20, 'currentColor'),

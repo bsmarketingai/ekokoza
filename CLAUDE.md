@@ -27,5 +27,17 @@ Starší claimy („Důvod, proč tvořit.“, „Suroviny, recepty a důvod pro
 ### Vizuál
 - Přírodní, tlumená paleta (slonovinová #F6F1E7, jediná tmavě zelená #4C653D dle manuálu, terrakota #D14405 jen pro hlavní konverze). Role každé barvy jsou popsané v `design-system.html` → Barvy → Role barev; nové odstíny nevymýšlet.
 - EB Garamond (serif, nadpisy — Medium a Regular) + Work Sans jako základní písmo (SemiBold nadpisy, Medium perexy, Regular/Bold text; náhrada Helvetica). Kulaté rohy 14px. Container 1560 / max 1720px.
+- **Breakpointy (závazné, definované na začátku projektu):**
+  - XXL: 1560 px a víc
+  - XL: 1150–1560 px
+  - L: 1000–1150 px
+  - M: 820–1000 px
+  - S: 550–820 px
+  - XS: 420–550 px
+  - XXS: 420 px a méně
+  - Media queries stavět jen na hranicích 1560 / 1150 / 1000 / 820 / 550 / 420 (např. „na XS/XXS“ = max-width: 549px). Žádné vymyšlené hodnoty (600, 760, 900 apod.).
 - Loga v `assets/` (zelené pro světlé pozadí, krémové pro tmavé).
 - Realistické fotky produktů a procesu/lidí; žádné „pohádkové bio scény".
+
+## Workflow
+- **Každou uzavřenou úpravu zapiš do `upravy.html`** (changelog úprav ze schůzek) — hned po dokončení, s datem.

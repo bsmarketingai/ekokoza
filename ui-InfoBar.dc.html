@@ -14,6 +14,7 @@
   @media (max-width: 640px) {
     .ek-info-in { padding: 9px 52px 9px 16px !important; font-size: 13px !important; }
   }
+  @media (max-width: 819px) { .ek-info-xwrap { padding: 0 20px !important; } }
 </style>
 </helmet>
 <sc-if value="{{ open }}" hint-placeholder-val="{{ true }}">
@@ -23,9 +24,13 @@
     <span>{{ text }}</span>
     <a class="ek-info-link" href="{{ href }}" style="margin-left:8px; color:#FFFFFF; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">{{ linkLabel }}</a>
   </div>
-  <button class="ek-info-x" onClick="{{ close }}" aria-label="Zavřít lištu" style="position:absolute; top:50%; right:12px; transform:translateY(-50%); width:36px; height:36px; display:flex; align-items:center; justify-content:center; border:none; border-radius:999px; background:transparent; color:#FFFFFF; cursor:pointer; padding:0;">
+  <div aria-hidden="false" class="ek-info-xwrap" style="position:absolute; inset:0; padding:0 32px; pointer-events:none;">
+    <div style="position:relative; max-width:1560px; height:100%; margin:0 auto;">
+    <button class="ek-info-x" onClick="{{ close }}" aria-label="Zavřít lištu" style="position:absolute; top:50%; right:-9px; pointer-events:auto; transform:translateY(-50%); width:36px; height:36px; display:flex; align-items:center; justify-content:center; border:none; border-radius:999px; background:transparent; color:#FFFFFF; cursor:pointer; padding:0;">
     <span style="{{ iconX }}"></span>
   </button>
+    </div>
+  </div>
 </div>
 </sc-if>
 </x-dc>

@@ -96,6 +96,342 @@
     <p class="sum">Odkaz na všechny recenze v bloku hodnocení, zvýraznění nejvýhodnější měrné ceny , popup o nejnižší možné ceně a recenze v detailu receptu. Věrnostní program a O nás převedené do současného stylu webu.</p>
 
     <div class="item">
+      <span class="tag">Košík · Uložené košíky</span>
+      <h3>Řádek pro práci s uloženými košíky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nad Obsah košíku přidat řádek pro uložené košíky: Aktuální košík (výběr), Uložit obsah jako nový košík, Odstranit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 1 je vpravo v řádku s nadpisem Obsah košíku výběr aktuálního košíku (Nový košík + ukázkové uložené košíky) , hned vedle ikonové tlačítko koše pro odstranění uloženého košíku (cihlová ikona, stejná výška jako výběr)  a vedle tlačítko „Uložit obsah jako nový košík“ s ikonou diskety (nové ikony delete-02 a floppy-disk ve stylu sady). Na tento krok vede položka Uložené košíky v navigaci účtu. Chování (přepínání, uložení, potvrzení smazání) zatím není napojené.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Ukázka Host / Přihlášen</span>
+      <h3>Přepínač Host / Přihlášen v ukázce košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Do ovládání ukázky košíku přidat přepínač Přihlášen / Host.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V panelu Ukázka je pod kroky přepínač Host / Přihlášen. Přihlášený má v hlavičce ikonu přihlášeného uživatele a v kroku 2 místo karet Přihlášení a registrace i věrnostního pásu jen řádek „Přihlášena jako…“ s informací, že údaje jsou předvyplněné a objednávka se započítá do věrnostního programu.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>Nová položka „Uložené košíky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Před Správu účtu přidat položku Uložené košíky; kde se s nimi bude pracovat, doladíme.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Položka s ikonou košíku je v záložkách zákaznické zóny, v menu účtu i v menu přihlášeného v hlavičce, vždy před Správou účtu. Zatím vede na 1. krok košíku (kosik.dc.html), kde se s uloženými košíky bude pracovat — dořešíme.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit zákaznickou zónu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Okno Přidáno do košíku · Doprava zdarma</span>
+      <h3>Stejná lišta dopravy zdarma jako v košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V okně po přidání do košíku použít stejný panel dopravy zdarma jako v košíku, vyjmout ho z věrnostního boxu a dát nad něj.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je samostatně nad věrnostním boxem, se stejným vzhledem i texty jako v košíku: pod 2 000 Kč kolik zbývá do dopravy zdarma, nad 2 000 Kč potvrzení dopravy zdarma a kolik zbývá do nejbližší věrnostní skupiny. Věrnostní box obsahuje už jen stav programu a odkaz.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit ukázku<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>„Oblíbené produkty“ přejmenováno na „Oblíbené položky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Položku navigace účtu přejmenovat na Oblíbené položky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Přejmenováno všude, kde odkaz vede na oblíbené: záložky zákaznické zóny, menu účtu v hlavičce (přihlášený i nepřihlášený) a dlaždice na přehledu Můj účet. Nadpis stránky oblíbených je nově „Oblíbené produkty a recepty“.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit oblíbené<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Přehled objednávek</span>
+      <h3>Sloupce Sledovat, Akce a Náhled využívají šířku tabulky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Využít prázdné místo za sloupcem Stav pro sloupce Sledovat, Akce a Náhled.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Volné místo se dělí mezi Stav, Sledovat a Akce (dřív ho celé bral Stav). Akce je nejširší, takže „MSDS k surovinám“ se vejde na jeden řádek; Náhled zůstává úzký u pravého okraje.</p>
+      </div>
+      <a class="show-btn" href="objednavky.html" target="_blank">Zobrazit objednávky<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 3 · Souhlas s podmínkami</span>
+      <h3>Souhlas s obchodními podmínkami ve vlastním řádku nahoře</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Souhlas s obchodními podmínkami dát ve spodní liště do vlastního řádku nahoru, aby ho zákazník nepřehlédl a odškrtl jako první.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 3 je souhlas prvním řádkem spodní lišty přes celou šířku, ve světle žlutém rámečku. Pod ním je Zpět, konečná cena a Zaplatit. Na mobilu platí totéž.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 2 · Věrnostní program</span>
+      <h3>Informace o věrnostním programu pod přihlášením a registrací</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Pod karty Jsem nový zákazník / Mám zde svůj účet dát blok informující o věrnostním programu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pás v barvě věrnostního programu (Poledne): kolečko „až −15 %“, nadpis „Nakupujte přihlášení a sbírejte věrnostní výhody“, krátké vysvětlení (obrat za čtvrtletí, od 5 000 Kč automaticky 5–15 % nižší ceny, bez kuponů) a odkaz „Jak to funguje“ na stránku věrnostního programu (otevře se v novém okně, aby zákazník neztratil rozdělanou objednávku).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Spodní lišta</span>
+      <h3>Lišta s cenou vždy přilepená ke spodní hraně</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu Zpět / Poštovné a balné / Konečná cena / Pokračovat mít vždy sticky na spodní hraně webu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je ve všech krocích košíku trvale přichycená ke spodní hraně okna, i při scrollu k patičce. Pod obsahem je rezerva, aby lišta nic nepřekrývala.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Kupón a doobjednávka</span>
+      <h3>Kupón a Přidat k objednávce ve dvou sloupcích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Slevový kupón a Přidat k objednávce dát do dvou sloupců vedle sebe.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba bloky jsou vedle sebe ve stejném rozvržení jako Doprava / Způsob platby pod nimi: nadpis (nově „Slevový kupón“), karta s popiskem, pole a tlačítko. Karty mají stejnou výšku. Na mobilu jsou pod sebou.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Odebraná karta „Nevíte si rady s výběrem produktu?“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vymazat kartu s e-mailovým kontaktem vedle obsahu košíku.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta je odebraná v kroku 1 (obsah košíku se roztáhl na celou šířku) i v kroku 2 (boční panel u kontaktních údajů).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Přednostní odeslání</span>
+      <h3>Ikona raketky u přednostního odeslání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U přednostního odeslání dát ikonu raketky — že to uděláme rychle.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Místo nákladního auta je u volby Přednostní odeslání raketka (nová ikona rocket-01 ve stejném liniovém stylu jako ostatní ikony). Auto zůstává u dopravy zdarma.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Doprava zdarma a věrnost</span>
+      <h3>Lišta dopravy zdarma zůstává i po dosažení hranice</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Po dosažení dopravy zdarma lištu neschovávat, ale napsat např.: „Díky nákupu nad 2 000 Kč máte dopravu zdarma. Nakupte ještě za 2 505 Kč a získáte o 5 % nižší ceny na všechny další objednávky až do konce čtvrtletí.“</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 2 000 Kč lišta dál ukazuje, kolik zbývá do dopravy zdarma. Nad 2 000 Kč potvrdí dopravu zdarma a dopočítá, kolik zbývá do nejbližší věrnostní skupiny (5 / 10 / 15 % při 5 000 / 10 000 / 30 000 Kč čtvrtletního obratu včetně košíku). U nejvyšší skupiny zůstane jen potvrzení dopravy. Platí v kroku 1 i 3; v kroku 3 je lišta nad shrnutím cen (doprava, platba, cena celkem).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Doporučené produkty pod lištou dopravy zdarma</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Blok Doporučujeme posunout pod informaci o dopravě zdarma.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Doporučené produkty jsou hned pod lištou „Pokud nakoupíte ještě za… budete mít dopravné zdarma“ — nabídka tak navazuje na zbývající částku. Kupón, doobjednávka, doprava a platba následují pod nimi.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Recepty · Hodnocení</span>
+      <h3>Hodnocení receptů skryté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Recepty nemáme jak technicky hodnotit — schovat hodnocení na kartách receptů (centrálně) a odebrat sekci hodnocení.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta receptu (ui-RecipeCard) hvězdičky nezobrazuje nikde na webu; lze je znovu zapnout vlastností showRating. V detailu receptu je sekce Hodnocení a recenze skrytá (kód zůstává pro pozdější zapnutí). Hodnocení produktů zůstává beze změny.</p>
+      </div>
+      <a class="show-btn" href="recept.dc.html" target="_blank">Zobrazit detail receptu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Recepty se surovinou</span>
+      <h3>Boční karusel receptů bez tlačítka, šipky vpravo dole</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V bočním boxu Recepty se surovinou odebrat tlačítko Všechny recepty a navigaci dát doprava dolů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Rozcestník oddílů</span>
+      <h3>Chipy oddílů ve sloupci s akordeony, bez sticky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu chipů (Hlavní vlastnosti, Co to je?…) dát do stejného sloupce jako akordeony, odebrat sticky a nechat jen funkci otevření oddílu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie G1 / G2</span>
+      <h3>Dvě varianty galerie k porovnání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Varianta galerie: G1 — stávající stav (miniatury vlevo od fotky), G2 — miniatury pod fotkou vlevo dole.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie</span>
+      <h3>Miniatury vlevo, na mobilu listování velkou fotkou</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Při více fotkách zobrazit miniatury vlevo od velké fotky, na desktopu bez dalšího ovládání (3–6 fotek). Na mobilu miniatury skrýt a umožnit listování velkou fotkou bez rozkliknutí. Odebrat tlačítko Zvětšit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Desktop: svislý sloupec miniatur (78 px, max. 6) vlevo od velké fotky, klik přepne fotku; bez šipek. Má-li produkt video, je jako poslední položka mezi miniaturami (i ve zvětšení je na konci) (světlá krémová dlaždice s terakotovou ikonou přehrání) a otevře video. Mobil (pod 820 px): jen velká fotka v jednom sloupci, listuje se tažením prstem nebo šipkami po stranách, tečky dole ukazují pozici. Klik na fotku dál otevře zvětšení. Štítek „Zvětšit“ je odebraný, tlačítko Video zůstává.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Barvy stavů</span>
+      <h3>Očekáváme a Na cestě k nám v oranžovo-žluté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Stavy „Očekáváme“ a „Na cestě k nám“ ladit do oranžovo-žluté barvy.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba stavy mají sytou jantarovou barvu #9E6B00 (žlutější, méně cihlová; kontrast 4,6:1 na bílé, AA). Odlišují se tak od zelených stavů „skladem“ i od cihlových nedostupných. Změna platí všude přes ui-Stock, design systém je aktualizovaný.</p>
+      </div>
+      <a class="show-btn" href="design-system.html#skladovost" target="_blank">Zobrazit design systém<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Design systém</span>
+      <h3>Stav skladovosti vždy bez chipu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Skladovost na kartách a všude na webu není v chipu, je samostatně — upravit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Varianta „pilulka“ je zrušená všude: v design systému (tabulka škály i ukázky), v detailu produktu i ve sticky buy baru je stav jen text s ikonou. Design systém nově ukazuje dvě velikosti místo dvou podob (karta / košík 12,5–13 px, detail / buy bar 13–14,5 px).</p>
+      </div>
+      <a class="show-btn" href="design-system.html#skladovost" target="_blank">Zobrazit design systém<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Nápověda</span>
+      <h3>Ikona „i“ u stavu dostupnosti s nápovědou</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U stavu dostupnosti (např. „Ihned k odeslání“ ve výběru variant) chybí vpravo malá ikona „i“, aby bylo jasné, že se po najetí něco zobrazí.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všude, kde má stav dostupnosti vysvětlující bublinu, je za textem ikona „i“ stejně velká jako ikona stavu, v tmavé barvě textu (#2A2A24). Stavy bez bubliny ikonu nemají.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Výpis na XXS</span>
+      <h3>Výpis produktů v jednom sloupci na nejmenších displejích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na XXS má být výpis produktů v jednom sloupci.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Do 420 px je výpis produktů (včetně grafického banneru) v jednom sloupci, nad touto šířkou zůstávají dva sloupce.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Produktový banner</span>
+      <h3>Grafická HTML karta s lifestyle fotkou ve výpisu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nová varianta karty jako grafický HTML banner na konkrétní produkt — lifestyle fotka přes celou kartu, pod ní nadpis, popis a CTA (téma parfémy). Vždy na 7. místě první stránky výpisu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nová komponenta ui-ProductBanner: fotka přes celou kartu, zdola tmavý přechod, štítek „Recepty“ vlevo nahoře, nadpis, popis a krémové tlačítko „Zobrazit recept“ (celá karta je odkaz na recept). Výška se srovná s produktovými kartami v řadě. Ve výpisu kategorie je vždy na 7. pozici první stránky a zabírá jednu pozici — na první stránce je 11 produktů + banner, stránkování se posouvá o jednu pozici. Texty, odkaz a fotka jsou nastavitelné. Textace je receptářová: „Vlastní parfém z přírodních silic“ — jak poskládat hlavu, srdce a základ vůně, recept krok za krokem.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Karusely</span>
+      <h3>Jednotná šířka karet ve všech karuselech</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Šířka karet by měla být ve všech karuselech stejná.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karty v karuselech Co chcete vyrábět?, Suroviny dle kategorie, Recepty, které fungují a Zákazníci nejraději kupují mají na menších šířkách shodně 260 px (dříve 240 / 240 / 260 / 260 px). Sekce Zákazníci nejraději kupují má na mobilu (pod 820 px) menší horní odsazení — 20 px místo 64 px. Stejně (vizuálně 20 px od zubatého okraje pásu) je na mobilu odsazena shora i zdola sekce Recepty, které fungují.</p>
+      </div>
+      <a class="show-btn" href="index.html#blok3" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Suroviny dle kategorie (mobil)</span>
+      <h3>Dlaždice surovin na malých displejích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na malých displejích dlaždice surovin neměly odsazení a ikona nebyla vertikálně vycentrovaná s nadpisem.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Mobilní pravidlo pro zmenšení ikony omylem zasahovalo i text nadpisu (zmáčklo ho do 18 px). Odstraněno — dlaždice surovin mají nyní stejný nadpis (24 px), ikonu (20 px) i odsazení jako „Co chcete vyrábět?“.</p>
+      </div>
+      <a class="show-btn" href="index.html#blok4" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Nadpisy sekcí</span>
+      <h3>Sjednocená velikost nadpisů sekcí</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nadpisy sekcí sjednotit podle „Co chcete vyrábět?“, zkontrolovat i na mobilu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všechny nadpisy sekcí na homepage (včetně Suroviny dle kategorie, Zákazníci nejraději kupují, Ukažte nám, co vyrábíte, komunitní dílny, věrnostního bloku, příběhu a newsletteru) mají 40 px, na šířkách do 900 px 30 px — stejně jako „Co chcete vyrábět?“.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Hero V1</span>
+      <h3>Karty hero V1 na šířku webu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Karty v hero sekci V1 roztáhnout na stejnou šířku jako hero V2.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Mozaika čtyř karet má nově šířku 1560 px (dříve 1400 px), shodně s bannerem V2 a obsahem webu.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
       <span class="tag">Informační lišta</span>
       <h3>Křížek zarovnaný na šířku webu</h3>
       <div class="row">
@@ -214,6 +550,342 @@
         <p class="v">Ve výběru variant se varianta s nejnižší měrnou cenou automaticky označí žlutým štítkem (akcentní barva z manuálu, tmavě zelený text) „Nejvýhodnější · 8 490 Kč / l“. Ostatní měrné ceny zůstávají šedé. Štítek se nezobrazí, pokud mají všechny varianty stejnou měrnou cenu.</p>
       </div>
       <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Uložené košíky</span>
+      <h3>Řádek pro práci s uloženými košíky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nad Obsah košíku přidat řádek pro uložené košíky: Aktuální košík (výběr), Uložit obsah jako nový košík, Odstranit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 1 je vpravo v řádku s nadpisem Obsah košíku výběr aktuálního košíku (Nový košík + ukázkové uložené košíky) , hned vedle ikonové tlačítko koše pro odstranění uloženého košíku (cihlová ikona, stejná výška jako výběr)  a vedle tlačítko „Uložit obsah jako nový košík“ s ikonou diskety (nové ikony delete-02 a floppy-disk ve stylu sady). Na tento krok vede položka Uložené košíky v navigaci účtu. Chování (přepínání, uložení, potvrzení smazání) zatím není napojené.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Ukázka Host / Přihlášen</span>
+      <h3>Přepínač Host / Přihlášen v ukázce košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Do ovládání ukázky košíku přidat přepínač Přihlášen / Host.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V panelu Ukázka je pod kroky přepínač Host / Přihlášen. Přihlášený má v hlavičce ikonu přihlášeného uživatele a v kroku 2 místo karet Přihlášení a registrace i věrnostního pásu jen řádek „Přihlášena jako…“ s informací, že údaje jsou předvyplněné a objednávka se započítá do věrnostního programu.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>Nová položka „Uložené košíky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Před Správu účtu přidat položku Uložené košíky; kde se s nimi bude pracovat, doladíme.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Položka s ikonou košíku je v záložkách zákaznické zóny, v menu účtu i v menu přihlášeného v hlavičce, vždy před Správou účtu. Zatím vede na 1. krok košíku (kosik.dc.html), kde se s uloženými košíky bude pracovat — dořešíme.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit zákaznickou zónu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Okno Přidáno do košíku · Doprava zdarma</span>
+      <h3>Stejná lišta dopravy zdarma jako v košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V okně po přidání do košíku použít stejný panel dopravy zdarma jako v košíku, vyjmout ho z věrnostního boxu a dát nad něj.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je samostatně nad věrnostním boxem, se stejným vzhledem i texty jako v košíku: pod 2 000 Kč kolik zbývá do dopravy zdarma, nad 2 000 Kč potvrzení dopravy zdarma a kolik zbývá do nejbližší věrnostní skupiny. Věrnostní box obsahuje už jen stav programu a odkaz.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit ukázku<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>„Oblíbené produkty“ přejmenováno na „Oblíbené položky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Položku navigace účtu přejmenovat na Oblíbené položky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Přejmenováno všude, kde odkaz vede na oblíbené: záložky zákaznické zóny, menu účtu v hlavičce (přihlášený i nepřihlášený) a dlaždice na přehledu Můj účet. Nadpis stránky oblíbených je nově „Oblíbené produkty a recepty“.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit oblíbené<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Přehled objednávek</span>
+      <h3>Sloupce Sledovat, Akce a Náhled využívají šířku tabulky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Využít prázdné místo za sloupcem Stav pro sloupce Sledovat, Akce a Náhled.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Volné místo se dělí mezi Stav, Sledovat a Akce (dřív ho celé bral Stav). Akce je nejširší, takže „MSDS k surovinám“ se vejde na jeden řádek; Náhled zůstává úzký u pravého okraje.</p>
+      </div>
+      <a class="show-btn" href="objednavky.html" target="_blank">Zobrazit objednávky<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 3 · Souhlas s podmínkami</span>
+      <h3>Souhlas s obchodními podmínkami ve vlastním řádku nahoře</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Souhlas s obchodními podmínkami dát ve spodní liště do vlastního řádku nahoru, aby ho zákazník nepřehlédl a odškrtl jako první.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 3 je souhlas prvním řádkem spodní lišty přes celou šířku, ve světle žlutém rámečku. Pod ním je Zpět, konečná cena a Zaplatit. Na mobilu platí totéž.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 2 · Věrnostní program</span>
+      <h3>Informace o věrnostním programu pod přihlášením a registrací</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Pod karty Jsem nový zákazník / Mám zde svůj účet dát blok informující o věrnostním programu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pás v barvě věrnostního programu (Poledne): kolečko „až −15 %“, nadpis „Nakupujte přihlášení a sbírejte věrnostní výhody“, krátké vysvětlení (obrat za čtvrtletí, od 5 000 Kč automaticky 5–15 % nižší ceny, bez kuponů) a odkaz „Jak to funguje“ na stránku věrnostního programu (otevře se v novém okně, aby zákazník neztratil rozdělanou objednávku).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Spodní lišta</span>
+      <h3>Lišta s cenou vždy přilepená ke spodní hraně</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu Zpět / Poštovné a balné / Konečná cena / Pokračovat mít vždy sticky na spodní hraně webu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je ve všech krocích košíku trvale přichycená ke spodní hraně okna, i při scrollu k patičce. Pod obsahem je rezerva, aby lišta nic nepřekrývala.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Kupón a doobjednávka</span>
+      <h3>Kupón a Přidat k objednávce ve dvou sloupcích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Slevový kupón a Přidat k objednávce dát do dvou sloupců vedle sebe.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba bloky jsou vedle sebe ve stejném rozvržení jako Doprava / Způsob platby pod nimi: nadpis (nově „Slevový kupón“), karta s popiskem, pole a tlačítko. Karty mají stejnou výšku. Na mobilu jsou pod sebou.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Odebraná karta „Nevíte si rady s výběrem produktu?“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vymazat kartu s e-mailovým kontaktem vedle obsahu košíku.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta je odebraná v kroku 1 (obsah košíku se roztáhl na celou šířku) i v kroku 2 (boční panel u kontaktních údajů).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Přednostní odeslání</span>
+      <h3>Ikona raketky u přednostního odeslání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U přednostního odeslání dát ikonu raketky — že to uděláme rychle.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Místo nákladního auta je u volby Přednostní odeslání raketka (nová ikona rocket-01 ve stejném liniovém stylu jako ostatní ikony). Auto zůstává u dopravy zdarma.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Doprava zdarma a věrnost</span>
+      <h3>Lišta dopravy zdarma zůstává i po dosažení hranice</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Po dosažení dopravy zdarma lištu neschovávat, ale napsat např.: „Díky nákupu nad 2 000 Kč máte dopravu zdarma. Nakupte ještě za 2 505 Kč a získáte o 5 % nižší ceny na všechny další objednávky až do konce čtvrtletí.“</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 2 000 Kč lišta dál ukazuje, kolik zbývá do dopravy zdarma. Nad 2 000 Kč potvrdí dopravu zdarma a dopočítá, kolik zbývá do nejbližší věrnostní skupiny (5 / 10 / 15 % při 5 000 / 10 000 / 30 000 Kč čtvrtletního obratu včetně košíku). U nejvyšší skupiny zůstane jen potvrzení dopravy. Platí v kroku 1 i 3; v kroku 3 je lišta nad shrnutím cen (doprava, platba, cena celkem).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Doporučené produkty pod lištou dopravy zdarma</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Blok Doporučujeme posunout pod informaci o dopravě zdarma.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Doporučené produkty jsou hned pod lištou „Pokud nakoupíte ještě za… budete mít dopravné zdarma“ — nabídka tak navazuje na zbývající částku. Kupón, doobjednávka, doprava a platba následují pod nimi.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Recepty · Hodnocení</span>
+      <h3>Hodnocení receptů skryté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Recepty nemáme jak technicky hodnotit — schovat hodnocení na kartách receptů (centrálně) a odebrat sekci hodnocení.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta receptu (ui-RecipeCard) hvězdičky nezobrazuje nikde na webu; lze je znovu zapnout vlastností showRating. V detailu receptu je sekce Hodnocení a recenze skrytá (kód zůstává pro pozdější zapnutí). Hodnocení produktů zůstává beze změny.</p>
+      </div>
+      <a class="show-btn" href="recept.dc.html" target="_blank">Zobrazit detail receptu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Recepty se surovinou</span>
+      <h3>Boční karusel receptů bez tlačítka, šipky vpravo dole</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V bočním boxu Recepty se surovinou odebrat tlačítko Všechny recepty a navigaci dát doprava dolů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Rozcestník oddílů</span>
+      <h3>Chipy oddílů ve sloupci s akordeony, bez sticky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu chipů (Hlavní vlastnosti, Co to je?…) dát do stejného sloupce jako akordeony, odebrat sticky a nechat jen funkci otevření oddílu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie G1 / G2</span>
+      <h3>Dvě varianty galerie k porovnání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Varianta galerie: G1 — stávající stav (miniatury vlevo od fotky), G2 — miniatury pod fotkou vlevo dole.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie</span>
+      <h3>Miniatury vlevo, na mobilu listování velkou fotkou</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Při více fotkách zobrazit miniatury vlevo od velké fotky, na desktopu bez dalšího ovládání (3–6 fotek). Na mobilu miniatury skrýt a umožnit listování velkou fotkou bez rozkliknutí. Odebrat tlačítko Zvětšit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Desktop: svislý sloupec miniatur (78 px, max. 6) vlevo od velké fotky, klik přepne fotku; bez šipek. Má-li produkt video, je jako poslední položka mezi miniaturami (i ve zvětšení je na konci) (světlá krémová dlaždice s terakotovou ikonou přehrání) a otevře video. Mobil (pod 820 px): jen velká fotka v jednom sloupci, listuje se tažením prstem nebo šipkami po stranách, tečky dole ukazují pozici. Klik na fotku dál otevře zvětšení. Štítek „Zvětšit“ je odebraný, tlačítko Video zůstává.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Barvy stavů</span>
+      <h3>Očekáváme a Na cestě k nám v oranžovo-žluté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Stavy „Očekáváme“ a „Na cestě k nám“ ladit do oranžovo-žluté barvy.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba stavy mají sytou jantarovou barvu #9E6B00 (žlutější, méně cihlová; kontrast 4,6:1 na bílé, AA). Odlišují se tak od zelených stavů „skladem“ i od cihlových nedostupných. Změna platí všude přes ui-Stock, design systém je aktualizovaný.</p>
+      </div>
+      <a class="show-btn" href="design-system.html#skladovost" target="_blank">Zobrazit design systém<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Design systém</span>
+      <h3>Stav skladovosti vždy bez chipu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Skladovost na kartách a všude na webu není v chipu, je samostatně — upravit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Varianta „pilulka“ je zrušená všude: v design systému (tabulka škály i ukázky), v detailu produktu i ve sticky buy baru je stav jen text s ikonou. Design systém nově ukazuje dvě velikosti místo dvou podob (karta / košík 12,5–13 px, detail / buy bar 13–14,5 px).</p>
+      </div>
+      <a class="show-btn" href="design-system.html#skladovost" target="_blank">Zobrazit design systém<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Nápověda</span>
+      <h3>Ikona „i“ u stavu dostupnosti s nápovědou</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U stavu dostupnosti (např. „Ihned k odeslání“ ve výběru variant) chybí vpravo malá ikona „i“, aby bylo jasné, že se po najetí něco zobrazí.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všude, kde má stav dostupnosti vysvětlující bublinu, je za textem ikona „i“ stejně velká jako ikona stavu, v tmavé barvě textu (#2A2A24). Stavy bez bubliny ikonu nemají.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Výpis na XXS</span>
+      <h3>Výpis produktů v jednom sloupci na nejmenších displejích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na XXS má být výpis produktů v jednom sloupci.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Do 420 px je výpis produktů (včetně grafického banneru) v jednom sloupci, nad touto šířkou zůstávají dva sloupce.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Produktový banner</span>
+      <h3>Grafická HTML karta s lifestyle fotkou ve výpisu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nová varianta karty jako grafický HTML banner na konkrétní produkt — lifestyle fotka přes celou kartu, pod ní nadpis, popis a CTA (téma parfémy). Vždy na 7. místě první stránky výpisu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nová komponenta ui-ProductBanner: fotka přes celou kartu, zdola tmavý přechod, štítek „Recepty“ vlevo nahoře, nadpis, popis a krémové tlačítko „Zobrazit recept“ (celá karta je odkaz na recept). Výška se srovná s produktovými kartami v řadě. Ve výpisu kategorie je vždy na 7. pozici první stránky a zabírá jednu pozici — na první stránce je 11 produktů + banner, stránkování se posouvá o jednu pozici. Texty, odkaz a fotka jsou nastavitelné. Textace je receptářová: „Vlastní parfém z přírodních silic“ — jak poskládat hlavu, srdce a základ vůně, recept krok za krokem.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Karusely</span>
+      <h3>Jednotná šířka karet ve všech karuselech</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Šířka karet by měla být ve všech karuselech stejná.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karty v karuselech Co chcete vyrábět?, Suroviny dle kategorie, Recepty, které fungují a Zákazníci nejraději kupují mají na menších šířkách shodně 260 px (dříve 240 / 240 / 260 / 260 px). Sekce Zákazníci nejraději kupují má na mobilu (pod 820 px) menší horní odsazení — 20 px místo 64 px. Stejně (vizuálně 20 px od zubatého okraje pásu) je na mobilu odsazena shora i zdola sekce Recepty, které fungují.</p>
+      </div>
+      <a class="show-btn" href="index.html#blok3" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Suroviny dle kategorie (mobil)</span>
+      <h3>Dlaždice surovin na malých displejích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na malých displejích dlaždice surovin neměly odsazení a ikona nebyla vertikálně vycentrovaná s nadpisem.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Mobilní pravidlo pro zmenšení ikony omylem zasahovalo i text nadpisu (zmáčklo ho do 18 px). Odstraněno — dlaždice surovin mají nyní stejný nadpis (24 px), ikonu (20 px) i odsazení jako „Co chcete vyrábět?“.</p>
+      </div>
+      <a class="show-btn" href="index.html#blok4" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Nadpisy sekcí</span>
+      <h3>Sjednocená velikost nadpisů sekcí</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nadpisy sekcí sjednotit podle „Co chcete vyrábět?“, zkontrolovat i na mobilu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všechny nadpisy sekcí na homepage (včetně Suroviny dle kategorie, Zákazníci nejraději kupují, Ukažte nám, co vyrábíte, komunitní dílny, věrnostního bloku, příběhu a newsletteru) mají 40 px, na šířkách do 900 px 30 px — stejně jako „Co chcete vyrábět?“.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Hero V1</span>
+      <h3>Karty hero V1 na šířku webu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Karty v hero sekci V1 roztáhnout na stejnou šířku jako hero V2.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Mozaika čtyř karet má nově šířku 1560 px (dříve 1400 px), shodně s bannerem V2 a obsahem webu.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -530,6 +1202,294 @@
     </div>
 
     <div class="item">
+      <span class="tag">Košík · Uložené košíky</span>
+      <h3>Řádek pro práci s uloženými košíky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nad Obsah košíku přidat řádek pro uložené košíky: Aktuální košík (výběr), Uložit obsah jako nový košík, Odstranit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 1 je vpravo v řádku s nadpisem Obsah košíku výběr aktuálního košíku (Nový košík + ukázkové uložené košíky) , hned vedle ikonové tlačítko koše pro odstranění uloženého košíku (cihlová ikona, stejná výška jako výběr)  a vedle tlačítko „Uložit obsah jako nový košík“ s ikonou diskety (nové ikony delete-02 a floppy-disk ve stylu sady). Na tento krok vede položka Uložené košíky v navigaci účtu. Chování (přepínání, uložení, potvrzení smazání) zatím není napojené.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Ukázka Host / Přihlášen</span>
+      <h3>Přepínač Host / Přihlášen v ukázce košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Do ovládání ukázky košíku přidat přepínač Přihlášen / Host.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V panelu Ukázka je pod kroky přepínač Host / Přihlášen. Přihlášený má v hlavičce ikonu přihlášeného uživatele a v kroku 2 místo karet Přihlášení a registrace i věrnostního pásu jen řádek „Přihlášena jako…“ s informací, že údaje jsou předvyplněné a objednávka se započítá do věrnostního programu.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>Nová položka „Uložené košíky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Před Správu účtu přidat položku Uložené košíky; kde se s nimi bude pracovat, doladíme.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Položka s ikonou košíku je v záložkách zákaznické zóny, v menu účtu i v menu přihlášeného v hlavičce, vždy před Správou účtu. Zatím vede na 1. krok košíku (kosik.dc.html), kde se s uloženými košíky bude pracovat — dořešíme.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit zákaznickou zónu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Okno Přidáno do košíku · Doprava zdarma</span>
+      <h3>Stejná lišta dopravy zdarma jako v košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V okně po přidání do košíku použít stejný panel dopravy zdarma jako v košíku, vyjmout ho z věrnostního boxu a dát nad něj.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je samostatně nad věrnostním boxem, se stejným vzhledem i texty jako v košíku: pod 2 000 Kč kolik zbývá do dopravy zdarma, nad 2 000 Kč potvrzení dopravy zdarma a kolik zbývá do nejbližší věrnostní skupiny. Věrnostní box obsahuje už jen stav programu a odkaz.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit ukázku<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>„Oblíbené produkty“ přejmenováno na „Oblíbené položky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Položku navigace účtu přejmenovat na Oblíbené položky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Přejmenováno všude, kde odkaz vede na oblíbené: záložky zákaznické zóny, menu účtu v hlavičce (přihlášený i nepřihlášený) a dlaždice na přehledu Můj účet. Nadpis stránky oblíbených je nově „Oblíbené produkty a recepty“.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit oblíbené<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Přehled objednávek</span>
+      <h3>Sloupce Sledovat, Akce a Náhled využívají šířku tabulky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Využít prázdné místo za sloupcem Stav pro sloupce Sledovat, Akce a Náhled.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Volné místo se dělí mezi Stav, Sledovat a Akce (dřív ho celé bral Stav). Akce je nejširší, takže „MSDS k surovinám“ se vejde na jeden řádek; Náhled zůstává úzký u pravého okraje.</p>
+      </div>
+      <a class="show-btn" href="objednavky.html" target="_blank">Zobrazit objednávky<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 3 · Souhlas s podmínkami</span>
+      <h3>Souhlas s obchodními podmínkami ve vlastním řádku nahoře</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Souhlas s obchodními podmínkami dát ve spodní liště do vlastního řádku nahoru, aby ho zákazník nepřehlédl a odškrtl jako první.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 3 je souhlas prvním řádkem spodní lišty přes celou šířku, ve světle žlutém rámečku. Pod ním je Zpět, konečná cena a Zaplatit. Na mobilu platí totéž.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 2 · Věrnostní program</span>
+      <h3>Informace o věrnostním programu pod přihlášením a registrací</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Pod karty Jsem nový zákazník / Mám zde svůj účet dát blok informující o věrnostním programu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pás v barvě věrnostního programu (Poledne): kolečko „až −15 %“, nadpis „Nakupujte přihlášení a sbírejte věrnostní výhody“, krátké vysvětlení (obrat za čtvrtletí, od 5 000 Kč automaticky 5–15 % nižší ceny, bez kuponů) a odkaz „Jak to funguje“ na stránku věrnostního programu (otevře se v novém okně, aby zákazník neztratil rozdělanou objednávku).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Spodní lišta</span>
+      <h3>Lišta s cenou vždy přilepená ke spodní hraně</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu Zpět / Poštovné a balné / Konečná cena / Pokračovat mít vždy sticky na spodní hraně webu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je ve všech krocích košíku trvale přichycená ke spodní hraně okna, i při scrollu k patičce. Pod obsahem je rezerva, aby lišta nic nepřekrývala.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Kupón a doobjednávka</span>
+      <h3>Kupón a Přidat k objednávce ve dvou sloupcích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Slevový kupón a Přidat k objednávce dát do dvou sloupců vedle sebe.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba bloky jsou vedle sebe ve stejném rozvržení jako Doprava / Způsob platby pod nimi: nadpis (nově „Slevový kupón“), karta s popiskem, pole a tlačítko. Karty mají stejnou výšku. Na mobilu jsou pod sebou.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Odebraná karta „Nevíte si rady s výběrem produktu?“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vymazat kartu s e-mailovým kontaktem vedle obsahu košíku.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta je odebraná v kroku 1 (obsah košíku se roztáhl na celou šířku) i v kroku 2 (boční panel u kontaktních údajů).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Přednostní odeslání</span>
+      <h3>Ikona raketky u přednostního odeslání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U přednostního odeslání dát ikonu raketky — že to uděláme rychle.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Místo nákladního auta je u volby Přednostní odeslání raketka (nová ikona rocket-01 ve stejném liniovém stylu jako ostatní ikony). Auto zůstává u dopravy zdarma.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Doprava zdarma a věrnost</span>
+      <h3>Lišta dopravy zdarma zůstává i po dosažení hranice</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Po dosažení dopravy zdarma lištu neschovávat, ale napsat např.: „Díky nákupu nad 2 000 Kč máte dopravu zdarma. Nakupte ještě za 2 505 Kč a získáte o 5 % nižší ceny na všechny další objednávky až do konce čtvrtletí.“</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 2 000 Kč lišta dál ukazuje, kolik zbývá do dopravy zdarma. Nad 2 000 Kč potvrdí dopravu zdarma a dopočítá, kolik zbývá do nejbližší věrnostní skupiny (5 / 10 / 15 % při 5 000 / 10 000 / 30 000 Kč čtvrtletního obratu včetně košíku). U nejvyšší skupiny zůstane jen potvrzení dopravy. Platí v kroku 1 i 3; v kroku 3 je lišta nad shrnutím cen (doprava, platba, cena celkem).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Doporučené produkty pod lištou dopravy zdarma</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Blok Doporučujeme posunout pod informaci o dopravě zdarma.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Doporučené produkty jsou hned pod lištou „Pokud nakoupíte ještě za… budete mít dopravné zdarma“ — nabídka tak navazuje na zbývající částku. Kupón, doobjednávka, doprava a platba následují pod nimi.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Recepty · Hodnocení</span>
+      <h3>Hodnocení receptů skryté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Recepty nemáme jak technicky hodnotit — schovat hodnocení na kartách receptů (centrálně) a odebrat sekci hodnocení.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta receptu (ui-RecipeCard) hvězdičky nezobrazuje nikde na webu; lze je znovu zapnout vlastností showRating. V detailu receptu je sekce Hodnocení a recenze skrytá (kód zůstává pro pozdější zapnutí). Hodnocení produktů zůstává beze změny.</p>
+      </div>
+      <a class="show-btn" href="recept.dc.html" target="_blank">Zobrazit detail receptu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Recepty se surovinou</span>
+      <h3>Boční karusel receptů bez tlačítka, šipky vpravo dole</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V bočním boxu Recepty se surovinou odebrat tlačítko Všechny recepty a navigaci dát doprava dolů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Rozcestník oddílů</span>
+      <h3>Chipy oddílů ve sloupci s akordeony, bez sticky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu chipů (Hlavní vlastnosti, Co to je?…) dát do stejného sloupce jako akordeony, odebrat sticky a nechat jen funkci otevření oddílu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie G1 / G2</span>
+      <h3>Dvě varianty galerie k porovnání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Varianta galerie: G1 — stávající stav (miniatury vlevo od fotky), G2 — miniatury pod fotkou vlevo dole.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie</span>
+      <h3>Miniatury vlevo, na mobilu listování velkou fotkou</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Při více fotkách zobrazit miniatury vlevo od velké fotky, na desktopu bez dalšího ovládání (3–6 fotek). Na mobilu miniatury skrýt a umožnit listování velkou fotkou bez rozkliknutí. Odebrat tlačítko Zvětšit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Desktop: svislý sloupec miniatur (78 px, max. 6) vlevo od velké fotky, klik přepne fotku; bez šipek. Má-li produkt video, je jako poslední položka mezi miniaturami (i ve zvětšení je na konci) (světlá krémová dlaždice s terakotovou ikonou přehrání) a otevře video. Mobil (pod 820 px): jen velká fotka v jednom sloupci, listuje se tažením prstem nebo šipkami po stranách, tečky dole ukazují pozici. Klik na fotku dál otevře zvětšení. Štítek „Zvětšit“ je odebraný, tlačítko Video zůstává.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Barvy stavů</span>
+      <h3>Očekáváme a Na cestě k nám v oranžovo-žluté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Stavy „Očekáváme“ a „Na cestě k nám“ ladit do oranžovo-žluté barvy.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba stavy mají sytou jantarovou barvu #9E6B00 (žlutější, méně cihlová; kontrast 4,6:1 na bílé, AA). Odlišují se tak od zelených stavů „skladem“ i od cihlových nedostupných. Změna platí všude přes ui-Stock, design systém je aktualizovaný.</p>
+      </div>
+      <a class="show-btn" href="design-system.html#skladovost" target="_blank">Zobrazit design systém<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Design systém</span>
+      <h3>Stav skladovosti vždy bez chipu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Skladovost na kartách a všude na webu není v chipu, je samostatně — upravit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Varianta „pilulka“ je zrušená všude: v design systému (tabulka škály i ukázky), v detailu produktu i ve sticky buy baru je stav jen text s ikonou. Design systém nově ukazuje dvě velikosti místo dvou podob (karta / košík 12,5–13 px, detail / buy bar 13–14,5 px).</p>
+      </div>
+      <a class="show-btn" href="design-system.html#skladovost" target="_blank">Zobrazit design systém<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Nápověda</span>
+      <h3>Ikona „i“ u stavu dostupnosti s nápovědou</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U stavu dostupnosti (např. „Ihned k odeslání“ ve výběru variant) chybí vpravo malá ikona „i“, aby bylo jasné, že se po najetí něco zobrazí.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všude, kde má stav dostupnosti vysvětlující bublinu, je za textem ikona „i“ stejně velká jako ikona stavu, v tmavé barvě textu (#2A2A24). Stavy bez bubliny ikonu nemají.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Výpis na XXS</span>
+      <h3>Výpis produktů v jednom sloupci na nejmenších displejích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na XXS má být výpis produktů v jednom sloupci.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Do 420 px je výpis produktů (včetně grafického banneru) v jednom sloupci, nad touto šířkou zůstávají dva sloupce.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Produktový banner</span>
+      <h3>Grafická HTML karta s lifestyle fotkou ve výpisu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nová varianta karty jako grafický HTML banner na konkrétní produkt — lifestyle fotka přes celou kartu, pod ní nadpis, popis a CTA (téma parfémy). Vždy na 7. místě první stránky výpisu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nová komponenta ui-ProductBanner: fotka přes celou kartu, zdola tmavý přechod, štítek „Recepty“ vlevo nahoře, nadpis, popis a krémové tlačítko „Zobrazit recept“ (celá karta je odkaz na recept). Výška se srovná s produktovými kartami v řadě. Ve výpisu kategorie je vždy na 7. pozici první stránky a zabírá jednu pozici — na první stránce je 11 produktů + banner, stránkování se posouvá o jednu pozici. Texty, odkaz a fotka jsou nastavitelné. Textace je receptářová: „Vlastní parfém z přírodních silic“ — jak poskládat hlavu, srdce a základ vůně, recept krok za krokem.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
       <span class="tag">Homepage · Karusely</span>
       <h3>Šipky pro listování u všech karuselů</h3>
       <div class="row">
@@ -727,6 +1687,222 @@
     </div>
 
     <div class="item">
+      <span class="tag">Košík · Uložené košíky</span>
+      <h3>Řádek pro práci s uloženými košíky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nad Obsah košíku přidat řádek pro uložené košíky: Aktuální košík (výběr), Uložit obsah jako nový košík, Odstranit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 1 je vpravo v řádku s nadpisem Obsah košíku výběr aktuálního košíku (Nový košík + ukázkové uložené košíky) , hned vedle ikonové tlačítko koše pro odstranění uloženého košíku (cihlová ikona, stejná výška jako výběr)  a vedle tlačítko „Uložit obsah jako nový košík“ s ikonou diskety (nové ikony delete-02 a floppy-disk ve stylu sady). Na tento krok vede položka Uložené košíky v navigaci účtu. Chování (přepínání, uložení, potvrzení smazání) zatím není napojené.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Ukázka Host / Přihlášen</span>
+      <h3>Přepínač Host / Přihlášen v ukázce košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Do ovládání ukázky košíku přidat přepínač Přihlášen / Host.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V panelu Ukázka je pod kroky přepínač Host / Přihlášen. Přihlášený má v hlavičce ikonu přihlášeného uživatele a v kroku 2 místo karet Přihlášení a registrace i věrnostního pásu jen řádek „Přihlášena jako…“ s informací, že údaje jsou předvyplněné a objednávka se započítá do věrnostního programu.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>Nová položka „Uložené košíky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Před Správu účtu přidat položku Uložené košíky; kde se s nimi bude pracovat, doladíme.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Položka s ikonou košíku je v záložkách zákaznické zóny, v menu účtu i v menu přihlášeného v hlavičce, vždy před Správou účtu. Zatím vede na 1. krok košíku (kosik.dc.html), kde se s uloženými košíky bude pracovat — dořešíme.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit zákaznickou zónu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Okno Přidáno do košíku · Doprava zdarma</span>
+      <h3>Stejná lišta dopravy zdarma jako v košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V okně po přidání do košíku použít stejný panel dopravy zdarma jako v košíku, vyjmout ho z věrnostního boxu a dát nad něj.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je samostatně nad věrnostním boxem, se stejným vzhledem i texty jako v košíku: pod 2 000 Kč kolik zbývá do dopravy zdarma, nad 2 000 Kč potvrzení dopravy zdarma a kolik zbývá do nejbližší věrnostní skupiny. Věrnostní box obsahuje už jen stav programu a odkaz.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit ukázku<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>„Oblíbené produkty“ přejmenováno na „Oblíbené položky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Položku navigace účtu přejmenovat na Oblíbené položky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Přejmenováno všude, kde odkaz vede na oblíbené: záložky zákaznické zóny, menu účtu v hlavičce (přihlášený i nepřihlášený) a dlaždice na přehledu Můj účet. Nadpis stránky oblíbených je nově „Oblíbené produkty a recepty“.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit oblíbené<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Přehled objednávek</span>
+      <h3>Sloupce Sledovat, Akce a Náhled využívají šířku tabulky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Využít prázdné místo za sloupcem Stav pro sloupce Sledovat, Akce a Náhled.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Volné místo se dělí mezi Stav, Sledovat a Akce (dřív ho celé bral Stav). Akce je nejširší, takže „MSDS k surovinám“ se vejde na jeden řádek; Náhled zůstává úzký u pravého okraje.</p>
+      </div>
+      <a class="show-btn" href="objednavky.html" target="_blank">Zobrazit objednávky<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 3 · Souhlas s podmínkami</span>
+      <h3>Souhlas s obchodními podmínkami ve vlastním řádku nahoře</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Souhlas s obchodními podmínkami dát ve spodní liště do vlastního řádku nahoru, aby ho zákazník nepřehlédl a odškrtl jako první.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 3 je souhlas prvním řádkem spodní lišty přes celou šířku, ve světle žlutém rámečku. Pod ním je Zpět, konečná cena a Zaplatit. Na mobilu platí totéž.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 2 · Věrnostní program</span>
+      <h3>Informace o věrnostním programu pod přihlášením a registrací</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Pod karty Jsem nový zákazník / Mám zde svůj účet dát blok informující o věrnostním programu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pás v barvě věrnostního programu (Poledne): kolečko „až −15 %“, nadpis „Nakupujte přihlášení a sbírejte věrnostní výhody“, krátké vysvětlení (obrat za čtvrtletí, od 5 000 Kč automaticky 5–15 % nižší ceny, bez kuponů) a odkaz „Jak to funguje“ na stránku věrnostního programu (otevře se v novém okně, aby zákazník neztratil rozdělanou objednávku).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Spodní lišta</span>
+      <h3>Lišta s cenou vždy přilepená ke spodní hraně</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu Zpět / Poštovné a balné / Konečná cena / Pokračovat mít vždy sticky na spodní hraně webu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je ve všech krocích košíku trvale přichycená ke spodní hraně okna, i při scrollu k patičce. Pod obsahem je rezerva, aby lišta nic nepřekrývala.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Kupón a doobjednávka</span>
+      <h3>Kupón a Přidat k objednávce ve dvou sloupcích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Slevový kupón a Přidat k objednávce dát do dvou sloupců vedle sebe.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba bloky jsou vedle sebe ve stejném rozvržení jako Doprava / Způsob platby pod nimi: nadpis (nově „Slevový kupón“), karta s popiskem, pole a tlačítko. Karty mají stejnou výšku. Na mobilu jsou pod sebou.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Odebraná karta „Nevíte si rady s výběrem produktu?“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vymazat kartu s e-mailovým kontaktem vedle obsahu košíku.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta je odebraná v kroku 1 (obsah košíku se roztáhl na celou šířku) i v kroku 2 (boční panel u kontaktních údajů).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Přednostní odeslání</span>
+      <h3>Ikona raketky u přednostního odeslání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U přednostního odeslání dát ikonu raketky — že to uděláme rychle.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Místo nákladního auta je u volby Přednostní odeslání raketka (nová ikona rocket-01 ve stejném liniovém stylu jako ostatní ikony). Auto zůstává u dopravy zdarma.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Doprava zdarma a věrnost</span>
+      <h3>Lišta dopravy zdarma zůstává i po dosažení hranice</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Po dosažení dopravy zdarma lištu neschovávat, ale napsat např.: „Díky nákupu nad 2 000 Kč máte dopravu zdarma. Nakupte ještě za 2 505 Kč a získáte o 5 % nižší ceny na všechny další objednávky až do konce čtvrtletí.“</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 2 000 Kč lišta dál ukazuje, kolik zbývá do dopravy zdarma. Nad 2 000 Kč potvrdí dopravu zdarma a dopočítá, kolik zbývá do nejbližší věrnostní skupiny (5 / 10 / 15 % při 5 000 / 10 000 / 30 000 Kč čtvrtletního obratu včetně košíku). U nejvyšší skupiny zůstane jen potvrzení dopravy. Platí v kroku 1 i 3; v kroku 3 je lišta nad shrnutím cen (doprava, platba, cena celkem).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Doporučené produkty pod lištou dopravy zdarma</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Blok Doporučujeme posunout pod informaci o dopravě zdarma.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Doporučené produkty jsou hned pod lištou „Pokud nakoupíte ještě za… budete mít dopravné zdarma“ — nabídka tak navazuje na zbývající částku. Kupón, doobjednávka, doprava a platba následují pod nimi.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Recepty · Hodnocení</span>
+      <h3>Hodnocení receptů skryté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Recepty nemáme jak technicky hodnotit — schovat hodnocení na kartách receptů (centrálně) a odebrat sekci hodnocení.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta receptu (ui-RecipeCard) hvězdičky nezobrazuje nikde na webu; lze je znovu zapnout vlastností showRating. V detailu receptu je sekce Hodnocení a recenze skrytá (kód zůstává pro pozdější zapnutí). Hodnocení produktů zůstává beze změny.</p>
+      </div>
+      <a class="show-btn" href="recept.dc.html" target="_blank">Zobrazit detail receptu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Recepty se surovinou</span>
+      <h3>Boční karusel receptů bez tlačítka, šipky vpravo dole</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V bočním boxu Recepty se surovinou odebrat tlačítko Všechny recepty a navigaci dát doprava dolů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Rozcestník oddílů</span>
+      <h3>Chipy oddílů ve sloupci s akordeony, bez sticky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu chipů (Hlavní vlastnosti, Co to je?…) dát do stejného sloupce jako akordeony, odebrat sticky a nechat jen funkci otevření oddílu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie G1 / G2</span>
+      <h3>Dvě varianty galerie k porovnání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Varianta galerie: G1 — stávající stav (miniatury vlevo od fotky), G2 — miniatury pod fotkou vlevo dole.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
       <span class="tag">Detail produktu · Galerie</span>
       <h3>Tlačítko „Video“ v galerii produktu</h3>
       <div class="row">
@@ -880,6 +2056,294 @@
         <p class="v">Stejný posuvník (béžová linka a zelený úsek, který jede s řadou) je teď i u Receptů a Produktů na homepage, u produktových karuselů na detailu produktu, kde nahradil původní systémový scrollbar, u kategorií receptáře a u podkategorií ve výpisu kategorie. Zobrazí se jen tehdy, když se řada opravdu dá posunout. Na desktopu, kde se vše vejde, zůstává skrytý.</p>
       </div>
       <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Uložené košíky</span>
+      <h3>Řádek pro práci s uloženými košíky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nad Obsah košíku přidat řádek pro uložené košíky: Aktuální košík (výběr), Uložit obsah jako nový košík, Odstranit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 1 je vpravo v řádku s nadpisem Obsah košíku výběr aktuálního košíku (Nový košík + ukázkové uložené košíky) , hned vedle ikonové tlačítko koše pro odstranění uloženého košíku (cihlová ikona, stejná výška jako výběr)  a vedle tlačítko „Uložit obsah jako nový košík“ s ikonou diskety (nové ikony delete-02 a floppy-disk ve stylu sady). Na tento krok vede položka Uložené košíky v navigaci účtu. Chování (přepínání, uložení, potvrzení smazání) zatím není napojené.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Ukázka Host / Přihlášen</span>
+      <h3>Přepínač Host / Přihlášen v ukázce košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Do ovládání ukázky košíku přidat přepínač Přihlášen / Host.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V panelu Ukázka je pod kroky přepínač Host / Přihlášen. Přihlášený má v hlavičce ikonu přihlášeného uživatele a v kroku 2 místo karet Přihlášení a registrace i věrnostního pásu jen řádek „Přihlášena jako…“ s informací, že údaje jsou předvyplněné a objednávka se započítá do věrnostního programu.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>Nová položka „Uložené košíky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Před Správu účtu přidat položku Uložené košíky; kde se s nimi bude pracovat, doladíme.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Položka s ikonou košíku je v záložkách zákaznické zóny, v menu účtu i v menu přihlášeného v hlavičce, vždy před Správou účtu. Zatím vede na 1. krok košíku (kosik.dc.html), kde se s uloženými košíky bude pracovat — dořešíme.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit zákaznickou zónu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Okno Přidáno do košíku · Doprava zdarma</span>
+      <h3>Stejná lišta dopravy zdarma jako v košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V okně po přidání do košíku použít stejný panel dopravy zdarma jako v košíku, vyjmout ho z věrnostního boxu a dát nad něj.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je samostatně nad věrnostním boxem, se stejným vzhledem i texty jako v košíku: pod 2 000 Kč kolik zbývá do dopravy zdarma, nad 2 000 Kč potvrzení dopravy zdarma a kolik zbývá do nejbližší věrnostní skupiny. Věrnostní box obsahuje už jen stav programu a odkaz.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit ukázku<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Navigace</span>
+      <h3>„Oblíbené produkty“ přejmenováno na „Oblíbené položky“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Položku navigace účtu přejmenovat na Oblíbené položky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Přejmenováno všude, kde odkaz vede na oblíbené: záložky zákaznické zóny, menu účtu v hlavičce (přihlášený i nepřihlášený) a dlaždice na přehledu Můj účet. Nadpis stránky oblíbených je nově „Oblíbené produkty a recepty“.</p>
+      </div>
+      <a class="show-btn" href="oblibene.html" target="_blank">Zobrazit oblíbené<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Účet · Přehled objednávek</span>
+      <h3>Sloupce Sledovat, Akce a Náhled využívají šířku tabulky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Využít prázdné místo za sloupcem Stav pro sloupce Sledovat, Akce a Náhled.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Volné místo se dělí mezi Stav, Sledovat a Akce (dřív ho celé bral Stav). Akce je nejširší, takže „MSDS k surovinám“ se vejde na jeden řádek; Náhled zůstává úzký u pravého okraje.</p>
+      </div>
+      <a class="show-btn" href="objednavky.html" target="_blank">Zobrazit objednávky<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 3 · Souhlas s podmínkami</span>
+      <h3>Souhlas s obchodními podmínkami ve vlastním řádku nahoře</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Souhlas s obchodními podmínkami dát ve spodní liště do vlastního řádku nahoru, aby ho zákazník nepřehlédl a odškrtl jako první.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 3 je souhlas prvním řádkem spodní lišty přes celou šířku, ve světle žlutém rámečku. Pod ním je Zpět, konečná cena a Zaplatit. Na mobilu platí totéž.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 2 · Věrnostní program</span>
+      <h3>Informace o věrnostním programu pod přihlášením a registrací</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Pod karty Jsem nový zákazník / Mám zde svůj účet dát blok informující o věrnostním programu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pás v barvě věrnostního programu (Poledne): kolečko „až −15 %“, nadpis „Nakupujte přihlášení a sbírejte věrnostní výhody“, krátké vysvětlení (obrat za čtvrtletí, od 5 000 Kč automaticky 5–15 % nižší ceny, bez kuponů) a odkaz „Jak to funguje“ na stránku věrnostního programu (otevře se v novém okně, aby zákazník neztratil rozdělanou objednávku).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Spodní lišta</span>
+      <h3>Lišta s cenou vždy přilepená ke spodní hraně</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu Zpět / Poštovné a balné / Konečná cena / Pokračovat mít vždy sticky na spodní hraně webu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Lišta je ve všech krocích košíku trvale přichycená ke spodní hraně okna, i při scrollu k patičce. Pod obsahem je rezerva, aby lišta nic nepřekrývala.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Kupón a doobjednávka</span>
+      <h3>Kupón a Přidat k objednávce ve dvou sloupcích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Slevový kupón a Přidat k objednávce dát do dvou sloupců vedle sebe.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba bloky jsou vedle sebe ve stejném rozvržení jako Doprava / Způsob platby pod nimi: nadpis (nově „Slevový kupón“), karta s popiskem, pole a tlačítko. Karty mají stejnou výšku. Na mobilu jsou pod sebou.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Odebraná karta „Nevíte si rady s výběrem produktu?“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vymazat kartu s e-mailovým kontaktem vedle obsahu košíku.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta je odebraná v kroku 1 (obsah košíku se roztáhl na celou šířku) i v kroku 2 (boční panel u kontaktních údajů).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Přednostní odeslání</span>
+      <h3>Ikona raketky u přednostního odeslání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U přednostního odeslání dát ikonu raketky — že to uděláme rychle.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Místo nákladního auta je u volby Přednostní odeslání raketka (nová ikona rocket-01 ve stejném liniovém stylu jako ostatní ikony). Auto zůstává u dopravy zdarma.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Doprava zdarma a věrnost</span>
+      <h3>Lišta dopravy zdarma zůstává i po dosažení hranice</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Po dosažení dopravy zdarma lištu neschovávat, ale napsat např.: „Díky nákupu nad 2 000 Kč máte dopravu zdarma. Nakupte ještě za 2 505 Kč a získáte o 5 % nižší ceny na všechny další objednávky až do konce čtvrtletí.“</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 2 000 Kč lišta dál ukazuje, kolik zbývá do dopravy zdarma. Nad 2 000 Kč potvrdí dopravu zdarma a dopočítá, kolik zbývá do nejbližší věrnostní skupiny (5 / 10 / 15 % při 5 000 / 10 000 / 30 000 Kč čtvrtletního obratu včetně košíku). U nejvyšší skupiny zůstane jen potvrzení dopravy. Platí v kroku 1 i 3; v kroku 3 je lišta nad shrnutím cen (doprava, platba, cena celkem).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Krok 1</span>
+      <h3>Doporučené produkty pod lištou dopravy zdarma</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Blok Doporučujeme posunout pod informaci o dopravě zdarma.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Doporučené produkty jsou hned pod lištou „Pokud nakoupíte ještě za… budete mít dopravné zdarma“ — nabídka tak navazuje na zbývající částku. Kupón, doobjednávka, doprava a platba následují pod nimi.</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Recepty · Hodnocení</span>
+      <h3>Hodnocení receptů skryté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Recepty nemáme jak technicky hodnotit — schovat hodnocení na kartách receptů (centrálně) a odebrat sekci hodnocení.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karta receptu (ui-RecipeCard) hvězdičky nezobrazuje nikde na webu; lze je znovu zapnout vlastností showRating. V detailu receptu je sekce Hodnocení a recenze skrytá (kód zůstává pro pozdější zapnutí). Hodnocení produktů zůstává beze změny.</p>
+      </div>
+      <a class="show-btn" href="recept.dc.html" target="_blank">Zobrazit detail receptu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Recepty se surovinou</span>
+      <h3>Boční karusel receptů bez tlačítka, šipky vpravo dole</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V bočním boxu Recepty se surovinou odebrat tlačítko Všechny recepty a navigaci dát doprava dolů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Rozcestník oddílů</span>
+      <h3>Chipy oddílů ve sloupci s akordeony, bez sticky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu chipů (Hlavní vlastnosti, Co to je?…) dát do stejného sloupce jako akordeony, odebrat sticky a nechat jen funkci otevření oddílu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie G1 / G2</span>
+      <h3>Dvě varianty galerie k porovnání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Varianta galerie: G1 — stávající stav (miniatury vlevo od fotky), G2 — miniatury pod fotkou vlevo dole.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Galerie</span>
+      <h3>Miniatury vlevo, na mobilu listování velkou fotkou</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Při více fotkách zobrazit miniatury vlevo od velké fotky, na desktopu bez dalšího ovládání (3–6 fotek). Na mobilu miniatury skrýt a umožnit listování velkou fotkou bez rozkliknutí. Odebrat tlačítko Zvětšit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Desktop: svislý sloupec miniatur (78 px, max. 6) vlevo od velké fotky, klik přepne fotku; bez šipek. Má-li produkt video, je jako poslední položka mezi miniaturami (i ve zvětšení je na konci) (světlá krémová dlaždice s terakotovou ikonou přehrání) a otevře video. Mobil (pod 820 px): jen velká fotka v jednom sloupci, listuje se tažením prstem nebo šipkami po stranách, tečky dole ukazují pozici. Klik na fotku dál otevře zvětšení. Štítek „Zvětšit“ je odebraný, tlačítko Video zůstává.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Barvy stavů</span>
+      <h3>Očekáváme a Na cestě k nám v oranžovo-žluté</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Stavy „Očekáváme“ a „Na cestě k nám“ ladit do oranžovo-žluté barvy.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Oba stavy mají sytou jantarovou barvu #9E6B00 (žlutější, méně cihlová; kontrast 4,6:1 na bílé, AA). Odlišují se tak od zelených stavů „skladem“ i od cihlových nedostupných. Změna platí všude přes ui-Stock, design systém je aktualizovaný.</p>
+      </div>
+      <a class="show-btn" href="design-system.html#skladovost" target="_blank">Zobrazit design systém<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Design systém</span>
+      <h3>Stav skladovosti vždy bez chipu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Skladovost na kartách a všude na webu není v chipu, je samostatně — upravit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Varianta „pilulka“ je zrušená všude: v design systému (tabulka škály i ukázky), v detailu produktu i ve sticky buy baru je stav jen text s ikonou. Design systém nově ukazuje dvě velikosti místo dvou podob (karta / košík 12,5–13 px, detail / buy bar 13–14,5 px).</p>
+      </div>
+      <a class="show-btn" href="design-system.html#skladovost" target="_blank">Zobrazit design systém<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Dostupnost · Nápověda</span>
+      <h3>Ikona „i“ u stavu dostupnosti s nápovědou</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U stavu dostupnosti (např. „Ihned k odeslání“ ve výběru variant) chybí vpravo malá ikona „i“, aby bylo jasné, že se po najetí něco zobrazí.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všude, kde má stav dostupnosti vysvětlující bublinu, je za textem ikona „i“ stejně velká jako ikona stavu, v tmavé barvě textu (#2A2A24). Stavy bez bubliny ikonu nemají.</p>
+      </div>
+      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Výpis na XXS</span>
+      <h3>Výpis produktů v jednom sloupci na nejmenších displejích</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na XXS má být výpis produktů v jednom sloupci.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Do 420 px je výpis produktů (včetně grafického banneru) v jednom sloupci, nad touto šířkou zůstávají dva sloupce.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Produktový banner</span>
+      <h3>Grafická HTML karta s lifestyle fotkou ve výpisu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nová varianta karty jako grafický HTML banner na konkrétní produkt — lifestyle fotka přes celou kartu, pod ní nadpis, popis a CTA (téma parfémy). Vždy na 7. místě první stránky výpisu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nová komponenta ui-ProductBanner: fotka přes celou kartu, zdola tmavý přechod, štítek „Recepty“ vlevo nahoře, nadpis, popis a krémové tlačítko „Zobrazit recept“ (celá karta je odkaz na recept). Výška se srovná s produktovými kartami v řadě. Ve výpisu kategorie je vždy na 7. pozici první stránky a zabírá jednu pozici — na první stránce je 11 produktů + banner, stránkování se posouvá o jednu pozici. Texty, odkaz a fotka jsou nastavitelné. Textace je receptářová: „Vlastní parfém z přírodních silic“ — jak poskládat hlavu, srdce a základ vůně, recept krok za krokem.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
     </div>
 
     <div class="item">

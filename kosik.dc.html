@@ -18,6 +18,7 @@
   a { color: #4C653D; }
   a:hover { color: #B23803; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  @media (max-width: 819px) { .ek-loy-cart { grid-template-columns: auto minmax(0,1fr) !important; } .ek-loy-cart > a { grid-column: 1 / -1; justify-self: start; } }
   .ek-card { background: #fff; border: 1px solid #ECE3D2; border-radius: 14px; }
   .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 32px; line-height: 1.15; color: #4C653D; margin: 0; }
   .ek-h3s { margin: 0; font-size: 15px; font-weight: 600; color: #4C653D; }
@@ -64,6 +65,10 @@
   .ek-itab-ro { grid-template-columns: minmax(0,1fr) 150px 140px 140px; }
   .ek-x { appearance: none; width: 28px; height: 28px; border-radius: 50%; border: none; background: #F6F1E7; color: #8a8776; display: flex; align-items: center; justify-content: center; justify-self: center; cursor: pointer; transition: background .18s, color .18s; }
   .ek-x:hover { background: #F2DDD8; color: #A33203; }
+  .ek-delcart { appearance: none; width: 46px; height: 46px; flex: 0 0 auto; border-radius: 12px; border: 1.5px solid #E4DAC6; background: #fff; color: #A33203; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .2s, border-color .2s; }
+  @media (min-width: 820px) { .ek-savedcart, .ek-savedcart > span { flex-wrap: nowrap !important; } .ek-savedcart .ek-selw { flex: 0 0 240px !important; } .ek-savedcart label { white-space: nowrap; } }
+  @media (max-width: 549px) { .ek-savebtn-t { display: none; } .ek-savebtn { padding: 0 !important; width: 46px; justify-content: center; } }
+  .ek-delcart:hover { background: #F2DDD8; border-color: #E0B9AE; }
   .ek-fgrid { display: grid; grid-template-columns: 110px minmax(0,1fr) 110px minmax(0,1fr); gap: 14px 16px; align-items: center; }
   .ek-fgrid > label { font-size: 14px; font-weight: 600; color: #4A4A42; text-align: right; }
   .ek-full { grid-column: 2 / -1; }
@@ -95,8 +100,8 @@
     .ek-sb-total { order: 2; justify-self: end; }
     .ek-sb-back { order: 3; }
     .ek-sb-cta { order: 4; justify-self: end; height: 44px !important; padding: 0 22px 0 26px !important; font-size: 15px !important; }
-    .ek-sb-3 .ek-sb-terms { order: 0; grid-column: 1 / -1; font-size: 13px !important; line-height: 1.4 !important; }
-    .ek-sb-3 .ek-sb-total { grid-column: 1 / -1; }
+    .ek-sb-3 .ek-sb-terms { order: 0 !important; margin-left: 0 !important; grid-column: 1 / -1; font-size: 13px !important; line-height: 1.4 !important; }
+    .ek-sb-3 .ek-sb-total { grid-column: 1 / -1; margin-left: 0 !important; }
     .ek-sb-in .ek-sb-post > span:last-child { font-size: 22px !important; }
     .ek-sb-in .ek-sb-total > span:last-child { font-size: 26px !important; }
   }
@@ -146,7 +151,7 @@
 
 <div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
 
-  <dc-import name="ui-Header" cartCount="{{ 1 }}" hint-size="100%,140px"></dc-import>
+  <dc-import name="ui-Header" cartCount="{{ 1 }}" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
 
   <div class="ek-pad" style="max-width:1304px; margin:0 auto; padding:34px 32px 0;">
 
@@ -170,11 +175,23 @@
     <!-- KROK 1 -->
     <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
       <div data-screen-label="Krok 1 – Doprava a platba" style="display:flex; flex-direction:column; gap:26px;">
-        <h2 class="ek-h2">Obsah košíku</h2>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px 20px; flex-wrap:wrap;">
+          <h2 class="ek-h2">Obsah košíku</h2>
+          <div class="ek-savedcart" style="display:flex; align-items:center; gap:12px 16px; flex-wrap:wrap;">
+            <span style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <label for="ek-cartsel" style="font-size:15px; font-weight:500; color:#4A4A42;">Aktuální košík:</label>
+            <span style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap; min-width:0; flex:1 1 auto;">
+              <span class="ek-selw" style="flex:1 1 240px; min-width:0; max-width:240px;"><select id="ek-cartsel" class="ek-fin"><option>Nový košík</option><option>Mýdla na trhy</option><option>Vánoční dárky</option></select><span style="{{ icDown }}"></span></span>
+              <button type="button" class="ek-delcart" aria-label="Odstranit uložený košík" title="Odstranit uložený košík"><span style="{{ icDelete }}"></span></button>
+              <button type="button" class="ek-btn-soft ek-savebtn" aria-label="Uložit obsah jako nový košík" style="display:inline-flex; align-items:center; gap:8px; flex:0 0 auto; height:46px; padding:0 20px; white-space:nowrap;"><span style="{{ icSave }}"></span><span class="ek-savebtn-t">Uložit obsah jako nový košík</span></button>
+            </span>
+          </span>
+          </div>
+        </div>
         <label class="ek-check" style="display:flex; align-items:center; gap:14px; padding:16px 20px; border-radius:14px; background:#F1EADC; border:1px solid #E2D9C4;">
           <input type="checkbox" checked="{{ priority }}" onChange="{{ togPriority }}">
           <span class="ek-chk-box"><span style="{{ icTick }}"></span></span>
-          <span style="{{ icTruck }}"></span>
+          <span style="{{ icRocket }}"></span>
           <span style="flex:1 1 auto; font-family:'EB Garamond',serif; font-size:22px; font-weight:500; color:#2A2A24;">Přednostní odeslání</span>
           <span style="font-family:'EB Garamond',serif; font-size:20px; font-weight:600; color:#4C653D;">50 Kč</span>
           <span style="position:relative; display:flex;">
@@ -187,7 +204,7 @@
             </sc-if>
           </span>
         </label>
-        <div class="ek-l-side" style="display:grid; grid-template-columns:minmax(0,1fr) 270px; gap:24px; align-items:start;">
+        <div style="display:grid; grid-template-columns:minmax(0,1fr); gap:24px; align-items:start;">
           <div style="display:flex; flex-direction:column; gap:10px;">
             <div class="ek-itab" style="padding:0 20px;">
               <span></span>
@@ -215,13 +232,6 @@
             </div>
             </sc-for>
           </div>
-          <div class="ek-card" style="padding:22px; display:flex; flex-direction:column; gap:16px; margin-top:28px;">
-            <div style="display:flex; gap:12px; align-items:flex-start;">
-              <span style="{{ icMail }}"></span>
-              <p style="margin:0; font-size:14px; line-height:1.55; color:#4A4A42;">Nevíte si rady s výběrem produktu? Napište nám na: <a href="mailto:eshop@ekokoza.cz">eshop@ekokoza.cz</a></p>
-            </div>
-            <a href="mailto:eshop@ekokoza.cz" class="ek-btn-soft">Poslat e-mail</a>
-          </div>
         </div>
 
         <sc-if value="{{ showFree }}" hint-placeholder-val="{{ true }}">
@@ -230,23 +240,46 @@
             <span>Pokud nakoupíte ještě za <strong>{{ freeLeft }}</strong>, budete mít <strong>dopravné zdarma</strong></span>
           </div>
         </sc-if>
+        <sc-if value="{{ freeDone }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 20px; border-radius:14px; background:#EEF4DC; border:1px solid rgba(76,101,61,.18); font-size:15px; line-height:1.5; color:#2A2A24;">
+            <span style="{{ icTruck }}"></span>
+            <span><span>Díky nákupu nad 2 000 Kč máte <strong>dopravu zdarma</strong>.</span><sc-if value="{{ hasNextTier }}" hint-placeholder-val="{{ true }}"><span> Nakupte ještě za <strong>{{ tierLeft }}</strong> a získáte o {{ tierPct }} nižší ceny na všechny další objednávky až do konce čtvrtletí.</span></sc-if></span>
+          </div>
+        </sc-if>
 
-
-        <div class="ek-card" style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 20px;">
-          <span style="font-size:15px; font-weight:600; color:#2A2A24;">Mám slevový/dárkový kupón a chci ho uplatnit:</span>
-          <input class="ek-fin" placeholder="Kód kupónu" style="width:240px;">
-          <button class="ek-btn-dark">Uplatnit</button>
+        <div style="display:flex; flex-direction:column; gap:20px; padding-top:4px;">
+          <h2 class="ek-h2" style="text-align:center;">Doporučujeme</h2>
+          <div class="ek-recs" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px;">
+            <sc-for list="{{ recs }}" as="p" hint-placeholder-count="4">
+              <dc-import name="ui-ProductCardV2" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="produkt-vzor.html" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="ready" ctaVariant="koupit" badge="" hint-size="100%,500px"></dc-import>
+            </sc-for>
+          </div>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:14px;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <h2 class="ek-h2">Přidat k objednávce</h2>
-            <span style="{{ icInfo }}"></span>
+
+        <div class="ek-2col" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; align-items:stretch; padding:22px 0;">
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <h2 class="ek-h2">Slevový kupón</h2>
+            <div class="ek-card" style="flex:1; display:flex; flex-direction:column; gap:12px; padding:18px 20px;">
+              <span style="font-size:15px; font-weight:600; color:#2A2A24;">Mám slevový/dárkový kupón a chci ho uplatnit:</span>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <input class="ek-fin" placeholder="Kód kupónu" style="flex:1 1 180px; min-width:0;">
+                <button class="ek-btn-dark">Uplatnit</button>
+              </div>
+            </div>
           </div>
-          <div class="ek-card" style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 20px;">
-            <span style="font-size:15px; font-weight:600; color:#2A2A24;">Zde zadejte číslo objednávky, ke které chcete udělat doobjednávku:</span>
-            <input class="ek-fin" placeholder="Číslo objednávky" style="width:240px;">
-            <button class="ek-btn-dark">Přidat</button>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <h2 class="ek-h2">Přidat k objednávce</h2>
+              <span style="{{ icInfo }}"></span>
+            </div>
+            <div class="ek-card" style="flex:1; display:flex; flex-direction:column; gap:12px; padding:18px 20px;">
+              <span style="font-size:15px; font-weight:600; color:#2A2A24;">Zde zadejte číslo objednávky, ke které chcete udělat doobjednávku:</span>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <input class="ek-fin" placeholder="Číslo objednávky" style="flex:1 1 180px; min-width:0;">
+                <button class="ek-btn-dark">Přidat</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -283,14 +316,6 @@
           </div>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:20px; padding-top:8px;">
-          <h2 class="ek-h2" style="text-align:center;">Doporučujeme</h2>
-          <div class="ek-recs" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px;">
-            <sc-for list="{{ recs }}" as="p" hint-placeholder-count="4">
-              <dc-import name="ui-ProductCardV2" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="produkt-vzor.html" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="ready" ctaVariant="koupit" badge="" hint-size="100%,500px"></dc-import>
-            </sc-for>
-          </div>
-        </div>
       </div>
     </sc-if>
 
@@ -298,6 +323,7 @@
     <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
       <div data-screen-label="Krok 2 – Kontaktní údaje" class="ek-l-side" style="display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:32px; align-items:start;">
         <div style="display:flex; flex-direction:column; gap:22px; min-width:0;">
+          <sc-if value="{{ isGuest }}" hint-placeholder-val="{{ true }}">
           <h2 class="ek-h2">Přihlášení a registrace</h2>
           <div class="ek-2col-s" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; align-items:stretch;">
             <div class="ek-card" style="padding:26px 26px 28px; display:flex; flex-direction:column; gap:16px;">
@@ -323,6 +349,25 @@
               <button class="ek-btn-soft" style="padding:0 24px 0 20px;"><span class="ek-login-ic"></span>Přihlásit se</button>
             </div>
           </div>
+          <div style="display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:16px 20px; align-items:center; padding:20px 24px; border-radius:14px; background:linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%); border:1px solid #EDDCA9;" class="ek-loy-cart">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border-radius:50%; background:#4C653D; color:#F6F1E7; font-family:'EB Garamond',serif; font-size:17px; font-weight:500; white-space:nowrap;">až −15 %</span>
+            <div style="display:flex; flex-direction:column; gap:4px; min-width:0;">
+              <span style="font-family:'EB Garamond',serif; font-size:21px; font-weight:500; line-height:1.2; color:#2A2A24;">Nakupujte přihlášení a sbírejte věrnostní výhody</span>
+              <span style="font-size:14.5px; line-height:1.55; color:#4A4A42; text-wrap:pretty;">Objednávky se zákaznickým účtem sčítáme za celé čtvrtletí. Od 5 000 Kč obratu vám automaticky nastavíme o 5–15 % nižší ceny — bez kuponů a bez žádostí.</span>
+            </div>
+            <a href="vernostni-program.html" target="_blank" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:14.5px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Jak to funguje<span style="{{ icArrowR }}"></span></span></a>
+          </div>
+          </sc-if>
+          <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+          <div class="ek-card" style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding:18px 22px;">
+            <span style="{{ icUserSm }}"></span>
+            <span style="display:flex; flex-direction:column; gap:2px; flex:1 1 240px; min-width:0;">
+              <span style="font-size:15.5px; font-weight:600; color:#2A2A24;">Přihlášena jako Anežka Drtinová</span>
+              <span style="font-size:14px; color:#6B6B5E;">Údaje jsme předvyplnili z vašeho účtu. Objednávka se započítá do věrnostního programu.</span>
+            </span>
+            <a href="#" class="ek-link-u" style="font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none;">Odhlásit se</a>
+          </div>
+          </sc-if>
 
           <div style="height:1px; background:#E2D9C4;"></div>
 
@@ -417,13 +462,6 @@
             <div style="height:1px; background:#EFE7D6;"></div>
             <div style="display:flex; justify-content:space-between; gap:12px; font-size:14px;"><span><strong>Platba:</strong> {{ payLabel }}</span><strong style="white-space:nowrap;">{{ payPrice }}</strong></div>
           </div>
-          <div class="ek-card" style="padding:22px; display:flex; flex-direction:column; gap:16px;">
-            <div style="display:flex; gap:12px; align-items:flex-start;">
-              <span style="{{ icMail }}"></span>
-              <p style="margin:0; font-size:14px; line-height:1.55; color:#4A4A42;">Nevíte si rady s výběrem produktu? Napište nám na: <a href="mailto:eshop@ekokoza.cz">eshop@ekokoza.cz</a></p>
-            </div>
-            <a href="mailto:eshop@ekokoza.cz" class="ek-btn-soft">Poslat e-mail</a>
-          </div>
         </aside>
       </div>
     </sc-if>
@@ -470,6 +508,19 @@
           </sc-for>
         </div>
 
+        <sc-if value="{{ showFree }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 20px; border-radius:14px; background:#EEF4DC; border:1px solid rgba(76,101,61,.18); font-size:15px; color:#2A2A24;">
+            <span style="{{ icTruck }}"></span>
+            <span>Pokud nakoupíte ještě za <strong>{{ freeLeft }}</strong>, budete mít <strong>dopravné zdarma</strong></span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ freeDone }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 20px; border-radius:14px; background:#EEF4DC; border:1px solid rgba(76,101,61,.18); font-size:15px; line-height:1.5; color:#2A2A24;">
+            <span style="{{ icTruck }}"></span>
+            <span><span>Díky nákupu nad 2 000 Kč máte <strong>dopravu zdarma</strong>.</span><sc-if value="{{ hasNextTier }}" hint-placeholder-val="{{ true }}"><span> Nakupte ještě za <strong>{{ tierLeft }}</strong> a získáte o {{ tierPct }} nižší ceny na všechny další objednávky až do konce čtvrtletí.</span></sc-if></span>
+          </div>
+        </sc-if>
+
         <div class="ek-card" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; padding:22px 28px;">
           <div style="display:flex; flex-direction:column; gap:12px; font-size:15px;">
             <div style="display:flex; justify-content:space-between; gap:12px;"><span><strong>Doprava:</strong> {{ shipLabel }}</span><strong>{{ shipPrice }}</strong></div>
@@ -483,26 +534,20 @@
           </div>
         </div>
 
-        <sc-if value="{{ showFree }}" hint-placeholder-val="{{ true }}">
-          <div style="display:flex; align-items:center; gap:14px; padding:14px 20px; border-radius:14px; background:#EEF4DC; border:1px solid rgba(76,101,61,.18); font-size:15px; color:#2A2A24;">
-            <span style="{{ icTruck }}"></span>
-            <span>Pokud nakoupíte ještě za <strong>{{ freeLeft }}</strong>, budete mít <strong>dopravné zdarma</strong></span>
-          </div>
-        </sc-if>
-
       </div>
     </sc-if>
 
     <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
-      <div style="position:sticky; bottom:0; z-index:70; margin-top:36px; width:100vw; margin-left:calc(50% - 50vw); background:rgba(255,253,246,.97); backdrop-filter:blur(8px); border-top:1px solid #E4DAC6; box-shadow:0 -14px 30px -22px rgba(45,58,46,.55);">
-      <div class="ek-sb-in ek-sb-3" style="max-width:1304px; margin:0 auto; padding:12px 32px; display:flex; align-items:center; gap:24px;">
+      <div aria-hidden="true" style="height:170px;"></div>
+      <div style="position:fixed; left:0; right:0; bottom:0; z-index:70; background:rgba(255,253,246,.97); backdrop-filter:blur(8px); border-top:1px solid #E4DAC6; box-shadow:0 -14px 30px -22px rgba(45,58,46,.55);">
+      <div class="ek-sb-in ek-sb-3" style="max-width:1304px; margin:0 auto; padding:12px 32px; display:flex; flex-wrap:wrap; align-items:center; gap:12px 24px;">
         <button class="ek-btn-soft ek-sb-back" onClick="{{ go2 }}" aria-label="Zpět" style="height:46px; padding:0 30px 0 24px;"><span class="ek-back-ic"></span><span class="ek-sb-lbl">Zpět</span></button>
-        <label class="ek-check ek-sb-terms" style="flex:1 1 auto; min-width:0; font-size:14px;">
+        <label class="ek-check ek-sb-terms" style="order:-1; flex:1 1 100%; min-width:0; font-size:14.5px; font-weight:500; padding:10px 14px; border-radius:12px; background:#FFF8E8; border:1px solid #EDDCA9; color:#2A2A24;">
           <input type="checkbox" checked="{{ terms }}" onChange="{{ togTerms }}">
           <span class="ek-chk-box"><span style="{{ icTick }}"></span></span>
           <span>Souhlasím s <a href="#">obchodními podmínkami</a> a beru na vědomí <a href="#">zpracování osobních údajů</a>. Odesláním objednávky se zavazuji k její úhradě.</span>
         </label>
-        <div class="ek-sb-total" style="display:flex; align-items:baseline; gap:10px; flex:0 0 auto;">
+        <div class="ek-sb-total" style="display:flex; align-items:baseline; gap:10px; flex:0 0 auto; margin-left:auto;">
           <span style="font-size:14px; color:#4A4A42;">Konečná cena s DPH:</span>
           <span style="font-family:'EB Garamond',serif; font-size:30px; font-weight:600; color:#D14405; white-space:nowrap;">{{ total }}</span>
         </div>
@@ -512,7 +557,8 @@
     </sc-if>
 
     <sc-if value="{{ showBar }}" hint-placeholder-val="{{ true }}">
-      <div style="position:sticky; bottom:0; z-index:70; margin-top:36px; width:100vw; margin-left:calc(50% - 50vw); background:rgba(255,253,246,.97); backdrop-filter:blur(8px); border-top:1px solid #E4DAC6; box-shadow:0 -14px 30px -22px rgba(45,58,46,.55);">
+      <div aria-hidden="true" style="height:110px;"></div>
+      <div style="position:fixed; left:0; right:0; bottom:0; z-index:70; background:rgba(255,253,246,.97); backdrop-filter:blur(8px); border-top:1px solid #E4DAC6; box-shadow:0 -14px 30px -22px rgba(45,58,46,.55);">
       <div class="ek-sb-in" style="max-width:1304px; margin:0 auto; padding:12px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
         <button class="ek-btn-soft ek-sb-back" onClick="{{ back }}" aria-label="Zpět" style="height:46px; padding:0 30px 0 24px;"><span class="ek-back-ic"></span><span class="ek-sb-lbl">Zpět</span></button>
         <div class="ek-sb-post" style="display:flex; align-items:baseline; gap:10px;">
@@ -539,6 +585,10 @@
         <button onClick="{{ go1 }}" style="{{ sd1 }}">Krok 1</button>
         <button onClick="{{ go2 }}" style="{{ sd2 }}">Krok 2</button>
         <button onClick="{{ go3 }}" style="{{ sd3 }}">Krok 3</button>
+      </span>
+      <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+        <button onClick="{{ setGuest }}" style="{{ sdGuest }}">Host</button>
+        <button onClick="{{ setLogged }}" style="{{ sdLogged }}">Přihlášen</button>
       </span>
       <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
         <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
@@ -625,6 +675,13 @@ class Component extends DCLogic {
       })),
       itemsTotal: kc(items),
       showFree: items < 2000, freeLeft: kc(Math.max(0, 2000 - items)),
+      freeDone: items >= 2000,
+      ...(() => {
+        // Věrnostní skupiny podle čtvrtletního obratu (vernostni-program.html); obrat = dosavadní za čtvrtletí + tento košík
+        const turnover = (this.props.quarterTurnover ?? 0) + items;
+        const next = [{ f: 5000, d: 5 }, { f: 10000, d: 10 }, { f: 30000, d: 15 }].find(t => turnover < t.f);
+        return { hasNextTier: !!next, tierLeft: next ? kc(next.f - turnover) : '', tierPct: next ? next.d + ' %' : '' };
+      })(),
       recs: Component.RECS,
       priority: S.priority, togPriority: tog('priority'),
       prioInfo: !!S.prioInfo,
@@ -655,14 +712,19 @@ class Component extends DCLogic {
       demoOpen: S.demo, demoClosed: !S.demo,
       openDemo: () => this.setState({ demo: true }), closeDemo: () => this.setState({ demo: false }),
       sd1: seg(S.step === 1), sd2: seg(S.step === 2), sd3: seg(S.step === 3),
+      loggedIn: !!S.logged, isGuest: !S.logged, icUserSm: this.mask('user-check-01', 30, '#4C653D'), sdGuest: seg(!S.logged), sdLogged: seg(!!S.logged),
+      setGuest: () => this.setState({ logged: false }), setLogged: () => this.setState({ logged: true }),
       sdCol: seg(!expanded), sdExp: seg(expanded),
       collapseAll: () => this.setState({ newAcc: false, firm: false, diffAddr: false }),
       expandAll: () => this.setState({ newAcc: true, firm: true, diffAddr: true }),
       sdOk: seg(!S.errors), sdErr: seg(S.errors),
       errOff: () => this.setState({ errors: false }), errOn: () => this.setState({ errors: true }),
       icX: this.mask('cancel-01', 16, 'currentColor'),
+      icDelete: this.mask('delete-02', 20, 'currentColor'),
+      icSave: this.mask('floppy-disk', 20, '#4C653D'),
       icMail: this.mask('mail-01', 26, '#4C653D'),
       icTruck: this.mask('truck-delivery', 26, '#4C653D'),
+      icRocket: this.mask('rocket-01', 26, '#4C653D'),
       icInfo: this.mask('information-circle', 20, '#4C653D'),
       icTick: this.mask('tick-01', 14, '#fff'),
       icUser: this.mask('user', 40, '#4C653D'),
@@ -671,6 +733,7 @@ class Component extends DCLogic {
       icShield: this.mask('shield-01', 24, '#fff'),
       icPay: this.mask(S.pay === 'card' ? 'credit-card' : S.pay === 'bank' ? 'exchange-01' : 'wallet-01', 22, '#fff'),
       icClose: this.mask('cancel-01', 12, '#4C653D'),
+      icArrowR: this.mask('arrow-right-02', 16, '#4C653D'),
     };
   }
 }

@@ -75,10 +75,20 @@
           </sc-for>
         </div>
 
+        <sc-if value="{{ showFree }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 20px; border-radius:14px; background:#EEF4DC; border:1px solid rgba(76,101,61,.18); font-size:15px; line-height:1.5; color:#2A2A24;">
+            <span style="{{ iconTruck }}"></span>
+            <span>Pokud nakoupíte ještě za <strong>{{ freeLeft }}</strong>, budete mít <strong>dopravné zdarma</strong></span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ freeDone }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 20px; border-radius:14px; background:#EEF4DC; border:1px solid rgba(76,101,61,.18); font-size:15px; line-height:1.5; color:#2A2A24;">
+            <span style="{{ iconTruck }}"></span>
+            <span><span>Díky nákupu nad 2 000 Kč máte <strong>dopravu zdarma</strong>.</span><sc-if value="{{ hasNextTier }}" hint-placeholder-val="{{ true }}"><span> Nakupte ještě za <strong>{{ tierLeft }}</strong> a získáte o {{ tierPct }} nižší ceny na všechny další objednávky až do konce čtvrtletí.</span></sc-if></span>
+          </div>
+        </sc-if>
+
         <div style="display:flex; flex-direction:column; gap:12px; padding:16px 18px; border:1px solid rgba(76,101,61,.2); border-radius:14px; background:#F4F7EA;">
-          <span style="display:flex; align-items:center; gap:10px; font-size:14.5px; font-weight:600; color:#3F5731;">
-            <span style="{{ iconTruck }}"></span>{{ shippingLabel }}
-          </span>
           <dc-import name="ui-LoyaltyStatus" variant="compact" turnover="{{ turnover }}" showScale="{{ false }}" hint-size="100%,72px"></dc-import>
           <a href="vernostni-program.html" class="ek-ca-link" style="align-self:flex-start; font-size:14px;">Jak funguje věrnostní program</a>
         </div>
@@ -180,9 +190,15 @@ class Component extends DCLogic {
       addedTotal: this.money(added),
       addedNoVat: this.money(addedNoVat) + ' bez DPH',
       ctaLabel: this.props.ctaLabel ?? 'Přejít do košíku',
-      shippingLabel: added + Number(this.props.cartTotal ?? 0) >= 2000
-        ? 'Dopravu máte zdarma.'
-        : 'Do dopravy zdarma chybí ' + this.money(2000 - added - Number(this.props.cartTotal ?? 0)) + '.',
+      showFree: cartTotal < 2000,
+      freeDone: cartTotal >= 2000,
+      freeLeft: this.money(Math.max(0, 2000 - cartTotal)),
+      ...(() => {
+        // stejná logika jako v košíku: obrat za čtvrtletí + obsah košíku → nejbližší věrnostní skupina
+        const t = Number(this.props.turnover ?? 12400) + cartTotal;
+        const next = [{ f: 5000, d: 5 }, { f: 10000, d: 10 }, { f: 30000, d: 15 }].find(x => t < x.f);
+        return { hasNextTier: !!next, tierLeft: next ? this.money(next.f - t) : '', tierPct: next ? next.d + ' %' : '' };
+      })(),
       turnover: Number(this.props.turnover ?? 12400),
       hasCart: cartItems.length > 0,
       cartOpen: this.state.cartOpen,
@@ -198,7 +214,7 @@ class Component extends DCLogic {
       })),
       iconOk: this.mask('checkmark-circle-01', 30, '#6E9134'),
       iconClose: this.mask('cancel-01', 20, '#4C653D'),
-      iconTruck: this.mask('truck-delivery-01', 20, '#4C653D'),
+      iconTruck: this.mask('truck-delivery', 26, '#4C653D'),
       iconChevron: this.mask(this.state.cartOpen ? 'arrow-up-01' : 'arrow-down-01', 22, '#4C653D'),
       iconArrow: this.mask('arrow-right-01', 20, '#fff'),
       iconBack: this.mask('arrow-left-01', 20, '#4C653D'),

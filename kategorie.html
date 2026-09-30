@@ -67,6 +67,10 @@
     .ek-tiles { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
     .ek-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
   }
+  /* XXS: výpis produktů v jednom sloupci */
+  @media (max-width: 420px) {
+    .ek-grid.ek-grid { grid-template-columns: 1fr !important; }
+  }
   @media (max-width: 860px) {
     /* Jedna rada dlazdicek: mensi nahled i pismo, aby se vzdy nacala dalsi */
     .ek-tiles .ek-card { padding: 10px 12px !important; gap: 11px !important; }
@@ -377,10 +381,13 @@
 
       <div class="ek-grid" style="margin-top:22px;">
         <sc-for list="{{ visible }}" as="p" hint-placeholder-count="12">
-          <sc-if value="{{ cardV1 }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ p.isBanner }}" hint-placeholder-val="{{ false }}">
+            <dc-import name="ui-ProductBanner" hint-size="100%,520px"></dc-import>
+          </sc-if>
+          <sc-if value="{{ p.isV1 }}" hint-placeholder-val="{{ false }}">
             <dc-import name="ui-ProductCard" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" loggedIn="{{ loggedIn }}" loyaltyTier="{{ loyaltyTier }}" hint-size="100%,410px"></dc-import>
           </sc-if>
-          <sc-if value="{{ cardV2 }}" hint-placeholder-val="{{ true }}">
+          <sc-if value="{{ p.isV2 }}" hint-placeholder-val="{{ true }}">
             <dc-import name="ui-ProductCardV2" title="{{ p.title }}" price="{{ p.price }}" pack="{{ p.pack }}" variants="{{ p.variants }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" loggedIn="{{ loggedIn }}" loyaltyTier="{{ loyaltyTier }}" hint-size="100%,520px"></dc-import>
           </sc-if>
         </sc-for>
@@ -667,10 +674,15 @@ class Component extends DCLogic {
     if (sort === 'new') list = list.slice().reverse();
 
     const perPage = Number(this.props.perPage ?? this.state.perPage);
-    const pageCount = Math.max(1, Math.ceil(list.length / perPage));
+    // HTML banner je vždy na 7. místě první stránky a zabírá jednu pozici výpisu
+    const bannerOn = list.length >= 6;
+    const slots = list.length + (bannerOn ? 1 : 0);
+    const pageCount = Math.max(1, Math.ceil(slots / perPage));
     const page = Math.min(this.state.page, pageCount);
-    const start = (page - 1) * perPage;
-    const shown = list.slice(start, start + perPage + this.state.extra);
+    const lead = bannerOn ? 1 : 0;
+    const start = page === 1 ? 0 : (page - 1) * perPage - lead;
+    const take = perPage + this.state.extra - (page === 1 ? lead : 0);
+    const shown = list.slice(start, start + take);
     const filterCount = Object.keys(F).reduce((n, k) => n + F[k].length, 0)
       + (this.state.priceMin !== '' || this.state.priceMax !== '' ? 1 : 0);
 
@@ -868,13 +880,15 @@ class Component extends DCLogic {
       sort: this.state.sort,
       onSort: (e) => this.setState({ sort: e.target.value, page: 1 }),
 
-      visible: shown.map(p => Object.assign({}, p, {
+      visible: (() => { const card = this.state.card; const out = shown.map(p => Object.assign({}, p, { isV1: card === 'v1', isV2: card === 'v2', isBanner: false }, {
         price: p.num.toLocaleString('cs-CZ') + ' Kč',
         href: 'produkt-vzor.html',
         stockDate: '28. 8. 2026',
         pack: Component.packOf(p.title),
         variants: p.ctaVariant === 'varianta' ? Component.variantsOf(p) : null,
-      })),
+      }));
+        if (page === 1 && bannerOn) out.splice(6, 0, { isBanner: true, isV1: false, isV2: false, title: '' });
+        return out; })(),
       cardV1: this.state.card === 'v1',
       cardV2: this.state.card === 'v2',
       loggedIn: this.state.logged,

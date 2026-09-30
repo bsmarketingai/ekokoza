@@ -441,7 +441,8 @@ class Component extends DCLogic {
             { label: 'Můj účet — přehled', href: 'muj-ucet.html', icon: this.mask('dashboard-speed-01', 20, '#4C653D') },
             { label: 'Přehled objednávek', href: 'objednavky.html', icon: this.mask('delivery-box-01', 20, '#4C653D') },
             { label: 'Přehled faktur', href: 'faktury.html', icon: this.mask('invoice-01', 20, '#4C653D') },
-            { label: 'Oblíbené produkty', href: 'oblibene.html', icon: this.mask('favourite', 20, '#4C653D') },
+            { label: 'Oblíbené položky', href: 'oblibene.html', icon: this.mask('favourite', 20, '#4C653D') },
+            { label: 'Uložené košíky', href: 'kosik.dc.html', icon: this.mask('shopping-cart-02', 20, '#4C653D') },
             { label: 'Správa účtu', href: 'ucet.html', icon: this.mask('user-circle', 20, '#4C653D') },
             { label: 'Odhlásit z e-shopu', href: '#', icon: this.mask('logout-01', 20, '#A33203') },
           ].map((a, i, arr) => Object.assign({}, a, {
@@ -450,7 +451,7 @@ class Component extends DCLogic {
           }))
         : [
             { label: 'Přihlásit se', href: 'muj-ucet.html', icon: this.mask('user', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:15px; margin-top:6px;' },
-            { label: 'Oblíbené produkty', href: 'oblibene.html', icon: this.mask('favourite', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 13px; text-decoration:none; color:#2A2A24; font-size:15px;' },
+            { label: 'Oblíbené položky', href: 'oblibene.html', icon: this.mask('favourite', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 13px; text-decoration:none; color:#2A2A24; font-size:15px;' },
             { label: 'Sledování objednávky', href: '#', icon: this.mask('delivery-tracking-01', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 13px; text-decoration:none; color:#2A2A24; font-size:15px;' },
             { label: 'Kontakt', href: '#', icon: this.mask('mail-01', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 15px; text-decoration:none; color:#2A2A24; font-size:15px;' },
           ],

@@ -50,14 +50,12 @@
   .ek-pick:hover > span:last-child { background-color: #4C653D !important; }
   .ek-chip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; background: #F3EDE0; color: #4A4A42; font-size: 13.5px; font-weight: 500; }
   .ek-anchor { display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4DAC6; background: #fff; color: #4C653D; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s; }
-  .ek-anchbar { position: sticky; z-index: 30; margin: 0 -32px 34px; padding: 12px 32px; background: transparent; }
-  /* podklad a spodní linka lišty přes celou šířku okna */
-  .ek-anchbar::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: -1; background: rgba(255,255,255,.96); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid #EFE7D6; pointer-events: none; }
+  .ek-anchbar { margin: 0 0 24px; }
   .ek-scroll-x { scrollbar-width: none; }
   .ek-scroll-x::-webkit-scrollbar { display: none; }
   .ek-anchor { white-space: nowrap; }
   @media (max-width: 819px) {
-    .ek-anchbar { margin-left: -20px; margin-right: -20px; padding: 10px 0; }
+    .ek-anchbar { margin-left: -20px; margin-right: -20px; }
     .ek-anchrow { flex-wrap: nowrap !important; overflow-x: auto; padding: 0 20px; scroll-padding-left: 20px; }
   }
   .ek-anchor.ek-anchor-on, .ek-anchor.ek-anchor-on:hover { background: #4C653D; border-color: #4C653D; color: #F6F1E7; }
@@ -85,6 +83,7 @@
     .ek-2col { grid-template-columns: 1fr !important; }
     .ek-pagebot { padding-bottom: 92px; }
   }
+  .ek-det-grid > *, .ek-det-side > *, .ek-rr-box { min-width: 0; }
   .ek-rr-track { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: -6px -6px 0; padding: 6px 6px 8px; scroll-padding: 0 6px; }
   .ek-rr-track::-webkit-scrollbar { display: none; }
   .ek-rr-item { flex: 0 0 calc((100% - 14px) / 2); min-width: 0; scroll-snap-align: start; display: flex; }
@@ -95,7 +94,12 @@
   @media (max-width: 1149px) { .ek-rr-item { flex-basis: 100%; } }
   @media (max-width: 979px) { .ek-rr-item { flex-basis: calc((100% - 28px) / 3); } }
   @media (max-width: 819px) { .ek-rr-item { flex-basis: calc((100% - 14px) / 2); } }
-  @media (max-width: 549px) { .ek-rr-item { flex-basis: 86%; } }
+  /* mobil: standardní karusel jako na homepage — karty 260 px přes okraj, sjíždění vpravo, ovládání pod kartami */
+  @media (max-width: 819px) {
+    .ek-rr-box { overflow: hidden; }
+    .ek-rr-track { margin: -6px -20px 0 !important; padding: 6px 20px 16px !important; scroll-padding-left: 20px !important; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); }
+    .ek-rr-item { flex-basis: 260px !important; }
+  }
   @media (max-width: 549px) { .ek-recipes { grid-template-columns: 1fr !important; } }
 </style>
 </helmet>
@@ -114,7 +118,7 @@
 
     <div class="ek-pd-grid" style="max-width:1560px; margin:0 auto;">
       <div style="display:flex; flex-direction:column; gap:18px; min-width:0;">
-        <dc-import name="ui-Gallery" images="{{ images }}" video="{{ productVideo }}" badges="{{ galleryBadges }}" productName="{{ title }}" hint-size="100%,620px"></dc-import>
+        <dc-import name="ui-Gallery" layout="{{ galLayout }}" images="{{ images }}" video="{{ productVideo }}" badges="{{ galleryBadges }}" productName="{{ title }}" hint-size="100%,620px"></dc-import>
         <dc-import name="ui-ParamStrip" items="{{ paramStrip }}" hint-size="100%,120px"></dc-import>
       </div>
 
@@ -174,7 +178,7 @@
         <sc-if value="{{ isSingle }}" hint-placeholder-val="{{ false }}">
           <sc-if value="{{ buyable }}" hint-placeholder-val="{{ true }}">
             <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 16px; border:1px solid #E4DAC6; border-radius:12px; background:#fff;">
-              <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" variant="pill" size="{{ 14.5 }}" hint-size="200px,36px"></dc-import>
+              <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" size="{{ 14.5 }}" hint-size="200px,36px"></dc-import>
               <span style="font-size:14px; color:#6B6B5E;">{{ stockNote }}</span>
             </div>
           </sc-if>
@@ -218,16 +222,16 @@
   <div id="popis" style="position:relative; margin:56px 0 0; padding:30px 0 40px;">
     <div aria-hidden="true" class="ek-tear" style="background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 64%,#FDFCF7 100%);"></div>
     <section style="position:relative; z-index:1; padding:44px 32px;" class="ek-pad">
-      <div class="ek-anchbar" style="{{ anchBarStyle }}">
-        <div class="ek-anchrow ek-scroll-x" style="max-width:1560px; margin:0 auto; display:flex; flex-wrap:wrap; gap:8px;">
-        <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="10">
-          <a href="{{ a.href }}" onClick="{{ a.open }}" class="{{ a.cls }}" aria-current="{{ a.current }}">{{ a.label }}</a>
-        </sc-for>
-        </div>
-      </div>
       <div class="ek-det-grid" style="max-width:1560px; margin:0 auto;">
 
         <div>
+          <div class="ek-anchbar">
+            <div class="ek-anchrow ek-scroll-x" style="display:flex; flex-wrap:wrap; gap:8px;">
+            <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="10">
+              <a href="{{ a.href }}" onClick="{{ a.open }}" class="{{ a.cls }}" aria-current="{{ a.current }}">{{ a.label }}</a>
+            </sc-for>
+            </div>
+          </div>
           <div style="display:flex; flex-direction:column; gap:17px;">
 
             <section id="vlastnosti" class="ek-sec" style="border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; padding:0;">
@@ -603,14 +607,8 @@
 
         <aside class="ek-det-side" style="{{ sideStyle }}">
           <sc-if value="{{ recR2 }}" hint-placeholder-val="{{ true }}">
-          <div class="ek-card" style="padding:18px 20px; display:flex; flex-direction:column; gap:14px;">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-              <h3 class="ek-h3" style="margin:0;">Recepty se surovinou</h3>
-              <div class="ek-rr-nav" style="{{ rrNavStyle }}">
-                <button onClick="{{ rrPrev }}" disabled="{{ rrAtStart }}" aria-label="Předchozí recepty" class="ek-rr-btn"><span style="{{ iconRrPrev }}"></span></button>
-                <button onClick="{{ rrNext }}" disabled="{{ rrAtEnd }}" aria-label="Další recepty" class="ek-rr-btn"><span style="{{ iconRrNext }}"></span></button>
-              </div>
-            </div>
+          <div class="ek-card ek-rr-box" style="padding:18px 20px; display:flex; flex-direction:column; gap:14px;">
+            <h3 class="ek-h3" style="margin:0;">Recepty se surovinou</h3>
             <div class="ek-rr-track" ref="{{ rrRef }}" onScroll="{{ rrOnScroll }}">
               <sc-for list="{{ recipesSide }}" as="r" hint-placeholder-count="2">
                 <div class="ek-rr-item">
@@ -619,7 +617,12 @@
               </sc-for>
             </div>
             <div aria-hidden="true" style="{{ rrTrackStyle }}"><span style="{{ rrThumb }}"></span></div>
-            <a href="receptar.dc.html" class="ek-btn-secondary" style="align-self:flex-start; display:inline-flex; align-items:center; gap:8px; border:1.5px solid #4C653D; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none; transition:background .2s, color .2s;">Všechny recepty<span style="{{ iconPickAll }}"></span></a>
+            <div style="display:flex; justify-content:flex-end;">
+              <div class="ek-rr-nav" style="{{ rrNavStyle }}">
+                <button onClick="{{ rrPrev }}" disabled="{{ rrAtStart }}" aria-label="Předchozí recepty" class="ek-rr-btn"><span style="{{ iconRrPrev }}"></span></button>
+                <button onClick="{{ rrNext }}" disabled="{{ rrAtEnd }}" aria-label="Další recepty" class="ek-rr-btn"><span style="{{ iconRrNext }}"></span></button>
+              </div>
+            </div>
           </div>
           </sc-if>
           <sc-if value="{{ recR1 }}" hint-placeholder-val="{{ false }}">
@@ -856,8 +859,7 @@ class Component extends DCLogic {
     const go = (smooth) => {
       const el = document.getElementById(id);
       if (!el) return;
-      const bar = document.querySelector('.ek-anchbar');
-      const off = (this.state.hdrH || 120) + (bar ? bar.getBoundingClientRect().height : 60) + 16;
+      const off = (this.state.hdrH || 120) + 16;
       const y = el.getBoundingClientRect().top + window.scrollY - off;
       window.scrollTo({ top: Math.max(0, y), behavior: smooth ? 'smooth' : 'auto' });
     };
@@ -868,8 +870,7 @@ class Component extends DCLogic {
     const tb = document.querySelector('.ek-topbar');
     const host = tb && tb.parentElement;
     const h = host ? Math.round(host.getBoundingClientRect().height) : 120;
-    const bar = document.querySelector('.ek-anchbar');
-    const bh = bar ? Math.round(bar.getBoundingClientRect().height) : 60;
+    const bh = 0;
     const side = document.querySelector('.ek-det-side');
     const sh = side ? Math.round(side.getBoundingClientRect().height) : 0;
     const vh = window.innerHeight;
@@ -963,6 +964,10 @@ class Component extends DCLogic {
         { label: 'Host', on: !loggedIn, pick: () => this.setState({ loggedIn: false }) },
         { label: 'Přihlášen', on: loggedIn, pick: () => this.setState({ loggedIn: true }) },
       ] },
+      { label: 'Galerie', options: [
+        { label: 'G1', on: (this.state.gal || 'g1') === 'g1', pick: () => this.setState({ gal: 'g1' }) },
+        { label: 'G2', on: this.state.gal === 'g2', pick: () => this.setState({ gal: 'g2' }) },
+      ] },
     ].map(g => Object.assign({}, g, { options: g.options.map(o => Object.assign({}, o, { style: segBtn(o.on) })) }));
     const secIds = ['vlastnosti','cotoje','pouziti','jak','karta','kombinace','nahrady','pozor','puvod','skladovani','bezpecnost','faq'];
     const openSection = this.state.openSection;
@@ -1041,9 +1046,8 @@ class Component extends DCLogic {
       stopProp: (e) => e.stopPropagation(),
       watchModalOpen: this.state.watchModal,
       openWatchModal: () => this.setState({ watchModal: true }),
-      anchBarStyle: 'top:' + ((this.state.hdrH ?? 120) - 1) + 'px;',
       recR1: this.state.recVar === 'r1', recR2: this.state.recVar === 'r2',
-      rrRef: this._rrRefFn || (this._rrRefFn = (el) => { this._rrEl = el; if (el) requestAnimationFrame(() => this.rrUpd()); }),
+      rrRef: this._rrRefFn || (this._rrRefFn = (el) => { if (this._rrRO) { this._rrRO.disconnect(); this._rrRO = null; } this._rrEl = el; if (el) { requestAnimationFrame(() => this.rrUpd()); if (window.ResizeObserver) { this._rrRO = new ResizeObserver(() => this.rrUpd()); this._rrRO.observe(el); } } }),
       rrOnScroll: () => this.rrUpd(),
       rrPrev: () => this.rrGo(-1), rrNext: () => this.rrGo(1),
       rrAtStart: this.state.rr.p <= 0.01, rrAtEnd: this.state.rr.p >= 0.99 || this.state.rr.v >= 0.99,
@@ -1063,6 +1067,7 @@ class Component extends DCLogic {
       iconBellW: this.mask('notification-01', 19, '#FFFFFF'),
       iconCloseModal: this.mask('cancel-01', 20, '#4C653D'),
       demoGroups: demoGroups.filter(g => (TOPBAR_SWITCH || g.label !== 'Horní lišta') && (VARLAYOUT_SWITCH || g.label !== 'Varianty')),
+      galLayout: this.state.gal === 'g2' ? 'below' : 'side',
       barOpen: this.state.barOpen,
       barCollapsed: !this.state.barOpen,
       openBar: () => this.setState({ barOpen: true }),

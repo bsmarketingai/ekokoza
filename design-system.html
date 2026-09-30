@@ -547,7 +547,7 @@
         <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Skladovost</h2>
         <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Stock</code>
       </div>
-      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jedna semantická škála dostupnosti — osm stavů, které web vypisuje. Stavy vysvětlují, co se bude dít, ne kolik kusů zbývá. Barva dělí škálu na dostupné a nedostupné: sytá zeleň u okamžitého odeslání a elektronického doručení, oliva u nabalení, tmavá zeleň u zboží, které je na cestě k nám (s datem i bez data), a dva odstíny cihlové u toho, co koupit nelze. Některé stavy mají shodnou barvu — liší se ikonou a textem. Stejná komponenta a stejné texty platí na kartě produktu, v detailu, v našeptávači, v buy baru i v košíku.</p>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jedna semantická škála dostupnosti — osm stavů, které web vypisuje. Stavy vysvětlují, co se bude dít, ne kolik kusů zbývá. Barva dělí škálu na dostupné a nedostupné: sytá zeleň u okamžitého odeslání a elektronického doručení, oliva u nabalení, jantarová (oranžovo-žlutá) u zboží, které je na cestě k nám (s datem i bez data) — koupit lze, ale čeká se, a dva odstíny cihlové u toho, co koupit nelze. Některé stavy mají shodnou barvu — liší se ikonou a textem. Stejná komponenta a stejné texty platí na kartě produktu, v detailu, v našeptávači, v buy baru i v košíku.</p>
       <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Hranice je mezi úrovní 5 a 6: <strong style="font-weight:600; color:#4C653D;">úrovně 1–5 lze koupit</strong> a mají tlačítko Do košíku, úrovně 6–8 nabízejí místo něj hlídacího psa. Stav nikdy nenese jen barva — vždy je s ním ikona a text (barvoslepost, tisk, černobílý katalog).</p>
 
       <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden;">
@@ -558,7 +558,7 @@
           <div class="ds-stock-row" style="display:grid; grid-template-columns:44px 210px 1fr 118px 104px; gap:16px; padding:16px 20px; border-bottom:1px solid #F4EEE1; align-items:start;">
             <span style="{{ st.levelStyle }}">{{ st.level }}</span>
             <span style="display:flex; flex-direction:column; gap:7px; align-items:flex-start;">
-              <dc-import name="ui-Stock" state="{{ st.key }}" date="28. 8. 2026" variant="pill" size="{{ 13 }}" hint-size="180px,30px"></dc-import>
+              <dc-import name="ui-Stock" state="{{ st.key }}" date="28. 8. 2026" size="{{ 13 }}" hint-size="180px,30px"></dc-import>
               <code style="font-family:ui-monospace,monospace; font-size:11.5px; color:#8a8776;">{{ st.spec }}</code>
             </span>
             <p style="margin:0; font-size:14px; line-height:1.5; color:#4A4A42;">{{ st.note }}</p>
@@ -568,11 +568,11 @@
         </sc-for>
       </div>
 
-      <h3 style="margin:30px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Dvě podoby stavu</h3>
-      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Vložený text v kartě produktu, v našeptávači a v košíku (bez plochy, 12,5–13 px). Pilulka v detailu produktu a ve sticky buy baru, kde stav nese víc pozornosti (13–14,5 px). Vysvětlující mikrocopy je u produktů bez variant vypsané vedle stavu; u variantních produktů — kde není místo — se stav doplní ikonou „i“ a text se ukáže po přejetí, tabulátoru nebo kliknutí (<code style="font-family:ui-monospace,monospace; font-size:12.5px;">withNote</code>).</p>
+      <h3 style="margin:30px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Dvě velikosti stavu</h3>
+      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Stav je na celém webu vždy samostatný text s ikonou — bez chipu a bez plochy. V kartě produktu, v našeptávači a v košíku 12,5–13 px, v detailu produktu a ve sticky buy baru 13–14,5 px. Vysvětlující mikrocopy je u produktů bez variant vypsané vedle stavu; u variantních produktů — kde není místo — se stav doplní ikonou „i“ a text se ukáže po přejetí, tabulátoru nebo kliknutí (<code style="font-family:ui-monospace,monospace; font-size:12.5px;">withNote</code>).</p>
       <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:26px 30px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px;" class="ds-grid-2">
         <div style="display:flex; flex-direction:column; gap:13px;">
-          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Vložený text</span>
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Karta, našeptávač, košík</span>
           <dc-import name="ui-Stock" state="digital" hint-size="200px,20px"></dc-import>
           <dc-import name="ui-Stock" state="ready" hint-size="160px,20px"></dc-import>
           <dc-import name="ui-Stock" state="packing" hint-size="190px,20px"></dc-import>
@@ -583,23 +583,23 @@
           <dc-import name="ui-Stock" state="ended" hint-size="160px,20px"></dc-import>
         </div>
         <div style="display:flex; flex-direction:column; gap:13px; align-items:flex-start; padding:22px; border-radius:12px; background:#F6F1E7;">
-          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Pilulka — detail a buy bar</span>
-          <dc-import name="ui-Stock" state="digital" variant="pill" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
-          <dc-import name="ui-Stock" state="ready" variant="pill" size="{{ 14 }}" hint-size="190px,34px"></dc-import>
-          <dc-import name="ui-Stock" state="packing" variant="pill" size="{{ 14 }}" hint-size="210px,34px"></dc-import>
-          <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" variant="pill" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
-          <dc-import name="ui-Stock" state="incoming" variant="pill" size="{{ 14 }}" hint-size="200px,34px"></dc-import>
-          <dc-import name="ui-Stock" state="toorder" variant="pill" size="{{ 14 }}" hint-size="210px,34px"></dc-import>
-          <dc-import name="ui-Stock" state="longterm" variant="pill" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
-          <dc-import name="ui-Stock" state="ended" variant="pill" size="{{ 14 }}" hint-size="190px,34px"></dc-import>
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Detail a buy bar — větší text</span>
+          <dc-import name="ui-Stock" state="digital" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="ready" size="{{ 14 }}" hint-size="190px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="packing" size="{{ 14 }}" hint-size="210px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="incoming" size="{{ 14 }}" hint-size="200px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="toorder" size="{{ 14 }}" hint-size="210px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="longterm" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="ended" size="{{ 14 }}" hint-size="190px,34px"></dc-import>
         </div>
         <div style="display:flex; flex-direction:column; gap:13px; align-items:flex-start; grid-column:1 / -1; padding-top:22px; border-top:1px solid #F4EEE1;">
           <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">S mikrocopy v popupu — varianty a buy bar</span>
           <span style="font-size:13.5px; color:#6B6B5E; line-height:1.5; max-width:70ch;">Přejeďte myší nebo klikněte. Popup drží stejnou barvu obrysu jako stav a nikdy nepřekrývá tlačítko Do košíku.</span>
           <div style="display:flex; gap:26px; flex-wrap:wrap; margin-top:26px;">
             <dc-import name="ui-Stock" state="packing" withNote="{{ true }}" size="{{ 13.5 }}" hint-size="190px,22px"></dc-import>
-            <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" withNote="{{ true }}" variant="pill" size="{{ 13.5 }}" hint-size="230px,34px"></dc-import>
-            <dc-import name="ui-Stock" state="longterm" withNote="{{ true }}" variant="pill" size="{{ 13.5 }}" hint-size="230px,34px"></dc-import>
+            <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" withNote="{{ true }}" size="{{ 13.5 }}" hint-size="230px,34px"></dc-import>
+            <dc-import name="ui-Stock" state="longterm" withNote="{{ true }}" size="{{ 13.5 }}" hint-size="230px,34px"></dc-import>
           </div>
         </div>
       </div>
@@ -822,8 +822,8 @@ class Component extends DCLogic {
       ['digital', 1, 'Pouze u dárkových poukázek — doručení e-mailem, bez dopravy a bez čekání.', 'Ano', '#3F7F2C · 5,4:1 ✓ AA'],
       ['ready', 2, 'Nabaleno a připraveno. Nejčastější stav u běžných balení.', 'Ano', '#3F7F2C · 5,4:1 ✓ AA'],
       ['packing', 3, 'Surovinu máme ve velkém balení a teprve ji navážíme — typicky 25 kg. Koupit lze teď, odeslání o den později.', 'Ano', '#57712D · 5,5:1 ✓ AA'],
-      ['expected', 4, 'Zboží je na cestě k nám a datum naskladnění známe — vypisuje se za text stavu. Objednat lze i teď.', 'Ano', '#4C653D · 6,5:1 ✓ AA'],
-      ['incoming', 5, 'Totéž jako Očekáváme, ale u zboží, u kterého datum dodání říct nelze. Objednat lze i teď.', 'Ano', '#4C653D · 6,5:1 ✓ AA'],
+      ['expected', 4, 'Zboží je na cestě k nám a datum naskladnění známe — vypisuje se za text stavu. Objednat lze i teď.', 'Ano', '#9E6B00 · 4,6:1 ✓ AA'],
+      ['incoming', 5, 'Totéž jako Očekáváme, ale u zboží, u kterého datum dodání říct nelze. Objednat lze i teď.', 'Ano', '#9E6B00 · 4,6:1 ✓ AA'],
       ['toorder', 6, 'Zboží došlo a u dodavatele ještě není vystavená objednávka. Termín potvrdíme na dotaz, nabídneme hlídacího psa.', 'Ne', '#A33203 · 6,9:1 ✓ AA'],
       ['longterm', 7, 'Nedostupné i na několik měsíců. Místo tlačítka Do košíku nabídneme hlídacího psa.', 'Ne', '#8A2412 · 9,0:1 ✓ AAA'],
       ['ended', 8, 'Produkt jsme vyřadili z nabídky a nabízet ho nebudeme. Nabídneme náhradu z podobných surovin.', 'Ne', '#8A2412 · 9,0:1 ✓ AAA'],

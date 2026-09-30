@@ -23,11 +23,53 @@
   .ek-g-nav { width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid rgba(246,241,231,.5); background: rgba(34,48,31,.5); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: background .2s, border-color .2s; }
   .ek-g-nav:hover { background: #4C653D; border-color: #4C653D; }
   @media (max-width: 549px) { .ek-g-nav { width: 40px; height: 40px; } }
+  .ek-g-row { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; align-items: start; }
+  .ek-g-row.ek-g-has-th { grid-template-columns: 78px minmax(0,1fr); }
+  .ek-g-ths { display: flex; flex-direction: column; gap: 10px; }
+  /* G2: miniatury pod fotkou, zarovnané vlevo */
+  .ek-g-row.ek-g-below { grid-template-columns: minmax(0,1fr) !important; }
+  .ek-g-below .ek-g-ths { order: 2; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
+  .ek-g-track { display: none; }
+  .ek-g-mnav { display: none; }
+  .ek-g-arr { position: absolute; top: 50%; z-index: 2; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ECE3D2; background: rgba(255,255,255,.94); display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 3px 10px rgba(45,58,46,.14); }
+  .ek-g-arr:disabled { opacity: .35; cursor: default; }
+  /* mobil: bez miniatur, listování velkou fotkou (swipe + šipky + tečky) */
+  @media (max-width: 819px) {
+    .ek-g-row.ek-g-has-th { grid-template-columns: minmax(0,1fr); }
+    .ek-g-ths { display: none; }
+    .ek-g-row.ek-g-multi .ek-g-main { display: none; }
+    .ek-g-row.ek-g-multi .ek-g-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .ek-g-track::-webkit-scrollbar { display: none; }
+    .ek-g-track > button { flex: 0 0 100%; scroll-snap-align: start; border: none; padding: 0; cursor: zoom-in; }
+    .ek-g-row.ek-g-multi .ek-g-mnav { display: flex; }
+  }
 </style>
 </helmet>
 <div style="display:flex; flex-direction:column; gap:14px; font-family:'Work Sans',sans-serif;">
-  <div style="position:relative; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; background:#fff;">
+  <div class="{{ rowCls }}">
+  <sc-if value="{{ showThumbs }}" hint-placeholder-val="{{ false }}">
+    <div class="ek-g-ths">
+      <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="4">
+        <button onClick="{{ t.select }}" class="ek-g-th" title="{{ t.alt }}" style="{{ t.style }}"><span style="{{ t.play }}"></span></button>
+      </sc-for>
+    </div>
+  </sc-if>
+  <div style="position:relative; min-width:0; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; background:#fff;">
     <button onClick="{{ openZoom }}" class="ek-g-main" title="Zvětšit fotografii" style="{{ mainStyle }}"></button>
+    <div class="ek-g-track" ref="{{ trackRef }}">
+      <sc-for list="{{ slides }}" as="s" hint-placeholder-count="3">
+        <button onClick="{{ s.open }}" title="{{ s.alt }}" style="{{ s.style }}"></button>
+      </sc-for>
+    </div>
+    <span class="ek-g-mnav" style="position:absolute; left:0; right:0; bottom:14px; z-index:2; justify-content:center; gap:6px; pointer-events:none;">
+      <sc-for list="{{ dots }}" as="d" hint-placeholder-count="3">
+        <span style="{{ d.style }}"></span>
+      </sc-for>
+    </span>
+    <span class="ek-g-mnav">
+      <button onClick="{{ mPrev }}" disabled="{{ mAtStart }}" class="ek-g-arr" aria-label="Předchozí fotka" style="left:10px;"><span style="{{ iconPrevDark }}"></span></button>
+      <button onClick="{{ mNext }}" disabled="{{ mAtEnd }}" class="ek-g-arr" aria-label="Další fotka" style="right:10px;"><span style="{{ iconNextDark }}"></span></button>
+    </span>
     <button onClick="{{ toggleFav }}" class="{{ favClass }}" title="{{ favTitle }}" aria-pressed="{{ fav }}"><span style="{{ favIcon }}"></span></button>
     <span style="position:absolute; top:16px; left:16px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; z-index:2; pointer-events:none;">
       <sc-for list="{{ badges }}" as="b" hint-placeholder-count="2">
@@ -38,17 +80,10 @@
       <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ false }}">
         <button onClick="{{ openVideo }}" class="ek-g-vid" title="Přehrát video k produktu" style="display:flex; align-items:center; gap:7px; box-sizing:border-box; height:40px; line-height:1; background:rgba(255,255,255,.94); border:1px solid #ECE3D2; border-radius:999px; padding:0 14px; font-size:12.5px; font-weight:600; color:#4C653D;"><span style="{{ iconVideo }}"></span>Video</button>
       </sc-if>
-      <span aria-hidden="true" style="display:flex; align-items:center; gap:7px; box-sizing:border-box; height:40px; line-height:1; background:rgba(255,255,255,.94); border:1px solid #ECE3D2; border-radius:999px; padding:0 14px; font-size:12.5px; font-weight:600; color:#4C653D;"><span style="{{ iconZoom }}"></span>Zvětšit</span>
     </span>
   </div>
 
-  <sc-if value="{{ showThumbs }}" hint-placeholder-val="{{ false }}">
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="4">
-        <button onClick="{{ t.select }}" class="ek-g-th" title="{{ t.alt }}" style="{{ t.style }}"></button>
-      </sc-for>
-    </div>
-  </sc-if>
+  </div>
 
   <p style="margin:0; font-size:13px; line-height:1.5; color:#6B6B5E; font-style:italic;">{{ note }}</p>
 
@@ -74,9 +109,18 @@
   </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:680},&quot;productName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kyselina citronová&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;images&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{src:string, alt?:string}[]&quot;},&quot;video&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{src:string, poster?:string}&quot;},&quot;note&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Obrázek je pouze ilustrační.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;badges&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(string|{variant:string,label?:string})[]&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:680},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;side&quot;,&quot;below&quot;],&quot;default&quot;:&quot;side&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;productName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kyselina citronová&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;images&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{src:string, alt?:string}[]&quot;},&quot;video&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{src:string, poster?:string}&quot;},&quot;note&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Obrázek je pouze ilustrační.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;badges&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(string|{variant:string,label?:string})[]&quot;}}">
 class Component extends DCLogic {
-  state = { i: 0, zoom: false, fav: null, lb: 0 };
+  state = { i: 0, zoom: false, fav: null, lb: 0, m: 0 };
+  trackRef = (el) => {
+    if (this._track === el) return;
+    if (this._track && this._onScroll) this._track.removeEventListener('scroll', this._onScroll);
+    this._track = el;
+    if (!el) return;
+    this._onScroll = () => { const m = Math.round(el.scrollLeft / Math.max(1, el.clientWidth)); if (m !== this.state.m) this.setState({ m }); };
+    el.addEventListener('scroll', this._onScroll, { passive: true });
+  };
+  goSlide(m) { const el = this._track; if (el) el.scrollTo({ left: m * el.clientWidth, behavior: 'smooth' }); }
 
   favStore() {
     if (!window.__ekFav) window.__ekFav = new Set();
@@ -115,10 +159,10 @@ class Component extends DCLogic {
     const i = Math.min(this.state.i, images.length - 1);
     const active = images[i] || images[0];
 
-    // Položky lightboxu: 1. fotka, pak video (je-li), pak ostatní fotky
+    // Položky lightboxu: všechny fotky, video (je-li) na konci
     const video = this.props.video ?? null;
     const lbItems = images.map((im, idx) => ({ type: 'img', src: im.src, idx }));
-    if (video && video.src) lbItems.splice(Math.min(1, lbItems.length), 0, { type: 'video' });
+    if (video && video.src) lbItems.push({ type: 'video' });
     this._lbCount = lbItems.length;
     const lbi = Math.min(this.state.lb, lbItems.length - 1);
     const cur = lbItems[lbi] || lbItems[0];
@@ -148,13 +192,38 @@ class Component extends DCLogic {
       closeZoom: () => this.setState({ zoom: false }),
       mainStyle: 'aspect-ratio:1/1; background:#fff center/contain no-repeat; background-image:url("' + url(active.src) + '");',
       zoomStyle: 'width:min(820px,92vw,84vh); max-width:92vw; max-height:84vh; aspect-ratio:1/1; border-radius:16px; background:#fff center/contain no-repeat; background-image:url("' + url(zoomSrc) + '");',
-      showThumbs: this.props.showThumbs === true && images.length > 1,
-      thumbs: images.map((im, idx) => ({
+      showThumbs: images.length > 1,
+      rowCls: 'ek-g-row' + (images.length > 1 ? ' ek-g-has-th ek-g-multi' : '') + ((this.props.layout ?? 'side') === 'below' ? ' ek-g-below' : ''),
+      slides: images.map((im, idx) => ({
+        alt: im.alt || '',
+        open: () => this.setState({ zoom: true, i: idx, lb: Math.max(0, lbItems.findIndex(x => x.type === 'img' && x.idx === idx)) }),
+        style: 'aspect-ratio:1/1; background:#fff center/contain no-repeat; background-image:url("' + url(im.src) + '");',
+      })),
+      dots: images.map((im, idx) => ({ style: 'display:block; width:' + (idx === this.state.m ? 18 : 7) + 'px; height:7px; border-radius:999px; background:' + (idx === this.state.m ? '#4C653D' : 'rgba(76,101,61,.3)') + '; transition:width .2s;' })),
+      mAtStart: this.state.m <= 0,
+      mAtEnd: this.state.m >= images.length - 1,
+      mPrev: (e) => { if (e) e.stopPropagation(); this.goSlide(Math.max(0, this.state.m - 1)); },
+      mNext: (e) => { if (e) e.stopPropagation(); this.goSlide(Math.min(images.length - 1, this.state.m + 1)); },
+      trackRef: this.trackRef,
+      iconPrevDark: this.mask('arrow-left-01', 20, '#4C653D'),
+      iconNextDark: this.mask('arrow-right-01', 20, '#4C653D'),
+      thumbs: (() => {
+        const hasVid = !!(video && video.src);
+        const list = images.slice(0, hasVid ? 5 : 6).map((im, idx) => ({
         alt: im.alt || '',
         select: () => this.setState({ i: idx }),
         style: 'width:78px; height:78px; background:#fff center/contain no-repeat; background-image:url("' + url(im.src) + '");'
           + (idx === i ? ' border-color:#4C653D; box-shadow:0 0 0 2px rgba(76,101,61,.22);' : ''),
-      })),
+          play: 'display:none;',
+        }));
+        if (hasVid) list.push({
+          alt: 'Video k produktu',
+          select: () => this.setState({ zoom: true, lb: lbItems.findIndex(x => x.type === 'video') }),
+          style: 'width:78px; height:78px; display:flex; align-items:center; justify-content:center; background:' + (video.poster ? '#22301F center/cover no-repeat url("' + url(video.poster) + '")' : '#F6F1E7') + ';',
+          play: this.mask('play', 30, '#D14405'),
+        });
+        return list.slice(0, 6);
+      })(),
       fav: favOn,
       favClass: 'ek-g-fav ' + (favOn ? 'ek-g-fav-on' : 'ek-g-fav-off'),
       favTitle: favOn ? 'Odebrat z oblíbených' : 'Přidat do oblíbených',

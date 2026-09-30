@@ -23,7 +23,9 @@
     <sc-if value="{{ desc }}" hint-placeholder-val="{{ true }}">
       <p style="margin:0; font-size:13.5px; line-height:1.45; color:#6B6B5E;">{{ desc }}</p>
     </sc-if>
-    <dc-import name="ui-Rating" compact="{{ true }}" value="{{ rating }}" count="{{ ratingCount }}" size="{{ 14 }}" hint-size="150px,20px"></dc-import>
+    <sc-if value="{{ showRating }}" hint-placeholder-val="{{ false }}">
+      <dc-import name="ui-Rating" compact="{{ true }}" value="{{ rating }}" count="{{ ratingCount }}" size="{{ 14 }}" hint-size="150px,20px"></dc-import>
+    </sc-if>
     <div style="display:flex; flex-wrap:wrap; gap:6px 16px; color:#6B6B5E; font-size:13.5px;">
       <sc-if value="{{ isRecipe }}" hint-placeholder-val="{{ true }}">
         <span style="display:inline-flex; align-items:center; gap:6px; white-space:nowrap;"><span style="{{ iconLevel }}"></span>{{ level }}</span>
@@ -114,6 +116,8 @@ class Component extends DCLogic {
       isRecipe,
       level,
       time: this.props.time ?? '30 min',
+      // Recepty zatím nelze technicky hodnotit — hodnocení je centrálně vypnuté (zapnout: showRating)
+      showRating: this.props.showRating === true,
       rating: Number(this.props.rating ?? 4.8),
       ratingCount: Number(this.props.ratingCount ?? 34),
       cta: this.props.cta ?? (isRecipe ? 'Zobrazit recept' : 'Přečíst článek'),

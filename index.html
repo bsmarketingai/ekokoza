@@ -263,7 +263,7 @@
     .ek-h2 { font-size: 30px !important; }
     .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
     .ek-scrollrow { overflow-x: auto !important; grid-auto-flow: column !important; grid-auto-columns: 78% !important; grid-template-columns: none !important; padding-bottom: 16px !important; margin-left: -20px !important; margin-right: -20px !important; padding-left: 20px !important; padding-right: 20px !important; scroll-padding-left: 20px !important; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; }
-    #blok3 .ek-scrollrow { grid-auto-columns: 240px !important; }
+    #blok3 .ek-scrollrow { grid-auto-columns: 260px !important; }
     #blok5 .ek-scrollrow, #blok6 .ek-scrollrow { grid-auto-columns: 260px !important; }
     .ek-rev3 { grid-template-columns: repeat(3,1fr) !important; gap: 12px !important; }
     /* Fix: hero recipe/loyalty cards collapse to 0 (only absolute children) */
@@ -360,6 +360,9 @@
     #dilna .ek-dilna { order: 1; }
     #dilna .ek-dilna-cta { order: 3; }
   }
+  @media (max-width: 819px) { #blok6 { padding-top: 20px !important; } }
+  /* blok 5 je trhaný pás — +16 px na zubatý okraj, vizuálně tedy 20 px jako u bloku 6 */
+  @media (max-width: 819px) { #blok5 { padding-top: 36px !important; padding-bottom: 36px !important; } }
   @media (max-width: 819px) { .ek-revall { display: none !important; } .ek-revall-m { display: flex !important; justify-content: flex-end; } }
   /* záhlaví bez navigace karuselu: samotný odkaz vždy vpravo */
   .ek-sechead-r:not(:has(> :nth-child(2))) { justify-content: flex-end !important; }
@@ -377,7 +380,7 @@
   <!-- ============ BLOK 1 — HERO, VARIANTA V1 (mozaika 4 karet) ============ -->
   <sc-if value="{{ heroV1 }}" hint-placeholder-val="{{ true }}">
   <section style="padding:24px 20px 0;" class="ek-pad">
-    <div style="max-width:1400px; margin:0 auto;">
+    <div style="max-width:1560px; margin:0 auto;">
     <div class="ek-hero" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; height:460px;">
 
       <a href="#blok3" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#E9DFCC; display:block;">
@@ -486,7 +489,7 @@
       <div class="ek-sechead" style="display:none; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:18px;">
         <div>
           <p style="margin:0 0 7px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Proč Ekokoza</p>
-          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; line-height:1.1; color:#4C653D;">Šest důvodů, proč tvořit s námi</h2>
+          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.1; color:#4C653D;">Šest důvodů, proč tvořit s námi</h2>
         </div>
         <p style="margin:0 0 5px; max-width:330px; font-size:14px; line-height:1.55; color:#6B6B5E;">Suroviny, recepty a ověřené postupy. U každého bodu píšeme, jak to myslíme.</p>
       </div>
@@ -509,7 +512,7 @@
       <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:20px;">
         <div>
           <p style="margin:0 0 7px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Vše pro vlastní výrobu</p>
-          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; line-height:1.1; color:#4C653D;">Co u nás dostanete</h2>
+          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.1; color:#4C653D;">Co u nás dostanete</h2>
         </div>
         <a href="o-nas.html" class="ek-link-u" style="margin-bottom:5px; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Jak pracujeme {{ iconArrow }}</span></a>
       </div>
@@ -535,7 +538,7 @@
       <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:20px;">
         <div>
           <p style="margin:0 0 7px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Proč Ekokoza</p>
-          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; line-height:1.1; color:#4C653D;">S námi víte, co tvoříte</h2>
+          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.1; color:#4C653D;">S námi víte, co tvoříte</h2>
         </div>
         <p style="margin:0 0 5px; max-width:320px; font-size:14px; line-height:1.55; color:#6B6B5E;">Vyberte si bod vlevo, vpravo se dozvíte, co za ním stojí.</p>
       </div>
@@ -612,7 +615,7 @@
   <section id="blok6" style="padding:64px 32px 8px;" class="ek-pad">
     <div style="max-width:1560px; margin:0 auto;">
       <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:26px;">
-        <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D;">Zákazníci nejraději kupují</h2>
+        <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D;">Zákazníci nejraději kupují</h2>
         <div class="ek-sechead-r" style="display:flex; align-items:center; gap:18px;"><a href="#" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny bestsellery {{ iconArrow }}</span></a><div style="{{ b6Nav }}"><button onClick="{{ b6Prev }}" disabled="{{ b6AtStart }}" aria-label="Předchozí" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat;"></span></button><button onClick="{{ b6Next }}" disabled="{{ b6AtEnd }}" aria-label="Další" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat;"></span></button></div></div>
       </div>
       <div class="ek-scrollrow ek-scroll" ref="{{ b6Ref }}" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
@@ -652,7 +655,7 @@
         <div style="display:flex; align-items:center; justify-content:space-between; gap:40px; margin-bottom:36px;">
           <div class="ek-loyal-head">
           <p style="margin:0 0 10px; color:#D6E0C8; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Věrnostní program</p>
-          <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:38px; color:#F6F1E7; line-height:1.08;">Odměňujeme opakovanou tvorbu.</h2>
+          <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#F6F1E7; line-height:1.08;">Odměňujeme opakovanou tvorbu.</h2>
           <p style="margin:0; color:#E2E8D6; font-size:17px; line-height:1.55;">Žádné slevové hony, žádné odpočty. Čím déle s námi tvoříte, tím lepší podmínky máte — jednoduše a férově.</p>
         </div>
         </div>
@@ -677,7 +680,7 @@
   <section style="padding:64px 32px 8px;" class="ek-pad">
     <div style="max-width:1560px; margin:0 auto;">
       <div id="ugc-head" style="display:flex; align-items:center; justify-content:space-between; gap:16px 24px; flex-wrap:wrap; margin-bottom:24px;">
-        <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D;">Ukažte nám, co vyrábíte</h2>
+        <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D;">Ukažte nám, co vyrábíte</h2>
         <a href="#" class="ek-btn-ghost ek-ugc-insta" style="display:inline-flex; align-items:center; gap:9px; margin:0 -20px 0 0; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; padding:11px 20px; border-radius:999px; background:transparent; transition:background .2s;"><span style="{{ iconInstagram }}"></span>@ekokoza na Instagramu</a>
       </div>
       <div class="ek-ugc" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px;">
@@ -697,7 +700,7 @@
       <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:26px;">
         <div style="max-width:62ch;">
           <p style="margin:0 0 8px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Z komunitní dílny</p>
-          <h2 class="ek-h2" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D; line-height:1.1;">Co vyrobili lidé z našich surovin</h2>
+          <h2 class="ek-h2" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D; line-height:1.1;">Co vyrobili lidé z našich surovin</h2>
           <p style="margin:0; font-size:16.5px; line-height:1.6; color:#52524a;">Skutečné výrobky, skutečné recepty. Fotky posílají sami zákazníci — nic z toho jsme nefotili my.</p>
         </div>
         <div class="ek-sechead-r" style="display:flex; align-items:center; gap:18px;"><a href="#" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny výrobky od vás {{ iconArrow }}</span></a></div>
@@ -770,7 +773,7 @@
       <div class="ek-two" style="display:grid; grid-template-columns:1fr 1fr; gap:0; align-items:stretch; background:#fff; border:1px solid #ECE3D2; border-radius:18px; overflow:hidden; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);">
         <div style="padding:52px;">
           <p style="margin:0 0 10px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Náš příběh</p>
-          <h2 class="ek-h2" style="margin:0 0 18px; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D; line-height:1.1;">Začalo to vlastní kuchyní a hrstkou surovin.</h2>
+          <h2 class="ek-h2" style="margin:0 0 18px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D; line-height:1.1;">Začalo to vlastní kuchyní a hrstkou surovin.</h2>
           <p style="margin:0 0 14px; color:#52524a; font-size:16px; line-height:1.65;">Ekokoza vznikla z jednoduché potřeby — vědět, co si nanášíme na kůži. Místo katalogu plného slev jsme postavili průvodce, kterému se dá věřit.</p>
           <p style="margin:0 0 26px; color:#52524a; font-size:16px; line-height:1.65;">Dnes pomáháme tisícům tvůrců — od prvního tělového másla po vlastní značku. Pořád stejně: ověřené recepty, čisté suroviny, klid na práci.</p>
           <a href="o-nas.html" class="ek-cta-sec" style="display:inline-flex; align-items:center; gap:9px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; padding:13px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:all .2s;">Přečtěte si náš příběh {{ iconArrow }}</a>
@@ -791,7 +794,7 @@
     <div class="ek-two" style="position:relative; z-index:1; max-width:1560px; margin:0 auto; display:grid; grid-template-columns:1.1fr 1fr; gap:40px; padding:48px 8px; align-items:center;">
       <div>
         <p style="margin:0 0 10px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Novinky e-mailem</p>
-        <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D; line-height:1.1;">Jednou měsíčně. Od suroviny k vlastnímu výrobku.</h2>
+        <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D; line-height:1.1;">Jednou měsíčně. Od suroviny k vlastnímu výrobku.</h2>
         <div style="display:flex; flex-direction:column; gap:9px; margin-top:22px; max-width:460px;">
           <span style="font-size:13px; font-weight:600; color:#4A4A42;">Co vám máme posílat?</span>
           <div style="display:flex; flex-wrap:wrap; gap:10px 26px;">

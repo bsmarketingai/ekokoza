@@ -332,6 +332,14 @@
   .ek-car-btn:hover:not(:disabled) { background:#4C653D; color:#F6F1E7; }
   .ek-car-btn:disabled { opacity:.35; cursor:default; }
   @media (max-width: 900px) { .ek-sechead-r { align-self: stretch; justify-content: space-between; } }
+  /* mobil (S a menší): ovládání karuselu pod kartami — odkaz vlevo, šipky vpravo */
+  @media (max-width: 819px) {
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) { display: flex; flex-direction: column; }
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) > .ek-sechead { display: contents !important; }
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) > .ek-sechead > :first-child { margin-bottom: 20px !important; }
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) .ek-sechead-r { order: 1; margin-top: 14px; align-self: stretch; justify-content: space-between; }
+  }
+  @media (max-width: 819px) { .ek-revall { display: none !important; } .ek-revall-m { display: inline-flex !important; } }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
@@ -707,7 +715,8 @@
     <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
   <section style="padding:64px 32px 8px; position:relative; z-index:1;" class="ek-pad">
     <div style="position:relative; z-index:1; max-width:1560px; margin:0 auto;">
-      <div style="display:flex; align-items:center; gap:20px; justify-content:center; margin-bottom:32px; flex-wrap:wrap;">
+      <div style="position:relative; display:flex; align-items:center; gap:20px; justify-content:center; margin-bottom:32px; flex-wrap:wrap;">
+        <a href="#" class="ek-link-u ek-revall" style="order:2; flex-basis:100%; display:flex; justify-content:center; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; line-height:1.2; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny recenze {{ iconArrow }}</span></a>
         <span style="font-family:'EB Garamond',serif; font-size:46px; color:#4C653D; font-weight:500; line-height:1;">4,9</span>
         <div style="display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
           <dc-import name="ui-Rating" value="{{ 4.9 }}" count="{{ 2418 }}" showValue="{{ false }}" size="{{ 18 }}" hint-size="220px,24px"></dc-import>
@@ -726,6 +735,7 @@
           </div>
         </sc-for>
       </div>
+      <a href="#" class="ek-link-u ek-revall-m" style="display:none; align-self:flex-start; margin-top:18px; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; line-height:1.2; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny recenze {{ iconArrow }}</span></a>
     </div>
   </section>
   </div>

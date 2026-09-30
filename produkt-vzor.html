@@ -751,7 +751,7 @@
               <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">{{ r.text }}</p>
             </div>
           </sc-for>
-          <a href="#" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; color:#4C653D; text-decoration:none; border:1.5px solid transparent; border-radius:999px; padding:11px 18px; font-size:14.5px; font-weight:600; transition:background .2s;">Další recenze<span style="{{ iconArrow }}"></span></a>
+          <a href="#" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-end; align-items:center; gap:8px; color:#4C653D; text-decoration:none; border:1.5px solid transparent; border-radius:999px; padding:11px 18px; font-size:14.5px; font-weight:600; transition:background .2s;">Další recenze<span style="{{ iconArrow }}"></span></a>
         </div>
       </div>
     </div>
@@ -803,11 +803,18 @@
     <div onClick="{{ closeDiscInfo }}" role="dialog" aria-label="Jak se počítá vaše sleva" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(34,48,31,.55);">
       <div onClick="{{ stopProp }}" style="position:relative; width:min(460px,100%); max-height:100%; overflow:auto; border-radius:16px; background:#FFFDF6; padding:28px 30px 26px; box-shadow:0 30px 70px -28px rgba(45,58,46,.6); font-family:'Work Sans',sans-serif;">
         <button onClick="{{ closeDiscInfo }}" aria-label="Zavřít" style="position:absolute; top:14px; right:14px; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; padding:0; border:none; border-radius:50%; background:transparent; cursor:pointer;"><span style="{{ iconCloseModal }}"></span></button>
-        <span style="display:inline-flex; align-self:flex-start; margin-bottom:12px; padding:4px 10px; border-radius:999px; background:#FBE3D6; color:#A33203; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Doplnit text — formulaci dodá klient</span>
-        <h3 style="margin:0 0 10px; padding-right:36px; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; line-height:1.2; color:#4C653D;">Jak se počítá vaše sleva</h3>
-        <p style="margin:0 0 10px; font-size:15px; line-height:1.6; color:#4A4A42;">U tohoto produktu už je sleva maximální. Věrnostní sleva se k ní nepřičítá, i když jste ve věrnostním programu na vyšší úrovni.</p>
-        <p style="margin:0 0 18px; font-size:15px; line-height:1.6; color:#4A4A42;">Vaše věrnostní úroveň zůstává zachovaná a platí pro ostatní produkty v objednávce.</p>
-        <a href="vernostni-program.html" class="ek-link-u" style="font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none;">Jak funguje věrnostní program</a>
+        <span style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; margin-bottom:16px; border-radius:14px; background:#EEF4DC; border:1px solid rgba(76,101,61,.25);"><span style="{{ iconDiscModal }}"></span></span>
+        <h3 style="margin:0 0 10px; padding-right:36px; font-family:'EB Garamond',serif; font-weight:500; font-size:26px; line-height:1.2; color:#4C653D; text-wrap:pretty;">Níž už cena jít nemůže</h3>
+        <p style="margin:0 0 18px; font-size:15px; line-height:1.6; color:#4A4A42; text-wrap:pretty;">U tohoto produktu je cena nastavená na nejnižší možnou hranici. Neklesne ani s nejvyšší věrnostní slevou 15 %.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:0 0 18px; padding:14px 16px; border-radius:12px; background:#FFFFFF; border:1px solid #ECE3D2;">
+          <span style="display:flex; flex-direction:column; gap:2px;">
+            <span style="font-size:12.5px; color:#6B6B5E;">Vaše cena</span>
+            <span style="font-family:'EB Garamond',serif; font-size:26px; line-height:1.1; font-weight:500; color:#2A2A24;">{{ price }}</span>
+          </span>
+          <span style="display:inline-flex; align-items:center; padding:3px 10px; border-radius:999px; background:#FBD870; color:#4C653D; font-size:12.5px; font-weight:500; white-space:nowrap;">Nejnižší možná cena</span>
+        </div>
+        <p style="margin:0 0 20px; font-size:14.5px; line-height:1.6; color:#6B6B5E; text-wrap:pretty;">Vaše věrnostní úroveň zůstává zachovaná a sleva platí pro ostatní produkty v objednávce.</p>
+        <a href="vernostni-program.html" class="ek-btn-secondary" style="align-self:flex-start; display:inline-flex; align-items:center; gap:8px; border:1.5px solid #4C653D; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none; transition:background .2s, color .2s;"><span style="{{ iconLoyaltyBtn }}"></span>Jak funguje věrnostní program</a>
       </div>
     </div>
   </sc-if>
@@ -1037,6 +1044,7 @@ class Component extends DCLogic {
       onLoyaltyLogin: (e) => { if (e) e.preventDefault(); window.dispatchEvent(new CustomEvent('ek-open-login')); },
       iconLoyaltyPct: this.mask('percent-circle', 17, '#8A5A28'),
       iconLoyaltyPctOn: this.mask('percent-circle', 17, '#4C653D'),
+      iconLoyaltyBtn: this.mask('percent-circle', 18, 'currentColor'),
       stopProp: (e) => e.stopPropagation(),
       watchModalOpen: this.state.watchModal,
       openWatchModal: () => this.setState({ watchModal: true }),
@@ -1057,6 +1065,7 @@ class Component extends DCLogic {
       openDiscInfo: (e) => { if (e) { e.preventDefault(); e.stopPropagation(); } this.setState({ discInfo: true }); },
       closeDiscInfo: () => this.setState({ discInfo: false }),
       iconInfo: this.mask('information-circle', 18, '#4C653D'),
+      iconDiscModal: this.mask('percent-circle', 24, '#4C653D'),
       closeWatchModal: () => this.setState({ watchModal: false }),
       iconBellW: this.mask('notification-01', 19, '#FFFFFF'),
       iconCloseModal: this.mask('cancel-01', 20, '#4C653D'),

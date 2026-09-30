@@ -81,9 +81,31 @@
     .ek-gwrap { padding: 20px 16px !important; }
     .ek-gwrap h2 { font-size: 25px !important; }
   }
+  @media (max-width: 999px) { .ek-rev { grid-template-columns: 1fr !important; } }
+  .ek-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+  .ek-scroll::-webkit-scrollbar { display: none; }
+  .ek-car-btn { width:38px; height:38px; border-radius:999px; border:1.5px solid #4C653D; background:#fff; color:#4C653D; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; padding:0; transition:background .2s, color .2s; }
+  .ek-car-btn:hover:not(:disabled) { background:#4C653D; color:#F6F1E7; }
+  .ek-car-btn:disabled { opacity:.35; cursor:default; }
+  @media (max-width: 1149px) {
+    .ek-scrollrow { overflow-x: auto !important; grid-auto-flow: column !important; grid-auto-columns: 300px !important; grid-template-columns: none !important; padding-bottom: 16px !important; scroll-snap-type: x proximity; }
+    .ek-scrollrow > * { scroll-snap-align: start; }
+  }
+  @media (max-width: 819px) {
+    .ek-sechead { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+    .ek-sechead-r { align-self: stretch; justify-content: space-between; }
+    .ek-scrollrow { grid-auto-columns: 78% !important; margin-left: -20px !important; margin-right: -20px !important; padding-left: 20px !important; padding-right: 20px !important; scroll-padding-left: 20px !important; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; }
+  }
   @media print {
     .sc-host[data-sc-name="ui-Header"], .sc-host[data-sc-name="ui-Footer"], .ek-noprint { display: none !important; }
     .ek-rgrid { grid-template-columns: 1fr !important; }
+  }
+  /* mobil (S a menší): ovládání karuselu pod kartami — odkaz vlevo, šipky vpravo */
+  @media (max-width: 819px) {
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) { display: flex; flex-direction: column; }
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) > .ek-sechead { display: contents !important; }
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) > .ek-sechead > :first-child { margin-bottom: 20px !important; }
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) .ek-sechead-r { order: 1; margin-top: 14px; align-self: stretch; justify-content: space-between; }
   }
 </style>
 </helmet>
@@ -376,17 +398,67 @@
     </div>
   </section>
 
+  <section id="hodnoceni" style="padding:64px 32px 0;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <h2 class="ek-h2">Hodnocení a recenze</h2>
+      <p class="ek-p" style="max-width:64ch; margin-top:10px; margin-bottom:26px;">Píší lidé, kteří podle receptu skutečně vyráběli. Recenze nijak neupravujeme.</p>
+      <div class="ek-rev" style="display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:34px; align-items:start;">
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:24px; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span style="font-family:'EB Garamond',serif; font-size:44px; line-height:1; color:#2A2A24;">{{ revRating }}</span>
+            <span style="display:flex; flex-direction:column; gap:4px;">
+              <dc-import name="ui-Rating" value="{{ revRating }}" count="{{ revCount }}" showValue="{{ false }}" size="{{ 16 }}" hint-size="180px,20px"></dc-import>
+              <span style="font-size:13.5px; color:#6B6B5E;">{{ revLabel }}</span>
+            </span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:9px;">
+            <sc-for list="{{ revDist }}" as="d" hint-placeholder-count="5">
+              <span style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#6B6B5E;">
+                <span style="width:34px; flex:0 0 auto;">{{ d.label }}</span>
+                <span style="flex:1; height:8px; border-radius:999px; background:#EFE7D6; overflow:hidden;"><span style="{{ d.fill }}"></span></span>
+                <span style="width:22px; text-align:right; flex:0 0 auto;">{{ d.count }}</span>
+              </span>
+            </sc-for>
+          </div>
+          <a href="#" class="ek-btn-secondary" style="display:inline-flex; align-self:flex-start; align-items:center; gap:9px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; transition:background .2s, color .2s;"><span style="{{ iconPen }}"></span>Přidat recenzi</a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <sc-for list="{{ revList }}" as="r" hint-placeholder-count="3">
+            <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:20px 22px; display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+                <span style="display:flex; align-items:center; gap:11px;">
+                  <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:#EFE7D6; font-size:14px; font-weight:700; color:#4C653D;">{{ r.initial }}</span>
+                  <span style="display:flex; flex-direction:column;">
+                    <span style="font-size:15px; font-weight:600; color:#2A2A24;">{{ r.name }}</span>
+                    <span style="font-size:12.5px; color:#8a8776;">{{ r.meta }}</span>
+                  </span>
+                </span>
+                <dc-import name="ui-Rating" value="{{ r.stars }}" showCount="{{ false }}" showValue="{{ false }}" size="{{ 14 }}" hint-size="110px,20px"></dc-import>
+              </div>
+              <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">{{ r.text }}</p>
+            </div>
+          </sc-for>
+          <a href="#" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-end; align-items:center; gap:8px; color:#4C653D; text-decoration:none; border:1.5px solid transparent; border-radius:999px; padding:11px 18px; font-size:14.5px; font-weight:600; transition:background .2s;">Další recenze<span style="{{ iconRevArrow }}"></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section style="padding:64px 32px 0;" class="ek-pad">
     <div style="max-width:1560px; margin:0 auto;">
-      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:18px;">
+      <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:18px;">
         <h2 class="ek-h2">Podobné recepty</h2>
-        <a href="receptar.dc.html" style="font-size:14.5px; font-weight:600; text-decoration:none;">Celý receptář</a>
+        <div class="ek-sechead-r" style="display:flex; align-items:center; gap:18px;">
+          <a href="receptar.dc.html" class="ek-link-u" style="display:inline-flex; align-items:center; gap:6px; color:#4C653D; font-size:15px; font-weight:600; text-decoration:none; white-space:nowrap;">Celý receptář<span style="{{ iconRevArrow }}"></span></a>
+          <div style="{{ relNav }}"><button onClick="{{ relPrev }}" disabled="{{ relAtStart }}" aria-label="Předchozí" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat;"></span></button><button onClick="{{ relNext }}" disabled="{{ relAtEnd }}" aria-label="Další" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat;"></span></button></div>
+        </div>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px;">
+      <div class="ek-scrollrow ek-scroll" ref="{{ relRef }}" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px;">
         <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
           <dc-import name="ui-RecipeCard" title="{{ r.title }}" desc="{{ r.desc }}" category="{{ r.category }}" type="" level="{{ r.level }}" time="{{ r.time }}" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" img="{{ r.img }}" href="recept.dc.html" ingredients="{{ r.ingredients }}" hint-size="100%,470px"></dc-import>
         </sc-for>
       </div>
+      <div aria-hidden="true" style="{{ relTrack }}"><span style="{{ relThumb }}"></span></div>
     </div>
   </section>
 
@@ -522,6 +594,43 @@ class Component extends DCLogic {
     if (next < 0) return;
     if (next >= n) { this.setState({ guide: null }); return; }
     this.setState({ guide: next });
+  }
+
+  carGo(key, dir) { const el = this._trEl && this._trEl[key]; if (!el) return; const it = el.firstElementChild; const gap = parseFloat(getComputedStyle(el).columnGap) || 16; const step = it ? it.getBoundingClientRect().width + gap : el.clientWidth; const per = Math.max(1, Math.floor((el.clientWidth + gap) / step)); el.scrollBy({ left: dir * step * per, behavior: 'smooth' }); }
+  carVals(key) {
+    const t = (this.state.tracks || {})[key] || { w: 1, x: 0 };
+    const on = t.w < 0.995;
+    const w = Math.max(t.w, 0.12);
+    return {
+      [key + 'Ref']: this.trackRef(key),
+      [key + 'Nav']: 'display:' + (on ? 'flex' : 'none') + '; gap:8px; flex-shrink:0;',
+      [key + 'Prev']: () => this.carGo(key, -1), [key + 'Next']: () => this.carGo(key, 1),
+      [key + 'AtStart']: t.x <= 0.01, [key + 'AtEnd']: t.x >= 0.99,
+      [key + 'Track']: 'display:' + (on ? 'block' : 'none') + '; position:relative; height:3px; margin-top:6px; border-radius:999px; background:#E4DAC6; overflow:hidden;',
+      [key + 'Thumb']: 'position:absolute; top:0; bottom:0; left:' + (t.x * (1 - w) * 100).toFixed(2) + '%; width:' + (w * 100).toFixed(2) + '%; border-radius:999px; background:#4C653D;',
+    };
+  }
+  trackRef(key) {
+    this._tr = this._tr || {};
+    if (this._tr[key]) return this._tr[key];
+    const upd = (el) => {
+      const max = el.scrollWidth - el.clientWidth;
+      const w = max > 1 ? el.clientWidth / el.scrollWidth : 1;
+      const x = max > 1 ? el.scrollLeft / max : 0;
+      const cur = (this.state.tracks || {})[key];
+      if (cur && Math.abs(cur.w - w) < 0.002 && Math.abs(cur.x - x) < 0.002) return;
+      this.setState(s => ({ tracks: Object.assign({}, s.tracks, { [key]: { w, x } }) }));
+    };
+    let bound = null, ro = null, fn = null;
+    this._tr[key] = (el) => {
+      if (bound && bound !== el) { bound.removeEventListener('scroll', fn); if (ro) ro.disconnect(); bound = null; }
+      if (!el || bound === el) return;
+      bound = el; fn = () => upd(el); this._trEl = this._trEl || {}; this._trEl[key] = el;
+      el.addEventListener('scroll', fn, { passive: true });
+      if (window.ResizeObserver) { ro = new ResizeObserver(fn); ro.observe(el); }
+      requestAnimationFrame(fn);
+    };
+    return this._tr[key];
   }
 
   mask(name, size, color) {
@@ -679,6 +788,24 @@ class Component extends DCLogic {
         { q: 'pH je vyšší než 4,5', a: 'Přidejte jednu kapku kyseliny mléčné, směs dobře promíchejte a znovu přeměřte. Kyselinu přidávejte opravdu postupně, aby pH nekleslo více, než potřebujete.', icon: 'chemistry-01' },
       ],
 
+      revRating: 4.7,
+      revCount: 31,
+      revLabel: '31 hodnocení',
+      revDist: [
+        { label: '5 ★', count: 24, fill: 'display:block; height:100%; width:77%; background:#7BA23F;' },
+        { label: '4 ★', count: 5, fill: 'display:block; height:100%; width:16%; background:#9CB86A;' },
+        { label: '3 ★', count: 2, fill: 'display:block; height:100%; width:7%; background:#B3C88A;' },
+        { label: '2 ★', count: 0, fill: 'display:block; height:100%; width:0%; background:#C6D3A6;' },
+        { label: '1 ★', count: 0, fill: 'display:block; height:100%; width:0%; background:#C6D3A6;' },
+      ],
+      revList: [
+        { initial: 'M', name: 'Markéta', meta: 'Vyrobeno podle receptu', stars: 5, text: 'Postup je popsaný krok za krokem, zvládla jsem to napoprvé. Vlasy se po umytí lépe rozčesávají a nejsou zatížené.' },
+        { initial: 'P', name: 'Petra S.', meta: 'Vyrobeno podle receptu', stars: 5, text: 'Oceňuji hlavně tip s úpravou pH. Kyselinu jsem přidávala po kapkách a vyšlo to přesně.' },
+        { initial: 'J', name: 'Jana', meta: 'Vyrobeno podle receptu', stars: 4, text: 'Na moje jemné vlasy jsem příště snížila podíl keratinu, jak radí časté potíže. S tím je kondicionér lehčí.' },
+      ],
+      iconPen: this.mask('star', 24, 'currentColor'),
+      iconRevArrow: this.mask('arrow-right-02', 24, 'currentColor'),
+      ...this.carVals('rel'),
       related: [
         { title: 'Tuhý šampon s panthenolem', desc: 'Bez plastu, na cesty i do sprchy. Vydrží měsíce.', category: 'Vlasová péče', level: 'Zkušený', time: '60 min', rating: 4.5, ratingCount: 19, img: 'assets/recipes/tenzidy.jpg', ingredients: ['Tenzid Coco Glucoside', 'Panthenol', 'Bambucké máslo'] },
         { title: 'Jemný zklidňující gel po opalování', desc: 'Chladí a zavlažuje. Vhodný i na dětskou pokožku.', category: 'Kosmetika', level: 'Začátečník', time: '20 min', rating: 4.7, ratingCount: 11, img: 'assets/recipes/repelent.jpg', ingredients: ['Hyaluron', 'Panthenol', 'Glycerin'] },

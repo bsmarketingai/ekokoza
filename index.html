@@ -232,6 +232,10 @@
     #blok8 .ek-loyal-head { padding-right: 29% !important; }
     #blok8 .ek-loyal-goat { width: 25% !important; right: 14px !important; top: 26px !important; bottom: auto !important; }
   }
+  @media (max-width: 999px) {
+    .ek-thirds.ek-starts { grid-template-columns: 1fr !important; gap: 12px !important; }
+    .ek-starts .ek-card { min-height: 200px !important; }
+  }
   @media (max-width: 900px) {
     .ek-thirds { grid-template-columns: repeat(3,1fr) !important; gap: 12px !important; }
     .ek-two { grid-template-columns: 1fr !important; }
@@ -339,7 +343,26 @@
     div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) > .ek-sechead > :first-child { margin-bottom: 20px !important; }
     div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) .ek-sechead-r { order: 1; margin-top: 14px; align-self: stretch; justify-content: space-between; }
   }
-  @media (max-width: 819px) { .ek-revall { display: none !important; } .ek-revall-m { display: inline-flex !important; } }
+  /* UGC: Instagram na desktopu vpravo v řádku s nadpisem, na mobilu pod příspěvky */
+  @media (max-width: 819px) {
+    #ugc-head { display: contents !important; }
+    #ugc-head > h2 { margin-bottom: 20px !important; }
+    #ugc-head + .ek-ugc { order: 1; }
+    #ugc-head .ek-ugc-insta { order: 2; align-self: flex-end; margin: 14px -20px 0 0 !important; }
+    div:has(> #ugc-head) { display: flex; flex-direction: column; }
+  }
+  /* Komunitní dílna: odkaz na mobilu pod kartami, stejně jako u karuselů */
+  @media (max-width: 819px) {
+    #dilna > div { display: flex; flex-direction: column; }
+    #dilna .ek-sechead { display: contents !important; }
+    #dilna .ek-sechead > :first-child { margin-bottom: 20px !important; }
+    #dilna .ek-sechead-r { order: 2; margin-top: 14px; align-self: stretch; justify-content: space-between; }
+    #dilna .ek-dilna { order: 1; }
+    #dilna .ek-dilna-cta { order: 3; }
+  }
+  @media (max-width: 819px) { .ek-revall { display: none !important; } .ek-revall-m { display: flex !important; justify-content: flex-end; } }
+  /* záhlaví bez navigace karuselu: samotný odkaz vždy vpravo */
+  .ek-sechead-r:not(:has(> :nth-child(2))) { justify-content: flex-end !important; }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
@@ -606,15 +629,15 @@
     <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
   <section style="position:relative; z-index:1; padding:64px 32px 8px;" class="ek-pad">
     <div style="max-width:1560px; margin:0 auto;">
-      <div class="ek-thirds" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px;">
+      <div class="ek-thirds ek-starts" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px;">
         <sc-for list="{{ starts }}" as="s" hint-placeholder-count="3">
           <div class="ek-card" style="background:{{ s.bg }}; border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:34px; display:flex; flex-direction:column; gap:14px; min-height:230px; transition:transform .25s, box-shadow .25s;">
-            <div style="width:52px; height:52px; border-radius:14px; background:rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center; color:#4C653D;">{{ s.icon }}</div>
-            <div style="flex:1;">
-              <p style="margin:0 0 4px; color:#4C653D; opacity:.7; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;">{{ s.kicker }}</p>
+            <div style="width:52px; height:52px; display:flex; align-items:center; justify-content:flex-start; color:#D14405;">{{ s.icon }}</div>
+            <div style="flex:1; max-width:{{ s.tw }};">
+              <p style="margin:0 0 4px; color:#4C653D; opacity:{{ s.ko }}; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;">{{ s.kicker }}</p>
               <h3 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#4C653D; line-height:1.15;">{{ s.title }}</h3>
             </div>
-            <a href="#" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; align-self:flex-start;"><span style="display:inline-flex; align-items:center; gap:6px;">{{ s.link }} {{ iconArrow }}</span></a>
+            <a href="#" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; align-self:flex-start; max-width:{{ s.tw }};"><span style="display:inline-flex; align-items:center; gap:6px; flex-wrap:wrap;">{{ s.link }} {{ iconArrow }}</span></a>
           </div>
         </sc-for>
       </div>
@@ -653,9 +676,9 @@
   <!-- ============ BLOK 9 — KOMUNITA / UGC ============ -->
   <section style="padding:64px 32px 8px;" class="ek-pad">
     <div style="max-width:1560px; margin:0 auto;">
-      <div style="margin-bottom:24px;">
-        <h2 class="ek-h2" style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D;">Ukažte nám, co vyrábíte</h2>
-        <a href="#" class="ek-btn-ghost" style="display:inline-flex; align-items:center; gap:9px; margin-top:10px; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; padding:11px 20px; border-radius:999px; background:transparent; transition:background .2s;"><span style="{{ iconInstagram }}"></span>@ekokoza na Instagramu</a>
+      <div id="ugc-head" style="display:flex; align-items:center; justify-content:space-between; gap:16px 24px; flex-wrap:wrap; margin-bottom:24px;">
+        <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D;">Ukažte nám, co vyrábíte</h2>
+        <a href="#" class="ek-btn-ghost ek-ugc-insta" style="display:inline-flex; align-items:center; gap:9px; margin:0 -20px 0 0; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; padding:11px 20px; border-radius:999px; background:transparent; transition:background .2s;"><span style="{{ iconInstagram }}"></span>@ekokoza na Instagramu</a>
       </div>
       <div class="ek-ugc" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px;">
         <sc-for list="{{ ugc }}" as="u" hint-placeholder-count="8">
@@ -677,6 +700,7 @@
           <h2 class="ek-h2" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; color:#4C653D; line-height:1.1;">Co vyrobili lidé z našich surovin</h2>
           <p style="margin:0; font-size:16.5px; line-height:1.6; color:#52524a;">Skutečné výrobky, skutečné recepty. Fotky posílají sami zákazníci — nic z toho jsme nefotili my.</p>
         </div>
+        <div class="ek-sechead-r" style="display:flex; align-items:center; gap:18px;"><a href="#" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny výrobky od vás {{ iconArrow }}</span></a></div>
       </div>
 
       <div class="ek-dilna" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
@@ -716,7 +740,7 @@
   <section style="padding:64px 32px 8px; position:relative; z-index:1;" class="ek-pad">
     <div style="position:relative; z-index:1; max-width:1560px; margin:0 auto;">
       <div style="position:relative; display:flex; align-items:center; gap:20px; justify-content:center; margin-bottom:32px; flex-wrap:wrap;">
-        <a href="#" class="ek-link-u ek-revall" style="order:2; flex-basis:100%; display:flex; justify-content:center; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; line-height:1.2; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny recenze {{ iconArrow }}</span></a>
+        <a href="#" class="ek-link-u ek-revall" style="position:absolute; right:0; top:50%; transform:translateY(-50%); display:flex; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; line-height:1.2; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny recenze {{ iconArrow }}</span></a>
         <span style="font-family:'EB Garamond',serif; font-size:46px; color:#4C653D; font-weight:500; line-height:1;">4,9</span>
         <div style="display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
           <dc-import name="ui-Rating" value="{{ 4.9 }}" count="{{ 2418 }}" showValue="{{ false }}" size="{{ 18 }}" hint-size="220px,24px"></dc-import>
@@ -1175,9 +1199,9 @@ class Component extends DCLogic {
     ];
 
     const starts = [
-      { kicker:'Začátečník', title:'Tvoříte poprvé?', link:'Otevřít průvodce', icon: this.hi('bulb', 26), bg:'linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%)' },
-      { kicker:'Pokročilý', title:'Hledáte nové výrobní postupy?', link:'Receptář pro pokročilé', icon: this.hi('sorting-01', 26), bg:'linear-gradient(160deg,#F4F8FA 0%,#DFEBF1 100%)' },
-      { kicker:'Profesionál / B2B', title:'Vyrábíte ve větším?', link:'Dokumentace a B2B', icon: this.hi('certificate-01', 26), bg:'linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%)' },
+      { kicker:'Začátečník', title:'Tvoříte poprvé?', link:'Otevřít průvodce', icon: this.hi('bulb', 26), bg:'linear-gradient(90deg,rgba(252,250,243,.97) 0%,rgba(252,250,243,.92) 45%,rgba(252,250,243,.55) 62%,rgba(252,250,243,0) 80%), url("assets/start/tvorite-poprve.png") 72% center / cover no-repeat #EEF4DC', tw:'58%', ko:'1' },
+      { kicker:'Pokročilý', title:'Hledáte nové výrobní postupy?', link:'Receptář pro pokročilé', icon: this.hi('cook-book', 26), bg:'linear-gradient(90deg,rgba(252,250,243,.97) 0%,rgba(252,250,243,.92) 45%,rgba(252,250,243,.55) 62%,rgba(252,250,243,0) 80%), url("assets/start/nove-postupy.png") 72% center / cover no-repeat #EEF4DC', tw:'58%', ko:'1' },
+      { kicker:'Profesionál / B2B', title:'Vyrábíte ve větším?', link:'Dokumentace a B2B', icon: this.hi('truck-delivery', 26), bg:'linear-gradient(90deg,rgba(252,250,243,.97) 0%,rgba(252,250,243,.92) 45%,rgba(252,250,243,.55) 62%,rgba(252,250,243,0) 80%), url("assets/start/vyrabite-ve-vetsim.png") 70% center / cover no-repeat #FEF8E6', tw:'58%', ko:'1' },
     ];
 
     const tiers = [

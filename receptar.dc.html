@@ -18,7 +18,7 @@
   a { color: #4C653D; }
   a:hover { color: #B23803; }
   .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
-  .ek-btn-secondary:hover span { background-color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover span[style*="mask"] { background-color: #F6F1E7 !important; }
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
   .ek-card:hover { transform: translateY(-3px); box-shadow: 0 18px 34px -24px rgba(45,58,46,.5); }
@@ -32,6 +32,9 @@
   .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
   .ek-p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+  .ek-car-btn { width:38px; height:38px; border-radius:999px; border:1.5px solid #4C653D; background:#fff; color:#4C653D; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; padding:0; transition:background .2s, color .2s, opacity .2s; }
+  .ek-car-btn:hover:not(:disabled) { background:#4C653D; color:#F6F1E7; }
+  .ek-car-btn:disabled { opacity:.35; cursor:default; }
   .ek-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
   .ek-life { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); column-gap: 18px; row-gap: 30px; }
   .ek-tile-life > span:first-child > span { transition: transform .45s ease; }
@@ -46,6 +49,11 @@
   .ek-jump:hover .ek-jump-t { color: #4C653D; }
   .ek-jump:hover .ek-jump-l { color: #B23803; }
   @media (max-width: 700px) { .ek-two { grid-template-columns: 1fr; } }
+  .ek-top3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; margin-top: 18px; }
+  .ek-top3-side { position: relative; min-width: 0; }
+  .ek-top3-side > aside { position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column; }
+  @media (max-width: 999px) { .ek-top3 { grid-template-columns: repeat(2, minmax(0,1fr)); } .ek-top3-side { grid-column: 1 / -1; } .ek-top3-side > aside { position: static; } }
+  @media (max-width: 549px) { .ek-top3 { grid-template-columns: 1fr; } }
   .ek-hzone { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); gap: 30px; align-items: stretch; }
   .ek-pick { display: flex; align-items: center; gap: 13px; padding: 11px 10px; margin: 0 -10px; text-decoration: none; }
   .ek-pick { transition: background .2s; border-radius: 12px; }
@@ -76,7 +84,7 @@
     .ek-h1 { font-size: 31px; }
     .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
     .ek-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
-    .ek-tiles { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(112px, 28%); overflow-x: auto; scroll-snap-type: x mandatory; margin-left: -20px; margin-right: -20px; padding: 0 20px; scrollbar-width: none; }
+    .ek-tiles { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(112px, 28%); overflow-x: auto; scroll-snap-type: x mandatory; margin-left: -20px; margin-right: -20px; padding: 0 20px; scrollbar-width: none; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); }
     .ek-tiles::-webkit-scrollbar { display: none; }
     .ek-tiles > * { scroll-snap-align: start; }
     .ek-tiles .ek-card { flex-direction: column !important; align-items: center !important; text-align: center; gap: 9px !important; padding: 14px 8px !important; transition: none !important; }
@@ -124,17 +132,39 @@
       <div style="margin-top:18px; max-width:68ch; display:flex; flex-direction:column;">
         <p class="ek-p">Chcete se pustit do domácí výroby, ale nevíte, jak na to? Najdete zde ověřené recepty na domácí kosmetiku, mýdla, svíčky i potraviny — vždy s postupem krok za krokem a se surovinami, které u nás pořídíte.</p>
         <sc-if value="{{ descClosed }}" hint-placeholder-val="{{ true }}">
-          <button onClick="{{ toggleDesc }}" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-start; margin-top:8px; align-items:center; gap:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; margin-left:-16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ descLabel }}<span style="{{ iconDescCaret }}"></span></button>
+          <button onClick="{{ toggleDesc }}" class="ek-btn-secondary" style="display:inline-flex; align-self:flex-start; margin-top:8px; align-items:center; gap:9px; height:44px; padding:0 20px 0 14px; border:1.5px solid #4C653D; border-radius:999px; background:transparent; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s, color .2s;"><span style="{{ iconDescCaret }}"></span><span>{{ descLabel }}</span></button>
         </sc-if>
       </div>
       <sc-if value="{{ descOpen }}" hint-placeholder-val="{{ false }}">
-      <div class="ek-hzone" style="margin-top:10px;">
-        <div style="min-width:0; display:flex; flex-direction:column;">
+      <div style="margin-top:10px; display:flex; flex-direction:column;">
           <div style="max-width:68ch;">
             <p class="ek-p">Každý recept jsme sami vyzkoušeli. U surovin vysvětlujeme, k čemu v receptuře slouží a čím je lze zaměnit, takže postup zvládnete přizpůsobit tomu, co máte doma.</p>
             <p class="ek-p">Nevíte, kde začít? Zkuste recepty pro začátečníky do 30 minut, nebo si níže naklikejte suroviny, které máte doma, a nechte si vypsat, co z nich vyrobíte.</p>
           </div>
-          <div class="ek-two" style="padding-top:22px;">
+          <div class="ek-top3">
+            <sc-for list="{{ topRecipes }}" as="r" hint-placeholder-count="2">
+              <dc-import name="ui-RecipeCard" title="{{ r.title }}" desc="{{ r.desc }}" category="{{ r.category }}" type="{{ r.type }}" level="{{ r.level }}" time="{{ r.time }}" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" img="{{ r.img }}" href="{{ r.href }}" ingredients="{{ r.ingredients }}" missing="{{ r.missing }}" coverage="{{ r.coverage }}" complete="{{ r.complete }}" onAddMissing="{{ addMissing }}" hint-size="100%,470px"></dc-import>
+            </sc-for>
+            <div class="ek-top3-side">
+              <aside style="border:1px solid #E4DAC6; border-radius:14px; background:#FFFDF6; padding:18px 20px;">
+                <span style="display:block; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">Další oblíbené recepty</span>
+                <div style="display:flex; flex-direction:column; margin-top:6px; flex:1 1 auto; min-height:0; overflow:hidden;">
+                  <sc-for list="{{ featured }}" as="r" hint-placeholder-count="5">
+                    <a href="{{ r.href }}" class="ek-pick">
+                      <span style="{{ r.thumb }}"></span>
+                      <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
+                        <span class="ek-pick-t" style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24; transition:color .2s;">{{ r.title }}</span>
+                        <span style="font-size:12.5px; color:#8a8776;">{{ r.meta }}</span>
+                      </span>
+                      <span style="{{ iconPickArrow }}"></span>
+                    </a>
+                  </sc-for>
+                </div>
+                <a href="#vypis" onClick="{{ scrollToList }}" class="ek-btn-secondary" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; margin-top:14px; flex:0 0 auto; border:1.5px solid #4C653D; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none; transition:background .2s, color .2s;">Všechny recepty<span style="{{ iconPickAll }}"></span></a>
+              </aside>
+            </div>
+          </div>
+          <div class="ek-two" style="display:none; padding-top:22px;">
           <a href="mate-doma.dc.html" class="ek-jump" style="border-color:#E2EACF; background:linear-gradient(160deg,#FCFAF3 0%,#F1F6E3 100%);">
             <span style="{{ iconJumpPantry }}"></span>
             <span style="display:flex; flex-direction:column; gap:5px; min-width:0;">
@@ -152,24 +182,7 @@
             </span>
           </a>
         </div>
-          <button onClick="{{ toggleDesc }}" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-start; margin-top:14px; align-items:center; gap:8px; border:1.5px solid transparent; background:transparent; border-radius:999px; padding:9px 16px; margin-left:-16px; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s;">{{ descLabel }}<span style="{{ iconDescCaret }}"></span></button>
-        </div>
-        <aside style="border:1px solid #E4DAC6; border-radius:14px; background:#FFFDF6; padding:18px 20px;">
-        <span style="display:block; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">Doporučené recepty</span>
-        <div style="display:flex; flex-direction:column; margin-top:6px;">
-          <sc-for list="{{ featured }}" as="r" hint-placeholder-count="5">
-            <a href="{{ r.href }}" class="ek-pick">
-              <span style="{{ r.thumb }}"></span>
-              <span style="display:flex; flex-direction:column; gap:3px; min-width:0;">
-                <span class="ek-pick-t" style="font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24; transition:color .2s;">{{ r.title }}</span>
-                <span style="font-size:12.5px; color:#8a8776;">{{ r.meta }}</span>
-              </span>
-              <span style="{{ iconPickArrow }}"></span>
-            </a>
-          </sc-for>
-        </div>
-        <a href="#vypis" onClick="{{ scrollToList }}" class="ek-btn-secondary" style="display:inline-flex; align-items:center; gap:8px; margin-top:16px; border:1.5px solid #4C653D; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none; transition:background .2s, color .2s;">Všechny recepty<span style="{{ iconPickAll }}"></span></a>
-      </aside>
+          <button onClick="{{ toggleDesc }}" class="ek-btn-secondary" style="display:inline-flex; align-self:flex-start; margin-top:14px; align-items:center; gap:9px; height:44px; padding:0 20px 0 14px; border:1.5px solid #4C653D; border-radius:999px; background:transparent; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s, color .2s;"><span style="{{ iconDescCaret }}"></span><span>{{ descLabel }}</span></button>
       </div>
       </sc-if>
     </div>
@@ -178,15 +191,16 @@
   <section style="padding:30px 32px 0;" class="ek-pad">
     <div style="max-width:1560px; margin:0 auto;">
       <h2 class="ek-h2" style="margin-bottom:18px;">Kategorie receptáře</h2>
-      <sc-if value="{{ tilesV1 }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ tilesV1 }}" hint-placeholder-val="{{ true }}">
         <div class="ek-tiles" ref="{{ rtRef }}">
           <sc-for list="{{ subcats }}" as="c" hint-placeholder-count="7">
             <dc-import name="ui-IngredientTile" title="{{ c.title }}" icon="{{ c.icon }}" href="{{ c.href }}" hint-size="100%,82px"></dc-import>
           </sc-for>
         </div>
         <div aria-hidden="true" style="{{ rtTrack }}"><span style="{{ rtThumb }}"></span></div>
+        <div style="{{ rtNav }}"><button onClick="{{ rtPrev }}" disabled="{{ rtAtStart }}" aria-label="Předchozí" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat;"></span></button><button onClick="{{ rtNext }}" disabled="{{ rtAtEnd }}" aria-label="Další" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat;"></span></button></div>
       </sc-if>
-      <sc-if value="{{ tilesV2 }}" hint-placeholder-val="{{ true }}">
+      <sc-if value="{{ tilesV2 }}" hint-placeholder-val="{{ false }}">
         <div class="ek-life" ref="{{ rlRef }}">
           <sc-for list="{{ subcats }}" as="c" hint-placeholder-count="7">
             <dc-import name="ui-IngredientTile" variant="lifestyle" ratio="4/3" title="{{ c.title }}" icon="{{ c.icon }}" img="{{ c.img }}" href="{{ c.href }}" hint-size="100%,240px"></dc-import>
@@ -292,7 +306,7 @@ class Component extends DCLogic {
     this._tr[key] = (el) => {
       if (bound && bound !== el) { bound.removeEventListener('scroll', fn); if (ro) ro.disconnect(); bound = null; }
       if (!el || bound === el) return;
-      bound = el; fn = () => upd(el);
+      bound = el; fn = () => upd(el); this._trEl = this._trEl || {}; this._trEl[key] = el;
       el.addEventListener('scroll', fn, { passive: true });
       if (window.ResizeObserver) { ro = new ResizeObserver(fn); ro.observe(el); }
       requestAnimationFrame(fn);
@@ -304,11 +318,12 @@ class Component extends DCLogic {
     const w = Math.max(t.w, 0.12);
     return 'position:absolute; top:0; bottom:0; left:' + (t.x * (1 - w) * 100).toFixed(2) + '%; width:' + (w * 100).toFixed(2) + '%; border-radius:999px; background:#4C653D;';
   }
+  carGo(key, dir) { const el = this._trEl && this._trEl[key]; if (!el) return; const it = el.firstElementChild; const gap = parseFloat(getComputedStyle(el).columnGap) || 14; const step = it ? it.getBoundingClientRect().width + gap : el.clientWidth; const per = Math.max(1, Math.floor((el.clientWidth + gap) / step)); el.scrollBy({ left: dir * step * per, behavior: 'smooth' }); }
   trackStyle(key) {
     const t = (this.state.tracks || {})[key];
     return 'display:' + (t && t.w < 0.995 ? 'block' : 'none') + '; position:relative; height:3px; margin-top:6px; border-radius:999px; background:#E4DAC6; overflow:hidden;';
   }
-  state = { descOpen: false, pantry: [], mode: 'all', q: '', page: 1, filters: { type: [], level: [], time: [], cat: [] }, tiles: 'v2', barOpen: true, extra: 0 };
+  state = { descOpen: false, pantry: [], mode: 'all', q: '', page: 1, filters: { type: [], level: [], time: [], cat: [] }, tiles: 'v1', barOpen: true, extra: 0 };
 
   static ING = [
     { g: 'Oleje a másla', items: ['Mandlový olej', 'Kokosový olej', 'Bambucké máslo', 'Ricinový olej', 'Olivový olej'] },
@@ -388,6 +403,8 @@ class Component extends DCLogic {
 
   norm(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 
+  static ranked() { return Component.ITEMS.slice().sort((a, b) => (b.r - a.r) || ((b.rc || 0) - (a.rc || 0))); }
+
   decorate(it, i) {
     const P = this.state.pantry;
     const ing = it.ing || [];
@@ -465,7 +482,10 @@ class Component extends DCLogic {
     const fullyMakeable = Component.ITEMS.filter(it => (it.ing || []).length && !(it.ing || []).some(n => P.indexOf(n) === -1)).length;
 
     return {
-      rtRef: this.trackRef('rt'), rtThumb: this.thumbStyle('rt'), rtTrack: this.trackStyle('rt'), rlRef: this.trackRef('rl'), rlThumb: this.thumbStyle('rl'), rlTrack: this.trackStyle('rl'),
+      rtRef: this.trackRef('rt'), rtThumb: this.thumbStyle('rt'), rtTrack: this.trackStyle('rt'),
+      rtNav: 'display:' + (((this.state.tracks || {}).rt || { w: 1 }).w < 0.995 ? 'flex' : 'none') + '; justify-content:flex-end; gap:8px; margin-top:14px;',
+      rtPrev: () => this.carGo('rt', -1), rtNext: () => this.carGo('rt', 1),
+      rtAtStart: ((this.state.tracks || {}).rt || { x: 0 }).x <= 0.01, rtAtEnd: ((this.state.tracks || {}).rt || { x: 0 }).x >= 0.99, rlRef: this.trackRef('rl'), rlThumb: this.thumbStyle('rl'), rlTrack: this.trackStyle('rl'),
       crumbs: [{ label: 'Úvod', href: 'index.html' }, { label: 'Receptář' }],
       totalLabel: Component.plural(Component.ITEMS.length, 'recept v receptáři', 'recepty v receptáři', 'receptů v receptáři'),
 
@@ -473,7 +493,7 @@ class Component extends DCLogic {
       descClosed: !S.descOpen,
       descLabel: S.descOpen ? 'Zabalit' : 'Přečíst celé',
       toggleDesc: () => this.setState({ descOpen: !S.descOpen }),
-      iconDescCaret: this.mask(S.descOpen ? 'arrow-up-01' : 'arrow-down-01', 20, 'currentColor'),
+      iconDescCaret: this.mask(S.descOpen ? 'minus-sign-circle' : 'plus-sign-circle', 22, '#4C653D'),
 
       subcats: [
         { title: 'Recepty', icon: 'cook-book', href: '#', img: 'assets/receptar/recepty.webp' },
@@ -497,7 +517,8 @@ class Component extends DCLogic {
       iconBarOpen: this.mask('grid-view', 16, '#4C653D'),
       iconBarClose: this.mask('cancel-01', 16, '#4C653D'),
 
-      featured: Component.ITEMS.filter(it => it.f).slice(0, 3).map(it => {
+      topRecipes: Component.ranked().slice(0, 2).map(it => this.decorate(it, Component.ITEMS.indexOf(it))),
+      featured: Component.ranked().slice(2, 7).map(it => {
         const d = this.decorate(it, Component.ITEMS.indexOf(it));
         return Object.assign(d, {
           meta: d.category + ' · ' + d.level + ' · ' + d.time,

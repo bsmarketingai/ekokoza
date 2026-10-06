@@ -92,6 +92,179 @@
   </section>
 
   <section class="day">
+    <h2>6. října 2026</h2>
+    <p class="sum">Uložené košíky jen pro přihlášené, chipy průvodce v kategorii bez ikon.</p>
+
+    <div class="item">
+      <span class="tag">Hlavička · Megamenu</span>
+      <h3>Suroviny, Produkty a Obaly s fotkami kategorií</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Suroviny, Produkty i Obaly v megamenu udělat tak, jako by kategorie měly fotky — zatím místo fotek placeholder. U surovin nedávat ikonky, všude budou fotky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V MM2/MM3 mají všechny tři nabídky stejné sloupce jako Výroba: vlevo čtverec 48 px pro fotku, vedle název kategorie a případné podkategorie. Kde fotka zatím není (Suroviny, Produkty), je šrafovaný placeholder s přerušovaným rámečkem; Obaly už fotky mají, zůstaly. Ikony u surovin se v megamenu nepoužívají.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Megamenu</span>
+      <h3>Výchozí megamenu MM3 na všech stránkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Megamenu nastavit všude defaultně na verzi MM3 — fotka, hlavní kategorie, podkategorie a tlačítko více.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všechny stránky otevírají megamenu ve variantě MM3 (fotka a název kategorie, nejvýš 5 podkategorií a odkaz Zobrazit vše). Dřívější volba z přepínače se nepřebírá; přepínač MM1 / MM2 / MM3 v ukázce zůstává pro porovnání. Názvy hlavních kategorií ve sloupcích zvětšeny z 15,5 na 17,5 px.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Mobilní menu</span>
+      <h3>Třetí úroveň podkategorií v mobilním menu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V mobilním menu (hamburger) doplnit 3. úroveň podkategorií — nyní byly jen druhé úrovně.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Menu bere stejný strom jako megamenu. Podkategorie 2. úrovně, které mají další členění (např. Výroba → Kosmetika), mají šipku a po klepnutí rozbalí odsazený seznam 3. úrovně (bez podbarvení) s odkazem „Vše v kategorii …“. Otevřená je vždy jen jedna podkategorie. Položky bez další úrovně zůstávají přímými odkazy.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Receptář · Kategorie</span>
+      <h3>Kategorie receptáře bez fotek</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Kategorie receptáře udělat standardně bez fotek jako u kategorie Produktů — zredukovat výšku, nejít směrem fotek a velkých bloků.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Výchozí podoba jsou kompaktní dlaždice s ikonou a názvem (stejné jako podkategorie u Produktů). Na mobilu je pás s prolnutím vpravo, ukazatelem posunu a šipkami pod ním. Fotková varianta zůstává jen v přepínači ukázky.</p>
+      </div>
+      <a class="show-btn" href="receptar.dc.html" target="_blank">Zobrazit receptář<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Receptář · Rozbalený popis</span>
+      <h3>TOP recepty v rozbaleném popisu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Po rozbalení popisu dát do dvou sloupců dvě klasické karty receptů (TOP recepty) a ve třetím sloupci do stejné výšky řádkově několik dalších receptů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod textem popisu je třísloupcová řada: dvě klasické karty receptů s nejlepším hodnocením a třetí sloupec „Další oblíbené recepty“ s řádkovým výpisem (náhled, název, kategorie · obtížnost · čas) a tlačítkem Všechny recepty. Sloupec drží výšku karet. Na M jsou karty vedle sebe a výpis pod nimi, na XS vše pod sebou. Rozcestníky Mám doma… a Všechny recepty jsou v rozbaleném popisu skryté (v kódu zůstaly).</p>
+      </div>
+      <a class="show-btn" href="receptar.dc.html" target="_blank">Zobrazit receptář<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Receptář · Popis</span>
+      <h3>Tlačítko Přečíst celé / Zabalit jako sekundární</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Tlačítko v popisu receptáře udělat sekundární, stejně jako u kategorie Produkty.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítko je sekundární (zelený obrys, na hover plná zelená) s ikonou plus v kolečku vlevo, po rozbalení minus v kolečku a text Zabalit — shodně s Detailním popisem kategorie.</p>
+      </div>
+      <a class="show-btn" href="receptar.dc.html" target="_blank">Zobrazit receptář<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Podkategorie</span>
+      <h3>Karusel podkategorií sjednocen s ostatními</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Karuselu podkategorií chyběl pravý gradient a navigace pod karuselem jako u ostatních karuselů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na mobilu pás podkategorií vpravo prolíná do ztracena (naznačuje další dlaždice) a pod ukazatelem posunu jsou vpravo šipky Předchozí / Další ve stejném provedení jako u ostatních karuselů. Na krajích se příslušná šipka zneaktivní.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Produktová karta V2 · XS</span>
+      <h3>Karta ve dvou sloupcích na XS</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na XS ve dvou sloupcích se obsah karty nevejde — CTA nechat jen jako ikonu (aby se vešlo se stepperem), věrnostní program zalomit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na XS/XXS (do 549 px) je tlačítko Do košíku jen kulatá ikona košíku 38 px, počítadlo množství zabere zbytek řádku. Řádek „Ve věrnostním programu…“ se zalamuje na více řádků místo ořezu. Na větších šířkách beze změny.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Filtry</span>
+      <h3>Tlačítka filtrů bez počtu vybraných hodnot</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Odebrat čísla u filtrů i u tlačítka Všechny filtry.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítka jednotlivých filtrů (Dostupnost, Typ pleti…) už nezobrazují zelený odznak s počtem vybraných hodnot; aktivní filtr poznáte podle zvýraznění tlačítka a čipů vybraných hodnot pod lištou. Odebrán i oranžový počet u tlačítka Všechny filtry.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Výpis</span>
+      <h3>Skryté řazení nad výpisem</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na kategoriích skrýt výběr Řadit (Výchozí řazení, Od nejlevnějšího…).</p>
+        <span class="k">Řešení</span>
+        <p class="v">Výběr řazení nad výpisem produktů je skrytý (v kódu zůstal, lze ho kdykoli vrátit). Počet zobrazených produktů je přesunutý na řádek s nadpisem Filtrovat, zarovnaný úplně doprava.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Patička · Tlačítka</span>
+      <h3>Oprava hover stavu sekundárních tlačítek</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V hover stavu tlačítek v patičce (např. Vrácení a reklamace) nebyl čitelný text.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Krémové přebarvení na hover se omylem aplikovalo i na text tlačítka (krémový text na krémovém podkladu). Nyní se přebarvuje jen ikona; text je na zeleném podkladu krémový a čitelný. Opraveno na všech stránkách.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Popis</span>
+      <h3>Výraznější tlačítko Detailní popis kategorie</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Tlačítko opticky zapadá — dát ikonu plus v kolečku a udělat ho výraznější.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítko je sekundární (zelený obrys, průhledné pozadí, na hover plná zelená — stejně jako ostatní sekundární tlačítka) s ikonou plus v kolečku vlevo; po rozbalení se mění na minus v kolečku a text Zabalit.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Průvodce</span>
+      <h3>Chipy průvodce bez ikon</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Odebrat ikony u chipů (např. „Co znamená INCI“) a přesunout je do druhého sloupce vedle popisu kategorie.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chipy v hlavičce kategorie mají jen text, ikony odstraněny. Chipy jsou přesunuté do druhého sloupce vedle popisu kategorie (na užších šířkách pod popis).</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Košík · Uložené košíky</span>
+      <h3>Uložené košíky až po přihlášení</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Uložené košíky jsou vidět až po přihlášení, bez účtu nejde košík uložit. Promítnout do přepínače Host / Přihlášen.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V kroku 1 se výběr aktuálního košíku, odstranění a „Uložit obsah jako nový košík“ zobrazují jen ve stavu Přihlášen. Host vidí místo nich větu „Košík si můžete uložit na později po přihlášení.“ a tlačítko Přihlásit se (v ukázce přepne na stav Přihlášen).</p>
+      </div>
+      <a class="show-btn" href="kosik.dc.html" target="_blank">Zobrazit košík<span class="show-ico"></span></a>
+    </div>
+  </section>
+
+  <section class="day">
     <h2>30. září 2026</h2>
     <p class="sum">Odkaz na všechny recenze v bloku hodnocení, zvýraznění nejvýhodnější měrné ceny , popup o nejnižší možné ceně a recenze v detailu receptu. Věrnostní program a O nás převedené do současného stylu webu.</p>
 
@@ -1123,6 +1296,18 @@
 
     <div class="item">
       <span class="tag">Hlavička · Megamenu</span>
+      <h3>Suroviny, Produkty a Obaly s fotkami kategorií</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Suroviny, Produkty i Obaly v megamenu udělat tak, jako by kategorie měly fotky — zatím místo fotek placeholder. U surovin nedávat ikonky, všude budou fotky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V MM2/MM3 mají všechny tři nabídky stejné sloupce jako Výroba: vlevo čtverec 48 px pro fotku, vedle název kategorie a případné podkategorie. Kde fotka zatím není (Suroviny, Produkty), je šrafovaný placeholder s přerušovaným rámečkem; Obaly už fotky mají, zůstaly. Ikony u surovin se v megamenu nepoužívají.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Megamenu</span>
       <h3>Megamenu — finální stav</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -1132,9 +1317,9 @@
           <p style="margin:0 0 8px;"><strong>Obecně:</strong> karta topovaného produktu je skrytá (zůstává v kódu), odkazy zabírají celou šířku ve 4 sloupcích.</p>
         <p style="margin:0 0 8px;"><strong>Obrázky u kategorií:</strong> Suroviny mají před názvem zelenou ikonu 20 px (stejné jako na homepage, „Jíly a tenzidy“ ikonu mýdla). Obaly (12 kategorií) a Výroba (Kosmetika, Svíčky, Potraviny, Obaly, Knihy a návody) mají fotku 48 × 48 px na bílém podkladu bez rámečku, fotka se neořezává. Doprava zdarma fotku nemá.</p>
         <p style="margin:0 0 8px;"><strong>Přepínač MM1 / MM2 / MM3:</strong> je v ovládací liště ukázky, na stránkách bez lišty jako malá plovoucí lišta vlevo dole. Volba platí pro všechny stránky a pamatuje se.</p>
-        <p style="margin:0 0 8px;"><strong>MM1 (výchozí):</strong> jen hlavní kategorie v mřížce po čtyřech.</p>
+        <p style="margin:0 0 8px;"><strong>MM1:</strong> jen hlavní kategorie v mřížce po čtyřech.</p>
         <p style="margin:0 0 8px;"><strong>MM2:</strong> u Výroby, Produktů a Receptáře má každá kategorie vlastní sloupec s názvem a všemi podkategoriemi podle ekokoza.cz. Fotka kategorie stojí vlevo od sloupce. Kategorie s více než 10 podkategoriemi (Kosmetika) zabírá dva sloupce a vypisuje je ve dvou řadách.</p>
-        <p style="margin:0 0 8px;"><strong>MM3:</strong> stejné sloupce jako MM2, ale nejvýš 5 podkategorií a pod nimi odkaz „Zobrazit vše“ do celé kategorie.</p>
+        <p style="margin:0 0 8px;"><strong>MM3 (výchozí od 6. října):</strong> stejné sloupce jako MM2, ale nejvýš 5 podkategorií a pod nimi odkaz „Zobrazit vše“ do celé kategorie.</p>
         <p style="margin:0 0 8px;"><strong>Otevřené:</strong> Suroviny a Obaly podkategorie nemají, v MM2/MM3 se proto zobrazují jako v MM1 — čeká se na seznam podkategorií nebo souhlas s návrhem. U Produkty › Potraviny a čtyř kategorií Receptáře jsou zatím jen první tři podkategorie z webu.</p>
         </div>
       </div>
@@ -2992,6 +3177,102 @@
         <p class="v">Kontejner je 1560 px, vnější shell 1720 px; hlavička, megamenu a patička odpovídajícím způsobem. Propsáno do všech stránek, komponent, design systému i projektových instrukcí.</p>
       </div>
       <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Megamenu</span>
+      <h3>Suroviny, Produkty a Obaly s fotkami kategorií</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Suroviny, Produkty i Obaly v megamenu udělat tak, jako by kategorie měly fotky — zatím místo fotek placeholder. U surovin nedávat ikonky, všude budou fotky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V MM2/MM3 mají všechny tři nabídky stejné sloupce jako Výroba: vlevo čtverec 48 px pro fotku, vedle název kategorie a případné podkategorie. Kde fotka zatím není (Suroviny, Produkty), je šrafovaný placeholder s přerušovaným rámečkem; Obaly už fotky mají, zůstaly. Ikony u surovin se v megamenu nepoužívají.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Megamenu</span>
+      <h3>Výchozí megamenu MM3 na všech stránkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Megamenu nastavit všude defaultně na verzi MM3 — fotka, hlavní kategorie, podkategorie a tlačítko více.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Všechny stránky otevírají megamenu ve variantě MM3 (fotka a název kategorie, nejvýš 5 podkategorií a odkaz Zobrazit vše). Dřívější volba z přepínače se nepřebírá; přepínač MM1 / MM2 / MM3 v ukázce zůstává pro porovnání. Názvy hlavních kategorií ve sloupcích zvětšeny z 15,5 na 17,5 px.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Mobilní menu</span>
+      <h3>Třetí úroveň podkategorií v mobilním menu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">V mobilním menu (hamburger) doplnit 3. úroveň podkategorií — nyní byly jen druhé úrovně.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Menu bere stejný strom jako megamenu. Podkategorie 2. úrovně, které mají další členění (např. Výroba → Kosmetika), mají šipku a po klepnutí rozbalí odsazený seznam 3. úrovně (bez podbarvení) s odkazem „Vše v kategorii …“. Otevřená je vždy jen jedna podkategorie. Položky bez další úrovně zůstávají přímými odkazy.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Receptář · Kategorie</span>
+      <h3>Kategorie receptáře bez fotek</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Kategorie receptáře udělat standardně bez fotek jako u kategorie Produktů — zredukovat výšku, nejít směrem fotek a velkých bloků.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Výchozí podoba jsou kompaktní dlaždice s ikonou a názvem (stejné jako podkategorie u Produktů). Na mobilu je pás s prolnutím vpravo, ukazatelem posunu a šipkami pod ním. Fotková varianta zůstává jen v přepínači ukázky.</p>
+      </div>
+      <a class="show-btn" href="receptar.dc.html" target="_blank">Zobrazit receptář<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Receptář · Rozbalený popis</span>
+      <h3>TOP recepty v rozbaleném popisu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Po rozbalení popisu dát do dvou sloupců dvě klasické karty receptů (TOP recepty) a ve třetím sloupci do stejné výšky řádkově několik dalších receptů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod textem popisu je třísloupcová řada: dvě klasické karty receptů s nejlepším hodnocením a třetí sloupec „Další oblíbené recepty“ s řádkovým výpisem (náhled, název, kategorie · obtížnost · čas) a tlačítkem Všechny recepty. Sloupec drží výšku karet. Na M jsou karty vedle sebe a výpis pod nimi, na XS vše pod sebou. Rozcestníky Mám doma… a Všechny recepty jsou v rozbaleném popisu skryté (v kódu zůstaly).</p>
+      </div>
+      <a class="show-btn" href="receptar.dc.html" target="_blank">Zobrazit receptář<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Receptář · Popis</span>
+      <h3>Tlačítko Přečíst celé / Zabalit jako sekundární</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Tlačítko v popisu receptáře udělat sekundární, stejně jako u kategorie Produkty.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Tlačítko je sekundární (zelený obrys, na hover plná zelená) s ikonou plus v kolečku vlevo, po rozbalení minus v kolečku a text Zabalit — shodně s Detailním popisem kategorie.</p>
+      </div>
+      <a class="show-btn" href="receptar.dc.html" target="_blank">Zobrazit receptář<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Podkategorie</span>
+      <h3>Karusel podkategorií sjednocen s ostatními</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Karuselu podkategorií chyběl pravý gradient a navigace pod karuselem jako u ostatních karuselů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na mobilu pás podkategorií vpravo prolíná do ztracena (naznačuje další dlaždice) a pod ukazatelem posunu jsou vpravo šipky Předchozí / Další ve stejném provedení jako u ostatních karuselů. Na krajích se příslušná šipka zneaktivní.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Produktová karta V2 · XS</span>
+      <h3>Karta ve dvou sloupcích na XS</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na XS ve dvou sloupcích se obsah karty nevejde — CTA nechat jen jako ikonu (aby se vešlo se stepperem), věrnostní program zalomit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na XS/XXS (do 549 px) je tlačítko Do košíku jen kulatá ikona košíku 38 px, počítadlo množství zabere zbytek řádku. Řádek „Ve věrnostním programu…“ se zalamuje na více řádků místo ořezu. Na větších šířkách beze změny.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
     </div>
 
     <div class="item">

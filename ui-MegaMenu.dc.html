@@ -19,8 +19,9 @@
         <sc-for list="{{ groups }}" as="g" hint-placeholder-count="6">
           <div style="{{ g.boxStyle }}">
             <sc-if value="{{ g.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ g.img }}" alt="" loading="lazy" style="width:48px; height:48px; flex:0 0 48px; object-fit:contain; background:#FFFFFF; border-radius:8px; padding:3px; box-sizing:border-box;"></sc-if>
+            <sc-if value="{{ g.hasPh }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" title="Místo pro fotku kategorie" style="width:48px; height:48px; flex:0 0 48px; border-radius:8px; border:1px dashed #CFC4AA; background:repeating-linear-gradient(135deg, #F1EADC 0 6px, #FBF8F1 6px 12px); box-sizing:border-box;"></span></sc-if>
             <div style="display:flex; flex-direction:column; gap:1px; min-width:0; flex:1;">
-            <a href="{{ g.href }}" onClick="{{ onClose }}" class="ek-mega-link" style="display:flex; align-items:center; gap:10px; padding:6px 10px; margin-left:-10px; border-radius:8px; text-decoration:none; color:#4C653D; font-size:15.5px; font-weight:600; transition:background .15s, color .15s;">{{ g.name }}</a>
+            <a href="{{ g.href }}" onClick="{{ onClose }}" class="ek-mega-link" style="display:flex; align-items:center; gap:10px; padding:6px 10px; margin-left:-10px; border-radius:8px; text-decoration:none; color:#4C653D; font-size:17.5px; line-height:1.25; font-weight:600; transition:background .15s, color .15s;">{{ g.name }}</a>
             <div style="{{ g.listStyle }}"><sc-for list="{{ g.children }}" as="c" hint-placeholder-count="3">
               <a href="{{ c.href }}" onClick="{{ onClose }}" class="ek-mega-link" style="display:block; padding:5px 10px; margin-left:-10px; border-radius:8px; text-decoration:none; color:#52524a; font-size:14px; line-height:1.35; transition:background .15s, color .15s;">{{ c.name }}</a>
             </sc-for></div>
@@ -74,7 +75,7 @@ class Component extends DCLogic {
         const shown = lim ? kids.slice(0, 5) : kids;
         const wide = shown.length > 10;
         return Object.assign({}, g, { children: shown, showAll: lim && kids.length > 0,
-          hasImg: !!g.img, boxStyle: 'display:flex; align-items:flex-start; gap:14px; min-width:0;' + (wide ? ' grid-column:span 2; grid-row:span 3;' : ''),
+          hasImg: !!g.img, hasPh: !g.img && !!g.ph, boxStyle: 'display:flex; align-items:flex-start; gap:14px; min-width:0;' + (wide ? ' grid-column:span 2; grid-row:span 3;' : ''),
           listStyle: wide ? 'display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:24px;' : 'display:flex; flex-direction:column; gap:1px;' });
       }),
       iconArrowSm: this.mask('arrow-right-02', 16),

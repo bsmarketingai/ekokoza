@@ -23,7 +23,7 @@
   .ek-btn-primary:hover { background: #4C653D !important; border-color: #4C653D !important; }
   .ek-btn-ghost:hover { background: #EFE7D6 !important; }
   .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
-  .ek-btn-secondary:hover span { background-color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover span[style*="mask"] { background-color: #F6F1E7 !important; }
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
   .ek-cat:hover .ek-ph { transform: scale(1.05); }
   .ek-cat:hover .ek-cat-ov { opacity: 1; }
@@ -34,6 +34,9 @@
   .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
   .ek-p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
   .ek-tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+  .ek-car-btn { width:38px; height:38px; border-radius:999px; border:1.5px solid #4C653D; background:#fff; color:#4C653D; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; padding:0; transition:background .2s, color .2s, opacity .2s; }
+  .ek-car-btn:hover:not(:disabled) { background:#4C653D; color:#F6F1E7; }
+  .ek-car-btn:disabled { opacity:.35; cursor:default; }
   .ek-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
   .ek-bar { position: sticky; top: 148px; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: nowrap; padding: 12px 16px; border: 1px solid #E4DAC6; border-radius: 14px; background: linear-gradient(160deg, rgba(252,250,243,.97) 0%, rgba(238,244,220,.97) 60%, rgba(226,239,203,.97) 100%); backdrop-filter: blur(6px); box-shadow: 0 12px 26px -22px rgba(45,58,46,.5); }
   .ek-facetrow { display: flex; flex-wrap: nowrap; gap: 8px; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, #000 calc(100% - 56px), rgba(0,0,0,0) 100%); }
@@ -87,7 +90,7 @@
   }
   @media (max-width: 860px) {
     /* Podkategorie na mobilu: dve rady s horizontalnim scrollem — usetri misto a zustanou videt */
-    .ek-tiles { display: grid !important; grid-template-columns: none !important; grid-auto-flow: column !important; grid-auto-columns: minmax(180px, 42%) !important; grid-template-rows: auto !important; overflow-x: auto !important; scroll-snap-type: x mandatory; margin-left: -20px !important; margin-right: -20px !important; padding: 0 20px 0 !important; scroll-padding-left: 20px; scrollbar-width: none; -ms-overflow-style: none; }
+    .ek-tiles { display: grid !important; grid-template-columns: none !important; grid-auto-flow: column !important; grid-auto-columns: minmax(180px, 42%) !important; grid-template-rows: auto !important; overflow-x: auto !important; scroll-snap-type: x mandatory; margin-left: -20px !important; margin-right: -20px !important; padding: 0 20px 0 !important; scroll-padding-left: 20px; scrollbar-width: none; -ms-overflow-style: none; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); }
     .ek-tiles > * { scroll-snap-align: start; }
     .ek-tiles::-webkit-scrollbar { display: none; }
     /* bez animace na dotykovych zarizenich */
@@ -189,6 +192,11 @@
           </sc-if>
         </div>
         </div>
+        <div style="display:flex; flex-wrap:wrap; align-content:flex-start; gap:8px; min-width:0;">
+          <sc-for list="{{ guideChips }}" as="q" hint-placeholder-count="4">
+            <a href="{{ q.href }}" class="ek-guidechip">{{ q.label }}</a>
+          </sc-for>
+        </div>
       </div>
       <sc-if value="{{ eduOpen }}" hint-placeholder-val="{{ false }}">
         <div class="ek-guiderow">
@@ -221,13 +229,8 @@
           </sc-for>
         </div>
       </sc-if>
-      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;">
-        <sc-for list="{{ guideChips }}" as="q" hint-placeholder-count="4">
-          <a href="{{ q.href }}" class="ek-guidechip"><span style="{{ q.icon }}"></span>{{ q.label }}</a>
-        </sc-for>
-      </div>
       <div style="margin-top:16px;">
-        <button onClick="{{ toggleDesc }}" style="display:inline-flex; align-items:center; gap:6px; border:none; background:transparent; padding:0; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; color:#4C653D; cursor:pointer;"><span class="ek-link-u">{{ descLabel }}</span><span style="{{ iconDescCaret }}"></span></button>
+        <button onClick="{{ toggleDesc }}" class="ek-btn-secondary" style="display:inline-flex; align-items:center; gap:9px; height:44px; padding:0 20px 0 14px; border:1.5px solid #4C653D; border-radius:999px; background:transparent; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; color:#4C653D; cursor:pointer; transition:background .2s, color .2s;"><span style="{{ iconDescCaret }}"></span><span>{{ descLabel }}</span></button>
       </div>
       <sc-if value="{{ isEdu }}" hint-placeholder-val="{{ true }}">
         <div class="ek-course">
@@ -260,7 +263,7 @@
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;">
           <sc-for list="{{ guideChips }}" as="q" hint-placeholder-count="4">
-            <a href="{{ q.href }}" class="ek-guidechip"><span style="{{ q.icon }}"></span>{{ q.label }}</a>
+            <a href="{{ q.href }}" class="ek-guidechip">{{ q.label }}</a>
           </sc-for>
         </div>
         <sc-if value="{{ isEdu }}" hint-placeholder-val="{{ true }}">
@@ -319,6 +322,7 @@
         </sc-for>
       </div>
       <div aria-hidden="true" style="{{ ktTrack }}"><span style="{{ ktThumb }}"></span></div>
+      <div style="{{ ktNav }}"><button onClick="{{ ktPrev }}" disabled="{{ ktAtStart }}" aria-label="Předchozí" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat;"></span></button><button onClick="{{ ktNext }}" disabled="{{ ktAtEnd }}" aria-label="Další" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat;"></span></button></div>
     </div>
   </section>
 
@@ -329,9 +333,10 @@
         <dc-import name="ui-FilterPanel" variant="sidebar" groups="{{ facetGroups }}" priceMin="{{ priceMin }}" priceMax="{{ priceMax }}" onPriceMin="{{ onPriceMin }}" onPriceMax="{{ onPriceMax }}" onClear="{{ clearFilters }}" hint-size="100%,620px"></dc-import>
       </aside>
       <div style="min-width:0;">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
-        <span style="font-size:14.5px; color:#6B6B5E;">{{ shownLabel }}</span>
-        <label style="display:inline-flex; align-items:center; gap:10px; position:relative;">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px 16px; flex-wrap:wrap; margin-bottom:12px;">
+        <h2 class="ek-h2" style="margin:0; font-size:24px;">Filtrovat</h2>
+        <span style="font-size:14.5px; color:#6B6B5E; margin-left:auto;">{{ shownLabel }}</span>
+        <label style="display:none; align-items:center; gap:10px; position:relative;">
           <span style="font-size:14.5px; color:#6B6B5E;">Řadit</span>
           <select onChange="{{ onSort }}" value="{{ sort }}" class="ek-select">
             <option value="default">Výchozí řazení</option>
@@ -342,13 +347,11 @@
           <span style="{{ iconSortCaret }}"></span>
         </label>
       </div>
-
-      <h2 class="ek-h2" style="margin:0 0 12px; font-size:24px;">Filtrovat</h2>
       <div class="ek-bar">
         <div class="ek-facetrow">
           <sc-for list="{{ barFacets }}" as="g" hint-placeholder-count="4">
             <div style="position:relative; flex:0 0 auto;">
-              <button onClick="{{ g.toggle }}" aria-expanded="{{ g.open }}" class="ek-tool" style="{{ g.btnStyle }}">{{ g.label }}<sc-if value="{{ g.hasCount }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 6px; border-radius:999px; background:#4C653D; color:#F6F1E7; font-size:12px; font-weight:600;">{{ g.count }}</span></sc-if><span style="{{ g.caret }}"></span></button>
+              <button onClick="{{ g.toggle }}" aria-expanded="{{ g.open }}" class="ek-tool" style="{{ g.btnStyle }}">{{ g.label }}<span style="{{ g.caret }}"></span></button>
             </div>
           </sc-for>
         </div>
@@ -364,7 +367,7 @@
             </sc-for>
           </div>
         </sc-if>
-        <button onClick="{{ openDrawer }}" class="ek-tool ek-allfilters"><span style="{{ iconFilter }}"></span>Všechny filtry<sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:22px; padding:0 6px; border-radius:999px; background:#D14405; color:#fff; font-size:12.5px;">{{ filterCount }}</span></sc-if></button>
+        <button onClick="{{ openDrawer }}" class="ek-tool ek-allfilters"><span style="{{ iconFilter }}"></span>Všechny filtry</button>
       </div>
       <sc-if value="{{ facetOpen }}" hint-placeholder-val="{{ false }}">
         <div onClick="{{ closeFacet }}" style="position:fixed; inset:0; z-index:19;"></div>
@@ -488,7 +491,7 @@ class Component extends DCLogic {
     this._tr[key] = (el) => {
       if (bound && bound !== el) { bound.removeEventListener('scroll', fn); if (ro) ro.disconnect(); bound = null; }
       if (!el || bound === el) return;
-      bound = el; fn = () => upd(el);
+      bound = el; fn = () => upd(el); this._trEl = this._trEl || {}; this._trEl[key] = el;
       el.addEventListener('scroll', fn, { passive: true });
       if (window.ResizeObserver) { ro = new ResizeObserver(fn); ro.observe(el); }
       requestAnimationFrame(fn);
@@ -500,6 +503,7 @@ class Component extends DCLogic {
     const w = Math.max(t.w, 0.12);
     return 'position:absolute; top:0; bottom:0; left:' + (t.x * (1 - w) * 100).toFixed(2) + '%; width:' + (w * 100).toFixed(2) + '%; border-radius:999px; background:#4C653D;';
   }
+  carGo(key, dir) { const el = this._trEl && this._trEl[key]; if (!el) return; const it = el.firstElementChild; const gap = parseFloat(getComputedStyle(el).columnGap) || 14; const step = it ? it.getBoundingClientRect().width + gap : el.clientWidth; const per = Math.max(1, Math.floor((el.clientWidth + gap) / step)); el.scrollBy({ left: dir * step * per, behavior: 'smooth' }); }
   trackStyle(key) {
     const t = (this.state.tracks || {})[key];
     return 'display:' + (t && t.w < 0.995 ? 'block' : 'none') + '; position:relative; height:3px; margin-top:6px; border-radius:999px; background:#E4DAC6; overflow:hidden;';
@@ -711,6 +715,9 @@ class Component extends DCLogic {
 
     return {
       ktRef: this.trackRef('kt'), ktThumb: this.thumbStyle('kt'), ktTrack: this.trackStyle('kt'),
+      ktNav: 'display:' + (((this.state.tracks || {}).kt || { w: 1 }).w < 0.995 ? 'flex' : 'none') + '; justify-content:flex-end; gap:8px; margin-top:14px;',
+      ktPrev: () => this.carGo('kt', -1), ktNext: () => this.carGo('kt', 1),
+      ktAtStart: ((this.state.tracks || {}).kt || { x: 0 }).x <= 0.01, ktAtEnd: ((this.state.tracks || {}).kt || { x: 0 }).x >= 0.99,
       crumbs: [{ label: 'Úvod', href: 'index.html' }, { label: 'Produkty' }],
       totalLabel: Component.pcs(Component.PRODUCTS.length) + ' v kategorii',
       shownLabel: 'Zobrazeno ' + shown.length + ' z ' + list.length + ' produktů',
@@ -719,7 +726,7 @@ class Component extends DCLogic {
       descClosed: !this.state.descOpen,
       descLabel: this.state.descOpen ? 'Zabalit' : 'Detailní popis kategorie',
       toggleDesc: () => this.setState({ descOpen: !this.state.descOpen }),
-      iconDescCaret: this.mask(this.state.descOpen ? 'arrow-up-01' : 'arrow-down-01', 20, 'currentColor'),
+      iconDescCaret: this.mask(this.state.descOpen ? 'minus-sign-circle' : 'plus-sign-circle', 22, '#4C653D'),
 
       subcats: [
         { title: 'Péče o pleť a kůži', icon: 'jar', href: '#' },
@@ -784,7 +791,7 @@ class Component extends DCLogic {
       headA: this.state.head === 'a',
       headB: this.state.head === 'b',
       isEdu: this.state.tpl === 'edu',
-      hzoneCls: '',
+      hzoneCls: 'ek-hzone',
       eduOpen: this.state.tpl === 'edu' && this.state.descOpen,
       guideChips: [
         { label: 'Jak vybrat přírodní mýdlo?', icon: 'help-circle', href: '#' },

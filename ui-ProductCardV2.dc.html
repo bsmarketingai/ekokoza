@@ -14,6 +14,12 @@
   .ek-c2-var { font-family: 'Work Sans',sans-serif; font-size: 12.5px; font-weight: 600; padding: 7px 11px; min-height: 32px; border-radius: 999px; cursor: pointer; transition: background .18s, color .18s, border-color .18s; }
   .ek-c2-step { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex: 0 0 auto; border: none; background: transparent; cursor: pointer; color: #4C653D; }
   .ek-c2-step:disabled { opacity: .35; cursor: default; }
+  @media (max-width: 549px) {
+    .ek-c2-loy { white-space: normal !important; align-items: flex-start !important; }
+    .ek-c2-buy { flex: 0 0 38px !important; width: 38px; padding: 0 !important; }
+    .ek-c2-buy-t { display: none; }
+    .ek-c2-qty { flex: 1 1 auto !important; justify-content: space-between; }
+  }
   .ek-c2-buy:hover { background: #B23803 !important; border-color: #B23803 !important; }
 </style>
 </helmet>
@@ -48,7 +54,7 @@
     </div>
 
     <sc-if value="{{ showLoyalty }}" hint-placeholder-val="{{ true }}">
-      <span style="{{ loyaltyStyle }}">
+      <span class="ek-c2-loy" style="{{ loyaltyStyle }}">
         <span style="{{ loyaltyIcon }}"></span>
         <span style="min-width:0;">{{ loyaltyText }}</span>
       </span>
@@ -68,12 +74,12 @@
 
     <sc-if value="{{ buyable }}" hint-placeholder-val="{{ true }}">
       <div style="display:flex; align-items:center; gap:8px;">
-        <span style="display:flex; align-items:center; flex:0 0 auto; border:1.5px solid #CFC4AA; border-radius:999px; background:#fff;">
+        <span class="ek-c2-qty" style="display:flex; align-items:center; flex:0 0 auto; border:1.5px solid #CFC4AA; border-radius:999px; background:#fff;">
           <button onClick="{{ dec }}" disabled="{{ atMin }}" class="ek-c2-step" aria-label="Ubrat kus"><span style="{{ iconMinus }}"></span></button>
           <span style="min-width:22px; text-align:center; font-size:14.5px; font-weight:600; color:#2A2A24;">{{ qty }}</span>
           <button onClick="{{ inc }}" class="ek-c2-step" aria-label="Přidat kus"><span style="{{ iconPlus }}"></span></button>
         </span>
-        <button onClick="{{ addToCart }}" class="ek-c2-buy" style="flex:1; min-width:0; display:flex; align-items:center; justify-content:center; gap:7px; height:38px; padding:0 12px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s; white-space:nowrap;"><span style="{{ iconCart }}"></span>{{ ctaLabel }}</button>
+        <button onClick="{{ addToCart }}" class="ek-c2-buy" aria-label="Do košíku" title="Do košíku" style="flex:1; min-width:0; display:flex; align-items:center; justify-content:center; gap:7px; height:38px; padding:0 12px; border:1.5px solid #D14405; border-radius:999px; background:#D14405; color:#fff; font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s; white-space:nowrap;"><span style="{{ iconCart }}"></span><span class="ek-c2-buy-t">{{ ctaLabel }}</span></button>
       </div>
     </sc-if>
 

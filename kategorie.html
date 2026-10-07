@@ -889,7 +889,7 @@ class Component extends DCLogic {
 
       visible: (() => { const card = this.state.card; const out = shown.map(p => Object.assign({}, p, { isV1: card === 'v1', isV2: card === 'v2', isBanner: false }, {
         price: p.num.toLocaleString('cs-CZ') + ' Kč',
-        href: 'produkt-vzor.html',
+        href: 'produkt-material.html',
         stockDate: '28. 8. 2026',
         pack: Component.packOf(p.title),
         variants: p.ctaVariant === 'varianta' ? Component.variantsOf(p) : null,

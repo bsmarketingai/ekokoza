@@ -92,6 +92,71 @@
   </section>
 
   <section class="day">
+    <h2>7. října 2026</h2>
+    <p class="sum">Nová vzorová stránka detailu obalu s možností přikoupit uzávěr; původní šablona detailu se jmenuje produkt-material.</p>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Obaly</span>
+      <h3>Šablona produkt-obal: lahvička s výběrem uzávěru</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Udělat vzorový detail produktu z kategorie Obaly — Skleněná lahvička bez uzávěru hnědá, 10 ml, varianty 1 ks a 187 ks, s možností rovnou přikoupit vhodný uzávěr. Popis jednodušší než u surovin, bez sekce „Co se k tomu hodí“. Šablonu produkt-vzor přejmenovat na produkt-material.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nová stránka produkt-obal vychází z produkt-material. Pod výběrem balení je blok „Přidat uzávěr“ s kompatibilními uzávěry 18/415 (výchozí volba Bez uzávěru). Po výběru uzávěru se ke každé lahvičce přidá jeden kus a zobrazí se rozpis ceny lahviček, uzávěrů a celkem; u pipety je upozornění na délku. Detailní popis má jen tři body, Parametry a Soubory; recepty, akordeony a „Co se k tomu hodí“ nejsou. Na homepage je lahvička druhou položkou v karuselu „Zákazníci nejraději kupují“ místo mýdlové hmoty. Odkazy na produkt-vzor jsou přesměrované na produkt-material.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Obaly</span>
+      <h3>Uzávěry s vlastním množstvím a tlačítkem Do košíku</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">U uzávěrů potřebujeme quantity stepper a tlačítko přidat do košíku. Po kliknutí se otevře modal s produktem s volbou do košíku, nebo zpět do obchodu, jak už ho máme.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Blok „Uzávěry k lahvičce“ je pod hlavním tlačítkem lahvičky. Každý uzávěr má vlastní řádek s fotkou, názvem, cenou za kus, stepperem množství a tlačítkem „Do košíku“. Výchozí množství odpovídá zvolenému balení lahviček (1 nebo 187 ks). Po přidání se otevře stávající modal „Přidáno do košíku“ s daným uzávěrem. Volba „Bez uzávěru“ a souhrn ceny jsou pryč.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html#uzaver" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Obaly</span>
+      <h3>Skutečné uzávěry, 4 viditelné a další v rozbalení</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Doplnit fotky a názvy uzávěrů. Zobrazit 4, další dát do rozbalení. Dlouhé názvy zkrátit, pokud se nevejdou.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V bloku je 8 uzávěrů se skutečnými fotkami a názvy. Vidět jsou první 4, tlačítko „Zobrazit další uzávěry (4)“ rozbalí zbytek a „Zobrazit méně uzávěrů“ ho zase sbalí. Název je na jednom řádku a když se nevejde, končí třemi tečkami; celý název se ukáže po najetí myší. Ceny jsou zatím pracovní.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html#uzaver" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Obaly</span>
+      <h3>Uzávěry se vybírají zaškrtnutím, bez vlastního tlačítka</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Místo CTA do košíku u uzávěru dát možnost položku vybrat jako balení — checkbox vlevo.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Každý řádek uzávěru má vlevo stejný kulatý výběr jako „Vyberte balení“ (prázdný kroužek / zelená fajfka v kruhu), kliknutím na řádek se uzávěr vybere. Aktivní stav i hover jsou stejné jako u „Vyberte balení“ (zelený rámeček s jemnou obrysovou září, světle zelený podklad, tučný název). Stepper množství zůstal, výchozí počet odpovídá počtu lahviček. Tlačítko „Do košíku“ u uzávěrů je pryč a blok je zase nad hlavním tlačítkem. Pod seznamem je souhrn vybraných uzávěrů s cenou; hlavní „Do košíku“ přidá lahvičky i vybrané uzávěry a modal je ukáže všechny.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html#uzaver" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Detail produktu · Obaly</span>
+      <h3>Uzávěr se kupuje samostatně ikonovým tlačítkem</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">K uzávěru dát CTA Koupit, jen jako ikonové tlačítko. Uzávěr půjde do košíku samostatně a hlavní tlačítko bude přidávat jen lahvičky, bez vlivu na počet uzávěrů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Každý řádek uzávěru má za stepperem kulaté terakotové tlačítko s ikonou košíku (42 px). Po kliknutí se otevře modal „Přidáno do košíku“ jen s daným uzávěrem a zvoleným počtem. Hlavní „Do košíku“ přidává jen lahvičky. Checkbox a souhrn vybraných uzávěrů jsou odebrané, protože se už nic nevybírá. Výchozí počet uzávěrů odpovídá zvolenému balení lahviček (1 nebo 187 ks). Odkaz „Všechny uzávěry 18/415“ pod seznamem je odebraný. Uzávěr, který už je v košíku, má vlevo zelenou fajfku v kruhu a ohraničení jako vybraná varianta balení (zelený rámeček se září, světle zelený podklad, tučný název). Pod takovým uzávěrem je řádek „V košíku máte již X ks. Počet můžete změnit v košíku.“ s odkazem na košík; počet se při dalším přidání sčítá. Za ním je nabídka „Nebo můžete koupit v balení 100 ks“ s kusovou cenou balení ve žlutém chipu stejném jako „Nejvýhodnější“ u variant (ceny balení jsou zatím pracovní).</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html#uzaver" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+  </section>
+
+  <section class="day">
     <h2>6. října 2026</h2>
     <p class="sum">Uložené košíky jen pro přihlášené, chipy průvodce v kategorii bez ikon.</p>
 
@@ -457,7 +522,7 @@
         <span class="k">Řešení</span>
         <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -469,7 +534,7 @@
         <span class="k">Řešení</span>
         <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -481,7 +546,7 @@
         <span class="k">Řešení</span>
         <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -493,7 +558,7 @@
         <span class="k">Řešení</span>
         <p class="v">Desktop: svislý sloupec miniatur (78 px, max. 6) vlevo od velké fotky, klik přepne fotku; bez šipek. Má-li produkt video, je jako poslední položka mezi miniaturami (i ve zvětšení je na konci) (světlá krémová dlaždice s terakotovou ikonou přehrání) a otevře video. Mobil (pod 820 px): jen velká fotka v jednom sloupci, listuje se tažením prstem nebo šipkami po stranách, tečky dole ukazují pozici. Klik na fotku dál otevře zvětšení. Štítek „Zvětšit“ je odebraný, tlačítko Video zůstává.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -529,7 +594,7 @@
         <span class="k">Řešení</span>
         <p class="v">Všude, kde má stav dostupnosti vysvětlující bublinu, je za textem ikona „i“ stejně velká jako ikona stavu, v tmavé barvě textu (#2A2A24). Stavy bez bubliny ikonu nemají.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -710,7 +775,7 @@
         <span class="k">Řešení</span>
         <p class="v">Přepracovaný popup: ikona, nadpis „Níž už cena jít nemůže“, krátké vysvětlení, box s aktuální cenou a žlutým štítkem „Nejnižší možná cena“ a poznámka, že věrnostní úroveň platí pro ostatní produkty. Odstraněn zástupný štítek „Doplnit text“. Odkaz na věrnostní program je sekundární tlačítko s ikonou procenta.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -722,7 +787,7 @@
         <span class="k">Řešení</span>
         <p class="v">Ve výběru variant se varianta s nejnižší měrnou cenou automaticky označí žlutým štítkem (akcentní barva z manuálu, tmavě zelený text) „Nejvýhodnější · 8 490 Kč / l“. Ostatní měrné ceny zůstávají šedé. Štítek se nezobrazí, pokud mají všechny varianty stejnou měrnou cenu.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -914,7 +979,7 @@
         <span class="k">Řešení</span>
         <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -926,7 +991,7 @@
         <span class="k">Řešení</span>
         <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -938,7 +1003,7 @@
         <span class="k">Řešení</span>
         <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -950,7 +1015,7 @@
         <span class="k">Řešení</span>
         <p class="v">Desktop: svislý sloupec miniatur (78 px, max. 6) vlevo od velké fotky, klik přepne fotku; bez šipek. Má-li produkt video, je jako poslední položka mezi miniaturami (i ve zvětšení je na konci) (světlá krémová dlaždice s terakotovou ikonou přehrání) a otevře video. Mobil (pod 820 px): jen velká fotka v jednom sloupci, listuje se tažením prstem nebo šipkami po stranách, tečky dole ukazují pozici. Klik na fotku dál otevře zvětšení. Štítek „Zvětšit“ je odebraný, tlačítko Video zůstává.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -986,7 +1051,7 @@
         <span class="k">Řešení</span>
         <p class="v">Všude, kde má stav dostupnosti vysvětlující bublinu, je za textem ikona „i“ stejně velká jako ikona stavu, v tmavé barvě textu (#2A2A24). Stavy bez bubliny ikonu nemají.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1147,7 +1212,7 @@
         <span class="k">Řešení</span>
         <p class="v">Kroužek výběru je nově na začátku řádku před názvem varianty, cena zůstává vpravo.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1227,7 +1292,7 @@
       <h3>Tlačítko „Video“ na fotce receptu</h3>
       <div class="row">
         <span class="k">Požadavek</span>
-        <p class="v">Doplnit na fotku receptu tlačítko Video jako na produkt-vzor, tlačítko nesmí být průhledné.</p>
+        <p class="v">Doplnit na fotku receptu tlačítko Video jako na produkt-material, tlačítko nesmí být průhledné.</p>
         <span class="k">Řešení</span>
         <p class="v">Vpravo dole na hlavní fotce je tlačítko „Video“ se stejným tvarem jako v galerii produktu, ale s plně bílým podkladem a jemným stínem, aby bylo čitelné na každé fotce. Otevře video přes celou obrazovku (zavření křížkem nebo kliknutím mimo video). Zatím s ukázkovým videem.</p>
       </div>
@@ -1327,15 +1392,15 @@
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Galerie</span>
+      <span class="tag">produkt-material · Galerie</span>
       <h3>Tlačítko „Video“ v galerii</h3>
       <div class="row">
         <span class="k">Požadavek</span>
         <p class="v">Doplnit tlačítko a funkčnost Video stejně jako na stránce Produkt.</p>
         <span class="k">Řešení</span>
-        <p class="v">Galerie na produkt-vzor dostala stejné tlačítko „Video“ a přehrávání jako šablona produkt (stejná komponenta ui-Gallery, zatím s ukázkovým videem).</p>
+        <p class="v">Galerie na produkt-material dostala stejné tlačítko „Video“ a přehrávání jako šablona produkt (stejná komponenta ui-Gallery, zatím s ukázkovým videem).</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1347,7 +1412,7 @@
         <span class="k">Řešení</span>
         <p class="v">Sekce „S touto surovinou si vyrobíte“: 3 sloupce na XXL–L, 2 sloupce na M a S (pod 1000 px), 1 sloupec až na XS/XXS (pod 550 px).</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1359,7 +1424,7 @@
         <span class="k">Řešení</span>
         <p class="v">Panel už nemá omezenou výšku ani vlastní posuvník. Pokud se vejde pod hlavičku a lištu chipů, zůstává přilepený nahoře jako dosud. Pokud je vyšší než okno, při posunu stránky dojede celý a přilepí se spodní hranou k oknu, takže je vždy vidět i jeho konec.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1371,7 +1436,7 @@
         <span class="k">Řešení</span>
         <p class="v">Po načtení stránky je seznam souborů ke stažení rovnou vidět. Zavřít a znovu otevřít jde kliknutím na záhlaví.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1383,7 +1448,7 @@
         <span class="k">Řešení</span>
         <p class="v">Sekce leží v bílém trhaném pásu přes celou šířku okna, stejném jako na homepage (jemný stín na hranách). Obsah sekce zůstal beze změny. Pás navazuje přímo na patičku (spodní hrana rovná, zelený trhaný okraj patičky leží na bílé), takže mezi nimi už není béžový proužek.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1575,7 +1640,7 @@
         <span class="k">Řešení</span>
         <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1587,7 +1652,7 @@
         <span class="k">Řešení</span>
         <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1599,7 +1664,7 @@
         <span class="k">Řešení</span>
         <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1611,7 +1676,7 @@
         <span class="k">Řešení</span>
         <p class="v">Desktop: svislý sloupec miniatur (78 px, max. 6) vlevo od velké fotky, klik přepne fotku; bez šipek. Má-li produkt video, je jako poslední položka mezi miniaturami (i ve zvětšení je na konci) (světlá krémová dlaždice s terakotovou ikonou přehrání) a otevře video. Mobil (pod 820 px): jen velká fotka v jednom sloupci, listuje se tažením prstem nebo šipkami po stranách, tečky dole ukazují pozici. Klik na fotku dál otevře zvětšení. Štítek „Zvětšit“ je odebraný, tlačítko Video zůstává.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1647,7 +1712,7 @@
         <span class="k">Řešení</span>
         <p class="v">Všude, kde má stav dostupnosti vysvětlující bublinu, je za textem ikona „i“ stejně velká jako ikona stavu, v tmavé barvě textu (#2A2A24). Stavy bez bubliny ikonu nemají.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1695,7 +1760,7 @@
         <span class="k">Řešení</span>
         <p class="v">Mezera mezi oddíly detailního popisu zmenšena z 34 px na 17 px.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1707,7 +1772,7 @@
         <span class="k">Řešení</span>
         <p class="v">R2 zobrazuje karty ui-RecipeCard v posuvné řadě se šipkami v záhlaví a posuvníkem pod řadou. Na XXL/XL jsou vedle sebe 2 karty, na L 1 karta (užší panel). Pod 980 px panel přechází pod obsah: na M 3 karty, na S 2 karty, na XS/XXS 1 karta s náhledem další. Šipky a posuvník se skryjí, když se všechny karty vejdou. Mezi R1 a R2 se přepíná v demo liště (výchozí R2). Ve verzi R2 je spodní sekce „S touto surovinou si vyrobíte“ skrytá a tlačítko „Všechny recepty“ vede do Receptáře.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
   </section>
 
@@ -1724,7 +1789,7 @@
         <span class="k">Řešení</span>
         <p class="v">Všech 12 chipů má plné znění nadpisu svého oddílu (např. „Na co pozor“ je nově „Na co si dát pozor při výrobě?“). Chipy jsou nově přes celou šířku obsahu, nad oběma sloupci (i nad pravým). Při scrollování detailním popisem zůstávají přilepené pod hlavičkou na poloprůhledném bílém pruhu s linkou dole. Na desktopu se zalamují do více řádků, pod 820 px jsou v jednom vodorovně posuvném řádku, aby nezabíraly obrazovku. Chip právě otevřeného oddílu je aktivní (tmavě zelený s krémovým textem). Po kliknutí na chip se oddíl rozbalí a stránka se posune tak, aby jeho nadpis byl hned pod lištou chipů (16 px mezera) a nic ho nepřekrývalo. Přilepený pravý sloupec (recepty se surovinou a další) se drží pod lištou chipů, ne pod hlavičkou, takže pod lištu nezalézá a je celý vidět.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1736,7 +1801,7 @@
         <span class="k">Řešení</span>
         <p class="v">Z nadpisů oddílů je odstraněné pořadové číslo („1. Hlavní vlastnosti“ je teď „Hlavní vlastnosti“), celkem 13 oddílů.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1748,7 +1813,7 @@
         <span class="k">Řešení</span>
         <p class="v">Nadtitulek „Detailní popis“, nadpis s názvem produktu i úvodní odstavec jsou pryč. Sekce začíná rovnou rozcestníkem kotev (Vlastnosti, Použití…) a rozbalovacími oddíly.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1772,7 +1837,7 @@
         <span class="k">Řešení</span>
         <p class="v">Název balení a dostupnost jsou vedle sebe na jednom řádku, takže řádek varianty je nižší. Název má pevný sloupec (min. 96 px) a dostupnost začíná u všech variant na stejném místě, pod sebou, bez ohledu na délku názvu. Jen když se vedle sebe nevejdou, dostupnost se zalomí pod název. Na XS a XXS (do 550 px) je dostupnost zarovnaná úplně vpravo na řádku s názvem balení.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1784,7 +1849,7 @@
         <span class="k">Řešení</span>
         <p class="v">Na XS a XXS (do 550 px), kde se cena zalomí pod název varianty, je cena i jednotková cena zarovnaná vlevo. Hranice zalomení je nově podle breakpointů projektu (549 px místo původních 560 px).</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1806,9 +1871,9 @@
         <span class="k">Požadavek</span>
         <p class="v">Za text „Vaše sleva −10 %“ doplnit ikonu „i“, která otevře okno s informací, že sleva je u produktu už maximální, i když je zákazník ve věrnostním programu. Text musí přesně formulovat klient.</p>
         <span class="k">Řešení</span>
-        <p class="v">Za textem je malá ikona „i“. Otevře okno s nadpisem „Jak se počítá vaše sleva“, pracovním textem a odkazem na věrnostní program. Okno se zavře křížkem nebo kliknutím mimo. V okně je viditelný štítek „Doplnit text — formulaci dodá klient“. Ikona a okno jsou u přihlášeného zákazníka na obou šablonách detailu produktu (produkt i produkt-vzor). <strong>Čeká na klienta:</strong> přesné znění textu a pravidla, kdy se okno u produktu zobrazuje.</p>
+        <p class="v">Za textem je malá ikona „i“. Otevře okno s nadpisem „Jak se počítá vaše sleva“, pracovním textem a odkazem na věrnostní program. Okno se zavře křížkem nebo kliknutím mimo. V okně je viditelný štítek „Doplnit text — formulaci dodá klient“. Ikona a okno jsou u přihlášeného zákazníka na obou šablonách detailu produktu (produkt i produkt-material). <strong>Čeká na klienta:</strong> přesné znění textu a pravidla, kdy se okno u produktu zobrazuje.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1818,9 +1883,9 @@
         <span class="k">Požadavek</span>
         <p class="v">Úplně skrýt sekci se třemi body (původ z ekologického zemědělství, 100 % přírodní olej, bezpečnostní list ke každé šarži).</p>
         <span class="k">Řešení</span>
-        <p class="v">Sekce je v nákupním boxu skrytá na obou šablonách detailu produktu (produkt-vzor i produkt), pro nepřihlášeného i přihlášeného zákazníka. Na šabloně produkt jde o body „Doprava zdarma od 2 000 Kč“, „Navažujeme z velkých balení“ a „Bezpečnostní a technický list“. Obsah zůstává v kódu a jde znovu zobrazit.</p>
+        <p class="v">Sekce je v nákupním boxu skrytá na obou šablonách detailu produktu (produkt-material i produkt), pro nepřihlášeného i přihlášeného zákazníka. Na šabloně produkt jde o body „Doprava zdarma od 2 000 Kč“, „Navažujeme z velkých balení“ a „Bezpečnostní a technický list“. Obsah zůstává v kódu a jde znovu zobrazit.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1832,7 +1897,7 @@
         <span class="k">Řešení</span>
         <p class="v">Varianty balení se zobrazují vždy řádkově. Přepínač „Varianty: Řádkově / Karty“ je z ovládací lišty odebraný. Varianta Karty zůstává v kódu a přepínač jde kdykoli znovu zobrazit.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -1844,7 +1909,7 @@
         <span class="k">Řešení</span>
         <p class="v">Štítek je skrytý. INCI se dál zobrazuje v záložce se složením. ID produktu je přesunuté pod název, na řádek s hodnocením a „Častými otázkami“, zarovnané úplně vpravo. Nad názvem tak nic nezůstává.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2060,7 +2125,7 @@
         <span class="k">Řešení</span>
         <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2072,7 +2137,7 @@
         <span class="k">Řešení</span>
         <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2084,7 +2149,7 @@
         <span class="k">Řešení</span>
         <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2096,7 +2161,7 @@
         <span class="k">Řešení</span>
         <p class="v">Vlevo od „Zvětšit“ je tlačítko „Video“ s terakotovou ikonou přehrání. Obě tlačítka jsou stejně velká (výška 40 px) a mají stejně velké ikony (20 px). Lightbox je nově galerie se šipkami (i klávesami ← →) a počítadlem. Pořadí je první fotka, video a pak ostatní fotky. Klik na fotku otevře lightbox na fotce, klik na „Video“ ho otevře rovnou na videu a spustí ho. Tlačítko se ukáže jen u produktu, který video má (nové nastavení video v komponentě ui-Gallery). V ukázce je zatím zástupné video z homepage.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2432,7 +2497,7 @@
         <span class="k">Řešení</span>
         <p class="v">Tlačítko je pryč, šipky karuselu jsou pod kartami vpravo (pod posuvníkem). Nadpis zůstává nahoře sám. Na mobilu (pod 820 px) se karusel chová standardně jako na homepage: box si nechává rámeček, karty 260 px jdou až k jeho okraji a vpravo sjíždějí do ztracena, posuvník a šipky jsou pod kartami. Opravena chyba, kdy se karusel na užších šířkách roztáhl přes celou délku a navigace se nezobrazila.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2444,7 +2509,7 @@
         <span class="k">Řešení</span>
         <p class="v">Chipy jsou nad akordeony v levém sloupci, lícují s nimi. Lišta se už nepřilepuje k hlavičce a nemá podklad přes celou šířku. Klik na chip dál otevře a nascrolluje příslušný akordeon.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#popis" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2456,7 +2521,7 @@
         <span class="k">Řešení</span>
         <p class="v">V ukázkové liště detailu produktu je přepínač Galerie G1 / G2. G2 řadí miniatury (včetně videa na konci) do řádku pod velkou fotku, zarovnané vlevo. Na mobilu se obě varianty chovají stejně — miniatury skryté, listování velkou fotkou.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2468,7 +2533,7 @@
         <span class="k">Řešení</span>
         <p class="v">Desktop: svislý sloupec miniatur (78 px, max. 6) vlevo od velké fotky, klik přepne fotku; bez šipek. Má-li produkt video, je jako poslední položka mezi miniaturami (i ve zvětšení je na konci) (světlá krémová dlaždice s terakotovou ikonou přehrání) a otevře video. Mobil (pod 820 px): jen velká fotka v jednom sloupci, listuje se tažením prstem nebo šipkami po stranách, tečky dole ukazují pozici. Klik na fotku dál otevře zvětšení. Štítek „Zvětšit“ je odebraný, tlačítko Video zůstává.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2504,7 +2569,7 @@
         <span class="k">Řešení</span>
         <p class="v">Všude, kde má stav dostupnosti vysvětlující bublinu, je za textem ikona „i“ stejně velká jako ikona stavu, v tmavé barvě textu (#2A2A24). Stavy bez bubliny ikonu nemají.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2718,7 +2783,7 @@
         <span class="k">Řešení</span>
         <p class="v">Kromě dosavadního řádkového výběru je nyní kompaktní kartové zobrazení: karty mají stejnou šířku, vyplní celý řádek (obvykle čtyři vedle sebe) a v každé je objem, cena a standardní stav dostupnosti podle našich stavů skladu. Ve spodním pruhu ukázky je přepínač „Varianty: Řádkově / Karty“.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2742,7 +2807,7 @@
         <span class="k">Řešení</span>
         <p class="v">Akordeon „Parametry“ z postranního panelu zmizel. Panel tak obsahuje recepty, dokumentaci a poradnu; parametry zůstávají v přehledu pod detailem.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2754,7 +2819,7 @@
         <span class="k">Řešení</span>
         <p class="v">Text tlačítka zůstává při přejetí myší bílý (přebíjelo ho obecné pravidlo pro odkazy). Vedle hlavního tlačítka je nyní i světlé tlačítko „Zpět do obchodu“, které okno zavře — na mobilu jsou obě pod sebou přes celou šířku.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2877,11 +2942,11 @@
         <span class="k">Řešení</span>
         <p class="v">Přidána sekce Hodnocení a recenze (souhrnná známka, rozložení hvězdiček, tlačítko pro přidání recenze a tři recenze) a sekce Diskuze k produktu (výzva k dotazu a dva dotazy s odpovědí Ekokozy).</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html#hodnoceni" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html#hodnoceni" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Hlavička produktu</span>
+      <span class="tag">produkt-material · Hlavička produktu</span>
       <h3>INCI místo kategorie nad názvem</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -2889,11 +2954,11 @@
         <span class="k">Řešení</span>
         <p class="v">Nad názvem je chip na světle zeleném podkladu se zaobleným rámečkem: štítek INCI verzálkami a za ním název suroviny. Vše ve Work Sans, bez cizího písma.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Detailní popis</span>
+      <span class="tag">produkt-material · Detailní popis</span>
       <h3>Akordeon u číslovaných sekcí</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -2901,7 +2966,7 @@
         <span class="k">Řešení</span>
         <p class="v">Sekce 1–12 (Hlavní vlastnosti až Časté otázky) jsou akordeon s jednou otevřenou položkou; kotvy nad popisem otevírají příslušnou sekci. Rozbalování je plynulé (grid-based animace výšky, ~0,3 s), šipka se otáčí místo výměny ikony. Obsah zavřených panelů zůstává v HTML (jen skrytý), takže se neztrácí pro SEO. „Poradíme vám“ je mimo akordeon, vždy vidět; telefonní číslo v něm se zobrazuje jen přihlášeným.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -2917,7 +2982,7 @@
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Postranní panel</span>
+      <span class="tag">produkt-material · Postranní panel</span>
       <h3>Pořadí karet, akordeon u parametrů, hover pryč</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -2925,11 +2990,11 @@
         <span class="k">Řešení</span>
         <p class="v">Hover byl skutečný — pravidlo pro zvednutí karty se stínem bylo deklarované v hlavičce a propisovalo se globálně na všechny karty na každé stránce s hlavičkou; nyní je omezené jen na hlavičku samotnou. Parametry mají rozbalovací nadpis se šipkou a stejnou plynulou animací jako sekce popisu (výchozí stav otevřeno); odkaz „Celá technická karta“ se sbaluje s nimi. Pořadí karet: Recepty, Certifikace a vlastnosti, Parametry, Dokumentace.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Recepty</span>
+      <span class="tag">produkt-material · Recepty</span>
       <h3>Karta receptů podle receptáře</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -2937,11 +3002,11 @@
         <span class="k">Řešení</span>
         <p class="v">Řádky mají fotku receptu 56 px, serifový nadpis, meta ve tvaru kategorie · úroveň · čas a šipku vpravo; při najetí zezelená nadpis i šipka. Pod výpisem je obrysové tlačítko „Všechny recepty“. Nadpis karty zůstal serifový jako u ostatních karet v panelu.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Sekce receptů</span>
+      <span class="tag">produkt-material · Sekce receptů</span>
       <h3>Odkaz „Všechny recepty“ nad výpisem</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -2949,11 +3014,11 @@
         <span class="k">Řešení</span>
         <p class="v">Hlavička sekce má stejné rozvržení jako karusely na homepage: kicker, nadpis a perex vlevo, textový odkaz se šipkou vpravo nahoře.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Dokumentace</span>
+      <span class="tag">produkt-material · Dokumentace</span>
       <h3>Tlačítko „Stáhnout vše“</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -2961,7 +3026,7 @@
         <span class="k">Řešení</span>
         <p class="v">Pod výpisem souborů je obrysové tlačítko „Stáhnout vše“ s ikonou stažení, ve stejném stylu jako ostatní sekundární tlačítka v panelu.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
   </section>
 
@@ -2970,7 +3035,7 @@
     <p class="sum">Návrat variantního výběru k jednoduššímu toku a rozšíření věrnostní informace i na nedostupné produkty.</p>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Varianty</span>
+      <span class="tag">produkt-material · Varianty</span>
       <h3>Množství jen u tlačítka „Do košíku“</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -2978,11 +3043,11 @@
         <span class="k">Řešení</span>
         <p class="v">Výběr balení je zpět v režimu „select“ (řádky bez počítadla). CTA je pro variantní i jednoduchý produkt stejná komponenta ui-AddToCart se stepperem množství. Přepnutí varianty resetuje množství na 1.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Věrnostní program</span>
+      <span class="tag">produkt-material · Věrnostní program</span>
       <h3>Informace pod cenou i u nedostupného produktu</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -2990,11 +3055,11 @@
         <span class="k">Řešení</span>
         <p class="v">Podmínka zobrazení box už nekontroluje dostupnost, jen přihlášení — box je vidět vždy.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Dostupnost</span>
+      <span class="tag">produkt-material · Dostupnost</span>
       <h3>Skrytý dostupnostní řádek u nedostupného jednoduchého produktu</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -3002,7 +3067,7 @@
         <span class="k">Řešení</span>
         <p class="v">Řádek s pilulkou a poznámkou se zobrazuje jen pro jednoduchý produkt, který je koupitelný. U nedostupného zůstává jen box „Tento produkt nelze zakoupit“ s tlačítkem na upozornění.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
   </section>
@@ -3080,7 +3145,7 @@
         <span class="k">Řešení</span>
         <p class="v">Hlídání ceny je z návrhu odstraněné (tlačítko „Hlídat cenu“ i komponenta ui-PriceWatch). Funkce se všude jmenuje „Upozornit na naskladnění“ — formulář, buy bar, produktové karty, design systém; v zákaznické zóně dlaždice „Sledované produkty“. Potvrzení vypisuje konkrétní balení. V detailu produktu zůstalo jen terrakotové tlačítko se zvonečkem, formulář se otevírá ve vyskakovacím okně. Double opt-in jsme nezaváděli — jde o jednorázové transakční oznámení a riziko zneužití cizí adresy pokrývá jednoklikové zrušení v každém e-mailu.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -3152,7 +3217,7 @@
         <span class="k">Řešení</span>
         <p class="v">Galerie má prop showThumbs, výchozí vypnuto. Až fotky přibudou, stačí ho zapnout.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">
@@ -3288,7 +3353,7 @@
     </div>
 
     <div class="item">
-      <span class="tag">produkt-vzor · Nová komponenta</span>
+      <span class="tag">produkt-material · Nová komponenta</span>
       <h3>Pás hlavních parametrů produktu</h3>
       <div class="row">
         <span class="k">Požadavek</span>
@@ -3298,7 +3363,7 @@
         <span class="k">Proč takto</span>
         <p class="v">Volili jsme boxy, ne karusel. Karusel by byl další extra pracná komponenta — zvlášť kdyby měl donačítat nezobrazené parametry. Takto je to kompaktní a vše je přehledně vidět najednou.</p>
       </div>
-      <a class="show-btn" href="produkt-vzor.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
+      <a class="show-btn" href="produkt-material.html" target="_blank">Zobrazit detail produktu<span class="show-ico"></span></a>
     </div>
 
     <div class="item">

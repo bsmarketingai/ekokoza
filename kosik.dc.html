@@ -226,7 +226,7 @@
               <div style="display:flex; gap:16px; align-items:center; min-width:0;">
                 <span style="{{ it.img72 }}"></span>
                 <div style="display:flex; flex-direction:column; gap:4px; min-width:0;">
-                  <a href="produkt-vzor.html" style="font-size:16px; font-weight:600; line-height:1.35; color:#2A2A24;">{{ it.title }}</a>
+                  <a href="produkt-material.html" style="font-size:16px; font-weight:600; line-height:1.35; color:#2A2A24;">{{ it.title }}</a>
                   <span style="font-size:13px; color:#8a8776;">ID produktu: {{ it.id }}</span>
                   <dc-import name="ui-Stock" state="{{ it.stock }}" size="{{ 13 }}" hint-size="140px,18px"></dc-import>
                 </div>
@@ -259,7 +259,7 @@
           <h2 class="ek-h2" style="text-align:center;">Doporučujeme</h2>
           <div class="ek-recs" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px;">
             <sc-for list="{{ recs }}" as="p" hint-placeholder-count="4">
-              <dc-import name="ui-ProductCardV2" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="produkt-vzor.html" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="ready" ctaVariant="koupit" badge="" hint-size="100%,500px"></dc-import>
+              <dc-import name="ui-ProductCardV2" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="produkt-material.html" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="ready" ctaVariant="koupit" badge="" hint-size="100%,500px"></dc-import>
             </sc-for>
           </div>
         </div>
@@ -458,7 +458,7 @@
             <sc-for list="{{ cart }}" as="it" hint-placeholder-count="4">
             <div style="display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:12px; align-items:start;">
               <span style="{{ it.img56 }}"></span>
-              <a href="produkt-vzor.html" style="font-size:14.5px; font-weight:600; line-height:1.4; color:#2A2A24;">{{ it.title }}</a>
+              <a href="produkt-material.html" style="font-size:14.5px; font-weight:600; line-height:1.4; color:#2A2A24;">{{ it.title }}</a>
               <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
                 <span style="font-family:'EB Garamond',serif; font-size:18px; font-weight:600; color:#2A2A24; white-space:nowrap;">{{ it.sum }}</span>
                 <span style="font-size:13px; color:#8a8776;">{{ it.qtyLabel }}</span>
@@ -504,7 +504,7 @@
             <div style="display:flex; gap:16px; align-items:center; min-width:0;">
               <span style="{{ it.img72 }}"></span>
               <div style="display:flex; flex-direction:column; gap:4px; min-width:0;">
-                <a href="produkt-vzor.html" style="font-size:16px; font-weight:600; line-height:1.35; color:#2A2A24;">{{ it.title }}</a>
+                <a href="produkt-material.html" style="font-size:16px; font-weight:600; line-height:1.35; color:#2A2A24;">{{ it.title }}</a>
                 <span style="font-size:13px; color:#8a8776;">ID produktu: {{ it.id }}</span>
                 <dc-import name="ui-Stock" state="{{ it.stock }}" size="{{ 13 }}" hint-size="140px,18px"></dc-import>
               </div>

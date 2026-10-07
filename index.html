@@ -620,7 +620,7 @@
       </div>
       <div class="ek-scrollrow ek-scroll" ref="{{ b6Ref }}" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
         <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
-          <dc-import name="ui-ProductCardV2" loggedIn="{{ logged }}" title="{{ p.name }}" price="{{ p.price }}" badge="{{ p.badge }}" cta-variant="{{ p.ctaVariant }}" rating="{{ p.rating }}" rating-count="{{ p.ratingCount }}" img="{{ p.img }}" stock-state="{{ p.stockState }}" stock-date="{{ p.stockDate }}" href="{{ p.href }}" hint-size="100%,520px"></dc-import>
+          <dc-import name="ui-ProductCardV2" loggedIn="{{ logged }}" title="{{ p.name }}" price="{{ p.price }}" badge="{{ p.badge }}" cta-variant="{{ p.ctaVariant }}" rating="{{ p.rating }}" rating-count="{{ p.ratingCount }}" img="{{ p.img }}" stock-state="{{ p.stockState }}" stock-date="{{ p.stockDate }}" variants="{{ p.variants }}" href="{{ p.href }}" hint-size="100%,520px"></dc-import>
         </sc-for>
       </div>
       <div aria-hidden="true" style="{{ b6Track }}"><span style="{{ b6Thumb }}"></span></div>
@@ -1109,7 +1109,7 @@ class Component extends DCLogic {
       { title:'Suroviny beze lží', desc:'Původ a složení najdete u každého produktu.', img:'assets/usp/2-suroviny.png', icon:'plant-02', href:'kategorie.html' },
       { title:'Poradíme, nekoučujeme', desc:'Zeptejte se, odpovídá člověk z praxe.', img:'assets/usp/3-pece.png', icon:'checkmark-badge-01', href:'o-nas.html' },
       { title:'Věrnost se počítá', desc:'Až −15 % za to, že tvoříte dál.', img:'assets/usp/4-vernost.png', icon:'percent-circle', href:'vernostni-program.html' },
-      { title:'Papíry ke všemu', desc:'Bezpečnostní listy a dokumentace ke stažení.', img:'assets/usp/5-dokumentace.png', icon:'pdf-01', href:'produkt-vzor.html' },
+      { title:'Papíry ke všemu', desc:'Bezpečnostní listy a dokumentace ke stažení.', img:'assets/usp/5-dokumentace.png', icon:'pdf-01', href:'produkt-material.html' },
       { title:'Od 2000 Kč vezeme zdarma', desc:'Po celé ČR, šetrně zabalené.', img:'assets/usp/6-doprava.png', icon:'truck-delivery', href:'objednavka.html' },
     ];
 
@@ -1195,10 +1195,10 @@ class Component extends DCLogic {
     ].map(r => Object.assign(r, { imgStyle: 'position:absolute; inset:0; background:#EFE7D6 center/cover no-repeat; background-image:url("' + r.img + '");' }));
 
     const products = [
-      { name:'Levandulové máslo, 100 g', price:'189 Kč', badge:'bestseller', ctaVariant:'koupit', rating:4.8, ratingCount:214, img:'assets/products/levandulove-maslo-100-g.jpg', stockState:'ready', href:'produkt-vzor.html' },
-      { name:'Mýdlová hmota s bambuckým máslem (shea), 1 kg', price:'329 Kč', badge:'', ctaVariant:'varianta', rating:4.6, ratingCount:96, img:'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', stockState:'packing', href:'produkt-vzor.html' },
-      { name:'Stabilizovaný vitamin C, 10 g', price:'149 Kč', badge:'doporucujeme', ctaVariant:'koupit', rating:4.7, ratingCount:58, img:'assets/products/stabilizovany-vitamin-c-10-g.jpg', stockState:'ready', href:'produkt-vzor.html' },
-      { name:'Tuhý šampon žloutkový', price:'159 Kč', badge:'novinka', ctaVariant:'varianta', rating:0, ratingCount:0, img:'assets/products/tuhy-sampon-zloutkovy.jpg', stockState:'expected', stockDate:'28. 8. 2026', href:'produkt-vzor.html' },
+      { name:'Levandulové máslo, 100 g', price:'189 Kč', badge:'bestseller', ctaVariant:'koupit', rating:4.8, ratingCount:214, img:'assets/products/levandulove-maslo-100-g.jpg', stockState:'ready', href:'produkt-material.html' },
+      { name:'Skleněná lahvička bez uzávěru hnědá, 10 ml', price:'3 Kč', badge:'', ctaVariant:'varianta', variants:[{ label:'1 ks', price:3, state:'ready' }, { label:'187 ks', price:417, state:'ready' }], rating:4.8, ratingCount:34, img:'assets/products/sklenena-lahvicka-bez-uzaveru-hneda-10-ml.webp', stockState:'ready', href:'produkt-obal.html' },
+      { name:'Stabilizovaný vitamin C, 10 g', price:'149 Kč', badge:'doporucujeme', ctaVariant:'koupit', rating:4.7, ratingCount:58, img:'assets/products/stabilizovany-vitamin-c-10-g.jpg', stockState:'ready', href:'produkt-material.html' },
+      { name:'Tuhý šampon žloutkový', price:'159 Kč', badge:'novinka', ctaVariant:'varianta', rating:0, ratingCount:0, img:'assets/products/tuhy-sampon-zloutkovy.jpg', stockState:'expected', stockDate:'28. 8. 2026', href:'produkt-material.html' },
     ];
 
     const starts = [

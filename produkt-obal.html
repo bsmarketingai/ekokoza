@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D14405; color: #fff; }
+  a { color: #4C653D; }
+  a:hover { color: #B23803; }
+  .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u:hover { background-size: 100% 1.5px; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-primary:hover { background: #3E5432 !important; border-color: #3E5432 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 38px; line-height: 1.12; color: #4C653D; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.18; color: #4C653D; margin: 0 0 12px; text-wrap: pretty; }
+  .ek-h3 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 20px; line-height: 1.25; color: #2A2A24; margin: 0 0 8px; }
+  .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
+  .ek-p { margin: 0 0 12px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
+  .ek-ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .ek-ul li { position: relative; padding-left: 20px; font-size: 15.5px; line-height: 1.6; color: #4A4A42; }
+  .ek-ul li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; border-radius: 50%; background: #7BA23F; }
+  .ek-pd-grid { display: grid; grid-template-columns: minmax(0,1.02fr) minmax(0,.98fr); gap: 52px; align-items: start; }
+  .ek-buy { position: sticky; top: 152px; display: flex; flex-direction: column; gap: 20px; }
+  .ek-det-grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,.9fr); gap: 46px; align-items: start; }
+  .ek-det-side { position: sticky; top: 152px; display: flex; flex-direction: column; gap: 16px; }
+  .ek-tear { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: 0; pointer-events: none; box-shadow: inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); clip-path: polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 9.9px, 15.22% 13.6px, 17.39% 7.4px, 19.57% 11.2px, 21.74% 6.1px, 23.91% 10.4px, 26.09% 14.2px, 28.26% 8.1px, 30.43% 4.7px, 32.61% 9.3px, 34.78% 12.8px, 36.96% 6.8px, 39.13% 10.9px, 41.3% 5.2px, 43.48% 13.1px, 45.65% 8.6px, 47.83% 11.7px, 50% 6.4px, 52.17% 9.8px, 54.35% 14.4px, 56.52% 7.9px, 58.7% 11.4px, 60.87% 5.7px, 63.04% 10.2px, 65.22% 13.3px, 67.39% 8.4px, 69.57% 4.9px, 71.74% 12.1px, 73.91% 7.2px, 76.09% 10.7px, 78.26% 14.1px, 80.43% 6.6px, 82.61% 11.9px, 84.78% 8.8px, 86.96% 5.1px, 89.13% 12.6px, 91.3% 9.1px, 93.48% 13.8px, 95.65% 7.7px, 97.83% 10.3px, 100% 5.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 11.1px), 95.65% calc(100% - 7.6px), 93.48% calc(100% - 13.4px), 91.3% calc(100% - 9.2px), 89.13% calc(100% - 5.3px), 86.96% calc(100% - 12.2px), 84.78% calc(100% - 8.7px), 82.61% calc(100% - 11.6px), 80.43% calc(100% - 6.1px), 78.26% calc(100% - 14.3px), 76.09% calc(100% - 9.6px), 73.91% calc(100% - 12.9px), 71.74% calc(100% - 7.1px), 69.57% calc(100% - 10.8px), 67.39% calc(100% - 4.8px), 65.22% calc(100% - 13.7px), 63.04% calc(100% - 8.2px), 60.87% calc(100% - 11.3px), 58.7% calc(100% - 6.7px), 56.52% calc(100% - 10.1px), 54.35% calc(100% - 14.6px), 52.17% calc(100% - 9.4px), 50% calc(100% - 5.6px), 47.83% calc(100% - 12.4px), 45.65% calc(100% - 8.9px), 43.48% calc(100% - 11.8px), 41.3% calc(100% - 6.9px), 39.13% calc(100% - 13.2px), 36.96% calc(100% - 9.7px), 34.78% calc(100% - 5.2px), 32.61% calc(100% - 12.7px), 30.43% calc(100% - 8.3px), 28.26% calc(100% - 11.5px), 26.09% calc(100% - 7.3px), 23.91% calc(100% - 14.5px), 21.74% calc(100% - 9.9px), 19.57% calc(100% - 6.2px), 17.39% calc(100% - 12.8px), 15.22% calc(100% - 8.5px), 13.04% calc(100% - 11.9px), 10.87% calc(100% - 6.4px), 8.7% calc(100% - 13.6px), 6.52% calc(100% - 9.3px), 4.35% calc(100% - 5.7px), 2.17% calc(100% - 12.3px), 0% calc(100% - 8.6px)); }
+  .ek-card { background: #fff; border: 1px solid #ECE3D2; border-radius: 14px; }
+  .ek-sec { padding-top: 30px; border-top: 1px solid #EFE7D6; scroll-margin-top: 150px; }
+  .ek-prow { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 10px 0; border-bottom: 1px dashed #E4DAC6; font-size: 14.5px; }
+  .ek-prow:last-child { border-bottom: none; }
+  .ek-file { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid #E4DAC6; border-radius: 12px; background: #FDFBF5; text-decoration: none; }
+  .ek-bar { height: 8px; border-radius: 999px; background: #EFE7D6; overflow: hidden; }
+  .ek-minirow { display: grid; grid-template-columns: 52px minmax(0,1fr); gap: 12px; align-items: center; padding: 9px 10px; border-radius: 12px; text-decoration: none; }
+  .ek-pick { display: flex; align-items: center; gap: 13px; padding: 11px 10px; margin: 0 -10px; text-decoration: none; border-radius: 12px; transition: background .2s; }
+  .ek-pick:hover { background: #F4F7EA; }
+  .ek-pick:hover .ek-pick-t { color: #4C653D; }
+  .ek-pick:hover > span:last-child { background-color: #4C653D !important; }
+  .ek-chip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; background: #F3EDE0; color: #4A4A42; font-size: 13.5px; font-weight: 500; }
+  .ek-anchor { display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4DAC6; background: #fff; color: #4C653D; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s; }
+  .ek-anchbar { margin: 0 0 24px; }
+  .ek-scroll-x { scrollbar-width: none; }
+  .ek-scroll-x::-webkit-scrollbar { display: none; }
+  .ek-anchor { white-space: nowrap; }
+  @media (max-width: 819px) {
+    .ek-anchbar { margin-left: -20px; margin-right: -20px; }
+    .ek-anchrow { flex-wrap: nowrap !important; overflow-x: auto; padding: 0 20px; scroll-padding-left: 20px; }
+  }
+  .ek-anchor.ek-anchor-on, .ek-anchor.ek-anchor-on:hover { background: #4C653D; border-color: #4C653D; color: #F6F1E7; }
+  .ek-anchor:hover { border-color: #4C653D; background: #F4F7EA; color: #4C653D; }
+  .ek-acc-btn:hover { background: #F4F7EA !important; }
+  .ek-dose { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; background: rgba(63,127,44,.10); border: 1px solid rgba(63,127,44,.3); color: #33661F; font-size: 13.5px; font-weight: 600; }
+  @media (max-width: 1320px) {
+    .ek-varbar { left: 10px !important; right: 10px !important; transform: none !important; flex-wrap: wrap; justify-content: center; max-width: calc(100vw - 20px); border-radius: 18px !important; }
+    .ek-varbar-note { display: none !important; }
+  }
+  @media (max-width: 700px) {
+    .ek-modal-wrap { padding: 0 !important; align-items: stretch !important; }
+    .ek-modal-card { width: 100% !important; max-width: none !important; min-height: 100%; border-radius: 0 !important; box-shadow: none !important; }
+    .ek-modal-body { min-height: 100vh; padding: 22px 18px 32px !important; }
+  }
+  @media (max-width: 980px) {
+    .ek-pd-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .ek-det-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+    .ek-buy, .ek-det-side { position: static !important; max-height: none !important; overflow: visible !important; }
+    .ek-h1 { font-size: 29px !important; }
+    .ek-h2 { font-size: 24px !important; }
+    .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-rev { grid-template-columns: 1fr !important; }
+    .ek-recipes { grid-template-columns: repeat(2,minmax(0,1fr)) !important; gap: 18px !important; }
+    .ek-2col { grid-template-columns: 1fr !important; }
+    .ek-pagebot { padding-bottom: 92px; }
+  }
+  .ek-det-grid > *, .ek-det-side > *, .ek-rr-box { min-width: 0; }
+  .ek-rr-track { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: -6px -6px 0; padding: 6px 6px 8px; scroll-padding: 0 6px; }
+  .ek-rr-track::-webkit-scrollbar { display: none; }
+  .ek-rr-item { flex: 0 0 calc((100% - 14px) / 2); min-width: 0; scroll-snap-align: start; display: flex; }
+  .ek-rr-item > * { flex: 1; min-width: 0; }
+  .ek-rr-btn { width: 36px; height: 36px; border-radius: 999px; border: 1.5px solid #4C653D; background: #fff; color: #4C653D; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; transition: background .2s, color .2s, opacity .2s; }
+  .ek-rr-btn:hover:not(:disabled) { background: #4C653D; color: #F6F1E7; }
+  .ek-rr-btn:disabled { opacity: .35; cursor: default; }
+  @media (max-width: 1149px) { .ek-rr-item { flex-basis: 100%; } }
+  @media (max-width: 979px) { .ek-rr-item { flex-basis: calc((100% - 28px) / 3); } }
+  @media (max-width: 819px) { .ek-rr-item { flex-basis: calc((100% - 14px) / 2); } }
+  /* mobil: standardní karusel jako na homepage — karty 260 px přes okraj, sjíždění vpravo, ovládání pod kartami */
+  @media (max-width: 819px) {
+    .ek-rr-box { overflow: hidden; }
+    .ek-rr-track { margin: -6px -20px 0 !important; padding: 6px 20px 16px !important; scroll-padding-left: 20px !important; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); }
+    .ek-rr-item { flex-basis: 260px !important; }
+  }
+  @media (max-width: 549px) { .ek-recipes { grid-template-columns: 1fr !important; } }
+  .ek-cap:hover { border-color: #4C653D !important; background: #FDFBF5 !important; }
+  .ek-cap.ek-cap-on:hover { background: #F4F7EA !important; }
+  .ek-desc li { font-size: 16px !important; line-height: 1.7 !important; }
+  .ek-desc li::before { top: 11px !important; }
+</style>
+</helmet>
+
+<div class="ek-pagebot" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+
+  <dc-import name="ui-InfoBar" hint-size="100%,40px"></dc-import>
+  <dc-import name="ui-Header" active="obaly" topbarVariant="{{ topbarVar }}" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
+
+  <div style="max-width:1720px; margin:0 auto; position:relative;">
+
+  <section style="padding:22px 32px 0;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto 26px;">
+      <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="420px,20px"></dc-import>
+    </div>
+
+    <div class="ek-pd-grid" style="max-width:1560px; margin:0 auto;">
+      <div style="display:flex; flex-direction:column; gap:18px; min-width:0;">
+        <dc-import name="ui-Gallery" layout="{{ galLayout }}" images="{{ images }}" video="{{ productVideo }}" badges="{{ galleryBadges }}" productName="{{ title }}" hint-size="100%,620px"></dc-import>
+        <dc-import name="ui-ParamStrip" items="{{ paramStrip }}" hint-size="100%,120px"></dc-import>
+      </div>
+
+      <div class="ek-buy">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:none; align-items:center; gap:14px; flex-wrap:wrap;">
+            <span style="display:none; align-items:baseline; gap:8px; padding:7px 14px; border:1px solid rgba(76,101,61,.28); border-radius:999px; background:#F4F7EA; font-family:'Work Sans',sans-serif;"><span style="font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">INCI</span><span style="font-size:14.5px; font-weight:500; color:#2A2A24;">{{ inci }}</span></span>
+          </div>
+          <h1 class="ek-h1">{{ title }}</h1>
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" size="{{ 16 }}" hint-size="130px,20px"></dc-import>
+            <a href="#faq" class="ek-link-u" style="font-size:14px; text-decoration:none; color:#4C653D;">Časté otázky</a>
+            <span style="margin-left:auto; font-size:12.5px; color:#8a8776;">ID produktu {{ productId }}</span>
+          </div>
+          <p class="ek-p" style="margin:2px 0 0;">{{ shortDesc }}</p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <sc-if value="{{ showPriceOrig }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:14px; color:#6B6B5E; text-decoration:line-through;">{{ priceOrigLabel }}</span>
+          </sc-if>
+          <div style="display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap;">
+            <span style="font-family:'EB Garamond',serif; font-size:40px; line-height:1; font-weight:500; color:#2A2A24;">{{ price }}</span>
+            <span style="display:flex; flex-direction:column; gap:3px; font-size:14px; color:#6B6B5E; padding-bottom:3px;">
+              <span>{{ priceNoVat }} bez DPH</span>
+              <span>{{ unitPrice }}</span>
+            </span>
+          </div>
+        </div>
+
+        <sc-if value="{{ showLoyaltyHint }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:10px 13px; border-radius:12px; background:#FBF8F1; border:1px dashed #D8CDB4;">
+            <span style="display:flex; align-items:center; gap:8px; min-width:0; color:#6B6B5E; font-size:14px; font-weight:600; line-height:1.35;">
+              <span style="{{ iconLoyaltyPct }}"></span>{{ loyaltyHintText }}
+            </span>
+            <span style="display:flex; align-items:center; gap:6px; flex:0 0 auto; font-size:14px; font-weight:600;">
+              <a href="#" onClick="{{ onLoyaltyLogin }}" style="color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:1px;">Přihlásit se</a>
+              <span style="color:#CFC4AA;">·</span>
+              <a href="#" onClick="{{ onLoyaltyLogin }}" style="color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:1px;">Registrace</a>
+            </span>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showLoyaltyMine }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:10px 13px; border-radius:12px; background:#EEF4DC; border:1px solid rgba(76,101,61,.35);">
+            <span style="display:flex; align-items:center; gap:8px; min-width:0; color:#4C653D; font-size:14px; font-weight:600; line-height:1.35;">
+              <span style="{{ iconLoyaltyPctOn }}"></span>{{ loyaltyMineText }}
+              <button onClick="{{ openDiscInfo }}" aria-label="Jak se počítá vaše sleva" title="Jak se počítá vaše sleva" style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; margin-left:-2px; padding:0; border:none; border-radius:50%; background:transparent; cursor:pointer;"><span style="{{ iconInfo }}"></span></button>
+            </span>
+            <a href="vernostni-program.html" style="flex:0 0 auto; font-size:14px; font-weight:600; color:#4C653D; text-decoration:none; border-bottom:1px solid rgba(76,101,61,.4); padding-bottom:1px;">Věrnostní program</a>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isVariant }}" hint-placeholder-val="{{ true }}">
+          <dc-import name="ui-VariantPicker" mode="select" layout="{{ varLayout }}" selected="{{ selected }}" onSelect="{{ onSelect }}" heading="Vyberte balení" variants="{{ variants }}" hint-size="100%,280px"></dc-import>
+        </sc-if>
+        <sc-if value="{{ isSingle }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ buyable }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 16px; border:1px solid #E4DAC6; border-radius:12px; background:#fff;">
+              <dc-import name="ui-Stock" state="{{ stockState }}" date="{{ stockDate }}" size="{{ 14.5 }}" hint-size="200px,36px"></dc-import>
+              <span style="font-size:14px; color:#6B6B5E;">{{ stockNote }}</span>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <sc-if value="{{ buyable }}" hint-placeholder-val="{{ true }}">
+          <div id="uzaver" style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <span style="font-size:16px; font-weight:600; color:#2A2A24;">Uzávěry k lahvičce</span>
+              <span style="font-size:14px; line-height:1.5; color:#6B6B5E;">Lahvička se prodává bez uzávěru. Pasují na ni uzávěry se závitem 18/415.</span>
+            </div>
+            <div aria-label="Uzávěry k lahvičce" style="display:flex; flex-direction:column; gap:8px;">
+              <sc-for list="{{ capsShown }}" as="c" hint-placeholder-count="4">
+                <div class="{{ c.cls }}" style="{{ c.style }}">
+                  <span style="{{ c.check }}"></span>
+                  <span style="{{ c.thumb }}"></span>
+                  <span style="display:flex; flex-direction:column; gap:3px; min-width:150px; flex:1 1 0;">
+                    <span title="{{ c.name }}" style="{{ c.nameStyle }}">{{ c.name }}</span>
+                    <span style="font-size:14px; color:#6B6B5E;">{{ c.price }}</span>
+                  </span>
+                  <span style="display:flex; align-items:center; gap:8px; flex:0 0 auto; margin-left:auto;">
+                    <dc-import name="ui-QtyStepper" value="{{ c.qty }}" min="{{ 1 }}" max="{{ 9999 }}" height="{{ 42 }}" onChange="{{ c.setQty }}" hint-size="140px,42px"></dc-import>
+                    <button onClick="{{ c.buy }}" aria-label="{{ c.buyLabel }}" title="{{ c.buyLabel }}" class="ek-btn-main" style="display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; flex:0 0 auto; padding:0; border-radius:50%; background:#D14405; border:1.5px solid #D14405; cursor:pointer; transition:background .2s, border-color .2s;"><span style="{{ iconCartW }}"></span></button>
+                  </span>
+                  <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}">
+                    <span style="flex:1 0 100%; padding-top:8px; border-top:1px solid rgba(76,101,61,.2); font-size:13.5px; line-height:1.5; color:#4C653D;">V košíku máte již <strong>{{ c.cartQty }} ks</strong>. Počet můžete změnit v <a href="kosik.dc.html" style="color:#4C653D; font-weight:600;">košíku</a>.<br>Nebo můžete koupit v balení 100 ks <span style="display:inline-flex; align-items:center; gap:4px; font-size:12.5px; color:#4C653D; font-weight:600; background:#FBD870; border-radius:999px; padding:2px 10px; white-space:nowrap; vertical-align:1px;">{{ c.packUnit }}</span>.</span>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ capsHasMore }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ toggleCaps }}" aria-expanded="{{ capsOpen }}" class="ek-btn-secondary" style="align-self:flex-end; display:inline-flex; align-items:center; justify-content:center; gap:8px; height:44px; padding:0 20px; border:1.5px solid #4C653D; border-radius:999px; background:transparent; color:#4C653D; font-family:'Work Sans',sans-serif; font-size:14.5px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;">{{ capsBtn }}<span style="{{ capsChev }}"></span></button>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <div id="ek-buy-cta">
+        <sc-if value="{{ buyable }}" hint-placeholder-val="{{ true }}">
+          <div class="ek-buyrow" style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+            <span style="flex:1; min-width:260px;">
+              <dc-import name="ui-AddToCart" max="{{ 99 }}" onAdd="{{ onAdd }}" onQtyChange="{{ onQty }}" hint-size="100%,56px"></dc-import>
+            </span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notBuyable }}" hint-placeholder-val="{{ false }}">
+          <div id="hlidaci-pes" style="display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; flex-direction:column; gap:8px; padding:16px; border:1px solid rgba(163,50,3,.28); border-radius:12px; background:rgba(163,50,3,.05);">
+              <span style="font-size:15px; font-weight:600; color:#A33203;">Tento produkt nelze zakoupit</span>
+              <p style="margin:0; font-size:14.5px; line-height:1.6; color:#52524a;">{{ watchNote }}</p>
+            </div>
+            <button onClick="{{ openWatchModal }}" class="ek-btn-main" style="align-self:flex-start; display:inline-flex; align-items:center; gap:9px; height:52px; padding:0 26px; background:#D14405; color:#fff; border:1.5px solid #D14405; border-radius:999px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, border-color .2s;"><span style="{{ iconBellW }}"></span>Upozornit na naskladnění</button>
+          </div>
+        </sc-if>
+        </div>
+
+
+        <div style="display:none; flex-direction:column; gap:11px; padding-top:4px;">
+          <sc-for list="{{ perks }}" as="p" hint-placeholder-count="3">
+            <span style="display:flex; align-items:flex-start; gap:10px; font-size:14.5px; line-height:1.5; color:#4A4A42;">
+              <span style="{{ p.icon }}"></span>{{ p.label }}
+            </span>
+          </sc-for>
+        </div>
+
+        <div class="ek-card" style="display:flex; align-items:flex-start; gap:12px; padding:16px 18px; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%); border-color:rgba(76,101,61,.16);">
+          <span style="{{ iconHelp }}"></span>
+          <span style="font-size:14.5px; line-height:1.6; color:#4A4A42;">Nejste si jistí, který uzávěr k lahvičce vybrat? Napište nám na <a href="mailto:eshop@ekokoza.cz" class="ek-link-u" style="text-decoration:none; font-weight:600;">eshop@ekokoza.cz</a>.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="popis" style="position:relative; margin:56px 0 0; padding:30px 0 40px;">
+    <div aria-hidden="true" class="ek-tear" style="background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 64%,#FDFCF7 100%);"></div>
+    <section style="position:relative; z-index:1; padding:44px 32px;" class="ek-pad">
+      <div class="ek-det-grid" style="max-width:1560px; margin:0 auto;">
+        <div style="display:flex; flex-direction:column; gap:18px; min-width:0;">
+          <h2 class="ek-h2" style="margin:0;">Popis</h2>
+          <ul class="ek-ul ek-desc" style="gap:16px;">
+            <li>Skleněná lahvička je dodávaná <strong style="color:#2A2A24;">bez uzávěru</strong>, takže si uzávěr vyberete podle toho, k čemu ji budete používat. Uzávěr je potřeba zakoupit zvlášť.</li>
+            <li>Lahvička má hrdlo se <strong style="color:#2A2A24;">závitem 18/415</strong> a pasují na ni všechny uzávěry s tímto označením. Vhodný uzávěr můžete přidat rovnou při výběru balení, nebo si ho vyberte v kategorii <a href="kategorie.html" style="color:#4C653D;">samostatné uzávěry</a>.</li>
+          </ul>
+          <div style="display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px; padding:16px 18px; border:1px solid #E8D9C2; border-radius:14px; background:linear-gradient(160deg,#FFFBF3 0%,#FDF4E6 100%);">
+            <span style="{{ iconAlert }}"></span>
+            <span style="font-size:15.5px; line-height:1.65; color:#4A4A42;"><strong style="color:#2A2A24;">Pozor:</strong> pokud vybíráte uzávěr s pipetou, zvolte správnou délku pipety. Jen tak bude uzávěr na lahvičce správně sedět a fungovat.</span>
+          </div>
+        </div>
+        <aside class="ek-det-side">
+          <div class="ek-card" style="padding:18px 20px;">
+            <h3 class="ek-h3" style="margin-bottom:6px;">Parametry</h3>
+            <sc-for list="{{ params }}" as="t" hint-placeholder-count="7">
+              <div class="ek-prow">
+                <span style="color:#6B6B5E;">{{ t.k }}</span>
+                <span style="font-weight:600; color:#2A2A24; text-align:right;">{{ t.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div class="ek-card" style="padding:18px 20px;">
+            <h3 class="ek-h3" style="margin-bottom:12px;">Soubory</h3>
+            <div style="display:flex; flex-direction:column; gap:9px;">
+              <sc-for list="{{ files }}" as="f" hint-placeholder-count="2">
+                <a href="{{ f.href }}" class="ek-file">
+                  <span style="{{ f.icon }}"></span>
+                  <span style="display:flex; flex-direction:column; gap:2px; min-width:0; flex:1;">
+                    <span style="font-size:14px; font-weight:600; color:#2A2A24;">{{ f.label }}</span>
+                    <span style="font-size:12px; color:#6B6B5E;">{{ f.meta }}</span>
+                  </span>
+                  <span style="{{ iconDownload }}"></span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <section id="hodnoceni" style="padding:60px 32px 0;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <h2 class="ek-h2">Hodnocení a recenze</h2>
+      <p class="ek-p" style="max-width:64ch; margin-bottom:26px;">Píší lidé, kteří lahvičky skutečně používají. Recenze nijak neupravujeme.</p>
+
+      <div class="ek-rev" style="display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:34px; align-items:start;">
+        <div class="ek-card" style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span style="font-family:'EB Garamond',serif; font-size:44px; line-height:1; color:#2A2A24;">{{ rating }}</span>
+            <span style="display:flex; flex-direction:column; gap:4px;">
+              <dc-import name="ui-Rating" value="{{ rating }}" count="{{ ratingCount }}" showValue="{{ false }}" size="{{ 16 }}" hint-size="180px,20px"></dc-import>
+              <span style="font-size:13.5px; color:#6B6B5E;">{{ ratingLabel }}</span>
+            </span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:9px;">
+            <sc-for list="{{ dist }}" as="d" hint-placeholder-count="5">
+              <span style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#6B6B5E;">
+                <span style="width:34px; flex:0 0 auto;">{{ d.label }}</span>
+                <span class="ek-bar" style="flex:1;"><span style="{{ d.fill }}"></span></span>
+                <span style="width:22px; text-align:right; flex:0 0 auto;">{{ d.count }}</span>
+              </span>
+            </sc-for>
+          </div>
+          <a href="#" class="ek-btn-secondary" style="display:inline-flex; align-self:flex-start; align-items:center; gap:9px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; transition:background .2s, color .2s;"><span style="{{ iconPen }}"></span>Přidat recenzi</a>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+            <div class="ek-card" style="padding:20px 22px; display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+                <span style="display:flex; align-items:center; gap:11px;">
+                  <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:#EFE7D6; font-size:14px; font-weight:700; color:#4C653D;">{{ r.initial }}</span>
+                  <span style="display:flex; flex-direction:column;">
+                    <span style="font-size:15px; font-weight:600; color:#2A2A24;">{{ r.name }}</span>
+                    <span style="font-size:12.5px; color:#8a8776;">{{ r.meta }}</span>
+                  </span>
+                </span>
+                <dc-import name="ui-Rating" value="{{ r.stars }}" showCount="{{ false }}" showValue="{{ false }}" size="{{ 14 }}" hint-size="110px,20px"></dc-import>
+              </div>
+              <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">{{ r.text }}</p>
+            </div>
+          </sc-for>
+          <a href="#" class="ek-btn-ghost" style="display:inline-flex; align-self:flex-end; align-items:center; gap:8px; color:#4C653D; text-decoration:none; border:1.5px solid transparent; border-radius:999px; padding:11px 18px; font-size:14.5px; font-weight:600; transition:background .2s;">Další recenze<span style="{{ iconArrow }}"></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:86px 32px 96px; margin:58px 0 0; position:relative;" class="ek-pad">
+    <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% 100%, 0% 100%);"></div>
+    <div style="position:relative; z-index:1; max-width:1560px; margin:0 auto;">
+      <div class="ek-card" style="padding:28px; display:flex; align-items:flex-start; justify-content:space-between; gap:26px; flex-wrap:wrap; background:linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 100%); border-color:rgba(76,101,61,.16);">
+        <div style="min-width:0; max-width:60ch;">
+          <h2 class="ek-h2" style="margin-bottom:10px;">Diskuze k produktu</h2>
+          <p style="margin:0; font-size:16px; line-height:1.7; color:#4A4A42;">Máte otázku k lahvičce nebo k výběru uzávěru? Zeptejte se — odpovídáme v pracovní dny, obvykle do 24 hodin.</p>
+        </div>
+        <a href="#" class="ek-btn-primary" style="display:inline-flex; align-items:center; gap:9px; background:#4C653D; color:#F6F1E7; border:1.5px solid #4C653D; text-decoration:none; border-radius:999px; padding:14px 26px; font-size:15.5px; font-weight:600; transition:background .2s, border-color .2s;"><span style="{{ iconChat }}"></span>Položit dotaz</a>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px; margin-top:20px;">
+        <sc-for list="{{ questions }}" as="q" hint-placeholder-count="2">
+          <div class="ek-card" style="padding:20px 22px; display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <span style="font-size:15px; font-weight:700; color:#2A2A24;">{{ q.name }}</span>
+              <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">{{ q.text }}</p>
+            </div>
+            <div style="display:flex; gap:12px; padding:14px 16px; border-radius:12px; background:#F4F7EA;">
+              <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; flex:0 0 auto;"><span style="display:block; width:26px; height:26px; background-color:#2D3A2E; -webkit-mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat; mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat;"></span></span>
+              <span style="display:flex; flex-direction:column; gap:5px;">
+                <span style="font-size:14px; font-weight:700; color:#4C653D;">Ekokoza</span>
+                <span style="font-size:15px; line-height:1.65; color:#4A4A42;">{{ q.answer }}</span>
+              </span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+<div aria-hidden="true" style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw; height:30px; margin-top:-30px; background:#4C653D; clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% 100%, 0% 100%);"></div>
+<div style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
+  </div>
+
+  <dc-import name="ui-BuyBar" title="{{ title }}" variantLabel="{{ barVariant }}" variants="{{ barVariants }}" selected="{{ selected }}" onSelect="{{ onSelect }}" price="{{ price }}" note="{{ unitPrice }}" img="{{ barImg }}" buyable="{{ buyable }}" stockState="{{ stockState }}" stockDate="{{ stockDate }}" max="{{ 99 }}" watch="#ek-buy-cta" pickTarget="{{ barTarget }}" onAdd="{{ onAdd }}" hint-size="100%,0px"></dc-import>
+</div>
+<sc-if value="{{ cartAddedOpen }}" hint-placeholder-val="{{ false }}">
+  <dc-import name="ui-CartAdded" open="{{ true }}" items="{{ addedItems }}" cartTotal="{{ 1289 }}" cartCount="{{ 2 }}" turnover="{{ 12400 }}" onClose="{{ closeCartAdded }}" hint-size="100%,100%"></dc-import>
+</sc-if>
+<dc-import name="ui-CartAdded" listen="{{ true }}" cartTotal="{{ 1289 }}" cartCount="{{ 2 }}" turnover="{{ 12400 }}" hint-size="100%,100%"></dc-import>
+
+<sc-if value="{{ discInfoOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeDiscInfo }}" role="dialog" aria-label="Jak se počítá vaše sleva" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(34,48,31,.55);">
+      <div onClick="{{ stopProp }}" style="position:relative; width:min(460px,100%); max-height:100%; overflow:auto; border-radius:16px; background:#FFFDF6; padding:28px 30px 26px; box-shadow:0 30px 70px -28px rgba(45,58,46,.6); font-family:'Work Sans',sans-serif;">
+        <button onClick="{{ closeDiscInfo }}" aria-label="Zavřít" style="position:absolute; top:14px; right:14px; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; padding:0; border:none; border-radius:50%; background:transparent; cursor:pointer;"><span style="{{ iconCloseModal }}"></span></button>
+        <span style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; margin-bottom:16px; border-radius:14px; background:#EEF4DC; border:1px solid rgba(76,101,61,.25);"><span style="{{ iconDiscModal }}"></span></span>
+        <h3 style="margin:0 0 10px; padding-right:36px; font-family:'EB Garamond',serif; font-weight:500; font-size:26px; line-height:1.2; color:#4C653D; text-wrap:pretty;">Níž už cena jít nemůže</h3>
+        <p style="margin:0 0 18px; font-size:15px; line-height:1.6; color:#4A4A42; text-wrap:pretty;">U tohoto produktu je cena nastavená na nejnižší možnou hranici. Neklesne ani s nejvyšší věrnostní slevou 15 %.</p>
+        <p style="margin:0 0 20px; font-size:14.5px; line-height:1.6; color:#6B6B5E; text-wrap:pretty;">Vaše věrnostní úroveň zůstává zachovaná a sleva platí pro ostatní produkty v objednávce.</p>
+        <a href="vernostni-program.html" class="ek-btn-secondary" style="align-self:flex-start; display:inline-flex; align-items:center; gap:8px; border:1.5px solid #4C653D; border-radius:999px; padding:11px 20px; font-size:14.5px; font-weight:600; color:#4C653D; text-decoration:none; transition:background .2s, color .2s;"><span style="{{ iconLoyaltyBtn }}"></span>Jak funguje věrnostní program</a>
+      </div>
+    </div>
+  </sc-if>
+<sc-if value="{{ watchModalOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeWatchModal }}" role="dialog" aria-label="Upozornit na naskladnění" class="ek-modal-wrap" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(34,48,31,.55); backdrop-filter:blur(5px); font-family:'Work Sans',sans-serif;">
+    <div onClick="{{ stopProp }}" class="ek-modal-card" style="position:relative; width:min(520px,100%); max-height:100%; overflow:auto; border-radius:16px; box-shadow:0 30px 70px -28px rgba(45,58,46,.65);">
+      <button onClick="{{ closeWatchModal }}" aria-label="Zavřít" style="position:absolute; top:14px; right:14px; z-index:2; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#F6F1E7; border:1px solid #E4DAC6; cursor:pointer;"><span style="{{ iconCloseModal }}"></span></button>
+      <div class="ek-modal-body" style="padding:28px 30px; background:#FFFFFF;">
+        <dc-import name="ui-WatchDog" productName="{{ title }}" variantLabel="{{ watchVariant }}" loggedIn="{{ loggedIn }}" boxed="{{ false }}" onClose="{{ closeWatchModal }}" hint-size="100%,320px"></dc-import>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ barCollapsed }}" hint-placeholder-val="{{ false }}">
+  <button onClick="{{ openBar }}" title="Zobrazit ovládání ukázky" style="position:fixed; right:20px; bottom:104px; z-index:300; display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 14px 32px -16px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif; font-size:13px; font-weight:600; color:#4C653D; cursor:pointer;">
+    <span style="{{ iconBarOpen }}"></span>Ukázka
+  </button>
+</sc-if>
+
+<sc-if value="{{ barOpen }}" hint-placeholder-val="{{ true }}">
+<div class="ek-varbar" style="position:fixed; left:50%; bottom:104px; transform:translateX(-50%); z-index:300; display:flex; align-items:center; gap:8px; padding:10px 10px 10px 14px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
+  <sc-for list="{{ demoGroups }}" as="g" hint-placeholder-count="3">
+    <span style="display:flex; align-items:center; gap:8px;">
+      <span class="ek-varbar-note" style="font-size:12.5px; font-weight:600; color:#8a8776; white-space:nowrap;">{{ g.label }}</span>
+      <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+        <sc-for list="{{ g.options }}" as="o" hint-placeholder-count="2">
+          <button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button>
+        </sc-for>
+      </span>
+    </span>
+  </sc-for>
+  <dc-import name="ui-MenuSwitch" hint-size="200px,36px"></dc-import>
+    <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { hdrH: 120, discInfo: false, sel: 0, cartAdded: false, avail: 'in', loggedIn: false, watchModal: false, barOpen: true, qty: 1, cap: 'none' };
+  measureHdr() {
+    const tb = document.querySelector('.ek-topbar');
+    const host = tb && tb.parentElement;
+    const h = host ? Math.round(host.getBoundingClientRect().height) : 120;
+    if (h !== this.state.hdrH) this.setState({ hdrH: h });
+  }
+  componentDidMount() {
+    this._mh = () => this.measureHdr();
+    window.addEventListener('resize', this._mh);
+    setTimeout(this._mh, 300); setTimeout(this._mh, 1200);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._mh); }
+  mask(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  static IMG = 'assets/products/sklenena-lahvicka-bez-uzaveru-hneda-10-ml.webp';
+  static TITLE = 'Skleněná lahvička bez uzávěru hnědá, 10 ml';
+  // Varianty: po kusech, nebo celé balení 187 ks (ceny s DPH)
+  static VARIANTS = [
+    { label: '1 ks', pcs: 1, n: 3, state: 'ready' },
+    { label: '187 ks', pcs: 187, n: 417, state: 'ready' },
+  ];
+  // Kompatibilní uzávěry 18/415 — ceny za kus (pracovní data)
+  static CAPS = [
+    { id: 'pip', name: 'Uzávěr s pojistným kroužkem s černou pipetou pro 10 ml lahvičku', img: 'pipeta-cerna-10-ml', n: 12 },
+    { id: 'whiteplain', name: 'Uzávěr s pojistným kroužkem bez kapátka bílý', img: 'bez-kapatka-bily', n: 3 },
+    { id: 'whitedrop', name: 'Uzávěr s pojistným kroužkem a kapátkem bílý', img: 'kapatko-bily', n: 4 },
+    { id: 'pump', name: 'Uzávěr pumpička, bílá', img: 'pumpicka-bila', n: 9 },
+    { id: 'brush', name: 'Uzávěr bílý se štětečkem', img: 'stetecek-bily', n: 7 },
+    { id: 'blackdrop', name: 'Uzávěr s pojistným kroužkem a kapátkem černý', img: 'kapatko-cerny', n: 4 },
+    { id: 'spray', name: 'Uzávěr s rozprašovačem s pojistným kroužkem (originality) a čirým krytem černý', img: 'rozprasovac-cerny', n: 10 },
+    { id: 'alu', name: 'Hliníkový uzávěr stříbrný pro láhve s hrdlem GL18', img: 'hlinikovy-stribrny-gl18', n: 5 },
+  ];
+
+  money(n) {
+    const r = Math.round(n * 100) / 100;
+    const dec = r % 1 !== 0 && r < 100;
+    return new Intl.NumberFormat('cs-CZ', { minimumFractionDigits: dec ? 2 : 0, maximumFractionDigits: dec ? 2 : 0 }).format(dec ? r : Math.round(r)) + ' Kč';
+  }
+
+  renderVals() {
+    const soldOut = this.state.avail === 'out';
+    const loggedIn = this.state.loggedIn;
+    const k = loggedIn ? 0.9 : 1;
+    const NOTES = { ready: 'Odesíláme obvykle následující pracovní den.', longterm: 'Může trvat několik měsíců — zapneme vám hlídacího psa.' };
+    const segBtn = (on) => "font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; padding:8px 14px; min-height:32px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;"
+      + (on ? ' background:#4C653D; color:#F6F1E7; border:1px solid #4C653D;' : ' background:transparent; color:#6B6B5E; border:1px solid transparent;');
+    const V = Component.VARIANTS.map(v => Object.assign({}, v, { state: soldOut ? 'longterm' : v.state }));
+    const shown = V.map(v => ({
+      label: v.label, state: v.state, date: '',
+      price: this.money(v.n * k),
+      noVat: this.money(v.n * k / 1.21),
+      unit: this.money(v.n * k / v.pcs) + ' / ks',
+    }));
+    const sel = this.state.sel;
+    const cur = V[sel] || V[0];
+    const curS = shown[sel] || shown[0];
+    const buyable = !soldOut;
+    const qty = this.state.qty || 1;
+    const capQty = this.state.capQty || {};
+    const qOf = (id) => capQty[id] || cur.pcs;
+    const inCart = this.state.capInCart || {};
+    const caps = Component.CAPS.map(c => { const on = !!inCart[c.id]; return {
+      name: c.name, on,
+      cartQty: new Intl.NumberFormat('cs-CZ').format(inCart[c.id] || 0),
+      packUnit: new Intl.NumberFormat('cs-CZ', { minimumFractionDigits: 3, maximumFractionDigits: 3 }).format(c.n * 0.42 * k) + ' Kč/ks',
+      cls: on ? 'ek-cap ek-cap-on' : 'ek-cap',
+      style: 'display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:10px 12px; border-radius:12px; transition:border-color .2s, background .2s, box-shadow .2s; border:1.5px solid ' + (on ? '#4C653D' : '#E2D9C4') + '; background:' + (on ? '#F4F7EA' : '#fff') + ';' + (on ? ' box-shadow:0 0 0 2px rgba(76,101,61,.16);' : ''),
+      check: on ? this.mask('checkmark-circle-01', 24, '#4C653D') : 'display:none;',
+      nameStyle: 'display:block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:14.5px; line-height:1.35; color:#2A2A24; font-weight:' + (on ? '700' : '600') + ';',
+      price: this.money(c.n * k) + ' / ks',
+      qty: qOf(c.id),
+      setQty: (q) => this.setState({ capQty: Object.assign({}, capQty, { [c.id]: q }) }),
+      buyLabel: 'Koupit: ' + c.name,
+      buy: () => this.setState({ cartAdded: true, addedKind: 'cap', capId: c.id, capAddQty: qOf(c.id), capInCart: Object.assign({}, inCart, { [c.id]: (inCart[c.id] || 0) + qOf(c.id) }) }),
+      thumb: 'display:block; width:52px; height:52px; flex:0 0 auto; border-radius:6px; background:#fff url("assets/products/uzavery/' + c.img + '.webp") center / contain no-repeat; border:1px solid #ECE3D2;',
+    }; });
+    const addedCap = Component.CAPS.find(c => c.id === this.state.capId);
+    const CAPS_VISIBLE = 4;
+    const capsOpen = !!this.state.capsOpen;
+    const capsMore = caps.length - CAPS_VISIBLE;
+
+    const demoGroups = [
+      { label: 'Dostupnost', options: [
+        { label: 'Dostupný', on: !soldOut, pick: () => this.setState({ avail: 'in' }) },
+        { label: 'Nedostupný', on: soldOut, pick: () => this.setState({ avail: 'out' }) },
+      ] },
+      { label: 'Zákazník', options: [
+        { label: 'Host', on: !loggedIn, pick: () => this.setState({ loggedIn: false }) },
+        { label: 'Přihlášen', on: loggedIn, pick: () => this.setState({ loggedIn: true }) },
+      ] },
+      { label: 'Galerie', options: [
+        { label: 'G1', on: (this.state.gal || 'g1') === 'g1', pick: () => this.setState({ gal: 'g1' }) },
+        { label: 'G2', on: this.state.gal === 'g2', pick: () => this.setState({ gal: 'g2' }) },
+      ] },
+    ].map(g => Object.assign({}, g, { options: g.options.map(o => Object.assign({}, o, { style: segBtn(o.on) })) }));
+
+    const added = (this.state.addedKind === 'cap' && addedCap)
+      ? [{ title: addedCap.name, variant: '1 ks', qty: this.state.capAddQty || 1, price: addedCap.n, noVat: Math.round(addedCap.n / 1.21 * 100) / 100, img: 'assets/products/uzavery/' + addedCap.img + '.webp', state: 'ready' }]
+      : [{ title: Component.TITLE, variant: cur.label, qty, price: Math.round(cur.n * 100) / 100, noVat: Math.round(cur.n / 1.21 * 100) / 100, img: Component.IMG, state: cur.state }];
+
+    return {
+      crumbs: [
+        { label: 'Úvod', href: 'index.html' },
+        { label: 'Obaly', href: 'kategorie.html' },
+        { label: 'Skleněné lahvičky', href: 'kategorie.html' },
+        { label: Component.TITLE },
+      ],
+      productVideo: null,
+      images: [{ src: Component.IMG, alt: 'Hnědá skleněná lahvička 10 ml bez uzávěru, hrdlo se závitem 18/415' }],
+      galleryBadges: [],
+      galLayout: this.state.gal === 'g2' ? 'below' : 'side',
+      title: Component.TITLE,
+      productId: '7312',
+      rating: 4.8, ratingCount: 34, ratingLabel: '34 hodnocení',
+      shortDesc: 'Hnědá lahvička z lékárenského skla na esenciální oleje, séra a tinktury. Hrdlo se závitem 18/415 — uzávěr si vyberete a přidáte zvlášť.',
+      inci: '',
+      paramStrip: [
+        { k: 'Objem', v: '10 ml' },
+        { k: 'Barva', v: 'hnědá' },
+        { k: 'Závit hrdla', v: '18/415' },
+        { k: 'Výška', v: '60 mm' },
+        { k: 'Průměr', v: '24 mm' },
+      ],
+
+      price: curS.price,
+      priceOrigLabel: 'běžně ' + this.money(cur.n),
+      showPriceOrig: loggedIn,
+      priceNoVat: curS.noVat,
+      unitPrice: curS.unit,
+      variants: shown,
+      selected: sel,
+      onSelect: (i) => this.setState({ sel: i }),
+      isVariant: true, isSingle: false,
+      varLayout: 'rows',
+      topbarVar: 'v2',
+      stockState: cur.state, stockDate: '', stockNote: NOTES[cur.state] || NOTES.ready,
+      buyable, notBuyable: !buyable, loggedIn,
+
+      capsShown: capsOpen ? caps : caps.slice(0, CAPS_VISIBLE),
+      capsHasMore: capsMore > 0,
+      iconCartW: this.mask('shopping-cart-check-in-01', 20, '#FFFFFF'),
+      capsOpen: capsOpen ? 'true' : 'false',
+      capsBtn: capsOpen ? 'Zobrazit méně uzávěrů' : 'Zobrazit další uzávěry (' + capsMore + ')',
+      capsChev: this.mask(capsOpen ? 'arrow-up-01' : 'arrow-down-01', 18, 'currentColor'),
+      toggleCaps: () => this.setState({ capsOpen: !capsOpen }),
+      iconArrowRight: this.mask('arrow-right-02', 16, 'currentColor'),
+      onQty: (q) => this.setState({ qty: q }),
+
+      watchVariant: cur.label,
+      watchNote: 'Toto balení teď není skladem a datum naskladnění neznáme. Nechte nám e-mail a napíšeme vám, jakmile ho naskladníme.',
+      showLoyaltyHint: !loggedIn, showLoyaltyMine: loggedIn,
+      loyaltyHintText: 'Ve věrnostním programu máte slevu 5–15 % z každé objednávky',
+      loyaltyMineText: 'Vaše sleva −10 %',
+      onLoyaltyLogin: (e) => { if (e) e.preventDefault(); window.dispatchEvent(new CustomEvent('ek-open-login')); },
+      iconLoyaltyPct: this.mask('percent-circle', 17, '#8A5A28'),
+      iconLoyaltyPctOn: this.mask('percent-circle', 17, '#4C653D'),
+      iconLoyaltyBtn: this.mask('percent-circle', 18, 'currentColor'),
+      stopProp: (e) => e.stopPropagation(),
+      watchModalOpen: this.state.watchModal,
+      openWatchModal: () => this.setState({ watchModal: true }),
+      closeWatchModal: () => this.setState({ watchModal: false }),
+      discInfoOpen: this.state.discInfo,
+      openDiscInfo: (e) => { if (e) { e.preventDefault(); e.stopPropagation(); } this.setState({ discInfo: true }); },
+      closeDiscInfo: () => this.setState({ discInfo: false }),
+      iconInfo: this.mask('information-circle', 18, '#4C653D'),
+      iconDiscModal: this.mask('percent-circle', 24, '#4C653D'),
+      iconBellW: this.mask('notification-01', 19, '#FFFFFF'),
+      iconCloseModal: this.mask('cancel-01', 20, '#4C653D'),
+      demoGroups,
+      barOpen: this.state.barOpen, barCollapsed: !this.state.barOpen,
+      openBar: () => this.setState({ barOpen: true }),
+      closeBar: () => this.setState({ barOpen: false }),
+      iconBarOpen: this.mask('grid-view', 16, '#4C653D'),
+      iconBarClose: this.mask('cancel-01', 16, '#4C653D'),
+      barVariant: cur.label, barImg: Component.IMG, barVariants: shown,
+      barTarget: buyable ? '#ek-buy-cta' : '#hlidaci-pes',
+
+      onAdd: (q) => this.setState({ qty: q || 1, cartAdded: true, addedKind: 'bottle' }),
+      cartAddedOpen: this.state.cartAdded,
+      closeCartAdded: () => this.setState({ cartAdded: false }),
+      addedItems: added,
+      perks: [],
+      iconHelp: this.mask('message-question', 24, '#4F6E2A'),
+      iconAlert: this.mask('alert-circle', 22, '#A33203'),
+      iconDownload: this.mask('download-01', 22, '#4C653D'),
+      iconPen: this.mask('star', 24, 'currentColor'),
+      iconArrow: this.mask('arrow-right-02', 24, 'currentColor'),
+      iconChat: this.mask('bubble-chat', 24, 'currentColor'),
+
+      params: [
+        ['Objem', '10 ml'],
+        ['Barva', 'hnědá'],
+        ['Typ uzávěru', 'bez uzávěru, uzávěr si vyberete'],
+        ['Závit hrdla', '18/415'],
+        ['Výška', '60 mm'],
+        ['Průměr', '24 mm'],
+        ['Velikost balení', cur.label],
+      ].map(([k, v]) => ({ k, v })),
+      files: [
+        { label: 'EU_Technical', meta: 'PDF · technický list', href: '#', icon: this.mask('doc-01', 24, '#4F6E2A') },
+        { label: 'EU_Dokumentation', meta: 'PDF · dokumentace výrobce', href: '#', icon: this.mask('doc-01', 24, '#4F6E2A') },
+      ],
+
+      dist: [
+        { label: '5 ★', count: 28, fill: 'display:block; height:100%; width:82%; background:#7BA23F;' },
+        { label: '4 ★', count: 5, fill: 'display:block; height:100%; width:15%; background:#9CB86A;' },
+        { label: '3 ★', count: 1, fill: 'display:block; height:100%; width:3%; background:#C6D3A6;' },
+        { label: '2 ★', count: 0, fill: 'display:block; height:100%; width:0%; background:#C6D3A6;' },
+        { label: '1 ★', count: 0, fill: 'display:block; height:100%; width:0%; background:#C6D3A6;' },
+      ],
+      reviews: [
+        { initial: 'J', name: 'Jana', meta: 'Ověřený nákup · 187 ks', stars: 5, text: 'Plním do nich vlastní směsi esenciálních olejů. Sklo je silné, kapátkové uzávěry 18/415 sedí bez problému.' },
+        { initial: 'M', name: 'Martin P.', meta: 'Ověřený nákup · 1 ks', stars: 5, text: 'Koupil jsem pár kusů na vyzkoušení s pipetou pro 10 ml. Pipeta má správnou délku, dosáhne až ke dnu.' },
+        { initial: 'K', name: 'Kateřina', meta: 'Ověřený nákup · 187 ks', stars: 4, text: 'Na drobnou výrobu sér se celé balení vyplatí. Jen počítejte s místem — krabice je větší, než jsem čekala.' },
+      ],
+      questions: [
+        { name: 'Lenka', text: 'Dobrý den, pasuje na lahvičku roll-on kulička?', answer: 'Na tuto lahvičku roll-on nedoporučujeme — hrdlo se závitem 18/415 je určené pro kapátkové uzávěry, pipety a šroubovací víčka. Roll-on lahvičky najdete v kategorii Obaly.' },
+        { name: 'Tomáš', text: 'Chrání hnědé sklo obsah před světlem?', answer: 'Hnědé sklo propouští výrazně méně UV záření než čiré, proto se používá na esenciální oleje a citlivé suroviny. Lahvičku přesto skladujte mimo přímé slunce.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

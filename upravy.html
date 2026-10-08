@@ -92,6 +92,129 @@
   </section>
 
   <section class="day">
+    <h2>8. října 2026</h2>
+    <p class="sum">Vyhledávání V2: pole přímo v hlavičce na desktopu, k porovnání ve spodní liště.</p>
+
+    <div class="item">
+      <span class="tag">Vyhledávání · Výsledky</span>
+      <h3>Stav „nic nenalezeno“ s Ekokozím asistentem</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Udělat i stránku bez výsledků a nasměrovat zákazníka pomocí Ekokozího asistenta k další akci.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Na stránce výsledků je ve spodní liště přepínač Výsledek: Nalezeno / Nic (stav jde otevřít i odkazem s ?empty=1). Bez výsledků zmizí záložky, filtry i výpisy a pod hledaným výrazem je věta, že jsme nic nenašli. Hlavní je velký žlutý blok s nadpisem v EB Garamond „Zeptejte se Ekokozího asistenta“ s vysvětlením a jediným tlačítkem Zeptat se asistenta (dotaz se zadává až v asistentovi, ne na této stránce). Pod ním jsou rady, jak hledat jinak, a často hledané výrazy (nadpisy obou sloupců v EB Garamond jako ostatní nadpisy sekcí) jako odkazy na nové hledání.</p>
+      </div>
+      <a class="show-btn" href="vysledky-vyhledavani.html?empty=1" target="_blank">Zobrazit stránku bez výsledků<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Vyhledávání · Výsledky</span>
+      <h3>Blok „Nenašli jste, co jste hledali?“ s AI asistentem</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Doplnit sekci, která nabídne vyhledat výraz pomocí AI asistenta.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Kompaktní verze na žluté ploše s přechodem z krémové manuálu #FBF2E1 do žluté #FBD870, s tmavým nadpisem a zelenou ikonou, je i nahoře vedle nadpisu „mýdlo“, zarovnaná ke spodní hraně sloupce na úroveň přepínače Produkty / Recepty / Kategorie (na M a menších pod ním); souhrn počtů výsledků je nově pod hledaným výrazem. Pod výsledky (na všech třech záložkách) je ve stejném stylu (žlutý přechod, tmavý text, zelená ikona) velký blok s ikonou lupy s jiskrami, nadpisem „Nenašli jste, co jste hledali?“, textem „Vyzkoušejte výraz vyhledat pomocí našeho AI asistenta.“ a zeleným tlačítkem Ekokozí asistent. Ikona je uložená jako assets/icons/ai-search.svg. Na S a menších je tlačítko pod textem, na XS a XXS na celou šířku. Kam tlačítko povede, je zatím otevřené.</p>
+      </div>
+      <a class="show-btn" href="vysledky-vyhledavani.html" target="_blank">Zobrazit výsledky vyhledávání<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Vyhledávání · Výsledky</span>
+      <h3>Jednodušší výpis nalezených kategorií</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Výpis nalezených kategorií zjednodušit podle zaslané ukázky.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Karty s fotkou jsou pryč. Kategorie jsou seskupené pod nadpisy hlavních sekcí menu (Výroba, Suroviny, Produkty, Obaly) ve dvou sloupcích (na S a menších v jednom). Každá je odkaz s celou cestou v menu, oddělenou zpětným lomítkem, a hledané slovo je v ní podbarvené světle zeleně.</p>
+      </div>
+      <a class="show-btn" href="vysledky-vyhledavani.html" target="_blank">Zobrazit výsledky vyhledávání<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Vyhledávání · Výsledky</span>
+      <h3>Výsledky vyhledávání i v receptech</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na stránce výsledků vyhledávání zobrazit i nalezené recepty.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Přepínač má třetí záložku Recepty (pořadí Produkty / Recepty / Kategorie, každá s počtem). Recepty se vypisují stejnými kartami jako v receptáři a v Oblíbených: na XXL a XL čtyři vedle sebe, na L tři, na M a S dvě, na XS a XXS jedna. Souhrn nahoře uvádí počty produktů, receptů i kategorií.</p>
+      </div>
+      <a class="show-btn" href="vysledky-vyhledavani.html" target="_blank">Zobrazit výsledky vyhledávání<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Vyhledávání V2</span>
+      <h3>Věrnostní program v horní liště</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Ve variantě vyhledávání V2 přesunout Věrnostní program z menu nahoru do lišty místo Sledování zásilky, s ikonou.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Ve V2 je Věrnostní program v horní zelené liště jako první odkaz s ikonou procent (Věrnostní program · FAQ · Kontakt). Odkaz Sledování objednávky z lišty ve V2 zmizel (zůstává v mobilním menu) a tlačítko Věrnostní program v hlavním menu se ve V2 nezobrazuje na žádné šířce. V1 zůstává beze změny.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Výpis produktů · Filtry</span>
+      <h3>Scrollbar v barvách e-shopu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Obarvit posuvník v rozbalovacích filtrech do barev e-shopu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Posuvník v rozbalených rychlých filtrech je zaoblený, 10 px široký s půlkruhovými konci a odsazený 6 px od pravého okraje, aby se s ním dobře pracovalo: slonovinová dráha, béžový jezdec, při najetí myší tmavě zelený. Řešeno čistě v CSS, funguje v Chrome, Safari, Edge i Firefoxu (ve Firefoxu jen barvy, bez zaoblení). Z rozbalovacích rychlých filtrů jsou odebrané nadpisy (název filtru je už na tlačítku). Platí v kategorii i ve výsledcích vyhledávání.</p>
+      </div>
+      <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Vyhledávání · Nová stránka</span>
+      <h3>Stránka s výsledky vyhledávání</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vytvořit stránku s výsledky vyhledávání s přepínáním mezi Produkty a Kategoriemi (stejně jako Produkty / Recepty v Oblíbených) a s filtrováním, které funguje stejně jako ve výpisu produktů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nová stránka vysledky-vyhledavani vychází z výpisu kategorie. Nahoře je hledaný výraz, počet nalezených produktů a kategorií a přepínač Produkty / Kategorie s počty. Záložka Produkty má stejné filtry (rychlé filtry i Všechny filtry v panelu), aktivní štítky, karty, Zobrazit další a stránkování jako kategorie. Záložka Kategorie ukazuje nalezené kategorie jako karty s fotkou, cestou v menu a počtem produktů. Odeslání vyhledávání v hlavičce i tlačítko „Zobrazit všech … produktů“ v našeptávači vedou na tuto stránku a výraz zůstává v poli.</p>
+      </div>
+      <a class="show-btn" href="vysledky-vyhledavani.html" target="_blank">Zobrazit výsledky vyhledávání<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Vyhledávání</span>
+      <h3>Recepty v našeptávači jako seznam</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Výsledky receptů vypisovat stejnou formou jako produkty, ve vlastním sloupci; 2/3 šířky pro produkty, 1/3 pro recepty.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Velká karta topovaného receptu je pryč. Recepty jsou řádky s miniaturou, názvem a obtížností s časem, stejně jako produkty (místo ceny). Pod nimi je odkaz Všechny recepty. Tlačítka „Zobrazit všech … produktů“ i „Všechny recepty“ jsou užší, jen na šířku textu, a zarovnaná vlevo. Sloupce mají poměr 2 : 1. Platí pro obě varianty vyhledávání.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Vyhledávání</span>
+      <h3>Vyhledávací pole i na M a S, hamburger od M</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Vyhledávání nechat formou pole i na M a S.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Ve V2 je pole v hlavičce od 550 px; na M a S vyplní místo mezi logem a ikonami, návrhy se otevřou pod hlavičkou (na S v jednom sloupci). Na S je logo zmenšené z 34 na 29 px výšky, pole tak má o 23 px víc místa; tlačítko hamburgeru je na S jen kulatá ikona bez nápisu „Menu“. Na XS a XXS zůstává ikona lupy s celoobrazovkovým vyhledáváním. Aby se pole vešlo, hlavička přepíná na hamburger od M (999 px) místo 900 px; stejně tak košík, přihlášení a účet v mobilní podobě.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Vyhledávání</span>
+      <h3>Vyhledávací pole rovnou v hlavičce (V2)</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Na desktopu (XXL, XL, L) mít vyhledávání v hlavičce rovnou jako pole, ne ikonu, která se rozbaluje — ušetří se kliknutí. Pokud se na L nevejde s položkami menu, skrýt Věrnostní program.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Ve spodní liště je nový přepínač Vyhledávání V1/V2, výchozí je V2. Ve V2 je od 1000 px mezi menu a ikonami trvale zobrazené pole „Hledejte suroviny, recepty…“; po napsání se pod ním na celou šíři obsahu webu otevřou stejné návrhy produktů a receptů jako dosud, Esc pole vyprázdní. Věrnostní program je v hlavičce jen na XXL (od 1560 px), na XL se vedle vyhledávacího pole zalamoval; na menších šířkách z hlavičky zmizí úplně, i jako ikona (zůstává v patičce a v mobilním menu). Pod 1000 px zůstává ikona lupy s rozbalovacím polem jako ve V1.</p>
+      </div>
+      <a class="show-btn" href="index.html" target="_blank">Zobrazit homepage<span class="show-ico"></span></a>
+    </div>
+  </section>
+
+  <section class="day">
     <h2>7. října 2026</h2>
     <p class="sum">Nová vzorová stránka detailu obalu s možností přikoupit uzávěr; původní šablona detailu se jmenuje produkt-material.</p>
 

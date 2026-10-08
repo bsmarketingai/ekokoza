@@ -36,16 +36,14 @@
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
   /* Tablet: pill se smrskne na ikonu, aby zustaly viditelne vsechny polozky
      (hamburger naskakuje az pod 900px, takze skryta polozka = nedostupna polozka) */
-  @media (min-width: 901px) and (max-width: 1180px) {
+  @media (min-width: 1000px) and (max-width: 1180px) {
     .ek-util-track { display: none !important; }
     .ek-topbar-txt { white-space: nowrap; }
     .ek-hdr-row { gap: 18px !important; }
     .ek-nav { gap: 16px !important; }
     .ek-nav > div:first-child { gap: 16px !important; }
-    .ek-loyal-txt { display: none !important; }
-    .ek-nav-loyal { padding: 9px 11px !important; }
   }
-  @media (min-width: 901px) and (max-width: 1040px) {
+  @media (min-width: 1000px) and (max-width: 1040px) {
     .ek-hdr-row { gap: 14px !important; }
     .ek-nav { gap: 12px !important; font-size: 15px !important; }
     .ek-nav > div:first-child { gap: 13px !important; }
@@ -60,7 +58,7 @@
   @keyframes ekTipIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
   .ek-fav-tip { position: absolute; top: calc(100% + 14px); right: -6px; z-index: 120; width: max-content; max-width: 268px; padding: 12px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E4DAC6; box-shadow: 0 18px 38px -18px rgba(45,58,46,.5); font-family: 'Work Sans',sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.55; color: #4A4A42; text-align: left; pointer-events: none; animation: ekTipIn .18s ease-out; }
   .ek-fav-tip::before { content: ''; position: absolute; top: -6px; right: 12px; transform: rotate(45deg); width: 10px; height: 10px; background: #FFFFFF; border-left: 1px solid #E4DAC6; border-top: 1px solid #E4DAC6; }
-  @media (max-width: 900px) { .ek-fav-tip { display: none; } }
+  @media (max-width: 999px) { .ek-fav-tip { display: none; } }
   /* Aktivni polozka menu — zvyraznena barvou a trvalym podtrzenim */
   .ek-nav .ek-nav-active { color: #4C653D !important; }
   .ek-nav .ek-nav-active::after { transform: scaleX(1) !important; }
@@ -73,7 +71,7 @@
   .ek-flag-m.ek-flag-on { opacity:1; background:#E7EBDC; filter:saturate(1); }
   .ek-flag-m.ek-flag-off { opacity:.45; filter:saturate(.35); }
   .ek-flag-m.ek-flag-off:hover { opacity:1; filter:saturate(1); }
-  @media (max-width: 900px) {
+  @media (max-width: 999px) {
     .ek-nav { display: none !important; }
     .ek-logo-tag { display: none !important; }
     .ek-logo-flat { display: flex !important; }
@@ -88,9 +86,9 @@
     .ek-mobtap { min-height: 44px; }
     .ek-search-overlay { position: fixed !important; inset: 0 !important; transform: none !important; z-index: 300 !important; background: #F6F1E7 !important; display: flex !important; flex-direction: column !important; align-items: flex-start !important; padding: 0 !important; }
     .ek-search-form { width: 100% !important; border-radius: 0 !important; border: none !important; box-shadow: none !important; padding: 22px 20px !important; }
-    .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
-    .ek-sugg > div { border-left: none !important; }
-    .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
+    .ek-search-overlay .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
+    .ek-search-overlay .ek-sugg > div { border-left: none !important; }
+    .ek-search-overlay .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
   }
   /* Male displeje: logo a ikony se zmensuji, hamburger na ikonu — vse musi zustat dostupne */
   @media (max-width: 480px) {
@@ -119,6 +117,32 @@
     .ek-hdr-icons { margin-right: 8px !important; }
     .ek-topbar-txt { font-size: 12px !important; }
   }
+  /* Vyhledavani V2: pole primo v hlavicce od S (550 px), na XS/XXS zustava ikona s overlayem */
+  .ek-hsearch { display: none; }
+  /* V2: Vernostni program se presouva z menu do horni listy (misto Sledovani objednavky) */
+  .ek-srch-v2 .ek-nav .ek-nav-loyal { display: none !important; }
+  .ek-srch-v2 .ek-util-v1 { display: none !important; }
+  .ek-srch-v2 .ek-util-loyal { display: inline-flex !important; }
+  .ek-srch-v2 .ek-util-loyal-sep { display: inline !important; }
+  .ek-hsearch:focus-within { border-color: #4C653D !important; box-shadow: 0 0 0 3px rgba(76,101,61,.12); }
+  .ek-hsearch input::placeholder { color: #8a8778; }
+  @media (min-width: 550px) and (max-width: 999px) {
+    .ek-srch-v2 .ek-hsearch { flex: 1 1 auto !important; min-width: 0 !important; }
+  }
+  /* S: mensi logo (158 -> 135 px sire), aby vyhledavani dostalo vic mista */
+  @media (min-width: 550px) and (max-width: 819px) {
+    .ek-srch-v2 .ek-logo-flat img { height: 29px !important; }
+    .ek-srch-v2 .ek-hamb-txt { display: none !important; }
+    .ek-srch-v2 .ek-hamb { width: 44px !important; height: 44px !important; min-height: 44px !important; padding: 0 !important; gap: 0 !important; border-radius: 50% !important; flex: 0 0 44px !important; }
+  }
+  @media (min-width: 550px) {
+    .ek-srch-v2 .ek-hsearch { display: flex; }
+    .ek-srch-v2 .ek-hdr-sicon { display: none !important; }
+  }
+  /* Vernostni program v hlavicce jen na XXL (od 1560 px); jinak v paticce a v mobilnim menu */
+  @media (max-width: 1559px) {
+    .ek-nav .ek-nav-loyal { display: none !important; }
+  }
   .ek-topbar-v2 > .ek-topbar { background: #4C653D !important; color: #EFE7D6 !important; box-shadow: inset 0 -1px 0 rgba(246,241,231,.18); }
   .ek-topbar-v2 > .ek-topbar > .ek-pad { padding-top: 9px !important; padding-bottom: 9px !important; }
   .ek-topbar-v2 > .ek-topbar a { color: #EFE7D6 !important; }
@@ -128,15 +152,17 @@
 </style>
 </helmet>
 
-<div class="{{ topbarCls }}" style="position:sticky; top:0; z-index:50; font-family:'Work Sans',sans-serif;">
+<div class="{{ wrapCls }}" style="position:sticky; top:0; z-index:50; font-family:'Work Sans',sans-serif;">
 
   <!-- TOPBAR -->
   <div class="ek-topbar" style="background:#4C653D; color:#EFE7D6;">
     <div class="ek-pad" style="max-width:1624px; margin:0 auto; padding:5px 32px; display:flex; align-items:center; justify-content:space-between; font-size:13px; letter-spacing:.02em;">
       <span class="ek-topbar-txt" style="padding-left:158px;">{{ topbarText }}</span>
       <span class="ek-util-hide" style="display:flex; align-items:center; gap:8px;">
-        <a href="#" class="ek-link-u ek-util-track" style="color:#EFE7D6; text-decoration:none;">Sledování objednávky</a>
-        <span style="opacity:.5;" class="ek-util-track">·</span>
+        <a href="#" class="ek-link-u ek-util-track ek-util-v1" style="color:#EFE7D6; text-decoration:none;">Sledování objednávky</a>
+        <span style="opacity:.5;" class="ek-util-track ek-util-v1">·</span>
+        <a href="{{ loyaltyHref }}" class="ek-util-loyal" style="display:none; align-items:center; gap:6px; color:#EFE7D6; text-decoration:none;"><span style="{{ iconLoyalTop }}"></span><span class="ek-link-u">Věrnostní program</span></a>
+        <span style="display:none; opacity:.5;" class="ek-util-loyal-sep">·</span>
         <a href="#" class="ek-link-u" style="color:#EFE7D6; text-decoration:none;">FAQ</a>
         <span style="opacity:.5;">·</span>
         <a href="#" class="ek-link-u" style="color:#EFE7D6; text-decoration:none;">Kontakt</a>
@@ -171,13 +197,20 @@
           <a href="receptar.dc.html" class="{{ navreceptar }}" onMouseEnter="{{ openMega4 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Receptář<span style="{{ iconCaret }}"></span></a>
         </div>
         <div style="display:flex; align-items:center; gap:18px;" onMouseEnter="{{ megaClose }}">
-          <a href="{{ aboutHref }}" class="ek-nav-onas {{ navonas }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; transition:color .2s;">O nás</a>
+          <a href="{{ aboutHref }}" class="ek-nav-onas {{ navonas }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">O nás</a>
           <a href="{{ loyaltyHref }}" class="ek-nav-loyal {{ navvernost }}" style="display:flex; align-items:center; gap:7px; color:#4C653D; text-decoration:none; background:#EFE7D6; padding:8px 15px; border-radius:999px; transition:background .22s ease, color .22s ease;"><span style="{{ iconLoyal }}"></span><span class="ek-loyal-txt">Věrnostní program</span></a>
         </div>
       </nav>
 
+      <sc-if value="{{ srchV2 }}" hint-placeholder-val="{{ false }}">
+        <form class="ek-hsearch" onSubmit="{{ submitSearch }}" role="search" style="align-items:center; gap:10px; flex:0 1 300px; min-width:150px; height:44px; padding:0 16px; background:#fff; border:1px solid #E4DAC6; border-radius:999px; transition:border-color .2s, box-shadow .2s;">
+          <span style="{{ iconSearchIn }}"></span>
+          <input value="{{ inlineQuery }}" onInput="{{ onInlineInput }}" onFocus="{{ onInlineFocus }}" onBlur="{{ onInlineBlur }}" onKeyDown="{{ onInlineKey }}" placeholder="Hledejte suroviny, recepty…" aria-label="Hledat" style="flex:1; min-width:0; border:none; outline:none; background:transparent; font-family:'Work Sans',sans-serif; font-size:15px; color:#2A2A24;">
+        </form>
+      </sc-if>
+
       <div class="ek-hdr-icons" style="display:flex; align-items:center; gap:18px; flex-shrink:0;">
-        <span onClick="{{ openSearch }}" title="Hledat" style="{{ iconSearch }} cursor:pointer;"></span>
+        <span class="ek-hdr-sicon" onClick="{{ openSearch }}" title="Hledat" style="{{ iconSearch }} cursor:pointer;"></span>
         <span class="ek-hdr-userwrap" style="position:relative; display:flex; align-items:center;">
           <span class="ek-hdr-user" onClick="{{ loginToggle }}" title="Můj účet" style="{{ iconUser }} cursor:pointer;"></span>
           <sc-if value="{{ showLogin }}" hint-placeholder-val="{{ false }}">
@@ -197,6 +230,12 @@
       </div>
 
       <span class="ek-hamb ek-mobtap" onClick="{{ openDrawer }}" title="Menu" style="display:none; align-items:center; justify-content:center; gap:8px; color:#4C653D; cursor:pointer; flex-shrink:0;"><span style="{{ iconMenu }}"></span><span class="ek-hamb-txt">Menu</span></span>
+
+      <sc-if value="{{ inlineSuggOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; top:100%; left:0; right:0; height:0; z-index:60;">
+          <dc-import name="ui-SearchOverlay" hideForm="{{ true }}" active="{{ true }}" query="{{ inlineQuery }}" hint-size="100%,0px"></dc-import>
+        </div>
+      </sc-if>
 
       <sc-if value="{{ searchOpen }}" hint-placeholder-val="{{ false }}">
         <dc-import name="ui-SearchOverlay" active="{{ searchActive }}" query="{{ query }}" on-input="{{ onQueryInput }}" on-close="{{ closeSearch }}" submit="{{ submitSearch }}" input-ref="{{ searchInputRef }}" hint-size="100%,56px"></dc-import>
@@ -292,11 +331,17 @@ class Component extends DCLogic {
     try { const mv = localStorage.getItem('ekokoza-mega-variant-v3'); if (mv === 'mm1' || mv === 'mm2' || mv === 'mm3') this.setState({ mm: mv }); } catch (e) {}
     this._onMega = (e) => { const v = e.detail && e.detail.variant; if (v === 'mm1' || v === 'mm2' || v === 'mm3') this.setState({ mm: v }); };
     window.addEventListener('ek-mega-variant', this._onMega);
+    try { if (/vysledky-vyhledavani/.test(location.pathname)) { const sp0 = new URLSearchParams(location.search); const q0 = sp0.get('q'); this.setState({ iq: q0 || (sp0.get('empty') === '1' ? 'máslo cupuacu 250 g' : 'mýdlo') }); } } catch (e) {}
+    try { const sv = localStorage.getItem('ekokoza-search-variant'); if (sv === 'v1' || sv === 'v2') this.setState({ srch: sv }); } catch (e) {}
+    this._onSrch = (e) => { const v = e.detail && e.detail.variant; if (v === 'v1' || v === 'v2') this.setState({ srch: v, iq: '', iFocus: false }); };
+    window.addEventListener('ek-search-variant', this._onSrch);
+    this._onQ = (e) => { if (e.detail && typeof e.detail.q === 'string') this.setState({ iq: e.detail.q, iFocus: false }); };
+    window.addEventListener('ek-search-query', this._onQ);
     this._onOpenLogin = () => this.setState({ loginOpen: true, cartOpen: false, mega: -1 });
     window.addEventListener('ek-open-login', this._onOpenLogin);
     this._onDocDown = (e) => {
       if (!this.state.loginOpen) return;
-      if (window.innerWidth <= 900) return;
+      if (window.innerWidth <= 999) return;
       const w = e.target.closest && e.target.closest('.ek-hdr-userwrap');
       if (!w) this.setState({ loginOpen: false });
     };
@@ -311,6 +356,9 @@ class Component extends DCLogic {
     document.removeEventListener('mousedown', this._onDocDown);
     window.removeEventListener('ek-open-login', this._onOpenLogin);
     window.removeEventListener('ek-fav-change', this._onFav);
+    window.removeEventListener('ek-search-variant', this._onSrch);
+    window.removeEventListener('ek-search-query', this._onQ);
+    clearTimeout(this._blurT);
     clearTimeout(this._tipTimer);
   }
 
@@ -394,9 +442,9 @@ class Component extends DCLogic {
       hasCart: S.cart.length > 0,
       cartItems: S.cart,
       cartOpen: S.cartOpen,
-      cartHover: () => { if (window.innerWidth > 900) this.setState({ cartOpen: true, mega: -1 }); },
-      cartLeave: () => { if (window.innerWidth > 900) this.setState({ cartOpen: false }); },
-      cartToggle: (e) => { if (window.innerWidth <= 900) { e.preventDefault(); this.setState(st => ({ cartOpen: !st.cartOpen })); } },
+      cartHover: () => { if (window.innerWidth > 999) this.setState({ cartOpen: true, mega: -1 }); },
+      cartLeave: () => { if (window.innerWidth > 999) this.setState({ cartOpen: false }); },
+      cartToggle: (e) => { if (window.innerWidth <= 999) { e.preventDefault(); this.setState(st => ({ cartOpen: !st.cartOpen })); } },
       closeCart: () => this.setState({ cartOpen: false }),
       aboutHref: about,
       navvyroba: navCls('vyroba'),
@@ -439,14 +487,25 @@ class Component extends DCLogic {
       iconArrow: this.mask('arrow-right-02', 18),
       iconCaret: this.mask('arrow-right-01', 13, '#9b9888') + ' transform:rotate(90deg);',
       iconLoyal: this.mask('percent-circle', 17, '#D8763B'),
+      iconLoyalTop: this.mask('percent-circle', 15, '#EFE7D6'),
 
+      wrapCls: [((this.props.topbarVariant ?? this.state.topbar ?? 'v2') === 'v2' ? 'ek-topbar-v2' : ((this.props.topbarVariant ?? this.state.topbar ?? 'v2') === 'v3' ? 'ek-topbar-v3' : '')), ((this.props.searchVariant ?? S.srch ?? 'v2') === 'v2' ? 'ek-srch-v2' : '')].filter(Boolean).join(' '),
+      srchV2: (this.props.searchVariant ?? S.srch ?? 'v2') === 'v2',
+      srchCls: (this.props.searchVariant ?? S.srch ?? 'v2') === 'v2' ? 'ek-srch-v2' : '',
+      iconSearchIn: this.mask('search-01', 20, '#7c7a6a'),
+      inlineQuery: S.iq || '',
+      inlineSuggOpen: (this.props.searchVariant ?? S.srch ?? 'v2') === 'v2' && !!S.iFocus && (S.iq || '').trim().length > 0,
+      onInlineInput: (e) => this.setState({ iq: e.target.value, iFocus: true, mega: -1 }),
+      onInlineFocus: () => { clearTimeout(this._blurT); this.setState({ iFocus: true, mega: -1, cartOpen: false, loginOpen: false }); },
+      onInlineBlur: () => { clearTimeout(this._blurT); this._blurT = setTimeout(() => this.setState({ iFocus: false }), 200); },
+      onInlineKey: (e) => { if (e.key === 'Escape') { this.setState({ iq: '', iFocus: false }); e.target.blur(); } },
       searchOpen: S.searchOpen,
       searchActive: S.searchOpen && S.query.trim().length > 0,
       query: S.query,
       openSearch: () => { this.setState({ searchOpen: true, mega: -1 }); setTimeout(() => this._input && this._input.focus(), 30); },
       closeSearch: () => this.setState({ searchOpen: false, query: '' }),
       onQueryInput: (e) => this.setState({ query: e.target.value }),
-      submitSearch: (e) => e.preventDefault(),
+      submitSearch: (e) => { e.preventDefault(); const q = (S.iq || S.query || '').trim(); location.href = 'vysledky-vyhledavani.html' + (q ? '?q=' + encodeURIComponent(q) : ''); },
       searchInputRef: (el) => { this._input = el; },
 
       megaOpen: S.mega >= 0,

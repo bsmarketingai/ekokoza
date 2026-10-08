@@ -16,12 +16,24 @@
   .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
   .ek-btn-primary:hover { background: #4C653D !important; border-color: #4C653D !important; }
   .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
-  @media (max-width: 900px) {
+  .ek-search-inline { top: 0 !important; transform: none !important; }
+  .ek-search-inline .ek-sugg { top: 10px !important; }
+  @media (max-width: 999px) {
+    .ek-search-inline { left: 20px !important; right: 20px !important; }
+    .ek-search-inline .ek-sugg { position: absolute !important; }
+    .ek-search-inline .ek-sugg { max-height: calc(100dvh - 160px) !important; }
+  }
+  @media (max-width: 819px) {
+    .ek-search-inline .ek-sugg { grid-template-columns: 1fr !important; }
+    .ek-search-inline .ek-sugg > div { border-left: none !important; }
+    .ek-search-inline .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
+  }
+  @media (max-width: 999px) {
     .ek-search-overlay { position: fixed !important; inset: 0 !important; transform: none !important; z-index: 300 !important; background: #F6F1E7 !important; flex-direction: column !important; align-items: stretch !important; }
     .ek-search-form { width: 100% !important; border-radius: 0 !important; border: none !important; border-bottom: 1px solid #E4DAC6 !important; box-shadow: none !important; padding: 22px 20px !important; padding-top: max(22px, env(safe-area-inset-top)) !important; }
-    .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
-    .ek-sugg > div { border-left: none !important; }
-    .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
+    .ek-search-overlay .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
+    .ek-search-overlay .ek-sugg > div { border-left: none !important; }
+    .ek-search-overlay .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
     /* mobil: stejná typografie jako v košíku */
     .ek-mh { font-size: 17.5px !important; line-height: 1.3 !important; }
     .ek-mprice { font-size: 17px !important; }
@@ -31,19 +43,21 @@
 </style>
 </helmet>
 
-<div class="ek-search-overlay" style="position:absolute; left:32px; right:32px; top:50%; transform:translateY(-50%); display:flex; align-items:center; z-index:60; font-family:'Work Sans',sans-serif;">
+<div class="{{ rootCls }}" style="position:absolute; left:32px; right:32px; top:50%; transform:translateY(-50%); display:flex; align-items:center; z-index:60; font-family:'Work Sans',sans-serif;">
 
+  <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
   <form class="ek-search-form" onSubmit="{{ submit }}" style="display:flex; align-items:center; gap:12px; width:100%; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:12px 16px 12px 22px; box-shadow:0 14px 36px -20px rgba(45,58,46,.5);">
     <span style="{{ iconSearch }}"></span>
     <input ref="{{ inputRef }}" value="{{ query }}" onInput="{{ onInput }}" placeholder="Hledejte suroviny, recepty, kategorie…" style="flex:1; min-width:0; border:none; outline:none; background:transparent; font-family:'Work Sans',sans-serif; font-size:17px; color:#2A2A24;">
     <button type="submit" class="ek-btn-main" style="background:#D14405; color:#fff; border:none; cursor:pointer; padding:9px 20px; border-radius:999px; font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; transition:background .2s; white-space:nowrap;">Hledat</button>
     <span onClick="{{ onClose }}" title="Zavřít" style="width:34px; height:34px; flex:0 0 auto; border-radius:50%; background:#F6F1E7; color:#4C653D; display:flex; align-items:center; justify-content:center; cursor:pointer;"><span style="{{ iconClose }}"></span></span>
   </form>
+  </sc-if>
 
   <sc-if value="{{ active }}" hint-placeholder-val="{{ false }}">
-  <div class="ek-sugg" style="position:absolute; top:calc(100% + 10px); left:0; right:0; background:#fff; border:1px solid #E4DAC6; border-radius:14px; box-shadow:0 34px 64px -30px rgba(45,58,46,.5); overflow-x:hidden; overflow-y:auto; max-height:calc(100vh - 130px); display:grid; grid-template-columns:1.35fr 1fr;">
+  <div class="ek-sugg" style="position:absolute; top:calc(100% + 10px); left:0; right:0; background:#fff; border:1px solid #E4DAC6; border-radius:14px; box-shadow:0 34px 64px -30px rgba(45,58,46,.5); overflow-x:hidden; overflow-y:auto; max-height:calc(100vh - 130px); display:grid; grid-template-columns:2fr 1fr;">
 
-    <div style="padding:18px 20px;">
+    <div style="padding:18px 20px; display:flex; flex-direction:column;">
       <p class="ek-mlabel" style="margin:0 0 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#9b9888; font-weight:600;">Produkty</p>
       <div style="display:flex; flex-direction:column;">
         <sc-for list="{{ products }}" as="sp" hint-placeholder-count="4">
@@ -57,17 +71,23 @@
           </a>
         </sc-for>
       </div>
-      <a href="#" class="ek-btn-main" style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; background:#D14405; color:#fff; text-decoration:none; padding:12px; border-radius:999px; font-weight:600; font-size:14.5px; transition:background .2s;">{{ allLabel }}<span style="{{ iconArrow }}"></span></a>
+      <a href="{{ allHref }}" class="ek-btn-main" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; margin-top:12px; margin-left:10px; background:#D14405; color:#fff; text-decoration:none; padding:11px 22px; border-radius:999px; font-weight:600; font-size:14.5px; transition:background .2s;">{{ allLabel }}<span style="{{ iconArrow }}"></span></a>
     </div>
 
     <div style="padding:18px 20px; background:#FBF8F1; border-left:1px solid #EFE7D6; display:flex; flex-direction:column; gap:10px;">
       <p class="ek-mlabel" style="margin:0; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#9b9888; font-weight:600;">Recepty</p>
-      <dc-import name="ui-RecipeCard" title="{{ topRecipeName }}" desc="" category="{{ topRecipeCat }}" level="{{ topRecipeLevel }}" time="{{ topRecipeTime }}" img="{{ topRecipeImg }}" cta="Zobrazit recept" hint-size="100%,300px"></dc-import>
       <div style="display:flex; flex-direction:column;">
-        <sc-for list="{{ recipes }}" as="sr" hint-placeholder-count="3">
-          <a href="#" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; font-size:15.5px; font-weight:500; transition:background .15s;" class="ek-mega-link ek-mlink">{{ sr }}<span style="{{ iconChevron }}"></span></a>
+        <sc-for list="{{ recipeItems }}" as="sr" hint-placeholder-count="4">
+          <a href="{{ sr.href }}" class="ek-mega-link" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
+            <span style="{{ sr.thumbStyle }}"></span>
+            <span style="flex:1; min-width:0;">
+              <span class="ek-mh" style="display:block; font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25;">{{ sr.name }}</span>
+              <span style="display:block; margin-top:2px; font-size:12.5px; color:#6B6B5E;">{{ sr.meta }}</span>
+            </span>
+          </a>
         </sc-for>
       </div>
+      <a href="receptar.dc.html" class="ek-mlink" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; margin-top:2px; margin-left:10px; padding:10px 22px; border:1px solid #4C653D; border-radius:999px; color:#4C653D; text-decoration:none; font-weight:600; font-size:14.5px;">{{ recipesAllLabel }}<span style="{{ iconArrowG }}"></span></a>
     </div>
 
   </div>
@@ -103,6 +123,18 @@ class Component extends DCLogic {
     return {
       products,
       recipes: this.props.recipes ?? ['Mýdlo s kozím mlékem', 'Tekuté mýdlo na ruce', 'Mýdlo bez louhu — melt & pour'],
+      recipeItems: (this.props.recipeItems ?? [
+        { name: this.props.topRecipeName ?? 'Mýdlo z bambuckého másla', level: this.props.topRecipeLevel ?? 'Začátečník', time: this.props.topRecipeTime ?? '60 min', img: this.props.topRecipeImg ?? 'assets/recipes/pasta-na-holeni.jpg' },
+        { name: 'Mýdlo s kozím mlékem', level: 'Pokročilý', time: '90 min', img: 'assets/recipes/tenzidy.jpg' },
+        { name: 'Tekuté mýdlo na ruce', level: 'Začátečník', time: '30 min', img: 'assets/recipes/krem-na-paty.jpg' },
+        { name: 'Mýdlo bez louhu — melt & pour', level: 'Začátečník', time: '40 min', img: 'assets/recipes/repelent.jpg' },
+      ]).map(r => ({
+        name: r.name, href: r.href ?? 'recept.dc.html',
+        meta: [r.level, r.time].filter(Boolean).join(' · '),
+        thumbStyle: 'width:44px; height:44px; flex:0 0 auto; border-radius:9px; background:#F6F1E7 center/cover no-repeat; background-image:url("' + abs(r.img) + '");',
+      })),
+      recipesAllLabel: this.props.recipesAllLabel ?? 'Všechny recepty',
+      iconArrowG: this.mask('arrow-right-02', 18, '#4C653D'),
       allLabel: this.props.allLabel ?? 'Zobrazit všech 24 produktů',
       topRecipeName: this.props.topRecipeName ?? 'Mýdlo z bambuckého másla',
       topRecipeCat: this.props.topRecipeCat ?? 'Topovaný recept',
@@ -110,6 +142,9 @@ class Component extends DCLogic {
       topRecipeTime: this.props.topRecipeTime ?? '60 min',
       topRecipeImg: this.props.topRecipeImg ?? 'assets/recipes/pasta-na-holeni.jpg',
       active: this.props.active ?? true,
+      showForm: !(this.props.hideForm ?? false),
+      allHref: 'vysledky-vyhledavani.html' + ((this.props.query ?? '').trim() ? '?q=' + encodeURIComponent((this.props.query ?? '').trim()) : ''),
+      rootCls: (this.props.hideForm ?? false) ? 'ek-search-inline' : 'ek-search-overlay',
       query: this.props.query ?? '',
       onInput: this.props.onInput ?? (() => {}),
       onClose: this.props.onClose ?? (() => {}),

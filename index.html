@@ -256,9 +256,9 @@
     .ek-search-overlay { position: fixed !important; inset: 0 !important; left: 0 !important; right: 0 !important; top: 0 !important; transform: none !important; z-index: 300 !important; background: #F6F1E7 !important; display: flex !important; align-items: flex-start !important; padding: 0 !important; }
     .ek-search-form { width: 100% !important; border-radius: 0 !important; border: none !important; box-shadow: none !important; padding: 22px 20px !important; padding-top: max(22px, env(safe-area-inset-top)) !important; }
     .ek-search-overlay { flex-direction: column !important; }
-    .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
-    .ek-sugg > div { border-left: none !important; }
-    .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
+    .ek-search-overlay .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
+    .ek-search-overlay .ek-sugg > div { border-left: none !important; }
+    .ek-search-overlay .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
     .ek-h1 { font-size: 26px !important; }
     .ek-h2 { font-size: 30px !important; }
     .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
@@ -270,14 +270,14 @@
     .ek-hero > .ek-cat { min-height: 360px !important; }
     .ek-mobtap { min-height: 44px; }
   }
-  @media (min-width: 901px) and (max-width: 1180px) {
+  @media (min-width: 1000px) and (max-width: 1180px) {
     .ek-hdr-row { gap: 18px !important; }
     .ek-nav { gap: 16px !important; }
     .ek-nav > div:first-child { gap: 16px !important; }
     .ek-loyal-txt { display: none !important; }
     .ek-nav-loyal { padding: 9px 11px !important; }
   }
-  @media (min-width: 901px) and (max-width: 1040px) {
+  @media (min-width: 1000px) and (max-width: 1040px) {
     .ek-hdr-row { gap: 14px !important; }
     .ek-nav { gap: 12px !important; font-size: 14px !important; }
     .ek-nav > div:first-child { gap: 13px !important; }
@@ -886,6 +886,14 @@
       <button onClick="{{ setIngS2 }}" title="Jako Co chcete vyrábět: na menších displejích karusel" style="{{ ingS2Style }}">S2</button>
     </span>
     <span aria-hidden="true" style="width:1px; height:24px; background:#E4DAC6; flex:0 0 auto;"></span>
+    <span title="Vyhledávání" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
+      <span style="{{ iconVarSrch }}"></span>
+    </span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setSrchV1 }}" title="Vyhledávání: ikona, pole se rozbalí po kliknutí" style="{{ srchV1Style }}">V1</button>
+      <button onClick="{{ setSrchV2 }}" title="Vyhledávání: pole rovnou v hlavičce (od 1000 px)" style="{{ srchV2Style }}">V2</button>
+    </span>
+    <span aria-hidden="true" style="width:1px; height:24px; background:#E4DAC6; flex:0 0 auto;"></span>
     <span title="Účet" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
       <span style="{{ iconVarUser }}"></span>
     </span>
@@ -945,6 +953,16 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this.onKey) window.removeEventListener('keydown', this.onKey);
+  }
+
+  srchVar() {
+    if (this.state.srch) return this.state.srch;
+    try { return localStorage.getItem('ekokoza-search-variant') === 'v1' ? 'v1' : 'v2'; } catch (e) { return 'v2'; }
+  }
+  setSrch(v) {
+    try { localStorage.setItem('ekokoza-search-variant', v); } catch (e) {}
+    this.setState({ srch: v });
+    window.dispatchEvent(new CustomEvent('ek-search-variant', { detail: { variant: v } }));
   }
 
   setHero(h) {
@@ -1276,6 +1294,9 @@ class Component extends DCLogic {
       setGuest: () => this.setState({ logged: false }),
       setLogged: () => this.setState({ logged: true }),
       iconVarUser: this.maskStyle('user', 17, '#4C653D'),
+      iconVarSrch: this.maskStyle('search-01', 17, '#4C653D'),
+      srchV1Style: segBtn(this.srchVar() === 'v1'), srchV2Style: segBtn(this.srchVar() !== 'v1'),
+      setSrchV1: () => this.setSrch('v1'), setSrchV2: () => this.setSrch('v2'),
       iconVarbar: this.maskStyle('grid-view', 17, '#4C653D'),
       iconVarUsp: this.maskStyle('leaf-01', 17, '#4C653D'),
       uspSwitch: Component.USP_SWITCH,

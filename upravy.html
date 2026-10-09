@@ -92,6 +92,95 @@
   </section>
 
   <section class="day">
+    <h2>9. října 2026</h2>
+    <p class="sum">Detail obalu: uzávěry až pod tlačítkem Koupit, u každého uzávěru skladovost a zvětšení fotky.</p>
+
+    <div class="item">
+      <span class="tag">Komponenty · Výběr balení</span>
+      <h3>Štítek „Nejvýhodnější“ zeleně</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Štítek „Nejvýhodnější · cena / ks“ dát do zelené, aby nepůsobil akčně, ale zůstal výrazný.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Štítek má světle zelený přechod (#E9F0D9 → #CFE0AE) s tmavě zeleným textem místo žluté. Text zní „Nejvýhodnější cena za ks: 2,23 Kč“. Změna je v komponentě ui-VariantPicker, platí tedy na všech detailech produktu.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Produkt · Obal</span>
+      <h3>Výběr barvy lahvičky</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nad „Vyberte balení“ přidat „Vyberte barvu“ formou swatchů: hnědá, zelená, čirá.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Nad výběrem balení je nadpis „Vyberte barvu“ ve stejném stylu (verzálky, zelená). Pod ním tři kulaté vzorky 44 px (hnědá, zelená, čirá; název barvy se ukáže v nápovědě po najetí), vybraný má tmavě zelený rámeček. (Mezitím zkoušená varianta s dlaždicemi byla na přání vrácena zpět na kulaté vzorky.) Zatím jen vizuál výběru, fotka, název a parametry se podle barvy nemění.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Produkt · Obal</span>
+      <h3>Počet uzávěrů nezávislý na lahvičkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Nepřebírat počet kusů uzávěrů z vybraného počtu lahviček, vybírají se samostatně.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Počítadlo u každého uzávěru začíná na 1 ks a změna balení lahviček ho neovlivní.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Produkt · Obal</span>
+      <h3>Název uzávěru jako odkaz na detail</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Kliknutím na název uzávěru se má otevřít detail víčka. Detail zatím nedělat, jen počítat s prokliknutím.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Název má kurzor ruky, při najetí se podtrhne a ukáže nápovědu „Otevře detail víčka“. Proklik zatím nikam nevede.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Produkt · Obal</span>
+      <h3>Zvětšení fotky uzávěru</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Po kliknutí na obrázek uzávěru zobrazit velkou fotku v lightboxu, i na mobilu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Náhled uzávěru je tlačítko (kurzor lupy). Otevře bílou kartu přes ztmavenou stránku s velkou fotkou a názvem uzávěru. Zavírá se křížkem, kliknutím mimo kartu nebo klávesou Esc. Na mobilu karta vyplní šířku obrazovky s okrajem 24 px.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Produkt · Obal</span>
+      <h3>Skladovost u uzávěrů</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Doplnit skladovost k jednotlivým uzávěrům.</p>
+        <span class="k">Řešení</span>
+        <p class="v">U každého uzávěru je vedle ceny stav dostupnosti stejnou komponentou jako jinde (ui-Stock, bez chipu): Ihned k odeslání, Nabalíme po objednání, Očekáváme s datem, Na cestě k nám. Stavy jsou zatím pracovní data.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Produkt · Obal</span>
+      <h3>Výběr uzávěrů přesunut pod CTA</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Blok „Uzávěry k lahvičce“ dát až pod tlačítko Koupit.</p>
+        <span class="k">Řešení</span>
+        <p class="v">V nákupním sloupci je nejdřív tlačítko Do košíku (u neprodejného produktu hlídací pes), teprve pod ním seznam uzávěrů se závitem 18/415. Obsah ani chování bloku se nemění.</p>
+      </div>
+      <a class="show-btn" href="produkt-obal.html" target="_blank">Zobrazit detail obalu<span class="show-ico"></span></a>
+    </div>
+  </section>
+
+  <section class="day">
     <h2>8. října 2026</h2>
     <p class="sum">Vyhledávání V2: pole přímo v hlavičce na desktopu, k porovnání ve spodní liště.</p>
 

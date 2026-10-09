@@ -47,7 +47,7 @@
           <span class="ek-var-right" style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
             <span style="display:flex; flex-direction:column; gap:1px; align-items:flex-end;">
               <span style="{{ v.priceStyle }}">{{ v.price }}</span>
-              <span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">Nejvýhodnější ·</span></sc-if>{{ v.unit }}</span>
+              <span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">Nejvýhodnější cena za ks:</span></sc-if>{{ v.unitText }}</span>
             </span>
             <sc-if value="{{ v.buyable }}" hint-placeholder-val="{{ true }}">
               <span onClick="{{ v.stopRow }}" style="display:flex; flex:0 0 auto;">
@@ -89,7 +89,7 @@
         <span class="ek-var-right" style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
           <span style="display:flex; flex-direction:column; gap:1px; align-items:flex-end;">
             <span style="{{ v.priceStyle }}">{{ v.price }}</span>
-            <sc-if value="{{ v.hasUnit }}" hint-placeholder-val="{{ false }}"><span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">Nejvýhodnější ·</span></sc-if>{{ v.unit }}</span></sc-if>
+            <sc-if value="{{ v.hasUnit }}" hint-placeholder-val="{{ false }}"><span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">Nejvýhodnější cena za ks:</span></sc-if>{{ v.unitText }}</span></sc-if>
           </span>
         </span>
       </button>
@@ -134,7 +134,7 @@ class Component extends DCLogic {
     const bestUp = ups.length > 1 && Math.min(...ups) < Math.max(...ups) ? Math.min(...ups) : NaN;
     const isBest = (v) => up(v.unit) === bestUp;
     const unitSt = (b) => b
-      ? 'display:inline-flex; align-items:center; gap:4px; font-size:12.5px; color:#4C653D; font-weight:500; background:#FBD870; border-radius:999px; padding:3px 10px; margin-top:2px; white-space:nowrap;'
+      ? 'display:inline-flex; align-items:center; gap:4px; font-size:12.5px; color:#3E5432; font-weight:500; background:linear-gradient(90deg, #E9F0D9 0%, #CFE0AE 100%); border-radius:999px; padding:3px 10px; margin-top:2px; white-space:nowrap;'
       : 'font-size:12.5px; color:#8a8776; white-space:nowrap;';
 
     return {
@@ -173,6 +173,7 @@ class Component extends DCLogic {
           unit: v.unit ?? '',
           best: isBest(v),
           unitStyle: unitSt(isBest(v)),
+          unitText: isBest(v) ? String(v.unit ?? '').replace(/\s*\/\s*ks\s*$/, '') : (v.unit ?? ''),
           state: st,
           date: v.date ?? '',
           buyable,
@@ -213,6 +214,7 @@ class Component extends DCLogic {
           unit: v.unit ?? '',
           best: isBest(v),
           unitStyle: unitSt(isBest(v)),
+          unitText: isBest(v) ? String(v.unit ?? '').replace(/\s*\/\s*ks\s*$/, '') : (v.unit ?? ''),
           hasUnit: !!v.unit,
           cls: on ? 'ek-var ek-var-row ek-var-on' : 'ek-var ek-var-row',
           labelStyle: 'font-size:16px; font-weight:' + (on ? '700' : '600') + '; color:#2A2A24;',

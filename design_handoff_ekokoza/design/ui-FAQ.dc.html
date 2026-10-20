@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  .ek-faq-q { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 14px; align-items: center; width: 100%; padding: 16px 18px; background: transparent; border: none; cursor: pointer; text-align: left; font-family: 'Work Sans',sans-serif; }
+  .ek-faq-q:hover { background: #FBF8F1; }
+  .ek-faq-item { border: 1px solid #ECE3D2; border-radius: 14px; background: #fff; overflow: hidden; transition: border-color .2s; }
+  .ek-faq-item:hover { border-color: #D9CEB4; }
+</style>
+</helmet>
+
+<div style="display:flex; flex-direction:column; gap:10px; font-family:'Work Sans',sans-serif;">
+  <sc-for list="{{ items }}" as="it" hint-placeholder-count="4">
+    <div class="ek-faq-item">
+      <button onClick="{{ it.toggle }}" class="ek-faq-q" aria-expanded="{{ it.open }}">
+        <span style="{{ it.icon }}"></span>
+        <span style="font-size:15.5px; font-weight:600; line-height:1.45; color:#2A2A24;">{{ it.q }}</span>
+        <span style="{{ it.chev }}"></span>
+      </button>
+      <sc-if value="{{ it.open }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:0 18px 18px 50px; display:flex; flex-direction:column; gap:10px;">
+          <sc-for list="{{ it.paras }}" as="p" hint-placeholder-count="1">
+            <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42; text-wrap:pretty;">{{ p.text }}</p>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:420},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{q:string,a:string,icon?:string}[]&quot;},&quot;multiOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { open: {} };
+
+  mask(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  static DEFAULT = [
+    { q: 'Mohu esenciální olej použít přímo na pokožku?', a: 'Doporučujeme jej používat jako součást správně sestavené receptury a dodržovat odpovídající koncentraci. Esenciální olej je koncentrovaná surovina.', icon: 'droplet' },
+    { q: 'Rozpustí se ve vodě?', a: 'Ne. Esenciální olej není rozpustný ve vodě. Pro vodní výrobky potřebujete vhodný solubilizátor.', icon: 'test-tube-01' },
+  ];
+
+  renderVals() {
+    const src = this.props.items ?? Component.DEFAULT;
+    const multi = this.props.multiOpen ?? true;
+    const openMap = this.state.open;
+
+    return {
+      items: src.map((it, i) => {
+        const isOpen = !!openMap[i];
+        return {
+          q: it.q,
+          open: isOpen,
+          paras: String(it.a || '').split('\n').filter(Boolean).map(text => ({ text })),
+          icon: this.mask('help-circle', 22, '#4F6E2A'),
+          chev: this.mask(isOpen ? 'arrow-up-01' : 'arrow-down-01', 20, '#8a8776'),
+          toggle: () => this.setState(s => ({
+            open: multi
+              ? Object.assign({}, s.open, { [i]: !s.open[i] })
+              : (s.open[i] ? {} : { [i]: true }),
+          })),
+        };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

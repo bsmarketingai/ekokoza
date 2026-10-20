@@ -1,0 +1,83 @@
+/* ekokoza.cz — design tokeny (zdroj: design-system.html, stav 20. 10. 2026) */
+:root {
+  /* Nosné barvy */
+  --ek-green: #4C653D;            /* jediná tmavá zeleň dle manuálu */
+  --ek-ivory: #FFFDF6;            /* pozadí stránky (s texturou background-textura.png) */
+  --ek-cream: #F6F1E7;            /* plochy sekcí, chipy, dlaždice; text na tmavé zeleni */
+  --ek-cream-dark: #EFE7D6;       /* sekundární plochy, hover ghost tlačítek */
+  --ek-white: #FFFFFF;
+
+  /* Konverze — jen hlavní nákupní akce, max. 1× na obrazovku */
+  --ek-cta: #D14405;
+  --ek-cta-hover: #B23803;
+  --ek-kicker: #D8763B;           /* kickery, drobné zvýraznění (jen velký text) */
+
+  /* Rámy a linky */
+  --ek-line: #ECE3D2;             /* rám karet a boxů */
+  --ek-line-soft: #EFE7D6;        /* oddělovače uvnitř ploch */
+  --ek-border: #E4DAC6;           /* rám popupů, inputů, tlačítka Zavřít */
+  --ek-border-strong: #D9D0BC;    /* rám formulářových polí */
+  --ek-border-radio: #D8CDB4;     /* nevybraný radio kroužek */
+
+  /* Akcenty */
+  --ek-green-fresh: #7BA23F;
+  --ek-green-text: #4F6E2A;       /* kickery v zelené */
+  --ek-sage-1: #DDE7D2;
+  --ek-sage-2: #CFE0B4;
+  --ek-sage-3: #B9D096;
+  --ek-green-light: #C1D69F;
+  --ek-green-tint: #F4F7EA;       /* vybraná karta / varianta */
+  --ek-pink: #FDCDBF;
+  --ek-blue-light: #D4F1EC;
+  --ek-yellow: #FBD870;
+  --ek-gold: #B8860B;             /* jen hvězdy hodnocení */
+
+  /* Text */
+  --ek-text-strong: #2A2A24;
+  --ek-text: #4A4A42;
+  --ek-text-muted: #6B6B5E;
+  --ek-text-label: #8A8776;
+  --ek-icon-muted: #7C7A6A;
+
+  /* Skladovost (ui-Stock) */
+  --ek-stock-ready: #3F7F2C;      /* digital, ready */
+  --ek-stock-packing: #57712D;
+  --ek-stock-expected: #9E6B00;   /* expected, incoming */
+  --ek-stock-toorder: #A33203;
+  --ek-stock-ended: #8A2412;      /* longterm, ended */
+
+  /* Přechody */
+  --ek-grad-meadow: linear-gradient(160deg, #FCFAF3 0%, #EEF4DC 60%, #E2EFCB 100%);
+  --ek-grad-blossom: linear-gradient(160deg, #FDF1F4 0%, #F7DDE4 100%);
+  --ek-grad-noon: linear-gradient(160deg, #FEF8E6 0%, #F3E3B4 100%);
+  --ek-grad-dark: linear-gradient(155deg, #4C653D 0%, #22301F 100%);
+  --ek-grad-ai: linear-gradient(135deg, #FBF2E1 0%, #FBD870 100%); /* AI bloky ve vyhledávání */
+
+  /* Typografie */
+  --ek-font-serif: 'EB Garamond', Georgia, serif;     /* Medium 500, Regular 400 */
+  --ek-font-sans: 'Work Sans', Helvetica, Arial, sans-serif; /* 400 / 500 / 600 / 700 */
+
+  /* Tvary */
+  --ek-radius-sm: 10px;
+  --ek-radius: 14px;              /* karty, obrázky, popupy */
+  --ek-radius-field: 12px;        /* pole formulářů, varianty */
+  --ek-radius-lg: 18px;
+  --ek-radius-pill: 999px;        /* tlačítka, chipy, vyhledávání */
+
+  /* Stíny */
+  --ek-shadow-card-hover: 0 18px 40px -22px rgba(45, 58, 46, .45);
+  --ek-shadow-section: 0 16px 38px -26px rgba(76, 101, 61, .35);
+  --ek-shadow-popup: 0 34px 64px -30px rgba(45, 58, 46, .55);
+  --ek-shadow-modal: 0 30px 70px -28px rgba(45, 58, 46, .55);
+  --ek-ring-focus: 0 0 0 3px rgba(76, 101, 61, .14);
+  --ek-ring-selected: 0 0 0 2px rgba(76, 101, 61, .16);
+
+  /* Layout */
+  --ek-container: 1560px;
+  --ek-container-max: 1720px;
+}
+
+/* Breakpointy (závazné) — media queries jen na těchto hranicích:
+   XXL ≥1560 · XL 1150–1559 · L 1000–1149 · M 820–999 · S 550–819 · XS 420–549 · XXS <420
+   @media (max-width: 1559px) / (max-width: 1149px) / (max-width: 999px) /
+   (max-width: 819px) / (max-width: 549px) / (max-width: 419px) */

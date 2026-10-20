@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D14405; color: #fff; }
+  .ek-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+  .ek-scroll::-webkit-scrollbar { display: none; }
+  .ek-cat:hover .ek-cat-ov { opacity: 1; }
+  .ek-cat:hover .ek-ph { transform: scale(1.05); }
+  .ek-cat:hover .ek-hero-goat { transform: translate(-50%,-62%) scale(1.05) !important; }
+  .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u:hover { background-size: 100% 1.5px; }
+  .ek-cta:hover { background: #B23803 !important; }
+  .ek-cta-dark:hover { background: #EDE4D0 !important; border-color: #EDE4D0 !important; }
+  .ek-btn-onDark:hover { background: #EDE4D0 !important; border-color: #EDE4D0 !important; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-btn-primary:hover { background: #4C653D !important; border-color: #4C653D !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-fav:hover { background: #F6F1E7 !important; color: #D8763B !important; border-color: #E4D9C2 !important; transform: scale(1.06); }
+  .ek-fav.is-on:hover { background: #B23803 !important; border-color: #B23803 !important; color: #fff !important; }
+  .ek-usp2-col:hover .ek-usp2-t { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .ek-usp3-box:hover { transform: translateY(-3px); box-shadow: 0 20px 42px -26px rgba(45,58,46,.5); }
+  .ek-usp3-box:hover .ek-usp3-more { letter-spacing: .02em; }
+  .ek-usp3-box:hover .ek-usp3-img { transform: scale(1.06) rotate(-1.5deg); }
+  .ek-usp4-btn:hover .ek-usp4-bt { color: #B23803; }
+  .ek-usp4-btn.is-on:hover .ek-usp4-bt { color: #F6F1E7; }
+  @media (max-width: 1200px) {
+    .ek-usp2-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+    .ek-usp3-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .ek-usp4-wrap { grid-template-columns: 1fr !important; }
+    .ek-usp4-panel { grid-template-columns: minmax(0,1fr) 200px !important; }
+  }
+  @media (max-width: 760px) {
+    .ek-usp2-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .ek-usp3-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+    .ek-usp3-box { flex-flow: row wrap !important; align-items: center !important; min-height: 0 !important; padding: 14px 16px 15px !important; gap: 10px !important; }
+    .ek-usp3-t { flex: 1 1 auto; min-width: 0; font-size: 18px !important; padding-right: 74px !important; }
+    .ek-usp3-d { flex: 0 0 100%; margin-top: -4px; font-size: 13px !important; padding-right: 80px !important; }
+    .ek-usp3-more { flex: 0 0 100%; margin-top: 0 !important; font-size: 12.5px !important; }
+    .ek-usp3-img { width: 88px !important; height: 88px !important; right: 6px !important; bottom: 6px !important; }
+    .ek-usp4-panel { grid-template-columns: 1fr !important; }
+  }
+  /* imported card components must fill their grid cell so rows stay equal height */
+  .sc-host[data-sc-name^="ui-"]:not([data-sc-name="ui-Header"]) { display: flex; }
+  .sc-host[data-sc-name^="ui-"]:not([data-sc-name="ui-Header"]) > * { flex: 1; min-width: 0; }
+  /* Hlavicka musi byt sticky vuci strance, ne vuci vlastnimu obalu */
+  .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  .ek-cta-sec:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
+  .ek-nav a:hover { color: #D8763B; }
+  .ek-nav > div > a:not(.ek-nav-loyal) { position: relative; transition: color .22s ease, transform .22s ease; }
+  .ek-nav > div > a:not(.ek-nav-loyal)::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #D14405; transform: scaleX(0); transform-origin: left center; transition: transform .28s cubic-bezier(.33,1,.5,1); }
+  .ek-nav > div > a:not(.ek-nav-loyal):hover { transform: translateY(-1px); }
+  .ek-nav > div > a:not(.ek-nav-loyal):hover::after { transform: scaleX(1); }
+  .ek-nav-loyal:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-hero > * { box-shadow: 0 16px 34px -26px rgba(76,101,61,.4); }
+  /* 4 karty x 260px + mezery se pod ~1160px nevejdou -> karusel misto zalomeni */
+  @media (max-width: 1160px) {
+    #blok5 .ek-scrollrow, #blok6 .ek-scrollrow {
+      overflow-x: auto !important;
+      grid-auto-flow: column !important;
+      grid-auto-columns: 260px !important;
+      grid-template-columns: none !important;
+      padding-bottom: 16px !important;
+      scroll-snap-type: x proximity;
+    }
+    #blok5 .ek-scrollrow > *, #blok6 .ek-scrollrow > * { scroll-snap-align: start; }
+  }
+  /* Male displeje: logo a ikony se zmensuji, hamburger na ikonu — vse musi zustat dostupne */
+  @media (max-width: 480px) {
+    .ek-hdr-row { gap: 10px !important; padding-left: 14px !important; padding-right: 14px !important; }
+    .ek-logo-flat img { height: 28px !important; }
+    .ek-hdr-icons { gap: 12px !important; }
+    .ek-hamb { padding: 9px 12px !important; gap: 6px !important; }
+    .ek-topbar .ek-pad { padding-left: 14px !important; padding-right: 14px !important; }
+    .ek-topbar-txt { font-size: 11.5px !important; }
+  }
+  @media (max-width: 400px) {
+    .ek-hdr-row { gap: 8px !important; padding-left: 12px !important; padding-right: 12px !important; }
+    .ek-logo-flat img { height: 25px !important; }
+    .ek-hdr-icons { gap: 10px !important; }
+    .ek-hamb-txt { display: none !important; }
+    .ek-hamb { width: 44px !important; height: 44px !important; min-height: 44px !important; padding: 0 !important; gap: 0 !important; border-radius: 50% !important; flex: 0 0 44px !important; }
+  }
+  @media (max-width: 350px) {
+    /* Ucet je dostupny v hamburger menu, tady uz na nej neni misto */
+    .ek-hdr-user { display: none !important; }
+    .ek-logo-flat img { height: 21px !important; }
+    .ek-hdr-row { gap: 7px !important; padding-left: 10px !important; padding-right: 10px !important; }
+    .ek-hdr-icons { gap: 9px !important; }
+    .ek-hdr-icons > span { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons > span > span:not(.ek-badge) { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons { margin-right: 8px !important; }
+    .ek-topbar-txt { font-size: 11px !important; }
+  }
+  .ek-cta-light:hover { background: #EDE4D0 !important; }
+  @media (max-width: 1100px) { .ek-dilna { grid-template-columns: repeat(2,minmax(0,1fr)) !important; } }
+  @media (max-width: 760px) {
+    .ek-dilna-cta { grid-template-columns: 1fr !important; }
+    .ek-dilna-cta > a { justify-self: start !important; }
+  }
+  @media (max-width: 560px) { .ek-dilna { grid-template-columns: 1fr !important; } }
+  .ek-hero-play:hover { background: rgba(255,255,255,.3) !important; }
+  .ek-hero2-play:hover { background: rgba(246,241,231,.22) !important; border-color: rgba(246,241,231,.7) !important; }
+  .ek-hero2-card:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -18px rgba(16,24,14,.65) !important; }
+  @media (max-width: 1100px) {
+    .ek-hero2 { height: auto !important; }
+    .ek-hero2-in { grid-template-columns: 1fr !important; padding: 40px 32px !important; gap: 28px !important; }
+    .ek-hero2-h1 { font-size: 44px !important; }
+    .ek-hero2-cards { justify-self: stretch !important; width: 100% !important; }
+  }
+  @media (max-width: 600px) {
+    .ek-hero2-in { padding: 30px 20px !important; }
+    .ek-hero2-h1 { font-size: 34px !important; }
+    .ek-hero2-p { font-size: 16.5px !important; }
+    .ek-varbar-note { display: none !important; }
+    .ek-varbar { left: 12px !important; right: 12px !important; transform: none !important; justify-content: center; max-width: calc(100vw - 24px); box-sizing: border-box; gap: 8px !important; padding: 8px !important; flex-wrap: wrap; border-radius: 20px !important; }
+    .ek-varbar button { font-size: 12px !important; padding: 7px 10px !important; }
+  }
+  @keyframes ekSearchIn { from { opacity:0; transform:translateY(-50%) scale(.98); } to { opacity:1; transform:translateY(-50%) scale(1); } }
+  /* 4 karty x 260px + mezery se pod ~1160px nevejdou -> karusel misto zalomeni */
+  @media (max-width: 1160px) {
+    #blok5 .ek-scrollrow, #blok6 .ek-scrollrow {
+      overflow-x: auto !important;
+      grid-auto-flow: column !important;
+      grid-auto-columns: 260px !important;
+      grid-template-columns: none !important;
+      padding-bottom: 16px !important;
+      scroll-snap-type: x proximity;
+    }
+    #blok5 .ek-scrollrow > *, #blok6 .ek-scrollrow > * { scroll-snap-align: start; }
+  }
+  /* Male displeje: logo a ikony se zmensuji, hamburger na ikonu — vse musi zustat dostupne */
+  @media (max-width: 480px) {
+    .ek-hdr-row { gap: 10px !important; padding-left: 14px !important; padding-right: 14px !important; }
+    .ek-logo-flat img { height: 28px !important; }
+    .ek-hdr-icons { gap: 12px !important; }
+    .ek-hamb { padding: 9px 12px !important; gap: 6px !important; }
+    .ek-topbar .ek-pad { padding-left: 14px !important; padding-right: 14px !important; }
+    .ek-topbar-txt { font-size: 11.5px !important; }
+  }
+  @media (max-width: 400px) {
+    .ek-hdr-row { gap: 8px !important; padding-left: 12px !important; padding-right: 12px !important; }
+    .ek-logo-flat img { height: 25px !important; }
+    .ek-hdr-icons { gap: 10px !important; }
+    .ek-hamb-txt { display: none !important; }
+    .ek-hamb { width: 44px !important; height: 44px !important; min-height: 44px !important; padding: 0 !important; gap: 0 !important; border-radius: 50% !important; flex: 0 0 44px !important; }
+  }
+  @media (max-width: 350px) {
+    /* Ucet je dostupny v hamburger menu, tady uz na nej neni misto */
+    .ek-hdr-user { display: none !important; }
+    .ek-logo-flat img { height: 21px !important; }
+    .ek-hdr-row { gap: 7px !important; padding-left: 10px !important; padding-right: 10px !important; }
+    .ek-hdr-icons { gap: 9px !important; }
+    .ek-hdr-icons > span { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons > span > span:not(.ek-badge) { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons { margin-right: 8px !important; }
+    .ek-topbar-txt { font-size: 11px !important; }
+  }
+  @media (max-width: 900px) {
+    .ek-hero { grid-template-columns: 1fr 1fr !important; height: auto !important; }
+    .ek-grid6 { grid-template-columns: repeat(2,1fr) !important; }
+    .ek-grid8 { grid-template-columns: repeat(2,1fr) !important; }
+  }
+  @media (max-width: 600px) {
+    .ek-grid8 { grid-template-columns: 1fr !important; gap: 10px !important; }
+    .ek-grid8 > a { padding: 8px 14px !important; }
+    .ek-grid8 > a > span:first-child { width: 44px !important; height: 44px !important; }
+    .ek-grid8 > a > span:last-child { font-size: 15px !important; }
+  }
+  /* 4 karty x 260px + mezery se pod ~1160px nevejdou -> karusel misto zalomeni */
+  @media (max-width: 1160px) {
+    #blok5 .ek-scrollrow, #blok6 .ek-scrollrow {
+      overflow-x: auto !important;
+      grid-auto-flow: column !important;
+      grid-auto-columns: 260px !important;
+      grid-template-columns: none !important;
+      padding-bottom: 16px !important;
+      scroll-snap-type: x proximity;
+    }
+    #blok5 .ek-scrollrow > *, #blok6 .ek-scrollrow > * { scroll-snap-align: start; }
+  }
+  /* Male displeje: logo a ikony se zmensuji, hamburger na ikonu — vse musi zustat dostupne */
+  @media (max-width: 480px) {
+    .ek-hdr-row { gap: 10px !important; padding-left: 14px !important; padding-right: 14px !important; }
+    .ek-logo-flat img { height: 28px !important; }
+    .ek-hdr-icons { gap: 12px !important; }
+    .ek-hamb { padding: 9px 12px !important; gap: 6px !important; }
+    .ek-topbar .ek-pad { padding-left: 14px !important; padding-right: 14px !important; }
+    .ek-topbar-txt { font-size: 11.5px !important; }
+  }
+  @media (max-width: 400px) {
+    .ek-hdr-row { gap: 8px !important; padding-left: 12px !important; padding-right: 12px !important; }
+    .ek-logo-flat img { height: 25px !important; }
+    .ek-hdr-icons { gap: 10px !important; }
+    .ek-hamb-txt { display: none !important; }
+    .ek-hamb { width: 44px !important; height: 44px !important; min-height: 44px !important; padding: 0 !important; gap: 0 !important; border-radius: 50% !important; flex: 0 0 44px !important; }
+  }
+  @media (max-width: 350px) {
+    /* Ucet je dostupny v hamburger menu, tady uz na nej neni misto */
+    .ek-hdr-user { display: none !important; }
+    .ek-logo-flat img { height: 21px !important; }
+    .ek-hdr-row { gap: 7px !important; padding-left: 10px !important; padding-right: 10px !important; }
+    .ek-hdr-icons { gap: 9px !important; }
+    .ek-hdr-icons > span { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons > span > span:not(.ek-badge) { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons { margin-right: 8px !important; }
+    .ek-topbar-txt { font-size: 11px !important; }
+  }
+  /* Blok 8: maskot vpravo dole, text i karty si nechávají volné místo, aby do něj nezasahovaly */
+  #blok8 .ek-loyal-head { max-width: min(1080px, calc(100% - 500px)) !important; }
+  #blok8 .ek-loyalty { max-width: min(1080px, calc(100% - 500px)) !important; }
+  @media (max-width: 1180px) and (min-width: 901px) {
+    #blok8 .ek-loyalty { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+  }
+  @media (max-width: 1340px) {
+    #blok8 .ek-loyal-head, #blok8 .ek-loyalty { max-width: none !important; }
+    #blok8 .ek-loyal-head { padding-right: 29% !important; }
+    #blok8 .ek-loyal-goat { width: 25% !important; right: 14px !important; top: 26px !important; bottom: auto !important; }
+  }
+  @media (max-width: 999px) {
+    .ek-thirds.ek-starts { grid-template-columns: 1fr !important; gap: 12px !important; }
+    .ek-starts .ek-card { min-height: 200px !important; }
+  }
+  @media (max-width: 900px) {
+    .ek-thirds { grid-template-columns: repeat(3,1fr) !important; gap: 12px !important; }
+    .ek-two { grid-template-columns: 1fr !important; }
+    .ek-loyalty { grid-template-columns: 1fr !important; max-width: none !important; }
+    .ek-ugc { grid-template-columns: repeat(3,1fr) !important; }
+    .ek-foot { grid-template-columns: repeat(2,1fr) !important; }
+    .ek-nav { display: none !important; }
+    .ek-logo-tag { display: none !important; }
+    .ek-logo-flat { display: flex !important; }
+    .ek-util-hide { display: none !important; }
+    .ek-hdr-row { padding-top: 10px !important; padding-bottom: 10px !important; }
+    .ek-topbar-txt { padding-left: 0 !important; }
+    .ek-hdr-icons { gap: 14px !important; margin-left: auto !important; }
+    .ek-hdr-row { gap: 14px !important; padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-mega { display: none !important; }
+    .ek-hamb { display: flex !important; width: auto !important; height: auto !important; background: #4C653D !important; color: #F6F1E7 !important; padding: 10px 16px !important; border-radius: 999px !important; gap: 8px !important; font-size: 14px !important; font-weight: 600 !important; }
+    .ek-hamb svg { width: 18px !important; height: 18px !important; }
+    .ek-search-overlay { position: fixed !important; inset: 0 !important; left: 0 !important; right: 0 !important; top: 0 !important; transform: none !important; z-index: 300 !important; background: #F6F1E7 !important; display: flex !important; align-items: flex-start !important; padding: 0 !important; }
+    .ek-search-form { width: 100% !important; border-radius: 0 !important; border: none !important; box-shadow: none !important; padding: 22px 20px !important; padding-top: max(22px, env(safe-area-inset-top)) !important; }
+    .ek-search-overlay { flex-direction: column !important; }
+    .ek-search-overlay .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
+    .ek-search-overlay .ek-sugg > div { border-left: none !important; }
+    .ek-search-overlay .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
+    .ek-h1 { font-size: 26px !important; }
+    .ek-h2 { font-size: 30px !important; }
+    .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-scrollrow { overflow-x: auto !important; grid-auto-flow: column !important; grid-auto-columns: 78% !important; grid-template-columns: none !important; padding-bottom: 16px !important; margin-left: -20px !important; margin-right: -20px !important; padding-left: 20px !important; padding-right: 20px !important; scroll-padding-left: 20px !important; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; }
+    #blok3 .ek-scrollrow { grid-auto-columns: 260px !important; }
+    #blok5 .ek-scrollrow, #blok6 .ek-scrollrow { grid-auto-columns: 260px !important; }
+    .ek-rev3 { grid-template-columns: repeat(3,1fr) !important; gap: 12px !important; }
+    /* Fix: hero recipe/loyalty cards collapse to 0 (only absolute children) */
+    .ek-hero > .ek-cat { min-height: 360px !important; }
+    .ek-mobtap { min-height: 44px; }
+  }
+  @media (min-width: 1000px) and (max-width: 1180px) {
+    .ek-hdr-row { gap: 18px !important; }
+    .ek-nav { gap: 16px !important; }
+    .ek-nav > div:first-child { gap: 16px !important; }
+    .ek-loyal-txt { display: none !important; }
+    .ek-nav-loyal { padding: 9px 11px !important; }
+  }
+  @media (min-width: 1000px) and (max-width: 1040px) {
+    .ek-hdr-row { gap: 14px !important; }
+    .ek-nav { gap: 12px !important; font-size: 14px !important; }
+    .ek-nav > div:first-child { gap: 13px !important; }
+    .ek-nav a { white-space: nowrap; }
+    .ek-hdr-icons { gap: 12px !important; }
+  }
+  @media (max-width: 480px) {
+    .ek-ugc { grid-template-columns: repeat(2,1fr) !important; }
+    .ek-hero { grid-template-columns: 1fr !important; }
+    .ek-hero > .ek-cat { min-height: 300px !important; }
+  }
+  @media (max-width: 600px) {
+    .ek-rev3 { grid-template-columns: 1fr !important; }
+    .ek-thirds { grid-template-columns: 1fr !important; }
+    .ek-nl-t { font-size: 22px !important; line-height: 1.15 !important; }
+    .ek-nl-d { font-size: 15px !important; line-height: 1.45 !important; }
+    .ek-nl-i { width: 56px !important; height: 56px !important; }
+  }
+  @media (max-width: 720px) and (min-width: 601px) {
+    .ek-nl-t { font-size: 22px !important; }
+    .ek-nl-d { font-size: 15px !important; }
+  }
+  /* Co chcete vyrábět: pod 1150 px rovnou karusel (bez mezikroku 3 sloupce) */
+  @media (max-width: 1149px) {
+    #blok3 .ek-scrollrow { overflow-x: auto !important; grid-auto-flow: column !important; grid-auto-columns: 260px !important; grid-template-columns: none !important; padding-bottom: 16px !important; margin-left: -20px !important; margin-right: -20px !important; padding-left: 20px !important; padding-right: 20px !important; scroll-padding-left: 20px !important; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; }
+    #blok3 .ek-car-track { display: block !important; }
+  }
+  /* záhlaví sekcí: na menších displejích odkaz/CTA pod nadpis */
+  @media (max-width: 900px) { .ek-sechead { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; } }
+  /* posuvník pod karuselem — jen tam, kde je řada posuvná */
+  /* USP V2 na XS/XXS (< 550 px, breakpoint S): kompaktní řádky — ikona vlevo, nadpis a popis vpravo, linka mezi řádky */
+  @media (max-width: 549px) {
+    .ek-usp2-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
+    .ek-usp2-col { display: grid !important; grid-template-columns: 28px minmax(0,1fr) !important; column-gap: 14px !important; row-gap: 3px !important; align-items: start !important; padding: 13px 0 !important; background-image: none !important; }
+    .ek-usp2-col:not(:last-child) { background-image: linear-gradient(#E4DAC6,#E4DAC6) !important; background-repeat: no-repeat !important; background-position: left bottom !important; background-size: 100% 1px !important; }
+    .ek-usp2-col > span:first-child { grid-row: 1 / span 2; padding-top: 1px; }
+    .ek-usp2-col > span:first-child > span { width: 28px !important; height: 28px !important; }
+    .ek-usp2-t { font-size: 18px !important; }
+    .ek-usp2-col > span:last-child { font-size: 13px !important; line-height: 1.45 !important; }
+  }
+  .ek-check { position: relative; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+  .ek-check input { position: absolute; left: 0; top: 0; width: 20px; height: 20px; margin: 0; opacity: 0; cursor: pointer; }
+  .ek-check-box { width: 20px; height: 20px; flex: 0 0 auto; border: 1.5px solid #CFC4AA; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; transition: background .15s, border-color .15s; }
+  .ek-check-box > span { opacity: 0; transition: opacity .15s; }
+  .ek-check:hover .ek-check-box { border-color: #4C653D; }
+  .ek-check input:checked + .ek-check-box { background: #4C653D; border-color: #4C653D; }
+  .ek-check input:checked + .ek-check-box > span { opacity: 1; }
+  .ek-check input:focus-visible + .ek-check-box { outline: 2px solid #4C653D; outline-offset: 2px; }
+  .ek-mega-link:hover { background: #F6F1E7; color: #D8763B !important; }
+  /* ===== Mobile drawer (state-driven inline styles on elements) ===== */
+  /* mobil: typografie modalů */
+  @media (max-width: 900px) {
+    .ek-mh { font-size: 25px !important; line-height: 1.2 !important; }
+    .ek-mp { font-size: 15.5px !important; line-height: 1.5 !important; }
+  }
+  .ek-car-btn { width:38px; height:38px; border-radius:999px; border:1.5px solid #4C653D; background:#fff; color:#4C653D; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; padding:0; transition:background .2s, color .2s, opacity .2s; }
+  .ek-car-btn:hover:not(:disabled) { background:#4C653D; color:#F6F1E7; }
+  .ek-car-btn:disabled { opacity:.35; cursor:default; }
+  @media (max-width: 900px) { .ek-sechead-r { align-self: stretch; justify-content: space-between; } }
+  /* mobil (S a menší): ovládání karuselu pod kartami — odkaz vlevo, šipky vpravo */
+  @media (max-width: 819px) {
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) { display: flex; flex-direction: column; }
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) > .ek-sechead { display: contents !important; }
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) > .ek-sechead > :first-child { margin-bottom: 20px !important; }
+    div:has(> .ek-sechead .ek-sechead-r):has(> .ek-scrollrow) .ek-sechead-r { order: 1; margin-top: 14px; align-self: stretch; justify-content: space-between; }
+  }
+  /* UGC: Instagram na desktopu vpravo v řádku s nadpisem, na mobilu pod příspěvky */
+  @media (max-width: 819px) {
+    #ugc-head { display: contents !important; }
+    #ugc-head > h2 { margin-bottom: 20px !important; }
+    #ugc-head + .ek-ugc { order: 1; }
+    #ugc-head .ek-ugc-insta { order: 2; align-self: flex-end; margin: 14px -20px 0 0 !important; }
+    div:has(> #ugc-head) { display: flex; flex-direction: column; }
+  }
+  /* Komunitní dílna: odkaz na mobilu pod kartami, stejně jako u karuselů */
+  @media (max-width: 819px) {
+    #dilna > div { display: flex; flex-direction: column; }
+    #dilna .ek-sechead { display: contents !important; }
+    #dilna .ek-sechead > :first-child { margin-bottom: 20px !important; }
+    #dilna .ek-sechead-r { order: 2; margin-top: 14px; align-self: stretch; justify-content: space-between; }
+    #dilna .ek-dilna { order: 1; }
+    #dilna .ek-dilna-cta { order: 3; }
+  }
+  @media (max-width: 819px) { #blok6 { padding-top: 20px !important; } }
+  /* blok 5 je trhaný pás — +16 px na zubatý okraj, vizuálně tedy 20 px jako u bloku 6 */
+  @media (max-width: 819px) { #blok5 { padding-top: 36px !important; padding-bottom: 36px !important; } }
+  @media (max-width: 819px) { .ek-revall { display: none !important; } .ek-revall-m { display: flex !important; justify-content: flex-end; } }
+  /* záhlaví bez navigace karuselu: samotný odkaz vždy vpravo */
+  .ek-sechead-r:not(:has(> :nth-child(2))) { justify-content: flex-end !important; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+
+  <dc-import name="ui-InfoBar" hint-size="100%,40px"></dc-import>
+  <dc-import name="ui-Header" loggedIn="{{ logged }}" hint-size="100%,140px"></dc-import>
+
+  <div style="max-width: 1720px; margin: 0 auto; position: relative">
+
+  <!-- ============ BLOK 1 — HERO, VARIANTA V1 (mozaika 4 karet) ============ -->
+  <sc-if value="{{ heroV1 }}" hint-placeholder-val="{{ true }}">
+  <section style="padding:24px 20px 0;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+    <div class="ek-hero" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; height:460px;">
+
+      <a href="#blok3" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#E9DFCC; display:block;">
+        <img src="assets/hero/hero-main.png" alt="Přírodní suroviny na dřevěném stole" class="ek-ph" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right center; transition:transform .6s ease;">
+        <sc-if value="{{ heroCardVideoOn }}" hint-placeholder-val="{{ false }}">
+          <video src="{{ heroLoopSrc }}" poster="assets/hero/hero-main.png" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" ref="{{ muteRef }}" aria-hidden="true" tabIndex="-1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right center; pointer-events:none;"></video>
+        </sc-if>
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,28,21,.30) 0%,rgba(20,28,21,.05) 30%,rgba(20,28,21,.38) 60%,rgba(20,28,21,.85) 100%);"></div>
+        <div onClick="{{ openHeroVideoFromCard }}" title="Přehrát video" class="ek-hero-play" style="position:absolute; top:16px; left:16px; z-index:3; display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.16); backdrop-filter:blur(4px); padding:6px 12px; border-radius:999px; color:#F6F1E7; font-size:12.5px; font-weight:500; cursor:pointer; transition:background .2s;">{{ iconPlay }} Přehrát video</div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:22px;">
+          <p style="margin:0 0 8px; color:#E3ECC5; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">Ekokoza</p>
+          <h1 class="ek-h1" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:31px; line-height:1.05; color:#F6F1E7; text-wrap:balance;">S námi víte, co tvoříte.</h1>
+          <p style="margin:0 0 16px; color:#EDE8D6; font-size:14px; line-height:1.45;">Suroviny, recepty a ověřené postupy.</p>
+          <span class="ek-cta" style="align-self:flex-start; background:#D14405; color:#fff; padding:11px 22px; border-radius:999px; font-weight:600; font-size:14px; display:inline-flex; align-items:center; gap:8px; transition:background .2s;">Začněte tady {{ iconArrow }}</span>
+        </div>
+      </a>
+
+      <a href="recept.dc.html" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#E7D6C2; display:block;">
+        <img src="assets/hero/telove-maslo-levandule.png" alt="Letní tělové máslo s levandulí" class="ek-ph" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 38%; transition:transform .6s ease;">
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(35,25,15,.28) 0%,rgba(35,25,15,0) 32%,rgba(30,22,14,.35) 62%,rgba(26,18,11,.82) 100%);"></div>
+        <span style="position:absolute; top:16px; left:16px; background:#F6F1E7; color:#4C653D; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px; letter-spacing:.04em;">Sezónní recept</span>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:22px;">
+          <h3 style="margin:0 0 4px; font-family:'EB Garamond',serif; font-weight:500; font-size:21px; color:#fff; line-height:1.15; text-shadow:0 1px 8px rgba(0,0,0,.45);">Letní tělové máslo s levandulí</h3>
+          <span style="color:#F6EFDD; font-size:14px; display:inline-flex; align-items:center; gap:6px; text-shadow:0 1px 6px rgba(0,0,0,.4);">Zobrazit recept {{ iconArrow }}</span>
+        </div>
+      </a>
+
+      <a href="vernostni-program.html" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#E7D6C2; display:block;">
+        <img src="assets/hero/vernostni-program.png" alt="Až −15 % za věrnost" class="ek-ph" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42%; transition:transform .6s ease;">
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(35,25,15,.30) 0%,rgba(35,25,15,0) 30%,rgba(30,22,14,.30) 66%,rgba(26,18,11,.80) 100%);"></div>
+        <span style="position:absolute; top:16px; left:16px; background:#F6F1E7; color:#4C653D; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px; letter-spacing:.04em;">Věrnostní program</span>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:22px;">
+          <h3 style="margin:0 0 4px; font-family:'EB Garamond',serif; font-weight:500; font-size:21px; color:#fff; line-height:1.15; text-shadow:0 1px 8px rgba(0,0,0,.45);">Až −15 % za věrnost</h3>
+          <span style="color:#F6EFDD; font-size:14px; display:inline-flex; align-items:center; gap:6px; text-shadow:0 1px 6px rgba(0,0,0,.4);">Jak to funguje {{ iconArrow }}</span>
+        </div>
+      </a>
+
+      <a href="#blok7" class="ek-cat" style="position:relative; border-radius:14px; overflow:hidden; text-decoration:none; background:#4C653D; display:block;">
+        <img src="assets/hero/pro-zacatecniky.png" alt="Koza u mísící mísy se surovinami" class="ek-ph" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 34%; transition:transform .6s ease;">
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(30,25,15,.30) 0%,rgba(30,25,15,0) 30%,rgba(26,22,14,.32) 64%,rgba(22,18,11,.82) 100%);"></div>
+        <span style="position:absolute; top:16px; left:16px; background:#F6F1E7; color:#4C653D; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px; letter-spacing:.04em;">Pro začátečníky</span>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:22px;">
+          <h3 style="margin:0 0 4px; font-family:'EB Garamond',serif; font-weight:500; font-size:21px; color:#fff; line-height:1.15; text-shadow:0 1px 8px rgba(0,0,0,.45);">Tvoříte poprvé? Provedeme vás</h3>
+          <span style="color:#F6EFDD; font-size:14px; display:inline-flex; align-items:center; gap:6px; text-shadow:0 1px 6px rgba(0,0,0,.4);">Otevřít průvodce {{ iconArrow }}</span>
+        </div>
+      </a>
+    </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- ============ BLOK 1 — HERO, VARIANTA V2 (jeden banner na plnou šířku) ============ -->
+  <sc-if value="{{ heroV2 }}" hint-placeholder-val="{{ false }}">
+  <section style="padding:24px 20px 0;" class="ek-pad">
+    <div class="ek-hero2" style="position:relative; max-width:1560px; margin:0 auto; height:520px; border-radius:14px; overflow:hidden; background:#2B3A24;">
+      <img src="assets/hero/hero-main.png" alt="Přírodní suroviny na dřevěném stole" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42%;">
+      <sc-if value="{{ heroVideoOn }}" hint-placeholder-val="{{ false }}">
+        <video class="ek-hero2-video" src="{{ heroLoopSrc }}" poster="assets/hero/hero-main.png" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" ref="{{ muteRef }}" aria-hidden="true" tabIndex="-1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42%; pointer-events:none;"></video>
+      </sc-if>
+      <div style="position:absolute; inset:0; background:linear-gradient(100deg,rgba(20,28,21,.88) 0%,rgba(20,28,21,.66) 42%,rgba(20,28,21,.18) 74%,rgba(20,28,21,.34) 100%);"></div>
+
+      <div class="ek-hero2-in" style="position:relative; height:100%; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); align-items:center; gap:40px; padding:48px 52px;">
+        <div style="display:flex; flex-direction:column; align-items:flex-start; gap:18px; max-width:52ch;">
+          <span style="display:inline-flex; align-items:center; gap:8px; color:#C9D6AE; font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">Vše pro vlastní výrobu</span>
+          <h1 class="ek-hero2-h1" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:60px; line-height:1.02; color:#F6F1E7; text-wrap:balance;">S námi víte, co tvoříte.</h1>
+          <p class="ek-hero2-p" style="margin:0; font-size:19px; line-height:1.55; color:#E5EBD8; max-width:44ch;">Suroviny, recepty a ověřené postupy. Vysvětlíme proč, ukážeme jak — a zbytek už zvládnete sami.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:4px;">
+            <a href="#blok3" class="ek-cta" style="display:inline-flex; align-items:center; gap:9px; background:#D14405; color:#fff; text-decoration:none; padding:15px 30px; border-radius:999px; font-weight:600; font-size:16px; transition:background .2s;">Začněte tady {{ iconArrow }}</a>
+            <button onClick="{{ openHeroVideo }}" class="ek-hero2-play" style="display:inline-flex; align-items:center; gap:10px; background:rgba(246,241,231,.12); color:#F6F1E7; border:1.5px solid rgba(246,241,231,.42); cursor:pointer; padding:15px 26px; border-radius:999px; font-family:'Work Sans',sans-serif; font-weight:600; font-size:16px; transition:background .2s, border-color .2s;">{{ iconPlay }} Přehrát celé video</button>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px 22px; margin-top:10px;">
+            <dc-import name="ui-Rating" value="{{ 4.9 }}" count="{{ 2418 }}" size="{{ 15 }}" color="#F5C63C" trackColor="rgba(245,198,60,.3)" textColor="#E5EBD8" hint-size="220px,22px"></dc-import>
+            <span style="font-size:14px; color:#D6E0C8;">Doprava zdarma od 2 000 Kč</span>
+          </div>
+        </div>
+
+        <div class="ek-hero2-cards" style="display:flex; flex-direction:column; gap:12px; justify-self:end; width:min(340px,100%);">
+          <sc-for list="{{ heroLinks }}" as="h" hint-placeholder-count="3">
+            <a href="{{ h.href }}" class="ek-hero2-card" style="{{ h.cardStyle }}">
+              <span style="{{ h.icon }}"></span>
+              <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
+                <span style="font-family:'EB Garamond',serif; font-size:18px; font-weight:500; color:#4C653D; line-height:1.2;">{{ h.title }}</span>
+                <span style="font-size:13px; color:#63614F; line-height:1.4;">{{ h.desc }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- ============ BLOK 2 — BENEFITY, VARIANTA V1 (deska s kozou) ============ -->
+  <sc-if value="{{ uspV1 }}" hint-placeholder-val="{{ true }}">
+  <section style="margin-top:48px; padding:0 32px; position:relative;" class="ek-pad">
+    <div style="position:relative; z-index:1; max-width:1560px; margin:0 auto;">
+      <dc-import name="ui-USP" items="{{ benefits }}" media="none" withPhoto="{{ true }}" photo="assets/maskot-lezici.png" hint-size="100%,190px"></dc-import>
+    </div></section>
+  </sc-if>
+
+  <!-- ============ BLOK 2 — VARIANTA V2 (redakční mřížka, bez pozadí) ============ -->
+  <sc-if value="{{ uspV2 }}" hint-placeholder-val="{{ false }}">
+  <section style="margin-top:48px; padding:0 32px; position:relative;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <!-- záhlaví skryté (09/2026) — pro znovuzobrazení odstraňte display:none -->
+      <div class="ek-sechead" style="display:none; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:18px;">
+        <div>
+          <p style="margin:0 0 7px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Proč Ekokoza</p>
+          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.1; color:#4C653D;">Šest důvodů, proč tvořit s námi</h2>
+        </div>
+        <p style="margin:0 0 5px; max-width:330px; font-size:14px; line-height:1.55; color:#6B6B5E;">Suroviny, recepty a ověřené postupy. U každého bodu píšeme, jak to myslíme.</p>
+      </div>
+      <div class="ek-usp2-grid" style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:6px 20px;">
+        <sc-for list="{{ uspList }}" as="b" hint-placeholder-count="6">
+          <a href="{{ b.href }}" class="ek-usp2-col" style="{{ b.colStyle }}">
+            <span style="{{ b.chipStyle }}"><span style="{{ b.iconG }}"></span></span>
+            <span class="ek-usp2-t" style="font-family:'EB Garamond',serif; font-weight:500; font-size:19px; line-height:1.2; color:#4C653D;">{{ b.title }}</span>
+            <span style="font-size:13px; line-height:1.5; color:#6B6B5E;">{{ b.desc }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div></section>
+  </sc-if>
+
+  <!-- ============ BLOK 2 — VARIANTA V3 (samostatné boxy 3×2 s ilustracemi) ============ -->
+  <sc-if value="{{ uspV3 }}" hint-placeholder-val="{{ false }}">
+  <section style="margin-top:48px; padding:0 32px; position:relative;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:20px;">
+        <div>
+          <p style="margin:0 0 7px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Vše pro vlastní výrobu</p>
+          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.1; color:#4C653D;">Co u nás dostanete</h2>
+        </div>
+        <a href="o-nas.html" class="ek-link-u" style="margin-bottom:5px; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Jak pracujeme {{ iconArrow }}</span></a>
+      </div>
+      <div class="ek-usp3-grid" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px;">
+        <sc-for list="{{ uspBoxes }}" as="b" hint-placeholder-count="6">
+          <a href="{{ b.href }}" class="ek-usp3-box" style="{{ b.boxStyle }}">
+            <sc-if value="{{ b.hasImg }}" hint-placeholder-val="{{ true }}">
+              <span class="ek-usp3-img" style="{{ b.imgStyle }}"></span>
+            </sc-if>
+            <span class="ek-usp3-t" style="{{ b.tStyle }}">{{ b.title }}</span>
+            <span class="ek-usp3-d" style="{{ b.dStyle }}">{{ b.desc }}</span>
+            <span class="ek-usp3-more" style="{{ b.moreStyle }}">{{ b.cta }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div></section>
+  </sc-if>
+
+  <!-- ============ BLOK 2 — VARIANTA V4 (interaktivní záložky s ilustrací) ============ -->
+  <sc-if value="{{ uspV4 }}" hint-placeholder-val="{{ false }}">
+  <section style="margin-top:48px; padding:0 32px; position:relative;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:20px;">
+        <div>
+          <p style="margin:0 0 7px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Proč Ekokoza</p>
+          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.1; color:#4C653D;">S námi víte, co tvoříte</h2>
+        </div>
+        <p style="margin:0 0 5px; max-width:320px; font-size:14px; line-height:1.55; color:#6B6B5E;">Vyberte si bod vlevo, vpravo se dozvíte, co za ním stojí.</p>
+      </div>
+      <div class="ek-usp4-wrap" style="display:grid; grid-template-columns:minmax(280px,.8fr) minmax(0,1.2fr); gap:20px; align-items:stretch;">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <sc-for list="{{ uspTabs }}" as="b" hint-placeholder-count="6">
+            <button onClick="{{ b.pick }}" class="{{ b.btnCls }}" style="{{ b.btnStyle }}">
+              <span style="{{ b.btnIcon }}"></span>
+              <span class="ek-usp4-bt" style="{{ b.btnTitle }}">{{ b.title }}</span>
+              <span style="{{ b.btnNum }}">{{ b.num }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div class="ek-usp4-panel" style="display:grid; grid-template-columns:minmax(0,1fr) 250px; gap:26px; align-items:center; padding:30px 32px; border-radius:14px; background:#FFFDF6; border:1px solid #EFE7D6; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);">
+          <div style="display:flex; flex-direction:column; gap:14px; min-width:0;">
+            <span style="font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:#4F6E2A;">{{ uspActive.num }} — {{ uspActive.kicker }}</span>
+            <h3 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:30px; line-height:1.12; color:#4C653D;">{{ uspActive.title }}</h3>
+            <p style="margin:0; font-size:15.5px; line-height:1.6; color:#5C5C50; text-wrap:pretty;">{{ uspActive.long }}</p>
+            <a href="{{ uspActive.href }}" class="ek-link-u" style="align-self:flex-start; margin-top:2px; color:#D14405; text-decoration:none; font-weight:600; font-size:15px;"><span style="display:inline-flex; align-items:center; gap:6px;">{{ uspActive.cta }} {{ iconArrow }}</span></a>
+          </div>
+          <span style="{{ uspActive.imgStyle }}"></span>
+        </div>
+      </div>
+    </div></section>
+  </sc-if>
+
+  <!-- ============ BLOK 3 — CO CHCI VYRÁBĚT ============ -->
+  <section id="blok3" style="padding:64px 32px 8px; position:relative;" class="ek-pad">
+    
+    <div style="position:relative; z-index:1; max-width:1560px; margin:0 auto;">
+      <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:26px;">
+        <div>
+          <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D; line-height:1.05;">Co chcete vyrábět?</h2>
+        </div>
+        <div class="ek-sechead-r" style="display:flex; align-items:center; gap:18px;"><a href="#" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Vše ke tvorbě {{ iconArrow }}</span></a><div style="{{ b3Nav }}"><button onClick="{{ b3Prev }}" disabled="{{ b3AtStart }}" aria-label="Předchozí" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat;"></span></button><button onClick="{{ b3Next }}" disabled="{{ b3AtEnd }}" aria-label="Další" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat;"></span></button></div></div>
+      </div>
+      <div class="ek-scrollrow ek-scroll" ref="{{ b3Ref }}" style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:18px 16px;">
+        <sc-for list="{{ makeCats }}" as="c" hint-placeholder-count="6">
+          <dc-import name="ui-CategoryTile" variant="lifestyle" title="{{ c.name }}" desc="{{ c.desc }}" icon="{{ c.icon }}" tone="{{ c.tone }}" hint-size="100%,260px"></dc-import>
+        </sc-for>
+      </div>
+      <div class="ek-car-track" aria-hidden="true" style="display:none; position:relative; height:3px; margin-top:6px; border-radius:999px; background:#E4DAC6; overflow:hidden;"><span style="{{ b3Thumb }}"></span></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 4 — SUROVINY DLE KATEGORIE ============ -->
+  <section id="blok4" style="padding:56px 32px 8px;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <dc-import name="ui-IngredientGrid" title="Suroviny dle kategorie" items="{{ ingCats }}" layout="{{ ingLayout }}" allHref="kategorie.html" hint-size="100%,300px"></dc-import>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 5 — RECEPTÁŘ HIGHLIGHT ============ -->
+  <section id="blok5" style="padding:86px 32px 66px; margin:26px 0; position:relative;" class="ek-pad">
+    <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
+    <div style="position:relative; z-index:1; max-width:1560px; margin:0 auto;">
+      <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:26px;">
+        <div>
+          <h2 class="ek-h2" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D; line-height:1.05;">Recepty, které fungují</h2>
+          <p style="margin:0; color:#6B6B5E; font-size:17px;">Od suroviny k vlastnímu výrobku.</p>
+        </div>
+        <div class="ek-sechead-r" style="display:flex; align-items:center; gap:18px;"><a href="receptar.dc.html" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Zobrazit všechny recepty {{ iconArrow }}</span></a><div style="{{ b5Nav }}"><button onClick="{{ b5Prev }}" disabled="{{ b5AtStart }}" aria-label="Předchozí" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat;"></span></button><button onClick="{{ b5Next }}" disabled="{{ b5AtEnd }}" aria-label="Další" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat;"></span></button></div></div>
+      </div>
+      <div class="ek-scrollrow ek-scroll" ref="{{ b5Ref }}" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
+        <sc-for list="{{ recipes }}" as="r" hint-placeholder-count="4">
+          <dc-import name="ui-RecipeCard" title="{{ r.name }}" desc="{{ r.desc }}" category="{{ r.cat }}" level="{{ r.level }}" time="{{ r.time }}" img="{{ r.img }}" href="recept.dc.html" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" hint-size="100%,420px"></dc-import>
+        </sc-for>
+      </div>
+      <div aria-hidden="true" style="{{ b5Track }}"><span style="{{ b5Thumb }}"></span></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 6 — BESTSELLERY ============ -->
+  <section id="blok6" style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:26px;">
+        <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D;">Zákazníci nejraději kupují</h2>
+        <div class="ek-sechead-r" style="display:flex; align-items:center; gap:18px;"><a href="#" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny bestsellery {{ iconArrow }}</span></a><div style="{{ b6Nav }}"><button onClick="{{ b6Prev }}" disabled="{{ b6AtStart }}" aria-label="Předchozí" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat;"></span></button><button onClick="{{ b6Next }}" disabled="{{ b6AtEnd }}" aria-label="Další" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat;"></span></button></div></div>
+      </div>
+      <div class="ek-scrollrow ek-scroll" ref="{{ b6Ref }}" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
+          <dc-import name="ui-ProductCardV2" loggedIn="{{ logged }}" title="{{ p.name }}" price="{{ p.price }}" badge="{{ p.badge }}" cta-variant="{{ p.ctaVariant }}" rating="{{ p.rating }}" rating-count="{{ p.ratingCount }}" img="{{ p.img }}" stock-state="{{ p.stockState }}" stock-date="{{ p.stockDate }}" variants="{{ p.variants }}" href="{{ p.href }}" hint-size="100%,520px"></dc-import>
+        </sc-for>
+      </div>
+      <div aria-hidden="true" style="{{ b6Track }}"><span style="{{ b6Thumb }}"></span></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 7+8 — TRHANÝ PÁS ============ -->
+  <div style="position:relative; margin:26px 0; padding:36px 0 48px;">
+    <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
+  <section style="position:relative; z-index:1; padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <div class="ek-thirds ek-starts" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px;">
+        <sc-for list="{{ starts }}" as="s" hint-placeholder-count="3">
+          <div class="ek-card" style="background:{{ s.bg }}; border:1px solid rgba(76,101,61,.14); border-radius:14px; padding:34px; display:flex; flex-direction:column; gap:14px; min-height:230px; transition:transform .25s, box-shadow .25s;">
+            <div style="width:52px; height:52px; display:flex; align-items:center; justify-content:flex-start; color:#D14405;">{{ s.icon }}</div>
+            <div style="flex:1; max-width:{{ s.tw }};">
+              <p style="margin:0 0 4px; color:#4C653D; opacity:{{ s.ko }}; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;">{{ s.kicker }}</p>
+              <h3 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#4C653D; line-height:1.15;">{{ s.title }}</h3>
+            </div>
+            <a href="#" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; align-self:flex-start; max-width:{{ s.tw }};"><span style="display:inline-flex; align-items:center; gap:6px; flex-wrap:wrap;">{{ s.link }} {{ iconArrow }}</span></a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 8 — VĚRNOSTNÍ PROGRAM ============ -->
+  <section id="blok8" style="padding:64px 32px 8px; position:relative; z-index:1;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto; background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); border-radius:18px; overflow:hidden; position:relative; z-index:1; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);">
+      <img src="assets/maskot-balicek.png" alt="" class="ek-loyal-goat" style="position:absolute; right:-160px; bottom:-90px; width:620px; opacity:1; pointer-events:none; z-index:0;">
+      <div style="padding:52px; position:relative; z-index:1;" class="ek-pad">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:40px; margin-bottom:36px;">
+          <div class="ek-loyal-head">
+          <p style="margin:0 0 10px; color:#D6E0C8; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Věrnostní program</p>
+          <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#F6F1E7; line-height:1.08;">Odměňujeme opakovanou tvorbu.</h2>
+          <p style="margin:0; color:#E2E8D6; font-size:17px; line-height:1.55;">Žádné slevové hony, žádné odpočty. Čím déle s námi tvoříte, tím lepší podmínky máte — jednoduše a férově.</p>
+        </div>
+        </div>
+        <div class="ek-loyalty" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-bottom:36px;">
+          <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+            <div style="background:rgba(59,79,47,.7); border:1px solid rgba(246,241,231,.16); border-radius:14px; padding:26px;">
+              <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:12px;">
+                <span style="font-family:'EB Garamond',serif; font-size:21px; color:#F6F1E7; font-weight:500;">{{ t.name }}</span>
+                <span style="font-family:'EB Garamond',serif; font-size:28px; color:#EBD284; font-weight:500;">{{ t.off }}</span>
+              </div>
+              <p style="margin:0; color:#D6E0C8; font-size:14px; line-height:1.5;">{{ t.cond }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <a href="vernostni-program.html" class="ek-cta-dark" style="display:inline-flex; align-items:center; gap:9px; background:#F6F1E7; color:#4C653D; border:1.5px solid #F6F1E7; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:background .2s, border-color .2s;"><span style="{{ iconLoyalCta }}"></span>Zjistit více o věrnostním programu {{ iconArrow }}</a>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- ============ BLOK 9 — KOMUNITA / UGC ============ -->
+  <section style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <div id="ugc-head" style="display:flex; align-items:center; justify-content:space-between; gap:16px 24px; flex-wrap:wrap; margin-bottom:24px;">
+        <h2 class="ek-h2" style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D;">Ukažte nám, co vyrábíte</h2>
+        <a href="#" class="ek-btn-ghost ek-ugc-insta" style="display:inline-flex; align-items:center; gap:9px; margin:0 -20px 0 0; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; padding:11px 20px; border-radius:999px; background:transparent; transition:background .2s;"><span style="{{ iconInstagram }}"></span>@ekokoza na Instagramu</a>
+      </div>
+      <div class="ek-ugc" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px;">
+        <sc-for list="{{ ugc }}" as="u" hint-placeholder-count="8">
+          <a href="#" class="ek-cat" style="position:relative; aspect-ratio:476/636; border-radius:14px; overflow:hidden; display:block;">
+            <div class="ek-ph" style="position:absolute; inset:0; background:{{ u.tone }}; transition:transform .6s ease;"></div>
+            <div class="ek-cat-ov" style="position:absolute; inset:0; background:rgba(30,38,30,.45); opacity:0; transition:opacity .3s; display:flex; align-items:center; justify-content:center; color:#fff;">{{ iconInsta }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 9b — Z KOMUNITNÍ DÍLNY ============ -->
+  <section id="dilna" style="padding:64px 32px 8px;" class="ek-pad">
+    <div style="max-width:1560px; margin:0 auto;">
+      <div class="ek-sechead" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:26px;">
+        <div style="max-width:62ch;">
+          <p style="margin:0 0 8px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Z komunitní dílny</p>
+          <h2 class="ek-h2" style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D; line-height:1.1;">Co vyrobili lidé z našich surovin</h2>
+          <p style="margin:0; font-size:16.5px; line-height:1.6; color:#52524a;">Skutečné výrobky, skutečné recepty. Fotky posílají sami zákazníci — nic z toho jsme nefotili my.</p>
+        </div>
+        <div class="ek-sechead-r" style="display:flex; align-items:center; gap:18px;"><a href="#" class="ek-link-u" style="color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny výrobky od vás {{ iconArrow }}</span></a></div>
+      </div>
+
+      <div class="ek-dilna" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;">
+        <sc-for list="{{ workshop }}" as="w" hint-placeholder-count="4">
+          <div class="ek-card" style="display:flex; flex-direction:column; background:#fff; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; transition:transform .25s, box-shadow .25s;">
+            <div style="position:relative; aspect-ratio:4/5; background:#EFE7D6;">
+              <div style="{{ w.imgStyle }}"></div>
+              <span style="position:absolute; top:12px; left:12px; z-index:2; pointer-events:none; background:rgba(255,253,246,.94); color:#4C653D; font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:999px;">{{ w.category }}</span>
+            </div>
+            <div style="padding:16px 18px 18px; display:flex; flex-direction:column; gap:12px; flex:1;">
+              <p style="margin:0; font-size:14.5px; line-height:1.5; color:#4A4A42;">{{ w.desc }}</p>
+              <div style="display:flex; align-items:center; gap:10px; margin-top:auto;">
+                <span style="{{ w.avatar }}">{{ w.initials }}</span>
+                <span style="display:flex; flex-direction:column; gap:1px; min-width:0;">
+                  <span style="font-size:14px; font-weight:600; color:#2A2A24;">{{ w.name }}</span>
+                  <span style="font-size:12.5px; color:#8a8776;">{{ w.meta }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div class="ek-dilna-cta" style="margin-top:22px; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:24px; align-items:center; padding:32px 34px; border:1px solid #3E5432; border-radius:14px; background:linear-gradient(150deg,#4C653D 0%,#22301F 100%); box-shadow:0 18px 40px -24px rgba(45,58,46,.65);">
+        <div style="min-width:0;">
+          <h3 style="margin:0 0 8px; font-family:'EB Garamond',serif; font-weight:500; font-size:29px; color:#F6F1E7; line-height:1.15;">Chcete tu být taky?</h3>
+          <p style="margin:0; font-size:16px; line-height:1.65; color:#D6E0C8; max-width:64ch;">Pošlete nám fotku svého výrobku a krátce napište, co jste vyráběli a z čeho. Vybrané výrobky sem zařadíme — vždy se vás nejdřív zeptáme.</p>
+        </div>
+        <a href="mailto:eshop@ekokoza.cz?subject=M%C5%AFj%20v%C3%BDrobek%20do%20komunitn%C3%AD%20d%C3%ADlny" class="ek-cta-light" style="justify-self:end; display:inline-flex; align-items:center; gap:9px; background:#F6F1E7; color:#4C653D; text-decoration:none; padding:15px 30px; border-radius:999px; font-weight:600; font-size:15.5px; white-space:nowrap; transition:background .2s;">Pošlete nám svůj výrobek {{ iconArrow }}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOK 10 — RECENZE (TRHANÝ PÁS) ============ -->
+  <div style="position:relative; margin:26px 0; padding:30px 0 40px;">
+    <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
+  <section style="padding:64px 32px 8px; position:relative; z-index:1;" class="ek-pad">
+    <div style="position:relative; z-index:1; max-width:1560px; margin:0 auto;">
+      <div style="position:relative; display:flex; align-items:center; gap:20px; justify-content:center; margin-bottom:32px; flex-wrap:wrap;">
+        <a href="#" class="ek-link-u ek-revall" style="position:absolute; right:0; top:50%; transform:translateY(-50%); display:flex; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; line-height:1.2; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny recenze {{ iconArrow }}</span></a>
+        <span style="font-family:'EB Garamond',serif; font-size:46px; color:#4C653D; font-weight:500; line-height:1;">4,9</span>
+        <div style="display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+          <dc-import name="ui-Rating" value="{{ 4.9 }}" count="{{ 2418 }}" showValue="{{ false }}" size="{{ 18 }}" hint-size="220px,24px"></dc-import>
+          <p style="margin:0; color:#6B6B5E; font-size:14px;">ověřených hodnocení od zákazníků</p>
+        </div>
+      </div>
+      <div class="ek-rev3" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px;">
+        <sc-for list="{{ reviews }}" as="rv" hint-placeholder-count="3">
+          <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:26px;">
+            <span style="display:block; margin-bottom:14px;"><dc-import name="ui-Rating" value="{{ rv.value }}" showCount="{{ false }}" showValue="{{ false }}" size="{{ 16 }}" hint-size="110px,22px"></dc-import></span>
+            <p style="margin:0 0 18px; font-size:15.5px; line-height:1.6; color:#3a3a32;">„{{ rv.text }}"</p>
+            <div style="display:flex; align-items:center; gap:11px;">
+              <div style="width:38px; height:38px; border-radius:50%; background:{{ rv.tone }}; display:flex; align-items:center; justify-content:center; color:#4C653D; font-weight:700; font-size:14px;">{{ rv.initials }}</div>
+              <span style="font-weight:600; font-size:14.5px;">{{ rv.name }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <a href="#" class="ek-link-u ek-revall-m" style="display:none; align-self:flex-start; margin-top:18px; color:#4C653D; text-decoration:none; font-weight:600; font-size:15px; line-height:1.2; white-space:nowrap;"><span style="display:inline-flex; align-items:center; gap:6px;">Všechny recenze {{ iconArrow }}</span></a>
+    </div>
+  </section>
+  </div>
+
+  <!-- ============ BLOK 11 — O NÁS ============ -->
+  <section id="blok11" style="padding:64px 32px 16px; position:relative;" class="ek-pad">
+    <div style="position:relative; z-index:1; max-width:1560px; margin:0 auto;">
+      <div class="ek-two" style="display:grid; grid-template-columns:1fr 1fr; gap:0; align-items:stretch; background:#fff; border:1px solid #ECE3D2; border-radius:18px; overflow:hidden; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);">
+        <div style="padding:52px;">
+          <p style="margin:0 0 10px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Náš příběh</p>
+          <h2 class="ek-h2" style="margin:0 0 18px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D; line-height:1.1;">Začalo to vlastní kuchyní a hrstkou surovin.</h2>
+          <p style="margin:0 0 14px; color:#52524a; font-size:16px; line-height:1.65;">Ekokoza vznikla z jednoduché potřeby — vědět, co si nanášíme na kůži. Místo katalogu plného slev jsme postavili průvodce, kterému se dá věřit.</p>
+          <p style="margin:0 0 26px; color:#52524a; font-size:16px; line-height:1.65;">Dnes pomáháme tisícům tvůrců — od prvního tělového másla po vlastní značku. Pořád stejně: ověřené recepty, čisté suroviny, klid na práci.</p>
+          <a href="o-nas.html" class="ek-cta-sec" style="display:inline-flex; align-items:center; gap:9px; border:1.5px solid #4C653D; color:#4C653D; text-decoration:none; padding:13px 28px; border-radius:999px; font-weight:600; font-size:15px; transition:all .2s;">Přečtěte si náš příběh {{ iconArrow }}</a>
+        </div>
+        <div style="position:relative; min-height:420px;">
+          <img src="assets/o-nas-koza.jpg" alt="Kozy — maskoti ekokozy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER — TRHANÝ PÁS ============ -->
+  <div style="position:relative; margin:26px 0 0; padding:30px 0 40px;">
+    <div aria-hidden="true" style="position:absolute; bottom:0; left:50%; width:100vw; margin-left:-50vw; height:28px; z-index:0; pointer-events:none; background:#4C653D;"></div>
+    <div aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; z-index:0; pointer-events:none; box-shadow:inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24); background:linear-gradient(168deg,#F3F4E5 0%,#EBEED9 58%,#E3E8CC 100%); clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px));"></div>
+  <section style="padding:16px 32px 0; position:relative; z-index:1;" class="ek-pad">
+    
+    <div class="ek-two" style="position:relative; z-index:1; max-width:1560px; margin:0 auto; display:grid; grid-template-columns:1.1fr 1fr; gap:40px; padding:48px 8px; align-items:center;">
+      <div>
+        <p style="margin:0 0 10px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Novinky e-mailem</p>
+        <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D; line-height:1.1;">Jednou měsíčně. Od suroviny k vlastnímu výrobku.</h2>
+        <form onSubmit="{{ submitNewsletter }}" style="display:flex; gap:10px; margin:22px 0 10px; max-width:460px; flex-wrap:wrap;">
+          <label style="flex:1; min-width:220px; display:flex; align-items:center; gap:10px; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:0 22px 0 18px; cursor:text;"><span aria-hidden="true" style="display:inline-block; width:20px; height:20px; flex:0 0 auto; background-color:#7c7a6a; -webkit-mask:url('assets/icons/mail-01.svg') center / contain no-repeat; mask:url('assets/icons/mail-01.svg') center / contain no-repeat;"></span><input type="email" placeholder="váš e-mail" aria-label="Váš e-mail" style="flex:1; min-width:0; background:transparent; border:none; padding:14px 0; font-family:'Work Sans',sans-serif; font-size:15.5px; color:#2A2A24; outline:none;"></label>
+          <button type="submit" class="ek-cta" style="background:#D14405; color:#fff; border:none; cursor:pointer; padding:14px 26px; border-radius:999px; font-family:'Work Sans',sans-serif; font-weight:600; font-size:15px; transition:background .2s;">Odebírat</button>
+        </form>
+        <p style="margin:0; font-size:13px; color:#8a8a78;">Odhlásíte se kdykoli jedním klikem.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <sc-for list="{{ nlReasons }}" as="n" hint-placeholder-count="3">
+          <div style="display:flex; gap:14px; align-items:flex-start;">
+            <span class="ek-nl-i" style="width:38px; height:38px; flex-shrink:0; border-radius:50%; background:#EFE7D6; display:flex; align-items:center; justify-content:center; color:#4C653D;">{{ n.icon }}</span>
+            <div>
+              <p class="ek-nl-t" style="margin:0 0 2px; font-family:'EB Garamond',serif; font-weight:500; font-size:18px; color:#4C653D;">{{ n.title }}</p>
+              <p class="ek-nl-d" style="margin:0; font-size:14px; color:#6B6B5E; line-height:1.45;">{{ n.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  </div><!-- /1440 wrap -->
+
+  <div style="width:100%; margin:0; position:relative;">
+    <div style="position:relative; z-index:1;"><dc-import name="ui-Footer" loggedIn="{{ logged }}" loyaltyTier="{{ 2 }}" hint-size="100%,520px"></dc-import></div>
+  </div>
+
+</div>
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeHeroVideo }}" role="dialog" aria-label="Přehrávač videa" style="position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,56px); background:rgba(20,28,21,.86); backdrop-filter:blur(6px); font-family:'Work Sans',sans-serif;">
+      <div onClick="{{ stopLightboxProp }}" style="position:relative; width:min(1120px,100%); display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+          <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:22px; color:#F6F1E7;" class="ek-mh">Jak to u nás vzniká</span>
+          <button onClick="{{ closeHeroVideo }}" aria-label="Zavřít video" style="display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; flex:0 0 auto; border-radius:50%; background:rgba(246,241,231,.14); border:1px solid rgba(246,241,231,.34); cursor:pointer;"><span style="{{ iconLightboxClose }}"></span></button>
+        </div>
+        <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:14px; overflow:hidden; background:#000; box-shadow:0 30px 70px -30px rgba(0,0,0,.7);">
+          <iframe src="{{ lightboxSrc }}" title="Ekokoza — jak to u nás vzniká" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen="{{ true }}" referrerPolicy="strict-origin-when-cross-origin" frameBorder="0" style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe>
+        </div>
+        <a href="{{ lightboxWatchHref }}" target="_blank" rel="noopener" style="align-self:flex-start; display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#F6F1E7; text-decoration:none; border-bottom:1px solid rgba(246,241,231,.45); padding-bottom:2px;">Otevřít na YouTube {{ iconArrow }}</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ barCollapsed }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ openBar }}" title="Zobrazit ovládání ukázky" style="position:fixed; left:20px; bottom:20px; z-index:300; display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 14px 32px -16px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif; font-size:13px; font-weight:600; color:#4C653D; cursor:pointer;">
+      <span style="{{ iconVarbar }}"></span>Ukázka
+    </button>
+  </sc-if>
+
+  <sc-if value="{{ barOpen }}" hint-placeholder-val="{{ true }}">
+  <div class="ek-varbar" style="position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:300; display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
+    <span title="Hero" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
+      <span style="{{ iconVarbar }}"></span>
+    </span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setHeroV1 }}" style="{{ heroV1Style }}">V1</button>
+      <button onClick="{{ setHeroV2 }}" style="{{ heroV2Style }}">V2</button>
+    </span>
+    <span aria-hidden="true" style="width:1px; height:24px; background:#E4DAC6; flex:0 0 auto;"></span>
+    <sc-if value="{{ uspSwitch }}" hint-placeholder-val="{{ false }}">
+    <span title="Blok benefitů (USP)" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
+      <span style="{{ iconVarUsp }}"></span>
+    </span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setUspV1 }}" title="Deska s kozou (současné)" style="{{ uspV1Style }}">V1</button>
+      <button onClick="{{ setUspV2 }}" title="Redakční mřížka s linkami" style="{{ uspV2Style }}">V2</button>
+      <button onClick="{{ setUspV3 }}" title="Samostatné boxy s ilustracemi" style="{{ uspV3Style }}">V3</button>
+      <button onClick="{{ setUspV4 }}" title="Interaktivní záložky" style="{{ uspV4Style }}">V4</button>
+    </span>
+    <span aria-hidden="true" style="width:1px; height:24px; background:#E4DAC6; flex:0 0 auto;"></span>
+    </sc-if>
+    <span title="Účet" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
+      <span style="{{ iconVarUser }}"></span>
+    </span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setGuest }}" title="Nepřihlášený" style="{{ guestStyle }}">Host</button>
+      <button onClick="{{ setLogged }}" title="Přihlášený" style="{{ loggedStyle }}">Přihlášen</button>
+    </span>
+    <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
+  </div>
+  </sc-if>
+<dc-import name="ui-CartAdded" listen="{{ true }}" turnover="{{ 12400 }}" hint-size="100%,100%"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  static USP_SWITCH = false;
+  maskStyle(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return 'display:inline-block; width:' + size + 'px; height:' + size + 'px; flex:0 0 auto; background-color:' + color + '; -webkit-mask:url("' + url + '") center / contain no-repeat; mask:url("' + url + '") center / contain no-repeat;';
+  }
+  hi(name, size, sw) {
+    const s = size || 20;
+    const url = 'assets/icons/' + name + '.svg';
+    return React.createElement('span', { style: {
+      display: 'inline-block', width: s + 'px', height: s + 'px', flex: '0 0 auto',
+      backgroundColor: 'currentColor',
+      WebkitMask: 'url("' + url + '") center / contain no-repeat',
+      mask: 'url("' + url + '") center / contain no-repeat',
+    } });
+  }
+  svg(kids, sw, size) {
+    const s = size || 20;
+    return React.createElement('svg', { width:s, height:s, viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth: sw||1.6, strokeLinecap:'round', strokeLinejoin:'round', style:{ flex:'0 0 auto', display:'block' } }, kids);
+  }
+  P(d){ return React.createElement('path',{ key:d, d:d }); }
+  C(cx,cy,r){ return React.createElement('circle',{ key:'c'+cx+cy, cx:cx, cy:cy, r:r }); }
+
+  state = { searchOpen: false, query: '', drawerOpen: false, megaIdx: null, drawerExp: -1, hero: 'v1', usp: 'v2', ing: 's1', uspTab: 0, heroVideo: true, heroLightbox: false, barOpen: true, logged: false, nlTopics: ['novinky', 'navody'] };
+
+  componentDidMount() {
+    try {
+      const h = localStorage.getItem('ekokoza-hero-variant');
+      if (h === 'v1' || h === 'v2') this.setState({ hero: h });
+      // USP: schváleno V2 (09/2026). Přepínač je skrytý, pro znovuzobrazení nastavte Component.USP_SWITCH na true.
+      const u = Component.USP_SWITCH ? localStorage.getItem('ekokoza-usp-variant') : null;
+      if (['v1','v2','v3','v4'].indexOf(u) > -1) this.setState({ usp: u });
+      const ig = localStorage.getItem('ekokoza-ing-variant');
+      if (ig === 's1' || ig === 's2') this.setState({ ing: ig });
+    } catch (e) {}
+    // uživatel s omezeným pohybem video na pozadí nedostane
+    try {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.setState({ heroVideo: false });
+    } catch (e) {}
+    this.onKey = (e) => { if (e.key === 'Escape' && this.state.heroLightbox) this.setState({ heroLightbox: false }); };
+    window.addEventListener('keydown', this.onKey);
+  }
+
+  componentWillUnmount() {
+    if (this.onKey) window.removeEventListener('keydown', this.onKey);
+  }
+
+  srchVar() {
+    if (this.state.srch) return this.state.srch;
+    try { return localStorage.getItem('ekokoza-search-variant') === 'v1' ? 'v1' : 'v2'; } catch (e) { return 'v2'; }
+  }
+  setSrch(v) {
+    try { localStorage.setItem('ekokoza-search-variant', v); } catch (e) {}
+    this.setState({ srch: v });
+    window.dispatchEvent(new CustomEvent('ek-search-variant', { detail: { variant: v } }));
+  }
+
+  setHero(h) {
+    try { localStorage.setItem('ekokoza-hero-variant', h); } catch (e) {}
+    this.setState({ hero: h });
+  }
+
+  carNav(key) { const t = (this.state.tracks || {})[key]; return 'display:' + (t && t.w < 0.995 ? 'flex' : 'none') + '; gap:8px; flex-shrink:0;'; }
+  carGo(key, dir) { const el = this._trEl && this._trEl[key]; if (!el) return; const it = el.firstElementChild; const gap = parseFloat(getComputedStyle(el).columnGap) || 16; const step = it ? it.getBoundingClientRect().width + gap : el.clientWidth; const per = Math.max(1, Math.floor((el.clientWidth + gap) / step)); el.scrollBy({ left: dir * step * per, behavior: 'smooth' }); }
+  carVals(key) { const t = (this.state.tracks || {})[key] || { w: 1, x: 0 }; return { [key + 'Nav']: this.carNav(key), [key + 'Prev']: () => this.carGo(key, -1), [key + 'Next']: () => this.carGo(key, 1), [key + 'AtStart']: t.x <= 0.01, [key + 'AtEnd']: t.x >= 0.99 }; }
+  trackRef(key) {
+    this._tr = this._tr || {};
+    if (this._tr[key]) return this._tr[key];
+    const upd = (el) => {
+      const max = el.scrollWidth - el.clientWidth;
+      const w = max > 1 ? el.clientWidth / el.scrollWidth : 1;
+      const x = max > 1 ? el.scrollLeft / max : 0;
+      const cur = (this.state.tracks || {})[key];
+      if (cur && Math.abs(cur.w - w) < 0.002 && Math.abs(cur.x - x) < 0.002) return;
+      this.setState(s => ({ tracks: Object.assign({}, s.tracks, { [key]: { w, x } }) }));
+    };
+    let bound = null, ro = null, fn = null;
+    this._tr[key] = (el) => {
+      if (bound && bound !== el) { bound.removeEventListener('scroll', fn); if (ro) ro.disconnect(); bound = null; }
+      if (!el || bound === el) return;
+      bound = el; fn = () => upd(el); this._trEl = this._trEl || {}; this._trEl[key] = el;
+      el.addEventListener('scroll', fn, { passive: true });
+      if (window.ResizeObserver) { ro = new ResizeObserver(fn); ro.observe(el); }
+      requestAnimationFrame(fn);
+    };
+    return this._tr[key];
+  }
+  trackStyle(key) {
+    const t = (this.state.tracks || {})[key];
+    return 'display:' + (t && t.w < 0.995 ? 'block' : 'none') + '; position:relative; height:3px; margin-top:6px; border-radius:999px; background:#E4DAC6; overflow:hidden;';
+  }
+  thumbStyle(key) {
+    const t = (this.state.tracks || {})[key] || { w: 0.4, x: 0 };
+    const w = Math.max(t.w, 0.12);
+    return 'position:absolute; top:0; bottom:0; left:' + (t.x * (1 - w) * 100).toFixed(2) + '%; width:' + (w * 100).toFixed(2) + '%; border-radius:999px; background:#4C653D;';
+  }
+  setIng(v) {
+    try { localStorage.setItem('ekokoza-ing-variant', v); } catch (e) {}
+    this.setState({ ing: v });
+  }
+
+  setUsp(u) {
+    try { localStorage.setItem('ekokoza-usp-variant', u); } catch (e) {}
+    this.setState({ usp: u });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.searchOpen && !prevState.searchOpen && this._searchInput) {
+      this._searchInput.focus();
+    }
+  }
+
+  renderVals() {
+    const ic = (kids, sw, size) => this.svg(kids, sw, size);
+    const P = (d) => this.P(d);
+
+    const openSearch = () => this.setState({ searchOpen: true });
+    const closeSearch = () => this.setState({ searchOpen: false, query: '' });
+    const onQueryInput = (e) => this.setState({ query: e.target.value });
+    const submitSearch = (e) => { e.preventDefault(); };
+    const searchInputRef = (el) => { this._searchInput = el; };
+    const iconClose = this.hi('cancel-01', 20);
+    const iconChevron = this.hi('arrow-right-01', 18);
+
+    const openDrawer = () => this.setState({ drawerOpen: true });
+    const closeDrawer = () => this.setState({ drawerOpen: false });
+    const stopProp = (e) => { e.stopPropagation(); };
+    const dOpen = this.state.drawerOpen;
+    const drawerWrapStyle = 'position:fixed; inset:0; z-index:200; visibility:' + (dOpen ? 'visible' : 'hidden') + '; pointer-events:' + (dOpen ? 'auto' : 'none') + ';';
+    const drawerBdStyle = 'position:absolute; inset:0; background:rgba(20,26,20,.5); opacity:' + (dOpen ? '1' : '0') + '; transition:opacity .3s ease;';
+    const drawerPanelStyle = 'position:absolute; top:0; right:0; height:100%; width:84%; max-width:360px; background:#F6F1E7; transform:translateX(' + (dOpen ? '0' : '100%') + '); transition:transform .3s cubic-bezier(.32,.72,0,1); display:flex; flex-direction:column; box-shadow:-20px 0 50px -20px rgba(20,26,20,.5);';
+    // ===== Unified menu tree (desktop megamenu + mobile accordion) =====
+    const menuTree = [
+      { label: 'Co vyrábět', allHref: '#blok3',
+        sub: ['Kosmetika','Mýdla','Svíčky','Parfémy','Vlasová péče','Séra','Šampony','Prací prostředky'].map(n => ({ name: n, href: '#blok3' })),
+        prod: { img: 'assets/products/levandulove-maslo-100-g.jpg', name: 'Levandulové máslo, 100 g', price: '189 Kč' } },
+      { label: 'Suroviny', allHref: '#blok4',
+        sub: ['Oleje','Másla','Aktivní látky','Vůně','Vosky','Barviva','Emulgátory','Obaly'].map(n => ({ name: n, href: '#blok4' })),
+        prod: { img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', name: 'Mýdlová hmota s bambuckým máslem, 1 kg', price: '329 Kč' } },
+      { label: 'Receptář', allHref: 'receptar.dc.html',
+        sub: ['Pro začátečníky','Pokročilé techniky','Kosmetika','Mýdla','Svíčky','Vlasová péče'].map(n => ({ name: n, href: 'receptar.dc.html' })),
+        prod: { img: 'assets/products/tuhy-sampon-zloutkovy.jpg', name: 'Tuhý šampon žloutkový', price: '169 Kč' } },
+    ];
+
+    // Megamenu (desktop hover)
+    const mi = this.state.megaIdx;
+    const mega = mi === null ? null : menuTree[mi];
+    const megaOpen = !!mega;
+    const openMega0 = () => this.setState({ megaIdx: 0 });
+    const openMega1 = () => this.setState({ megaIdx: 1 });
+    const openMega2 = () => this.setState({ megaIdx: 2 });
+    const megaClose = () => this.setState({ megaIdx: null });
+    const megaTitle = mega ? mega.label : '';
+    const megaAllHref = mega ? mega.allHref : '#';
+    const megaLinks = mega ? mega.sub : [];
+    const megaProdBgStyle = 'border-radius:10px; background:#fff center/contain no-repeat; width:100%; aspect-ratio:4/3;' + (mega ? ' background-image:url("' + mega.prod.img + '"); background-size:80%;' : '');
+    const megaProdName = mega ? mega.prod.name : '';
+    const megaProdPrice = mega ? mega.prod.price : '';
+
+    // Mobile drawer accordion
+    const drawerMenu = menuTree.map((t, i) => {
+      const open = this.state.drawerExp === i;
+      return {
+        label: t.label,
+        sub: t.sub,
+        allHref: t.allHref,
+        bg: open ? '#EFE7D6' : 'transparent',
+        toggle: () => this.setState({ drawerExp: open ? -1 : i }),
+        chevStyle: 'width:18px; height:18px; color:#9b9888; transform:rotate(' + (open ? '90deg' : '0deg') + '); transition:transform .2s;',
+        subStyle: 'display:' + (open ? 'flex' : 'none') + '; flex-direction:column; padding-bottom:4px;',
+      };
+    });
+    const iconAbout = this.hi('leaf-01', 20);
+    const drawerLinksOther = [
+      { label: 'Věrnostní program', href: 'vernostni-program.html', icon: this.hi('percent-circle', 20), bg: '#F6F1E7' },
+      { label: 'O nás', href: '#blok11', icon: iconAbout, bg: 'transparent' },
+    ];
+
+    const searchActive = this.state.searchOpen && this.state.query.trim().length > 0;
+    const suggProducts = [
+      { name: 'Mýdlová hmota s bambuckým máslem (shea), 1 kg', price: '329 Kč', av: 'Skladem', avColor: '#2E7D4F', img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg' },
+      { name: 'Levandulové máslo, 100 g', price: '189 Kč', av: 'Skladem', avColor: '#2E7D4F', img: 'assets/products/levandulove-maslo-100-g.jpg' },
+      { name: 'Tuhý šampon žloutkový', price: '169 Kč', av: 'Poslední 3 ks', avColor: '#B8860B', img: 'assets/products/tuhy-sampon-zloutkovy.jpg' },
+      { name: 'Stabilizovaný vitamin C, 10 g', price: '249 Kč', av: 'Skladem', avColor: '#2E7D4F', img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg' },
+    ].map(p => Object.assign(p, { thumbStyle: 'width:52px; height:52px; flex-shrink:0; border-radius:10px; background:#F6F1E7 center/contain no-repeat; background-image:url("' + p.img + '"); background-size:82%;' }));
+    const suggRecipes = ['Levandulové mýdlo za studena', 'Mramorované mýdlo s uhlím', 'Bylinkové mýdlo pro citlivou pokožku'];
+
+    const submitNewsletter = (e) => { e.preventDefault(); };
+    const TOPICS = [['novinky', 'Novinky'], ['navody', 'Návody'], ['slevy', 'Slevy']];
+    const picked = this.state.nlTopics || [];
+    const allOn = TOPICS.every(([k]) => picked.includes(k));
+    const setTopics = (list) => this.setState({ nlTopics: list });
+    const nlTopics = TOPICS.map(([key, label]) => {
+      const on = picked.includes(key);
+      return { label, on, toggle: () => setTopics(on ? picked.filter(k => k !== key) : picked.concat(key)) };
+    }).concat([{ label: 'Všechno', on: allOn, toggle: () => setTopics(allOn ? [] : TOPICS.map(([k]) => k)) }]);
+    const nlReasons = [
+      { title: 'Recepty dřív než na webu', desc: 'Nové ověřené recepty dostanete do schránky jako první.', icon: this.hi('book-open-01', 18) },
+      { title: 'Vysvětlíme proč', desc: 'Krátká vysvětlení surovin a postupů — žádné reklamní letáky.', icon: this.hi('idea-01', 18) },
+      { title: 'Žádný tlak', desc: 'Jednou měsíčně a bez slevové urgence. Odhlášení kdykoli.', icon: this.hi('checkmark-circle-01', 18) },
+    ];
+
+    const iconSearch = this.hi('search-01', 22);
+    const iconUser = this.hi('user', 22);
+    const iconCart = this.hi('shopping-cart-01', 22);
+    const iconMenu = this.hi('menu-02', 20);
+    const iconArrow = this.hi('arrow-right-02', 18);
+    const iconPlay = this.hi('play', 18);
+    const iconLoyal = this.hi('award-01', 20);
+    const iconLevel = this.hi('sorting-01', 16);
+    const iconClock = this.hi('clock-01', 16);
+    const iconInsta = this.hi('instagram', 20);
+    const iconInsta24 = this.hi('instagram', 24);
+
+    const benefits = [
+      { title:'Recepty, co prošly kuchyní', desc:'Každý postup jsme sami uvařili, zkazili a opravili.', img:'assets/usp/1-recepty.png', icon:'cook-book', href:'receptar.dc.html' },
+      { title:'Suroviny beze lží', desc:'Původ a složení najdete u každého produktu.', img:'assets/usp/2-suroviny.png', icon:'plant-02', href:'kategorie.html' },
+      { title:'Poradíme, nekoučujeme', desc:'Zeptejte se, odpovídá člověk z praxe.', img:'assets/usp/3-pece.png', icon:'checkmark-badge-01', href:'o-nas.html' },
+      { title:'Věrnost se počítá', desc:'Až −15 % za to, že tvoříte dál.', img:'assets/usp/4-vernost.png', icon:'percent-circle', href:'vernostni-program.html' },
+      { title:'Papíry ke všemu', desc:'Bezpečnostní listy a dokumentace ke stažení.', img:'assets/usp/5-dokumentace.png', icon:'pdf-01', href:'produkt-material.html' },
+      { title:'Od 2000 Kč vezeme zdarma', desc:'Po celé ČR, šetrně zabalené.', img:'assets/usp/6-doprava.png', icon:'truck-delivery', href:'objednavka.html' },
+    ];
+
+    // —— varianty USP bloku (V1 deska, V2 mřížka, V3 boxy, V4 záložky) ——
+    const uspExtra = [
+      { kicker:'Recepty', cta:'Otevřít receptář', long:'Každý recept jsme sami uvařili, zkazili a opravili. U postupu proto najdete i to, co se může pokazit a jak to zachránit.' },
+      { kicker:'Suroviny', cta:'Procházet suroviny', long:'U každé suroviny píšeme původ, složení a k čemu se hodí. Když se do vašeho výrobku nehodí, řekneme to.' },
+      { kicker:'Poradna', cta:'Kdo za tím stojí', long:'Na dotazy odpovídá člověk, který sám vyrábí. Zeptejte se klidně na konkrétní recept i na náhradu suroviny.' },
+      { kicker:'Věrnost', cta:'Jak to funguje', long:'Sleva až −15 % roste s tím, kolik u nás postupně vytvoříte. Žádné odpočty ani akce na jeden den.' },
+      { kicker:'Dokumentace', cta:'Ukázka u produktu', long:'Bezpečnostní listy, specifikace a certifikáty máte ke stažení přímo u produktu. Hodí se, pokud vyrábíte na prodej.' },
+      { kicker:'Doprava', cta:'Doprava a platba', long:'Po celé ČR, zabalené tak, aby dojely i sklenice. Objednávky obvykle odesíláme do druhého dne.' },
+    ];
+    const uspBase = benefits.map((b, i) => ({
+      title: b.title, desc: b.desc, href: b.href, img: b.img, icon: b.icon,
+      num: '0' + (i + 1), kicker: uspExtra[i].kicker, cta: uspExtra[i].cta, long: uspExtra[i].long,
+      iconG: this.maskStyle(b.icon, 26, '#4F6E2A'),
+    }));
+
+    const uspList = uspBase.map((b, i) => Object.assign({}, b, {
+      chipStyle: 'display:flex; align-self:flex-start;',
+      iconG: this.maskStyle(b.icon, 36, '#D14405'),
+      colStyle: 'display:flex; flex-direction:column; gap:12px; padding:22px 20px 24px 0; text-decoration:none;'
+        + (i < uspBase.length - 1 ? ' background-image:linear-gradient(180deg,rgba(228,218,198,0) 0%,#E4DAC6 26%,#E4DAC6 74%,rgba(228,218,198,0) 100%); background-repeat:no-repeat; background-position:right center; background-size:1px 60%;' : ''),
+    }));
+
+    const uspBoxes = uspBase.map((b, i) => {
+      const accent = i === 3;
+      return Object.assign({}, b, {
+        hasImg: true,
+        boxStyle: 'position:relative; display:flex; flex-direction:column; gap:8px; min-height:148px; padding:18px 22px 16px; border-radius:14px; text-decoration:none; transition:transform .25s, box-shadow .25s;'
+          + ' background:' + (accent ? '#E9EDDF' : '#FFFDF6') + '; border:1px solid ' + (accent ? '#D8E0C6' : '#EFE7D6') + ';',
+        imgStyle: 'position:absolute; right:8px; bottom:8px; width:112px; height:112px; max-height:calc(100% - 16px); background:center bottom/contain no-repeat; background-image:url("' + b.img + '"); mix-blend-mode:multiply; pointer-events:none; transition:transform .3s ease;',
+        tStyle: "font-family:'EB Garamond',serif; font-weight:500; font-size:21px; line-height:1.15; padding-right:84px; color:#4C653D;",
+        dStyle: 'font-size:13.5px; line-height:1.45; padding-right:92px; color:#6B6B5E;',
+        moreStyle: 'margin-top:4px; font-size:13px; font-weight:600; transition:letter-spacing .25s; color:#D14405;',
+      });
+    });
+
+    const uspTabIdx = Math.min(this.state.uspTab, uspBase.length - 1);
+    const uspTabs = uspBase.map((b, i) => {
+      const on = i === uspTabIdx;
+      return Object.assign({}, b, {
+        pick: () => this.setState({ uspTab: i }),
+        btnCls: on ? 'ek-usp4-btn is-on' : 'ek-usp4-btn',
+        btnStyle: "font-family:'Work Sans',sans-serif; display:flex; align-items:center; gap:13px; width:100%; text-align:left; padding:15px 18px; border-radius:14px; cursor:pointer; transition:background .2s, border-color .2s;"
+          + ' background:' + (on ? '#4C653D' : '#FFFDF6') + '; border:1px solid ' + (on ? '#4C653D' : '#EFE7D6') + ';',
+        btnIcon: this.maskStyle(b.icon, 22, on ? '#EBD284' : '#4F6E2A'),
+        btnTitle: "flex:1; min-width:0; font-family:'EB Garamond',serif; font-weight:500; font-size:19px; line-height:1.2; transition:color .2s; color:" + (on ? '#F6F1E7' : '#4C653D') + ';',
+        btnNum: 'font-size:12px; letter-spacing:.08em; font-weight:600; color:' + (on ? 'rgba(246,241,231,.6)' : '#A79B82') + ';',
+      });
+    });
+    const uspAct = uspBase[uspTabIdx];
+    const uspActive = Object.assign({}, uspAct, {
+      imgStyle: 'display:block; width:100%; aspect-ratio:1/1; background:center/contain no-repeat; background-image:url("' + uspAct.img + '"); mix-blend-mode:multiply;',
+    });
+    const uspVar = this.state.usp;
+
+    const makeCats = [
+      { name:'Kosmetika', icon:'hand-sanitizer', desc:'Krémy, másla a balzámy pro každodenní péči.', tone:'#EFE7D6 url("assets/make/kosmetika.png") 42% center / cover no-repeat' },
+      { name:'Mýdla', icon:'body-soap', desc:'Mýdlové hmoty, formy a vše pro první várku.', tone:'#EFE7D6 url("assets/make/mydla.png") 55% center / cover no-repeat' },
+      { name:'Svíčky', icon:'candle', desc:'Vosky, knoty a vůně pro svíčky, které hoří čistě.', tone:'#EFE7D6 url("assets/make/svicky.png") center 55% / cover no-repeat' },
+      { name:'Parfémy', icon:'perfume', desc:'Silice a základy pro vlastní vůni.', tone:'#EFE7D6 url("assets/make/parfemy.png") center 60% / cover no-repeat' },
+      { name:'Vlasová péče', icon:'shampoo', desc:'Šampony a kondicionéry podle vašich vlasů.', tone:'#EFE7D6 url("assets/make/vlasy.png") center 40% / cover no-repeat' },
+      { name:'Séra', icon:'dropper', desc:'Aktivní látky a oleje pro cílenou péči o pleť.', tone:'#EFE7D6 url("assets/make/sera.png") center 42% / cover no-repeat' },
+    ];
+
+    const ingCats = [
+      { name:'Oleje', desc:'Rostlinné oleje za studena lisované i rafinované.', img:'assets/categories/oleje.png', icon:'droplet' },
+      { name:'Másla', desc:'Bambucké, kakaové a další pevná másla.', img:'assets/categories/masla.png', icon:'mortar' },
+      { name:'Aktivní látky', desc:'Vitaminy, extrakty a látky s cíleným účinkem.', img:'assets/categories/aktivni-latky.png', icon:'test-tube-01' },
+      { name:'Vůně', desc:'Esenciální oleje a vonné kompozice.', img:'assets/categories/vune.png', icon:'perfume' },
+      { name:'Vosky', desc:'Včelí a rostlinné vosky pro balzámy i svíčky.', img:'assets/categories/vosky.png', icon:'honey-01' },
+      { name:'Barviva', desc:'Minerální a přírodní pigmenty.', img:'assets/categories/barviva.png', icon:'blush-brush-01' },
+      { name:'Emulgátory', desc:'Spojí vodu s olejem v krémech a mlécích.', img:'assets/categories/emulgatory.png', icon:'whisk' },
+      { name:'Obaly', desc:'Kelímky, lahvičky a dózy pro hotové výrobky.', img:'assets/categories/obaly.png', icon:'package' },
+    ].map(c => Object.assign(c, { thumbStyle: 'width:56px; height:56px; flex-shrink:0; border-radius:12px; background:center/cover no-repeat; background-image:url("' + c.img + '");' }));
+
+    const recipes = [
+      { cat:'Kosmetika', name:'Krém na paty a ztvrdlá místa', desc:'Hutná směs s močovinou a bambuckým máslem pro popraskané paty.', level:'Začátečník', time:'30 min', img:'assets/recipes/krem-na-paty.jpg', rating:4.9, ratingCount:128 },
+      { cat:'Kosmetika', name:'Krémová pasta na holení', desc:'Jemná pěna, která chrání pokožku a nevysušuje ji.', level:'Pokročilý', time:'45 min', img:'assets/recipes/pasta-na-holeni.jpg', rating:4.75, ratingCount:64 },
+      { cat:'Domácnost', name:'Repelent pro děti, dospělé i zvířata', desc:'Éterické oleje místo chemie — funguje i na citlivou pokožku.', level:'Začátečník', time:'20 min', img:'assets/recipes/repelent.jpg', rating:4.6, ratingCount:41 },
+      { cat:'Průvodce', name:'Tenzidy v domácí kosmetice', desc:'Který tenzid na co: přehled vlastností a dávkování v praxi.', level:'Zkušený', time:'10 min čtení', img:'assets/recipes/tenzidy.jpg', rating:4.8, ratingCount:87 },
+    ].map(r => Object.assign(r, { imgStyle: 'position:absolute; inset:0; background:#EFE7D6 center/cover no-repeat; background-image:url("' + r.img + '");' }));
+
+    const products = [
+      { name:'Levandulové máslo, 100 g', price:'189 Kč', badge:'bestseller', ctaVariant:'koupit', rating:4.8, ratingCount:214, img:'assets/products/levandulove-maslo-100-g.jpg', stockState:'ready', href:'produkt-material.html' },
+      { name:'Skleněná lahvička bez uzávěru hnědá, 10 ml', price:'3 Kč', badge:'', ctaVariant:'varianta', variants:[{ label:'1 ks', price:3, state:'ready' }, { label:'187 ks', price:417, state:'ready' }], rating:4.8, ratingCount:34, img:'assets/products/sklenena-lahvicka-bez-uzaveru-hneda-10-ml.webp', stockState:'ready', href:'produkt-obal.html' },
+      { name:'Stabilizovaný vitamin C, 10 g', price:'149 Kč', badge:'doporucujeme', ctaVariant:'koupit', rating:4.7, ratingCount:58, img:'assets/products/stabilizovany-vitamin-c-10-g.jpg', stockState:'ready', href:'produkt-material.html' },
+      { name:'Tuhý šampon žloutkový', price:'159 Kč', badge:'novinka', ctaVariant:'varianta', rating:0, ratingCount:0, img:'assets/products/tuhy-sampon-zloutkovy.jpg', stockState:'expected', stockDate:'28. 8. 2026', href:'produkt-material.html' },
+    ];
+
+    const starts = [
+      { kicker:'Začátečník', title:'Tvoříte poprvé?', link:'Otevřít průvodce', icon: this.hi('bulb', 26), bg:'linear-gradient(90deg,rgba(252,250,243,.97) 0%,rgba(252,250,243,.92) 45%,rgba(252,250,243,.55) 62%,rgba(252,250,243,0) 80%), url("assets/start/tvorite-poprve.png") 72% center / cover no-repeat #EEF4DC', tw:'58%', ko:'1' },
+      { kicker:'Pokročilý', title:'Hledáte nové výrobní postupy?', link:'Receptář pro pokročilé', icon: this.hi('cook-book', 26), bg:'linear-gradient(90deg,rgba(252,250,243,.97) 0%,rgba(252,250,243,.92) 45%,rgba(252,250,243,.55) 62%,rgba(252,250,243,0) 80%), url("assets/start/nove-postupy.png") 72% center / cover no-repeat #EEF4DC', tw:'58%', ko:'1' },
+      { kicker:'Profesionál / B2B', title:'Vyrábíte ve větším?', link:'Dokumentace a B2B', icon: this.hi('truck-delivery', 26), bg:'linear-gradient(90deg,rgba(252,250,243,.97) 0%,rgba(252,250,243,.92) 45%,rgba(252,250,243,.55) 62%,rgba(252,250,243,0) 80%), url("assets/start/vyrabite-ve-vetsim.png") 70% center / cover no-repeat #FEF8E6', tw:'58%', ko:'1' },
+    ];
+
+    const tiers = [
+      { name:'Pěstitel', off:'−5 %', cond:'Po prvním nákupu nad 1 000 Kč za rok.' },
+      { name:'Tvůrce', off:'−10 %', cond:'Při nákupech nad 5 000 Kč za rok.' },
+      { name:'Mistr', off:'−15 %', cond:'Při nákupech nad 12 000 Kč za rok.' },
+    ];
+
+    const ugc = [1,2,3,4,5,6,7,8].map(i => ({ tone: '#EFE7D6 center/contain no-repeat url("assets/ugc/0' + i + '.png")' }));
+
+    const workshop = [
+      { name: 'Klára M.', meta: 'Praha · tvoří 2 roky', category: 'Péče o pleť', tone: '#E7D6C2', img: 'assets/community/maska-astaxanthin.webp',
+        desc: 'Pleťová maska s astaxanthinem. Přírodní barvivo z řasy dodá masce sytou barvu a pleť po ní vypadá odpočatě.' },
+      { name: 'Petra S.', meta: 'Olomouc · prodává na trzích', category: 'Séra', tone: '#DEE7D6', img: 'assets/community/serum-malachit.webp',
+        desc: 'Pleťové sérum s malachitem a eukalyptem. Drahokam mletý na prach, gelový základ a pár kapek esenciálního oleje.' },
+      { name: 'Jakub V.', meta: 'Brno · tvoří pro koně', category: 'Pro zvířata', tone: '#EFE7D6', img: 'assets/community/repelent-pro-zvirata.webp',
+        desc: 'Repelent pro koně z esenciálních olejů. Vydrží celý výjezd a nedráždí kůži jako kupované přípravky.' },
+      { name: 'Hana K.', meta: 'Zlín · tvoří s dětmi', category: 'Svíčky', tone: '#D9E4E2', img: 'assets/community/svicka-proti-komarum.webp',
+        desc: 'Svíčka proti komárům se sójovým voskem a levandulí. Do plechovky, aby vydržela i na zahradě ve větru.' },
+    ].map((w, i) => Object.assign({}, w, {
+      imgStyle: 'position:absolute; inset:0; background:#EFE7D6 center/cover no-repeat; background-image:url("' + w.img + '");',
+      initials: w.name.split(' ').map(s => s[0]).join(''),
+      avatar: 'display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; flex:0 0 auto; border-radius:50%; background:' + w.tone
+        + '; border:1px solid #E4D9C2; font-family:\'Work Sans\',sans-serif; font-weight:700; font-size:13.5px; color:#4C653D;',
+    }));
+
+    const reviews = [
+      { text:'Konečně e-shop, kde mi poradí, ne jen prodají. Recepty fungují na první pokus.', name:'Markéta H.', initials:'MH', tone:'#E7D6C2', value: 5 },
+      { text:'Suroviny v perfektní kvalitě a dokumentace ke všemu. Jako profesionál to oceňuju.', name:'Tomáš R.', initials:'TR', tone:'#DEE7D6', value: 4.75 },
+      { text:'Věrnostní program bez tlaku a odpočtů. Klid a férovost, přesně jak to má být.', name:'Jana K.', initials:'JK', tone:'#F2DDD8', value: 5 },
+    ];
+
+    const hero = this.state.hero || 'v1';
+    // Odkaz na video na jednom místě — stačí přepsat. Přijímá youtu.be i youtube.com/watch.
+    const HERO_VIDEO_URL = 'https://youtu.be/AQJOfW4Fndk';
+    const ytId = (HERO_VIDEO_URL.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{6,})/) || [])[1] || '';
+    const segBtn = (on) => 'font-family:\'Work Sans\',sans-serif; font-size:13px; font-weight:700; letter-spacing:.02em; padding:8px 16px; min-height:34px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;'
+      + (on ? ' background:#4C653D; color:#F6F1E7; border:1px solid #4C653D;' : ' background:transparent; color:#6B6B5E; border:1px solid transparent;');
+
+    const stars5 = [0,1,2,3,4].map(i => React.createElement('span', { key: i, style: {
+      display: 'inline-block', width: '16px', height: '16px', flex: '0 0 auto',
+      backgroundColor: 'currentColor',
+      WebkitMask: 'url("assets/icons/star-filled.svg") center / contain no-repeat',
+      mask: 'url("assets/icons/star-filled.svg") center / contain no-repeat',
+    } }));
+
+    const footAccount = ['Můj účet','Objednávky','Věrnostní body','Oblíbené'];
+    const footInfo = ['Doprava a platba','Reklamace a vrácení','Obchodní podmínky','Časté dotazy'];
+    const footCoop = ['B2B a velkoobchod','Affiliate program','Pro výrobce','Staňte se partnerem'];
+    const carriers = ['Zásilkovna','PPL','Česká pošta','DPD','Balíkovna'];
+
+    return {
+      openSearch, closeSearch, onQueryInput, submitSearch, searchInputRef, iconClose,
+      iconInstagram: this.maskStyle('instagram', 20, '#4C653D'),
+      searchOpen: this.state.searchOpen, query: this.state.query,
+      openDrawer, closeDrawer, stopProp, drawerWrapStyle, drawerBdStyle, drawerPanelStyle, drawerMenu, drawerLinksOther, iconChevron, iconAbout,
+      megaOpen, openMega0, openMega1, openMega2, megaClose, megaTitle, megaAllHref, megaLinks, megaProdBgStyle, megaProdName, megaProdPrice,
+      iconSearch, iconUser, iconCart, iconMenu, iconArrow, iconPlay, iconLoyal, iconLevel, iconClock, iconInsta, iconInsta24,
+      heroV1: hero === 'v1',
+      heroV2: hero === 'v2',
+      heroV1Style: segBtn(hero === 'v1'),
+      heroV2Style: segBtn(hero === 'v2'),
+      heroNote: hero === 'v1' ? 'Mozaika čtyř karet' : 'Jeden banner na plnou šířku',
+      setHeroV1: () => this.setHero('v1'),
+      setHeroV2: () => this.setHero('v2'),
+      logged: this.state.logged,
+      guestStyle: segBtn(!this.state.logged),
+      loggedStyle: segBtn(this.state.logged),
+      setGuest: () => this.setState({ logged: false }),
+      setLogged: () => this.setState({ logged: true }),
+      iconVarUser: this.maskStyle('user', 17, '#4C653D'),
+      iconVarSrch: this.maskStyle('search-01', 17, '#4C653D'),
+      srchV1Style: segBtn(this.srchVar() === 'v1'), srchV2Style: segBtn(this.srchVar() !== 'v1'),
+      setSrchV1: () => this.setSrch('v1'), setSrchV2: () => this.setSrch('v2'),
+      iconVarbar: this.maskStyle('grid-view', 17, '#4C653D'),
+      iconVarUsp: this.maskStyle('leaf-01', 17, '#4C653D'),
+      uspSwitch: Component.USP_SWITCH,
+      iconVarIng: this.maskStyle('droplet', 17, '#4C653D'),
+      b3Ref: this.trackRef('b3'), ...this.carVals('b3'), b3Thumb: this.thumbStyle('b3'),
+      b5Ref: this.trackRef('b5'), ...this.carVals('b5'), b5Thumb: this.thumbStyle('b5'), b5Track: this.trackStyle('b5'),
+      b6Ref: this.trackRef('b6'), ...this.carVals('b6'), b6Thumb: this.thumbStyle('b6'), b6Track: this.trackStyle('b6'),
+      ingLayout: 'carousel',
+      ingS1Style: segBtn(this.state.ing !== 's2'), ingS2Style: segBtn(this.state.ing === 's2'),
+      setIngS1: () => this.setIng('s1'), setIngS2: () => this.setIng('s2'),
+      iconLoyalCta: this.maskStyle('percent-circle', 19, '#D14405') + ' flex:0 0 auto;',
+      uspV1: uspVar === 'v1', uspV2: uspVar === 'v2', uspV3: uspVar === 'v3', uspV4: uspVar === 'v4',
+      uspV1Style: segBtn(uspVar === 'v1'), uspV2Style: segBtn(uspVar === 'v2'),
+      uspV3Style: segBtn(uspVar === 'v3'), uspV4Style: segBtn(uspVar === 'v4'),
+      setUspV1: () => this.setUsp('v1'), setUspV2: () => this.setUsp('v2'),
+      setUspV3: () => this.setUsp('v3'), setUspV4: () => this.setUsp('v4'),
+      uspList, uspBoxes, uspTabs, uspActive,
+      iconBarClose: this.maskStyle('cancel-01', 16, '#4C653D'),
+      barOpen: this.state.barOpen,
+      barCollapsed: !this.state.barOpen,
+      openBar: () => this.setState({ barOpen: true }),
+      closeBar: () => this.setState({ barOpen: false }),
+      heroVideoOn: hero === 'v2' && this.state.heroVideo && !this.state.heroLightbox,
+      heroCardVideoOn: hero === 'v1' && this.state.heroVideo && !this.state.heroLightbox,
+      muteRef: (el) => {
+        if (!el) return;
+        el.muted = true;
+        el.defaultMuted = true;
+        el.volume = 0;
+        const p = el.play();
+        if (p && p.catch) p.catch(() => {});
+      },
+      heroLoopSrc: 'assets/hero/hero-loop.mp4',
+      lightboxOpen: this.state.heroLightbox,
+      lightboxSrc: this.state.heroLightbox
+        ? 'https://www.youtube.com/embed/' + ytId + '?si=8ZsE2EYqJbjedPNa&autoplay=1&rel=0&modestbranding=1&playsinline=1'
+        : '',
+      lightboxWatchHref: HERO_VIDEO_URL,
+      openHeroVideo: () => this.setState({ heroLightbox: true }),
+      openHeroVideoFromCard: (e) => { if (e) { e.preventDefault(); e.stopPropagation(); } this.setState({ heroLightbox: true }); },
+      closeHeroVideo: () => this.setState({ heroLightbox: false }),
+      stopLightboxProp: (e) => e.stopPropagation(),
+      iconLightboxClose: this.maskStyle('cancel-01', 26, '#F6F1E7'),
+      heroLinks: [
+        { title: 'Co chcete vyrábět?', desc: 'Kosmetika, domácnost, potraviny', href: '#blok3', icon: 'mortar',
+          bg:'linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%)', bd:'#DCE8C2' },
+        { title: 'Receptář', desc: 'Ověřené postupy krok za krokem', href: 'receptar.dc.html', icon: 'chef-hat',
+          bg:'linear-gradient(160deg,#FDF1F4 0%,#F7DDE4 100%)', bd:'#F0D2DB' },
+        { title: 'Věrnostní program', desc: 'Až −15 % za opakovanou tvorbu', href: 'vernostni-program.html', icon: 'percent-circle',
+          bg:'linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%)', bd:'#EDDCA9' },
+      ].map(h => Object.assign({}, h, {
+        icon: this.maskStyle(h.icon, 24, h.icon === 'percent-circle' ? '#D8763B' : '#4F6E2A') + ' flex:0 0 auto;',
+        cardStyle: 'display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:14px; text-decoration:none; box-shadow:0 14px 30px -20px rgba(16,24,14,.6); transition:transform .2s, box-shadow .2s;'
+          + ' background:' + h.bg + '; border:1px solid ' + h.bd + ';',
+      })),
+
+      workshop,
+      benefits, makeCats, ingCats, recipes, products, starts, tiers, ugc, reviews, stars5,
+      footAccount, footInfo, footCoop, carriers, submitNewsletter, nlReasons, nlTopics,
+      iconCheckTick: this.maskStyle('tick-01', 13, '#F6F1E7'),
+      searchActive, suggProducts, suggRecipes,
+    };
+  }
+}
+</script>
+</body>
+</html>

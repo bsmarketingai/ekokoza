@@ -39,6 +39,12 @@
   .sc-host[data-sc-name="ui-OrderStatus"] > * { flex: 0 0 auto !important; }
   /* Hlavicka musi byt sticky vuci strance, ne vuci vlastnimu obalu */
   .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  /* M a menší (pod 1000 px): celá hlavička (vč. zelené lišty) se při scrollu dolů schová, při scrollu nahoru vrátí */
+  @media (max-width: 999px) {
+    /* bez will-change/transform ve výchozím stavu — jinak by fixed overlaye (menu, košík, hledání) zůstaly uvězněné v hlavičce */
+    .sc-host[data-sc-name="ui-Header"] { transition: transform .3s ease; }
+    html.ek-hdr-up .sc-host[data-sc-name="ui-Header"] { transform: translateY(-100%); }
+  }
   /* Tablet: pill se smrskne na ikonu, aby zustaly viditelne vsechny polozky
      (hamburger naskakuje az pod 900px, takze skryta polozka = nedostupna polozka) */
   @media (min-width: 1000px) and (max-width: 1180px) {
@@ -152,8 +158,11 @@
   .ek-topbar-v2 > .ek-topbar > .ek-pad { padding-top: 9px !important; padding-bottom: 9px !important; }
   .ek-topbar-v2 > .ek-topbar a { color: #EFE7D6 !important; }
   .ek-topbar-v3 > .ek-topbar { display: none !important; }
+  /* XS/XXS (mobil): horní zelená lišta se nezobrazuje — věrnostní program je v mobilním menu */
+  @media (max-width: 549px) { .ek-topbar { display: none !important; } }
   .ek-topbar-v3 .ek-logo-badge { top: -27px !important; }
-  .ek-topbar-v2 .ek-logo-badge { top: -65px !important; }
+  /* V2: visačka začíná na horní hraně zelené lišty, logo má větší horní odsazení (visačka je o 10 px delší dolů) */
+  .ek-topbar-v2 .ek-logo-badge { top: -65px !important; height: 116px !important; padding-top: 35px !important; }
 </style>
 </helmet>
 
@@ -180,7 +189,7 @@
   </div>
 
   <!-- HEADER -->
-  <header onMouseLeave="{{ megaClose }}" style="background:#F6F1E7; border-bottom:1px solid #E4DAC6; position:relative; z-index:50;">
+  <header onMouseLeave="{{ megaClose }}" style="background:#F6F1E7; border-bottom:1px solid #E4DAC6; box-shadow:0 8px 22px -16px rgba(45,58,46,.35); position:relative; z-index:50;">
     <div class="ek-hdr-row ek-pad" style="position:relative; max-width:1624px; margin:0 auto; padding:27px 32px; display:flex; align-items:center; gap:36px;">
 
       <a href="{{ homeHref }}" class="ek-logo-tag" style="position:relative; width:138px; flex-shrink:0; align-self:stretch; display:block;">
@@ -325,6 +334,23 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    this._lastY = window.scrollY;
+    this._hdrScroll = () => {
+      const root = document.documentElement;
+      const host = document.querySelector('.sc-host[data-sc-name="ui-Header"]');
+      const hh = host ? host.offsetHeight : 120;
+      root.style.setProperty('--ek-hdr-h', hh + 'px');
+      const y = window.scrollY, dy = y - this._lastY;
+      const S = this.state || {};
+      if (window.innerWidth >= 1000 || y < hh || S.drawerOpen || S.cartOpen || S.loginOpen || S.iFocus) root.classList.remove('ek-hdr-up');
+      else if (dy > 6) root.classList.add('ek-hdr-up');
+      else if (dy < -6) root.classList.remove('ek-hdr-up');
+      if (Math.abs(dy) > 6) this._lastY = y;
+    };
+    window.addEventListener('scroll', this._hdrScroll, { passive: true });
+    window.addEventListener('resize', this._hdrScroll);
+    requestAnimationFrame(this._hdrScroll);
+
     try {
       // Horní lišta: schváleno V2 (09/2026). Pro znovuotevření výběru nastavte TOPBAR_SWITCH = true (i v produkt-vzor.html).
       const TOPBAR_SWITCH = false;
@@ -358,6 +384,10 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() {
+    window.removeEventListener('scroll', this._hdrScroll);
+    window.removeEventListener('resize', this._hdrScroll);
+    document.documentElement.classList.remove('ek-hdr-up');
+
     document.removeEventListener('mousedown', this._onDocDown);
     window.removeEventListener('ek-open-login', this._onOpenLogin);
     window.removeEventListener('ek-fav-change', this._onFav);

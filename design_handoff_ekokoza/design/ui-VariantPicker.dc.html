@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .ek-var { border: 1.5px solid #E2D9C4; background: #fff; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; cursor: pointer; text-align: left; transition: border-color .2s, background .2s, box-shadow .2s; }
+  .ek-var:hover { border-color: #4C653D; background: #FDFBF5; }
+  .ek-var-row { cursor: pointer; }
+  .ek-var-row:hover { border-color: #4C653D; background: #FDFBF5; }
+  .ek-var-row.ek-var-on:hover { border-color: #4C653D; background: #F4F7EA; }
+  @media (max-width: 549px) {
+    .ek-var-row { flex-wrap: wrap; }
+    .ek-var-row .ek-var-right { width: 100%; justify-content: space-between; }
+    .ek-var-row .ek-var-right > span:first-child { align-items: flex-start !important; }
+    .ek-var-row .ek-var-left { width: 100%; justify-content: space-between; }
+    .ek-var-row .ek-var-left > span:first-child { min-width: 0 !important; }
+  }
+  .ek-var-on { border-color: #4C653D !important; background: #F4F7EA !important; box-shadow: 0 0 0 2px rgba(76,101,61,.16); }
+  .ek-var-more { border: none; background: transparent; color: #4C653D; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; padding: 4px 0; align-self: flex-start; }
+  .ek-var-more:hover { color: #B23803; }
+  .ek-varc { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 11px 13px 10px; min-width: 0; border: 1.5px solid #E2D9C4; border-radius: 12px; background: #fff; cursor: pointer; text-align: left; font-family: 'Work Sans',sans-serif; transition: border-color .2s, background .2s, box-shadow .2s; }
+  .ek-varc:hover { border-color: #4C653D; background: #FDFBF5; }
+  .ek-varc.ek-var-on:hover { background: #F4F7EA; }
+  .ek-varc-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+  @media (max-width: 520px) { .ek-varc-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  .ek-varc > span:nth-child(2), .ek-varc > span:nth-child(3) { padding-right: 26px; }
+</style>
+</helmet>
+<div style="display:flex; flex-direction:column; gap:11px; font-family:'Work Sans',sans-serif;">
+  <sc-if value="{{ hasHeading }}" hint-placeholder-val="{{ true }}">
+    <span style="font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#4F6E2A;">{{ heading }}</span>
+  </sc-if>
+  <sc-if value="{{ qtyMode }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <sc-for list="{{ qtyRows }}" as="v" hint-placeholder-count="3">
+        <div class="{{ v.cls }}" onClick="{{ v.select }}">
+          <span class="ek-var-left" style="display:flex; flex-direction:row; flex-wrap:wrap; gap:4px 16px; align-items:center; min-width:0;">
+            <span style="min-width:96px;"><span style="{{ v.labelStyle }}">{{ v.label }}</span></span>
+            <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" withNote="{{ true }}" noteFocusable="{{ false }}" size="{{ 12.5 }}" hint-size="160px,18px"></dc-import>
+          </span>
+          <span class="ek-var-right" style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
+            <span style="display:flex; flex-direction:column; gap:1px; align-items:flex-end;">
+              <span style="{{ v.priceStyle }}">{{ v.price }}</span>
+              <span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">{{ v.bestLabel }}</span></sc-if>{{ v.unitText }}</span>
+            </span>
+            <sc-if value="{{ v.buyable }}" hint-placeholder-val="{{ true }}">
+              <span onClick="{{ v.stopRow }}" style="display:flex; flex:0 0 auto;">
+                <dc-import name="ui-QtyStepper" value="{{ v.qty }}" min="{{ 0 }}" max="{{ 99 }}" height="{{ 42 }}" onChange="{{ v.setQty }}" hint-size="150px,42px"></dc-import>
+              </span>
+            </sc-if>
+            <sc-if value="{{ v.notBuyable }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:13.5px; font-weight:600; color:#8a8776; white-space:nowrap;">Nelze koupit</span>
+            </sc-if>
+          </span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ cardsMode }}" hint-placeholder-val="{{ false }}">
+    <div class="ek-varc-grid">
+      <sc-for list="{{ cardRows }}" as="v" hint-placeholder-count="4">
+        <button onClick="{{ v.select }}" class="{{ v.cls }}" aria-pressed="{{ v.on }}">
+          <span style="{{ v.tick }}"></span>
+          <span style="{{ v.labelStyle }}">{{ v.label }}</span>
+          <span style="{{ v.priceStyle }}">{{ v.price }}</span>
+          <span style="display:block; width:100%; margin-top:7px; padding-top:7px; border-top:1px solid #EFE7D6;">
+            <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" withNote="{{ false }}" size="{{ 12 }}" hint-size="100%,16px"></dc-import>
+          </span>
+        </button>
+      </sc-for>
+    </div>
+  </sc-if>
+  <div style="display:{{ selectDisplay }}; flex-direction:column; gap:8px;">
+    <sc-for list="{{ rows }}" as="v" hint-placeholder-count="3">
+      <button onClick="{{ v.select }}" class="{{ v.cls }}">
+        <span style="display:flex; align-items:center; gap:14px; min-width:0; flex:1 1 auto;">
+        <span style="{{ v.tick }}"></span>
+        <span class="ek-var-left" style="display:flex; flex-direction:row; flex-wrap:wrap; gap:4px 16px; align-items:center; min-width:0;">
+          <span style="min-width:96px;"><span style="{{ v.labelStyle }}">{{ v.label }}</span></span>
+          <dc-import name="ui-Stock" state="{{ v.state }}" date="{{ v.date }}" withNote="{{ true }}" noteFocusable="{{ false }}" size="{{ 12.5 }}" hint-size="150px,18px"></dc-import>
+        </span>
+        </span>
+        <span class="ek-var-right" style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
+          <span style="display:flex; flex-direction:column; gap:1px; align-items:flex-end;">
+            <span style="{{ v.priceStyle }}">{{ v.price }}</span>
+            <sc-if value="{{ v.hasUnit }}" hint-placeholder-val="{{ false }}"><span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">{{ v.bestLabel }}</span></sc-if>{{ v.unitText }}</span></sc-if>
+          </span>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+  <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ toggle }}" class="ek-var-more">{{ moreLabel }}<span style="{{ moreIcon }}"></span></button>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:460,&quot;height&quot;:300},&quot;variants&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label:string, price:string, state?:string, date?:string}[]&quot;},&quot;selected&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:20,&quot;tsType&quot;:&quot;number&quot;},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Vyberte variantu&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;maxVisible&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:12,&quot;tsType&quot;:&quot;number&quot;},&quot;onSelect&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(i:number, v:object)=&gt;void&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;select&quot;,&quot;qty&quot;],&quot;default&quot;:&quot;select&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onQtyChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(all:object, i:number, qty:number, v:object)=&gt;void&quot;}}">
+class Component extends DCLogic {
+  state = { open: false, sel: null, qtys: null };
+
+  mask(name, size, color) {
+    const base = /\/components\//.test(location.pathname) ? '../' : '';
+    const url = base + 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  componentDidUpdate(prev) {
+    if (prev.resetKey !== this.props.resetKey && this.props.resetKey) this.setState({ qtys: null });
+  }
+
+  renderVals() {
+    const variants = this.props.variants ?? [
+      { label: '1 kg', price: '110 Kč', state: 'ready' },
+      { label: '5 kg', price: '450 Kč', state: 'ready' },
+      { label: '25 kg', price: '1 700 Kč', state: 'packing' },
+    ];
+    const sel = this.state.sel ?? Number(this.props.selected ?? 0);
+    const maxVisible = Number(this.props.maxVisible ?? 4);
+    const hasMore = variants.length > maxVisible;
+    const open = this.state.open;
+    const shown = hasMore && !open ? variants.slice(0, maxVisible) : variants;
+
+    const qtyMode = (this.props.mode ?? 'select') === 'qty';
+    const cardsMode = !qtyMode && (this.props.layout ?? 'rows') === 'cards';
+    const qtys = this.state.qtys ?? {};
+    const up = (u) => { const m = String(u || '').replace(/\s/g, '').replace(',', '.').match(/[\d.]+/); return m ? parseFloat(m[0]) : NaN; };
+    const ups = variants.map(v => up(v.unit)).filter(n => !isNaN(n));
+    const bestUp = ups.length > 1 && Math.min(...ups) < Math.max(...ups) ? Math.min(...ups) : NaN;
+    const isBest = (v) => up(v.unit) === bestUp;
+    const unitSt = (b) => b
+      ? 'display:inline-flex; align-items:center; gap:4px; font-size:12.5px; color:#3E5432; font-weight:500; background:linear-gradient(90deg, #E9F0D9 0%, #CFE0AE 100%); border-radius:999px; padding:3px 10px; margin-top:2px; white-space:nowrap;'
+      : 'font-size:12.5px; color:#8a8776; white-space:nowrap;';
+
+    return {
+      qtyMode,
+      cardsMode,
+      selectDisplay: (qtyMode || cardsMode) ? 'none' : 'flex',
+      cardRows: shown.map((v, i) => {
+        const on = i === sel;
+        return {
+          label: v.label,
+          price: v.price,
+          on,
+          state: v.state ?? 'ready',
+          date: v.date ?? '',
+          cls: on ? 'ek-varc ek-var-on' : 'ek-varc',
+          labelStyle: 'font-size:16.5px; font-weight:' + (on ? '700' : '600') + '; color:#2A2A24; white-space:nowrap;',
+          tick: 'position:absolute; top:9px; right:9px; '
+            + (on
+              ? this.mask('checkmark-circle-01', 22, '#4C653D')
+              : 'display:inline-block; width:22px; height:22px; flex:0 0 auto; border-radius:50%; border:1.5px solid #D8CDB4;'),
+          priceStyle: "font-family:'EB Garamond',serif; font-size:19px; font-weight:500; color:#4C653D; white-space:nowrap;",
+          select: () => {
+            this.setState({ sel: i });
+            if (this.props.onSelect) this.props.onSelect(i, v);
+          },
+        };
+      }),
+      qtyRows: shown.map((v, i) => {
+        const st = v.state ?? 'ready';
+        const buyable = !['toorder', 'longterm', 'unavail', 'ended', 'discontinued'].includes(st);
+        const q = Number(qtys[i] ?? 0);
+        const on = i === sel;
+        return {
+          label: v.label,
+          price: v.price,
+          unit: v.unit ?? '',
+          best: isBest(v),
+          unitStyle: unitSt(isBest(v)),
+          unitText: isBest(v) ? String(v.unit ?? '').replace(/\s*\/\s*[^\/]+$/, '') : (v.unit ?? ''),
+          bestLabel: 'Nejvýhodnější cena za ' + ((String(v.unit ?? '').match(/\/\s*([^\/]+?)\s*$/) || [])[1] || 'ks') + ':',
+          state: st,
+          date: v.date ?? '',
+          buyable,
+          notBuyable: !buyable,
+          qty: q,
+          cls: (on || q > 0) ? 'ek-var ek-var-row ek-var-on' : 'ek-var ek-var-row',
+          labelStyle: 'font-size:16px; font-weight:' + ((on || q > 0) ? '700' : '600') + '; color:#2A2A24;',
+          stopRow: (e) => { if (e) e.stopPropagation(); },
+          select: () => {
+            if (this.state.sel !== i) {
+              this.setState({ sel: i });
+              if (this.props.onSelect) this.props.onSelect(i, v);
+            }
+          },
+          priceStyle: "font-family:'EB Garamond',serif; font-size:18px; font-weight:500; color:#4C653D; white-space:nowrap;",
+          setQty: (n) => {
+            this.setState(st => {
+              const next = Object.assign({}, st.qtys ?? {}, { [i]: n });
+              if (this.props.onQtyChange) this.props.onQtyChange(next, i, n, v);
+              return { qtys: next };
+            });
+          },
+        };
+      }),
+      heading: this.props.heading ?? 'Vyberte variantu',
+      hasHeading: (this.props.heading ?? 'Vyberte variantu') !== '',
+      hasMore,
+      toggle: () => this.setState({ open: !open }),
+      moreLabel: open ? 'Méně variant' : 'Více variant (' + (variants.length - maxVisible) + ')',
+      moreIcon: this.mask(open ? 'arrow-up-01' : 'arrow-down-01', 24, 'currentColor'),
+      rows: shown.map((v, i) => {
+        const on = i === sel;
+        return {
+          label: v.label,
+          price: v.price,
+          state: v.state ?? 'ready',
+          date: v.date ?? '',
+          unit: v.unit ?? '',
+          best: isBest(v),
+          unitStyle: unitSt(isBest(v)),
+          unitText: isBest(v) ? String(v.unit ?? '').replace(/\s*\/\s*[^\/]+$/, '') : (v.unit ?? ''),
+          bestLabel: 'Nejvýhodnější cena za ' + ((String(v.unit ?? '').match(/\/\s*([^\/]+?)\s*$/) || [])[1] || 'ks') + ':',
+          hasUnit: !!v.unit,
+          cls: on ? 'ek-var ek-var-row ek-var-on' : 'ek-var ek-var-row',
+          labelStyle: 'font-size:16px; font-weight:' + (on ? '700' : '600') + '; color:#2A2A24;',
+          priceStyle: "font-family:'EB Garamond',serif; font-size:18px; font-weight:500; color:#4C653D; white-space:nowrap;",
+          tick: on
+            ? this.mask('checkmark-circle-01', 24, '#4C653D')
+            : 'display:inline-block; width:24px; height:24px; flex:0 0 auto; border-radius:50%; border:1.5px solid #D8CDB4;',
+          select: () => {
+            this.setState({ sel: i });
+            if (this.props.onSelect) this.props.onSelect(i, v);
+          },
+        };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

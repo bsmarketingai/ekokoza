@@ -38,6 +38,11 @@
   .ek-car-btn:hover:not(:disabled) { background:#4C653D; color:#F6F1E7; }
   .ek-car-btn:disabled { opacity:.35; cursor:default; }
   .ek-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
+  /* M a menší (pod 1000 px): lišta filtrů zůstává přilepená; při scrollu dolů hlavička odjede pryč, při scrollu nahoru se vrátí a lišta sjede pod ni */
+  @media (max-width: 999px) {
+    .ek-bar { position: sticky !important; top: calc(var(--ek-hdr-h, 0px) + 8px) !important; transition: top .3s ease; }
+    html.ek-hdr-up .ek-bar { top: 8px !important; }
+  }
   .ek-bar { position: sticky; top: 148px; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: nowrap; padding: 12px 16px; border: 1px solid #E4DAC6; border-radius: 14px; background: linear-gradient(160deg, rgba(252,250,243,.97) 0%, rgba(238,244,220,.97) 60%, rgba(226,239,203,.97) 100%); backdrop-filter: blur(6px); box-shadow: 0 12px 26px -22px rgba(45,58,46,.5); }
   .ek-facetrow { display: flex; flex-wrap: nowrap; gap: 8px; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, #000 calc(100% - 56px), rgba(0,0,0,0) 100%); }
   .ek-allfilters { flex: 0 0 auto; background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
@@ -83,9 +88,12 @@
     .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
     .ek-tiles { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
     .ek-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 14px !important; }
-    .ek-bar { position: static !important; }
     .ek-facetrow { display: none !important; }
-    .ek-allfilters { width: 100%; justify-content: center; }
+    /* jen tlačítko Všechny filtry, plovoucí dole uprostřed (na dosah palce), bez podkladu lišty */
+    .ek-bar { position: fixed !important; top: auto !important; left: 50%; transform: translateX(-50%); bottom: max(20px, calc(env(safe-area-inset-bottom) + 12px)); z-index: 120 !important; width: fit-content; padding: 0 !important; background: none !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; border-radius: 0 !important; }
+    html.ek-hdr-up .ek-bar { top: auto !important; }
+    .ek-varbar { bottom: 84px !important; }
+    .ek-allfilters { width: auto; min-height: 48px; padding-left: 22px !important; padding-right: 22px !important; box-shadow: 0 14px 30px -12px rgba(45,58,46,.55); }
     .ek-bot { width: 96px !important; }
   }
   @media (max-width: 860px) {
@@ -444,7 +452,7 @@
   </sc-if>
 
   <sc-if value="{{ barCollapsed }}" hint-placeholder-val="{{ false }}">
-    <button onClick="{{ openBar }}" title="Zobrazit ovládání ukázky" style="position:fixed; right:20px; bottom:20px; z-index:300; display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 14px 32px -16px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif; font-size:13px; font-weight:600; color:#4C653D; cursor:pointer;"><span style="{{ iconBarOpen }}"></span>Ukázka</button>
+    <button onClick="{{ openBar }}" title="Zobrazit ovládání ukázky" style="position:fixed; left:20px; bottom:20px; z-index:300; display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 14px 32px -16px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif; font-size:13px; font-weight:600; color:#4C653D; cursor:pointer;"><span style="{{ iconBarOpen }}"></span>Ukázka</button>
   </sc-if>
   <sc-if value="{{ barOpen }}" hint-placeholder-val="{{ true }}">
   <div class="ek-varbar" style="position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:300; display:flex; align-items:center; gap:10px; padding:10px 10px 10px 14px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
@@ -461,6 +469,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:4,&quot;max&quot;:48,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Výpis&quot;}}">
 class Component extends DCLogic {
+  // Schovávání hlavičky při scrollu řeší ui-Header (třída html.ek-hdr-up a proměnná --ek-hdr-h)
   trackRef(key) {
     this._tr = this._tr || {};
     if (this._tr[key]) return this._tr[key];

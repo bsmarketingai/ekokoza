@@ -10,7 +10,8 @@
 <helmet>
 <style>
   .ek-c2-t:hover { color: #B23803 !important; }
-  .ek-c2:hover { border-color: #CFC4AA; box-shadow: 0 16px 34px -24px rgba(45,58,46,.45); }
+  /* stejný hover jako karta receptu: zvednutí o 4 px a měkký stín */
+  .ek-c2:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
   .ek-c2-var { font-family: 'Work Sans',sans-serif; font-size: 12.5px; font-weight: 600; padding: 7px 11px; min-height: 32px; border-radius: 999px; cursor: pointer; transition: background .18s, color .18s, border-color .18s; }
   .ek-c2-step { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex: 0 0 auto; border: none; background: transparent; cursor: pointer; color: #4C653D; }
   .ek-c2-step:disabled { opacity: .35; cursor: default; }
@@ -24,7 +25,7 @@
 </style>
 </helmet>
 
-<div class="ek-c2" style="display:flex; flex-direction:column; background:#fff; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; transition:border-color .25s, box-shadow .25s; font-family:'Work Sans',sans-serif;">
+<div class="ek-c2" style="display:flex; flex-direction:column; background:#fff; border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; transition:transform .25s, box-shadow .25s; font-family:'Work Sans',sans-serif;">
 
   <div style="position:relative; aspect-ratio:1/1; background:#fff;">
     <a href="{{ href }}" title="{{ title }}" style="position:absolute; inset:0; z-index:1; display:block; text-decoration:none;"></a>

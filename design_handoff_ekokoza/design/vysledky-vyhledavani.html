@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D14405; color: #fff; }
+  a { color: #4C653D; }
+  a:hover { color: #B23803; }
+  .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u:hover { background-size: 100% 1.5px; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-primary:hover { background: #4C653D !important; border-color: #4C653D !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-btn-secondary:hover span[style*="mask"] { background-color: #F6F1E7 !important; }
+  .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  .ek-cat:hover .ek-ph { transform: scale(1.05); }
+  .ek-cat:hover .ek-cat-ov { opacity: 1; }
+  .ek-cat .ek-ph { transition: transform .6s ease; }
+  .ek-bot { opacity: .95; filter: drop-shadow(0 10px 14px rgba(76,101,61,.28)); }
+  .ek-h1 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 42px; line-height: 1.1; color: #4C653D; margin: 0; text-wrap: pretty; }
+  .ek-h2 { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 28px; line-height: 1.15; color: #4C653D; margin: 0; text-wrap: pretty; }
+  .ek-eyebrow { margin: 0; color: #4F6E2A; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
+  .ek-p { margin: 0 0 14px; font-size: 16px; line-height: 1.7; color: #4A4A42; text-wrap: pretty; }
+  .ek-tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+  .ek-car-btn { width:38px; height:38px; border-radius:999px; border:1.5px solid #4C653D; background:#fff; color:#4C653D; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; padding:0; transition:background .2s, color .2s, opacity .2s; }
+  .ek-car-btn:hover:not(:disabled) { background:#4C653D; color:#F6F1E7; }
+  .ek-car-btn:disabled { opacity:.35; cursor:default; }
+  .ek-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
+  .ek-bar { position: sticky; top: 148px; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: nowrap; padding: 12px 16px; border: 1px solid #E4DAC6; border-radius: 14px; background: linear-gradient(160deg, rgba(252,250,243,.97) 0%, rgba(238,244,220,.97) 60%, rgba(226,239,203,.97) 100%); backdrop-filter: blur(6px); box-shadow: 0 12px 26px -22px rgba(45,58,46,.5); }
+  .ek-facetrow { display: flex; flex-wrap: nowrap; gap: 8px; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, #000 calc(100% - 56px), rgba(0,0,0,0) 100%); }
+  .ek-allfilters { flex: 0 0 auto; background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-allfilters:hover { background: #3E5432 !important; border-color: #3E5432 !important; }
+  .ek-facetpop { position: absolute; top: calc(100% + 8px); left: 12px; z-index: 30; min-width: 250px; max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 11px; padding: 16px 18px; background: #fff; border: 1px solid #E4DAC6; border-radius: 14px; box-shadow: 0 22px 46px -26px rgba(45,58,46,.55); }
+  .ek-check { position: relative; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+  .ek-check input { position: absolute; left: 0; top: 0; width: 20px; height: 20px; margin: 0; opacity: 0; cursor: pointer; }
+  .ek-check-box { width: 20px; height: 20px; flex: 0 0 auto; border: 1.5px solid #CFC4AA; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; transition: background .15s, border-color .15s; }
+  .ek-check-box > span { opacity: 0; transition: opacity .15s; }
+  .ek-check:hover .ek-check-box { border-color: #4C653D; }
+  .ek-check input:checked + .ek-check-box { background: #4C653D; border-color: #4C653D; }
+  .ek-check input:checked + .ek-check-box > span { opacity: 1; }
+  .ek-tool { display: inline-flex; align-items: center; gap: 9px; height: 44px; padding: 0 18px; border: 1.5px solid #CFC4AA; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; color: #2A2A24; cursor: pointer; transition: border-color .2s, background .2s; }
+  .ek-tool:hover { border-color: #4C653D; background: #FDFBF5; }
+  .ek-select { height: 44px; padding: 0 40px 0 16px; border: 1.5px solid #CFC4AA; border-radius: 999px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 14.5px; font-weight: 600; color: #2A2A24; cursor: pointer; appearance: none; }
+  .ek-chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 8px 6px 13px; border: 1px solid #CFE0B4; border-radius: 999px; background: #F4F7EA; font-size: 13px; font-weight: 600; color: #4C653D; cursor: pointer; transition: background .2s, border-color .2s; }
+  .ek-chip:hover { background: #E7F0D6; border-color: #4C653D; }
+  .ek-fac { position: relative; display: flex; align-items: center; gap: 11px; min-height: 44px; padding: 6px 2px; cursor: pointer; font-size: 14.5px; color: #4A4A42; }
+  .ek-fac input:focus-visible + span { outline: 2px solid #4C653D; outline-offset: 2px; }
+  .ek-fac:hover { color: #2A2A24; }
+  .ek-box { width: 22px; height: 22px; flex: 0 0 auto; border: 1.5px solid #CFC4AA; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; transition: border-color .2s, background .2s; }
+  .ek-fac:hover .ek-box { border-color: #4C653D; }
+  .ek-drawer { position: fixed; inset: 0; z-index: 200; display: flex; justify-content: flex-end; }
+  .ek-drawer-bd { position: absolute; inset: 0; background: rgba(34,48,31,.5); }
+  .ek-drawer-p { position: relative; width: min(420px, 100vw); height: 100%; background: #FFFDF6; display: flex; flex-direction: column; box-shadow: -22px 0 48px -24px rgba(45,58,46,.5); }
+  .ek-page { min-width: 42px; height: 42px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid #E2D9C4; border-radius: 12px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 15px; font-weight: 600; color: #2A2A24; cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s, color .2s; }
+  .ek-page:hover { border-color: #4C653D; background: #F4F7EA; }
+  .ek-page-on { background: #4C653D !important; border-color: #4C653D !important; color: #F6F1E7 !important; }
+  @media (max-width: 1100px) {
+    .ek-tiles { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+    .ek-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+  }
+  /* XXS: výpis produktů v jednom sloupci */
+  @media (max-width: 420px) {
+    .ek-grid.ek-grid { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 860px) {
+    /* Jedna rada dlazdicek: mensi nahled i pismo, aby se vzdy nacala dalsi */
+    .ek-tiles .ek-card { padding: 10px 12px !important; gap: 11px !important; }
+    .ek-tiles .ek-card > span:first-child { width: 44px !important; height: 44px !important; border-radius: 10px !important; }
+    .ek-tiles .ek-card > span:last-child { font-size: 15px !important; }
+    .ek-h1 { font-size: 31px !important; }
+    .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-tiles { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .ek-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 14px !important; }
+    .ek-bar { position: static !important; }
+    .ek-facetrow { display: none !important; }
+    .ek-allfilters { width: 100%; justify-content: center; }
+    .ek-bot { width: 96px !important; }
+  }
+  @media (max-width: 860px) {
+    /* Podkategorie na mobilu: dve rady s horizontalnim scrollem — usetri misto a zustanou videt */
+    .ek-tiles { display: grid !important; grid-template-columns: none !important; grid-auto-flow: column !important; grid-auto-columns: minmax(180px, 42%) !important; grid-template-rows: auto !important; overflow-x: auto !important; scroll-snap-type: x mandatory; margin-left: -20px !important; margin-right: -20px !important; padding: 0 20px 0 !important; scroll-padding-left: 20px; scrollbar-width: none; -ms-overflow-style: none; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%); }
+    .ek-tiles > * { scroll-snap-align: start; }
+    .ek-tiles::-webkit-scrollbar { display: none; }
+    /* bez animace na dotykovych zarizenich */
+    .ek-tiles .ek-card { transition: none !important; }
+    .ek-tiles .ek-card:hover { transform: none !important; box-shadow: none !important; }
+  }
+  @media (max-width: 560px) {
+    .ek-tiles { grid-auto-columns: minmax(164px, 52%) !important; }
+    .ek-bot-m { display: none !important; }
+  }
+  @media (max-width: 860px) {
+    /* Vertikální dlaždice na mobilu: ikona nad popisem — do pásu se jich vejde víc */
+    .ek-tiles { grid-auto-columns: minmax(108px, 27%) !important; }
+    .ek-tiles .ek-card { flex-direction: column !important; align-items: center !important; justify-content: flex-start !important; text-align: center; gap: 9px !important; padding: 14px 8px !important; }
+    .ek-tiles .ek-card > span:first-child { width: 46px !important; height: 46px !important; border-radius: 12px !important; }
+    .ek-tiles .ek-card > span:last-child { font-size: 13.5px !important; line-height: 1.3 !important; text-wrap: pretty; }
+  }
+  @media (max-width: 560px) {
+    .ek-tiles { grid-auto-columns: minmax(100px, 33%) !important; }
+  }
+  /* V2 — pevný levý sloupec s filtrací, širší plocha */
+  .ek-side { display: none; }
+  .ek-v2 .ek-outer { max-width: 1720px !important; }
+  .ek-v2 .ek-cwrap { max-width: 1660px !important; }
+  .ek-v2 .ek-listgrid { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 34px; align-items: start; }
+  .ek-v2 .ek-side { display: block; position: sticky; top: 148px; max-height: calc(100vh - 172px); overflow-y: auto; padding-right: 4px; }
+  .ek-v2 .ek-filterbtn { display: none !important; }
+  .ek-v2 .ek-bar { position: static; }
+  @media (max-width: 1100px) {
+    .ek-v2 .ek-listgrid { grid-template-columns: 264px minmax(0,1fr); gap: 24px; }
+  }
+  @media (max-width: 980px) {
+    /* Na mobilu se V2 chová jako V1 — filtry jako klasický side drawer */
+    .ek-v2 .ek-listgrid { grid-template-columns: 1fr !important; }
+    .ek-v2 .ek-side { display: none !important; }
+    .ek-v2 .ek-filterbtn { display: inline-flex !important; }
+    .ek-v2 .ek-cwrap { max-width: 1560px !important; }
+  }
+  @media (min-width: 981px) {
+    .ek-v2 .ek-topbar > div, .ek-v2 .ek-hdr-row { max-width: 1724px !important; }
+  }
+  /* Hlavička kategorie — kompaktní edukativní zóna */
+  .ek-hzone { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 30px; align-items: start; }
+  .ek-hside { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .ek-guidechip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; border: 1px solid #E4DAC6; background: #fff; color: #4C653D; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s; }
+  .ek-guidechip:hover { border-color: #4C653D; background: #F4F7EA; color: #4C653D; }
+  .ek-guidecard { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid #ECE3D2; border-radius: 14px; background: #fff; text-decoration: none; transition: border-color .2s, transform .2s; }
+  .ek-guiderow { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 4px; }
+  @media (max-width: 819px) { .ek-guiderow { grid-template-columns: 1fr; gap: 10px; } }
+  .ek-guidecard:hover { border-color: #CFC4AA; transform: translateY(-1px); }
+  .ek-course { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 18px; padding: 18px 22px; border: 1px solid #3E5432; border-radius: 14px; background: linear-gradient(150deg,#4C653D 0%,#33452A 100%); box-shadow: 0 14px 30px -20px rgba(45,58,46,.6); }
+  .ek-course-t { font-family: 'EB Garamond',serif; font-weight: 500; font-size: 21px; color: #F6F1E7; }
+  .ek-course-n { font-size: 14px; color: #D6E0C8; }
+  .ek-course-b { flex: 0 0 auto; height: 46px; padding: 0 22px; border: 1.5px solid #F6F1E7; border-radius: 999px; background: #F6F1E7; color: #4C653D; font-family: 'Work Sans',sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s; }
+  .ek-course-b:hover { background: #EDE4D0; border-color: #EDE4D0; }
+  .ek-compare { margin-top: 16px; padding: 16px 18px; border: 1px solid #ECE3D2; border-radius: 14px; background: #fff; }
+  .ek-comparehead { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr) auto; gap: 16px; padding: 0 0 8px; border-bottom: 1px solid #EFE7D6; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #8a8776; }
+  .ek-comparerow { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr) auto; gap: 16px; align-items: center; padding: 11px 0; border-bottom: 1px solid #F4EEE1; font-size: 14.5px; line-height: 1.5; }
+  .ek-comparerow:last-child { border-bottom: none; }
+  @media (max-width: 980px) {
+    .ek-hzone { grid-template-columns: 1fr !important; gap: 20px; }
+    .ek-comparehead { display: none; }
+    .ek-comparerow { grid-template-columns: minmax(0,1fr) !important; gap: 5px; }
+  }
+  .ek-seg { display: inline-flex; align-items: center; gap: 3px; padding: 3px; border: 1.5px solid #E2D9C4; border-radius: 999px; background: #F1EADC; }
+  .ek-seg-b { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 18px; border: 0; border-radius: 999px; background: transparent; font-family: 'Work Sans',sans-serif; font-size: 15px; font-weight: 600; color: #4C653D; cursor: pointer; transition: background .18s, color .18s; }
+  .ek-seg-b:hover { background: rgba(76,101,61,.1); }
+  .ek-seg-on, .ek-seg-on:hover { background: #4C653D; color: #F6F1E7; }
+  .ek-btn-primary.ek-aiask-btn:hover { background: #3F5731 !important; border-color: #3F5731 !important; }
+  @media (max-width: 999px) { .ek-reshead { grid-template-columns: 1fr !important; } .ek-aitop { max-width: none !important; } }
+  @media (max-width: 549px) { .ek-aitop { flex-wrap: wrap; } .ek-aitop > a { flex: 1 1 100% !important; justify-content: center; } }
+  @media (max-width: 819px) {
+    .ek-aiask { grid-template-columns: auto minmax(0,1fr) !important; padding: 22px 20px !important; gap: 16px 20px !important; }
+    .ek-aiask > span:first-child { width: 64px !important; height: 64px !important; }
+    .ek-aiask-btn { grid-column: 1 / -1; justify-self: start; }
+  }
+  @media (max-width: 549px) { .ek-aiask-btn { justify-self: stretch; justify-content: center; } }
+  .ek-askchip { display: inline-flex; align-items: center; height: 38px; padding: 0 16px; border: 1px solid rgba(76,101,61,.25); border-radius: 999px; background: rgba(255,255,255,.75); font-family: 'Work Sans',sans-serif; font-size: 14.5px; color: #2A2A24; cursor: pointer; transition: background .2s, border-color .2s; }
+  .ek-askchip:hover { background: #fff; border-color: #4C653D; }
+  .ek-aiform input:focus { border-color: #4C653D !important; box-shadow: 0 0 0 3px rgba(76,101,61,.14); }
+  @media (max-width: 819px) {
+    .ek-aiempty { grid-template-columns: 1fr !important; padding: 26px 22px !important; gap: 16px !important; }
+    .ek-aiempty > span:first-child { width: 64px !important; height: 64px !important; }
+    .ek-emptyhelp { grid-template-columns: 1fr !important; gap: 28px !important; }
+  }
+  @media (max-width: 549px) { .ek-aicta { width: 100%; } }
+  .ek-recres { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
+  @media (max-width: 1149px) { .ek-recres { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+  @media (max-width: 819px) { .ek-recres { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; } }
+  @media (max-width: 549px) { .ek-recres { grid-template-columns: 1fr; } }
+  .ek-catres { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 32px 56px; max-width: 1200px; }
+  .ek-catlink { color: #4C653D; font-size: 17px; line-height: 1.55; text-decoration: underline; text-decoration-color: rgba(76,101,61,.45); text-underline-offset: 3px; transition: color .2s, text-decoration-color .2s; }
+  .ek-catlink:hover { color: #B23803; text-decoration-color: #B23803; }
+  .ek-hit { background: #EEF4DC; border-radius: 3px; padding: 0 2px; }
+  @media (max-width: 819px) { .ek-catres { grid-template-columns: 1fr; gap: 26px; } }
+  .ek-varbar-note { font-size: 12.5px; font-weight: 600; color: #8a8776; white-space: nowrap; }
+  @media (max-width: 700px) { .ek-varbar-note { display: none; } .ek-varbar { left: 12px !important; right: 12px !important; transform: none !important; justify-content: center; border-radius: 20px !important; } }
+  /* Designovy scrollbar v rozbalovacich filtrech — ciste CSS (Chrome, Safari, Edge pres ::-webkit-scrollbar, Firefox pres scrollbar-color) */
+  /* sirka 22 px: viditelny pruh 10 px s pulkruhovymi konci, 6 px odsazeni zprava (pruhledny border ze vsech stran + background-clip) */
+  .ek-facetpop::-webkit-scrollbar { width: 22px; }
+  .ek-facetpop::-webkit-scrollbar-track { background: #F6F1E7; background-clip: padding-box; border: 6px solid transparent; border-radius: 11px; margin: 8px 0; }
+  .ek-facetpop::-webkit-scrollbar-thumb { background: #C9BFA6; background-clip: padding-box; border: 6px solid transparent; border-radius: 11px; min-height: 52px; }
+  .ek-facetpop::-webkit-scrollbar-thumb:hover { background: #4C653D; background-clip: padding-box; }
+  @supports not selector(::-webkit-scrollbar) { .ek-facetpop { scrollbar-width: auto; scrollbar-color: #C9BFA6 #F6F1E7; } }
+</style>
+</helmet>
+
+<div class="{{ modeCls }}" style="background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh; overflow-x:clip;">
+
+  <dc-import name="ui-InfoBar" hint-size="100%,40px"></dc-import>
+  <dc-import name="ui-Header" active="" loggedIn="{{ loggedIn }}" hint-size="100%,140px"></dc-import>
+
+  <div class="ek-outer" style="max-width:1720px; margin:0 auto; position:relative;">
+
+  <section style="padding:22px 32px 0;" class="ek-pad">
+    <div class="ek-cwrap" style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
+      <dc-import name="ui-Breadcrumb" items="{{ crumbs }}" hint-size="320px,20px"></dc-import>
+      <div class="ek-reshead" style="display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end; gap:20px 40px; margin-top:6px;">
+        <div style="min-width:0;">
+          <p class="ek-eyebrow" style="margin-bottom:10px;">Výsledky vyhledávání</p>
+          <h1 class="ek-h1">„{{ q }}“</h1>
+          <p style="margin:10px 0 0; font-size:15px; color:#6B6B5E;">{{ resultsLabel }}</p>
+          <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:20px; display:flex;">
+          <div class="ek-seg" role="tablist">
+            <button onClick="{{ setTabP }}" class="{{ clsTabP }}" role="tab" aria-selected="{{ tabProducts }}">Produkty<span style="font-size:12.5px; font-weight:700; opacity:.65;">{{ nProducts }}</span></button>
+            <button onClick="{{ setTabR }}" class="{{ clsTabR }}" role="tab" aria-selected="{{ tabRecipes }}">Recepty<span style="font-size:12.5px; font-weight:700; opacity:.65;">{{ nRecipes }}</span></button>
+            <button onClick="{{ setTabK }}" class="{{ clsTabK }}" role="tab" aria-selected="{{ tabCats }}">Kategorie<span style="font-size:12.5px; font-weight:700; opacity:.65;">{{ nCats }}</span></button>
+          </div>
+          </div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+        <div class="ek-aitop" style="display:flex; align-items:center; gap:18px; padding:16px 18px 16px 20px; border:1px solid rgba(184,134,11,.22); border-radius:14px; background:linear-gradient(120deg, #FBF2E1 0%, #FBD870 100%); max-width:620px;">
+          <span style="{{ iconAiMid }}"></span>
+          <div style="display:flex; flex-direction:column; gap:3px; min-width:0;">
+            <span style="font-weight:600; font-size:17px; line-height:1.3; color:#2A2A24;">Nenašli jste, co jste hledali?</span>
+            <span style="font-size:14.5px; line-height:1.45; color:#2A2A24; text-wrap:pretty;">Vyzkoušejte výraz vyhledat pomocí našeho AI asistenta.</span>
+          </div>
+          <a href="#" class="ek-btn-primary ek-aiask-btn" style="display:inline-flex; align-items:center; gap:9px; flex:0 0 auto; height:44px; padding:0 20px; border:1.5px solid #4C653D; border-radius:999px; background:#4C653D; color:#F6F1E7; text-decoration:none; font-size:15px; font-weight:600; white-space:nowrap; transition:background .2s, border-color .2s;"><span style="{{ iconAiSm }}"></span>Ekokozí asistent</a>
+        </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+  <section style="padding:30px 32px 0;" class="ek-pad">
+    <div class="ek-cwrap" style="max-width:1560px; margin:0 auto; display:flex; flex-direction:column; gap:40px;">
+      <div class="ek-aiempty" style="display:grid; grid-template-columns:auto minmax(0,1fr); gap:24px 36px; align-items:start; padding:36px 40px; border:1px solid rgba(184,134,11,.22); border-radius:14px; background:linear-gradient(120deg, #FBF2E1 0%, #FBD870 100%);">
+        <span style="{{ iconAiBig }}"></span>
+        <div style="display:flex; flex-direction:column; gap:14px; min-width:0; max-width:760px;">
+          <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:36px; line-height:1.1; color:#2A2A24; text-wrap:pretty;">Zeptejte se Ekokozího asistenta</h2>
+          <p style="margin:0; font-size:17px; line-height:1.6; color:#2A2A24; text-wrap:pretty;">Popište vlastními slovy, co chcete vyrobit nebo k čemu surovinu potřebujete. Asistent vám doporučí vhodné suroviny, recept a postup — i když se u nás jmenují jinak, než jste hledali.</p>
+          <div style="display:flex; margin-top:6px;">
+            <a href="#" class="ek-btn-primary ek-aiask-btn ek-aicta" style="display:inline-flex; align-items:center; justify-content:center; gap:10px; height:52px; padding:0 28px; border:1.5px solid #4C653D; border-radius:999px; background:#4C653D; color:#F6F1E7; text-decoration:none; font-size:16px; font-weight:600; white-space:nowrap; transition:background .2s, border-color .2s;"><span style="{{ iconAiSm }}"></span>Zeptat se asistenta</a>
+          </div>
+        </div>
+      </div>
+      <div class="ek-emptyhelp" style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:32px 56px; max-width:1200px;">
+        <div style="display:flex; flex-direction:column; gap:12px; min-width:0;">
+          <h3 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:26px; line-height:1.15; color:#4C653D;">Zkuste hledat jinak</h3>
+          <ul style="margin:0; padding:0 0 0 20px; display:flex; flex-direction:column; gap:8px; font-size:16px; line-height:1.55; color:#4A4A42;">
+            <li>Zkontrolujte, jestli ve výrazu není překlep.</li>
+            <li>Zkuste obecnější slovo — třeba „máslo“ místo celého názvu s gramáží.</li>
+            <li>Hledejte podle toho, co chcete vyrobit: „krém na ruce“, „svíčka“, „prací gel“.</li>
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px; min-width:0;">
+          <h3 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:26px; line-height:1.15; color:#4C653D;">Často hledané</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <sc-for list="{{ popularSearches }}" as="ps" hint-placeholder-count="6">
+              <a href="{{ ps.href }}" class="ek-guidechip">{{ ps.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <sc-if value="{{ tabRecipes }}" hint-placeholder-val="{{ false }}">
+  <section style="padding:26px 32px 0;" class="ek-pad">
+    <div class="ek-cwrap" style="max-width:1560px; margin:0 auto;">
+      <div class="ek-recres">
+        <sc-for list="{{ recipeResults }}" as="r" hint-placeholder-count="4">
+          <dc-import name="ui-RecipeCard" title="{{ r.title }}" desc="{{ r.desc }}" category="{{ r.category }}" type="" level="{{ r.level }}" time="{{ r.time }}" rating="{{ r.rating }}" ratingCount="{{ r.ratingCount }}" img="{{ r.img }}" href="recept.dc.html" ingredients="{{ r.ingredients }}" hint-size="100%,470px"></dc-import>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <sc-if value="{{ tabCats }}" hint-placeholder-val="{{ false }}">
+  <section style="padding:26px 32px 0;" class="ek-pad">
+    <div class="ek-cwrap" style="max-width:1560px; margin:0 auto;">
+      <div class="ek-catres">
+        <sc-for list="{{ catGroups }}" as="g" hint-placeholder-count="4">
+          <div style="min-width:0;">
+            <h3 style="margin:0 0 10px; font-family:'Work Sans',sans-serif; font-weight:600; font-size:20px; color:#4C653D;">{{ g.title }}</h3>
+            <ul style="margin:0; padding:0 0 0 20px; display:flex; flex-direction:column; gap:8px; color:#C9BFA6;">
+              <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+                <li style="padding-left:2px;"><a href="{{ it.href }}" class="ek-catlink"><sc-for list="{{ it.parts }}" as="pt" hint-placeholder-count="1"><span class="{{ pt.cls }}">{{ pt.t }}</span></sc-for></a></li>
+              </sc-for>
+            </ul>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <sc-if value="{{ tabProducts }}" hint-placeholder-val="{{ true }}">
+  <section style="padding:40px 32px 0;" class="ek-pad">
+    <div class="ek-cwrap" style="max-width:1560px; margin:0 auto;">
+    <div class="ek-listgrid">
+      <aside class="ek-side">
+        <dc-import name="ui-FilterPanel" variant="sidebar" groups="{{ facetGroups }}" priceMin="{{ priceMin }}" priceMax="{{ priceMax }}" onPriceMin="{{ onPriceMin }}" onPriceMax="{{ onPriceMax }}" onClear="{{ clearFilters }}" hint-size="100%,620px"></dc-import>
+      </aside>
+      <div style="min-width:0;">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px 16px; flex-wrap:wrap; margin-bottom:12px;">
+        <h2 class="ek-h2" style="margin:0; font-size:24px;">Filtrovat</h2>
+        <span style="font-size:14.5px; color:#6B6B5E; margin-left:auto;">{{ shownLabel }}</span>
+        <label style="display:none; align-items:center; gap:10px; position:relative;">
+          <span style="font-size:14.5px; color:#6B6B5E;">Řadit</span>
+          <select onChange="{{ onSort }}" value="{{ sort }}" class="ek-select">
+            <option value="default">Výchozí řazení</option>
+            <option value="cheap">Od nejlevnějšího</option>
+            <option value="expensive">Od nejdražšího</option>
+            <option value="new">Nejnovější</option>
+          </select>
+          <span style="{{ iconSortCaret }}"></span>
+        </label>
+      </div>
+      <div class="ek-bar">
+        <div class="ek-facetrow">
+          <sc-for list="{{ barFacets }}" as="g" hint-placeholder-count="4">
+            <div style="position:relative; flex:0 0 auto;">
+              <button onClick="{{ g.toggle }}" aria-expanded="{{ g.open }}" class="ek-tool" style="{{ g.btnStyle }}">{{ g.label }}<span style="{{ g.caret }}"></span></button>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ facetOpen }}" hint-placeholder-val="{{ false }}">
+          <div class="ek-facetpop" style="{{ facetPopStyle }}">
+            <sc-for list="{{ facetOptions }}" as="o" hint-placeholder-count="5">
+              <label class="ek-check">
+                <input type="checkbox" checked="{{ o.on }}" onChange="{{ o.toggle }}">
+                <span class="ek-check-box" aria-hidden="true"><span style="{{ iconCheckTick }}"></span></span>
+                <span style="font-size:14.5px; color:#4A4A42;">{{ o.label }}</span>
+              </label>
+            </sc-for>
+          </div>
+        </sc-if>
+        <button onClick="{{ openDrawer }}" class="ek-tool ek-allfilters"><span style="{{ iconFilter }}"></span>Všechny filtry</button>
+      </div>
+      <sc-if value="{{ facetOpen }}" hint-placeholder-val="{{ false }}">
+        <div onClick="{{ closeFacet }}" style="position:fixed; inset:0; z-index:19;"></div>
+      </sc-if>
+
+      <sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:16px;">
+          <sc-for list="{{ activeChips }}" as="ch" hint-placeholder-count="2">
+            <button onClick="{{ ch.remove }}" class="ek-chip">{{ ch.label }}<span style="{{ iconChipX }}"></span></button>
+          </sc-for>
+          <button onClick="{{ clearFilters }}" class="ek-btn-ghost" style="border:1.5px solid transparent; background:transparent; border-radius:999px; padding:7px 14px; font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:#B23803; cursor:pointer; transition:background .2s;">Zrušit všechny filtry</button>
+        </div>
+      </sc-if>
+
+      <div class="ek-grid" style="margin-top:22px;">
+        <sc-for list="{{ visible }}" as="p" hint-placeholder-count="12">
+          <sc-if value="{{ p.isBanner }}" hint-placeholder-val="{{ false }}">
+            <dc-import name="ui-ProductBanner" hint-size="100%,520px"></dc-import>
+          </sc-if>
+          <sc-if value="{{ p.isV1 }}" hint-placeholder-val="{{ false }}">
+            <dc-import name="ui-ProductCard" title="{{ p.title }}" price="{{ p.price }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" loggedIn="{{ loggedIn }}" loyaltyTier="{{ loyaltyTier }}" hint-size="100%,410px"></dc-import>
+          </sc-if>
+          <sc-if value="{{ p.isV2 }}" hint-placeholder-val="{{ true }}">
+            <dc-import name="ui-ProductCardV2" title="{{ p.title }}" price="{{ p.price }}" pack="{{ p.pack }}" variants="{{ p.variants }}" img="{{ p.img }}" href="{{ p.href }}" rating="{{ p.rating }}" ratingCount="{{ p.ratingCount }}" stockState="{{ p.stockState }}" stockDate="{{ p.stockDate }}" ctaVariant="{{ p.ctaVariant }}" badge="{{ p.badge }}" loggedIn="{{ loggedIn }}" loyaltyTier="{{ loyaltyTier }}" hint-size="100%,520px"></dc-import>
+          </sc-if>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:22px; padding:34px; border:1px solid #E4DAC6; border-radius:14px; background:#fff; text-align:center;">
+          <p style="margin:0 0 14px; font-size:16.5px; line-height:1.6; color:#4A4A42;">Zvoleným filtrům neodpovídá žádný produkt.</p>
+          <button onClick="{{ clearFilters }}" class="ek-btn-secondary" style="border:1.5px solid #4C653D; background:transparent; color:#4C653D; border-radius:999px; padding:12px 24px; font-family:'Work Sans',sans-serif; font-size:15px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;">Zrušit filtry</button>
+        </div>
+      </sc-if>
+
+      <div style="display:flex; flex-direction:column; align-items:center; gap:22px; margin-top:34px;">
+        <sc-if value="{{ canLoadMore }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ loadMore }}" class="ek-btn-secondary" style="display:inline-flex; align-items:center; gap:9px; border:1.5px solid #4C653D; background:transparent; color:#4C653D; border-radius:999px; padding:14px 28px; font-family:'Work Sans',sans-serif; font-size:15.5px; font-weight:600; cursor:pointer; transition:background .2s, color .2s;"><span style="{{ iconMore }}"></span>Zobrazit další produkty</button>
+        </sc-if>
+        <sc-if value="{{ hasPages }}" hint-placeholder-val="{{ true }}">
+        <nav aria-label="Stránkování" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;">
+          <button onClick="{{ prevPage }}" class="ek-page" title="Předchozí stránka" aria-label="Předchozí stránka"><span style="{{ iconPrev }}"></span></button>
+          <sc-for list="{{ pages }}" as="pg" hint-placeholder-count="5">
+            <button onClick="{{ pg.go }}" class="{{ pg.cls }}">{{ pg.label }}</button>
+          </sc-for>
+          <button onClick="{{ nextPage }}" class="ek-page" title="Další stránka" aria-label="Další stránka"><span style="{{ iconNext }}"></span></button>
+        </nav>
+        </sc-if>
+      </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+  <section style="padding:56px 32px 0;" class="ek-pad">
+    <div class="ek-cwrap" style="max-width:1560px; margin:0 auto;">
+      <div class="ek-aiask" style="display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:18px 32px; padding:26px 32px; border:1px solid rgba(184,134,11,.22); border-radius:14px; background:linear-gradient(120deg, #FBF2E1 0%, #FBD870 100%);">
+        <span style="{{ iconAiBig }}"></span>
+        <div style="display:flex; flex-direction:column; gap:6px; min-width:0;">
+          <h2 style="margin:0; font-family:'Work Sans',sans-serif; font-weight:600; font-size:24px; line-height:1.25; color:#2A2A24;">Nenašli jste, co jste hledali?</h2>
+          <p style="margin:0; font-size:17px; line-height:1.55; color:#2A2A24; text-wrap:pretty;">Vyzkoušejte výraz vyhledat pomocí našeho AI asistenta.</p>
+        </div>
+        <a href="#" class="ek-btn-primary ek-aiask-btn" style="display:inline-flex; align-items:center; gap:10px; height:50px; padding:0 26px; border:1.5px solid #4C653D; border-radius:999px; background:#4C653D; color:#F6F1E7; text-decoration:none; font-size:16px; font-weight:600; white-space:nowrap; transition:background .2s, border-color .2s;"><span style="{{ iconAiSm }}"></span>Ekokozí asistent</a>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+<div aria-hidden="true" style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw; height:30px; margin-top:56px; background:#4C653D; clip-path:polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% 100%, 0% 100%);"></div>
+<div style="position:relative; z-index:1; left:50%; width:100vw; margin-left:-50vw;"><dc-import name="ui-Footer" hint-size="100%,520px"></dc-import></div>
+  </div>
+
+  <sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="ek-drawer">
+      <div onClick="{{ closeDrawer }}" class="ek-drawer-bd"></div>
+      <div class="ek-drawer-p">
+        <div style="flex:1; min-height:0; display:flex;">
+          <dc-import name="ui-FilterPanel" variant="drawer" groups="{{ facetGroups }}" priceMin="{{ priceMin }}" priceMax="{{ priceMax }}" onPriceMin="{{ onPriceMin }}" onPriceMax="{{ onPriceMax }}" onClear="{{ clearFilters }}" onClose="{{ closeDrawer }}" applyLabel="{{ applyLabel }}" hint-size="100%,100%"></dc-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ barCollapsed }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ openBar }}" title="Zobrazit ovládání ukázky" style="position:fixed; left:20px; bottom:20px; z-index:300; display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 14px 32px -16px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif; font-size:13px; font-weight:600; color:#4C653D; cursor:pointer;"><span style="{{ iconBarOpen }}"></span>Ukázka</button>
+  </sc-if>
+  <sc-if value="{{ barOpen }}" hint-placeholder-val="{{ true }}">
+  <div class="ek-varbar" style="position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:300; display:flex; align-items:center; gap:10px; padding:10px 10px 10px 14px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
+    <span class="ek-varbar-note">Výsledek</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setFound }}" title="Výsledky nalezeny" style="{{ foundStyle }}">Nalezeno</button>
+      <button onClick="{{ setNone }}" title="Žádný výsledek" style="{{ noneStyle }}">Nic</button>
+    </span>
+    <span class="ek-varbar-note">Výpis</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setV1 }}" title="Filtry v panelu (drawer)" style="{{ v1Style }}">V1</button>
+      <button onClick="{{ setV2 }}" title="Pevný levý sloupec s filtrací" style="{{ v2Style }}">V2</button>
+    </span>
+    <span class="ek-varbar-note">Karta</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setCardV1 }}" title="Základní karta" style="{{ cardV1Style }}">V1</button>
+      <button onClick="{{ setCardV2 }}" title="Karta s výběrem balení, množstvím a věrnostní cenou" style="{{ cardV2Style }}">V2</button>
+    </span>
+    <span class="ek-varbar-note">Zákazník</span>
+    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
+      <button onClick="{{ setGuest }}" title="Nepřihlášený" style="{{ guestStyle }}">Host</button>
+      <button onClick="{{ setLogged }}" title="Přihlášený" style="{{ loggedStyle }}">Přihlášen</button>
+    </span>
+    <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
+  </div>
+  </sc-if>
+</div>
+<dc-import name="ui-CartAdded" listen="{{ true }}" turnover="{{ 12400 }}" hint-size="100%,100%"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:4,&quot;max&quot;:48,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Výpis&quot;}}">
+class Component extends DCLogic {
+  trackRef(key) {
+    this._tr = this._tr || {};
+    if (this._tr[key]) return this._tr[key];
+    const upd = (el) => {
+      const max = el.scrollWidth - el.clientWidth;
+      const w = max > 1 ? el.clientWidth / el.scrollWidth : 1;
+      const x = max > 1 ? el.scrollLeft / max : 0;
+      const cur = (this.state.tracks || {})[key];
+      if (cur && Math.abs(cur.w - w) < 0.002 && Math.abs(cur.x - x) < 0.002) return;
+      this.setState(s => ({ tracks: Object.assign({}, s.tracks, { [key]: { w, x } }) }));
+    };
+    let bound = null, ro = null, fn = null;
+    this._tr[key] = (el) => {
+      if (bound && bound !== el) { bound.removeEventListener('scroll', fn); if (ro) ro.disconnect(); bound = null; }
+      if (!el || bound === el) return;
+      bound = el; fn = () => upd(el); this._trEl = this._trEl || {}; this._trEl[key] = el;
+      el.addEventListener('scroll', fn, { passive: true });
+      if (window.ResizeObserver) { ro = new ResizeObserver(fn); ro.observe(el); }
+      requestAnimationFrame(fn);
+    };
+    return this._tr[key];
+  }
+  thumbStyle(key) {
+    const t = (this.state.tracks || {})[key] || { w: 0.4, x: 0 };
+    const w = Math.max(t.w, 0.12);
+    return 'position:absolute; top:0; bottom:0; left:' + (t.x * (1 - w) * 100).toFixed(2) + '%; width:' + (w * 100).toFixed(2) + '%; border-radius:999px; background:#4C653D;';
+  }
+  carGo(key, dir) { const el = this._trEl && this._trEl[key]; if (!el) return; const it = el.firstElementChild; const gap = parseFloat(getComputedStyle(el).columnGap) || 14; const step = it ? it.getBoundingClientRect().width + gap : el.clientWidth; const per = Math.max(1, Math.floor((el.clientWidth + gap) / step)); el.scrollBy({ left: dir * step * per, behavior: 'smooth' }); }
+  trackStyle(key) {
+    const t = (this.state.tracks || {})[key];
+    return 'display:' + (t && t.w < 0.995 ? 'block' : 'none') + '; position:relative; height:3px; margin-top:6px; border-radius:999px; background:#E4DAC6; overflow:hidden;';
+  }
+  state = {
+    tab: 'produkty', none: null, askText: null, descOpen: false, drawerOpen: false, facet: null, sort: 'default', page: 1, perPage: 12, mode: 'v1', barOpen: true, head: 'a', tpl: 'edu', card: 'v2', logged: false,
+    filters: { use: [], weight: [], volume: [], avail: [], purpose: [], skin: [], packType: [], emulsion: [], transparency: [] }, extra: 0,
+    openGroups: { use: true, avail: true, weight: false, volume: false },
+    priceMin: '', priceMax: '',
+  };
+
+  // Balení z názvu produktu (ukázková data) — kvůli jednotkové ceně na kartě
+  static packOf(title) {
+    const m = String(title).match(/(\d[\d\s]*(?:,\d+)?)\s*(kg|g|ml|l|ks)\b/i);
+    return m ? m[0].replace(/\s+/g, ' ') : '';
+  }
+
+  // Ukázkové varianty balení pro variantní produkty
+  static variantsOf(p) {
+    const b = p.num;
+    return [
+      { label: '100 g', price: b, state: p.stockState },
+      { label: '500 g', price: Math.round(b * 4.2), state: 'ready' },
+      { label: '1 kg', price: Math.round(b * 7.4), state: 'packing' },
+    ];
+  }
+
+  static segBtn(on) {
+    return "font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; padding:8px 14px; min-height:32px; border-radius:999px; cursor:pointer; transition:background .18s, color .18s;"
+      + (on ? ' background:#4C653D; color:#F6F1E7; border:1px solid #4C653D;' : ' background:transparent; color:#6B6B5E; border:1px solid transparent;');
+  }
+
+  static plural(n, one, few, many) {
+    if (n === 1) return n + ' ' + one;
+    if (n >= 2 && n <= 4) return n + ' ' + few;
+    return n + ' ' + many;
+  }
+  static pcs(n) { return Component.plural(n, 'produkt', 'produkty', 'produktů'); }
+
+  static FACETS = [
+    { key: 'avail', label: 'Dostupnost', options: [
+      { value: 'ready', label: 'Ihned k odeslání' },
+      { value: 'packing', label: 'Nabalíme po objednání' },
+      { value: 'expected', label: 'Očekáváme naskladnění' },
+      { value: 'incoming', label: 'Na cestě k nám' },
+      { value: 'longterm', label: 'Dlouhodobě nedostupné' },
+    ] },
+    { key: 'use', label: 'Nejčastější použití', options: [
+      { value: 'vlasy', label: 'Péče o vlasy' },
+      { value: 'plet', label: 'Péče o pleť' },
+      { value: 'hygiena', label: 'Osobní hygiena' },
+      { value: 'parfem', label: 'Deodoranty a parfémy' },
+      { value: 'prani', label: 'Prací prostředky' },
+      { value: 'potraviny', label: 'Potraviny' },
+      { value: 'zuby', label: 'Zubní hygiena' },
+      { value: 'svicky', label: 'Svíčky' },
+      { value: 'rty', label: 'Péče o rty' },
+      { value: 'nadobi', label: 'Mytí nádobí' },
+    ] },
+    { key: 'weight', label: 'Hmotnost (g)', options: [
+      { value: '50', label: '50' },
+      { value: '100', label: '100' },
+      { value: '200', label: '200' },
+      { value: '500', label: '500' },
+      { value: '1000', label: '1 000' },
+      { value: '5000', label: '5 000' },
+      { value: '25000', label: '25 000' },
+    ] },
+    { key: 'purpose', label: 'K čemu se používá', options: [
+      { value: 'kremy', label: 'Krémy a emulze' },
+      { value: 'zahustuje', label: 'Zahušťuje' },
+      { value: 'konzervuje', label: 'Konzervuje' },
+      { value: 'voni', label: 'Vůně a parfemace' },
+      { value: 'barvi', label: 'Barví' },
+    ] },
+    { key: 'skin', label: 'Typ pleti', options: [
+      { value: 'normalni', label: 'Normální pleť' },
+      { value: 'suchá', label: 'Suchá a citlivá pleť' },
+      { value: 'mastna', label: 'Mastná a smíšená pleť' },
+      { value: 'zrala', label: 'Zralá pleť' },
+    ] },
+    { key: 'packType', label: 'Typ obalu', options: [
+      { value: 'sklo', label: 'Skleněný' },
+      { value: 'plast', label: 'Plastový' },
+      { value: 'hlinik', label: 'Hliníkový a kovový' },
+      { value: 'papir', label: 'Papírový' },
+      { value: 'ostatni', label: 'Ostatní' },
+    ] },
+    { key: 'emulsion', label: 'Typ emulze', options: [
+      { value: 'ov', label: 'Olej ve vodě (O/V)' },
+      { value: 'vo', label: 'Voda v oleji (V/O)' },
+      { value: 'koemulgator', label: 'Koemulgátor / zahušťovadlo' },
+    ] },
+    { key: 'transparency', label: 'Průhlednost', options: [
+      { value: 'pruhledny', label: 'Průhledný' },
+      { value: 'nepruhledny', label: 'Neprůhledný' },
+    ] },
+    { key: 'volume', label: 'Objem (ml)', options: [
+      { value: '30', label: '30' },
+      { value: '50', label: '50' },
+      { value: '100', label: '100' },
+      { value: '250', label: '250' },
+      { value: '600', label: '600' },
+      { value: '1000', label: '1 000' },
+    ] },
+  ];
+
+  static PRODUCTS = [
+    { title: 'Uhličitan sodný, prací soda', num: 38, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.7, ratingCount: 11, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['prani'], weight: '1000', volume: '', purpose: ['zahustuje'], packType: 'papir', transparency: 'nepruhledny' },
+    { title: 'Marseillské mýdlo — Brut, 300 g', num: 69, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.8, ratingCount: 10, stockState: 'ready', ctaVariant: 'koupit', badge: 'bestseller', use: ['hygiena','prani'], weight: '200', volume: '', purpose: [], packType: 'papir', transparency: 'nepruhledny' },
+    { title: 'Vlněné koule do sušičky, 1 ks', num: 99, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, ratingCount: 0, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['prani'], weight: '50', volume: '', purpose: [], packType: 'ostatni' },
+    { title: 'Plastová nálevka se sítkem, průměr 6 cm', num: 39, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.4, ratingCount: 5, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: [], weight: '50', volume: '', purpose: [], packType: 'plast', transparency: 'pruhledny' },
+    { title: 'TAED — aktivátor perkarbonátu sodného', num: 49, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.9, ratingCount: 15, stockState: 'packing', ctaVariant: 'varianta', badge: '', use: ['prani'], weight: '500', volume: '', purpose: [], packType: 'papir' },
+    { title: 'Spirulina — sladkovodní řasa mletá', num: 77, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.6, ratingCount: 4, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['potraviny'], weight: '100', volume: '', purpose: ['barvi'], packType: 'papir' },
+    { title: 'Sušené droždí saf instant, 500 g', num: 199, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.9, ratingCount: 33, stockState: 'ready', ctaVariant: 'koupit', badge: 'bestseller', use: ['potraviny'], weight: '500', volume: '', purpose: [], packType: 'papir' },
+    { title: 'Růžová voda, 600 ml', num: 184, img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, ratingCount: 11, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['plet'], weight: '', volume: '600', purpose: ['kremy'], skin: ['normalni','suchá'], packType: 'plast', transparency: 'pruhledny' },
+    { title: 'Kyselina stearová, E570', num: 98, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.3, ratingCount: 3, stockState: 'expected', ctaVariant: 'varianta', badge: '', use: ['plet'], weight: '1000', volume: '', purpose: ['kremy','zahustuje'], emulsion: 'koemulgator', packType: 'papir' },
+    { title: 'Netkaná kosmetická maska na obličej', num: 10, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, ratingCount: 0, stockState: 'ready', ctaVariant: 'varianta', badge: '', use: ['plet'], weight: '', volume: '', purpose: [], skin: ['normalni'], packType: 'ostatni' },
+    { title: 'Vinný ocet bílý Andrea Milano, 1 000 ml', num: 54, img: 'assets/products/kyselina-citronova-1-kg.webp', rating: 4.7, ratingCount: 3, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['potraviny','nadobi'], weight: '', volume: '1000', purpose: [], packType: 'sklo', transparency: 'pruhledny' },
+    { title: 'Digitální teploměr pro výrobu sýrů', num: 142, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.5, ratingCount: 6, stockState: 'longterm', ctaVariant: 'koupit', badge: '', use: ['potraviny'], weight: '', volume: '', purpose: [], packType: 'ostatni' },
+    { title: 'Levandulové máslo, 100 g', num: 189, img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, ratingCount: 214, stockState: 'ready', ctaVariant: 'koupit', badge: 'doporucujeme', use: ['plet','rty'], weight: '100', volume: '', purpose: ['kremy','voni'], skin: ['suchá','zrala'], emulsion: 'vo', packType: 'sklo', transparency: 'nepruhledny' },
+    { title: 'Tuhý šampon žloutkový', num: 159, img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 4.6, ratingCount: 21, stockState: 'ready', ctaVariant: 'varianta', badge: 'novinka', use: ['vlasy','hygiena'], weight: '100', volume: '', purpose: [], skin: [], packType: 'papir' },
+    { title: 'Mýdlová hmota s bambuckým máslem, 1 kg', num: 329, img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.6, ratingCount: 96, stockState: 'packing', ctaVariant: 'varianta', badge: '', use: ['hygiena'], weight: '1000', volume: '', purpose: ['kremy'], packType: 'plast', transparency: 'nepruhledny' },
+    { title: 'Stabilizovaný vitamin C, 10 g', num: 149, img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.7, ratingCount: 58, stockState: 'ready', ctaVariant: 'koupit', badge: '', use: ['plet'], weight: '50', volume: '', purpose: ['konzervuje'], skin: ['mastna','zrala'], packType: 'hlinik' },
+  ];
+
+  // Pocty u filtru odvozujeme z dat, aby nikdy nelhaly proti vysledku
+  facetCount(key, value) {
+    return Component.PRODUCTS.filter(p => {
+      if (key === 'avail') return p.stockState === value;
+      const val = p[key];
+      if (Array.isArray(val)) return val.includes(value);
+      return val === value;
+    }).length;
+  }
+
+  mask(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  toggleFacet(key, value) {
+    const cur = this.state.filters[key] || [];
+    const next = cur.includes(value) ? cur.filter(v => v !== value) : cur.concat([value]);
+    this.setState({ filters: Object.assign({}, this.state.filters, { [key]: next }), page: 1, extra: 0 });
+  }
+
+  baseVals() {
+    const F = this.state.filters;
+    const min = this.state.priceMin === '' ? -Infinity : Number(this.state.priceMin);
+    const max = this.state.priceMax === '' ? Infinity : Number(this.state.priceMax);
+
+    let list = Component.PRODUCTS.filter(p => {
+      if (F.avail.length && !F.avail.includes(p.stockState)) return false;
+      if (F.use.length && !p.use.some(u => F.use.includes(u))) return false;
+      if (F.weight.length && !F.weight.includes(p.weight)) return false;
+      if (F.volume.length && !F.volume.includes(p.volume)) return false;
+      for (const k of ['purpose', 'skin', 'packType', 'emulsion', 'transparency']) {
+        const sel = F[k] || [];
+        if (!sel.length) continue;
+        const val = p[k];
+        const has = Array.isArray(val) ? val.some(v => sel.includes(v)) : sel.includes(val);
+        if (!has) return false;
+      }
+      if (p.num < min || p.num > max) return false;
+      return true;
+    });
+
+    const sort = this.state.sort;
+    if (sort === 'cheap') list = list.slice().sort((a, b) => a.num - b.num);
+    if (sort === 'expensive') list = list.slice().sort((a, b) => b.num - a.num);
+    if (sort === 'new') list = list.slice().reverse();
+
+    const perPage = Number(this.props.perPage ?? this.state.perPage);
+    // HTML banner je vždy na 7. místě první stránky a zabírá jednu pozici výpisu
+    const bannerOn = list.length >= 6;
+    const slots = list.length + (bannerOn ? 1 : 0);
+    const pageCount = Math.max(1, Math.ceil(slots / perPage));
+    const page = Math.min(this.state.page, pageCount);
+    const lead = bannerOn ? 1 : 0;
+    const start = page === 1 ? 0 : (page - 1) * perPage - lead;
+    const take = perPage + this.state.extra - (page === 1 ? lead : 0);
+    const shown = list.slice(start, start + take);
+    const filterCount = Object.keys(F).reduce((n, k) => n + F[k].length, 0)
+      + (this.state.priceMin !== '' || this.state.priceMax !== '' ? 1 : 0);
+
+    const chips = [];
+    Component.FACETS.forEach(g => {
+      (F[g.key] || []).forEach(v => {
+        const o = g.options.find(x => x.value === v);
+        chips.push({ label: o ? o.label : v, remove: () => this.toggleFacet(g.key, v) });
+      });
+    });
+    if (this.state.priceMin !== '' || this.state.priceMax !== '') {
+      chips.push({
+        label: (this.state.priceMin === '' ? 'do ' + this.state.priceMax : this.state.priceMin + '–' + (this.state.priceMax === '' ? '∞' : this.state.priceMax)) + ' Kč',
+        remove: () => this.setState({ priceMin: '', priceMax: '' }),
+      });
+    }
+
+    const pages = [];
+    for (let n = 1; n <= pageCount; n++) {
+      pages.push({
+        label: String(n), cls: n === page ? 'ek-page ek-page-on' : 'ek-page',
+        go: () => this.setState({ page: n, extra: 0 }),
+      });
+    }
+
+
+    return {
+      ktRef: this.trackRef('kt'), ktThumb: this.thumbStyle('kt'), ktTrack: this.trackStyle('kt'),
+      ktNav: 'display:' + (((this.state.tracks || {}).kt || { w: 1 }).w < 0.995 ? 'flex' : 'none') + '; justify-content:flex-end; gap:8px; margin-top:14px;',
+      ktPrev: () => this.carGo('kt', -1), ktNext: () => this.carGo('kt', 1),
+      ktAtStart: ((this.state.tracks || {}).kt || { x: 0 }).x <= 0.01, ktAtEnd: ((this.state.tracks || {}).kt || { x: 0 }).x >= 0.99,
+      crumbs: [{ label: 'Úvod', href: 'index.html' }, { label: 'Produkty' }],
+      totalLabel: Component.pcs(Component.PRODUCTS.length) + ' v kategorii',
+      shownLabel: 'Zobrazeno ' + shown.length + ' z ' + list.length + ' produktů',
+
+      descOpen: this.state.descOpen,
+      descClosed: !this.state.descOpen,
+      descLabel: this.state.descOpen ? 'Zabalit' : 'Detailní popis kategorie',
+      toggleDesc: () => this.setState({ descOpen: !this.state.descOpen }),
+      iconDescCaret: this.mask(this.state.descOpen ? 'minus-sign-circle' : 'plus-sign-circle', 22, '#4C653D'),
+
+      subcats: [
+        { title: 'Péče o pleť a kůži', icon: 'jar', href: '#' },
+        { title: 'Péče o vlasy', icon: 'shampoo', href: '#' },
+        { title: 'Voňavky a parfémy', icon: 'perfume', href: '#' },
+        { title: 'Svíčky', icon: 'candle', href: '#' },
+        { title: 'Květové esence', icon: 'flower', href: '#' },
+        { title: 'Mytí a praní', icon: 'clean', href: '#' },
+        { title: 'Péče o rty', icon: 'lip-balm', href: '#' },
+        { title: 'Zubní hygiena', icon: 'dental-care', href: '#' },
+        { title: 'Zdraví', icon: 'wellness', href: '#' },
+        { title: 'Potraviny', icon: 'natural-food', href: '#' },
+        { title: 'Pro psy', icon: 'paw', href: '#' },
+        { title: 'Dárkové poukazy', icon: 'gift-card', href: '#' },
+      ],
+
+      barFacets: Component.FACETS.map(g => {
+        const on = this.state.facet === g.key;
+        const n = (F[g.key] || []).length;
+        return {
+          label: g.label,
+          open: on,
+          count: n,
+          hasCount: n > 0,
+          toggle: (e) => {
+            let left = 12;
+            const btn = e && e.currentTarget;
+            if (btn && btn.closest) {
+              const bar = btn.closest('.ek-bar');
+              if (bar) {
+                const b = btn.getBoundingClientRect(), r = bar.getBoundingClientRect();
+                left = Math.max(8, Math.min(b.left - r.left, Math.max(8, r.width - 266)));
+              }
+            }
+            this.setState({ facet: on ? null : g.key, facetLeft: left });
+          },
+          btnStyle: 'white-space:nowrap;' + (on || n > 0 ? ' border-color:#4C653D; background:#FDFBF5; color:#2A2A24;' : ''),
+          caret: this.mask('arrow-down-01', 16, '#4C653D'),
+          options: g.options.map(o => ({
+            label: o.label,
+            on: (F[g.key] || []).includes(o.value),
+            toggle: () => this.toggleFacet(g.key, o.value),
+          })),
+        };
+      }),
+      facetOpen: this.state.facet !== null,
+      facetPopStyle: 'left:' + Number(this.state.facetLeft ?? 12) + 'px;',
+      facetTitle: (Component.FACETS.find(g => g.key === this.state.facet) || {}).label || '',
+      facetOptions: ((Component.FACETS.find(g => g.key === this.state.facet) || {}).options || []).map(o => ({
+        label: o.label,
+        on: (F[this.state.facet] || []).includes(o.value),
+        toggle: () => this.toggleFacet(this.state.facet, o.value),
+      })),
+      closeFacet: () => this.setState({ facet: null }),
+      iconCheckTick: this.mask('tick-01', 13, '#F6F1E7'),
+
+      openDrawer: () => this.setState({ drawerOpen: true, facet: null }),
+      closeDrawer: () => this.setState({ drawerOpen: false }),
+      drawerOpen: this.state.drawerOpen,
+      applyLabel: 'Zobrazit ' + Component.pcs(list.length),
+
+      headA: this.state.head === 'a',
+      headB: this.state.head === 'b',
+      isEdu: this.state.tpl === 'edu',
+      hzoneCls: 'ek-hzone',
+      eduOpen: this.state.tpl === 'edu' && this.state.descOpen,
+      guideChips: [
+        { label: 'Jak vybrat přírodní mýdlo?', icon: 'help-circle', href: '#' },
+        { label: 'Co znamená INCI', icon: 'book-open-01', href: '#' },
+        { label: 'Časté chyby při výběru', icon: 'alert-circle', href: '#' },
+        { label: 'Vhodné pro citlivou pleť', icon: 'leaf-01', href: '#' },
+      ].map(c => Object.assign({}, c, { icon: this.mask(c.icon, 17, '#4F6E2A') })),
+      guideArticle: {
+        title: 'Jak vybrat přírodní mýdlo a čemu se vyhnout',
+        meta: '7 min čtení · aktualizováno 8/2026',
+        href: '#',
+        thumb: 'display:block; width:64px; height:64px; flex:0 0 auto; border-radius:12px; background:#F6F1E7 center/cover no-repeat; background-image:url("assets/recipes/tenzidy.jpg");',
+      },
+      guideVideo: {
+        title: 'Jak čteme složení: ukázka na třech mýdlech',
+        meta: 'video · 4:20',
+        href: '#',
+        thumb: 'display:flex; align-items:center; justify-content:center; width:64px; height:64px; flex:0 0 auto; border-radius:12px; background:#EFE7D6 center/cover no-repeat; background-image:linear-gradient(rgba(30,38,30,.35),rgba(30,38,30,.35)), url("assets/recipes/krem-na-paty.jpg");',
+      },
+      iconPlay: this.mask('play', 22, '#FFFFFF'),
+      guideCards: [
+        { kicker: 'Průvodce výběrem', title: 'Jak vybrat přírodní mýdlo a čemu se vyhnout', meta: '7 min čtení · aktualizováno 8/2026', href: '#', img: 'assets/recipes/tenzidy.jpg' },
+        { kicker: 'Videonávod', title: 'Jak čteme složení: ukázka na třech mýdlech', meta: 'video · 4:20', href: '#', img: 'assets/recipes/krem-na-paty.jpg', video: true },
+        { kicker: 'Slovníček', title: 'Co znamená INCI a jak číst etiketu', meta: '4 min čtení', href: 'slovnicek.dc.html', img: 'assets/recipes/pasta-na-holeni.jpg' },
+      ].map(g => Object.assign({}, g, {
+        thumb: 'display:flex; align-items:center; justify-content:center; width:64px; height:64px; flex:0 0 auto; border-radius:12px; background:#EFE7D6 center/cover no-repeat; background-image:' + (g.video ? 'linear-gradient(rgba(30,38,30,.35),rgba(30,38,30,.35)), ' : '') + 'url("' + g.img + '");',
+        play: g.video ? this.mask('play', 22, '#FFFFFF') : 'display:none;',
+      })),
+      iconCourse: this.mask('idea-01', 26, '#4F6E2A'),
+      iconCourseLight: this.mask('idea-01', 30, '#EBD284'),
+      courseTitle: 'Mini kurz: přírodní péče bez omylů',
+      courseNote: '5 krátkých lekcí e-mailem, jedna za týden. Zdarma a kdykoli se odhlásíte.',
+      onCourse: (e) => { if (e) e.preventDefault(); window.dispatchEvent(new CustomEvent('ek-course-signup')); },
+      compareTitle: 'Který typ vybrat',
+      compareNote: 'Stručně to podstatné — detail najdete v článku',
+      compareRows: [
+        { type: 'Tuhé mýdlo', use: 'Každodenní mytí rukou i těla, cestování', watch: 'U tvrdé vody může zůstávat film', icon: 'body-soap', href: '#' },
+        { type: 'Tekuté mýdlo', use: 'Kuchyň, dávkovač, sdílená domácnost', watch: 'Vždy obsahuje konzervant — hledejte šetrný', icon: 'hand-sanitizer', href: '#' },
+        { type: 'Tuhý šampon', use: 'Bez plastu, na cesty, normální vlasy', watch: 'Prvních 14 dní si vlasy zvykají', icon: 'shampoo', href: '#' },
+        { type: 'Zubní hygiena', use: 'Pasty, prášky, bambusové kartáčky', watch: 'Sledujte obsah fluoridu podle své potřeby', icon: 'dental-care', href: '#' },
+      ].map(r => Object.assign({}, r, { icon: this.mask(r.icon, 20, '#4F6E2A') })),
+
+      modeCls: this.state.mode === 'v2' ? 'ek-v2' : 'ek-v1',
+      modeNote: this.state.mode === 'v2' ? 'Pevný levý sloupec s filtrací, plocha až 1660 px' : 'Filtry v panelu, obsah 1280 px',
+      v1Style: Component.segBtn(this.state.mode !== 'v2'),
+      v2Style: Component.segBtn(this.state.mode === 'v2'),
+      setV1: () => this.setState({ mode: 'v1' }),
+      headAStyle: Component.segBtn(this.state.head === 'a'),
+      headBStyle: Component.segBtn(this.state.head === 'b'),
+      setHeadA: () => this.setState({ head: 'a' }),
+      setHeadB: () => this.setState({ head: 'b' }),
+      tplShopStyle: Component.segBtn(this.state.tpl === 'shop'),
+      tplEduStyle: Component.segBtn(this.state.tpl === 'edu'),
+      setShop: () => this.setState({ tpl: 'shop' }),
+      setEdu: () => this.setState({ tpl: 'edu' }),
+      setV2: () => this.setState({ mode: 'v2', drawerOpen: false }),
+      barOpen: this.state.barOpen,
+      barCollapsed: !this.state.barOpen,
+      openBar: () => this.setState({ barOpen: true }),
+      closeBar: () => this.setState({ barOpen: false }),
+      iconBarOpen: this.mask('grid-view', 16, '#4C653D'),
+      iconBarClose: this.mask('cancel-01', 16, '#4C653D'),
+
+      hasFilters: filterCount > 0,
+      filterCount,
+      activeChips: chips,
+      clearFilters: () => this.setState({ filters: { use: [], weight: [], volume: [], avail: [], purpose: [], skin: [], packType: [], emulsion: [], transparency: [] }, priceMin: '', priceMax: '', page: 1 }),
+
+      facetGroups: Component.FACETS.map(g => ({
+        label: g.label,
+        open: !!this.state.openGroups[g.key],
+        toggle: () => this.setState({ openGroups: Object.assign({}, this.state.openGroups, { [g.key]: !this.state.openGroups[g.key] }) }),
+        caret: this.mask(this.state.openGroups[g.key] ? 'arrow-up-01' : 'arrow-down-01', 20, '#4F6E2A'),
+        options: g.options.map(o => {
+          const on = (F[g.key] || []).includes(o.value);
+          const n = this.facetCount(g.key, o.value);
+          const off = n === 0 && !on;
+          return {
+            label: o.label, count: n, on, disabled: off,
+            rowStyle: off ? 'opacity:.45; cursor:not-allowed;' : '',
+            box: 'width:22px; height:22px; flex:0 0 auto; border:1.5px solid ' + (on ? '#4C653D' : '#CFC4AA') + '; border-radius:6px; background:' + (on ? '#4C653D' : '#fff') + '; display:flex; align-items:center; justify-content:center;',
+            tick: on ? this.mask('tick-01', 16, '#fff') : 'display:none;',
+            toggle: () => { if (!off) this.toggleFacet(g.key, o.value); },
+          };
+        }),
+      })),
+
+      priceMin: this.state.priceMin,
+      priceMax: this.state.priceMax,
+      onPriceMin: (e) => this.setState({ priceMin: e.target.value, page: 1 }),
+      onPriceMax: (e) => this.setState({ priceMax: e.target.value, page: 1 }),
+
+      sort: this.state.sort,
+      onSort: (e) => this.setState({ sort: e.target.value, page: 1 }),
+
+      visible: (() => { const card = this.state.card; const out = shown.map(p => Object.assign({}, p, { isV1: card === 'v1', isV2: card === 'v2', isBanner: false }, {
+        price: p.num.toLocaleString('cs-CZ') + ' Kč',
+        href: 'produkt-material.html',
+        stockDate: '28. 8. 2026',
+        pack: Component.packOf(p.title),
+        variants: p.ctaVariant === 'varianta' ? Component.variantsOf(p) : null,
+      }));
+        if (page === 1 && bannerOn) out.splice(6, 0, { isBanner: true, isV1: false, isV2: false, title: '' });
+        return out; })(),
+      cardV1: this.state.card === 'v1',
+      cardV2: this.state.card === 'v2',
+      loggedIn: this.state.logged,
+      loyaltyTier: 10,
+      cardV1Style: Component.segBtn(this.state.card === 'v1'),
+      cardV2Style: Component.segBtn(this.state.card === 'v2'),
+      setCardV1: () => this.setState({ card: 'v1' }),
+      setCardV2: () => this.setState({ card: 'v2' }),
+      guestStyle: Component.segBtn(!this.state.logged),
+      loggedStyle: Component.segBtn(this.state.logged),
+      setGuest: () => this.setState({ logged: false }),
+      setLogged: () => this.setState({ logged: true }),
+      isEmpty: list.length === 0,
+      canLoadMore: start + shown.length < list.length,
+      loadMore: () => this.setState({ extra: this.state.extra + 8 }),
+
+      pages,
+      hasPages: pageCount > 1,
+      prevPage: () => this.setState({ page: Math.max(1, page - 1), extra: 0 }),
+      nextPage: () => this.setState({ page: Math.min(pageCount, page + 1), extra: 0 }),
+
+      iconFilter: this.mask('filter-horizontal', 22, '#F6F1E7'),
+      iconFilterTitle: this.mask('filter-horizontal', 22, '#2D3A2E'),
+      iconClose: this.mask('cancel-01', 24, '#6B6B5E'),
+      iconChipX: this.mask('cancel-01', 16, 'currentColor'),
+      iconMore: this.mask('arrow-down-01', 24, 'currentColor'),
+      iconPrev: this.mask('arrow-left-01', 20, '#4C653D'),
+      iconNext: this.mask('arrow-right-01', 20, '#4C653D'),
+      iconSortCaret: this.mask('arrow-down-01', 18, '#6B6B5E') + ' position:absolute; right:16px; pointer-events:none;',
+    };
+  }
+
+  static CATS = [
+    { title: 'Výroba', items: ['Kosmetika \\ Mýdlová hmota a tekuté mýdlo', 'Kosmetika \\ Pomůcky \\ Formy na mýdlo', 'Kosmetika \\ Vůně, esenciální oleje a extrakty \\ Vůně do mýdel'] },
+    { title: 'Suroviny', items: ['Barviva \\ Barviva do mýdel', 'Glycerin, hydroxid, oxid \\ Hydroxid sodný na mýdlo'] },
+    { title: 'Produkty', items: ['Mytí a praní \\ Mýdla', 'Mytí a praní \\ Tekutá mýdla', 'Péče o vlasy \\ Mýdla na vlasy'] },
+    { title: 'Obaly', items: ['Papírové \\ Krabičky na mýdla'] },
+  ];
+
+  static RECIPES = [
+    { title: 'Mýdlo z bambuckého másla', desc: 'Jemné mýdlo z mýdlové hmoty, hotové za hodinu bez louhu.', category: 'Kosmetika', level: 'Začátečník', time: '60 min', rating: 4.9, ratingCount: 38, img: 'assets/recipes/pasta-na-holeni.jpg', ingredients: ['Mýdlová hmota', 'Bambucké máslo', 'Levandulová silice'] },
+    { title: 'Prací gel z marseillského mýdla', desc: 'Tři suroviny, jedna hodina a víte přesně, čím perete.', category: 'Domácnost', level: 'Začátečník', time: '30 min', rating: 4.9, ratingCount: 21, img: 'assets/recipes/tenzidy.jpg', ingredients: ['Marseillské mýdlo', 'Uhličitan sodný', 'Levandulová silice'] },
+    { title: 'Tekuté mýdlo na ruce', desc: 'Šetrné k pokožce, do dávkovače i na doplnění.', category: 'Kosmetika', level: 'Začátečník', time: '30 min', rating: 4.7, ratingCount: 19, img: 'assets/recipes/krem-na-paty.jpg', ingredients: ['Tekuté mýdlo', 'Glycerin', 'Esenciální olej'] },
+    { title: 'Mýdlo s kozím mlékem', desc: 'Za studena vařené mýdlo pro citlivou a suchou pleť.', category: 'Kosmetika', level: 'Pokročilý', time: '90 min', rating: 4.8, ratingCount: 27, img: 'assets/recipes/repelent.jpg', ingredients: ['Olivový olej', 'Kozí mléko', 'Hydroxid sodný'] },
+  ];
+
+  renderVals() {
+    const b = this.baseVals();
+    let q = 'mýdlo', urlNone = false, urlQ = '';
+    try { const sp = new URLSearchParams(location.search); urlQ = (sp.get('q') || '').trim(); urlNone = sp.get('empty') === '1'; } catch (e) {}
+    const none = this.state.none ?? urlNone;
+    q = urlQ || (none ? 'máslo cupuacu 250 g' : 'mýdlo');
+    const isK = this.state.tab === 'kategorie', isR = this.state.tab === 'recepty';
+    const nP = Component.PRODUCTS.length, nK = Component.CATS.reduce((a, g) => a + g.items.length, 0), nR = Component.RECIPES.length;
+    const pl = (n, a, b2, c) => n + ' ' + (n === 1 ? a : n < 5 ? b2 : c);
+    const seg = (on) => Component.segBtn(on);
+    const askText = this.state.askText ?? q;
+    return Object.assign(b, {
+      q,
+      hasResults: !none, noResults: none,
+      setFound: () => { this.setState({ none: false, askText: null }); if (!urlQ) window.dispatchEvent(new CustomEvent('ek-search-query', { detail: { q: 'mýdlo' } })); },
+      setNone: () => { this.setState({ none: true, askText: null, drawerOpen: false }); if (!urlQ) window.dispatchEvent(new CustomEvent('ek-search-query', { detail: { q: 'máslo cupuacu 250 g' } })); },
+      foundStyle: seg(!none), noneStyle: seg(none),
+      askText,
+      onAskInput: (e) => this.setState({ askText: e.target.value }),
+      onAsk: (e) => e.preventDefault(),
+      askExamples: ['Čím nahradit bambucké máslo?', 'Jaký emulgátor do pleťového krému?', 'Mýdlo pro citlivou pleť bez vůně'].map(l => ({ label: l, use: () => this.setState({ askText: l }) })),
+      popularSearches: ['bambucké máslo', 'mýdlová hmota', 'sójový vosk', 'kyselina citronová', 'esenciální oleje', 'emulgátor'].map(l => ({ label: l, href: 'vysledky-vyhledavani.html?q=' + encodeURIComponent(l) })),
+      crumbs: [{ label: 'Úvod', href: 'index.html' }, { label: 'Výsledky vyhledávání' }],
+      resultsLabel: none ? 'Pro tento výraz jsme nenašli žádný produkt, recept ani kategorii.' : 'Nalezeno ' + pl(nP, 'produkt', 'produkty', 'produktů') + ', ' + pl(nR, 'recept', 'recepty', 'receptů') + ' a ' + pl(nK, 'kategorie', 'kategorie', 'kategorií'),
+      tabProducts: !none && !isK && !isR, tabCats: !none && isK, tabRecipes: !none && isR,
+      clsTabP: (isK || isR) ? 'ek-seg-b' : 'ek-seg-b ek-seg-on',
+      clsTabR: isR ? 'ek-seg-b ek-seg-on' : 'ek-seg-b',
+      setTabR: () => this.setState({ tab: 'recepty', drawerOpen: false }),
+      nRecipes: String(nR),
+      recipeResults: Component.RECIPES,
+      clsTabK: isK ? 'ek-seg-b ek-seg-on' : 'ek-seg-b',
+      setTabP: () => this.setState({ tab: 'produkty' }),
+      setTabK: () => this.setState({ tab: 'kategorie', drawerOpen: false }),
+      nProducts: String(nP), nCats: String(nK),
+      catGroups: (() => {
+        // zvyraznujeme cela slova zacinajici kmenem dotazu (prvni 3 znaky kvuli sklonovani: mýdlo / mýdel / mýdla)
+        const stem = q.toLocaleLowerCase('cs').slice(0, Math.min(3, q.length));
+        const split = (s) => s.split(/(\p{L}+)/u).filter(x => x !== '').map(x => ({
+          t: x, cls: stem && /^\p{L}/u.test(x) && x.toLocaleLowerCase('cs').startsWith(stem) ? 'ek-hit' : '',
+        }));
+        return Component.CATS.map(g => ({ title: g.title, items: g.items.map(p => ({ href: 'kategorie.html', parts: split(p) })) }));
+      })(),
+      iconAiBig: this.mask('ai-search', 96, '#4C653D'),
+      iconAiMid: this.mask('ai-search', 44, '#4C653D'),
+      iconAiSm: this.mask('ai-search', 22, '#F6F1E7'),
+      iconCatArrow: this.mask('arrow-right-01', 18, '#9b9888'),
+    });
+  }
+}
+</script>
+</body>
+</html>

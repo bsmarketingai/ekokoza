@@ -42,7 +42,9 @@
     .ek-ig-track { order: 2; }
     .ek-ig-r { order: 3; margin-top: 14px; }
   }
-  .ek-ig-all:hover { color: #B23803 !important; }
+  /* stejný hover jako ostatní odkazy u karuselů (.ek-link-u): podtržení zleva, barva zůstává */
+  .ek-ig-all { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-ig-all:hover { background-size: 100% 1.5px; }
   .ek-ig-life a > span:first-child > span { transition: transform .45s ease; }
   .ek-ig-life a:hover > span:first-child > span { transform: scale(1.05); }
   .ek-ig-life a:hover > span:last-child { color: #4C653D; }
@@ -65,7 +67,7 @@
     </div>
     <div class="{{ igRCls }}" style="display:flex; align-items:center; gap:18px; margin-left:auto;">
     <sc-if value="{{ hasAll }}" hint-placeholder-val="{{ false }}">
-      <a href="{{ allHref }}" class="ek-ig-all" style="display:inline-flex; align-items:center; gap:8px; flex:0 0 auto; font-size:15px; font-weight:600; color:#4C653D; text-decoration:none; transition:color .2s;">{{ allLabel }}<span style="{{ iconArrow }}"></span></a>
+      <a href="{{ allHref }}" class="ek-ig-all" style="display:inline-flex; align-items:center; gap:8px; flex:0 0 auto; font-size:15px; font-weight:600; color:#4C653D; text-decoration:none;">{{ allLabel }}<span style="{{ iconArrow }}"></span></a>
     </sc-if>
     <div style="{{ igNav }}"><button onClick="{{ igPrev }}" disabled="{{ igAtStart }}" aria-label="Předchozí" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-left-01.svg') center/contain no-repeat;"></span></button><button onClick="{{ igNext }}" disabled="{{ igAtEnd }}" aria-label="Další" class="ek-car-btn"><span style="width:18px; height:18px; display:block; background:currentColor; -webkit-mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat; mask:url('assets/icons/arrow-right-01.svg') center/contain no-repeat;"></span></button></div>
     </div>

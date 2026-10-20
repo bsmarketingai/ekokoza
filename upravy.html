@@ -92,8 +92,36 @@
   </section>
 
   <section class="day">
+    <h2>20. října 2026 — úklid design systému a předání kodérům</h2>
+    <p class="sum">Design systém zúžen na to, co finální web používá; připraven handoff balíček s dokumentací.</p>
+
+    <div class="item">
+      <span class="tag">Design systém</span>
+      <h3>Jen to, co se ve finále používá</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Zkontrolovat celý design systém a nechat v něm jen to, co se ve finále používá.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Odebrány sekce Chipy (ui-Chip) a Nadpisy sekcí (ui-SectionHeading) — stránky je nepoužívají. Z tmavých přechodů zůstal jen „Zeleň do noci“ (ostatní nikde nepoužité). Přehled ikon zúžen z 249 na ikony skutečně použité na webu. Původní verze uložena jako design-system-v1.html. Sekce Tlačítka doplněna o všechny varianty, které stránky skutečně používají (ghost, ghost zrušení a tlumený, Facebook, obrys na tmavé, na fotografii), přehled podle podkladu (bílá, krémová, tmavá zeleň, fotografie) a ikonová tlačítka (Zavřít, šipky karuselu, Hledat, Oblíbené). Karty v ukázce ve standardní šířce 300 px (produkt, recept); dlaždice kategorií nahrazeny variantou lifestyle z homepage (fotka, pod ní ikona a název).</p>
+      </div>
+      <a class="show-btn" href="design-system.html" target="_blank">Zobrazit design systém<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Handoff</span>
+      <h3>Balíček pro kodéry</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Připravit handoff balíček (ikony a vše, co se kodérům hodí) a dokumentaci.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Složka design_handoff_ekokoza: README (tokeny, role barev, typografie, breakpointy, chování, skladovost, stavy objednávky, otevřené body), KOMPONENTY.md, STRANKY.md, tokens.css + tokens.json, použité ikony Hugeicons se seznamem, loga a brand, UI assety a HTML návrhy všech šablon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="day">
     <h2>20. října 2026</h2>
-    <p class="sum">Sjednocení hlaviček modálů a popupů; Suroviny dle kategorie jen jako karusel; vyhledávání V2 a megamenu MM3 finální; newsletter bez výběru témat; galerie produktu G1 a recepty v panelu R2 finální; popisek nejvýhodnější ceny podle jednotky; zelený znak v odpovědích; zatržítko u vybrané barvy; sjednocené radio v detailu uzávěru; výpis kategorie V1, edukativní šablona, karta V2 a hlavička A finální; hamburger menu na mobilu přes celou obrazovku; našeptávač na S na celou šířku; nové pole vyhledávání na mobilu; dlaždice kategorií v receptáři V1 finální.</p>
+    <p class="sum">Sjednocení hlaviček modálů a popupů; Suroviny dle kategorie jen jako karusel; vyhledávání V2 a megamenu MM3 finální; newsletter bez výběru témat; galerie produktu G1 a recepty v panelu R2 finální; popisek nejvýhodnější ceny podle jednotky; zelený znak v odpovědích; zatržítko u vybrané barvy; sjednocené radio v detailu uzávěru; výpis kategorie V1, edukativní šablona, karta V2 a hlavička A finální; hamburger menu na mobilu přes celou obrazovku; našeptávač na S na celou šířku; nové pole vyhledávání na mobilu; vyšší visačka loga; sjednocený hover odkazu u karuselu a karet; sticky lišta filtrů na mobilu; schovávání hlavičky při scrollu na celém webu; bez horní lišty na mobilu; jemný stín hlavičky; dlaždice kategorií v receptáři V1 finální.</p>
 
     <div class="item">
       <span class="tag">Receptář · Kategorie</span>
@@ -103,6 +131,61 @@
         <p class="v">V1 nastavit jako výchozí a odebrat z nabídky prezentace.</p>
         <span class="k">Řešení</span>
         <p class="v">Kategorie v receptáři vždy jako řádkové dlaždice s ikonou (V1). Ovládací lišta receptáře měla jen tento přepínač, proto odstraněna celá.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Mobil</span>
+      <h3>Hlavička se při scrollu schová na všech stránkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hlavičku schovávat celou při scrollu dolů a při scrollu nahoru ji zase zobrazit — stejně jako v kategorii.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chování přesunuto do komponenty hlavičky, platí na všech stránkách pod 1000 px. Schová se celá hlavička včetně zelené lišty (0,3 s); na začátku stránky a při otevřeném menu, košíku, přihlášení nebo vyhledávání zůstává vidět. Nad 1000 px zůstává hlavička stále viditelná. Na XS/XXS (pod 550 px) se horní zelená lišta (doprava zdarma, jazyky, věrnostní program) nezobrazuje vůbec. Hlavička má jemný stín pod spodní hranou (0 8px 22px -16px rgba(45,58,46,.35)).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Filtry</span>
+      <h3>Sticky lišta filtrů i na menších šířkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu „Všechny filtry“ udělat sticky i na menších viewportech. Při scrollu dolů má úplně odsunout hlavičku s menu, při scrollu nahoru hlavička zase vyjede.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 1000 px (M a menší) zůstává lišta filtrů přilepená nahoře. Při scrollu dolů hlavička odjede nahoru (0,3 s) a lišta je 8 px od horního okraje; při scrollu nahoru se hlavička vrátí a lišta sjede pod ni. Na úplném začátku stránky je hlavička vždy vidět. Nad 1000 px beze změny. Na mobilu (kde se skrývají jednotlivé filtry) zůstává jen tlačítko „Všechny filtry“ — šířka podle obsahu, plovoucí dole uprostřed na dosah palce (20 px od spodního okraje, respektuje safe area), bez podkladu lišty, výška 48 px, se stínem kvůli čitelnosti nad obsahem.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Karty · Hover</span>
+      <h3>Produktová karta s hoverem jako karta receptu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hover karty receptu a produktu měl jiný motion efekt — sjednotit podle karty receptu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Produktová karta (ui-ProductCardV2) se při najetí zvedne o 4 px s měkkým stínem 0 18px 40px -22px rgba(45,58,46,.45), přechod 0,25 s — shodně s kartou receptu. Ztmavení rámu odstraněno. Stejný pohyb dostal i produktový banner ve výpisu kategorie (ui-ProductBanner); jemné přiblížení fotky zůstává.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Homepage · Karusely</span>
+      <h3>Jednotný hover odkazu „Všechny suroviny“</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Odkaz „Všechny suroviny“ měl jiný hover než stejné odkazy u ostatních karuselů.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Místo změny barvy na terrakotu se při najetí vykreslí podtržení zleva (1,5 px, 0,3 s), barva zůstává zelená — stejně jako „Vše ke tvorbě“ a další odkazy u karuselů.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Logo</span>
+      <h3>Visačka loga s větším horním odsazením</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Visačku v hlavičce zvýšit — větší odsazení loga shora v rámci zelené plochy.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Visačka (verze se zelenou horní lištou) začíná zarovnaná s horní hranou lišty, horní vnitřní odsazení 35 px místo 25 px; visačka je proto o 10 px delší dolů (116 px). Velikost loga beze změny.</p>
       </div>
     </div>
 
@@ -735,6 +818,17 @@
     </div>
 
     <div class="item">
+      <span class="tag">Hlavička · Mobil</span>
+      <h3>Hlavička se při scrollu schová na všech stránkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hlavičku schovávat celou při scrollu dolů a při scrollu nahoru ji zase zobrazit — stejně jako v kategorii.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chování přesunuto do komponenty hlavičky, platí na všech stránkách pod 1000 px. Schová se celá hlavička včetně zelené lišty (0,3 s); na začátku stránky a při otevřeném menu, košíku, přihlášení nebo vyhledávání zůstává vidět. Nad 1000 px zůstává hlavička stále viditelná. Na XS/XXS (pod 550 px) se horní zelená lišta (doprava zdarma, jazyky, věrnostní program) nezobrazuje vůbec. Hlavička má jemný stín pod spodní hranou (0 8px 22px -16px rgba(45,58,46,.35)).</p>
+      </div>
+    </div>
+
+    <div class="item">
       <span class="tag">Kategorie · Filtry</span>
       <h3>Tlačítka filtrů bez počtu vybraných hodnot</h3>
       <div class="row">
@@ -1097,6 +1191,39 @@
         <p class="v">Nová komponenta ui-ProductBanner: fotka přes celou kartu, zdola tmavý přechod, štítek „Recepty“ vlevo nahoře, nadpis, popis a krémové tlačítko „Zobrazit recept“ (celá karta je odkaz na recept). Výška se srovná s produktovými kartami v řadě. Ve výpisu kategorie je vždy na 7. pozici první stránky a zabírá jednu pozici — na první stránce je 11 produktů + banner, stránkování se posouvá o jednu pozici. Texty, odkaz a fotka jsou nastavitelné. Textace je receptářová: „Vlastní parfém z přírodních silic“ — jak poskládat hlavu, srdce a základ vůně, recept krok za krokem.</p>
       </div>
       <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Mobil</span>
+      <h3>Hlavička se při scrollu schová na všech stránkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hlavičku schovávat celou při scrollu dolů a při scrollu nahoru ji zase zobrazit — stejně jako v kategorii.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chování přesunuto do komponenty hlavičky, platí na všech stránkách pod 1000 px. Schová se celá hlavička včetně zelené lišty (0,3 s); na začátku stránky a při otevřeném menu, košíku, přihlášení nebo vyhledávání zůstává vidět. Nad 1000 px zůstává hlavička stále viditelná. Na XS/XXS (pod 550 px) se horní zelená lišta (doprava zdarma, jazyky, věrnostní program) nezobrazuje vůbec. Hlavička má jemný stín pod spodní hranou (0 8px 22px -16px rgba(45,58,46,.35)).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Filtry</span>
+      <h3>Sticky lišta filtrů i na menších šířkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu „Všechny filtry“ udělat sticky i na menších viewportech. Při scrollu dolů má úplně odsunout hlavičku s menu, při scrollu nahoru hlavička zase vyjede.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 1000 px (M a menší) zůstává lišta filtrů přilepená nahoře. Při scrollu dolů hlavička odjede nahoru (0,3 s) a lišta je 8 px od horního okraje; při scrollu nahoru se hlavička vrátí a lišta sjede pod ni. Na úplném začátku stránky je hlavička vždy vidět. Nad 1000 px beze změny. Na mobilu (kde se skrývají jednotlivé filtry) zůstává jen tlačítko „Všechny filtry“ — šířka podle obsahu, plovoucí dole uprostřed na dosah palce (20 px od spodního okraje, respektuje safe area), bez podkladu lišty, výška 48 px, se stínem kvůli čitelnosti nad obsahem.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Karty · Hover</span>
+      <h3>Produktová karta s hoverem jako karta receptu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hover karty receptu a produktu měl jiný motion efekt — sjednotit podle karty receptu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Produktová karta (ui-ProductCardV2) se při najetí zvedne o 4 px s měkkým stínem 0 18px 40px -22px rgba(45,58,46,.45), přechod 0,25 s — shodně s kartou receptu. Ztmavení rámu odstraněno. Stejný pohyb dostal i produktový banner ve výpisu kategorie (ui-ProductBanner); jemné přiblížení fotky zůstává.</p>
+      </div>
     </div>
 
     <div class="item">
@@ -1554,6 +1681,39 @@
         <p class="v">Nová komponenta ui-ProductBanner: fotka přes celou kartu, zdola tmavý přechod, štítek „Recepty“ vlevo nahoře, nadpis, popis a krémové tlačítko „Zobrazit recept“ (celá karta je odkaz na recept). Výška se srovná s produktovými kartami v řadě. Ve výpisu kategorie je vždy na 7. pozici první stránky a zabírá jednu pozici — na první stránce je 11 produktů + banner, stránkování se posouvá o jednu pozici. Texty, odkaz a fotka jsou nastavitelné. Textace je receptářová: „Vlastní parfém z přírodních silic“ — jak poskládat hlavu, srdce a základ vůně, recept krok za krokem.</p>
       </div>
       <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Mobil</span>
+      <h3>Hlavička se při scrollu schová na všech stránkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hlavičku schovávat celou při scrollu dolů a při scrollu nahoru ji zase zobrazit — stejně jako v kategorii.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chování přesunuto do komponenty hlavičky, platí na všech stránkách pod 1000 px. Schová se celá hlavička včetně zelené lišty (0,3 s); na začátku stránky a při otevřeném menu, košíku, přihlášení nebo vyhledávání zůstává vidět. Nad 1000 px zůstává hlavička stále viditelná. Na XS/XXS (pod 550 px) se horní zelená lišta (doprava zdarma, jazyky, věrnostní program) nezobrazuje vůbec. Hlavička má jemný stín pod spodní hranou (0 8px 22px -16px rgba(45,58,46,.35)).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Filtry</span>
+      <h3>Sticky lišta filtrů i na menších šířkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu „Všechny filtry“ udělat sticky i na menších viewportech. Při scrollu dolů má úplně odsunout hlavičku s menu, při scrollu nahoru hlavička zase vyjede.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 1000 px (M a menší) zůstává lišta filtrů přilepená nahoře. Při scrollu dolů hlavička odjede nahoru (0,3 s) a lišta je 8 px od horního okraje; při scrollu nahoru se hlavička vrátí a lišta sjede pod ni. Na úplném začátku stránky je hlavička vždy vidět. Nad 1000 px beze změny. Na mobilu (kde se skrývají jednotlivé filtry) zůstává jen tlačítko „Všechny filtry“ — šířka podle obsahu, plovoucí dole uprostřed na dosah palce (20 px od spodního okraje, respektuje safe area), bez podkladu lišty, výška 48 px, se stínem kvůli čitelnosti nad obsahem.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Karty · Hover</span>
+      <h3>Produktová karta s hoverem jako karta receptu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hover karty receptu a produktu měl jiný motion efekt — sjednotit podle karty receptu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Produktová karta (ui-ProductCardV2) se při najetí zvedne o 4 px s měkkým stínem 0 18px 40px -22px rgba(45,58,46,.45), přechod 0,25 s — shodně s kartou receptu. Ztmavení rámu odstraněno. Stejný pohyb dostal i produktový banner ve výpisu kategorie (ui-ProductBanner); jemné přiblížení fotky zůstává.</p>
+      </div>
     </div>
 
     <div class="item">
@@ -2215,6 +2375,39 @@
         <p class="v">Nová komponenta ui-ProductBanner: fotka přes celou kartu, zdola tmavý přechod, štítek „Recepty“ vlevo nahoře, nadpis, popis a krémové tlačítko „Zobrazit recept“ (celá karta je odkaz na recept). Výška se srovná s produktovými kartami v řadě. Ve výpisu kategorie je vždy na 7. pozici první stránky a zabírá jednu pozici — na první stránce je 11 produktů + banner, stránkování se posouvá o jednu pozici. Texty, odkaz a fotka jsou nastavitelné. Textace je receptářová: „Vlastní parfém z přírodních silic“ — jak poskládat hlavu, srdce a základ vůně, recept krok za krokem.</p>
       </div>
       <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Mobil</span>
+      <h3>Hlavička se při scrollu schová na všech stránkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hlavičku schovávat celou při scrollu dolů a při scrollu nahoru ji zase zobrazit — stejně jako v kategorii.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chování přesunuto do komponenty hlavičky, platí na všech stránkách pod 1000 px. Schová se celá hlavička včetně zelené lišty (0,3 s); na začátku stránky a při otevřeném menu, košíku, přihlášení nebo vyhledávání zůstává vidět. Nad 1000 px zůstává hlavička stále viditelná. Na XS/XXS (pod 550 px) se horní zelená lišta (doprava zdarma, jazyky, věrnostní program) nezobrazuje vůbec. Hlavička má jemný stín pod spodní hranou (0 8px 22px -16px rgba(45,58,46,.35)).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Filtry</span>
+      <h3>Sticky lišta filtrů i na menších šířkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu „Všechny filtry“ udělat sticky i na menších viewportech. Při scrollu dolů má úplně odsunout hlavičku s menu, při scrollu nahoru hlavička zase vyjede.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 1000 px (M a menší) zůstává lišta filtrů přilepená nahoře. Při scrollu dolů hlavička odjede nahoru (0,3 s) a lišta je 8 px od horního okraje; při scrollu nahoru se hlavička vrátí a lišta sjede pod ni. Na úplném začátku stránky je hlavička vždy vidět. Nad 1000 px beze změny. Na mobilu (kde se skrývají jednotlivé filtry) zůstává jen tlačítko „Všechny filtry“ — šířka podle obsahu, plovoucí dole uprostřed na dosah palce (20 px od spodního okraje, respektuje safe area), bez podkladu lišty, výška 48 px, se stínem kvůli čitelnosti nad obsahem.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Karty · Hover</span>
+      <h3>Produktová karta s hoverem jako karta receptu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hover karty receptu a produktu měl jiný motion efekt — sjednotit podle karty receptu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Produktová karta (ui-ProductCardV2) se při najetí zvedne o 4 px s měkkým stínem 0 18px 40px -22px rgba(45,58,46,.45), přechod 0,25 s — shodně s kartou receptu. Ztmavení rámu odstraněno. Stejný pohyb dostal i produktový banner ve výpisu kategorie (ui-ProductBanner); jemné přiblížení fotky zůstává.</p>
+      </div>
     </div>
 
     <div class="item">
@@ -3075,6 +3268,39 @@
     </div>
 
     <div class="item">
+      <span class="tag">Hlavička · Mobil</span>
+      <h3>Hlavička se při scrollu schová na všech stránkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hlavičku schovávat celou při scrollu dolů a při scrollu nahoru ji zase zobrazit — stejně jako v kategorii.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chování přesunuto do komponenty hlavičky, platí na všech stránkách pod 1000 px. Schová se celá hlavička včetně zelené lišty (0,3 s); na začátku stránky a při otevřeném menu, košíku, přihlášení nebo vyhledávání zůstává vidět. Nad 1000 px zůstává hlavička stále viditelná. Na XS/XXS (pod 550 px) se horní zelená lišta (doprava zdarma, jazyky, věrnostní program) nezobrazuje vůbec. Hlavička má jemný stín pod spodní hranou (0 8px 22px -16px rgba(45,58,46,.35)).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Kategorie · Filtry</span>
+      <h3>Sticky lišta filtrů i na menších šířkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Lištu „Všechny filtry“ udělat sticky i na menších viewportech. Při scrollu dolů má úplně odsunout hlavičku s menu, při scrollu nahoru hlavička zase vyjede.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Pod 1000 px (M a menší) zůstává lišta filtrů přilepená nahoře. Při scrollu dolů hlavička odjede nahoru (0,3 s) a lišta je 8 px od horního okraje; při scrollu nahoru se hlavička vrátí a lišta sjede pod ni. Na úplném začátku stránky je hlavička vždy vidět. Nad 1000 px beze změny. Na mobilu (kde se skrývají jednotlivé filtry) zůstává jen tlačítko „Všechny filtry“ — šířka podle obsahu, plovoucí dole uprostřed na dosah palce (20 px od spodního okraje, respektuje safe area), bez podkladu lišty, výška 48 px, se stínem kvůli čitelnosti nad obsahem.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="tag">Karty · Hover</span>
+      <h3>Produktová karta s hoverem jako karta receptu</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hover karty receptu a produktu měl jiný motion efekt — sjednotit podle karty receptu.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Produktová karta (ui-ProductCardV2) se při najetí zvedne o 4 px s měkkým stínem 0 18px 40px -22px rgba(45,58,46,.45), přechod 0,25 s — shodně s kartou receptu. Ztmavení rámu odstraněno. Stejný pohyb dostal i produktový banner ve výpisu kategorie (ui-ProductBanner); jemné přiblížení fotky zůstává.</p>
+      </div>
+    </div>
+
+    <div class="item">
       <span class="tag">Homepage · Karusely</span>
       <h3>Posuvník pod karusely „Co chcete vyrábět?“ a Suroviny</h3>
       <div class="row">
@@ -3816,6 +4042,17 @@
         <p class="v">Na XS/XXS (do 549 px) je tlačítko Do košíku jen kulatá ikona košíku 38 px, počítadlo množství zabere zbytek řádku. Řádek „Ve věrnostním programu…“ se zalamuje na více řádků místo ořezu. Na větších šířkách beze změny.</p>
       </div>
       <a class="show-btn" href="kategorie.html" target="_blank">Zobrazit kategorii<span class="show-ico"></span></a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Hlavička · Mobil</span>
+      <h3>Hlavička se při scrollu schová na všech stránkách</h3>
+      <div class="row">
+        <span class="k">Požadavek</span>
+        <p class="v">Hlavičku schovávat celou při scrollu dolů a při scrollu nahoru ji zase zobrazit — stejně jako v kategorii.</p>
+        <span class="k">Řešení</span>
+        <p class="v">Chování přesunuto do komponenty hlavičky, platí na všech stránkách pod 1000 px. Schová se celá hlavička včetně zelené lišty (0,3 s); na začátku stránky a při otevřeném menu, košíku, přihlášení nebo vyhledávání zůstává vidět. Nad 1000 px zůstává hlavička stále viditelná. Na XS/XXS (pod 550 px) se horní zelená lišta (doprava zdarma, jazyky, věrnostní program) nezobrazuje vůbec. Hlavička má jemný stín pod spodní hranou (0 8px 22px -16px rgba(45,58,46,.35)).</p>
+      </div>
     </div>
 
     <div class="item">

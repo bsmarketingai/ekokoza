@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  /* XS/XXS: hamburger menu přes celou obrazovku — stejně jako košík a přihlášení */
+  @media (max-width: 549px) {
+    .ek-drawer-panel { width: 100% !important; max-width: none !important; box-shadow: none !important; background: #FFFFFF !important; }
+    .ek-drawer-head { padding-top: max(18px, env(safe-area-inset-top)) !important; }
+  }
+  body { margin: 0; }
+  a { color: #D8763B; text-decoration: none; }
+  a:hover { color: #B23803; }
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-primary:hover { background: #4C653D !important; border-color: #4C653D !important; }
+  .ek-link-u { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s ease; }
+  .ek-link-u:hover { background-size: 100% 1.5px; }
+  .sc-host[data-sc-name="ui-Header"] .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
+  .ek-nav a:hover { color: #D8763B; }
+  .ek-nav > div > a:not(.ek-nav-loyal) { position: relative; transition: color .22s ease, transform .22s ease; }
+  .ek-nav > div > a:not(.ek-nav-loyal)::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #D14405; transform: scaleX(0); transform-origin: left; transition: transform .28s cubic-bezier(.4,0,.2,1); }
+  .ek-nav > div > a:not(.ek-nav-loyal):hover { transform: translateY(-1px); }
+  .ek-nav > div > a:not(.ek-nav-loyal):hover::after { transform: scaleX(1); }
+  .ek-nav-loyal:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-mega-link:hover { background: #F6F1E7; color: #D8763B !important; }
+  .ek-fav:hover { background: #F6F1E7 !important; color: #D8763B !important; border-color: #E4D9C2 !important; transform: scale(1.06); }
+  .sc-host[data-sc-name^="ui-"]:not([data-sc-name="ui-Header"]) { display: flex; }
+  .sc-host[data-sc-name^="ui-"]:not([data-sc-name="ui-Header"]) > * { flex: 1; min-width: 0; }
+  .sc-host[data-sc-name="ui-OrderStatus"] > * { flex: 0 0 auto !important; }
+  /* Hlavicka musi byt sticky vuci strance, ne vuci vlastnimu obalu */
+  .sc-host[data-sc-name="ui-Header"] { display: block; position: sticky; top: 0; z-index: 50; }
+  /* M a menší (pod 1000 px): celá hlavička (vč. zelené lišty) se při scrollu dolů schová, při scrollu nahoru vrátí */
+  @media (max-width: 999px) {
+    /* bez will-change/transform ve výchozím stavu — jinak by fixed overlaye (menu, košík, hledání) zůstaly uvězněné v hlavičce */
+    .sc-host[data-sc-name="ui-Header"] { transition: transform .3s ease; }
+    html.ek-hdr-up .sc-host[data-sc-name="ui-Header"] { transform: translateY(-100%); }
+  }
+  /* Tablet: pill se smrskne na ikonu, aby zustaly viditelne vsechny polozky
+     (hamburger naskakuje az pod 900px, takze skryta polozka = nedostupna polozka) */
+  @media (min-width: 1000px) and (max-width: 1180px) {
+    .ek-util-track { display: none !important; }
+    .ek-topbar-txt { white-space: nowrap; }
+    .ek-hdr-row { gap: 18px !important; }
+    .ek-nav { gap: 16px !important; }
+    .ek-nav > div:first-child { gap: 16px !important; }
+  }
+  @media (min-width: 1000px) and (max-width: 1040px) {
+    .ek-hdr-row { gap: 14px !important; }
+    .ek-nav { gap: 12px !important; font-size: 15px !important; }
+    .ek-nav > div:first-child { gap: 13px !important; }
+    .ek-nav a { white-space: nowrap; }
+    .ek-hdr-icons { gap: 12px !important; }
+  }
+  .ek-flag { appearance:none; border:0; cursor:pointer; padding:2px 3px; width:auto; height:auto; display:flex; align-items:center; justify-content:center; line-height:0; border-radius:4px; transition:opacity .15s, box-shadow .15s, background-color .15s, filter .15s; }
+  .ek-flag-on { opacity:1; background:transparent; box-shadow:none; filter:saturate(1); }
+  .ek-flag-off { opacity:.45; background:transparent; box-shadow:none; filter:saturate(.35); }
+  .ek-flag-off:hover { opacity:1; filter:saturate(1); }
+  /* J2 — vysvětlení po delším podržení kurzoru (600 ms), na mobilu se neukazuje */
+  @keyframes ekTipIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .ek-fav-tip { position: absolute; top: calc(100% + 14px); right: -6px; z-index: 120; width: max-content; max-width: 268px; padding: 12px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E4DAC6; box-shadow: 0 18px 38px -18px rgba(45,58,46,.5); font-family: 'Work Sans',sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.55; color: #4A4A42; text-align: left; pointer-events: none; animation: ekTipIn .18s ease-out; }
+  .ek-fav-tip::before { content: ''; position: absolute; top: -6px; right: 12px; transform: rotate(45deg); width: 10px; height: 10px; background: #FFFFFF; border-left: 1px solid #E4DAC6; border-top: 1px solid #E4DAC6; }
+  @media (max-width: 999px) { .ek-fav-tip { display: none; } }
+  /* Aktivni polozka menu — zvyraznena barvou a trvalym podtrzenim */
+  .ek-nav .ek-nav-active { color: #4C653D !important; }
+  .ek-nav .ek-nav-active::after { transform: scaleX(1) !important; }
+  .ek-nav-onas.ek-nav-active { position: relative; }
+  .ek-nav-onas.ek-nav-active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #D14405; }
+  .ek-nav .ek-nav-loyal.ek-nav-active { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-nav .ek-nav-loyal.ek-nav-active > span:first-child { background-color: #F6F1E7 !important; }
+  .ek-drawer-active { background: #EFE7D6 !important; color: #4C653D !important; }
+  .ek-flag-m { appearance:none; border:0; cursor:pointer; padding:0; width:46px; height:44px; display:flex; align-items:center; justify-content:center; line-height:0; border-radius:10px; background:transparent; transition:opacity .15s, background-color .15s, filter .15s; }
+  .ek-flag-m.ek-flag-on { opacity:1; background:#E7EBDC; filter:saturate(1); }
+  .ek-flag-m.ek-flag-off { opacity:.45; filter:saturate(.35); }
+  .ek-flag-m.ek-flag-off:hover { opacity:1; filter:saturate(1); }
+  @media (max-width: 999px) {
+    .ek-nav { display: none !important; }
+    .ek-logo-tag { display: none !important; }
+    .ek-logo-flat { display: flex !important; }
+    .ek-util-hide { display: none !important; }
+    .ek-topbar-txt { padding-left: 0 !important; }
+    .ek-util-track { display: none !important; }
+    .ek-hdr-icons { gap: 14px !important; margin-left: auto !important; }
+    .ek-hdr-row { gap: 14px !important; padding: 10px 20px !important; }
+    .ek-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .ek-mega { display: none !important; }
+    .ek-hamb { display: flex !important; background: #4C653D !important; color: #F6F1E7 !important; padding: 10px 16px !important; border-radius: 999px !important; gap: 8px !important; font-size: 14px !important; font-weight: 600 !important; }
+    .ek-mobtap { min-height: 44px; }
+    .ek-search-overlay { position: fixed !important; inset: 0 !important; transform: none !important; z-index: 300 !important; background: #F6F1E7 !important; display: flex !important; flex-direction: column !important; align-items: flex-start !important; padding: 0 !important; }
+    .ek-search-form { width: 100% !important; border-radius: 0 !important; border: none !important; box-shadow: none !important; padding: 22px 20px !important; }
+    .ek-search-overlay .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
+    .ek-search-overlay .ek-sugg > div { border-left: none !important; }
+    .ek-search-overlay .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
+  }
+  /* Male displeje: logo a ikony se zmensuji, hamburger na ikonu — vse musi zustat dostupne */
+  @media (max-width: 480px) {
+    .ek-hdr-row { gap: 10px !important; padding-left: 14px !important; padding-right: 14px !important; }
+    .ek-logo-flat img { height: 28px !important; }
+    .ek-hdr-icons { gap: 12px !important; }
+    .ek-hamb { padding: 9px 12px !important; gap: 6px !important; }
+    .ek-topbar .ek-pad { padding-left: 14px !important; padding-right: 14px !important; }
+    .ek-topbar-txt { font-size: 12.5px !important; }
+  }
+  @media (max-width: 400px) {
+    .ek-hdr-row { gap: 8px !important; padding-left: 12px !important; padding-right: 12px !important; }
+    .ek-logo-flat img { height: 25px !important; }
+    .ek-hdr-icons { gap: 10px !important; }
+    .ek-hamb-txt { display: none !important; }
+    .ek-hamb { width: 44px !important; height: 44px !important; min-height: 44px !important; padding: 0 !important; gap: 0 !important; border-radius: 50% !important; flex: 0 0 44px !important; }
+  }
+  @media (max-width: 350px) {
+    /* Ucet je dostupny v hamburger menu, tady uz na nej neni misto */
+    .ek-hdr-user { display: none !important; }
+    .ek-logo-flat img { height: 21px !important; }
+    .ek-hdr-row { gap: 7px !important; padding-left: 10px !important; padding-right: 10px !important; }
+    .ek-hdr-icons { gap: 9px !important; }
+    .ek-hdr-icons > span, .ek-hdr-icons > a { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons > span > span:not(.ek-badge), .ek-hdr-icons > a > span:not(.ek-badge) { width: 20px !important; height: 20px !important; }
+    .ek-hdr-icons { margin-right: 8px !important; }
+    .ek-topbar-txt { font-size: 12px !important; }
+  }
+  /* Vyhledavani V2: pole primo v hlavicce od S (550 px), na XS/XXS zustava ikona s overlayem */
+  .ek-hsearch { display: none; }
+  /* V2: Vernostni program se presouva z menu do horni listy (misto Sledovani objednavky) */
+  .ek-srch-v2 .ek-nav .ek-nav-loyal { display: none !important; }
+  .ek-srch-v2 .ek-util-v1 { display: none !important; }
+  .ek-srch-v2 .ek-util-loyal { display: inline-flex !important; }
+  .ek-srch-v2 .ek-util-loyal-sep { display: inline !important; }
+  .ek-hsearch:focus-within { border-color: #4C653D !important; box-shadow: 0 0 0 3px rgba(76,101,61,.12); }
+  .ek-hsearch input::placeholder { color: #8a8778; }
+  @media (min-width: 550px) and (max-width: 999px) {
+    .ek-srch-v2 .ek-hsearch { flex: 1 1 auto !important; min-width: 0 !important; }
+  }
+  /* S: mensi logo (158 -> 135 px sire), aby vyhledavani dostalo vic mista */
+  @media (min-width: 550px) and (max-width: 819px) {
+    .ek-srch-v2 .ek-logo-flat img { height: 29px !important; }
+    .ek-srch-v2 .ek-hamb-txt { display: none !important; }
+    .ek-srch-v2 .ek-hamb { width: 44px !important; height: 44px !important; min-height: 44px !important; padding: 0 !important; gap: 0 !important; border-radius: 50% !important; flex: 0 0 44px !important; }
+  }
+  @media (min-width: 550px) {
+    .ek-srch-v2 .ek-hsearch { display: flex; }
+    .ek-srch-v2 .ek-hdr-sicon { display: none !important; }
+  }
+  /* Vernostni program v hlavicce jen na XXL (od 1560 px); jinak v paticce a v mobilnim menu */
+  @media (max-width: 1559px) {
+    .ek-nav .ek-nav-loyal { display: none !important; }
+  }
+  .ek-topbar-v2 > .ek-topbar { background: #4C653D !important; color: #EFE7D6 !important; box-shadow: inset 0 -1px 0 rgba(246,241,231,.18); }
+  .ek-topbar-v2 > .ek-topbar > .ek-pad { padding-top: 9px !important; padding-bottom: 9px !important; }
+  .ek-topbar-v2 > .ek-topbar a { color: #EFE7D6 !important; }
+  .ek-topbar-v3 > .ek-topbar { display: none !important; }
+  /* XS/XXS (mobil): horní zelená lišta se nezobrazuje — věrnostní program je v mobilním menu */
+  @media (max-width: 549px) { .ek-topbar { display: none !important; } }
+  .ek-topbar-v3 .ek-logo-badge { top: -27px !important; }
+  /* V2: visačka začíná na horní hraně zelené lišty, logo má větší horní odsazení (visačka je o 10 px delší dolů) */
+  .ek-topbar-v2 .ek-logo-badge { top: -65px !important; height: 116px !important; padding-top: 35px !important; }
+</style>
+</helmet>
+
+<div class="{{ wrapCls }}" style="position:sticky; top:0; z-index:50; font-family:'Work Sans',sans-serif;">
+
+  <!-- TOPBAR -->
+  <div class="ek-topbar" style="background:#4C653D; color:#EFE7D6;">
+    <div class="ek-pad" style="max-width:1624px; margin:0 auto; padding:5px 32px; display:flex; align-items:center; justify-content:space-between; font-size:13px; letter-spacing:.02em;">
+      <span class="ek-topbar-txt" style="padding-left:158px;">{{ topbarText }}</span>
+      <span class="ek-util-hide" style="display:flex; align-items:center; gap:8px;">
+        <a href="#" class="ek-link-u ek-util-track ek-util-v1" style="color:#EFE7D6; text-decoration:none;">Sledování objednávky</a>
+        <span style="opacity:.5;" class="ek-util-track ek-util-v1">·</span>
+        <a href="{{ loyaltyHref }}" class="ek-util-loyal" style="display:none; align-items:center; gap:6px; color:#EFE7D6; text-decoration:none;"><span style="{{ iconLoyalTop }}"></span><span class="ek-link-u">Věrnostní program</span></a>
+        <span style="display:none; opacity:.5;" class="ek-util-loyal-sep">·</span>
+        <a href="#" class="ek-link-u" style="color:#EFE7D6; text-decoration:none;">FAQ</a>
+        <span style="opacity:.5;">·</span>
+        <a href="#" class="ek-link-u" style="color:#EFE7D6; text-decoration:none;">Kontakt</a>
+        <span style="display:flex; align-items:center; gap:4px; margin-left:14px; padding-left:14px; border-left:1px solid rgba(239,231,214,.25);">
+          <button type="button" title="Čeština" aria-pressed="{{ czActive }}" onClick="{{ setCz }}" class="ek-flag {{ czFlagCls }}"><img src="assets/flags/cz.svg" alt="Čeština" width="20" height="16" style="display:block; width:20px; height:16px;"></button>
+          <button type="button" title="Slovenčina" aria-pressed="{{ skActive }}" onClick="{{ setSk }}" class="ek-flag {{ skFlagCls }}"><img src="assets/flags/sk.svg" alt="Slovenčina" width="20" height="16" style="display:block; width:20px; height:16px;"></button>
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header onMouseLeave="{{ megaClose }}" style="background:#F6F1E7; border-bottom:1px solid #E4DAC6; box-shadow:0 8px 22px -16px rgba(45,58,46,.35); position:relative; z-index:50;">
+    <div class="ek-hdr-row ek-pad" style="position:relative; max-width:1624px; margin:0 auto; padding:27px 32px; display:flex; align-items:center; gap:36px;">
+
+      <a href="{{ homeHref }}" class="ek-logo-tag" style="position:relative; width:138px; flex-shrink:0; align-self:stretch; display:block;">
+        <span class="ek-logo-badge" style="position:absolute; top:-55px; left:0; width:138px; height:106px; padding:25px 14px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:#4C653D; border-radius:0 0 18px 18px; box-shadow:0 10px 20px -8px rgba(45,58,46,.45);">
+          <img src="assets/ekokoza-znak-cream.png" alt="" class="ek-logo-znak" style="width:44px; display:block;">
+          <img src="assets/ekokoza-napis-cream.png" alt="ekokoza" class="ek-logo-napis" style="width:87px; display:block;">
+        </span>
+      </a>
+      <a href="{{ homeHref }}" class="ek-logo-flat" style="display:none; align-items:center; flex-shrink:0;">
+        <img src="assets/ekokoza-logo-green.png" alt="ekokoza" style="height:34px; width:auto; display:block;">
+      </a>
+
+      <nav class="ek-nav" style="display:flex; align-items:center; gap:28px; font-size:16px; font-weight:500; flex:1; justify-content:space-between;">
+        <div style="display:flex; gap:24px;">
+          <a href="#blok3" class="{{ navvyroba }}" onMouseEnter="{{ openMega0 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Výroba<span style="{{ iconCaret }}"></span></a>
+          <a href="#blok4" class="{{ navsuroviny }}" onMouseEnter="{{ openMega1 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Suroviny<span style="{{ iconCaret }}"></span></a>
+          <a href="kategorie.html" class="{{ navprodukty }}" onMouseEnter="{{ openMega2 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Produkty<span style="{{ iconCaret }}"></span></a>
+          <a href="#blok4" class="ek-nav-obaly {{ navobaly }}" onMouseEnter="{{ openMega3 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Obaly<span style="{{ iconCaret }}"></span></a>
+          <a href="receptar.dc.html" class="{{ navreceptar }}" onMouseEnter="{{ openMega4 }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">Receptář<span style="{{ iconCaret }}"></span></a>
+        </div>
+        <div style="display:flex; align-items:center; gap:18px;" onMouseEnter="{{ megaClose }}">
+          <a href="{{ aboutHref }}" class="ek-nav-onas {{ navonas }}" style="display:flex; align-items:center; gap:7px; color:#2A2A24; text-decoration:none; white-space:nowrap; transition:color .2s;">O nás</a>
+          <a href="{{ loyaltyHref }}" class="ek-nav-loyal {{ navvernost }}" style="display:flex; align-items:center; gap:7px; color:#4C653D; text-decoration:none; background:#EFE7D6; padding:8px 15px; border-radius:999px; transition:background .22s ease, color .22s ease;"><span style="{{ iconLoyal }}"></span><span class="ek-loyal-txt">Věrnostní program</span></a>
+        </div>
+      </nav>
+
+      <sc-if value="{{ srchV2 }}" hint-placeholder-val="{{ false }}">
+        <form class="ek-hsearch" onSubmit="{{ submitSearch }}" role="search" style="align-items:center; gap:10px; flex:0 1 300px; min-width:150px; height:44px; padding:0 16px; background:#fff; border:1px solid #E4DAC6; border-radius:999px; transition:border-color .2s, box-shadow .2s;">
+          <span style="{{ iconSearchIn }}"></span>
+          <input value="{{ inlineQuery }}" onInput="{{ onInlineInput }}" onFocus="{{ onInlineFocus }}" onBlur="{{ onInlineBlur }}" onKeyDown="{{ onInlineKey }}" placeholder="Hledejte suroviny, recepty…" aria-label="Hledat" style="flex:1; min-width:0; border:none; outline:none; background:transparent; font-family:'Work Sans',sans-serif; font-size:15px; color:#2A2A24;">
+        </form>
+      </sc-if>
+
+      <div class="ek-hdr-icons" style="display:flex; align-items:center; gap:18px; flex-shrink:0;">
+        <span class="ek-hdr-sicon" onClick="{{ openSearch }}" title="Hledat" style="{{ iconSearch }} cursor:pointer;"></span>
+        <span class="ek-hdr-userwrap" style="position:relative; display:flex; align-items:center;">
+          <span class="ek-hdr-user" onClick="{{ loginToggle }}" title="Můj účet" style="{{ iconUser }} cursor:pointer;"></span>
+          <sc-if value="{{ showLogin }}" hint-placeholder-val="{{ false }}">
+            <dc-import name="ui-LoginOverlay" on-close="{{ closeLogin }}" hint-size="400px,470px"></dc-import>
+          </sc-if>
+          <sc-if value="{{ showAccount }}" hint-placeholder-val="{{ false }}">
+            <dc-import name="ui-AccountMenu" name="{{ customerName }}" priceGroup="{{ priceGroup }}" onClose="{{ closeLogin }}" floating="{{ true }}" hint-size="340px,400px"></dc-import>
+          </sc-if>
+        </span>
+        <a href="oblibene.html" class="{{ favClass }}" onMouseEnter="{{ favTipIn }}" onMouseLeave="{{ favTipOut }}" title="Oblíbené" style="position:relative; display:flex; width:22px; height:22px; color:#4C653D; cursor:pointer; text-decoration:none;"><span style="{{ iconFav }}"></span><sc-if value="{{ hasFavs }}" hint-placeholder-val="{{ false }}"><span class="ek-badge" style="position:absolute; top:-6px; right:-7px; background:#D14405; color:#fff; font-size:10px; font-weight:700; min-width:16px; height:16px; padding:0 3px; border-radius:999px; display:flex; align-items:center; justify-content:center; line-height:1;">{{ favCount }}</span></sc-if><sc-if value="{{ favTipOpen }}" hint-placeholder-val="{{ false }}"><span class="ek-fav-tip">{{ favTipText }}</span></sc-if></a>
+        <span class="ek-hdr-cartwrap" onMouseEnter="{{ cartHover }}" onMouseLeave="{{ cartLeave }}" style="position:relative; display:flex; align-items:center;">
+          <span class="ek-hdr-cart" onClick="{{ cartToggle }}" title="Košík" style="position:relative; width:22px; height:22px; color:#4C653D; cursor:pointer;"><span style="{{ iconCart }}"></span><sc-if value="{{ hasCart }}" hint-placeholder-val="{{ true }}"><span class="ek-badge" style="position:absolute; top:-6px; right:-7px; background:#D14405; color:#fff; font-size:10px; font-weight:700; min-width:16px; height:16px; padding:0 3px; border-radius:999px; display:flex; align-items:center; justify-content:center; line-height:1;">{{ cartCount }}</span></sc-if></span>
+          <sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+            <dc-import name="ui-CartOverlay" items="{{ cartItems }}" on-close="{{ closeCart }}" on-remove="{{ removeCartItem }}" checkout-href="kosik.dc.html" hint-size="400px,480px"></dc-import>
+          </sc-if>
+        </span>
+      </div>
+
+      <span class="ek-hamb ek-mobtap" onClick="{{ openDrawer }}" title="Menu" style="display:none; align-items:center; justify-content:center; gap:8px; color:#4C653D; cursor:pointer; flex-shrink:0;"><span style="{{ iconMenu }}"></span><span class="ek-hamb-txt">Menu</span></span>
+
+      <sc-if value="{{ inlineSuggOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; top:100%; left:0; right:0; height:0; z-index:60;">
+          <dc-import name="ui-SearchOverlay" hideForm="{{ true }}" active="{{ true }}" query="{{ inlineQuery }}" hint-size="100%,0px"></dc-import>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ searchOpen }}" hint-placeholder-val="{{ false }}">
+        <dc-import name="ui-SearchOverlay" active="{{ searchActive }}" query="{{ query }}" on-input="{{ onQueryInput }}" on-close="{{ closeSearch }}" submit="{{ submitSearch }}" input-ref="{{ searchInputRef }}" hint-size="100%,56px"></dc-import>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ megaOpen }}" hint-placeholder-val="{{ false }}">
+      <dc-import name="ui-MegaMenu" title="{{ megaTitle }}" all-href="{{ megaAllHref }}" links="{{ megaLinks }}" variant="{{ megaVariant }}" groups="{{ megaGroups }}" on-close="{{ megaClose }}" prod-name="{{ megaProdName }}" prod-price="{{ megaProdPrice }}" prod-img="{{ megaProdImg }}" prod-rating="{{ megaProdRating }}" prod-rating-count="{{ megaProdRatingCount }}" hint-size="100%,380px"></dc-import>
+    </sc-if>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div style="{{ drawerWrapStyle }}" onClick="{{ closeDrawer }}">
+    <div style="{{ drawerBdStyle }}"></div>
+    <aside class="ek-drawer-panel" style="{{ drawerPanelStyle }}" onClick="{{ stopProp }}">
+      <div class="ek-drawer-head" style="display:flex; align-items:center; justify-content:space-between; padding:18px 20px; border-bottom:1px solid #E4DAC6;">
+        <img src="assets/ekokoza-logo-green.png" alt="ekokoza" style="height:32px; width:auto; display:block;">
+        <span onClick="{{ closeDrawer }}" title="Zavřít" role="button" aria-label="Zavřít menu" style="width:40px; height:40px; box-sizing:border-box; flex:0 0 auto; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#F6F1E7; border:1px solid #E4DAC6; color:#4C653D; cursor:pointer;"><span style="{{ iconClose }}"></span></span>
+      </div>
+      <nav style="display:flex; flex-direction:column; padding:8px 0; overflow-y:auto; flex:1;">
+        <sc-for list="{{ drawerMenu }}" as="l" hint-placeholder-count="3">
+          <div style="border-bottom:1px solid #ECE3D2;">
+            <div onClick="{{ l.toggle }}" style="{{ l.headStyle }}">{{ l.label }}<span style="{{ l.chevStyle }}"></span></div>
+            <div style="{{ l.subStyle }}">
+              <sc-for list="{{ l.sub }}" as="s" hint-placeholder-count="4">
+                <sc-if value="{{ s.leaf }}" hint-placeholder-val="{{ true }}">
+                  <a href="{{ s.href }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:44px; padding:8px 20px 8px 34px; text-decoration:none; color:#52524a; font-size:15px;">{{ s.name }}</a>
+                </sc-if>
+                <sc-if value="{{ s.hasKids }}" hint-placeholder-val="{{ false }}">
+                  <div onClick="{{ s.toggle }}" aria-expanded="{{ s.open }}" style="{{ s.headStyle }}"><span style="min-width:0;">{{ s.name }}</span><span style="{{ s.chevStyle }}"></span></div>
+                  <div style="{{ s.kidsStyle }}">
+                    <sc-for list="{{ s.children }}" as="k" hint-placeholder-count="4">
+                      <a href="{{ k.href }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:40px; padding:7px 20px 7px 48px; text-decoration:none; color:#52524a; font-size:14.5px; line-height:1.35;">{{ k.name }}</a>
+                    </sc-for>
+                    <a href="{{ s.href }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:40px; padding:7px 20px 12px 48px; text-decoration:none; color:#4C653D; font-weight:600; font-size:14.5px;">{{ s.allLabel }}</a>
+                  </div>
+                </sc-if>
+              </sc-for>
+              <a href="{{ l.allHref }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:40px; padding:8px 20px 14px 34px; text-decoration:none; color:#D8763B; font-weight:600; font-size:15px;">Zobrazit vše</a>
+            </div>
+          </div>
+        </sc-for>
+        <a href="#" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; justify-content:space-between; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:17px; font-weight:500; border-bottom:1px solid #ECE3D2;">Dárkové poukazy</a>
+        <p style="margin:14px 20px 6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#6B6B5E; font-weight:600;">Více o ekokoze</p>
+        <sc-for list="{{ drawerLinksOther }}" as="l" hint-placeholder-count="2">
+          <a href="{{ l.href }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:17px; font-weight:500;"><span style="{{ l.icon }}"></span>{{ l.label }}</a>
+        </sc-for>
+        <sc-for list="{{ drawerAccount }}" as="a" hint-placeholder-count="3">
+          <a href="{{ a.href }}" onClick="{{ closeDrawer }}" style="{{ a.style }}"><span style="{{ a.icon }}"></span>{{ a.label }}</a>
+        </sc-for>
+      </nav>
+      <div style="display:flex; align-items:center; gap:12px; padding:14px 20px; border-top:1px solid #E4DAC6;">
+        <span style="font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#6B6B5E; font-weight:600;">Jazyk</span>
+        <span style="display:flex; align-items:center; gap:8px;">
+          <button type="button" title="Čeština" aria-pressed="{{ czActive }}" onClick="{{ setCz }}" class="ek-flag-m {{ czFlagCls }}"><img src="assets/flags/cz.svg" alt="Čeština" width="30" height="24" style="display:block; width:30px; height:24px; border-radius:3px;"></button>
+          <button type="button" title="Slovenčina" aria-pressed="{{ skActive }}" onClick="{{ setSk }}" class="ek-flag-m {{ skFlagCls }}"><img src="assets/flags/sk.svg" alt="Slovenčina" width="30" height="24" style="display:block; width:30px; height:24px; border-radius:3px;"></button>
+        </span>
+      </div>
+      <div style="padding:18px 20px; border-top:1px solid #E4DAC6;">
+        <a href="#blok3" onClick="{{ closeDrawer }}" class="ek-btn-main" style="display:flex; align-items:center; justify-content:center; gap:9px; background:#D14405; color:#fff; text-decoration:none; padding:14px; border-radius:999px; font-weight:600; font-size:16px;">Začněte tady<span style="{{ iconArrow }}"></span></a>
+      </div>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:260},&quot;loggedIn&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;customerName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Anežka Drtinová&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;priceGroup&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Registrovaný zákazník&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;topbarText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Doprava zdarma od 2000 Kč · Ověřené recepty od roku 2009&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;homeHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;menuTree&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;MenuNode[]&quot;}}">
+class Component extends DCLogic {
+  state = {
+    searchOpen: false, query: '', drawerOpen: false, drawerExp: -1, drawerSub: null, mega: -1, favCount: 0, favTip: false, lang: 'cz',
+    cartOpen: false, loginOpen: false,
+    cart: [
+      { name: 'Mýdlová hmota s bambuckým máslem, 1 kg', price: 329, qty: 2, stockState: 'ready', img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg' },
+      { name: 'Kyselina salicylová, 25 kg', price: 189, qty: 1, stockState: 'packing', img: 'assets/products/levandulove-maslo-100-g.jpg' },
+      { name: 'Stabilizovaný vitamin C, 10 g', price: 149, qty: 3, stockState: 'ready', img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg' },
+    ],
+  };
+
+
+  mask(name, size, color) {
+    const url = 'assets/icons/' + name + '.svg';
+    return `display:inline-block; width:${size}px; height:${size}px; flex:0 0 auto; background-color:${color || 'currentColor'}; -webkit-mask:url("${url}") center / contain no-repeat; mask:url("${url}") center / contain no-repeat;`;
+  }
+
+  componentDidMount() {
+    this._lastY = window.scrollY;
+    this._hdrScroll = () => {
+      const root = document.documentElement;
+      const host = document.querySelector('.sc-host[data-sc-name="ui-Header"]');
+      const hh = host ? host.offsetHeight : 120;
+      root.style.setProperty('--ek-hdr-h', hh + 'px');
+      const y = window.scrollY, dy = y - this._lastY;
+      const S = this.state || {};
+      if (window.innerWidth >= 1000 || y < hh || S.drawerOpen || S.cartOpen || S.loginOpen || S.iFocus) root.classList.remove('ek-hdr-up');
+      else if (dy > 6) root.classList.add('ek-hdr-up');
+      else if (dy < -6) root.classList.remove('ek-hdr-up');
+      if (Math.abs(dy) > 6) this._lastY = y;
+    };
+    window.addEventListener('scroll', this._hdrScroll, { passive: true });
+    window.addEventListener('resize', this._hdrScroll);
+    requestAnimationFrame(this._hdrScroll);
+
+    try {
+      // Horní lišta: schváleno V2 (09/2026). Pro znovuotevření výběru nastavte TOPBAR_SWITCH = true (i v produkt-vzor.html).
+      const TOPBAR_SWITCH = false;
+      const tv = TOPBAR_SWITCH ? localStorage.getItem('ekokoza-topbar-variant') : null;
+      if (tv === 'v1' || tv === 'v2' || tv === 'v3') this.setState({ topbar: tv });
+    } catch (e) {}
+    this._onTopbar = (e) => { const v = e.detail && e.detail.variant; if (v === 'v1' || v === 'v2' || v === 'v3') this.setState({ topbar: v }); };
+    window.addEventListener('ek-topbar-variant', this._onTopbar);
+    // Megamenu: schváleno MM3 (20. 10. 2026) — výchozí na celém webu, uložená volba se už nenačítá.
+    this._onMega = (e) => { const v = e.detail && e.detail.variant; if (v === 'mm1' || v === 'mm2' || v === 'mm3') this.setState({ mm: v }); };
+    window.addEventListener('ek-mega-variant', this._onMega);
+    try { if (/vysledky-vyhledavani/.test(location.pathname)) { const sp0 = new URLSearchParams(location.search); const q0 = sp0.get('q'); this.setState({ iq: q0 || (sp0.get('empty') === '1' ? 'máslo cupuacu 250 g' : 'mýdlo') }); } } catch (e) {}
+    // Vyhledávání: schváleno V2 (20. 10. 2026) — výchozí na celém webu, uložená volba V1 se už nenačítá.
+    this._onSrch = (e) => { const v = e.detail && e.detail.variant; if (v === 'v1' || v === 'v2') this.setState({ srch: v, iq: '', iFocus: false }); };
+    window.addEventListener('ek-search-variant', this._onSrch);
+    this._onQ = (e) => { if (e.detail && typeof e.detail.q === 'string') this.setState({ iq: e.detail.q, iFocus: false }); };
+    window.addEventListener('ek-search-query', this._onQ);
+    this._onOpenLogin = () => this.setState({ loginOpen: true, cartOpen: false, mega: -1 });
+    window.addEventListener('ek-open-login', this._onOpenLogin);
+    this._onDocDown = (e) => {
+      if (!this.state.loginOpen) return;
+      if (window.innerWidth <= 999) return;
+      const w = e.target.closest && e.target.closest('.ek-hdr-userwrap');
+      if (!w) this.setState({ loginOpen: false });
+    };
+    document.addEventListener('mousedown', this._onDocDown);
+    this._onFav = (e) => this.setState({ favCount: e.detail.count });
+    window.addEventListener('ek-fav-change', this._onFav);
+    if (window.__ekFav) this.setState({ favCount: window.__ekFav.size });
+
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._hdrScroll);
+    window.removeEventListener('resize', this._hdrScroll);
+    document.documentElement.classList.remove('ek-hdr-up');
+
+    document.removeEventListener('mousedown', this._onDocDown);
+    window.removeEventListener('ek-open-login', this._onOpenLogin);
+    window.removeEventListener('ek-fav-change', this._onFav);
+    window.removeEventListener('ek-search-variant', this._onSrch);
+    window.removeEventListener('ek-search-query', this._onQ);
+    clearTimeout(this._blurT);
+    clearTimeout(this._tipTimer);
+  }
+
+  renderVals() {
+    // Aktivni polozku poznáme z nazvu otevrene stranky, prop 'active' ma prednost
+    const file = decodeURIComponent(location.pathname.split('/').pop() || '');
+    const auto = /receptar/i.test(file) ? 'receptar' : (/vernostni-program/i.test(file) ? 'vernost' : (/o-nas|o nas/i.test(file) ? 'onas' : (/kategorie|produkt/i.test(file) ? 'produkty' : '')));
+    const active = this.props.active ?? auto;
+    const navCls = (key) => (active === key ? 'ek-nav-active' : '');
+    const about = this.props.aboutHref ?? 'o-nas.html';
+    const loyalty = this.props.loyaltyHref ?? 'vernostni-program.html';
+    const S = this.state;
+
+    // Struktura odpovída realnemu menu na ekokoza.cz (Vyroba / Produkty / Obaly / Receptar)
+    const MM2 = {"vyroba":[{"name":"Kosmetika","img":"assets/vyroba/kosmetika.png","children":[{"name":"Základy pro mytí, krémy a difuzéry","href":"kategorie.html"},{"name":"Kosmetické jíly","href":"kategorie.html"},{"name":"Tenzidy a solubilizéry","href":"kategorie.html"},{"name":"Konzervanty a antioxidanty","href":"kategorie.html"},{"name":"Emolienty","href":"kategorie.html"},{"name":"Másla, lanolin a vosky","href":"kategorie.html"},{"name":"Aktivní látky","href":"kategorie.html"},{"name":"Mýdlová hmota a tekuté mýdlo","href":"kategorie.html"},{"name":"Stabilizátory, zahušťovadla","href":"kategorie.html"},{"name":"Rostlinné oleje a tuky","href":"kategorie.html"},{"name":"Emulgátory","href":"kategorie.html"},{"name":"Vůně, esenciální oleje, extrakty a maceráty","href":"kategorie.html"},{"name":"Pudry, gumy a peeling","href":"kategorie.html"},{"name":"Barviva","href":"kategorie.html"},{"name":"Glycerin, hydroxid, oxid","href":"kategorie.html"},{"name":"Sušené bylinky, plody a pryskyřice","href":"kategorie.html"},{"name":"Vitamíny","href":"kategorie.html"},{"name":"Prací prášky","href":"kategorie.html"},{"name":"Šumivky a soli","href":"kategorie.html"},{"name":"Pomůcky","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Svíčky","img":"assets/vyroba/svicky.png","children":[{"name":"Vosky","href":"kategorie.html"},{"name":"Gely","href":"kategorie.html"},{"name":"Vůně","href":"kategorie.html"},{"name":"Barviva","href":"kategorie.html"},{"name":"Knoty","href":"kategorie.html"},{"name":"Obaly na svíčky","href":"kategorie.html"},{"name":"Příslušenství ke knotům","href":"kategorie.html"},{"name":"Formy","href":"kategorie.html"},{"name":"Sady na výrobu","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Potraviny","img":"assets/vyroba/potraviny.png","children":[{"name":"Koření","href":"kategorie.html"},{"name":"Sýry","href":"kategorie.html"},{"name":"Čokoláda","href":"kategorie.html"},{"name":"Tofu a tempeh","href":"kategorie.html"},{"name":"Kuchyňské potřeby","href":"kategorie.html"},{"name":"Formy","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Obaly","img":"assets/vyroba/obaly.png","children":[{"name":"Skleněné lahvičky","href":"kategorie.html"},{"name":"Skleněné dózy","href":"kategorie.html"},{"name":"Hliníkové a kovové","href":"kategorie.html"},{"name":"Plastové kelímky","href":"kategorie.html"},{"name":"Plastové lahvičky","href":"kategorie.html"},{"name":"Papírové","href":"kategorie.html"},{"name":"Na svíčky","href":"kategorie.html"},{"name":"Roll-on","href":"kategorie.html"},{"name":"Airless","href":"kategorie.html"},{"name":"Pro péči o rty","href":"kategorie.html"},{"name":"Deodoranty, parfémy a difuzéry","href":"kategorie.html"},{"name":"Uzávěry samostatně","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Knihy a návody","img":"assets/vyroba/knihy.png","children":[],"href":"kategorie.html"},{"name":"Doprava zdarma","children":[],"href":"kategorie.html"}],"produkty":[{"name":"Péče o pleť a kůži","children":[{"name":"Pleťové krémy","href":"kategorie.html"},{"name":"Přírodní opalovací krémy","href":"kategorie.html"},{"name":"Čištění pleti","href":"kategorie.html"},{"name":"Koupel","href":"kategorie.html"},{"name":"Květové vody","href":"kategorie.html"},{"name":"Depilace a holení","href":"kategorie.html"},{"name":"Mýdla","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Péče o vlasy","children":[{"name":"Šampony","href":"kategorie.html"},{"name":"Šampuky","href":"kategorie.html"},{"name":"Kondicionéry","href":"kategorie.html"},{"name":"Barvy na vlasy a henna","href":"kategorie.html"},{"name":"Styling","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Zdraví","children":[{"name":"Přírodní detoxikace, Epsomská sůl, křemelina","href":"kategorie.html"},{"name":"Vitamíny a magnesium","href":"kategorie.html"},{"name":"Přírodní repelenty a filtrace vody","href":"kategorie.html"},{"name":"Extrakty z hub a rostlin","href":"kategorie.html"},{"name":"Květové esence","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Voňavky a parfémy","children":[{"name":"Parfémy","href":"kategorie.html"},{"name":"Deodoranty","href":"kategorie.html"},{"name":"Do bytu a auta","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Potraviny","children":[{"name":"Kakao a čokoláda","href":"kategorie.html"},{"name":"Koření","href":"kategorie.html"},{"name":"Kuchyňské nezbytnosti","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Mytí a praní","children":[{"name":"Prací prostředky","href":"kategorie.html"},{"name":"Mytí nádobí","href":"kategorie.html"}],"href":"kategorie.html"},{"name":"Péče o rty","children":[],"href":"kategorie.html"},{"name":"Zubní hygiena","children":[],"href":"kategorie.html"},{"name":"Svíčky","children":[],"href":"kategorie.html"},{"name":"Šungit","children":[],"href":"kategorie.html"},{"name":"Pro psy","children":[],"href":"kategorie.html"},{"name":"Květové esence","children":[],"href":"kategorie.html"},{"name":"Dárkové poukazy","children":[],"href":"kategorie.html"}],"receptar":[{"name":"Recepty","children":[{"name":"Výroba domácí kosmetiky","href":"receptar.dc.html"},{"name":"Tvoření s dětmi","href":"receptar.dc.html"},{"name":"Články k surovinám","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Letní pleťová péče bez chemie","children":[{"name":"Květové vody","href":"receptar.dc.html"},{"name":"Přírodní deodoranty","href":"receptar.dc.html"},{"name":"Přírodní opalovací krémy","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Podzimní DIY tvoření","children":[{"name":"Domácí pohoda","href":"receptar.dc.html"},{"name":"Péče o pokožku a rty","href":"receptar.dc.html"},{"name":"Vánoční dárky s předstihem","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Vánoce plné tvoření, vůní a přírodní péče","children":[{"name":"Dárky pro péči, pleť a rty","href":"receptar.dc.html"},{"name":"Vánoční dárky na míru","href":"receptar.dc.html"},{"name":"Voňavé dárky: parfémy, difuzéry, svíčky","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Zimní relaxace a tvoření","children":[{"name":"Domácí čokoláda, pralinky, sladkosti","href":"receptar.dc.html"},{"name":"Masážní svíčky a dárky z lásky","href":"receptar.dc.html"},{"name":"Vše pro koupel: Mýdla, soli, šumivky","href":"receptar.dc.html"}],"href":"receptar.dc.html"},{"name":"Novinky","children":[],"href":"receptar.dc.html"},{"name":"Slovníček pojmů","children":[],"href":"receptar.dc.html"}]};
+    const menuTree = this.props.menuTree ?? [
+      { label: 'Výroba', allHref: '#blok3', title: 'Co chcete vyrábět?', groups: MM2.vyroba,
+        prod: { name: 'Mýdlová hmota s bambuckým máslem, 1 kg', price: '329 Kč', img: 'assets/products/mydlova-hmota-bambucke-maslo-1-kg.jpg', rating: 4.6, count: 96 },
+        sub: [ {name:'Kosmetika',img:'assets/vyroba/kosmetika.png',href:'#blok3'}, {name:'Mýdla',href:'#blok3'}, {name:'Svíčky',img:'assets/vyroba/svicky.png',href:'#blok3'}, {name:'Parfémy a vůně',href:'#blok3'}, {name:'Vlasová péče',href:'#blok3'}, {name:'Séra',href:'#blok3'}, {name:'Potraviny',img:'assets/vyroba/potraviny.png',href:'#blok3'}, {name:'Knihy a návody',img:'assets/vyroba/knihy.png',href:'#blok5'} ] },
+      { label: 'Suroviny', allHref: '#blok4', title: 'Suroviny dle kategorie',
+        prod: { name: 'Levandulové máslo, 100 g', price: '189 Kč', img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, count: 214 },
+        sub: [ {name:'Oleje',icon:'droplet',href:'#blok4'}, {name:'Másla',icon:'mortar',href:'#blok4'}, {name:'Aktivní látky',icon:'test-tube-01',href:'#blok4'}, {name:'Vůně',icon:'perfume',href:'#blok4'}, {name:'Vosky',icon:'honey-01',href:'#blok4'}, {name:'Barviva',icon:'blush-brush-01',href:'#blok4'}, {name:'Emulgátory',icon:'whisk',href:'#blok4'}, {name:'Jíly a tenzidy',icon:'body-soap',href:'#blok4'} ] },
+      { label: 'Produkty', allHref: 'kategorie.html', title: 'Hotové přírodní produkty', groups: MM2.produkty,
+        prod: { name: 'Stabilizovaný vitamin C, 10 g', price: '149 Kč', img: 'assets/products/stabilizovany-vitamin-c-10-g.jpg', rating: 4.7, count: 58 },
+        sub: [ {name:'Péče o pleť a kůži',href:'kategorie.html'}, {name:'Péče o rty',href:'kategorie.html'}, {name:'Péče o vlasy',href:'kategorie.html'}, {name:'Zubní hygiena',href:'kategorie.html'}, {name:'Voňavky a parfémy',href:'kategorie.html'}, {name:'Mytí a praní',href:'kategorie.html'}, {name:'Svíčky',href:'kategorie.html'}, {name:'Zdraví',href:'kategorie.html'}, {name:'Potraviny',href:'kategorie.html'}, {name:'Pro psy',href:'kategorie.html'} ] },
+      { label: 'Obaly', allHref: '#blok4', title: 'Obaly pro vaše výrobky',
+        prod: { name: 'Tuhý šampon žloutkový', price: '159 Kč', img: 'assets/products/tuhy-sampon-zloutkovy.jpg', rating: 0, count: 0 },
+        sub: [ {name:'Skleněné lahvičky',img:'assets/obaly/01-sklenene-lahvicky.jpg',href:'#blok4'}, {name:'Skleněné dózy',img:'assets/obaly/02-sklenene-dozy.jpg',href:'#blok4'}, {name:'Hliníkové a kovové',img:'assets/obaly/03-hlinikove-a-kovove.jpg',href:'#blok4'}, {name:'Plastové kelímky',img:'assets/obaly/04-plastove-kelimky.jpg',href:'#blok4'}, {name:'Plastové lahvičky',img:'assets/obaly/05-plastove-lahvicky.png',href:'#blok4'}, {name:'Papírové',img:'assets/obaly/06-papirove.jpg',href:'#blok4'}, {name:'Na svíčky',img:'assets/obaly/07-na-svicky.jpg',href:'#blok4'}, {name:'Roll-on',img:'assets/obaly/08-roll-on.jpg',href:'#blok4'}, {name:'Airless',img:'assets/obaly/09-airless.jpg',href:'#blok4'}, {name:'Pro péči o rty',img:'assets/obaly/10-pece-o-rty.jpg',href:'#blok4'}, {name:'Deodoranty, parfémy a difuzéry',img:'assets/obaly/11-deodoranty-parfemy-difuzery.jpg',href:'#blok4'}, {name:'Uzávěry samostatně',img:'assets/obaly/12-uzavery-samostatne.jpg',href:'#blok4'} ] },
+      { label: 'Receptář', allHref: 'receptar.dc.html', title: 'Recepty, které fungují', groups: MM2.receptar,
+        prod: { name: 'Levandulové máslo, 100 g', price: '189 Kč', img: 'assets/products/levandulove-maslo-100-g.jpg', rating: 4.8, count: 214 },
+        sub: [ {name:'Recepty',href:'receptar.dc.html'}, {name:'Výroba domácí kosmetiky',href:'receptar.dc.html'}, {name:'Tvoření s dětmi',href:'receptar.dc.html'}, {name:'Články k surovinám',href:'receptar.dc.html'}, {name:'Sezónní kolekce',href:'receptar.dc.html'}, {name:'Slovníček pojmů',href:'receptar.dc.html'} ] },
+    ];
+
+    // Suroviny, Produkty a Obaly: kategorie s fotkou (zatím placeholder tam, kde fotka chybí)
+    menuTree.forEach(t => {
+      if (!['Suroviny', 'Produkty', 'Obaly'].includes(t.label)) return;
+      const src = t.groups && t.groups.length ? t.groups : t.sub;
+      t.groups = src.map(g => ({ name: g.name, href: g.href || t.allHref, img: g.img || '', ph: true, children: g.children || [] }));
+    });
+    const mega = S.mega >= 0 ? menuTree[S.mega] : null;
+
+    const drawerMenu = menuTree.map((t, i) => {
+      const open = S.drawerExp === i;
+      return {
+        label: t.label, allHref: t.allHref,
+        sub: (t.groups && t.groups.length ? t.groups : t.sub).map((g, j) => {
+          const kids = g.children || [];
+          const key = i + '-' + j;
+          const sOpen = S.drawerSub === key;
+          return {
+            name: g.name, href: g.href || t.allHref, children: kids,
+            leaf: !kids.length, hasKids: kids.length > 0, open: sOpen,
+            allLabel: 'Vše v kategorii ' + g.name,
+            toggle: () => this.setState(s => ({ drawerSub: s.drawerSub === key ? null : key })),
+            headStyle: 'display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:44px; padding:8px 20px 8px 34px; color:' + (sOpen ? '#4C653D' : '#52524a') + '; font-size:15px; font-weight:' + (sOpen ? '600' : '400') + '; cursor:pointer;',
+            chevStyle: this.mask('arrow-down-01', 16, '#9b9888') + ' transition:transform .25s;' + (sOpen ? ' transform:rotate(180deg);' : ''),
+            kidsStyle: 'display:' + (sOpen ? 'block' : 'none') + '; padding:0 0 6px;',
+          };
+        }),
+        toggle: () => this.setState(s => ({ drawerExp: s.drawerExp === i ? -1 : i })),
+        headStyle: 'display:flex; align-items:center; justify-content:space-between; padding:15px 20px; min-height:44px; color:#2A2A24; font-size:17px; font-weight:500; cursor:pointer; background:' + (open ? '#F6F1E7' : 'transparent') + ';',
+        chevStyle: this.mask('arrow-right-01', 18, '#9b9888') + ' transition:transform .25s;' + (open ? ' transform:rotate(90deg);' : ''),
+        subStyle: 'overflow:hidden; display:' + (open ? 'block' : 'none') + ';',
+      };
+    });
+
+    return {
+      loyaltyHref: loyalty,
+      navvernost: navCls('vernost'),
+      czActive: this.state.lang === 'cz',
+      skActive: this.state.lang === 'sk',
+      czFlagCls: this.state.lang === 'cz' ? 'ek-flag-on' : 'ek-flag-off',
+      skFlagCls: this.state.lang === 'sk' ? 'ek-flag-on' : 'ek-flag-off',
+      setCz: () => this.setState({ lang: 'cz' }),
+      setSk: () => this.setState({ lang: 'sk' }),
+      topbarText: this.props.topbarText ?? 'Doprava zdarma od 2000 Kč · Ověřené recepty od roku 2009',
+      topbarCls: (this.props.topbarVariant ?? this.state.topbar ?? 'v2') === 'v2' ? 'ek-topbar-v2'
+        : ((this.props.topbarVariant ?? this.state.topbar ?? 'v2') === 'v3' ? 'ek-topbar-v3' : ''),
+      homeHref: this.props.homeHref ?? 'index.html',
+      cartCount: S.cart.reduce((a, p) => a + p.qty, 0),
+      hasCart: S.cart.length > 0,
+      cartItems: S.cart,
+      cartOpen: S.cartOpen,
+      cartHover: () => { if (window.innerWidth > 999) this.setState({ cartOpen: true, mega: -1 }); },
+      cartLeave: () => { if (window.innerWidth > 999) this.setState({ cartOpen: false }); },
+      cartToggle: (e) => { if (window.innerWidth <= 999) { e.preventDefault(); this.setState(st => ({ cartOpen: !st.cartOpen })); } },
+      closeCart: () => this.setState({ cartOpen: false }),
+      aboutHref: about,
+      navvyroba: navCls('vyroba'),
+      navsuroviny: navCls('suroviny'),
+      navprodukty: navCls('produkty'),
+      navobaly: navCls('obaly'),
+      navreceptar: navCls('receptar'),
+      navonas: navCls('onas'),
+      loginOpen: S.loginOpen,
+      showLogin: S.loginOpen && !(this.props.loggedIn ?? false),
+      showAccount: S.loginOpen && (this.props.loggedIn ?? false),
+      customerName: this.props.customerName ?? 'Anežka Drtinová',
+      priceGroup: this.props.priceGroup ?? 'Registrovaný zákazník',
+      loginToggle: () => this.setState(st => ({ loginOpen: !st.loginOpen, cartOpen: false, mega: -1 })),
+      closeLogin: () => this.setState({ loginOpen: false }),
+      removeCartItem: (i) => this.setState(st => ({ cart: st.cart.filter((_, k) => k !== i) })),
+
+      iconSearch: this.mask('search-01', 22, '#4C653D'),
+      iconUser: this.mask((this.props.loggedIn ?? false) ? 'user-check-01' : 'user', 22, '#4C653D'),
+      iconUserSm: this.mask((this.props.loggedIn ?? false) ? 'user-check-01' : 'user', 20, '#4C653D'),
+      iconCart: this.mask('shopping-cart-01', 22, '#4C653D'),
+      iconFav: this.mask('favourite', 22, '#4C653D'),
+      favCount: S.favCount,
+      favClass: 'ek-hdr-fav',
+      favTipOpen: S.favTip,
+      favTipText: S.favCount > 0
+        ? 'V oblíbených máte ' + S.favCount + (S.favCount === 1 ? ' produkt' : S.favCount < 5 ? ' produkty' : ' produktů') + '. Přihlášenému zůstanou uložené i příště.'
+        : 'Srdíčkem u produktu si uložíte suroviny, ke kterým se chcete vrátit. Přihlášenému zůstanou i příště.',
+      favTipIn: () => {
+        clearTimeout(this._tipTimer);
+        this._tipTimer = setTimeout(() => this.setState({ favTip: true }), 600);
+      },
+      favTipOut: () => {
+        clearTimeout(this._tipTimer);
+        this.setState({ favTip: false });
+      },
+      hasFavs: S.favCount > 0,
+      iconMenu: this.mask('menu-02', 18, '#F6F1E7'),
+      iconClose: this.mask('cancel-01', 18),
+      iconArrow: this.mask('arrow-right-02', 18),
+      iconCaret: this.mask('arrow-right-01', 13, '#9b9888') + ' transform:rotate(90deg);',
+      iconLoyal: this.mask('percent-circle', 17, '#D8763B'),
+      iconLoyalTop: this.mask('percent-circle', 15, '#EFE7D6'),
+
+      wrapCls: [((this.props.topbarVariant ?? this.state.topbar ?? 'v2') === 'v2' ? 'ek-topbar-v2' : ((this.props.topbarVariant ?? this.state.topbar ?? 'v2') === 'v3' ? 'ek-topbar-v3' : '')), ((this.props.searchVariant ?? S.srch ?? 'v2') === 'v2' ? 'ek-srch-v2' : '')].filter(Boolean).join(' '),
+      srchV2: (this.props.searchVariant ?? S.srch ?? 'v2') === 'v2',
+      srchCls: (this.props.searchVariant ?? S.srch ?? 'v2') === 'v2' ? 'ek-srch-v2' : '',
+      iconSearchIn: this.mask('search-01', 20, '#7c7a6a'),
+      inlineQuery: S.iq || '',
+      inlineSuggOpen: (this.props.searchVariant ?? S.srch ?? 'v2') === 'v2' && !!S.iFocus && (S.iq || '').trim().length > 0,
+      onInlineInput: (e) => this.setState({ iq: e.target.value, iFocus: true, mega: -1 }),
+      onInlineFocus: () => { clearTimeout(this._blurT); this.setState({ iFocus: true, mega: -1, cartOpen: false, loginOpen: false }); },
+      onInlineBlur: () => { clearTimeout(this._blurT); this._blurT = setTimeout(() => this.setState({ iFocus: false }), 200); },
+      onInlineKey: (e) => { if (e.key === 'Escape') { this.setState({ iq: '', iFocus: false }); e.target.blur(); } },
+      searchOpen: S.searchOpen,
+      searchActive: S.searchOpen && S.query.trim().length > 0,
+      query: S.query,
+      openSearch: () => { this.setState({ searchOpen: true, mega: -1 }); setTimeout(() => this._input && this._input.focus(), 30); },
+      closeSearch: () => this.setState({ searchOpen: false, query: '' }),
+      onQueryInput: (e) => this.setState({ query: e.target.value }),
+      submitSearch: (e) => { e.preventDefault(); const q = (S.iq || S.query || '').trim(); location.href = 'vysledky-vyhledavani.html' + (q ? '?q=' + encodeURIComponent(q) : ''); },
+      searchInputRef: (el) => { this._input = el; },
+
+      megaOpen: S.mega >= 0,
+      openMega0: () => this.setState({ mega: 0 }),
+      openMega1: () => this.setState({ mega: 1 }),
+      openMega2: () => this.setState({ mega: 2 }),
+      openMega3: () => this.setState({ mega: 3 }),
+      openMega4: () => this.setState({ mega: 4 }),
+      megaClose: () => this.setState({ mega: -1 }),
+      megaTitle: mega ? mega.title : '',
+      megaAllHref: mega ? mega.allHref : '#',
+      megaLinks: mega ? mega.sub : [],
+      megaVariant: 'mm3',
+      megaGroups: mega && mega.groups ? mega.groups : null,
+      megaProdName: mega ? mega.prod.name : '',
+      megaProdPrice: mega ? mega.prod.price : '',
+      megaProdImg: mega ? mega.prod.img : '',
+      megaProdRating: mega ? mega.prod.rating : 0,
+      megaProdRatingCount: mega ? mega.prod.count : 0,
+
+      drawerAccount: (this.props.loggedIn ?? false)
+        ? [
+            { label: 'Můj účet — přehled', href: 'muj-ucet.html', icon: this.mask('dashboard-speed-01', 20, '#4C653D') },
+            { label: 'Přehled objednávek', href: 'objednavky.html', icon: this.mask('delivery-box-01', 20, '#4C653D') },
+            { label: 'Přehled faktur', href: 'faktury.html', icon: this.mask('invoice-01', 20, '#4C653D') },
+            { label: 'Oblíbené položky', href: 'oblibene.html', icon: this.mask('favourite', 20, '#4C653D') },
+            { label: 'Uložené košíky', href: 'kosik.dc.html', icon: this.mask('shopping-cart-02', 20, '#4C653D') },
+            { label: 'Správa účtu', href: 'ucet.html', icon: this.mask('user-circle', 20, '#4C653D') },
+            { label: 'Odhlásit z e-shopu', href: '#', icon: this.mask('logout-01', 20, '#A33203') },
+          ].map((a, i, arr) => Object.assign({}, a, {
+            style: 'display:flex; align-items:center; gap:10px; padding:13px 20px; min-height:44px; text-decoration:none; font-size:15px;'
+              + (i === arr.length - 1 ? ' color:#A33203; font-weight:600; border-top:1px solid #EFE7D6; margin-top:6px;' : ' color:#2A2A24;'),
+          }))
+        : [
+            { label: 'Přihlásit se', href: 'muj-ucet.html', icon: this.mask('user', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:15px 20px; min-height:44px; text-decoration:none; color:#2A2A24; font-size:15px; margin-top:6px;' },
+            { label: 'Oblíbené položky', href: 'oblibene.html', icon: this.mask('favourite', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 13px; text-decoration:none; color:#2A2A24; font-size:15px;' },
+            { label: 'Sledování objednávky', href: '#', icon: this.mask('delivery-tracking-01', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 13px; text-decoration:none; color:#2A2A24; font-size:15px;' },
+            { label: 'Kontakt', href: '#', icon: this.mask('mail-01', 20, '#4C653D'), style: 'display:flex; align-items:center; gap:10px; padding:6px 20px 15px; text-decoration:none; color:#2A2A24; font-size:15px;' },
+          ],
+
+      drawerMenu,
+      drawerLinksOther: [
+        { label: 'Věrnostní program', href: loyalty, icon: this.mask('percent-circle', 20, '#4C653D') },
+        { label: 'O nás', href: about, icon: this.mask('leaf-01', 20, '#4C653D') },
+      ],
+      openDrawer: () => this.setState({ drawerOpen: true }),
+      closeDrawer: () => this.setState({ drawerOpen: false }),
+      stopProp: (e) => e.stopPropagation(),
+      drawerWrapStyle: 'position:fixed; inset:0; z-index:200; visibility:' + (S.drawerOpen ? 'visible' : 'hidden') + '; pointer-events:' + (S.drawerOpen ? 'auto' : 'none') + ';',
+      drawerBdStyle: 'position:absolute; inset:0; background:rgba(20,26,20,.5); opacity:' + (S.drawerOpen ? '1' : '0') + '; transition:opacity .3s ease;',
+      drawerPanelStyle: 'position:absolute; top:0; right:0; height:100%; width:84%; max-width:360px; background:#F6F1E7; transform:translateX(' + (S.drawerOpen ? '0' : '100%') + '); transition:transform .3s cubic-bezier(.32,.72,0,1); display:flex; flex-direction:column; box-shadow:-20px 0 50px -20px rgba(20,26,20,.5);',
+    };
+  }
+}
+</script>
+</body>
+</html>

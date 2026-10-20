@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #D14405; color: #fff; }
+  a { color: #D8763B; text-decoration: none; }
+  a:hover { color: #B23803; }
+  /* shared component hover states — components rely on these class names */
+  .ek-btn-main:hover { background: #B23803 !important; border-color: #B23803 !important; }
+  .ek-btn-primary:hover { background: #4C653D !important; border-color: #4C653D !important; }
+  .ek-btn-secondary:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+  .ek-btn-ghost:hover { background: #EFE7D6 !important; }
+  .ek-fav:hover { background: #F6F1E7 !important; color: #D8763B !important; border-color: #E4D9C2 !important; transform: scale(1.06); }
+  .ek-fav.is-on:hover { background: #B23803 !important; border-color: #B23803 !important; color: #fff !important; }
+  .ek-btn-onDark:hover { background: #EDE4D0 !important; }
+  .ek-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(45,58,46,.45); }
+  .ek-cat:hover .ek-cat-ov { opacity: 1; }
+  .ek-cat:hover .ek-ph { transform: scale(1.05); }
+  .ds-side a:hover { background: rgba(246,241,231,.12); color: #fff; }
+  .ds-icon-cell:hover { background: #EFE7D6; }
+  .ds-nav-demo::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; background: #D14405; transform: scaleX(0); transform-origin: left; transition: transform .28s cubic-bezier(.4,0,.2,1); }
+  .ds-nav-demo:hover { transform: translateY(-1px); }
+  .ds-nav-demo:hover::after { transform: scaleX(1); }
+  .ds-loyal-demo:hover { background: #4C653D !important; color: #F6F1E7 !important; }
+
+
+  .ds-tipwrap { position: relative; display: inline-flex; }
+  /* Ukázka v design systému: bubliny jsou stále vidět, ale chovají se jako v provozu */
+  .ds-tipgrid { grid-template-columns: repeat(2, minmax(300px, 1fr)) !important; }
+  .ds-tipgrid .ds-tipwrap { width: 100%; justify-content: center; }
+  .ds-tipcell-right .ds-tipwrap { justify-content: flex-end; }
+  .ds-tipgrid .ds-tip { width: 268px; max-width: 268px; }
+  .ds-tipcell { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; min-width: 0; min-height: 250px; }
+  .ds-tipcell-top { justify-content: flex-start; padding-top: 140px; }
+  .ds-tipcell-right { align-items: flex-end; text-align: right; }
+  .ds-tipcell-right .ds-tip { text-align: left; }
+  .ds-tip { position: absolute; z-index: 30; width: max-content; max-width: 268px; padding: 12px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E4DAC6; box-shadow: 0 18px 38px -18px rgba(45,58,46,.5); font-family: 'Work Sans',sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.55; color: #4A4A42; text-align: left; pointer-events: none; }
+  .ds-tip::before { content: ''; position: absolute; width: 10px; height: 10px; background: #FFFFFF; border-left: 1px solid #E4DAC6; border-top: 1px solid #E4DAC6; }
+  .ds-tip-b { top: calc(100% + 14px); left: 50%; transform: translateX(-50%); }
+  .ds-tip-b::before { top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); }
+  .ds-tip-br { top: calc(100% + 14px); right: -6px; }
+  .ds-tip-br::before { top: -6px; right: 12px; transform: rotate(45deg); }
+  .ds-tip-t { bottom: calc(100% + 14px); left: 50%; transform: translateX(-50%); }
+  .ds-tip-t::before { bottom: -6px; left: 50%; transform: translateX(-50%) rotate(225deg); }
+  .ds-tip-dark { background: #4C653D; border-color: #4C653D; color: #F6F1E7; }
+  .ds-tip-dark::before { background: #4C653D; border-color: #4C653D; }
+  .ds-in { width: 100%; height: 48px; padding: 0 15px; border: 1.5px solid #CFC4AA; border-radius: 12px; background: #fff; font-family: 'Work Sans',sans-serif; font-size: 15.5px; color: #2A2A24; outline: none; transition: border-color .18s, box-shadow .18s; }
+  .ds-in:focus { border-color: #4C653D; box-shadow: 0 0 0 3px rgba(76,101,61,.14); }
+  .ds-in::placeholder { color: #b3ae9c; }
+  .ds-fld { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .ds-fld > span:first-child { font-size: 13px; font-weight: 600; color: #4A4A42; }
+  .ds-check { position: relative; display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+  .ds-check input { position: absolute; left: 0; top: 2px; width: 22px; height: 22px; margin: 0; opacity: 0; cursor: pointer; }
+  .ds-box { width: 22px; height: 22px; flex: 0 0 auto; border: 1.5px solid #CFC4AA; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: border-color .2s, background .2s; }
+  .ds-box-r { border-radius: 50%; }
+  .ds-box > span { opacity: 0; transition: opacity .15s; }
+  .ds-dot { width: 9px; height: 9px; border-radius: 50%; background: #F6F1E7; }
+  .ds-check:hover .ds-box { border-color: #4C653D; }
+  .ds-check input:checked + .ds-box { background: #4C653D; border-color: #4C653D; }
+  .ds-check input:checked + .ds-box > span { opacity: 1; }
+  .ds-check input:focus-visible + .ds-box { outline: 2px solid #4C653D; outline-offset: 2px; }
+  @media (max-width: 1080px) { .ds-tipgrid { grid-template-columns: 1fr !important; } }
+  @media (max-width: 900px) { .ds-form-grid { grid-template-columns: 1fr !important; } }
+  @media (max-width: 420px) { .ds-tipgrid .ds-tip { width: 100%; } }
+  @media (max-width: 900px) {
+    .ds-wrap { flex-direction: column !important; }
+    .ds-side { position: static !important; width: auto !important; height: auto !important; }
+    .ds-main { padding: 32px 20px !important; }
+    .ds-h1 { font-size: 38px !important; }
+    .ds-grid-2, .ds-grid-3, .ds-grid-4 { grid-template-columns: 1fr !important; }
+    .ds-swatches { grid-template-columns: repeat(2,1fr) !important; }
+    .ds-icons { grid-template-columns: repeat(4,1fr) !important; }
+  }
+  @media (max-width: 1200px) {
+    .ds-role-row { grid-template-columns: 1fr !important; gap: 7px !important; }
+    .ds-stock-row { grid-template-columns: 1fr !important; gap: 7px !important; }
+    .ds-stock-head { display: none !important; }
+    .ds-rating-row { grid-template-columns: 1fr !important; gap: 7px !important; }
+  }
+</style>
+</helmet>
+
+<div class="ds-wrap" style="display:flex; align-items:flex-start; background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; font-family:'Work Sans',sans-serif; color:#2A2A24; min-height:100vh;">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="ds-side" style="position:sticky; top:0; width:250px; height:100vh; flex-shrink:0; background:#4C653D; padding:28px 22px; overflow-y:auto;">
+    <img src="assets/ekokoza-logo-cream.png" alt="ekokoza" style="width:130px; display:block; margin-bottom:6px;">
+    <p style="margin:0 0 26px; color:#AEC49E; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600;">Design systém</p>
+    <nav style="display:flex; flex-direction:column; gap:2px;">
+      <sc-for list="{{ toc }}" as="t" hint-placeholder-count="8">
+        <a href="{{ t.href }}" style="display:block; padding:9px 12px; border-radius:9px; color:#DCE6D2; font-size:14.5px; font-weight:500; transition:background .2s, color .2s;">{{ t.label }}</a>
+      </sc-for>
+    </nav>
+    <div style="margin-top:26px; padding:14px 16px; background:rgba(246,241,231,.09); border-radius:12px; font-size:12.5px; line-height:1.5; color:#C4D6B8;">
+      Zdroj pravdy pro celý web. Komponenty jsou soubory <strong style="color:#EFE7D6;">ui-*.dc.html</strong> v kořeni projektu a importují se do stránek.
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="ds-main" style="flex:1; min-width:0; padding:56px 48px 96px;">
+
+    <header style="margin-bottom:60px;">
+      <p style="margin:0 0 10px; color:#D8763B; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Ekokoza</p>
+      <h1 class="ds-h1" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:52px; line-height:1.04; color:#4C653D;">Design systém</h1>
+      <p style="margin:0; font-size:17.5px; line-height:1.6; color:#52524a; max-width:62ch;">Barvy, typografie, komponenty a pravidla pro web ekokoza.cz. Postaveno na brand positioningu „S námi víte, co tvoříte. Suroviny, recepty a ověřené postupy." — klidně, věcně, bez slevové urgence.</p>
+    </header>
+
+    <!-- ===== BARVY ===== -->
+    <section id="barvy" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Barvy</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jarní, tlumená paleta. Tmavá zeleň je jediná — <strong style="font-weight:600; color:#4C653D;">#4C653D</strong> z grafického manuálu; dřívější druhý odstín byl zrušen. Terrakota výhradně pro hlavní konverzní akce, jedna na obrazovku.</p>
+
+      <h3 style="margin:0 0 14px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Paleta z grafického manuálu</h3>
+      <div class="ds-swatches" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin-bottom:34px;">
+        <sc-for list="{{ colorsBrand }}" as="c" hint-placeholder-count="6">
+          <div style="border-radius:14px; overflow:hidden; border:1px solid #ECE3D2; background:#fff;">
+            <div style="{{ c.chipStyle }}"></div>
+            <div style="padding:13px 15px;">
+              <p style="margin:0 0 3px; font-weight:600; font-size:14.5px;">{{ c.name }}</p>
+              <p style="margin:0 0 4px; font-family:ui-monospace,monospace; font-size:13px; color:#4C653D;">{{ c.hex }}</p>
+              <p style="margin:0; font-size:12.5px; color:#8a8776; line-height:1.4;">{{ c.use }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h3 style="margin:0 0 14px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Odvozená paleta webu</h3>
+      <div class="ds-swatches" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
+        <sc-for list="{{ colors }}" as="c" hint-placeholder-count="10">
+          <div style="border-radius:14px; overflow:hidden; border:1px solid #ECE3D2; background:#fff;">
+            <div style="{{ c.chipStyle }}"></div>
+            <div style="padding:13px 15px;">
+              <p style="margin:0 0 3px; font-weight:600; font-size:14.5px;">{{ c.name }}</p>
+              <p style="margin:0 0 4px; font-family:ui-monospace,monospace; font-size:13px; color:#4C653D;">{{ c.hex }}</p>
+              <p style="margin:0; font-size:12.5px; color:#8a8776; line-height:1.4;">{{ c.use }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h3 style="margin:34px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Role barev — k čemu slouží a na jakém podkladu</h3>
+      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Závazné použití. Když barva není v tabulce, na webu se nepoužívá. Uvedený kontrast je vůči prvnímu jmenovanému podkladu.</p>
+      <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden;">
+        <sc-for list="{{ roleGroups }}" as="g" hint-placeholder-count="5">
+          <div>
+            <div style="padding:12px 20px; background:#FBF8F1; border-bottom:1px solid #EFE7D6; font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#8a8776;">{{ g.label }}</div>
+            <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="3">
+              <div class="ds-role-row" style="display:grid; grid-template-columns:186px minmax(0,1fr) minmax(0,1fr) 132px; gap:18px; padding:16px 20px; border-bottom:1px solid #F4EEE1; align-items:start;">
+                <div style="display:flex; align-items:center; gap:11px; min-width:0;">
+                  <span style="{{ r.chip }}"></span>
+                  <span style="min-width:0;">
+                    <span style="display:block; font-weight:600; font-size:14px; color:#2A2A24;">{{ r.name }}</span>
+                    <span style="display:block; font-family:ui-monospace,monospace; font-size:12.5px; color:#4C653D;">{{ r.hex }}</span>
+                  </span>
+                </div>
+                <p style="margin:0; font-size:14px; line-height:1.5; color:#4A4A42;">{{ r.use }}</p>
+                <p style="margin:0; font-size:14px; line-height:1.5; color:#6B6B5E;">{{ r.on }}</p>
+                <p style="margin:0; font-size:12.5px; line-height:1.45; color:#8a8776;">{{ r.contrast }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:14px 0 0; font-size:14px; line-height:1.55; color:#6B6B5E; max-width:78ch;">Barvy skladových stavů mají vlastní semantickou škálu — viz sekce <a href="#skladovost">Skladovost</a>. Na obrazovce držíme <strong style="font-weight:600; color:#4C653D;">nejvýše dva podkladové tóny</strong> a <strong style="font-weight:600; color:#4C653D;">jedno terrakotové CTA</strong>.</p>
+    </section>
+
+    <!-- ===== JARNÍ PALETA ===== -->
+    <section id="jaro" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Jarní paleta</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Finální paleta webu. Světlejší báze a svěží akcenty místo podzimních tónů; tmavá zeleň #4C653D (jediná, dle manuálu) a slonovinová #F6F1E7 zůstávají nosné. Konverzní pálená oranžová jen pro nákupní akce — jedna na obrazovku.</p>
+
+      <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden; margin-bottom:22px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:12px; padding:26px;">
+          <sc-for list="{{ bColors }}" as="c" hint-placeholder-count="5">
+            <div>
+              <div style="{{ c.chipStyle }}"></div>
+              <p style="margin:9px 0 2px; font-weight:600; font-size:13.5px;">{{ c.name }}</p>
+              <p style="margin:0 0 3px; font-family:ui-monospace,monospace; font-size:12.5px; color:#4C653D;">{{ c.hex }}</p>
+              <p style="margin:0; font-size:12px; color:#8a8776; line-height:1.4;">{{ c.use }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:18px 26px; border-top:1px solid #EFE7D6; background:#FBF8F1;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">CTA</span>
+          <span style="{{ bCtaMain }}">Do košíku</span>
+          <span style="{{ bCtaSec }}">Zjistit více</span>
+        </div>
+      </div>
+
+      <h3 style="margin:0 0 14px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Světlé přechody na podklady sekcí</h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; margin-bottom:22px;">
+        <sc-for list="{{ bGrads }}" as="g" hint-placeholder-count="3">
+          <div style="border:1px solid #ECE3D2; border-radius:12px; overflow:hidden; background:#fff;">
+            <div style="{{ g.style }}"></div>
+            <div style="padding:10px 13px;">
+              <p style="margin:0 0 2px; font-weight:600; font-size:13px;">{{ g.name }}</p>
+              <p style="margin:0; font-size:11.5px; color:#8a8776; line-height:1.4;">{{ g.use }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden;">
+        <div style="padding:22px 26px 0;">
+          <h3 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:24px; color:#2A2A24;">Tmavé přechody</h3>
+          <p style="margin:0 0 18px; font-size:14.5px; color:#6B6B5E; line-height:1.55; max-width:74ch;">Pro tmavé pásy — patička, věrnostní program, výzva k akci, hero přes fotku. Fungují se všemi třemi směry. Text vždy slonovinový #F6F1E7.</p>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; padding:0 26px 24px;">
+          <sc-for list="{{ darkGrads }}" as="g" hint-placeholder-count="6">
+            <div style="border:1px solid #ECE3D2; border-radius:12px; overflow:hidden;">
+              <div style="{{ g.style }}"><span style="font-family:'EB Garamond',serif; font-size:18px; color:#F6F1E7;">S námi víte, co tvoříte.</span></div>
+              <div style="padding:10px 13px; background:#fff;">
+                <p style="margin:0 0 2px; font-weight:600; font-size:13px;">{{ g.name }}</p>
+                <p style="margin:0; font-size:11.5px; color:#8a8776; line-height:1.4;">{{ g.use }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRHANÝ PÁS ===== -->
+    <section id="trhany-pas" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Trhaný pás</h2>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Způsob, jak opticky oddělit sekci od okolí. Podklad jde přes celou šířku okna (full bleed), nahoře i dole má nepravidelný okraj jako ručně utržený papír a po obou hranách jemný vnitřní stín, který list opticky zvedne od stránky. Používá se na sekce, které mají působit jako vložený list — receptář, příběh, návody. Nejvýš dva až tři na stránku, jinak efekt ztrácí smysl.</p>
+      <div style="border:1px solid #ECE3D2; border-radius:14px; overflow:hidden; background:linear-gradient(rgba(255,254,248,.55), rgba(255,254,248,.55)), url('assets/background.png') repeat #FFFDF6; background-size:auto, 620px; padding:30px 0;">
+        <sc-for list="{{ tearPads }}" as="p" hint-placeholder-count="3">
+          <div style="position:relative; padding:56px 32px; margin:14px 0;">
+            <div aria-hidden="true" style="{{ p.padStyle }}"></div>
+            <div style="position:relative; text-align:center; display:flex; flex-direction:column; gap:5px;">
+              <span style="font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:#4F6E2A;">{{ p.kicker }}</span>
+              <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:27px; color:#4C653D; line-height:1.15;">{{ p.name }}</span>
+              <span style="font-size:13.5px; line-height:1.5; color:#6B6B5E; max-width:56ch; margin:2px auto 0;">{{ p.use }}</span>
+              <span style="font-family:ui-monospace,monospace; font-size:12px; color:#8a8776; margin-top:4px;">{{ p.hex }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:16px 0 0; font-size:13.5px; color:#8a8776; line-height:1.55; max-width:78ch;">Vnitřní stín je závazná součást pásu: <code style="font-family:ui-monospace,monospace; font-size:12.5px;">inset 0 14px 26px -14px rgba(45,58,46,.28)</code> nahoře a <code style="font-family:ui-monospace,monospace; font-size:12.5px;">inset 0 -14px 26px -14px rgba(45,58,46,.24)</code> dole. Sekce potřebuje větší vnitřní odsazení nahoře a dole (cca 86 / 66 px), aby text nenarážel do trhaného okraje. Na jedné stránce se drží jedna varianta podkladu — střídání dvou a více rozbíjí rytmus.</p>
+    </section>
+
+    <!-- ===== TYPOGRAFIE ===== -->
+    <section id="typografie" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Typografie</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Podle grafického manuálu: EB Garamond (Medium a Regular) pro nadpisy a serifové akcenty, Work Sans jako základní písmo — SemiBold pro nadpisy v bezserifu, Medium pro podnadpisy a perexy, Regular a Bold pro odstavce a UI. Náhradní písmo tam, kde Work Sans nelze použít, je Helvetica. Obě písma jsou na Google Fonts pod licencí OFL.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 38px; display:flex; flex-direction:column; gap:22px;">
+        <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="7">
+          <div style="display:flex; align-items:baseline; gap:26px; flex-wrap:wrap; padding-bottom:20px; border-bottom:1px solid #F3EDE0;">
+            <span style="width:110px; flex-shrink:0; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">{{ t.label }}</span>
+            <span style="{{ t.style }}">{{ t.sample }}</span>
+            <span style="margin-left:auto; font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; white-space:nowrap;">{{ t.spec }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ===== ROZESTUPY A TVARY ===== -->
+    <section id="spacing" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Rozestupy a tvary</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Container 1560 px, maximální šířka 1720 px. Kulaté rohy 14 px na kartách a obrázcích.</p>
+      <div class="ds-grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
+          <h3 style="margin:0 0 18px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Rozestupy</h3>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <sc-for list="{{ spacing }}" as="s" hint-placeholder-count="6">
+              <div style="display:flex; align-items:center; gap:16px;">
+                <span style="width:46px; font-family:ui-monospace,monospace; font-size:13px; color:#4C653D; font-weight:600;">{{ s.px }}</span>
+                <span style="{{ s.barStyle }}"></span>
+                <span style="font-size:13px; color:#8a8776;">{{ s.use }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
+          <h3 style="margin:0 0 18px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Rádiusy a stíny</h3>
+          <div style="display:flex; gap:18px; flex-wrap:wrap; margin-bottom:26px;">
+            <sc-for list="{{ radii }}" as="r" hint-placeholder-count="4">
+              <div style="text-align:center;">
+                <div style="{{ r.boxStyle }}"></div>
+                <p style="margin:8px 0 0; font-family:ui-monospace,monospace; font-size:12.5px; color:#4C653D;">{{ r.px }}</p>
+                <p style="margin:2px 0 0; font-size:11.5px; color:#8a8776;">{{ r.use }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <sc-for list="{{ shadows }}" as="s" hint-placeholder-count="2">
+              <div style="text-align:center;">
+                <div style="{{ s.boxStyle }}"></div>
+                <p style="margin:10px 0 0; font-size:12.5px; color:#4C653D; font-weight:600;">{{ s.name }}</p>
+                <p style="margin:2px 0 0; font-size:11.5px; color:#8a8776;">{{ s.use }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LOGO ===== -->
+    <section id="logo" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Logo</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Zelená verze na světlé podklady, krémová na tmavé. Visačka jen na desktopu.</p>
+      <div class="ds-grid-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:190px;">
+          <img src="assets/ekokoza-logo-green.png" alt="ekokoza" style="width:170px; display:block;">
+          <p style="margin:0; font-size:13px; color:#8a8776;">Horizontální — světlý podklad</p>
+        </div>
+        <div style="background:#4C653D; border-radius:14px; padding:34px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:190px;">
+          <img src="assets/ekokoza-logo-cream.png" alt="ekokoza" style="width:170px; display:block;">
+          <p style="margin:0; font-size:13px; color:#AEC49E;">Horizontální — tmavý podklad</p>
+        </div>
+        <div style="background:#F6F1E7; border:1px solid #ECE3D2; border-radius:14px; min-height:190px; overflow:hidden; display:flex; flex-direction:column;">
+          <div style="width:100%; background:#4C653D; height:35px; flex-shrink:0;"></div>
+          <div style="position:relative; flex:1; display:flex; align-items:flex-end; justify-content:center; padding-bottom:14px;">
+            <span style="position:absolute; top:-35px; left:50%; margin-left:-60px; width:120px; height:92px; padding:14px 12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:#4C653D; border-radius:0 0 16px 16px; box-shadow:0 10px 20px -8px rgba(45,58,46,.45);">
+              <img src="assets/ekokoza-znak-cream.png" alt="" style="width:38px; display:block;">
+              <img src="assets/ekokoza-napis-cream.png" alt="ekokoza" style="width:76px; display:block;">
+            </span>
+            <p style="margin:0; font-size:13px; color:#8a8776;">Visačka v hlavičce</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KOMPONENTY: TLAČÍTKA ===== -->
+    <section id="tlacitka" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Tlačítka</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Button</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Terrakota (Main) jen pro hlavní konverzi — Koupit, Do košíku, Odeslat. Primární v zelené pro důležité, ale nekonverzní akce. Sekundární pro doplňkové akce. <strong style="font-weight:600; color:#4C653D;">Na tmavě zelené ploše se terrakota nepoužívá</strong> — platí varianta On dark.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 36px; display:flex; flex-wrap:wrap; gap:34px; align-items:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Main</span>
+          <dc-import name="ui-Button" variant="main" size="lg" label="Koupit" hint-size="220px,52px"></dc-import>
+          <span style="font-size:12.5px; color:#8a8776;">Hlavní konverze — jedna na obrazovku</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Primární</span>
+          <dc-import name="ui-Button" variant="primary" size="lg" label="Začněte tady" hint-size="220px,52px"></dc-import>
+          <span style="font-size:12.5px; color:#8a8776;">Přihlásit se, Uložit, Odeslat formulář</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Sekundární</span>
+          <dc-import name="ui-Button" variant="secondary" size="md" label="Zobrazit všechny recepty" hint-size="280px,48px"></dc-import>
+          <span style="font-size:12.5px; color:#8a8776;">Zobrazit více, Přečíst příběh</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Malé</span>
+          <dc-import name="ui-Button" variant="primary" size="sm" label="Koupit" show-arrow="{{ false }}" hint-size="100px,40px"></dc-import>
+          <span style="font-size:12.5px; color:#8a8776;">V produktové kartě</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Navigace</span>
+          <div style="display:flex; gap:20px; align-items:center;">
+            <span class="ds-nav-demo" style="position:relative; display:inline-block; color:#2A2A24; font-size:15px; font-weight:500; cursor:pointer; transition:transform .25s;">Co vyrábět</span>
+            <span class="ds-loyal-demo" style="display:inline-flex; align-items:center; gap:8px; border:1.5px solid #4C653D; color:#4C653D; padding:9px 18px; border-radius:999px; font-weight:600; font-size:15px; transition:all .25s; cursor:pointer;">Věrnostní program</span>
+          </div>
+          <span style="font-size:12.5px; color:#8a8776;">Podtržení zleva · pill s výplní</span>
+        </div>
+      </div>
+
+      <h3 style="margin:34px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">CTA na tmavé ploše</h3>
+      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Na tmavě zeleném podkladu terrakota vibruje a čte se jako varování. Hlavní akci tam nese světlé tlačítko: krémová plocha #F6F1E7 s textem #4C653D (kontrast 5,6:1). Doprovodná akce zůstává obrysová v krémové. Na fotografii s tmavým přechodem terrakota zůstává — leží na snímku, ne na brandové zeleni.</p>
+      <div class="ds-grid-2" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px;">
+        <div style="border-radius:14px; overflow:hidden; border:1px solid #ECE3D2;">
+          <div style="background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); padding:30px 28px; display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
+            <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:23px; color:#F6F1E7;">Odměňujeme opakovanou tvorbu.</span>
+            <div style="display:flex; gap:11px; flex-wrap:wrap;">
+              <dc-import name="ui-Button" variant="onDark" size="md" label="Zjistit více" hint-size="170px,48px"></dc-import>
+              <span style="display:inline-flex; align-items:center; padding:13px 26px; border-radius:999px; border:1.5px solid rgba(246,241,231,.5); color:#F6F1E7; font-weight:600; font-size:15px;">Do košíku</span>
+            </div>
+          </div>
+          <div style="padding:13px 16px; background:#F4F7EA; border-top:1px solid #ECE3D2; font-size:13px; color:#4C653D; font-weight:600;">Správně — krémová plocha, obrysová doprovodná akce</div>
+        </div>
+        <div style="border-radius:14px; overflow:hidden; border:1px solid #ECE3D2;">
+          <div style="background:linear-gradient(155deg,#4C653D 0%,#22301F 100%); padding:30px 28px; display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
+            <span style="font-family:'EB Garamond',serif; font-weight:500; font-size:23px; color:#F6F1E7;">Odměňujeme opakovanou tvorbu.</span>
+            <span style="display:inline-flex; align-items:center; padding:13px 26px; border-radius:999px; background:#D14405; color:#fff; font-weight:600; font-size:15px;">Zjistit více</span>
+          </div>
+          <div style="padding:13px 16px; background:#FBF0EA; border-top:1px solid #ECE3D2; font-size:13px; color:#B23803; font-weight:600;">Nepoužívat — terrakota na zelené ploše</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TOOLTIP ===== -->
+    <section id="tooltip" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Tooltip a popup se zobáčkem</h2>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Krátké vysvětlení u ikony nebo ovládacího prvku. Bílá plocha, rám #E4DAC6, rádius 12 px, zobáček 10 px ze stejné plochy a rámu, měkký stín. Text Work Sans Regular 13,5 px, nejvýše 268 px na šířku a dvě až tři řádky.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Otevírá se po přejetí a podržení kurzoru asi 600 ms, u dotykových zařízení na kliknutí. Bublina nereaguje na kurzor (<code style="font-family:ui-monospace,monospace; font-size:12.5px;">pointer-events: none</code>), aby nepřekážela, a nikdy nenese jedinou důležitou informaci — vždy jen doplňuje to, co je vidět. U prvků blízko pravého okraje se ukotví vpravo, jinak vyjede z okna.</p>
+
+      <div class="ds-tipgrid" style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:34px 26px;">
+        <sc-for list="{{ tipDemos }}" as="t" hint-placeholder-count="4">
+          <div class="{{ t.cell }}">
+            <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">{{ t.label }}</span>
+            <span class="ds-tipwrap">
+              <span style="{{ t.anchor }}"><span style="{{ t.icon }}"></span></span>
+              <span class="{{ t.cls }}">{{ t.text }}</span>
+            </span>
+            <span style="font-size:12.5px; color:#8a8776; line-height:1.45; max-width:24ch;">{{ t.note }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:14px 0 0; font-size:13.5px; line-height:1.55; color:#8a8776; max-width:78ch;">Delší vysvětlení, které si zákazník má přečíst v klidu (například bezpečnostní listy nebo mikrocopy skladovosti u variant), patří do vyskakovacího okna se zavíracím tlačítkem, ne do tooltipu.</p>
+    </section>
+
+    <!-- ===== FORMULÁŘOVÉ PRVKY ===== -->
+    <section id="formulare" style="margin-bottom:64px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Formulářové prvky</h2>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jedna sada pro celý web — filtry, zákaznická zóna, upozornění na naskladnění, newsletter i pokladna. Výška pole 48 px (kompaktní varianta 46 px ve filtrech), rám #CFC4AA, rádius 12 px, popisek vždy nad polem v Work Sans SemiBold 13 px.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Focus stav nese tmavá zeleň a světlý prstenec — nikdy jen barva rámu. Chyba se hlásí pod polem textem s ikonou, ne pouze červeným rámem. Hit target zaškrtávacích prvků je 22 px plus celý řádek popisku.</p>
+
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 32px; display:flex; flex-direction:column; gap:26px;">
+        <div class="ds-form-grid" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;">
+          <label class="ds-fld"><span>Textové pole</span><input class="ds-in" value="Jana Nováková"></label>
+          <label class="ds-fld"><span>Pole s nápovědou</span><input class="ds-in" placeholder="jmeno@example.cz"></label>
+          <label class="ds-fld"><span>Rozbalovací výběr</span>
+            <span style="position:relative; display:flex;">
+              <select class="ds-in" style="appearance:none; padding-right:40px; cursor:pointer;"><option>Česko</option><option>Slovensko</option></select>
+              <span style="{{ iconFormCaret }}"></span>
+            </span>
+          </label>
+          <label class="ds-fld"><span>Neaktivní pole</span><input class="ds-in" value="Registrovaný zákazník" disabled="{{ true }}" style="background:#F6F1E7; color:#8a8776; cursor:not-allowed;"></label>
+          <label class="ds-fld" style="grid-column:1 / -1;"><span>Víceřádkový text</span><textarea class="ds-in" style="height:auto; min-height:92px; padding:12px 15px; line-height:1.55; resize:vertical;">Prosím zabalit levandulové máslo zvlášť, jde jako dárek.</textarea></label>
+          <label class="ds-fld"><span>Chybový stav</span>
+            <input class="ds-in" value="jmeno@example" style="border-color:#A33203; box-shadow:0 0 0 3px rgba(163,50,3,.12);">
+            <span style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#A33203;"><span style="{{ iconFormAlert }}"></span>Zadejte e-mail ve tvaru jmeno@example.cz.</span>
+          </label>
+          <label class="ds-fld"><span>Úspěšný stav</span>
+            <input class="ds-in" value="jana.novakova@email.cz" style="border-color:#3F7F2C; box-shadow:0 0 0 3px rgba(63,127,44,.12);">
+            <span style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#3F7F2C;"><span style="{{ iconFormOk }}"></span>Údaj je uložený.</span>
+          </label>
+        </div>
+
+        <div style="height:1px; background:#F3EDE0;"></div>
+
+        <div class="ds-form-grid" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px;">
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Zaškrtávací pole</span>
+            <sc-for list="{{ formChecks }}" as="c" hint-placeholder-count="3">
+              <label class="ds-check">
+                <input type="checkbox" defaultChecked="{{ c.on }}">
+                <span class="ds-box" aria-hidden="true"><span style="{{ iconFormTick }}"></span></span>
+                <span style="display:flex; flex-direction:column; gap:2px;">
+                  <span style="font-size:15px; font-weight:600; color:#2A2A24;">{{ c.label }}</span>
+                  <span style="font-size:13px; line-height:1.5; color:#6B6B5E;">{{ c.desc }}</span>
+                </span>
+              </label>
+            </sc-for>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Přepínač (jedna volba)</span>
+            <sc-for list="{{ formRadios }}" as="r" hint-placeholder-count="3">
+              <label class="ds-check">
+                <input type="radio" name="ds-radio" defaultChecked="{{ r.on }}">
+                <span class="ds-box ds-box-r" aria-hidden="true"><span class="ds-dot"></span></span>
+                <span style="font-size:15px; font-weight:500; color:#2A2A24;">{{ r.label }}</span>
+              </label>
+            </sc-for>
+            <span style="margin-top:6px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Filtrační pilulka</span>
+            <span style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span style="display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; border-radius:999px; padding:10px 15px; color:#F6F1E7; background:#4C653D; border:1.5px solid #4C653D;">Vše <span style="font-weight:700; font-size:12px; opacity:.85;">18</span></span>
+              <span style="display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; border-radius:999px; padding:10px 15px; color:#4A4A42; background:#fff; border:1.5px solid #E2D9C4;">Doručené <span style="font-weight:700; font-size:12px; opacity:.55;">5</span></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 0 0; font-size:13.5px; line-height:1.55; color:#8a8776; max-width:78ch;">Zaškrtávací pole i přepínač mají vlastní vykreslení (nativní ovladač je skrytý, ale zůstává v DOM kvůli klávesnici a odečítačům). Zaškrtnuté má zelenou plochu #4C653D s krémovou fajfkou, hover ztmaví rám, focus přidá obrys 2 px.</p>
+    </section>
+
+    <!-- ===== KOMPONENTY: CHIPY ===== -->
+    <section id="chipy" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Chipy</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Chip</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Vždy věcné označení. Žádné „poslední kus", žádné odpočty.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+        <dc-import name="ui-Chip" variant="default" label="Sezónní recept" hint-size="120px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="onPhoto" label="Bestseller" hint-size="100px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="green" label="Topovaný produkt" hint-size="140px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="sage" label="Novinka" hint-size="90px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="accent" label="Doporučujeme" hint-size="120px,26px"></dc-import>
+        <dc-import name="ui-Chip" variant="outline" label="Pro začátečníky" hint-size="130px,26px"></dc-import>
+      </div>
+    </section>
+
+    <!-- ===== BADGE ===== -->
+    <section id="badge" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Badge</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Badge</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Označení v rohu produktové fotky. Věcné, bez urgence — žádné odpočty ani „poslední kus".</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+        <dc-import name="ui-Badge" variant="bestseller" hint-size="90px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="novinka" hint-size="80px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="doporucujeme" hint-size="110px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="akce" hint-size="60px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="sleva" hint-size="70px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="prirodni" hint-size="85px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="bio" hint-size="55px,24px"></dc-import>
+        <dc-import name="ui-Badge" variant="sada" hint-size="60px,24px"></dc-import>
+      </div>
+    </section>
+
+    <!-- ===== STAVY OBJEDNÁVKY ===== -->
+    <section id="stavy-objednavky" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Stavy objednávky</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-OrderStatus</code>
+      </div>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Přesný seznam stavů, které e-shop vypisuje — deset položek, jiné se nepoužívají. Barvy navazují na semantickou škálu skladovosti: zlatavá u přijaté objednávky, oliva u zpracování a přípravy, sytá zeleň u odeslání a vyzvednutí, cihlová u storna. Stav nikdy nenese jen barva — vždy je s ním ikona a text.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Dvojice stavů 4a/4b, 5a/5b a 6a/6b se liší způsobem doručení: <strong style="font-weight:600; color:#4C653D;">a = přepravce</strong>, <strong style="font-weight:600; color:#4C653D;">b = osobní odběr</strong>. V přehledu objednávek se stavy 1–5 počítají jako nevyřízené.</p>
+
+      <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden;">
+        <div class="ds-stock-head" style="display:grid; grid-template-columns:56px 250px 1fr; gap:16px; padding:12px 20px; background:#FBF8F1; border-bottom:1px solid #EFE7D6; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">
+          <span>Č.</span><span>Stav</span><span>Kdy ho vypisujeme</span>
+        </div>
+        <sc-for list="{{ orderStates }}" as="os" hint-placeholder-count="10">
+          <div class="ds-stock-row" style="display:grid; grid-template-columns:56px 250px 1fr; gap:16px; padding:14px 20px; border-bottom:1px solid #F4EEE1; align-items:center;">
+            <span style="{{ os.levelStyle }}">{{ os.level }}</span>
+            <span style="display:flex; flex-direction:column; gap:7px; align-items:flex-start;">
+              <dc-import name="ui-OrderStatus" state="{{ os.key }}" size="{{ 13 }}" hint-size="200px,30px"></dc-import>
+              <code style="font-family:ui-monospace,monospace; font-size:11.5px; color:#8a8776;">{{ os.key }}</code>
+            </span>
+            <p style="margin:0; font-size:14px; line-height:1.5; color:#4A4A42;">{{ os.note }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ===== SKLADOVOST ===== -->
+    <section id="skladovost" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Skladovost</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Stock</code>
+      </div>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Jedna semantická škála dostupnosti — osm stavů, které web vypisuje. Stavy vysvětlují, co se bude dít, ne kolik kusů zbývá. Barva dělí škálu na dostupné a nedostupné: sytá zeleň u okamžitého odeslání a elektronického doručení, oliva u nabalení, jantarová (oranžovo-žlutá) u zboží, které je na cestě k nám (s datem i bez data) — koupit lze, ale čeká se, a dva odstíny cihlové u toho, co koupit nelze. Některé stavy mají shodnou barvu — liší se ikonou a textem. Stejná komponenta a stejné texty platí na kartě produktu, v detailu, v našeptávači, v buy baru i v košíku.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Hranice je mezi úrovní 5 a 6: <strong style="font-weight:600; color:#4C653D;">úrovně 1–5 lze koupit</strong> a mají tlačítko Do košíku, úrovně 6–8 nabízejí místo něj hlídacího psa. Stav nikdy nenese jen barva — vždy je s ním ikona a text (barvoslepost, tisk, černobílý katalog).</p>
+
+      <div style="border:1px solid #ECE3D2; border-radius:14px; background:#fff; overflow:hidden;">
+        <div class="ds-stock-head" style="display:grid; grid-template-columns:44px 210px 1fr 118px 104px; gap:16px; padding:12px 20px; background:#FBF8F1; border-bottom:1px solid #EFE7D6; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#8a8776;">
+          <span>Úr.</span><span>Stav</span><span>Co k tomu říkáme</span><span>Lze koupit</span><span>Kontrast</span>
+        </div>
+        <sc-for list="{{ stockScale }}" as="st" hint-placeholder-count="8">
+          <div class="ds-stock-row" style="display:grid; grid-template-columns:44px 210px 1fr 118px 104px; gap:16px; padding:16px 20px; border-bottom:1px solid #F4EEE1; align-items:start;">
+            <span style="{{ st.levelStyle }}">{{ st.level }}</span>
+            <span style="display:flex; flex-direction:column; gap:7px; align-items:flex-start;">
+              <dc-import name="ui-Stock" state="{{ st.key }}" date="28. 8. 2026" size="{{ 13 }}" hint-size="180px,30px"></dc-import>
+              <code style="font-family:ui-monospace,monospace; font-size:11.5px; color:#8a8776;">{{ st.spec }}</code>
+            </span>
+            <p style="margin:0; font-size:14px; line-height:1.5; color:#4A4A42;">{{ st.note }}</p>
+            <span style="{{ st.buyStyle }}">{{ st.buyLabel }}</span>
+            <span style="font-size:12.5px; line-height:1.45; color:#8a8776;">{{ st.contrast }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <h3 style="margin:30px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Dvě velikosti stavu</h3>
+      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Stav je na celém webu vždy samostatný text s ikonou — bez chipu a bez plochy. V kartě produktu, v našeptávači a v košíku 12,5–13 px, v detailu produktu a ve sticky buy baru 13–14,5 px. Vysvětlující mikrocopy je u produktů bez variant vypsané vedle stavu; u variantních produktů — kde není místo — se stav doplní ikonou „i“ a text se ukáže po přejetí, tabulátoru nebo kliknutí (<code style="font-family:ui-monospace,monospace; font-size:12.5px;">withNote</code>).</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:26px 30px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px;" class="ds-grid-2">
+        <div style="display:flex; flex-direction:column; gap:13px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Karta, našeptávač, košík</span>
+          <dc-import name="ui-Stock" state="digital" hint-size="200px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="ready" hint-size="160px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="packing" hint-size="190px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" hint-size="200px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="incoming" hint-size="170px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="toorder" hint-size="180px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="longterm" hint-size="200px,20px"></dc-import>
+          <dc-import name="ui-Stock" state="ended" hint-size="160px,20px"></dc-import>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:13px; align-items:flex-start; padding:22px; border-radius:12px; background:#F6F1E7;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Detail a buy bar — větší text</span>
+          <dc-import name="ui-Stock" state="digital" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="ready" size="{{ 14 }}" hint-size="190px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="packing" size="{{ 14 }}" hint-size="210px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="incoming" size="{{ 14 }}" hint-size="200px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="toorder" size="{{ 14 }}" hint-size="210px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="longterm" size="{{ 14 }}" hint-size="220px,34px"></dc-import>
+          <dc-import name="ui-Stock" state="ended" size="{{ 14 }}" hint-size="190px,34px"></dc-import>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:13px; align-items:flex-start; grid-column:1 / -1; padding-top:22px; border-top:1px solid #F4EEE1;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">S mikrocopy v popupu — varianty a buy bar</span>
+          <span style="font-size:13.5px; color:#6B6B5E; line-height:1.5; max-width:70ch;">Přejeďte myší nebo klikněte. Popup drží stejnou barvu obrysu jako stav a nikdy nepřekrývá tlačítko Do košíku.</span>
+          <div style="display:flex; gap:26px; flex-wrap:wrap; margin-top:26px;">
+            <dc-import name="ui-Stock" state="packing" withNote="{{ true }}" size="{{ 13.5 }}" hint-size="190px,22px"></dc-import>
+            <dc-import name="ui-Stock" state="expected" date="28. 8. 2026" withNote="{{ true }}" size="{{ 13.5 }}" hint-size="230px,34px"></dc-import>
+            <dc-import name="ui-Stock" state="longterm" withNote="{{ true }}" size="{{ 13.5 }}" hint-size="230px,34px"></dc-import>
+          </div>
+        </div>
+      </div>
+      <p style="margin:16px 0 0; font-size:13.5px; color:#8a8776; line-height:1.55; max-width:78ch;">Reálné stavy z e-shopu jsou napojené — všech osm úrovní odpovídá tomu, co web vypisuje, a komponenta drží barvu, ikonu i text sama. Starší názvy stavů (<code style="font-family:ui-monospace,monospace; font-size:12.5px;">available, soon, out, unavail, discontinued</code>) komponenta přijímá a překládá.</p>
+    </section>
+
+    <!-- ===== RATING ===== -->
+    <section id="rating" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Hodnocení</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Rating</code>
+      </div>
+      <p style="margin:0 0 8px; color:#6B6B5E; font-size:15.5px; max-width:78ch;">Pět hvězd s výplní na procenta: 4,75 znamená čtyři plné hvězdy a pátou vyplněnou ze tří čtvrtin — plocha je opravdu vyplněná, ne naznačená dělící čárkou. Spodní vrstva hvězdy zůstává v tlumené zlaté, aby byl vidět celý rozsah.</p>
+      <p style="margin:0 0 20px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Jeden zápis pro celý web: <strong style="font-weight:600; color:#4C653D;">hvězdy · hodnota · počet hodnocení</strong> (4,75 · 128 hodnocení). Stejná komponenta je na kartě produktu, v detailu, v recenzích, u receptů i v odznacích Heureka a Google v patičce. Produkt bez hodnocení nevypisuje nic — řádek se skryje, ale jeho místo zůstává, aby karty měly stejnou výšku a nepřeskládaly se. Textovou variantu „Bez hodnocení“ nepoužíváme.</p>
+
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:30px 34px; display:flex; flex-direction:column; gap:18px;">
+        <sc-for list="{{ ratingRows }}" as="r" hint-placeholder-count="6">
+          <div class="ds-rating-row" style="display:grid; grid-template-columns:150px 1fr; gap:20px; align-items:center;">
+            <span style="font-size:12.5px; color:#8a8776;">{{ r.label }}</span>
+            <dc-import name="ui-Rating" value="{{ r.value }}" count="{{ r.count }}" size="{{ 18 }}" hint-size="230px,24px"></dc-import>
+          </div>
+        </sc-for>
+      </div>
+
+      <h3 style="margin:30px 0 8px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Zkrácené podoby</h3>
+      <p style="margin:0 0 16px; color:#6B6B5E; font-size:14.5px; max-width:78ch;">Části zápisu lze vypnout tam, kde je hodnota vypsaná už vedle (souhrn recenzí) nebo kde jde jen o vizuální signál (jednotlivá recenze, odznaky v patičce). Pořadí a barvy zůstávají vždy stejné.</p>
+      <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px;" class="ds-grid-2">
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:24px 26px; display:flex; flex-direction:column; gap:16px;">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Bez hodnoty · souhrn recenzí</span>
+          <dc-import name="ui-Rating" value="{{ 4.75 }}" count="{{ 128 }}" showValue="{{ false }}" size="{{ 16 }}" hint-size="190px,22px"></dc-import>
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Kompaktní · karty produktů a receptů</span>
+          <dc-import name="ui-Rating" compact="{{ true }}" value="{{ 4.4 }}" count="{{ 5 }}" size="{{ 14 }}" hint-size="110px,22px"></dc-import>
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">Jen hvězdy · jednotlivá recenze</span>
+          <dc-import name="ui-Rating" value="{{ 5 }}" showCount="{{ false }}" showValue="{{ false }}" size="{{ 16 }}" hint-size="110px,22px"></dc-import>
+        </div>
+        <div style="border:1px solid #ECE3D2; border-radius:14px; padding:24px 26px; display:flex; flex-direction:column; gap:14px; background:linear-gradient(155deg,#4C653D 0%,#22301F 100%);">
+          <span style="font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#C7D3B8; font-weight:700;">Na tmavé ploše · odznaky v patičce</span>
+          <span style="display:flex; align-items:center; gap:10px;">
+            <span style="font-family:'EB Garamond',serif; font-size:20px; font-weight:500; color:#F6F1E7; line-height:1;">100 %</span>
+            <dc-import name="ui-Rating" value="{{ 5 }}" showValue="{{ false }}" showCount="{{ false }}" size="{{ 14 }}" color="#F5C63C" trackColor="rgba(245,198,60,.28)" hint-size="80px,18px"></dc-import>
+          </span>
+          <span style="font-size:13px; color:#D3E0CB; line-height:1.5;">Na tmavém podkladu se hvězdy přebarví na světlejší zlatou #F5C63C.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KOMPONENTY: KARTY ===== -->
+    <section id="karty" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Karty a dlaždice</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-ProductCard · ui-RecipeCard · ui-CategoryTile · ui-IngredientTile</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Bílý podklad, rám #ECE3D2, rádius 14 px. Hover: posun 4 px nahoru a měkký stín.</p>
+      <div class="ds-grid-4" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:18px; align-items:start;">
+        <div>
+          <p style="margin:0 0 10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">ProductCard V2 — výchozí</p>
+          <dc-import name="ui-ProductCardV2" hint-size="100%,520px"></dc-import>
+        </div>
+        <div>
+          <p style="margin:0 0 10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">RecipeCard</p>
+          <dc-import name="ui-RecipeCard" hint-size="100%,320px"></dc-import>
+        </div>
+        <div>
+          <p style="margin:0 0 10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">CategoryTile</p>
+          <dc-import name="ui-CategoryTile" hint-size="100%,310px"></dc-import>
+        </div>
+        <div>
+          <p style="margin:0 0 10px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8776; font-weight:700;">IngredientTile</p>
+          <dc-import name="ui-IngredientTile" hint-size="100%,84px"></dc-import>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NADPISY SEKCÍ ===== -->
+    <section id="nadpisy" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Nadpisy sekcí</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-SectionHeading</code>
+      </div>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:34px 38px; display:flex; flex-direction:column; gap:34px;">
+        <dc-import name="ui-SectionHeading" kicker="Rozcestník" title="Co chcete vyrábět?" link-label="Vše ke tvorbě" hint-size="100%,110px"></dc-import>
+        <div style="border-top:1px solid #F3EDE0; padding-top:30px;">
+          <dc-import name="ui-SectionHeading" align="center" kicker="Receptář" title="Recepty, které fungují" subtitle="Od suroviny k vlastnímu výrobku." hint-size="100%,130px"></dc-import>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== IKONY ===== -->
+    <section id="ikony" style="margin-bottom:64px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;">
+        <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Ikony</h2>
+        <code style="font-family:ui-monospace,monospace; font-size:12.5px; color:#8a8776; background:#F3EDE0; padding:4px 9px; border-radius:7px;">ui-Icon</code>
+      </div>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Hugeicons — outline, tloušťka 1,5 px, barva dědí z textu. Bez stínů, čistá linka. Celkem {{ iconTotal }} ikon.</p>
+      <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:22px 24px; margin-bottom:18px; display:flex; align-items:center; gap:26px; flex-wrap:wrap;">
+        <span style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#8a8776; font-weight:700;">Živá komponenta</span>
+        <dc-import name="ui-Icon" icon="dropper" size="20" hint-size="20px,20px"></dc-import>
+        <dc-import name="ui-Icon" icon="mortar" size="24" hint-size="24px,24px"></dc-import>
+        <dc-import name="ui-Icon" icon="leaf-01" size="32" color="#4C653D" hint-size="32px,32px"></dc-import>
+        <dc-import name="ui-Icon" icon="award-01" size="40" color="#D8763B" hint-size="40px,40px"></dc-import>
+        <span style="font-size:12.5px; color:#8a8776;">Velikost 12–96 px, barva dědí z palety. Přehled níže je statický kvůli rychlosti.</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <sc-for list="{{ iconGroups }}" as="g" hint-placeholder-count="8">
+          <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:22px 24px;">
+            <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:14px;">
+              <h3 style="margin:0; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#4C653D; font-weight:700;">{{ g.group }}</h3>
+              <span style="font-size:12px; color:#a8a495;">{{ g.count }}</span>
+            </div>
+            <div class="ds-icons" style="display:grid; grid-template-columns:repeat(9,1fr); gap:4px;">
+              <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="12">
+                <div class="ds-icon-cell" style="display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px 4px; border-radius:10px; transition:background .2s; color:#4C653D;">
+                  <span style="{{ i.imgStyle }}"></span>
+                  <span style="font-size:10px; color:#8a8776; text-align:center; line-height:1.25; word-break:break-word;">{{ i.name }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ===== TONE OF VOICE ===== -->
+    <section id="tov" style="margin-bottom:24px;">
+      <h2 style="margin:0 0 6px; font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;">Tón komunikace</h2>
+      <p style="margin:0 0 24px; color:#6B6B5E; font-size:15.5px;">Klidný, věcný, vysvětlující — ekologie z praxe, ne z počítače.</p>
+      <div class="ds-grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
+          <h3 style="margin:0 0 16px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#4C653D; font-weight:700;">Ano</h3>
+          <ul style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; font-size:15px; line-height:1.5; color:#52524a;">
+            <sc-for list="{{ tovDo }}" as="t" hint-placeholder-count="5"><li>{{ t }}</li></sc-for>
+          </ul>
+        </div>
+        <div style="background:#fff; border:1px solid #ECE3D2; border-radius:14px; padding:28px 30px;">
+          <h3 style="margin:0 0 16px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#B23803; font-weight:700;">Ne</h3>
+          <ul style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; font-size:15px; line-height:1.5; color:#52524a;">
+            <sc-for list="{{ tovDont }}" as="t" hint-placeholder-count="5"><li>{{ t }}</li></sc-for>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:18px; background:#4C653D; border-radius:14px; padding:30px 34px;">
+        <p style="margin:0 0 12px; color:#AEC49E; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;">Claim architektura</p>
+        <div class="ds-grid-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <sc-for list="{{ claims }}" as="c" hint-placeholder-count="3">
+            <div>
+              <p style="margin:0 0 5px; font-family:'EB Garamond',serif; font-size:21px; color:#F6F1E7; line-height:1.2;">{{ c.text }}</p>
+              <p style="margin:0; font-size:13px; color:#C4D6B8; line-height:1.45;">{{ c.use }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const chip = (hex) => 'height:74px; border-radius:10px; background:' + hex + ';';
+    const grad = (css) => 'height:86px; background:' + css + ';';
+    const cta = (bg, fg, border) => 'display:inline-flex; align-items:center; padding:11px 22px; border-radius:999px; font-weight:600; font-size:14.5px; background:' + bg + '; color:' + fg + '; border:1.5px solid ' + (border || bg) + ';';
+    const pal = (list) => list.map(c => ({ name: c[0], hex: c[1], use: c[2], chipStyle: chip(c[1]) }));
+    const grads = (list) => list.map(g => ({ name: g[0], use: g[2], style: grad(g[1]) }));
+    const dgrad = (css) => 'height:104px; display:flex; align-items:flex-end; padding:14px 16px; background:' + css + ';';
+    const dgrads = (list) => list.map(g => ({ name: g[0], use: g[2], style: dgrad(g[1]) }));
+    const orderStates = [
+      ['1',  'prijato',             'Objednávku jsme přijali, začínáme ji zpracovávat.'],
+      ['2',  'zpracovano',          'Objednávka je zkontrolovaná a předaná do skladu.'],
+      ['3',  'ceka_platba',         'Čekáme na připsání platby. Do zaplacení se nebalí.'],
+      ['4a', 'pripraveno_expedice', 'Nabaleno, čeká na předání přepravci.'],
+      ['4b', 'pripraveno_odber',    'Nabaleno, čeká na zákazníka na výdejním místě.'],
+      ['5a', 'castecne_expedovano', 'Část zásilky odešla, zbytek doplníme.'],
+      ['5b', 'castecne_vyzvednuto', 'Část zboží si zákazník vyzvedl, zbytek je připravený.'],
+      ['6a', 'expedovano',          'Celá objednávka je na cestě k zákazníkovi.'],
+      ['6b', 'vyzvednuto',          'Zákazník si objednávku vyzvedl — vyřízeno.'],
+      ['7',  'stornovano',          'Objednávka byla stornována.'],
+    ].map(([lvl, key, note]) => ({
+      level: lvl, key, note,
+      levelStyle: 'display:inline-flex; align-items:center; justify-content:center; min-width:32px; height:26px; padding:0 8px; border-radius:8px; background:#F3EDE0; font-size:12.5px; font-weight:700; color:#8a8776;',
+    }));
+
+    const toc = [
+      { label: 'Barvy', href: '#barvy' },
+      { label: 'Jarní paleta', href: '#jaro' },
+      { label: 'Trhaný pás', href: '#trhany-pas' },
+      { label: 'Typografie', href: '#typografie' },
+      { label: 'Rozestupy a tvary', href: '#spacing' },
+      { label: 'Logo', href: '#logo' },
+      { label: 'Tlačítka', href: '#tlacitka' },
+      { label: 'Tooltip', href: '#tooltip' },
+      { label: 'Formulářové prvky', href: '#formulare' },
+      { label: 'Chipy', href: '#chipy' },
+      { label: 'Badge', href: '#badge' },
+      { label: 'Skladovost', href: '#skladovost' },
+      { label: 'Stavy objednávky', href: '#stavy-objednavky' },
+      { label: 'Hodnocení', href: '#rating' },
+      { label: 'Karty a dlaždice', href: '#karty' },
+      { label: 'Nadpisy sekcí', href: '#nadpisy' },
+      { label: 'Ikony', href: '#ikony' },
+      { label: 'Tón komunikace', href: '#tov' },
+    ];
+
+
+    const TEAR_POLY = 'polygon(0% 3.6px, 2.17% 6.2px, 4.35% 8.3px, 6.52% 4.3px, 8.7% 12.3px, 10.87% 5.4px, 13.04% 7.1px, 15.22% 7.1px, 17.39% 12.6px, 19.57% 7.4px, 21.74% 5.8px, 23.91% 3.9px, 26.09% 11.7px, 28.26% 10.7px, 30.43% 6.6px, 32.61% 8.4px, 34.78% 11.9px, 36.96% 11.2px, 39.13% 7.9px, 41.3% 11px, 43.48% 4.7px, 45.65% 14.4px, 47.83% 10.4px, 50% 9.7px, 52.17% 7.3px, 54.35% 18.1px, 56.52% 3.8px, 58.7% 11.8px, 60.87% 11px, 63.04% 10.6px, 65.22% 7.3px, 67.39% 4px, 69.57% 11px, 71.74% 6.5px, 73.91% 3.9px, 76.09% 12.3px, 78.26% 5px, 80.43% 7.2px, 82.61% 6.6px, 84.78% 11.5px, 86.96% 9.9px, 89.13% 11.1px, 91.3% 14.3px, 93.48% 8.2px, 95.65% 5.5px, 97.83% 14.1px, 100% 9.9px, 100% calc(100% - 6.3px), 97.83% calc(100% - 6.7px), 95.65% calc(100% - 4.5px), 93.48% calc(100% - 11.2px), 91.3% calc(100% - 8.7px), 89.13% calc(100% - 6.6px), 86.96% calc(100% - 14.5px), 84.78% calc(100% - 4.5px), 82.61% calc(100% - 14.5px), 80.43% calc(100% - 5.4px), 78.26% calc(100% - 10.9px), 76.09% calc(100% - 14.3px), 73.91% calc(100% - 11px), 71.74% calc(100% - 14px), 69.57% calc(100% - 11.6px), 67.39% calc(100% - 5.3px), 65.22% calc(100% - 11.6px), 63.04% calc(100% - 4.6px), 60.87% calc(100% - 8.8px), 58.7% calc(100% - 3.7px), 56.52% calc(100% - 6.9px), 54.35% calc(100% - 5.1px), 52.17% calc(100% - 10.1px), 50% calc(100% - 12.9px), 47.83% calc(100% - 4.2px), 45.65% calc(100% - 21.1px), 43.48% calc(100% - 11px), 41.3% calc(100% - 5.2px), 39.13% calc(100% - 11.7px), 36.96% calc(100% - 3.6px), 34.78% calc(100% - 6.5px), 32.61% calc(100% - 14.2px), 30.43% calc(100% - 4.8px), 28.26% calc(100% - 14px), 26.09% calc(100% - 11.6px), 23.91% calc(100% - 9.8px), 21.74% calc(100% - 3.5px), 19.57% calc(100% - 7.3px), 17.39% calc(100% - 9.7px), 15.22% calc(100% - 9.6px), 13.04% calc(100% - 6.8px), 10.87% calc(100% - 10.8px), 8.7% calc(100% - 6.8px), 6.52% calc(100% - 6.7px), 4.35% calc(100% - 3.9px), 2.17% calc(100% - 9px), 0% calc(100% - 11.1px))';
+    const TEAR_SHADOW = 'inset 0 14px 26px -14px rgba(45,58,46,.28), inset 0 -14px 26px -14px rgba(45,58,46,.24)';
+    const tearPads = [
+      ['Bílý list', 'Receptář', 'Základní varianta. Recepty, návody, bestsellery — všude, kde má obsah působit jako vložený čistý list.', '#FFFFFF → #FAFDF4', 'linear-gradient(168deg,#FFFFFF 0%,#FFFFFF 62%,#FAFDF4 100%)'],
+      ['Krémový list', 'Náš příběh', 'Teplejší varianta pro obsahové a brandové sekce — o nás, hodnoty, dopis zákazníkům.', '#FBF6EA → #F3EBDA', 'linear-gradient(168deg,#FBF6EA 0%,#F7F1E3 60%,#F3EBDA 100%)'],
+      ['Šalvějový list', 'Od suroviny k vlastnímu výrobku.', 'Zelený akcent pro edukaci a návody. Nejvýraznější oddělení — na stránce nejvýš jednou.', '#F4F7EA → #E4EED2', 'linear-gradient(168deg,#F4F7EA 0%,#EDF3DE 60%,#E4EED2 100%)'],
+    ].map(([name, kicker, use, hex, bg]) => ({
+      name, kicker, use, hex,
+      padStyle: 'position:absolute; inset:0; pointer-events:none; background:' + bg + '; box-shadow:' + TEAR_SHADOW + '; clip-path:' + TEAR_POLY + ';',
+    }));
+
+    const mk = (name, hex, use) => ({ name, hex, use, chipStyle: `height:74px; background:${hex};` });
+
+
+    const STOCK_META = [
+      ['digital', 1, 'Pouze u dárkových poukázek — doručení e-mailem, bez dopravy a bez čekání.', 'Ano', '#3F7F2C · 5,4:1 ✓ AA'],
+      ['ready', 2, 'Nabaleno a připraveno. Nejčastější stav u běžných balení.', 'Ano', '#3F7F2C · 5,4:1 ✓ AA'],
+      ['packing', 3, 'Surovinu máme ve velkém balení a teprve ji navážíme — typicky 25 kg. Koupit lze teď, odeslání o den později.', 'Ano', '#57712D · 5,5:1 ✓ AA'],
+      ['expected', 4, 'Zboží je na cestě k nám a datum naskladnění známe — vypisuje se za text stavu. Objednat lze i teď.', 'Ano', '#9E6B00 · 4,6:1 ✓ AA'],
+      ['incoming', 5, 'Totéž jako Očekáváme, ale u zboží, u kterého datum dodání říct nelze. Objednat lze i teď.', 'Ano', '#9E6B00 · 4,6:1 ✓ AA'],
+      ['toorder', 6, 'Zboží došlo a u dodavatele ještě není vystavená objednávka. Termín potvrdíme na dotaz, nabídneme hlídacího psa.', 'Ne', '#A33203 · 6,9:1 ✓ AA'],
+      ['longterm', 7, 'Nedostupné i na několik měsíců. Místo tlačítka Do košíku nabídneme hlídacího psa.', 'Ne', '#8A2412 · 9,0:1 ✓ AAA'],
+      ['ended', 8, 'Produkt jsme vyřadili z nabídky a nabízet ho nebudeme. Nabídneme náhradu z podobných surovin.', 'Ne', '#8A2412 · 9,0:1 ✓ AAA'],
+    ];
+    const stockScale = STOCK_META.map(([key, level, note, buy, contrast]) => ({
+      key, level, note, contrast,
+      spec: 'state="' + key + '"',
+      buyLabel: buy,
+      levelStyle: 'display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:#F6F1E7; color:#4C653D; font-size:13px; font-weight:700;',
+      buyStyle: 'font-size:13.5px; font-weight:600; color:' + (buy === 'Ano' ? '#4C653D' : '#A33203') + ';',
+    }));
+
+
+    const ratingRows = [
+      ['Plné hodnocení', 5, 214],
+      ['4,75 — tři čtvrtiny', 4.75, 128],
+      ['4,5 — půl hvězdy', 4.5, 96],
+      ['4,2 — pětina', 4.2, 61],
+      ['3,2', 3.2, 12],
+      ['Bez hodnocení — skryté, místo zůstává', 0, 0],
+    ].map(([label, value, count]) => ({ label, value, count }));
+
+
+    const formChecks = [
+      { label: 'Mám zájem o zasílání novinek a akcí', desc: 'Recepty a novinky ze skladu.', on: true },
+      { label: 'Chci dotazník Heureka Ověřeno zákazníky', desc: 'Jedna otázka po doručení objednávky.', on: true },
+      { label: 'Adresa dodání je jiná než fakturační', desc: 'Rozbalí doručovací adresu.', on: false },
+    ];
+    const formRadios = [
+      { label: 'Fyzická osoba', on: true },
+      { label: 'Firma (IČ a DIČ)', on: false },
+      { label: 'Nakupuji ze Slovenska', on: false },
+    ];
+
+    const role = (name, hex, use, on, contrast) => ({
+      name, hex, use, on, contrast,
+      chip: `width:30px; height:30px; flex:0 0 auto; border-radius:8px; background:${hex}; border:1px solid rgba(45,58,46,.16);`,
+    });
+    const roleGroups = [
+      { label: 'Nosná barva', rows: [
+        role('Tmavá zeleň', '#4C653D', 'Všechny nadpisy, silnejší text, ikony, ceny; plocha topbaru, patičky a věrnostního boxu; obrys i výplň sekundárního tlačítka; aktivní stav filtrů, stránkování a variant.', 'Slonovinová #FFFDF6, krémová #F6F1E7, bílá. Jako plocha nese text v krémové #F6F1E7.', '6,4:1 ✓ AA'),
+      ]},
+      { label: 'Konverze', rows: [
+        role('Terrakota CTA', '#D14405', 'Hlavní nákupní akce — Do košíku, Koupit, Dokončit objednávku. Nejvýše jedno na obrazovku.', 'Světlé podklady a fotografie s tmavým přechodem. Na tmavě zelené ploše nepoužívat — tam nese hlavní akci krémové tlačítko (varianta On dark).', 'bílý text 4,8:1 ✓ AA'),
+        role('Terrakota hover', '#B23803', 'Pouze hover a active primárního tlačítka a odkazu. Nikdy jako výchozí plocha nebo text.', 'Střídá #D14405 ve stejném prvku.', 'bílý text 6,0:1 ✓ AA'),
+        role('Terrakota kicker', '#D8763B', 'Kickery nad nadpisem a drobné zvýraznění — uppercase 13 px SemiBold.', 'Krémová a slonovinová. Nepoužívat na tlačítka ani na běžný text.', '3,1:1 — jen velký text'),
+      ]},
+      { label: 'Podklady a rámy', rows: [
+        role('Slonovinová', '#FFFDF6', 'Pozadí stránky, vždy s jemnou texturou. Základní plocha karet a panelů.', 'Nejnižší vrstva — pod vším ostatním.', 'nosná pro text #4C653D'),
+        role('Krémová', '#F6F1E7', 'Plochy sekcí, trhaný pás, chipy, dlaždice ikon; zároveň barva textu na tmavě zelené ploše.', 'Na slonovinové jako odlišení sekce; na tmavé zeleni jako barva textu.', '5,6:1 ✓ AA'),
+        role('Krémová tmavší', '#EFE7D6', 'Sekundární plochy, hover ghost tlačítek, oddělovače v plochách.', 'Na krémové i bílé.', 'jen plocha'),
+        role('Rám karet', '#ECE3D2', 'Ohraničení karet, boxů, inputů a tabulek — 1 px.', 'Kolem bílých a krémových ploch.', 'jen linka'),
+      ]},
+      { label: 'Akcenty', rows: [
+        role('Mladá zeleň', '#7BA23F', 'Svěží akcent: dostupnost skladu, kladné stavy, aktivní značka, drobné zvýraznění.', 'Bílá a krémová. Ne pro text pod 18 px.', '3,3:1 — ikony a plochy'),
+        role('Šalvěj (3 tóny)', '#DDE7D2 / #CFE0B4 / #B9D096', 'Plochy bannerů věrnostních úrovní (Začátečník / Pokročilý / Profesionál) a Instagram pás. Tmavší tón = vyšší úroveň.', 'Text na nich vždy #4C653D.', 'text #4C653D ✓ AA'),
+        role('Světle zelená', '#C1D69F', 'Plochy a bannery dle manuálu, ilustrační pozadí.', 'Samostatně nebo na krémové.', 'text #4C653D ✓ AA'),
+        role('Růžová', '#FDCDBF', 'Jemné plochy — kategorie péče o pleť, dekorativní pruhy.', 'Na krémové a bílé.', 'text #4C653D ✓ AA'),
+        role('Světle modrá', '#D4F1EC', 'Chladivé produkty, koupel, hydratace — plochy a dlaždice.', 'Na krémové a bílé.', 'text #4C653D ✓ AA'),
+        role('Žlutá', '#FBD870', 'Vosky a med, informativní upozornění, akcentní plocha. Ne pro chybové stavy.', 'Na krémové a bílé.', 'text #4C653D ✓ AA'),
+        role('Zlatá', '#B8860B', 'Výhradně hvězdy hodnocení — výplň i částečná výseč.', 'Bílá a krémová.', 'jen ikona'),
+      ]},
+      { label: 'Text (neutrály)', rows: [
+        role('Text silný', '#2A2A24', 'Názvy karet a produktů, důležité hodnoty v tabulkách.', 'Bílá a krémová.', '14,5:1 ✓ AAA'),
+        role('Text běžný', '#4A4A42', 'Odstavce, popisy, obsah produktového textu.', 'Bílá a krémová.', '8,9:1 ✓ AAA'),
+        role('Text doplňkový', '#6B6B5E', 'Meta informace, drobné popisky, breadcrumb.', 'Bílá a krémová. Ne pod 12,5 px.', '5,2:1 ✓ AA'),
+        role('Labely', '#8a8776', 'Uppercase labely sekcí a nápověda v design systému.', 'Bílá. Ne pro čitelnostně důležitý text.', '3,6:1 — jen labely'),
+      ]},
+    ];
+    const colors = [
+      mk('Zelená (manuál)', '#4C653D', 'Jediná tmavá zeleň: nadpisy, text, topbar, footer, plochy'),
+      mk('Terrakota', '#D8763B', 'Hlavní CTA, kickery, odkazy'),
+      mk('Terrakota hover', '#B23803', 'Hover stav primárních tlačítek'),
+      mk('Slonovinová', '#FFFDF6', 'Pozadí stránky (s texturou)'),
+      mk('Krémová', '#F6F1E7', 'Plochy, chipy, dlaždice ikon'),
+      mk('Krémová tmavší', '#EFE7D6', 'Sekundární plochy, hover ghost'),
+      mk('Rám karet', '#ECE3D2', 'Ohraničení karet a boxů'),
+      mk('Šalvěj světlá', '#DDE7D2', 'Banner Začátečník'),
+      mk('Šalvěj střední', '#CFE0B4', 'Instagram pás, banner Pokročilý'),
+      mk('Šalvěj sytá', '#B9D096', 'Banner Profesionál / B2B'),
+      mk('Zlatá', '#B8860B', 'Hvězdičky hodnocení'),
+    ];
+
+    // Doplňková paleta přesně dle grafického manuálu (str. 12)
+    const colorsBrand = [
+      mk('Zelená (manuál)', '#4C653D', 'Základní brandová zelená'),
+      mk('Světle zelená', '#C1D69F', 'Plochy, bannery, zvýraznění'),
+      mk('Růžová', '#FDCDBF', 'Jemné plochy, kategorie pro pleť'),
+      mk('Světle modrá', '#D4F1EC', 'Chladivé produkty, koupel, hydratace'),
+      mk('Žlutá', '#FBD870', 'Vosky, med, upozornění, akcent'),
+      mk('Krémová (manuál)', '#FBF2E1', 'Podklad tiskovin a ploch'),
+    ];
+
+    const typeScale = [
+      { label: 'H1', sample: 'S námi víte, co tvoříte.', spec: "EB Garamond Medium · 60/1.02", style: "font-family:'EB Garamond',serif; font-weight:500; font-size:40px; line-height:1.05; color:#4C653D;" },
+      { label: 'H2', sample: 'Co chcete vyrábět?', spec: 'EB Garamond Medium · 40/1.05', style: "font-family:'EB Garamond',serif; font-weight:500; font-size:32px; color:#4C653D;" },
+      { label: 'H3 karta', sample: 'Krém na paty a ztvrdlá místa', spec: 'EB Garamond Medium · 18/1.25', style: "font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25; color:#2A2A24;" },
+      { label: 'Kicker', sample: 'RECEPTÁŘ', spec: 'Work Sans SemiBold · 13 · +.16em', style: "font-family:'Work Sans',sans-serif; font-weight:600; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:#D8763B;" },
+      { label: 'Body', sample: 'Suroviny, recepty a klid na práci.', spec: 'Work Sans Regular · 16-17/1.6', style: "font-family:'Work Sans',sans-serif; font-size:16.5px; line-height:1.6; color:#52524a;" },
+      { label: 'UI / odkaz', sample: 'Zobrazit všechny recepty', spec: 'Work Sans SemiBold · 15', style: "font-family:'Work Sans',sans-serif; font-weight:600; font-size:15px; color:#4C653D;" },
+      { label: 'Malý text', sample: 'Doprava zdarma od 2000 Kč', spec: 'Work Sans Regular · 12.5-13.5', style: "font-family:'Work Sans',sans-serif; font-size:13px; color:#6B6B5E;" },
+    ];
+
+    const spacing = [
+      { px: '8', use: 'Ikona a text' },
+      { px: '14', use: 'Mezera mezi kartami' },
+      { px: '18', use: 'Mezera v mřížkách' },
+      { px: '32', use: 'Vnitřní okraj sekce' },
+      { px: '52', use: 'Padding velkých boxů' },
+      { px: '64', use: 'Mezi sekcemi' },
+    ].map(s => Object.assign(s, { barStyle: `display:block; height:12px; width:${s.px}px; background:#CFE0B4; border-radius:3px; flex-shrink:0;` }));
+
+    const radii = [
+      { px: '10', use: 'Malé prvky' },
+      { px: '14', use: 'Karty, obrázky' },
+      { px: '18', use: 'Velké boxy' },
+      { px: '999', use: 'Tlačítka, chipy' },
+    ].map(r => Object.assign(r, { boxStyle: `width:62px; height:48px; background:#EFE7D6; border:1px solid #E4D9C2; border-radius:${r.px}px;` }));
+
+    const shadows = [
+      { name: 'Karta hover', use: 'Zvednutí o 4 px', boxStyle: 'width:96px; height:52px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; box-shadow:0 18px 40px -22px rgba(45,58,46,.45);' },
+      { name: 'Sekce', use: 'Jemná hloubka', boxStyle: 'width:96px; height:52px; background:#fff; border:1px solid #ECE3D2; border-radius:14px; box-shadow:0 16px 38px -26px rgba(76,101,61,.35);' },
+    ];
+
+    const dsMask = (n, s, c) => 'display:inline-block; width:' + s + 'px; height:' + s + 'px; flex:0 0 auto; background-color:' + c
+      + '; -webkit-mask:url("assets/icons/' + n + '.svg") center / contain no-repeat; mask:url("assets/icons/' + n + '.svg") center / contain no-repeat;';
+
+
+    const tipDemos = [
+      ['Dole na střed', 'ds-tip ds-tip-b', 'favourite', 'Srdíčkem u produktu si uložíte suroviny, ke kterým se chcete vrátit.', 'Výchozí pozice u ikon uprostřed rozvržení.'],
+      ['Dole vpravo', 'ds-tip ds-tip-br', 'favourite', 'V oblíbených máte 8 produktů. Přihlášenému zůstanou uložené i příště.', 'Pro prvky u pravého okraje — hlavička, buy bar.'],
+      ['Nahoře na střed', 'ds-tip ds-tip-t', 'information-circle', 'Navažujeme z velkého balení — odeslání o jeden pracovní den později.', 'Když je pod prvkem málo místa.'],
+      ['Na tmavé ploše', 'ds-tip ds-tip-b ds-tip-dark', 'information-circle', 'Sleva se počítá z čtvrtletního obratu po přihlášení.', 'Na tmavě zelených blocích a v patičce.'],
+    ].map(([label, cls, icon, text, note]) => ({
+      label, cls, text, note,
+      icon: dsMask(icon, 22, '#4C653D'),
+      cell: 'ds-tipcell' + (cls.indexOf('ds-tip-t') > -1 ? ' ds-tipcell-top' : '') + (cls.indexOf('ds-tip-br') > -1 ? ' ds-tipcell-right' : ''),
+      anchor: 'display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:50%; background:#F6F1E7; border:1px solid rgba(76,101,61,.18); cursor:help;',
+    }));
+
+    const iconGroupsRaw = [
+      { group: 'Navigace a ovládání', names: ['search-01','menu-02','cancel-01','arrow-right-01','arrow-left-01','arrow-down-01','arrow-up-01','arrow-right-02','plus-sign','minus-sign','tick-01','checkmark-circle-01','information-circle','alert-circle','filter','filter-horizontal','sorting-01','grid-view','view','link-01','share-01','download-01','printer','home-01','question','help-square','message-question','plus-sign-circle','minus-sign-circle','sort-by-up-01','sort-by-down-01','arrange-by-numbers-1-9','sorting-a-z-01','arrange'] },
+      { group: 'Nákup a košík', names: ['shopping-cart-01','shopping-cart-02','shopping-cart-add-01','shopping-cart-check-in-01','shopping-basket-01','shopping-bag-03','favourite','star','star-half','star-filled','favourite-filled','tag-01','tags','discount-tag-01','coupon-01','gift','gift-card','credit-card','wallet-01','invoice-01','percent-circle','balance-scale','justice-scale-01','versus','exchange-01','thumbs-up','thumbs-down','ticket-star'] },
+      { group: 'Doprava a objednávka', names: ['package','package-open','delivery-box-01','delivery-tracking-01','delivery-return-01','truck-delivery','truck-return','delivery-secure-01','store-01','location-01','clock-01','calendar-01','delivery-delay-01','maps','map-pin','maps-location-01','google-maps'] },
+      { group: 'Účet, důvěra a servis', names: ['user','user-account','user-circle','logout-01','login-01','login-circle-01','customer-service-01','customer-support','bubble-chat','mail-01','call','telephone','smart-phone-01','whatsapp','checkmark-badge-01','certificate-01','award-01','shield-01','security-check','note-01','book-open-01','book-02','help-circle','notification-01','notification-02','notification-bubble','eye','radar-01','binoculars','alarm-clock','task-01','clipboard','idea-01','bulb'] },
+      { group: 'Suroviny a příroda', names: ['leaf-01','leaf-02','leaf-03','plant-01','plant-02','flower','flower-pot','organic-food','natural-food','droplet','honey-01','honey-02','coffee-beans','sun-01','fire','recycle-01','recycle-02','sustainable-energy','eco-lab-01','sparkles'] },
+      { group: 'Výroba, pomůcky a měření', names: ['test-tube','test-tube-01','chemistry-01','chemistry-02','dropper','thermometer','thermometer-warm','weight-scale','weight-scale-01','mortar','whisk','mixer','blender','spatula','spoon','knife-01','ruler','tape-measure','glove'] },
+      { group: 'Kosmetika a hotové produkty', names: ['body-soap','shampoo','perfume','jar','medicine-bottle-01','medicine-bottle-02','medicine-syrup','bathtub-01','bathtub-02','milk-bottle','hand-sanitizer'] },
+      { group: 'Obsah a sociální sítě', names: ['instagram','facebook-01','youtube','play','video-01','image-01','camera-01','news','mail-open-01'] },
+      { group: 'Kosmetika a doplňky', names: ['candle','candle-jar','candle-tabler','lips','lip-balm','blush-brush-01','blush-brush-02','dental-tooth','dental-care','dental-braces','paw','dog-lucide','dog-tabler','wellness','massage'] },
+      { group: 'Soubory a dokumenty', names: ['pdf-01','pdf-02','doc-01','doc-02','txt-01','txt-02','ppt-01','ppt-02','file-01','file-02','file-empty-01','file-empty-02','invoice-01','download-01'] },
+      { group: 'Příběh a milníky', names: ['milk-bottle-02','milk-carton','cheese','body-soap-02','clean','cook-book','barns','warehouse','archive-02','building-03','layers-01','user-group','computer','laptop','globe-02','earth','maps-global-01','mountain-02'] },
+    ];
+    const iconGroups = iconGroupsRaw.map(g => ({
+      group: g.group,
+      count: g.names.length + ' ikon',
+      items: g.names.map(n => ({ name: n, imgStyle: 'display:block; width:24px; height:24px; background:center/contain no-repeat url("assets/icons/' + n + '.svg");' })),
+    }));
+    const iconTotal = iconGroupsRaw.reduce((s, g) => s + g.names.length, 0);
+
+    const tovDo = [
+      'Vysvětlujeme, netlačíme.',
+      'Vykáme, „váš" s malým v.',
+      'Recept jako most mezi surovinou a výsledkem.',
+      'Věrnost = férová odměna za dlouhodobý vztah.',
+      'Fakticky podložená tvrzení.',
+    ];
+    const tovDont = [
+      'Slevová urgence, odpočty, „poslední kus".',
+      'CAPS, vykřičníky, agresivní badge.',
+      'Superlativy bez opory („nejlepší", „prémiové").',
+      'Emoji jako běžný prostředek.',
+      '„Pohádkové bio scény" ve fotkách.',
+    ];
+
+    const claims = [
+      { text: '„S námi víte, co tvoříte."', use: 'Hlavní postojová věta — homepage, brandové bloky, bannery' },
+      { text: '„Suroviny, recepty a ověřené postupy."', use: 'Druhá věta hlavní dvojice — čím to značka naplňuje' },
+      { text: '„Od suroviny k vlastnímu výrobku."', use: 'Podpůrná — recepty, návody, rozcestníky' },
+      { text: '„Provedeme vás vlastní výrobou."', use: 'Podpůrná — začátečníci, startovací obsah, edukace' },
+      { text: '„Vše pro vlastní výrobu."', use: 'Podpůrná — homepage, kategorie, sortimentní sdělení' },
+    ];
+
+    return {
+      bColors: pal([
+        ['Pálená oranžová', '#D14405', 'Main CTA — nákupní akce, bílý text 4,6:1'],
+        ['Mladá zeleň', '#7BA23F', 'Suroviny, kategorie, ikony'],
+        ['Slunečnice', '#F5C63C', 'Věrnost, zvýraznění'],
+        ['Chrpa', '#5E93B5', 'Návody, doprava'],
+        ['Světlá báze', '#FCFAF3', 'Podklad stránky místo #F6F1E7'],
+      ]),
+      bGrads: grads([
+        ['Rozkvetlá louka', 'linear-gradient(160deg,#FCFAF3 0%,#EEF4DC 60%,#E2EFCB 100%)', 'Podklad sekce — výchozí'],
+        ['Květ', 'linear-gradient(160deg,#FDF1F4 0%,#F7DDE4 100%)', 'Recepty, komunita'],
+        ['Poledne', 'linear-gradient(160deg,#FEF8E6 0%,#F3E3B4 100%)', 'Věrnostní program'],
+      ]),
+      bCtaMain: cta('#D14405', '#fff'),
+      bCtaSec: cta('transparent', '#4F6E2A', '#7BA23F'),
+      darkGrads: dgrads([
+        ['Hluboký les', 'linear-gradient(155deg,#4C653D 0%,#2D3A2E 100%)', 'Patička, tmavé pásy — základ'],
+        ['Zeleň do noci', 'linear-gradient(155deg,#4C653D 0%,#22301F 100%)', 'Věrnostní program, o nás'],
+        ['Terrakota', 'linear-gradient(155deg,#D14405 0%,#A03202 100%)', 'Konverzní pás, sezónní banner'],
+        ['Západ', 'linear-gradient(155deg,#E85A18 0%,#8E3A34 100%)', 'Hero přes fotku, výzva k akci'],
+        ['Les a hlína', 'linear-gradient(150deg,#4C653D 0%,#5B4A34 60%,#8E5A32 100%)', 'Přechod mezi zelenou a terrakotou'],
+        ['Soumrak', 'linear-gradient(155deg,#2D3A2E 0%,#3E4A57 100%)', 'Návody, technické sekce'],
+      ]),
+      iconFormCaret: dsMask('arrow-down-01', 18, '#6B6B5E') + ' position:absolute; right:14px; top:50%; transform:translateY(-50%); pointer-events:none;',
+      iconFormTick: dsMask('tick-01', 14, '#F6F1E7'),
+      iconFormAlert: dsMask('alert-circle', 16, '#A33203'),
+      iconFormOk: dsMask('checkmark-circle-01', 16, '#3F7F2C'),
+      tipDemos,
+      toc, colors, colorsBrand, roleGroups, tearPads, stockScale, orderStates, ratingRows, formChecks, formRadios, typeScale, spacing, radii, shadows, iconGroups, iconTotal, tovDo, tovDont, claims };
+  }
+}
+</script>
+</body>
+</html>

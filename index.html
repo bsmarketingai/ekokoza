@@ -300,13 +300,14 @@
     .ek-nl-t { font-size: 22px !important; }
     .ek-nl-d { font-size: 15px !important; }
   }
-  @media (max-width: 1180px) and (min-width: 901px) {
-    #blok3 .ek-scrollrow { grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
+  /* Co chcete vyrábět: pod 1150 px rovnou karusel (bez mezikroku 3 sloupce) */
+  @media (max-width: 1149px) {
+    #blok3 .ek-scrollrow { overflow-x: auto !important; grid-auto-flow: column !important; grid-auto-columns: 260px !important; grid-template-columns: none !important; padding-bottom: 16px !important; margin-left: -20px !important; margin-right: -20px !important; padding-left: 20px !important; padding-right: 20px !important; scroll-padding-left: 20px !important; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; }
+    #blok3 .ek-car-track { display: block !important; }
   }
   /* záhlaví sekcí: na menších displejích odkaz/CTA pod nadpis */
   @media (max-width: 900px) { .ek-sechead { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; } }
   /* posuvník pod karuselem — jen tam, kde je řada posuvná */
-  @media (max-width: 900px) { #blok3 .ek-car-track { display: block !important; } }
   /* USP V2 na XS/XXS (< 550 px, breakpoint S): kompaktní řádky — ikona vlevo, nadpis a popis vpravo, linka mezi řádky */
   @media (max-width: 549px) {
     .ek-usp2-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
@@ -795,20 +796,8 @@
       <div>
         <p style="margin:0 0 10px; color:#4F6E2A; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Novinky e-mailem</p>
         <h2 class="ek-h2" style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#4C653D; line-height:1.1;">Jednou měsíčně. Od suroviny k vlastnímu výrobku.</h2>
-        <div style="display:flex; flex-direction:column; gap:9px; margin-top:22px; max-width:460px;">
-          <span style="font-size:13px; font-weight:600; color:#4A4A42;">Co vám máme posílat?</span>
-          <div style="display:flex; flex-wrap:wrap; gap:10px 26px;">
-            <sc-for list="{{ nlTopics }}" as="t" hint-placeholder-count="4">
-              <label class="ek-check">
-                <input type="checkbox" checked="{{ t.on }}" onChange="{{ t.toggle }}">
-                <span class="ek-check-box" aria-hidden="true"><span style="{{ iconCheckTick }}"></span></span>
-                <span style="font-size:15px; color:#4A4A42;">{{ t.label }}</span>
-              </label>
-            </sc-for>
-          </div>
-        </div>
-        <form onSubmit="{{ submitNewsletter }}" style="display:flex; gap:10px; margin:14px 0 10px; max-width:460px; flex-wrap:wrap;">
-          <input type="email" placeholder="váš e-mail" style="flex:1; min-width:220px; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:14px 22px; font-family:'Work Sans',sans-serif; font-size:15.5px; color:#2A2A24; outline:none;">
+        <form onSubmit="{{ submitNewsletter }}" style="display:flex; gap:10px; margin:22px 0 10px; max-width:460px; flex-wrap:wrap;">
+          <label style="flex:1; min-width:220px; display:flex; align-items:center; gap:10px; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:0 22px 0 18px; cursor:text;"><span aria-hidden="true" style="display:inline-block; width:20px; height:20px; flex:0 0 auto; background-color:#7c7a6a; -webkit-mask:url('assets/icons/mail-01.svg') center / contain no-repeat; mask:url('assets/icons/mail-01.svg') center / contain no-repeat;"></span><input type="email" placeholder="váš e-mail" aria-label="Váš e-mail" style="flex:1; min-width:0; background:transparent; border:none; padding:14px 0; font-family:'Work Sans',sans-serif; font-size:15.5px; color:#2A2A24; outline:none;"></label>
           <button type="submit" class="ek-cta" style="background:#D14405; color:#fff; border:none; cursor:pointer; padding:14px 26px; border-radius:999px; font-family:'Work Sans',sans-serif; font-weight:600; font-size:15px; transition:background .2s;">Odebírat</button>
         </form>
         <p style="margin:0; font-size:13px; color:#8a8a78;">Odhlásíte se kdykoli jedním klikem.</p>
@@ -878,22 +867,6 @@
     </span>
     <span aria-hidden="true" style="width:1px; height:24px; background:#E4DAC6; flex:0 0 auto;"></span>
     </sc-if>
-    <span title="Suroviny dle kategorie" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
-      <span style="{{ iconVarIng }}"></span>
-    </span>
-    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
-      <button onClick="{{ setIngS1 }}" title="Mřížka, na mobilu dva sloupce (současné)" style="{{ ingS1Style }}">S1</button>
-      <button onClick="{{ setIngS2 }}" title="Jako Co chcete vyrábět: na menších displejích karusel" style="{{ ingS2Style }}">S2</button>
-    </span>
-    <span aria-hidden="true" style="width:1px; height:24px; background:#E4DAC6; flex:0 0 auto;"></span>
-    <span title="Vyhledávání" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
-      <span style="{{ iconVarSrch }}"></span>
-    </span>
-    <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
-      <button onClick="{{ setSrchV1 }}" title="Vyhledávání: ikona, pole se rozbalí po kliknutí" style="{{ srchV1Style }}">V1</button>
-      <button onClick="{{ setSrchV2 }}" title="Vyhledávání: pole rovnou v hlavičce (od 1000 px)" style="{{ srchV2Style }}">V2</button>
-    </span>
-    <span aria-hidden="true" style="width:1px; height:24px; background:#E4DAC6; flex:0 0 auto;"></span>
     <span title="Účet" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#4C653D; white-space:nowrap;">
       <span style="{{ iconVarUser }}"></span>
     </span>
@@ -901,7 +874,6 @@
       <button onClick="{{ setGuest }}" title="Nepřihlášený" style="{{ guestStyle }}">Host</button>
       <button onClick="{{ setLogged }}" title="Přihlášený" style="{{ loggedStyle }}">Přihlášen</button>
     </span>
-    <dc-import name="ui-MenuSwitch" hint-size="200px,36px"></dc-import>
     <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
   </div>
   </sc-if>
@@ -1304,7 +1276,7 @@ class Component extends DCLogic {
       b3Ref: this.trackRef('b3'), ...this.carVals('b3'), b3Thumb: this.thumbStyle('b3'),
       b5Ref: this.trackRef('b5'), ...this.carVals('b5'), b5Thumb: this.thumbStyle('b5'), b5Track: this.trackStyle('b5'),
       b6Ref: this.trackRef('b6'), ...this.carVals('b6'), b6Thumb: this.thumbStyle('b6'), b6Track: this.trackStyle('b6'),
-      ingLayout: this.state.ing === 's2' ? 'carousel' : 'grid',
+      ingLayout: 'carousel',
       ingS1Style: segBtn(this.state.ing !== 's2'), ingS2Style: segBtn(this.state.ing === 's2'),
       setIngS1: () => this.setIng('s1'), setIngS2: () => this.setIng('s2'),
       iconLoyalCta: this.maskStyle('percent-circle', 19, '#D14405') + ' flex:0 0 auto;',

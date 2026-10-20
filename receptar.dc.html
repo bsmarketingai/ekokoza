@@ -275,17 +275,6 @@
   <sc-if value="{{ barCollapsed }}" hint-placeholder-val="{{ false }}">
     <button onClick="{{ openBar }}" title="Zobrazit ovládání ukázky" style="position:fixed; right:20px; bottom:20px; z-index:300; display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 14px 32px -16px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif; font-size:13px; font-weight:600; color:#4C653D; cursor:pointer;"><span style="{{ iconBarOpen }}"></span>Ukázka</button>
   </sc-if>
-  <sc-if value="{{ barOpen }}" hint-placeholder-val="{{ true }}">
-    <div style="position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:300; display:flex; align-items:center; gap:10px; padding:10px 10px 10px 14px; border-radius:999px; background:rgba(255,253,246,.96); backdrop-filter:blur(10px); border:1px solid #E4DAC6; box-shadow:0 18px 40px -18px rgba(45,58,46,.5); font-family:'Work Sans',sans-serif;">
-      <span class="ek-varbar-note">Kategorie</span>
-      <span style="display:flex; gap:4px; padding:3px; border-radius:999px; background:#F1EADC;">
-        <button onClick="{{ setTilesV1 }}" title="Řádkové dlaždice s ikonou" class="{{ clsTilesV1 }}">V1</button>
-        <button onClick="{{ setTilesV2 }}" title="Fotka a pod ní nadpis s ikonou" class="{{ clsTilesV2 }}">V2</button>
-      </span>
-      <dc-import name="ui-MenuSwitch" hint-size="200px,36px"></dc-import>
-    <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
-    </div>
-  </sc-if>
 </div>
 
 </x-dc>
@@ -504,8 +493,8 @@ class Component extends DCLogic {
         { title: 'Novinky', icon: 'news', href: '#', img: 'assets/receptar/novinky.webp' },
         { title: 'Slovníček pojmů', icon: 'book-open-01', href: 'slovnicek.dc.html', img: 'assets/receptar/slovnicek.png' },
       ],
-      tilesV1: S.tiles === 'v1',
-      tilesV2: S.tiles === 'v2',
+      tilesV1: true,
+      tilesV2: false,
       clsTilesV1: S.tiles === 'v1' ? 'ek-segb2 ek-segb2-on' : 'ek-segb2',
       clsTilesV2: S.tiles === 'v2' ? 'ek-segb2 ek-segb2-on' : 'ek-segb2',
       setTilesV1: () => this.setState({ tiles: 'v1' }),

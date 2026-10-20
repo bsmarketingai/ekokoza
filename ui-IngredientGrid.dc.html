@@ -20,13 +20,15 @@
     .ek-ig-row a > span:first-child { width: 44px !important; height: 44px !important; }
     .ek-ig-row a > span:last-child { font-size: 19px !important; }
   }
-  /* S2: pod 900 px karusel stejně jako „Co chcete vyrábět?“ */
+  /* karusel pod 1150 px (bez mezikroku 3 sloupce), stejně jako „Co chcete vyrábět?“ */
   .ek-ig-car { scrollbar-width: none; -ms-overflow-style: none; }
   .ek-ig-car::-webkit-scrollbar { display: none; }
-  @media (max-width: 900px) {
+  @media (max-width: 1149px) {
     .ek-ig-grid.ek-ig-car { overflow-x: auto !important; grid-auto-flow: column !important; grid-auto-columns: 260px !important; grid-template-columns: none !important; column-gap: 16px !important; scroll-snap-type: x proximity; padding-bottom: 16px !important; margin-left: -20px !important; margin-right: -20px !important; padding-left: 20px !important; padding-right: 20px !important; scroll-padding-left: 20px !important; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; mask-image: linear-gradient(to right, #000 calc(100% - 52px), rgba(0,0,0,0) 100%) !important; }
     .ek-ig-car > * { scroll-snap-align: start; }
     .ek-ig-track { display: block !important; }
+  }
+  @media (max-width: 900px) {
     .ek-ig-head { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
     /* s navigací karuselu: odkaz vlevo, šipky vpravo; bez navigace odkaz vpravo */
     .ek-ig-r { align-self: stretch; justify-content: flex-end; margin-left: 0 !important; }
@@ -39,9 +41,6 @@
     .ek-ig-grid { order: 1; }
     .ek-ig-track { order: 2; }
     .ek-ig-r { order: 3; margin-top: 14px; }
-  }
-  @media (min-width: 901px) and (max-width: 1180px) {
-    .ek-ig-grid.ek-ig-car { grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
   }
   .ek-ig-all:hover { color: #B23803 !important; }
   .ek-ig-life a > span:first-child > span { transition: transform .45s ease; }

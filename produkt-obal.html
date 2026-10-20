@@ -181,7 +181,7 @@
           <div role="radiogroup" aria-label="Barva lahvičky" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
             <sc-for list="{{ colors }}" as="col" hint-placeholder-count="3">
               <span style="position:relative; display:inline-flex;" onMouseEnter="{{ col.enter }}" onMouseLeave="{{ col.leave }}">
-                <button role="radio" aria-checked="{{ col.checked }}" aria-label="{{ col.name }}" onClick="{{ col.pick }}" onFocus="{{ col.enter }}" onBlur="{{ col.leave }}" style="{{ col.ring }}"><span style="{{ col.dot }}"></span></button>
+                <button role="radio" aria-checked="{{ col.checked }}" aria-label="{{ col.name }}" onClick="{{ col.pick }}" onFocus="{{ col.enter }}" onBlur="{{ col.leave }}" style="{{ col.ring }}"><span style="{{ col.dot }}"><sc-if value="{{ col.on }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="{{ col.tick }}"></span></sc-if></span></button>
                 <sc-if value="{{ col.showPrev }}" hint-placeholder-val="{{ false }}">
                   <span role="tooltip" aria-label="{{ col.name }}" style="{{ col.popPos }} position:absolute; bottom:calc(100% + 10px); width:100px; height:100px; box-sizing:border-box; padding:4px; background:#fff; border:1px solid #E4DAC6; border-radius:10px; box-shadow:0 8px 24px rgba(42,42,36,.14); pointer-events:none; z-index:20;">
                     <span style="{{ col.imgStyle }}"></span>
@@ -384,7 +384,7 @@
               <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">{{ q.text }}</p>
             </div>
             <div style="display:flex; gap:12px; padding:14px 16px; border-radius:12px; background:#F4F7EA;">
-              <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; flex:0 0 auto;"><span style="display:block; width:26px; height:26px; background-color:#2D3A2E; -webkit-mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat; mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat;"></span></span>
+              <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; flex:0 0 auto;"><span style="display:block; width:26px; height:26px; background-color:#4C653D; -webkit-mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat; mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat;"></span></span>
               <span style="display:flex; flex-direction:column; gap:5px;">
                 <span style="font-size:14px; font-weight:700; color:#4C653D;">Ekokoza</span>
                 <span style="font-size:15px; line-height:1.65; color:#4A4A42;">{{ q.answer }}</span>
@@ -501,7 +501,6 @@
       </span>
     </span>
   </sc-for>
-  <dc-import name="ui-MenuSwitch" hint-size="200px,36px"></dc-import>
     <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
 </div>
 </sc-if>
@@ -532,8 +531,8 @@ class Component extends DCLogic {
   static IMG = 'assets/products/sklenena-lahvicka-bez-uzaveru-hneda-10-ml.webp';
   static TITLE = 'Skleněná lahvička bez uzávěru hnědá, 10 ml';
   static COLORS = [
-    { id: 'hneda', name: 'Hnědá', fill: '#7A4A1F', img: 'assets/products/lahvicka-nahled-hneda.png' },
-    { id: 'zelena', name: 'Zelená', fill: '#3F6B3A', img: 'assets/products/lahvicka-nahled-zelena.png' },
+    { id: 'hneda', name: 'Hnědá', dark: true, fill: '#7A4A1F', img: 'assets/products/lahvicka-nahled-hneda.png' },
+    { id: 'zelena', name: 'Zelená', dark: true, fill: '#3F6B3A', img: 'assets/products/lahvicka-nahled-zelena.png' },
     { id: 'cira', name: 'Čirá', img: 'assets/products/lahvicka-nahled-cira.png', fill: 'linear-gradient(135deg, #FFFFFF 0%, #E9EEF0 55%, #D5DEE2 100%)' },
   ];
   // Varianty: po kusech, nebo celé balení 187 ks (ceny s DPH)
@@ -623,8 +622,11 @@ class Component extends DCLogic {
         unit: this.money(u) + ' / ks',
         best: pcs === PACK, saveNote: 'Výhodnější o ' + Math.round((1 - PACK_K) * 100) + ' %',
         checked: on ? 'true' : 'false', pick: () => setPack(cm, pcs),
-        style: 'display:flex; align-items:center; gap:12px; width:100%; padding:14px 16px; border-radius:12px; cursor:pointer; font-family:inherit; transition:border-color .2s, background .2s; ' + (on ? 'background:#F3F6EA; border:1.5px solid #4C653D;' : 'background:#fff; border:1.5px solid #E4DAC6;'),
-        dot: 'display:block; flex:0 0 auto; width:20px; height:20px; box-sizing:border-box; border-radius:50%; background:#fff; ' + (on ? 'border:6px solid #4C653D;' : 'border:1.5px solid #CFC4AA;'),
+        style: 'display:flex; align-items:center; gap:12px; width:100%; padding:14px 16px; border-radius:12px; cursor:pointer; font-family:inherit; transition:border-color .2s, background .2s, box-shadow .2s; ' + (on ? 'background:#F4F7EA; border:1.5px solid #4C653D; box-shadow:0 0 0 2px rgba(76,101,61,.16);' : 'background:#fff; border:1.5px solid #E2D9C4;'),
+        // stejný radio jako výběr varianty na detailu produktu (ui-VariantPicker)
+        dot: on
+          ? 'display:inline-block; width:24px; height:24px; flex:0 0 auto; background-color:#4C653D; -webkit-mask:url("assets/icons/checkmark-circle-01.svg") center / contain no-repeat; mask:url("assets/icons/checkmark-circle-01.svg") center / contain no-repeat;'
+          : 'display:inline-block; width:24px; height:24px; flex:0 0 auto; box-sizing:border-box; border-radius:50%; border:1.5px solid #D8CDB4;',
       }; }) : [],
       cmQtyNote: cm ? (cmPack === PACK ? nf(cmQty / PACK) + ' × balení = ' + nf(cmQty) + ' ks' : nf(cmQty) + ' ks') : '',
       cmTotal: cm ? this.money(unitOf(cm, cmPack) * cmQty) : '',
@@ -645,10 +647,6 @@ class Component extends DCLogic {
       { label: 'Zákazník', options: [
         { label: 'Host', on: !loggedIn, pick: () => this.setState({ loggedIn: false }) },
         { label: 'Přihlášen', on: loggedIn, pick: () => this.setState({ loggedIn: true }) },
-      ] },
-      { label: 'Galerie', options: [
-        { label: 'G1', on: (this.state.gal || 'g1') === 'g1', pick: () => this.setState({ gal: 'g1' }) },
-        { label: 'G2', on: this.state.gal === 'g2', pick: () => this.setState({ gal: 'g2' }) },
       ] },
       { label: 'Detail víčka', options: [
         { label: 'V1', on: capV === 'v1', pick: () => this.setState({ capV: 'v1' }) },
@@ -671,7 +669,7 @@ class Component extends DCLogic {
       productVideo: null,
       images: [{ src: Component.IMG, alt: 'Hnědá skleněná lahvička 10 ml bez uzávěru, hrdlo se závitem 18/415' }],
       galleryBadges: [],
-      galLayout: this.state.gal === 'g2' ? 'below' : 'side',
+      galLayout: 'side',
       title: Component.TITLE,
       productId: '7312',
       rating: 4.8, ratingCount: 34, ratingLabel: '34 hodnocení',
@@ -701,7 +699,9 @@ class Component extends DCLogic {
 
       colorName: (Component.COLORS.find(c => c.id === (this.state.color || 'hneda')) || Component.COLORS[0]).name,
       colors: Component.COLORS.map((c, i) => { const on = c.id === (this.state.color || 'hneda'); return {
-        name: c.name, checked: on ? 'true' : 'false',
+        name: c.name, checked: on ? 'true' : 'false', on,
+        // Zatržítko u vybrané barvy: na tmavém vzorku bílé, na světlém tmavě zelené
+        tick: 'display:block; width:20px; height:20px; background-color:' + (c.dark ? '#FFFFFF' : '#4C653D') + '; -webkit-mask:url("assets/icons/tick-01.svg") center / contain no-repeat; mask:url("assets/icons/tick-01.svg") center / contain no-repeat;',
         showPrev: this.state.prev === c.id,
         imgStyle: 'display:block; width:100%; height:100%; border-radius:6px; background:#fff url("' + c.img + '") center / contain no-repeat;',
         // První vzorník: popup zarovnaný doleva, aby na úzkých šířkách nevyjel z obrazovky
@@ -712,7 +712,7 @@ class Component extends DCLogic {
         leave: () => { if (this.canHover()) this.setState({ prev: null }); },
         pick: () => { this.setState({ color: c.id }); if (!this.canHover()) { clearTimeout(this._prevT); this.setState({ prev: c.id }); this._prevT = setTimeout(() => this.setState({ prev: null }), 1800); } },
         ring: 'display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; padding:0; border-radius:50%; background:#fff; cursor:pointer; transition:border-color .2s; border:2px solid ' + (on ? '#4C653D' : '#E4DAC6') + ';',
-        dot: 'display:block; width:32px; height:32px; border-radius:50%; background:' + c.fill + '; box-shadow:inset 0 0 0 1px rgba(42,42,36,.18);',
+        dot: 'display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:' + c.fill + '; box-shadow:inset 0 0 0 1px rgba(42,42,36,.18);',
       }; }),
       capsShown: capsOpen ? caps : caps.slice(0, CAPS_VISIBLE),
       lbOpen: !!this.state.lb, lbName: this.state.lb ? this.state.lb.name : '',

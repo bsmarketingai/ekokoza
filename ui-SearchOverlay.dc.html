@@ -23,14 +23,25 @@
     .ek-search-inline .ek-sugg { position: absolute !important; }
     .ek-search-inline .ek-sugg { max-height: calc(100dvh - 160px) !important; }
   }
+  /* S (pod 820 px): našeptávač přilepený pod hlavičkou na celou šířku obrazovky */
   @media (max-width: 819px) {
+    .ek-search-inline { left: 0 !important; right: 0 !important; }
+    .ek-search-inline .ek-sugg { top: 0 !important; left: 0 !important; right: 0 !important; border-radius: 0 !important; border-left: none !important; border-right: none !important; max-height: calc(100dvh - 140px) !important; }
     .ek-search-inline .ek-sugg { grid-template-columns: 1fr !important; }
     .ek-search-inline .ek-sugg > div { border-left: none !important; }
     .ek-search-inline .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
   }
+  .ek-search-field:focus-within { border-color: #4C653D !important; box-shadow: 0 0 0 3px rgba(76,101,61,.14); }
+  .ek-search-close:hover { background: #EFE7D6 !important; }
+  /* XS/XXS: menší boční odsazení, víc místa pro názvy */
+  @media (max-width: 549px) {
+    .ek-sugg-col { padding: 16px 10px !important; }
+    .ek-sugg-item { padding: 8px 6px !important; gap: 12px !important; }
+    .ek-sugg-btn { margin-left: 6px !important; }
+  }
   @media (max-width: 999px) {
     .ek-search-overlay { position: fixed !important; inset: 0 !important; transform: none !important; z-index: 300 !important; background: #F6F1E7 !important; flex-direction: column !important; align-items: stretch !important; }
-    .ek-search-form { width: 100% !important; border-radius: 0 !important; border: none !important; border-bottom: 1px solid #E4DAC6 !important; box-shadow: none !important; padding: 22px 20px !important; padding-top: max(22px, env(safe-area-inset-top)) !important; }
+    .ek-search-form { width: 100% !important; border-radius: 0 !important; border: none !important; border-bottom: 1px solid #E4DAC6 !important; box-shadow: none !important; padding: 14px 16px !important; padding-top: max(14px, env(safe-area-inset-top)) !important; }
     .ek-search-overlay .ek-sugg { position: static !important; margin: 0 !important; grid-template-columns: 1fr !important; max-height: calc(100dvh - 96px) !important; overflow-y: auto !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; }
     .ek-search-overlay .ek-sugg > div { border-left: none !important; }
     .ek-search-overlay .ek-sugg > div:first-child { border-bottom: 1px solid #EFE7D6 !important; }
@@ -46,22 +57,24 @@
 <div class="{{ rootCls }}" style="position:absolute; left:32px; right:32px; top:50%; transform:translateY(-50%); display:flex; align-items:center; z-index:60; font-family:'Work Sans',sans-serif;">
 
   <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
-  <form class="ek-search-form" onSubmit="{{ submit }}" style="display:flex; align-items:center; gap:12px; width:100%; background:#fff; border:1px solid #E4DAC6; border-radius:999px; padding:12px 16px 12px 22px; box-shadow:0 14px 36px -20px rgba(45,58,46,.5);">
-    <span style="{{ iconSearch }}"></span>
-    <input ref="{{ inputRef }}" value="{{ query }}" onInput="{{ onInput }}" placeholder="Hledejte suroviny, recepty, kategorie…" style="flex:1; min-width:0; border:none; outline:none; background:transparent; font-family:'Work Sans',sans-serif; font-size:17px; color:#2A2A24;">
-    <button type="submit" class="ek-btn-main" style="background:#D14405; color:#fff; border:none; cursor:pointer; padding:9px 20px; border-radius:999px; font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; transition:background .2s; white-space:nowrap;">Hledat</button>
-    <span onClick="{{ onClose }}" title="Zavřít" style="width:34px; height:34px; flex:0 0 auto; border-radius:50%; background:#F6F1E7; color:#4C653D; display:flex; align-items:center; justify-content:center; cursor:pointer;"><span style="{{ iconClose }}"></span></span>
+  <form class="ek-search-form" onSubmit="{{ submit }}" style="display:flex; align-items:center; gap:10px; width:100%; background:#fff; border-radius:14px; padding:12px 16px; box-shadow:0 14px 36px -20px rgba(45,58,46,.5);">
+    <label class="ek-search-field" style="flex:1 1 auto; min-width:0; display:flex; align-items:center; gap:10px; height:52px; padding:0 5px 0 16px; background:#fff; border:1.5px solid #D9D0BC; border-radius:999px; cursor:text; transition:border-color .2s, box-shadow .2s;">
+      <span style="{{ iconSearch }}"></span>
+      <input ref="{{ inputRef }}" value="{{ query }}" onInput="{{ onInput }}" placeholder="Hledejte suroviny, recepty…" aria-label="Hledat" style="flex:1; min-width:0; border:none; outline:none; background:transparent; font-family:'Work Sans',sans-serif; font-size:17px; color:#2A2A24;">
+      <button type="submit" class="ek-btn-main" aria-label="Hledat" title="Hledat" style="width:42px; height:42px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; padding:0; background:#D14405; border:none; border-radius:50%; cursor:pointer; transition:background .2s;"><span style="{{ iconSearchBtn }}"></span></button>
+    </label>
+    <button type="button" onClick="{{ onClose }}" title="Zavřít" aria-label="Zavřít vyhledávání" class="ek-search-close" style="appearance:none; width:40px; height:40px; flex:0 0 auto; box-sizing:border-box; border-radius:50%; background:#F6F1E7; border:1px solid #E4DAC6; color:#4C653D; display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0; transition:background .2s;"><span style="{{ iconClose }}"></span></button>
   </form>
   </sc-if>
 
   <sc-if value="{{ active }}" hint-placeholder-val="{{ false }}">
   <div class="ek-sugg" style="position:absolute; top:calc(100% + 10px); left:0; right:0; background:#fff; border:1px solid #E4DAC6; border-radius:14px; box-shadow:0 34px 64px -30px rgba(45,58,46,.5); overflow-x:hidden; overflow-y:auto; max-height:calc(100vh - 130px); display:grid; grid-template-columns:2fr 1fr;">
 
-    <div style="padding:18px 20px; display:flex; flex-direction:column;">
+    <div class="ek-sugg-col" style="padding:18px 20px; display:flex; flex-direction:column;">
       <p class="ek-mlabel" style="margin:0 0 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#9b9888; font-weight:600;">Produkty</p>
       <div style="display:flex; flex-direction:column;">
         <sc-for list="{{ products }}" as="sp" hint-placeholder-count="4">
-          <a href="{{ sp.href }}" class="ek-mega-link" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
+          <a href="{{ sp.href }}" class="ek-mega-link ek-sugg-item" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
             <span style="{{ sp.thumbStyle }}"></span>
             <span style="flex:1; min-width:0;">
               <span class="ek-mh" style="display:block; font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25;">{{ sp.name }}</span>
@@ -71,14 +84,14 @@
           </a>
         </sc-for>
       </div>
-      <a href="{{ allHref }}" class="ek-btn-main" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; margin-top:12px; margin-left:10px; background:#D14405; color:#fff; text-decoration:none; padding:11px 22px; border-radius:999px; font-weight:600; font-size:14.5px; transition:background .2s;">{{ allLabel }}<span style="{{ iconArrow }}"></span></a>
+      <a href="{{ allHref }}" class="ek-btn-main ek-sugg-btn" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; margin-top:12px; margin-left:10px; background:#D14405; color:#fff; text-decoration:none; padding:11px 22px; border-radius:999px; font-weight:600; font-size:14.5px; transition:background .2s;">{{ allLabel }}<span style="{{ iconArrow }}"></span></a>
     </div>
 
-    <div style="padding:18px 20px; background:#FBF8F1; border-left:1px solid #EFE7D6; display:flex; flex-direction:column; gap:10px;">
+    <div class="ek-sugg-col" style="padding:18px 20px; background:#FBF8F1; border-left:1px solid #EFE7D6; display:flex; flex-direction:column; gap:10px;">
       <p class="ek-mlabel" style="margin:0; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#9b9888; font-weight:600;">Recepty</p>
       <div style="display:flex; flex-direction:column;">
         <sc-for list="{{ recipeItems }}" as="sr" hint-placeholder-count="4">
-          <a href="{{ sr.href }}" class="ek-mega-link" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
+          <a href="{{ sr.href }}" class="ek-mega-link ek-sugg-item" style="display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:10px; text-decoration:none; color:#2A2A24; transition:background .15s;">
             <span style="{{ sr.thumbStyle }}"></span>
             <span style="flex:1; min-width:0;">
               <span class="ek-mh" style="display:block; font-family:'EB Garamond',serif; font-weight:500; font-size:18px; line-height:1.25;">{{ sr.name }}</span>
@@ -87,7 +100,7 @@
           </a>
         </sc-for>
       </div>
-      <a href="receptar.dc.html" class="ek-mlink" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; margin-top:2px; margin-left:10px; padding:10px 22px; border:1px solid #4C653D; border-radius:999px; color:#4C653D; text-decoration:none; font-weight:600; font-size:14.5px;">{{ recipesAllLabel }}<span style="{{ iconArrowG }}"></span></a>
+      <a href="receptar.dc.html" class="ek-mlink ek-sugg-btn" style="display:inline-flex; align-self:flex-start; align-items:center; gap:8px; margin-top:2px; margin-left:10px; padding:10px 22px; border:1px solid #4C653D; border-radius:999px; color:#4C653D; text-decoration:none; font-weight:600; font-size:14.5px;">{{ recipesAllLabel }}<span style="{{ iconArrowG }}"></span></a>
     </div>
 
   </div>
@@ -150,7 +163,8 @@ class Component extends DCLogic {
       onClose: this.props.onClose ?? (() => {}),
       submit: this.props.submit ?? ((e) => e.preventDefault()),
       inputRef: this.props.inputRef ?? null,
-      iconSearch: this.mask('search-01', 24, '#7c7a6a'),
+      iconSearch: this.mask('search-01', 22, '#7c7a6a'),
+      iconSearchBtn: this.mask('search-01', 20, '#FFFFFF'),
       iconClose: this.mask('cancel-01', 18),
       iconArrow: this.mask('arrow-right-02', 20),
       iconChevron: this.mask('arrow-right-01', 14, '#c9c2ae'),

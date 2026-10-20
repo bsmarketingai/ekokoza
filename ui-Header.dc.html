@@ -13,6 +13,11 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
+  /* XS/XXS: hamburger menu přes celou obrazovku — stejně jako košík a přihlášení */
+  @media (max-width: 549px) {
+    .ek-drawer-panel { width: 100% !important; max-width: none !important; box-shadow: none !important; background: #FFFFFF !important; }
+    .ek-drawer-head { padding-top: max(18px, env(safe-area-inset-top)) !important; }
+  }
   body { margin: 0; }
   a { color: #D8763B; text-decoration: none; }
   a:hover { color: #B23803; }
@@ -250,10 +255,10 @@
   <!-- MOBILE DRAWER -->
   <div style="{{ drawerWrapStyle }}" onClick="{{ closeDrawer }}">
     <div style="{{ drawerBdStyle }}"></div>
-    <aside style="{{ drawerPanelStyle }}" onClick="{{ stopProp }}">
-      <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 20px; border-bottom:1px solid #E4DAC6;">
+    <aside class="ek-drawer-panel" style="{{ drawerPanelStyle }}" onClick="{{ stopProp }}">
+      <div class="ek-drawer-head" style="display:flex; align-items:center; justify-content:space-between; padding:18px 20px; border-bottom:1px solid #E4DAC6;">
         <img src="assets/ekokoza-logo-green.png" alt="ekokoza" style="height:32px; width:auto; display:block;">
-        <span onClick="{{ closeDrawer }}" title="Zavřít" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#EFE7D6; color:#4C653D; cursor:pointer;"><span style="{{ iconClose }}"></span></span>
+        <span onClick="{{ closeDrawer }}" title="Zavřít" role="button" aria-label="Zavřít menu" style="width:40px; height:40px; box-sizing:border-box; flex:0 0 auto; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#F6F1E7; border:1px solid #E4DAC6; color:#4C653D; cursor:pointer;"><span style="{{ iconClose }}"></span></span>
       </div>
       <nav style="display:flex; flex-direction:column; padding:8px 0; overflow-y:auto; flex:1;">
         <sc-for list="{{ drawerMenu }}" as="l" hint-placeholder-count="3">
@@ -328,11 +333,11 @@ class Component extends DCLogic {
     } catch (e) {}
     this._onTopbar = (e) => { const v = e.detail && e.detail.variant; if (v === 'v1' || v === 'v2' || v === 'v3') this.setState({ topbar: v }); };
     window.addEventListener('ek-topbar-variant', this._onTopbar);
-    try { const mv = localStorage.getItem('ekokoza-mega-variant-v3'); if (mv === 'mm1' || mv === 'mm2' || mv === 'mm3') this.setState({ mm: mv }); } catch (e) {}
+    // Megamenu: schváleno MM3 (20. 10. 2026) — výchozí na celém webu, uložená volba se už nenačítá.
     this._onMega = (e) => { const v = e.detail && e.detail.variant; if (v === 'mm1' || v === 'mm2' || v === 'mm3') this.setState({ mm: v }); };
     window.addEventListener('ek-mega-variant', this._onMega);
     try { if (/vysledky-vyhledavani/.test(location.pathname)) { const sp0 = new URLSearchParams(location.search); const q0 = sp0.get('q'); this.setState({ iq: q0 || (sp0.get('empty') === '1' ? 'máslo cupuacu 250 g' : 'mýdlo') }); } } catch (e) {}
-    try { const sv = localStorage.getItem('ekokoza-search-variant'); if (sv === 'v1' || sv === 'v2') this.setState({ srch: sv }); } catch (e) {}
+    // Vyhledávání: schváleno V2 (20. 10. 2026) — výchozí na celém webu, uložená volba V1 se už nenačítá.
     this._onSrch = (e) => { const v = e.detail && e.detail.variant; if (v === 'v1' || v === 'v2') this.setState({ srch: v, iq: '', iFocus: false }); };
     window.addEventListener('ek-search-variant', this._onSrch);
     this._onQ = (e) => { if (e.detail && typeof e.detail.q === 'string') this.setState({ iq: e.detail.q, iFocus: false }); };
@@ -518,7 +523,7 @@ class Component extends DCLogic {
       megaTitle: mega ? mega.title : '',
       megaAllHref: mega ? mega.allHref : '#',
       megaLinks: mega ? mega.sub : [],
-      megaVariant: S.mm || 'mm3',
+      megaVariant: 'mm3',
       megaGroups: mega && mega.groups ? mega.groups : null,
       megaProdName: mega ? mega.prod.name : '',
       megaProdPrice: mega ? mega.prod.price : '',

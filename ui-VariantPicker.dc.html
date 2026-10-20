@@ -47,7 +47,7 @@
           <span class="ek-var-right" style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
             <span style="display:flex; flex-direction:column; gap:1px; align-items:flex-end;">
               <span style="{{ v.priceStyle }}">{{ v.price }}</span>
-              <span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">Nejvýhodnější cena za ks:</span></sc-if>{{ v.unitText }}</span>
+              <span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">{{ v.bestLabel }}</span></sc-if>{{ v.unitText }}</span>
             </span>
             <sc-if value="{{ v.buyable }}" hint-placeholder-val="{{ true }}">
               <span onClick="{{ v.stopRow }}" style="display:flex; flex:0 0 auto;">
@@ -89,7 +89,7 @@
         <span class="ek-var-right" style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
           <span style="display:flex; flex-direction:column; gap:1px; align-items:flex-end;">
             <span style="{{ v.priceStyle }}">{{ v.price }}</span>
-            <sc-if value="{{ v.hasUnit }}" hint-placeholder-val="{{ false }}"><span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">Nejvýhodnější cena za ks:</span></sc-if>{{ v.unitText }}</span></sc-if>
+            <sc-if value="{{ v.hasUnit }}" hint-placeholder-val="{{ false }}"><span style="{{ v.unitStyle }}"><sc-if value="{{ v.best }}" hint-placeholder-val="{{ false }}"><span style="font-weight:600;">{{ v.bestLabel }}</span></sc-if>{{ v.unitText }}</span></sc-if>
           </span>
         </span>
       </button>
@@ -173,7 +173,8 @@ class Component extends DCLogic {
           unit: v.unit ?? '',
           best: isBest(v),
           unitStyle: unitSt(isBest(v)),
-          unitText: isBest(v) ? String(v.unit ?? '').replace(/\s*\/\s*ks\s*$/, '') : (v.unit ?? ''),
+          unitText: isBest(v) ? String(v.unit ?? '').replace(/\s*\/\s*[^\/]+$/, '') : (v.unit ?? ''),
+          bestLabel: 'Nejvýhodnější cena za ' + ((String(v.unit ?? '').match(/\/\s*([^\/]+?)\s*$/) || [])[1] || 'ks') + ':',
           state: st,
           date: v.date ?? '',
           buyable,
@@ -214,7 +215,8 @@ class Component extends DCLogic {
           unit: v.unit ?? '',
           best: isBest(v),
           unitStyle: unitSt(isBest(v)),
-          unitText: isBest(v) ? String(v.unit ?? '').replace(/\s*\/\s*ks\s*$/, '') : (v.unit ?? ''),
+          unitText: isBest(v) ? String(v.unit ?? '').replace(/\s*\/\s*[^\/]+$/, '') : (v.unit ?? ''),
+          bestLabel: 'Nejvýhodnější cena za ' + ((String(v.unit ?? '').match(/\/\s*([^\/]+?)\s*$/) || [])[1] || 'ks') + ':',
           hasUnit: !!v.unit,
           cls: on ? 'ek-var ek-var-row ek-var-on' : 'ek-var ek-var-row',
           labelStyle: 'font-size:16px; font-weight:' + (on ? '700' : '600') + '; color:#2A2A24;',

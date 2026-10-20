@@ -779,7 +779,7 @@
               <p style="margin:0; font-size:15.5px; line-height:1.65; color:#4A4A42;">{{ q.text }}</p>
             </div>
             <div style="display:flex; gap:12px; padding:14px 16px; border-radius:12px; background:#F4F7EA;">
-              <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; flex:0 0 auto;"><span style="display:block; width:26px; height:26px; background-color:#2D3A2E; -webkit-mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat; mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat;"></span></span>
+              <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; flex:0 0 auto;"><span style="display:block; width:26px; height:26px; background-color:#4C653D; -webkit-mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat; mask:url('assets/ekokoza-znak-cream.png') center / contain no-repeat;"></span></span>
               <span style="display:flex; flex-direction:column; gap:5px;">
                 <span style="font-size:14px; font-weight:700; color:#4C653D;">Ekokoza</span>
                 <span style="font-size:15px; line-height:1.65; color:#4A4A42;">{{ q.answer }}</span>
@@ -843,7 +843,6 @@
       </span>
     </span>
   </sc-for>
-  <dc-import name="ui-MenuSwitch" hint-size="200px,36px"></dc-import>
     <button onClick="{{ closeBar }}" aria-label="Skrýt ovládání ukázky" title="Skrýt ovládání ukázky" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; flex:0 0 auto; border-radius:50%; background:transparent; border:1px solid rgba(76,101,61,.22); cursor:pointer;"><span style="{{ iconBarClose }}"></span></button>
 </div>
 </sc-if>
@@ -952,10 +951,6 @@ class Component extends DCLogic {
         { label: 'V2', on: topbarVar === 'v2', pick: () => this.setTopbar('v2') },
         { label: 'V3', on: topbarVar === 'v3', pick: () => this.setTopbar('v3') },
       ] },
-      { label: 'Recepty v panelu', options: [
-        { label: 'R1', on: this.state.recVar === 'r1', pick: () => this.setState({ recVar: 'r1' }) },
-        { label: 'R2', on: this.state.recVar === 'r2', pick: () => this.setState({ recVar: 'r2' }) },
-      ] },
       { label: 'Dostupnost', options: [
         { label: 'Dostupný', on: !soldOut, pick: () => this.setState({ avail: 'in' }) },
         { label: 'Nedostupný', on: soldOut, pick: () => this.setState({ avail: 'out' }) },
@@ -963,10 +958,6 @@ class Component extends DCLogic {
       { label: 'Zákazník', options: [
         { label: 'Host', on: !loggedIn, pick: () => this.setState({ loggedIn: false }) },
         { label: 'Přihlášen', on: loggedIn, pick: () => this.setState({ loggedIn: true }) },
-      ] },
-      { label: 'Galerie', options: [
-        { label: 'G1', on: (this.state.gal || 'g1') === 'g1', pick: () => this.setState({ gal: 'g1' }) },
-        { label: 'G2', on: this.state.gal === 'g2', pick: () => this.setState({ gal: 'g2' }) },
       ] },
     ].map(g => Object.assign({}, g, { options: g.options.map(o => Object.assign({}, o, { style: segBtn(o.on) })) }));
     const secIds = ['vlastnosti','cotoje','pouziti','jak','karta','kombinace','nahrady','pozor','puvod','skladovani','bezpecnost','faq'];
@@ -1046,7 +1037,7 @@ class Component extends DCLogic {
       stopProp: (e) => e.stopPropagation(),
       watchModalOpen: this.state.watchModal,
       openWatchModal: () => this.setState({ watchModal: true }),
-      recR1: this.state.recVar === 'r1', recR2: this.state.recVar === 'r2',
+      recR1: false, recR2: true,
       rrRef: this._rrRefFn || (this._rrRefFn = (el) => { if (this._rrRO) { this._rrRO.disconnect(); this._rrRO = null; } this._rrEl = el; if (el) { requestAnimationFrame(() => this.rrUpd()); if (window.ResizeObserver) { this._rrRO = new ResizeObserver(() => this.rrUpd()); this._rrRO.observe(el); } } }),
       rrOnScroll: () => this.rrUpd(),
       rrPrev: () => this.rrGo(-1), rrNext: () => this.rrGo(1),
@@ -1067,7 +1058,7 @@ class Component extends DCLogic {
       iconBellW: this.mask('notification-01', 19, '#FFFFFF'),
       iconCloseModal: this.mask('cancel-01', 20, '#4C653D'),
       demoGroups: demoGroups.filter(g => (TOPBAR_SWITCH || g.label !== 'Horní lišta') && (VARLAYOUT_SWITCH || g.label !== 'Varianty')),
-      galLayout: this.state.gal === 'g2' ? 'below' : 'side',
+      galLayout: 'side',
       barOpen: this.state.barOpen,
       barCollapsed: !this.state.barOpen,
       openBar: () => this.setState({ barOpen: true }),
